@@ -1,0 +1,22 @@
+# Ankur Saathi Backend Dependencies
+# Install: pip install -r requirements.txt
+
+# Web framework
+fastapi==0.115.0
+uvicorn[standard]==0.30.0
+python-multipart==0.0.9      # For file uploads (photo capture)
+
+# Database
+asyncpg==0.29.0              # Async Postgres driver
+
+# Settings
+pydantic-settings==2.5.0     # Environment variable loading
+
+# Claude API
+anthropic==0.34.0            # Anthropic Python SDK
+
+# HTTP client (for embedding API calls)
+httpx==0.27.0
+
+# Utilities
+python-dateutil==2.9.0

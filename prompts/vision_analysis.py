@@ -1,0 +1,402 @@
+"""
+Ankur Saathi — Claude Vision Worksheet Analysis
+The feedback half of the daily loop: photograph → extract → diagnose → adapt.
+
+Pipeline: teacher photographs batch of worksheets → memory-safe upload →
+Claude Vision extracts answers by roll number → classifies against L1
+misconception taxonomy → updates child_competency_status → feeds next
+day's orchestration prompt.
+"""
+
+import json
+
+
+# ============================================================================
+# SYSTEM PROMPT — constant across all Vision calls
+# ============================================================================
+
+VISION_SYSTEM_PROMPT = """You are the Ankur Saathi worksheet analyser. You examine photographs of children's completed Hindi-medium worksheets and extract answers, diagnose misconceptions, and classify performance.
+
+## Rules
+
+1. **Roll numbers only.** Children write their roll number (1-99) on the worksheet, NEVER their name. Refer to each child as "Roll No. X". If you cannot read the roll number, mark it as "unclear" — do not guess.
+
+2. **Extract, then diagnose.** For each child's response to each problem:
+   a. Extract the handwritten answer exactly as written
+   b. Compare to the answer key provided
+   c. If wrong, classify the error against the misconception taxonomy provided — do NOT invent new categories
+   d. Assign confidence: "high" (clear handwriting, clear error pattern), "medium" (legible but ambiguous), "needs_verification" (unclear handwriting)
+
+3. **Pattern over single instances.** A misconception is diagnosed only when the same error pattern appears in 2+ problems. A single error is an "arithmetic slip" unless the pattern is unmistakable (e.g., answer is exactly 10 less than correct on a carry problem).
+
+4. **Hindi handwriting specifics:**
+   - Children write on the shirorekha (headline); numbers may float above or below
+   - Common handwriting confusions: 2/3, 6/9, 5/8 — flag "needs_verification" if ambiguous
+   - Matra placement in Hindi words: ि goes LEFT of consonant in correct writing
+   - Response grid structure: problems are numbered, answers go in designated boxes
+
+5. **Never hallucinate answers.** If you cannot read a response, say so. An "unclear" is better than a wrong extraction.
+
+6. **Output JSON only.** No preamble, no markdown fences."""
+
+
+# ============================================================================
+# USER PROMPT — built per batch of photographs
+# ============================================================================
+
+def build_vision_prompt(
+    worksheet_level: str,       # 'beginner', 'progressor', 'proficient'
+    competency_id: str,
+    competency_name_hi: str,
+    problems: list[dict],       # [{"number": 1, "problem_hi": "...", "answer": "..."}]
+    misconceptions: list[dict], # From L1 taxonomy
+    group_roll_numbers: list[int],
+    photo_count: int = 1
+) -> str:
+    """Build the user prompt that accompanies the worksheet photograph(s)."""
+    
+    # Build answer key
+    answer_key = {str(p['number']): p['answer'] for p in problems}
+    
+    # Build misconception reference
+    misc_ref = []
+    for m in misconceptions:
+        misc_ref.append({
+            "id": m['id'] if isinstance(m, dict) else m.id,
+            "name": m.get('name_en', '') if isinstance(m, dict) else m.name_en,
+            "error_pattern": m.get('error_pattern', '') if isinstance(m, dict) else m.error_pattern,
+            "diagnostic_indicator": m.get('diagnostic_indicator', '') if isinstance(m, dict) else m.diagnostic_indicator,
+            "example_incorrect": m.get('example_incorrect', '') if isinstance(m, dict) else m.example_incorrect,
+        })
+    
+    # Build diagnostic map (which problems reveal which misconceptions)
+    diagnostic_map = {}
+    for p in problems:
+        if p.get('diagnostic_for_misconception'):
+            diagnostic_map[str(p['number'])] = p['diagnostic_for_misconception']
+    
+    prompt = f"""Analyse the attached photograph(s) of completed worksheets.
+
+## WORKSHEET CONTEXT
+
+**Level:** {worksheet_level} ({'शुरुआती' if worksheet_level == 'beginner' else 'प्रगतिशील' if worksheet_level == 'progressor' else 'दक्ष'})
+**Competency:** {competency_id} — {competency_name_hi}
+**Expected roll numbers in this group:** {group_roll_numbers}
+**Photos:** {photo_count} image(s) — may contain multiple worksheets per photo
+
+## ANSWER KEY
+```json
+{json.dumps(answer_key, ensure_ascii=False, indent=2)}
+```
+
+## MISCONCEPTION TAXONOMY (classify errors against ONLY these categories)
+```json
+{json.dumps(misc_ref, ensure_ascii=False, indent=2)}
+```
+
+## DIAGNOSTIC PROBLEM MAP (which problems are designed to reveal which misconceptions)
+```json
+{json.dumps(diagnostic_map, ensure_ascii=False, indent=2)}
+```
+
+## INSTRUCTIONS
+
+For each worksheet visible in the photo(s):
+
+1. **Identify** the roll number written at the top
+2. **Extract** the answer for each problem
+3. **Compare** to the answer key
+4. **Diagnose** any errors using the misconception taxonomy above
+5. **Classify** overall performance as A/PA/NA per the competency criteria
+
+## OUTPUT FORMAT
+
+Return a JSON array, one entry per child worksheet found:
+
+```json
+[
+  {{
+    "roll_number": 7,
+    "roll_number_confidence": "high",
+    "problems": [
+      {{
+        "number": 1,
+        "extracted_answer": "62",
+        "correct_answer": "62",
+        "is_correct": true,
+        "confidence": "high"
+      }},
+      {{
+        "number": 2,
+        "extracted_answer": "52",
+        "correct_answer": "62",
+        "is_correct": false,
+        "confidence": "high",
+        "diagnosed_misconception": "N2.3.2-M1",
+        "diagnosis_reasoning": "Answer is exactly 10 less than correct (52 vs 62), consistent with dropping the carry from ones to tens"
+      }}
+    ],
+    "summary": {{
+      "total_problems": 8,
+      "correct": 5,
+      "incorrect": 3,
+      "accuracy": 0.625,
+      "overall_status": "partially_achieved",
+      "detected_misconceptions": [
+        {{
+          "misconception_id": "N2.3.2-M1",
+          "occurrences": 2,
+          "confidence": "high",
+          "evidence_problems": [2, 5]
+        }}
+      ],
+      "needs_verification": []
+    }}
+  }}
+]
+```
+
+IMPORTANT:
+- If a roll number is not in the expected list {group_roll_numbers}, still analyse it but flag: "unexpected_roll_number": true
+- If handwriting is truly illegible for a problem, output: "extracted_answer": null, "confidence": "unclear"
+- Diagnose misconceptions ONLY from the provided taxonomy — do not create new categories
+- A misconception requires 2+ consistent instances OR 1 instance on a diagnostic problem (from the diagnostic map)
+"""
+    return prompt
+
+
+# ============================================================================
+# RESPONSE PROCESSOR — turns Vision output into DB updates
+# ============================================================================
+
+async def process_vision_results(
+    db,
+    teacher_id: str,
+    session_date: str,
+    competency_id: str,
+    vision_response: list[dict],
+    teacher_pre_judgment: str,  # 'advance', 'reteach', 'not_sure'
+) -> dict:
+    """
+    Takes Claude Vision's structured output and:
+    1. Stores each child's evidence in assessment_evidence
+    2. Updates child_competency_status (A/PA/NA + consecutive days)
+    3. Checks for discrepancy with teacher's pre-judgment
+    4. Returns summary for the Review screen
+    """
+    
+    results_summary = {
+        "children_analysed": len(vision_response),
+        "misconceptions_detected": [],
+        "discrepancy": None,
+        "ai_recommendation": None,
+        "per_child": []
+    }
+    
+    group_correct_total = 0
+    group_problem_total = 0
+    misconception_counts = {}
+    
+    for child_result in vision_response:
+        roll = child_result.get('roll_number')
+        if not roll:
+            continue
+        
+        summary = child_result.get('summary', {})
+        accuracy = summary.get('accuracy', 0)
+        status = summary.get('overall_status', 'not_achieved')
+        detected = summary.get('detected_misconceptions', [])
+        
+        group_correct_total += summary.get('correct', 0)
+        group_problem_total += summary.get('total_problems', 0)
+        
+        # Track misconceptions across the group
+        for m in detected:
+            mid = m['misconception_id']
+            misconception_counts[mid] = misconception_counts.get(mid, 0) + m.get('occurrences', 1)
+        
+        # Look up child by roll number
+        child = await db.fetchrow("""
+            SELECT id FROM children 
+            WHERE teacher_id = $1 AND roll_number = $2 AND is_active = TRUE
+        """, teacher_id, roll)
+        
+        if not child:
+            continue
+        
+        child_id = child['id']
+        
+        # Store evidence
+        await db.execute("""
+            INSERT INTO assessment_evidence 
+                (child_id, competency_id, teacher_id, channel, status, 
+                 evidence_data, detected_misconception_ids, confidence,
+                 session_date, assessment_tier, teacher_pre_judgment)
+            VALUES ($1, $2, $3, 'written_photo', $4, $5, $6, $7, $8, 'daily', $9)
+        """,
+            child_id, competency_id, teacher_id, status,
+            json.dumps(child_result, ensure_ascii=False),
+            [m['misconception_id'] for m in detected] or None,
+            'high' if all(p.get('confidence') == 'high' for p in child_result.get('problems', [])) else 'medium',
+            session_date, teacher_pre_judgment
+        )
+        
+        # Update child_competency_status
+        existing = await db.fetchrow("""
+            SELECT status, consecutive_days_at_status 
+            FROM child_competency_status
+            WHERE child_id = $1 AND competency_id = $2
+        """, child_id, competency_id)
+        
+        if existing and existing['status'] == status:
+            new_consecutive = existing['consecutive_days_at_status'] + 1
+        else:
+            new_consecutive = 1
+        
+        await db.execute("""
+            INSERT INTO child_competency_status 
+                (child_id, competency_id, status, assessment_count, 
+                 last_assessment_date, consecutive_days_at_status,
+                 confidence, active_misconception_ids)
+            VALUES ($1, $2, $3, 1, $4, $5, 'high', $6)
+            ON CONFLICT (child_id, competency_id) DO UPDATE SET
+                status = $3,
+                assessment_count = child_competency_status.assessment_count + 1,
+                last_assessment_date = $4,
+                consecutive_days_at_status = $5,
+                confidence = 'high',
+                active_misconception_ids = $6,
+                updated_at = NOW()
+        """,
+            child_id, competency_id, status, session_date,
+            new_consecutive,
+            [m['misconception_id'] for m in detected] or None
+        )
+        
+        results_summary['per_child'].append({
+            "roll_number": roll,
+            "accuracy": accuracy,
+            "status": status,
+            "misconceptions": [m['misconception_id'] for m in detected]
+        })
+    
+    # Group-level analysis
+    group_accuracy = group_correct_total / max(group_problem_total, 1)
+    
+    # AI recommendation
+    if group_accuracy >= 0.80 and not misconception_counts:
+        ai_rec = "advance"
+    elif group_accuracy < 0.50 or any(c >= 3 for c in misconception_counts.values()):
+        ai_rec = "reteach"
+    else:
+        ai_rec = "advance"  # borderline — lean toward advancing
+    
+    results_summary['ai_recommendation'] = ai_rec
+    results_summary['group_accuracy'] = round(group_accuracy, 2)
+    results_summary['misconceptions_detected'] = [
+        {"id": mid, "total_occurrences": count}
+        for mid, count in sorted(misconception_counts.items(), key=lambda x: -x[1])
+    ]
+    
+    # Discrepancy check
+    if teacher_pre_judgment and teacher_pre_judgment != 'not_sure' and teacher_pre_judgment != ai_rec:
+        results_summary['discrepancy'] = {
+            "teacher_said": teacher_pre_judgment,
+            "ai_says": ai_rec,
+            "reason": _explain_discrepancy(teacher_pre_judgment, ai_rec, group_accuracy, misconception_counts)
+        }
+    
+    return results_summary
+
+
+def _explain_discrepancy(teacher: str, ai: str, accuracy: float, misconceptions: dict) -> str:
+    """Generate a Hindi explanation for the teacher when AI and teacher disagree."""
+    
+    if teacher == "advance" and ai == "reteach":
+        top_misc = max(misconceptions, key=misconceptions.get) if misconceptions else "unknown"
+        return (
+            f"आपने आगे बढ़ने को कहा, लेकिन {int(accuracy*100)}% शुद्धता और "
+            f"बार-बार दिखने वाली गलती ({top_misc}) से लगता है कि दोहराना बेहतर होगा। "
+            f"क्या आप पुनर्विचार करना चाहेंगे?"
+        )
+    elif teacher == "reteach" and ai == "advance":
+        return (
+            f"आपने दोहराने को कहा, लेकिन {int(accuracy*100)}% शुद्धता अच्छी है और "
+            f"कोई बार-बार की गलती नहीं दिखी। आपने कक्षा में जो देखा वह 20 बच्चों पर आधारित है — "
+            f"आपका अनुभव मायने रखता है।"
+        )
+    return ""
+
+
+# ============================================================================
+# LEVEL CHANGE DETECTION — checks the 3+ day rule
+# ============================================================================
+
+async def check_level_changes(db, teacher_id: str, domain_id: str) -> list[dict]:
+    """
+    Checks for children who meet the level change criteria:
+    - 3+ consecutive days of Achieved → recommend Beginner→Progressor or Progressor→Proficient
+    - 3+ consecutive days of Not Achieved → recommend downward movement
+    
+    Returns recommendations for teacher approval.
+    """
+    
+    candidates = await db.fetch("""
+        SELECT cs.child_id, c.roll_number, cs.competency_id, cs.status,
+               cs.consecutive_days_at_status, cs.active_misconception_ids,
+               clp.bpp_level as current_bpp,
+               comp.name_hi as competency_name_hi, comp.grade_level
+        FROM child_competency_status cs
+        JOIN children c ON cs.child_id = c.id
+        JOIN child_lakshya_positions clp ON clp.child_id = c.id AND clp.domain_id = $2
+        JOIN competencies comp ON cs.competency_id = comp.id
+        WHERE c.teacher_id = $1
+          AND cs.consecutive_days_at_status >= 3
+          AND c.is_active = TRUE
+        ORDER BY cs.consecutive_days_at_status DESC
+    """, teacher_id, domain_id)
+    
+    recommendations = []
+    for cand in candidates:
+        if cand['status'] == 'achieved' and cand['current_bpp'] != 'proficient':
+            # Upward movement
+            new_bpp = 'progressor' if cand['current_bpp'] == 'beginner' else 'proficient'
+            recommendations.append({
+                "roll_number": cand['roll_number'],
+                "child_id": str(cand['child_id']),
+                "direction": "up",
+                "from_level": cand['current_bpp'],
+                "to_level": new_bpp,
+                "competency": cand['competency_id'],
+                "competency_name_hi": cand['competency_name_hi'],
+                "consecutive_days": cand['consecutive_days_at_status'],
+                "evidence_hi": (
+                    f"Roll No. {cand['roll_number']} — {cand['consecutive_days_at_status']} दिनों से "
+                    f"लगातार 'प्राप्त' ({cand['competency_name_hi']})। "
+                    f"सुझाव: {cand['current_bpp']} → {new_bpp}"
+                )
+            })
+        
+        elif cand['status'] == 'not_achieved' and cand['current_bpp'] != 'beginner':
+            # Downward movement
+            new_bpp = 'progressor' if cand['current_bpp'] == 'proficient' else 'beginner'
+            misc_text = ""
+            if cand['active_misconception_ids']:
+                misc_text = f" सक्रिय गलती: {', '.join(cand['active_misconception_ids'])}"
+            recommendations.append({
+                "roll_number": cand['roll_number'],
+                "child_id": str(cand['child_id']),
+                "direction": "down",
+                "from_level": cand['current_bpp'],
+                "to_level": new_bpp,
+                "competency": cand['competency_id'],
+                "competency_name_hi": cand['competency_name_hi'],
+                "consecutive_days": cand['consecutive_days_at_status'],
+                "evidence_hi": (
+                    f"Roll No. {cand['roll_number']} — {cand['consecutive_days_at_status']} दिनों से "
+                    f"लगातार 'अप्राप्त' ({cand['competency_name_hi']})।{misc_text} "
+                    f"सुझाव: {cand['current_bpp']} → {new_bpp}"
+                )
+            })
+    
+    return recommendations
