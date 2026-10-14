@@ -77,7 +77,7 @@ async def record_observed_assessments(db, teacher_id: str, session_date: date, i
             INSERT INTO assessment_evidence
                 (child_id, competency_id, teacher_id, channel, status,
                  evidence_data, confidence, session_date, assessment_tier)
-            VALUES ($1, $2, $3, 'observed', $4, $5, 'teacher_reported', $6, 'daily')
+            VALUES ($1, $2, $3, 'observed', $4, $5, 'medium', $6, 'daily')
         """,
             child['id'], item['competency_id'], teacher_id, item['status'],
             json.dumps({"teacher_judgment": item['status']}, ensure_ascii=False),
@@ -97,13 +97,13 @@ async def record_observed_assessments(db, teacher_id: str, session_date: date, i
             INSERT INTO child_competency_status
                 (child_id, competency_id, status, assessment_count,
                  last_assessment_date, consecutive_days_at_status, confidence)
-            VALUES ($1, $2, $3, 1, $4, $5, 'teacher_reported')
+            VALUES ($1, $2, $3, 1, $4, $5, 'medium')
             ON CONFLICT (child_id, competency_id) DO UPDATE SET
                 status = EXCLUDED.status,
                 assessment_count = child_competency_status.assessment_count + 1,
                 last_assessment_date = EXCLUDED.last_assessment_date,
                 consecutive_days_at_status = $5,
-                confidence = 'teacher_reported',
+                confidence = 'medium',
                 updated_at = NOW()
         """, child['id'], item['competency_id'], item['status'], session_date, consecutive)
         
@@ -153,7 +153,7 @@ async def record_orf_assessment(db, teacher_id: str, session_date: date, entry: 
         INSERT INTO assessment_evidence
             (child_id, competency_id, teacher_id, channel, status,
              evidence_data, confidence, session_date, assessment_tier)
-        VALUES ($1, $2, $3, 'oral_reading', $4, $5, 'teacher_reported', $6, 'daily')
+        VALUES ($1, $2, $3, 'oral_reading', $4, $5, 'medium', $6, 'daily')
     """,
         child['id'], entry.get('competency_id', 'L2.5.1'), teacher_id, status,
         json.dumps(evidence_data, ensure_ascii=False), session_date,

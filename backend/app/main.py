@@ -17,7 +17,7 @@ async def lifespan(app: FastAPI):
     """Startup: create DB pool. Shutdown: close it."""
     settings = get_settings()
     print(f"🌱 {settings.app_name} v{settings.app_version} starting...")
-    print(f"   Database: {settings.database_url.split('@')[-1]}")  # Don't log credentials
+    print(f"   Database: {settings.db_host}:{settings.db_port}/{settings.db_name}")
     print(f"   Claude model: {settings.claude_model}")
     
     await create_pool()
