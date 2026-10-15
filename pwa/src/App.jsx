@@ -6,7 +6,6 @@ import ReviewScreen from './screens/ReviewScreen';
 import ProgressScreen from './screens/ProgressScreen';
 import LoginScreen from './screens/LoginScreen';
 
-// ── Auth Context ──
 export const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
 
@@ -16,22 +15,20 @@ function BottomNav() {
   const path = location.pathname;
 
   const tabs = [
-    { id: '/', icon: '🎯', label: 'योजना', labelEn: 'Plan' },
-    { id: '/yojana', icon: '📋', label: 'दैनिक योजना', labelEn: 'Yojana' },
-    { id: '/review', icon: '📷', label: 'समीक्षा', labelEn: 'Review' },
-    { id: '/progress', icon: '📊', label: 'प्रगति', labelEn: 'Progress' },
+    { id: '/', icon: '🎯', hi: 'योजना', en: 'Plan' },
+    { id: '/yojana', icon: '📋', hi: 'दैनिक योजना', en: 'Yojana' },
+    { id: '/review', icon: '📷', hi: 'समीक्षा', en: 'Review' },
+    { id: '/progress', icon: '📊', hi: 'प्रगति', en: 'Progress' },
   ];
 
   return (
     <nav className="bottom-nav">
       {tabs.map(t => (
-        <button
-          key={t.id}
-          className={`nav-item ${path === t.id ? 'active' : ''}`}
-          onClick={() => navigate(t.id)}
-        >
+        <button key={t.id} className={`nav-item ${path === t.id ? 'active' : ''}`}
+          onClick={() => navigate(t.id)}>
           <span className="nav-icon">{t.icon}</span>
-          {t.label}
+          <span style={{fontSize:'0.7rem'}}>{t.hi}</span>
+          <span style={{fontSize:'0.5rem',opacity:0.6}}>{t.en}</span>
         </button>
       ))}
     </nav>
@@ -41,7 +38,6 @@ function BottomNav() {
 function AppShell() {
   const { teacher } = useAuth();
   if (!teacher) return <LoginScreen />;
-
   return (
     <>
       <Routes>

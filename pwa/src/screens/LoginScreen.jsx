@@ -13,12 +13,11 @@ export default function LoginScreen() {
     setLoading(true);
     setError('');
     try {
-      // In production: hash the phone number client-side before sending
       const phoneHash = 'hash_' + phone.trim();
       const data = await login(phoneHash);
       setTeacher(data);
     } catch (e) {
-      setError('लॉगिन नहीं हो सका। कृपया सही फ़ोन नंबर डालें।');
+      setError('लॉगिन नहीं हो सका (Login failed). कृपया सही फ़ोन नंबर डालें।');
     }
     setLoading(false);
   };
@@ -36,28 +35,21 @@ export default function LoginScreen() {
 
       <div className="card">
         <label style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: 8, display: 'block' }}>
-          फ़ोन नंबर डालें
+          फ़ोन नंबर डालें (Enter phone number)
         </label>
-        <input
-          type="tel"
-          value={phone}
-          onChange={e => setPhone(e.target.value)}
+        <input type="tel" value={phone} onChange={e => setPhone(e.target.value)}
           placeholder="9876543210"
-          style={{
-            width: '100%', padding: '12px 16px', fontSize: '1.125rem',
-            border: '2px solid var(--border)', borderRadius: 10,
-            fontFamily: 'inherit', marginBottom: 12,
-          }}
-          onKeyDown={e => e.key === 'Enter' && handleLogin()}
-        />
+          style={{ width: '100%', padding: '12px 16px', fontSize: '1.125rem',
+            border: '2px solid var(--border)', borderRadius: 10, fontFamily: 'inherit', marginBottom: 12 }}
+          onKeyDown={e => e.key === 'Enter' && handleLogin()} />
         {error && <p style={{ color: 'var(--beginner)', fontSize: '0.875rem', marginBottom: 8 }}>{error}</p>}
         <button className="btn btn-primary" onClick={handleLogin} disabled={loading}>
-          {loading ? 'लॉगिन हो रहा है...' : 'लॉगिन करें'}
+          {loading ? 'लॉगिन हो रहा है (Logging in)...' : 'लॉगिन करें (Login)'}
         </button>
       </div>
 
       <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-light)', marginTop: 16 }}>
-        Demo: "9876543210" डालें
+        Demo: enter "9876543210"
       </p>
     </div>
   );
