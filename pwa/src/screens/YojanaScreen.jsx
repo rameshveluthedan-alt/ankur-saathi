@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../App';
+import { getCachedPlan } from '../services/api';
 
 const GROUP_LABELS = {
   beginner: { hi: 'शुरुआती', en: 'Beginner', emoji: '🟠', css: 'beginner' },
@@ -7,10 +8,36 @@ const GROUP_LABELS = {
   proficient: { hi: 'दक्ष', en: 'Proficient', emoji: '🟢', css: 'proficient' },
 };
 
+// Generated text may contain line breaks (lists) and stray markdown markers.
+// Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
+const ML = { whiteSpace: 'pre-line', overflowWrap: 'anywhere' };
+const fmt = (s) => String(s ?? '').replace(/\*\*|__/g, '');
+
 export default function YojanaScreen() {
-  const { currentPlan } = useAuth();
+  const { currentPlan, setCurrentPlan, teacher, selectedDomain } = useAuth();
   const [expandedBlock, setExpandedBlock] = useState(null);
   const [showWhyPanel, setShowWhyPanel] = useState(false);
+  const [loadingStored, setLoadingStored] = useState(false);
+
+  // After a page reload the plan is no longer in memory: load today's stored plan
+  // from the backend instead of making the teacher regenerate it.
+  useEffect(() => {
+    if (currentPlan) return;
+    const today = new Date().toISOString().split('T')[0];
+    setLoadingStored(true);
+    getCachedPlan(teacher.teacher_id, today, selectedDomain)
+      .then(setCurrentPlan)
+      .catch(() => {})   // no stored plan for today: the empty state below is shown
+      .finally(() => setLoadingStored(false));
+  }, []);
+
+  if (!currentPlan && loadingStored) {
+    return (
+      <div className="screen">
+        <div className="loading"><div className="spinner" /><span>योजना लोड हो रही है (Loading plan)...</span></div>
+      </div>
+    );
+  }
 
   if (!currentPlan) {
     return (
@@ -57,6 +84,16 @@ export default function YojanaScreen() {
         ))}
       </div>
 
+      {/* Preparation before class (DIY TLMs etc.) */}
+      {Array.isArray(plan.prep_hi) && plan.prep_hi.length > 0 && (
+        <div className="card" style={{ borderLeft: '4px solid var(--progressor)' }}>
+          <h3>🧰 कक्षा से पहले तैयारी (Before class)</h3>
+          <ul style={{ paddingLeft: 18, marginTop: 6, fontSize: '0.875rem' }}>
+            {plan.prep_hi.map((t, i) => <li key={i} style={{ marginBottom: 4, ...ML }}>{fmt(t)}</li>)}
+          </ul>
+        </div>
+      )}
+
       {/* Anchor Activity */}
       {anchor.narration_hi && (
         <div className="card" style={{ borderLeft: '4px solid var(--channel-written)' }}>
@@ -64,19 +101,19 @@ export default function YojanaScreen() {
             <h3>🎯 एंकर गतिविधि (Anchor Activity)</h3>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>10 मि.</span>
           </div>
-          <p style={{ fontSize: '0.9375rem', marginBottom: 8 }}>{anchor.narration_hi}</p>
+          <p style={{ fontSize: '0.9375rem', marginBottom: 8, ...ML }}>{fmt(anchor.narration_hi)}</p>
           {anchor.opening_question_hi && (
-            <div className="talking-point">
+            <div className="talking-point" style={ML}>
               <div className="talking-point-label">शुरुआती सवाल (Opening Question)</div>
-              {anchor.opening_question_hi}
+              {fmt(anchor.opening_question_hi)}
             </div>
           )}
           {['beginner', 'progressor', 'proficient'].map(level => {
             const key = `${level}_participation_hi`;
             if (!anchor[key]) return null;
             return (
-              <div key={level} style={{ fontSize: '0.8125rem', margin: '4px 0', padding: '4px 8px', borderRadius: 4, background: `var(--${level}-bg)` }}>
-                <strong>{GROUP_LABELS[level]?.emoji} {GROUP_LABELS[level]?.hi} ({GROUP_LABELS[level]?.en}):</strong> {anchor[key]}
+              <div key={level} style={{ fontSize: '0.8125rem', margin: '4px 0', padding: '4px 8px', borderRadius: 4, background: `var(--${level}-bg)`, ...ML }}>
+                <strong>{GROUP_LABELS[level]?.emoji} {GROUP_LABELS[level]?.hi} ({GROUP_LABELS[level]?.en}):</strong> {fmt(anchor[key])}
               </div>
             );
           })}
@@ -89,10 +126,12 @@ export default function YojanaScreen() {
         blocks.map((block, i) => (
           <div key={i}
             className={`timeline-block ${block.type === 'teach' ? 'teach' : block.type === 'anchor' ? 'anchor' : 'transition'}`}
-            data-time={block.time_start || ''}
             onClick={() => setExpandedBlock(expandedBlock === i ? null : i)}
           >
             <div className="timeline-dot" style={{ background: block.type === 'teach' ? `var(--${block.teach_group || 'green-dark'})` : 'var(--border)' }} />
+            {block.time_start && (
+              <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)', marginBottom: 2 }}>{block.time_start}</div>
+            )}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <strong style={{ fontSize: '0.875rem' }}>
                 {block.type === 'teach' && `👩‍🏫 ${GROUP_LABELS[block.teach_group]?.hi || block.teach_group} पढ़ाएँ (Teach ${GROUP_LABELS[block.teach_group]?.en || ''})`}
@@ -104,24 +143,33 @@ export default function YojanaScreen() {
               <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{block.duration_minutes} मि.</span>
             </div>
 
+            {block.type === 'teach' && block.other_groups_hi && (
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4, ...ML }}>
+                बाकी समूह (Other groups): {fmt(block.other_groups_hi)}
+              </div>
+            )}
+            {block.script_hi && (
+              <div style={{ fontSize: '0.8125rem', fontStyle: 'italic', marginTop: 4, ...ML }}>“{fmt(block.script_hi)}”</div>
+            )}
+
             {expandedBlock === i && block.talking_points && (
               <div style={{ marginTop: 8 }}>
                 {block.talking_points.i_do_hi && (
-                  <div className="talking-point">
+                  <div className="talking-point" style={ML}>
                     <div className="talking-point-label">मैं करूँगा (I Do)</div>
-                    {block.talking_points.i_do_hi}
+                    {fmt(block.talking_points.i_do_hi)}
                   </div>
                 )}
                 {block.talking_points.we_do_hi && (
-                  <div className="talking-point">
+                  <div className="talking-point" style={ML}>
                     <div className="talking-point-label">हम करेंगे (We Do)</div>
-                    {block.talking_points.we_do_hi}
+                    {fmt(block.talking_points.we_do_hi)}
                   </div>
                 )}
                 {block.talking_points.you_do_hi && (
-                  <div className="talking-point">
+                  <div className="talking-point" style={ML}>
                     <div className="talking-point-label">तुम करोगे (You Do)</div>
-                    {block.talking_points.you_do_hi}
+                    {fmt(block.talking_points.you_do_hi)}
                   </div>
                 )}
               </div>
@@ -162,7 +210,13 @@ export default function YojanaScreen() {
         </button>
         {showWhyPanel && (
           <div className="card" style={{ marginTop: 8, fontSize: '0.8125rem', background: 'var(--green-bg)' }}>
-            {Object.entries(explainability).map(([key, val]) => (
+            {Array.isArray(explainability.items) ? explainability.items.map((item, i) => (
+              <div key={i} style={{ marginBottom: 10 }}>
+                <strong>{fmt(item.title_hi)} <span style={{ fontWeight: 400, color: 'var(--text-light)' }}>({fmt(item.title_en)})</span></strong>
+                <div style={ML}>{fmt(item.body_hi)}</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', ...ML }}>{fmt(item.body_en)}</div>
+              </div>
+            )) : Object.entries(explainability).filter(([key]) => !key.startsWith('teacher_decision_')).map(([key, val]) => (
               <div key={key} style={{ marginBottom: 6 }}>
                 <strong>{key}:</strong> {typeof val === 'string' ? val : JSON.stringify(val)}
               </div>

@@ -4,7 +4,8 @@ Organized by PWA screen: Plan, Dainik Yojana, Review, Progress.
 """
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
-from fastapi.responses import PlainTextResponse
+from fastapi.responses import PlainTextResponse, HTMLResponse
+import json
 from datetime import date
 from typing import Optional
 
@@ -17,7 +18,7 @@ from app.models.schemas import (
     ProgressDashboardResponse,
     StartBaselineRequest, SubmitBaselineRequest,
 )
-from app.services import plan_service, review_service, progress_service
+from app.services import plan_service, review_service, progress_service, worksheet_service
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
@@ -107,30 +108,61 @@ async def generate_plan(req: GeneratePlanRequest, teacher_id: str):
             )
             return result
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             raise HTTPException(500, detail=f"Plan generation failed: {str(e)}")
 
 
 @router.get("/plan/{teacher_id}/{plan_date}/{domain_id}", tags=["Dainik Yojana"])
 async def get_cached_plan(teacher_id: str, plan_date: date, domain_id: str):
-    """Get a previously generated plan (for offline caching)."""
+    """
+    Get a previously generated plan (page reloads, offline cache).
+    Returns the same shape as POST /plan/generate, so the PWA can use either.
+    """
     async with get_db() as db:
         row = await db.fetchrow("""
-            SELECT plan_content, explainability, groups_snapshot, 
-                   selected_competency_id, generation_time_ms
+            SELECT plan_content, groups_snapshot, selected_competency_id, generation_time_ms
             FROM daily_plans
             WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3
         """, teacher_id, plan_date, domain_id)
-        
+
         if not row:
             raise HTTPException(404, "No plan found for this date")
-        
+
+        # asyncpg returns JSONB columns as JSON text unless a codec is registered
+        def as_obj(v):
+            return json.loads(v) if isinstance(v, str) else v
+
+        plan = as_obj(row['plan_content']) or {}
+        snapshot = as_obj(row['groups_snapshot']) or {}
+
+        target_ids = [g.get('target') for g in snapshot.values() if g.get('target')]
+        names = {}
+        if target_ids:
+            rows = await db.fetch(
+                "SELECT id, name_hi FROM competencies WHERE id = ANY($1::text[])", target_ids
+            )
+            names = {r['id']: r['name_hi'] for r in rows}
+
+        groups = []
+        for label in ('beginner', 'progressor', 'proficient'):
+            g = snapshot.get(label)
+            if g:
+                groups.append({
+                    "label": label,
+                    "count": g.get('count', 0),
+                    "roll_numbers": g.get('rolls', []),
+                    "target_competency_id": g.get('target'),
+                    "target_competency_name_hi": names.get(g.get('target'), ''),
+                })
+
         return {
             "plan_date": str(plan_date),
             "domain_id": domain_id,
             "selected_competency_id": row['selected_competency_id'],
-            "plan": row['plan_content'],
-            "explainability": row['explainability'],
-            "groups": row['groups_snapshot'],
+            "groups": groups,
+            "plan": plan,
+            "explainability": plan.get('explainability', {}),
             "generation_time_ms": row['generation_time_ms'],
         }
 
@@ -329,3 +361,82 @@ async def submit_baseline(req: SubmitBaselineRequest, teacher_id: str):
             "placements": placements,
             "new_groups": groups,
         }
+
+
+# ============================================================================
+# WORKSHEETS
+# ============================================================================
+
+@router.get("/worksheet/{teacher_id}/{plan_date}/{domain_id}/{level}", response_class=HTMLResponse, tags=["Worksheet"])
+async def get_worksheet(teacher_id: str, plan_date: date, domain_id: str, level: str):
+    """
+    Render a printable A4 worksheet from the generated plan.
+    Opens in browser — teacher prints with Ctrl+P.
+    """
+    if level not in ('beginner', 'progressor', 'proficient'):
+        raise HTTPException(400, "level must be beginner, progressor, or proficient")
+    
+    async with get_db() as db:
+        # Get the stored plan
+        row = await db.fetchrow("""
+            SELECT plan_content, selected_competency_id FROM daily_plans
+            WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3
+        """, teacher_id, plan_date, domain_id)
+        
+        if not row:
+            raise HTTPException(404, "No plan found for this date. Generate a plan first.")
+        
+        plan_data = row['plan_content'] if isinstance(row['plan_content'], dict) else json.loads(row['plan_content'])
+        comp_id = row['selected_competency_id']
+        
+        # Get competency names
+        comp = await db.fetchrow(
+            "SELECT name_hi, name_en FROM competencies WHERE id = $1", comp_id
+        )
+        
+        html = worksheet_service.render_worksheet(
+            plan_data=plan_data,
+            level=level,
+            competency_id=comp_id,
+            competency_name_hi=comp['name_hi'] if comp else comp_id,
+            competency_name_en=comp['name_en'] if comp else '',
+            domain_id=domain_id,
+            plan_date=str(plan_date),
+        )
+        return HTMLResponse(content=html)
+
+
+@router.get("/worksheet/sample/{domain_id}/{level}", response_class=HTMLResponse, tags=["Worksheet"])
+async def get_sample_worksheet(domain_id: str, level: str):
+    """
+    Render a sample worksheet for testing/demo — no plan generation needed.
+    """
+    if level not in ('beginner', 'progressor', 'proficient'):
+        raise HTTPException(400, "level must be beginner, progressor, or proficient")
+    if domain_id not in ('numeracy', 'r1_literacy'):
+        raise HTTPException(400, "domain_id must be numeracy or r1_literacy")
+    
+    # Sample competency IDs
+    comp_map = {
+        'numeracy': {
+            'beginner': ('N2.3.1', 'बिना हासिल दो अंकों का जोड़', '2-digit addition without carry'),
+            'progressor': ('N2.3.2', 'हासिल के साथ दो अंकों का जोड़', '2-digit addition with carry'),
+            'proficient': ('N2.3.5', 'शाब्दिक प्रश्न (जोड़/घटाव)', 'Word problems (addition/subtraction)'),
+        },
+        'r1_literacy': {
+            'beginner': ('L1.3.1', 'व्यंजन पहचान और लेखन', 'Consonant recognition and writing'),
+            'progressor': ('L2.5.1', 'पठन प्रवाह', 'Reading fluency'),
+            'proficient': ('L3.6.1', 'अनुमान लगाना', 'Making inferences'),
+        },
+    }
+    
+    comp_id, name_hi, name_en = comp_map[domain_id][level]
+    
+    html = worksheet_service.render_sample_worksheet(
+        level=level,
+        domain_id=domain_id,
+        competency_id=comp_id,
+        competency_name_hi=name_hi,
+        competency_name_en=name_en,
+    )
+    return HTMLResponse(content=html)

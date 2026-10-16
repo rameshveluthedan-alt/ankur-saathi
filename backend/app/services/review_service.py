@@ -12,6 +12,7 @@ from typing import Optional
 import anthropic
 
 from app.core.config import get_settings
+from app.services.plan_service import get_current_groups
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
@@ -19,6 +20,13 @@ from vision_analysis import (
     VISION_SYSTEM_PROMPT, build_vision_prompt, 
     process_vision_results, check_level_changes,
 )
+
+
+# Sonnet 5.5 thinks by default and thinking tokens share max_tokens with the answer.
+# "between_tools" turns off up-front thinking (see plan_service.py for details).
+# Revisit once we test with real worksheet photos: handwriting extraction may
+# benefit from some thinking, in which case use adaptive + output_config effort.
+CLAUDE_THINKING_BODY = {"thinking": {"type": "between_tools"}}
 
 
 async def record_teacher_decisions(db, teacher_id: str, plan_date: date, domain_id: str, decisions: dict):
@@ -201,20 +209,9 @@ async def analyse_worksheet_photos(
     """, competency_id)
     misconceptions = [dict(r) for r in misconception_rows]
     
-    # Get group roll numbers
-    group_row = await db.fetchrow("""
-        SELECT child_ids FROM teaching_groups
-        WHERE teacher_id = $1 AND domain_id = $2 AND group_label = $3
-          AND effective_until IS NULL
-    """, teacher_id, domain_id, worksheet_level)
-    
-    group_rolls = []
-    if group_row:
-        rolls = await db.fetch("""
-            SELECT roll_number FROM children 
-            WHERE id = ANY($1::uuid[]) AND is_active = TRUE ORDER BY roll_number
-        """, group_row['child_ids'])
-        group_rolls = [r['roll_number'] for r in rolls]
+    # Get group roll numbers (stored groups, or derived from the children's levels)
+    groups = await get_current_groups(db, teacher_id, domain_id)
+    group_rolls = next((g['roll_numbers'] for g in groups if g['label'] == worksheet_level), [])
     
     # Build Vision prompt
     vision_prompt = build_vision_prompt(
@@ -244,12 +241,24 @@ async def analyse_worksheet_photos(
     
     response = await client.messages.create(
         model=settings.claude_vision_model,
-        max_tokens=4000,
+        max_tokens=12000,
         system=VISION_SYSTEM_PROMPT,
         messages=[{"role": "user", "content": content}],
+        extra_body=CLAUDE_THINKING_BODY,
     )
     
-    response_text = response.content[0].text
+    response_text = None
+    for block in response.content:
+        if getattr(block, "type", None) == "text":
+            response_text = block.text
+            break
+    
+    if response_text is None:
+        raise ValueError(
+            f"No text block found in Claude Vision's response. "
+            f"Block types received: {[getattr(b, 'type', '?') for b in response.content]}"
+        )
+    
     if "```json" in response_text:
         response_text = response_text.split("```json", 1)[1]
     if "```" in response_text:

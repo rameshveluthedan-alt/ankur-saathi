@@ -18,5 +18,8 @@ anthropic==0.34.0            # Anthropic Python SDK
 # HTTP client (for embedding API calls)
 httpx==0.27.0
 
+# Templating
+Jinja2==3.1.4
+
 # Utilities
 python-dateutil==2.9.0

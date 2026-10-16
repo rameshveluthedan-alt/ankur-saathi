@@ -66,6 +66,11 @@ psql "$DB_URL" -f "$SCRIPT_DIR/seeds/content/01_anchors_tlm.sql"
 psql "$DB_URL" -f "$SCRIPT_DIR/seeds/content/02_interventions.sql"
 psql "$DB_URL" -f "$SCRIPT_DIR/seeds/content/03_passages.sql"
 
+# Anchors added or edited through scripts/import_anchors.py (written by scripts/export_anchors.py)
+if [ -f "$SCRIPT_DIR/seeds/content/04_imported_anchors.sql" ]; then
+  psql "$DB_URL" -f "$SCRIPT_DIR/seeds/content/04_imported_anchors.sql"
+fi
+
 echo "[8/8] Seeding test classroom..."
 psql "$DB_URL" -f "$SCRIPT_DIR/seeds/classroom/01_profile.sql"
 

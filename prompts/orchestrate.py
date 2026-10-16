@@ -61,6 +61,9 @@ class AnchorTemplate:
     title_hi: str
     theme: str
     template_body: str
+    match_quality: str = "exact"                  # exact | related | topic_area | loose | semantic
+    designed_for: Optional[list] = None           # competencies this template was written for
+    linked_to: Optional[list] = None              # related / topic_area: the competencies that created the match
 
 @dataclass
 class InterventionTemplate:
@@ -109,7 +112,7 @@ class OrchestrationContext:
     misconceptions: list[Misconception]
     
     # L2 retrieved content
-    anchor: AnchorTemplate
+    anchor: Optional[AnchorTemplate]   # None when no template is valid for this grade
     intervention: Optional[InterventionTemplate] = None
     available_tlms: list[TLMRef] = field(default_factory=list)
     
@@ -123,6 +126,12 @@ class OrchestrationContext:
     orf_roll_numbers: list[int] = field(default_factory=list)
     orf_passage_id: Optional[str] = None
     orf_target_cwpm: Optional[int] = None
+    
+    # Curriculum note for the week that teaches today's competency (from L1)
+    week_notes: Optional[str] = None
+    # How the intervention template is used: 'reteach' (yesterday's gaps),
+    # 'preteach' (no gaps yet: use it proactively for today's competency), or 'none'
+    intervention_mode: str = "none"
 
 
 # ============================================================================
@@ -192,54 +201,123 @@ async def fetch_misconceptions(db, competency_id: str) -> list[Misconception]:
     return [Misconception(**dict(r)) for r in rows]
 
 
+def _anchor_from_row(row, quality: str) -> AnchorTemplate:
+    return AnchorTemplate(
+        id=row['id'], title_en=row['title_en'], title_hi=row['title_hi'],
+        theme=row['theme'], template_body=row['template_body'],
+        match_quality=quality, designed_for=list(row['primary_competency_ids'] or []),
+        linked_to=list(row.get('linked_ids') or []) or None,
+    )
+
+
+_ANCHOR_COLS = "a.id, a.title_en, a.title_hi, a.theme, a.template_body, a.primary_competency_ids"
+_ANCHOR_SPAN = ("COALESCE(array_length(a.primary_competency_ids, 1), 0) "
+                "+ COALESCE(array_length(a.secondary_competency_ids, 1), 0)")
+
+
 async def fetch_anchor_activity(
-    db, domain_id: str, grade_level: str, 
+    db, domain_id: str, grade_level: str,
     competency_id: str, query_embedding=None
-) -> AnchorTemplate:
+) -> Optional[AnchorTemplate]:
     """
-    L2 retrieval: find best anchor activity.
-    Uses semantic search if embedding provided, falls back to keyword + competency match.
+    L2 retrieval: find the best anchor activity. Fully DETERMINISTIC: the same inputs
+    always return the same anchor, so demo behaviour is predictable.
+
+    Tiers, best first. The match quality is recorded so the prompt can tell Claude how
+    much adapting the template needs:
+      1. exact       - today's competency is listed on the anchor (primary before secondary,
+                       then the more specific template, then id)
+      2. related     - written for a direct prerequisite or dependent of today's competency
+                       (prerequisite graph; hard links weigh double)
+      3. topic_area  - the anchor is written for other competencies in the same topic area
+                       (subdomain); prefers the same grade, then the NEAREST competency in
+                       the learning sequence (sort_order), then more overlap, then id
+      4. loose       - any anchor valid for this grade; the most broadly applicable first
+      5. none        - nothing is valid for this grade: returns None
     """
     if query_embedding is not None:
         # Semantic retrieval (when embeddings are populated)
         row = await db.fetchrow("""
-            SELECT id, title_en, title_hi, theme, template_body,
-                   1 - (embedding <=> $4) AS similarity
-            FROM anchor_activities
-            WHERE domain_id = $1
-              AND $2 = ANY(grade_range)
-              AND is_active = TRUE
-            ORDER BY similarity DESC
-            LIMIT 1
-        """, domain_id, grade_level, competency_id, query_embedding)
-    else:
-        # Fallback: competency match + keyword
-        row = await db.fetchrow("""
-            SELECT id, title_en, title_hi, theme, template_body
-            FROM anchor_activities
-            WHERE domain_id = $1
-              AND $2 = ANY(grade_range)
-              AND ($3 = ANY(primary_competency_ids) OR $3 = ANY(secondary_competency_ids))
-              AND is_active = TRUE
-            ORDER BY 
-                CASE WHEN $3 = ANY(primary_competency_ids) THEN 0 ELSE 1 END,
-                random()
-            LIMIT 1
-        """, domain_id, grade_level, competency_id)
-    
-    if not row:
-        # Last fallback: any anchor for this domain + grade
-        row = await db.fetchrow("""
-            SELECT id, title_en, title_hi, theme, template_body
+            SELECT id, title_en, title_hi, theme, template_body, primary_competency_ids,
+                   1 - (embedding <=> $3) AS similarity
             FROM anchor_activities
             WHERE domain_id = $1 AND $2 = ANY(grade_range) AND is_active = TRUE
-            ORDER BY random() LIMIT 1
-        """, domain_id, grade_level)
-    
-    return AnchorTemplate(
-        id=row['id'], title_en=row['title_en'], title_hi=row['title_hi'],
-        theme=row['theme'], template_body=row['template_body']
-    )
+            ORDER BY similarity DESC, id
+            LIMIT 1
+        """, domain_id, grade_level, query_embedding)
+        return _anchor_from_row(row, "semantic") if row else None
+
+    # Tier 1: exact
+    row = await db.fetchrow(f"""
+        SELECT {_ANCHOR_COLS}
+        FROM anchor_activities a
+        WHERE a.domain_id = $1 AND $2 = ANY(a.grade_range) AND a.is_active = TRUE
+          AND ($3 = ANY(a.primary_competency_ids)
+               OR $3 = ANY(COALESCE(a.secondary_competency_ids, '{{}}')))
+        ORDER BY CASE WHEN $3 = ANY(a.primary_competency_ids) THEN 0 ELSE 1 END,
+                 {_ANCHOR_SPAN}, a.id
+        LIMIT 1
+    """, domain_id, grade_level, competency_id)
+    if row:
+        return _anchor_from_row(row, "exact")
+
+    # Tier 2: related - an anchor written for a direct prerequisite or dependent of today's
+    # competency (from the prerequisite graph); hard links count double
+    row = await db.fetchrow(f"""
+        WITH nb AS (
+            SELECT prerequisite_id AS nid, CASE prerequisite_type WHEN 'hard' THEN 2 ELSE 1 END AS w
+            FROM competency_prerequisites WHERE competency_id = $3
+            UNION ALL
+            SELECT competency_id AS nid, CASE prerequisite_type WHEN 'hard' THEN 2 ELSE 1 END AS w
+            FROM competency_prerequisites WHERE prerequisite_id = $3
+        )
+        SELECT {_ANCHOR_COLS}, array_agg(DISTINCT nb.nid) AS linked_ids
+        FROM anchor_activities a
+        JOIN nb ON (nb.nid = ANY(a.primary_competency_ids)
+                    OR nb.nid = ANY(COALESCE(a.secondary_competency_ids, '{{}}')))
+        WHERE a.domain_id = $1 AND $2 = ANY(a.grade_range) AND a.is_active = TRUE
+        GROUP BY a.id
+        ORDER BY sum(nb.w) DESC,
+                 count(*) FILTER (WHERE nb.nid = ANY(a.primary_competency_ids)) DESC,
+                 {_ANCHOR_SPAN}, a.id
+        LIMIT 1
+    """, domain_id, grade_level, competency_id)
+    if row:
+        return _anchor_from_row(row, "related")
+
+    # Tier 3: same topic area (subdomain)
+    row = await db.fetchrow(f"""
+        WITH sel AS (SELECT subdomain_id, grade_level, sort_order FROM competencies WHERE id = $3)
+        SELECT {_ANCHOR_COLS}, array_agg(DISTINCT c.id) AS linked_ids
+        FROM anchor_activities a
+        JOIN sel ON TRUE
+        JOIN competencies c
+          ON c.subdomain_id = sel.subdomain_id
+         AND (c.id = ANY(a.primary_competency_ids)
+              OR c.id = ANY(COALESCE(a.secondary_competency_ids, '{{}}')))
+        WHERE a.domain_id = $1 AND $2 = ANY(a.grade_range) AND a.is_active = TRUE
+        GROUP BY a.id
+        ORDER BY (count(*) FILTER (WHERE c.grade_level = sel.grade_level) > 0) DESC,
+                 min(abs(c.sort_order - sel.sort_order))
+                     FILTER (WHERE c.grade_level = sel.grade_level) ASC NULLS LAST,
+                 count(*) DESC, a.id
+        LIMIT 1
+    """, domain_id, grade_level, competency_id)
+    if row:
+        return _anchor_from_row(row, "topic_area")
+
+    # Tier 4: loose - the most broadly applicable anchor valid for this grade
+    row = await db.fetchrow(f"""
+        SELECT {_ANCHOR_COLS}
+        FROM anchor_activities a
+        WHERE a.domain_id = $1 AND $2 = ANY(a.grade_range) AND a.is_active = TRUE
+        ORDER BY {_ANCHOR_SPAN} DESC, a.id
+        LIMIT 1
+    """, domain_id, grade_level)
+    if row:
+        return _anchor_from_row(row, "loose")
+
+    return None
 
 
 async def fetch_intervention(db, misconception_ids: list[str]) -> Optional[InterventionTemplate]:
@@ -280,6 +358,19 @@ async def fetch_tlms(db, tlm_ids: list[str]) -> list[TLMRef]:
     return [TLMRef(**dict(r)) for r in rows]
 
 
+async def fetch_tlms_for_competencies(db, competency_ids: list[str]) -> list[TLMRef]:
+    """L2 deterministic retrieval: TLMs tagged for any of these competencies."""
+    if not competency_ids:
+        return []
+    rows = await db.fetch("""
+        SELECT id, name_en, name_hi, availability, diy_instructions
+        FROM tlm_references
+        WHERE competency_ids && $1::text[] AND is_active = TRUE
+        ORDER BY id
+    """, competency_ids)
+    return [TLMRef(**dict(r)) for r in rows]
+
+
 # ============================================================================
 # PROMPT ASSEMBLY — builds the complete Claude prompt from context
 # ============================================================================
@@ -299,6 +390,145 @@ Design principles:
 6. Offline-friendly. Plan must work once cached.
 
 Output format: Return a JSON object with the structure specified in the user prompt."""
+
+
+
+# ============================================================================
+# OUTPUT SCHEMA — the exact JSON shape the PWA, worksheet renderer and Vision
+# analysis read. Without this Claude invents its own nested key names.
+# ============================================================================
+
+_SCHEMA_COMMON = """
+## OUTPUT FORMAT — return ONE JSON object, nothing else (no markdown fences, no commentary).
+Use EXACTLY these key names. Do not rename, nest differently, or add other top-level keys.
+Keep every talking point to at most 3 short sentences. Be concise; do not repeat the context back.
+
+{
+  "prep_hi": ["one line per thing the teacher must prepare before class (e.g. TLMs to make); [] if nothing"],
+  "anchor": {
+    "title_hi": "...", "narration_hi": "2-3 sentences the teacher narrates",
+    "opening_question_hi": "...",
+    "beginner_participation_hi": "...", "progressor_participation_hi": "...", "proficient_participation_hi": "...",
+    "closing_question_hi": "..."
+  },
+  "rotation_schedule": {
+    "total_minutes": <int>,
+    "blocks": [
+      {"type": "anchor|setup|reteach|teach|transition", "time_start": "0:00", "duration_minutes": <int>,
+       "teach_group": "beginner|progressor|proficient" (only when type is teach, else null),
+       "other_groups_hi": "what the two other groups do meanwhile (teach blocks only, else null)",
+       "script_hi": "exact words the teacher says (setup and transition blocks, else null)",
+       "talking_points": {"i_do_hi": "...", "we_do_hi": "...", "you_do_hi": "..."} (teach blocks only, else null)}
+    ]
+  },
+  "worksheets": { "beginner": <WORKSHEET>, "progressor": <WORKSHEET>, "proficient": <WORKSHEET> },
+  "classroom_management": {
+    "peer_monitors": {"beginner": "Roll N", "progressor": "Roll N", "proficient": "Roll N"},
+    "independent_activities_hi": {"beginner": "...", "progressor": "...", "proficient": "..."}
+  },
+  "review_prompts": {
+    "photo_sample_rolls": {"beginner": [<roll numbers>], "progressor": [...], "proficient": [...]},
+    "observation_reminders_hi": ["..."]
+  },
+  "explainability": {
+    "items": [
+      {"title_hi": "...", "title_en": "...", "body_hi": "1-2 sentences", "body_en": "1-2 sentences"}
+    ]
+  }
+}
+
+Rules:
+- "blocks" must list EVERY segment in time order: anchor, setup, any reteach, then the three teach blocks with a transition between them. Use the durations given in PART C.
+- "explainability.items" must have 5-6 items covering: why these three groups; why this rotation order; which misconceptions to watch; WHICH RETRIEVED CONTENT you used and how (name the anchor ID and whether it was an exact, related, topic-area or loose match (or original, if none), the intervention ID, each TLM ID, and the curriculum note); and the assumptions and limitations (the curriculum plan is a representative plan, not the state's official weekly plan). Only say a resource was unavailable if it is genuinely absent from the context above.
+- Independent stations must use only previously mastered content.
+- All text fields are PLAIN TEXT: no markdown (no **bold**, no # headings). To show a list inside one field, put each item on its own line starting with "• ".
+- Every worksheet problem needs an "answer". Use "diagnostic_for_misconception" (an ID from the misconception list, or null) on problems designed to reveal that error.
+- At most 8 problems per worksheet, so each sheet fits ONE A4 page. Fewer than 8 is fine.
+- Every problem must have ONE checkable answer (the photo analysis compares against the answer key). Do NOT include open-ended items such as "make your own problem".
+- Compute every answer. State which columns carry only after verifying by computing, and never ask for something impossible (e.g. a carry in every column of a 3-digit sum).
+- Size each independent activity to the length of the teach blocks (22-29 minutes), and say what fast finishers do. Do not label an activity shorter than the block.
+"""
+
+_SCHEMA_WORKSHEET_NUMERACY = """
+<WORKSHEET> for numeracy:
+{
+  "instructions_hi": "...", "instructions_en": "...",
+  "example_block": {"problem_hi": "21 + 15 = ___", "answer": "36", "show_pv_grid": true, "pv_columns": 2,
+                    "row1_t": "2", "row1_o": "1", "row2_t": "1", "row2_o": "5", "answer_t": "3", "answer_o": "6"}
+                   or null,
+  "problems": [
+    {"number": 1, "problem_hi": "23 + 14", "answer": "37", "row_type": "grid",
+     "show_pv_grid": true, "pv_columns": 2, "pv_row2": true, "diagnostic_for_misconception": null}
+  ]
+}
+Numeracy worksheet rules (scaffolding fades with level):
+- beginner: example_block REQUIRED (a worked example of the prerequisite skill). All problems row_type "grid" with show_pv_grid true, pv_columns 2, pv_row2 true. problem_hi has NO "= ___" (the grid is the answer). Up to 8 problems.
+- progressor: example_block REQUIRED, and it must show the carry (e.g. 27 + 15 = 42). Problems 1-3 row_type "grid" (same fields as above); problems 4-6 row_type "plain" with problem_hi like "19 + 43 = ___"; then 1-2 word problems with row_type null, "answer_type": "wide", and "word_problem_text" repeating the problem text.
+- proficient: example_block null. Problems 1-6 row_type "plain" (problem_hi like "57 + 36 = ___"); then 2 word problems with row_type null, "answer_type": "wide", "word_problem_text".
+- Stay inside the number range given in the context. If a number has 3 digits, use pv_columns 3 and add row1_h, row2_h, answer_h to example_block.
+- Place at least 2 problems that reveal the top misconceptions, and set diagnostic_for_misconception on them.
+"""
+
+_SCHEMA_WORKSHEET_LITERACY = """
+<WORKSHEET> for literacy:
+{
+  "instructions_hi": "...", "instructions_en": "...",
+  "example_block": {"problem_hi": "मात्रा जोड़ने का उदाहरण:", "example_text": "क + ो = को"} or null,
+  "passage_block": {"title": "...", "text": "short passage at grade level"} or null,
+  "problems": [
+    {"number": 1, "problem_hi": "...", "answer": "...", "row_type": "plain" or null,
+     "answer_type": "box|lines", "answer_lines": <int, only for lines>,
+     "show_letter_grid": false, "diagnostic_for_misconception": null}
+  ]
+}
+Literacy worksheet rules:
+- beginner: example_block REQUIRED, passage_block null. Q1 may be a letter-tracing item: show_letter_grid true, target_letter "क", letter_grid_cells [{"prefilled": true, "text": "क"}, {"prefilled": false}, ...]. Short-answer items use row_type "plain" (grouped three per row); writing items use row_type null with answer_type "lines".
+- progressor: passage_block REQUIRED, example_block null. Short comprehension or matra items row_type "plain"; longer answers row_type null with answer_type "lines".
+- proficient: passage_block REQUIRED, example_block null. All items row_type null with answer_type "lines".
+- Do not number the passage as a question.
+"""
+
+
+def _output_schema(domain_id: str) -> str:
+    ws = _SCHEMA_WORKSHEET_NUMERACY if domain_id == "numeracy" else _SCHEMA_WORKSHEET_LITERACY
+    return _SCHEMA_COMMON + ws
+
+
+def _anchor_prompt_section(ctx: OrchestrationContext) -> str:
+    """The anchor section of the prompt, worded according to how well the template matches."""
+    a = ctx.anchor
+    today = ctx.selected_competency.id
+    if a is None:
+        return (
+            "### Anchor Activity Template\n"
+            "**No anchor template is available for today's competency and grade.** Write a short ORIGINAL "
+            "10-minute anchor in the same style: a simple story or situation, one whole-class opening question, "
+            "and one task per group matched to that group's competency. In the explainability item about "
+            "retrieved content, say that no template matched and that the anchor is original.\n"
+        )
+    head = f"### Anchor Activity Template\n**{a.id}** — {a.title_hi} (Theme: {a.theme})\n"
+    body = f"```\n{a.template_body}\n```\n"
+    designed = ", ".join(a.designed_for or []) or "other content"
+    linked = ", ".join(a.linked_to or [])
+    if a.match_quality == "related":
+        note = (f"**Match quality: RELATED.** This template was written for {designed} and also covers {linked}, "
+                f"linked to today's competency {today} in the prerequisite graph (as a "
+                f"prerequisite or a follow-on). It does not cover {today} itself. Keep the story, but rewrite each "
+                f"group's task so it practises that group's own competency today. In explainability, say the "
+                f"anchor was a related (not exact) match.\n")
+    elif a.match_quality == "topic_area":
+        note = (f"**Match quality: TOPIC-AREA.** This template was written for {designed} and also covers {linked}, "
+                f"in the same topic area as today's {today} but a different skill. Keep the story, but rewrite each "
+                f"group's task so it practises that group's own competency today. In explainability, say the "
+                f"anchor was a topic-area (not exact) match.\n")
+    elif a.match_quality == "loose":
+        note = (f"**Match quality: LOOSE.** This template was written for different content ({designed}); nothing "
+                f"in the bank matches {today}. Keep only its story setting and format; rewrite every group's task "
+                f"so it practises that group's competency today. In explainability, state clearly that no anchor "
+                f"matched today's competency and this one was adapted loosely.\n")
+    else:
+        note = "Adapt this for today's competency and number range. Fill all {{placeholders}}.\n"
+    return head + body + note
 
 
 def build_user_prompt(ctx: OrchestrationContext) -> str:
@@ -349,8 +579,18 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     
     # Build intervention section
     intervention_text = ""
+    if ctx.intervention and ctx.intervention_mode == "preteach":
+        mode_note = ("**How to use it:** No gaps were recorded yesterday, so there is NO re-teach block. "
+                     "Use this template PROACTIVELY as the teaching model for the group whose target is today's "
+                     "competency (Progressor): build their I Do / We Do around these steps so the listed "
+                     "misconceptions are prevented, not just corrected later.\n")
+    elif ctx.intervention:
+        mode_note = "**How to use it:** use this for the re-teach segment described in PART C.\n"
+    else:
+        mode_note = ""
+
     if ctx.intervention:
-        intervention_text = f"""
+        intervention_text = mode_note + f"""
 **Template ID:** {ctx.intervention.id} — {ctx.intervention.title_hi}
 **Targets:** {', '.join(ctx.intervention.misconception_ids)}
 **Steps:**
@@ -369,6 +609,10 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
         tlm_text += f"- {t.id}: {t.name_hi} ({t.availability}){diy}\n"
     if not tlm_text:
         tlm_text = "- No TLMs required for today's plan.\n"
+    else:
+        tlm_text += ("\nUse a TLM from this list wherever it helps the teaching, name it in the talking points, "
+                     "and for every 'diy' TLM add a one-line preparation note to \"prep_hi\" "
+                     "(what to make before class and how many).\n")
     
     # Build observation reminders
     obs_text = ""
@@ -392,7 +636,12 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     
     # Top misconception IDs for worksheet design
     top_misconception_ids = [m.id for m in ctx.misconceptions[:3]]
+    anchor_section = _anchor_prompt_section(ctx)
+    week_notes_line = (f"**Curriculum note for this topic (state plan):** {ctx.week_notes}\n"
+                       if ctx.week_notes else "")
     
+    output_schema = _output_schema(ctx.domain_id)
+
     prompt = f"""Generate today's Dainik Yojana using ONLY the structured context below.
 
 ## CLASSROOM CONTEXT
@@ -412,7 +661,7 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
 ({ctx.selected_competency.name_en})
 **Grade level:** {ctx.selected_competency.grade_level}
 **Assessment modality:** {ctx.selected_competency.assessment_modality}
-
+{week_notes_line}
 A/PA/NA Criteria:
 ```json
 {json.dumps(ctx.selected_competency.apna_criteria, ensure_ascii=False, indent=2)}
@@ -443,13 +692,7 @@ Working on EXTENSION: {ctx.proficient.target_competency.id} — {ctx.proficient.
 
 ## RETRIEVED CONTENT (from L2)
 
-### Anchor Activity Template
-**{ctx.anchor.id}** — {ctx.anchor.title_hi} (Theme: {ctx.anchor.theme})
-```
-{ctx.anchor.template_body}
-```
-Adapt this for today's competency and number range. Fill all {{{{placeholders}}}}.
-
+{anchor_section}
 ### Intervention Template
 {intervention_text}
 
@@ -485,7 +728,7 @@ Rotation chart, peer monitors, transition scripts (Hindi), independent station a
 - Observation: {obs_text if obs_text else 'No observed-modality competencies today.'}
 {'- ORF: Roll Nos. ' + str(ctx.orf_roll_numbers) + ' on passage ' + ctx.orf_passage_id if ctx.orf_scheduled else ''}
 
-Return as a single JSON object with keys: anchor, worksheets, rotation_schedule, classroom_management, review_prompts, explainability.
+{output_schema}
 """
     
     return prompt

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title }} — अंकुर साथी</title>
+<style>
+  @page { 
+    size: A4 portrait; 
+    margin: 8mm 8mm 10mm 8mm; 
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans Devanagari', 'Mangal', 'Arial Unicode MS', sans-serif;
+    font-size: 12pt;
+    line-height: 1.3;
+    color: #1a1a1a;
+    background: white;
+  }
+
+  /* ── Header ── */
+  .worksheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 2px solid #2D6A4F;
+    padding-bottom: 4px;
+    margin-bottom: 6px;
+  }
+
+  .worksheet-title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #2D6A4F;
+  }
+
+  .worksheet-subtitle {
+    font-size: 9pt;
+    color: #666;
+    margin-top: 1px;
+  }
+
+  .level-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 16px;
+    font-size: 10pt;
+    font-weight: 600;
+    color: white;
+  }
+  .level-beginner { background: #E76F51; }
+  .level-progressor { background: #E9C46A; color: #1a1a1a; }
+  .level-proficient { background: #2A9D8F; }
+
+  /* ── Roll number box ── */
+  .roll-number-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    padding: 4px 10px;
+    border: 1.5px solid #2D6A4F;
+    border-radius: 6px;
+    background: #F0FFF4;
+  }
+
+  .roll-label {
+    font-size: 10pt;
+    font-weight: 600;
+    color: #2D6A4F;
+    white-space: nowrap;
+  }
+
+  .roll-input-box {
+    width: 50px;
+    height: 28px;
+    border: 1.5px solid #2D6A4F;
+    border-radius: 4px;
+    background: white;
+  }
+
+  .date-section {
+    margin-left: auto;
+    font-size: 9pt;
+    color: #666;
+  }
+
+  .date-line {
+    width: 80px;
+    border-bottom: 1px solid #999;
+    display: inline-block;
+  }
+
+  /* ── Instructions ── */
+  .instructions {
+    background: #FFF8F0;
+    border-left: 3px solid #E9C46A;
+    padding: 4px 10px;
+    margin-bottom: 8px;
+    font-size: 10pt;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .instructions strong {
+    color: #B45309;
+  }
+
+  /* ── Problem section ── */
+  .problem {
+    margin-bottom: 8px;
+    page-break-inside: avoid;
+  }
+
+  /* Grid row: 3 problems with PV grids side by side. The grid IS the answer — no separate answer box. */
+  .grid-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .grid-card {
+    flex: 1;
+    border: 1.5px solid #E5E5E5;
+    border-radius: 6px;
+    padding: 6px;
+    page-break-inside: avoid;
+    text-align: center;
+  }
+
+  .grid-card .problem-number {
+    width: 18px;
+    height: 18px;
+    font-size: 8pt;
+    margin-right: 3px;
+  }
+
+  .grid-card .problem-text {
+    font-size: 11pt;
+    font-weight: 600;
+  }
+
+  .grid-card .pv-grid {
+    margin: 4px auto 0;
+    justify-content: center;
+  }
+
+  .grid-card .pv-column {
+    min-width: 32px;
+  }
+
+  .grid-card .pv-header {
+    font-size: 7pt;
+    padding: 2px 4px;
+  }
+
+  .grid-card .pv-cell-empty {
+    padding: 4px;
+    min-height: 22px;
+  }
+
+  /* No-grid compact row (for independent fluency problems, with answer box) */
+  .plain-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .plain-card {
+    flex: 1;
+    border: 1.5px solid #E5E5E5;
+    border-radius: 6px;
+    padding: 8px;
+    page-break-inside: avoid;
+    text-align: center;
+  }
+
+  .plain-card .problem-number {
+    width: 18px;
+    height: 18px;
+    font-size: 8pt;
+    margin-right: 3px;
+  }
+
+  .plain-card .problem-text {
+    font-size: 11pt;
+    font-weight: 600;
+  }
+
+  .plain-card .answer-area {
+    margin: 6px 0 0 0;
+    justify-content: center;
+  }
+
+  .plain-card .answer-box {
+    width: 75px;
+    height: 26px;
+  }
+
+  .plain-card .answer-label {
+    font-size: 8pt;
+  }
+
+  /* Worked example block — shown once, not a numbered question */
+  .example-block {
+    background: #F0FFF4;
+    border: 1.5px dashed #2D6A4F;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .example-block .example-label {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #2D6A4F;
+    white-space: nowrap;
+  }
+
+  .example-block .problem-text {
+    font-size: 11pt;
+    font-weight: 600;
+  }
+
+  .example-block .pv-grid {
+    margin: 0;
+  }
+
+  .example-block .pv-column {
+    min-width: 32px;
+  }
+
+  .example-block .pv-header {
+    font-size: 7pt;
+    padding: 2px 4px;
+  }
+
+  .example-block .pv-cell {
+    padding: 2px;
+    min-height: 16px;
+    font-size: 10pt;
+    line-height: 1.1;
+  }
+
+  .example-block .example-text-only {
+    font-size: 11pt;
+    color: #2D6A4F;
+    font-weight: 600;
+  }
+
+  /* Reading passage header — shown once, not a numbered question */
+  .passage-header {
+    background: #FEFCE8;
+    border: 1.5px solid #E9C46A;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  .passage-header .passage-label {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #B45309;
+    margin-bottom: 2px;
+  }
+
+  .passage-header .passage-title {
+    font-weight: 700;
+    color: #B45309;
+    font-size: 10pt;
+  }
+
+  .problem-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: #2D6A4F;
+    color: white;
+    border-radius: 50%;
+    font-size: 10pt;
+    font-weight: 700;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .problem-text {
+    font-size: 12pt;
+    display: inline;
+    vertical-align: middle;
+  }
+
+  .problem-example {
+    background: #F0FFF4;
+    border: 1px solid #95D5B2;
+    border-radius: 4px;
+    padding: 3px 8px;
+    margin: 3px 0 3px 28px;
+    font-size: 10pt;
+    color: #2D6A4F;
+  }
+
+  .problem-example::before {
+    content: "उदा. (Ex): ";
+    font-weight: 600;
+    font-size: 9pt;
+  }
+
+  /* ── Answer box ── */
+  .answer-area {
+    margin: 4px 0 4px 28px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .answer-label {
+    font-size: 9pt;
+    color: #666;
+    white-space: nowrap;
+  }
+
+  .answer-box {
+    width: 100px;
+    height: 30px;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    background: white;
+  }
+
+  .answer-box-wide {
+    width: 100%;
+    min-height: 36px;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    margin: 4px 0 4px 28px;
+  }
+
+  /* ── Place value grid ── */
+  .pv-grid {
+    display: flex;
+    width: fit-content;
+    border: 1.5px solid #2D6A4F;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 3px 0 3px 28px;
+  }
+
+  .pv-column {
+    text-align: center;
+    min-width: 36px;
+    border-right: 1px solid #95D5B2;
+  }
+
+  .pv-column:last-child { border-right: none; }
+
+  .pv-header {
+    background: #2D6A4F;
+    color: white;
+    font-size: 8pt;
+    font-weight: 600;
+    padding: 2px 6px;
+  }
+
+  .pv-cell {
+    padding: 4px;
+    min-height: 24px;
+    font-size: 12pt;
+    font-weight: 600;
+    border-top: 1px solid #95D5B2;
+  }
+
+  .pv-cell-empty {
+    padding: 4px;
+    min-height: 24px;
+    border-top: 1px solid #95D5B2;
+  }
+
+  /* ── Number line ── */
+  .number-line {
+    margin: 3px 0 3px 28px;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 10pt;
+    color: #666;
+    letter-spacing: 4px;
+  }
+
+  /* ── Word problem box ── */
+  .word-problem {
+    background: #F8F9FA;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin: 3px 0 3px 28px;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  /* ── Section divider ── */
+  .section-divider {
+    border: none;
+    border-top: 1px dashed #ccc;
+    margin: 8px 0;
+  }
+
+  /* ── Footer ── */
+  .worksheet-footer {
+    margin-top: 8px;
+    padding-top: 4px;
+    border-top: 1px solid #ddd;
+    font-size: 8pt;
+    color: #999;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── Print-specific ── */
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .no-print { display: none; }
+  }
+
+  /* ── Screen: print button ── */
+  .print-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #2D6A4F;
+    color: white;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    font-size: 14px;
+  }
+
+  .print-bar button {
+    background: white;
+    color: #2D6A4F;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  @media print { .print-bar { display: none; } }
+  @media screen { body { padding-top: 52px; } }
+
+  /* ── Reading passage (literacy) ── */
+  .passage-box {
+    background: #FEFCE8;
+    border: 1.5px solid #E9C46A;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin: 4px 0;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  .passage-title {
+    font-weight: 700;
+    color: #B45309;
+    margin-bottom: 3px;
+    font-size: 10pt;
+  }
+
+  /* ── Letter/matra practice grid (literacy) ── */
+  .letter-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 4px 0 4px 28px;
+  }
+
+  .letter-cell {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16pt;
+    font-weight: 600;
+  }
+
+  .letter-cell-dotted {
+    width: 36px;
+    height: 36px;
+    border: 1.5px dashed #ccc;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Print bar (screen only) -->
+<div class="print-bar no-print">
+  <span>🌱 अंकुर साथी — {{ level_hi }} ({{ level_en }}) Worksheet</span>
+  <button onclick="window.print()">🖨️ प्रिंट करें (Print)</button>
+</div>
+
+<!-- Worksheet header -->
+<div class="worksheet-header">
+  <div>
+    <div class="worksheet-title">{{ competency_name_hi }}</div>
+    <div class="worksheet-subtitle">{{ competency_id }} — {{ competency_name_en }}</div>
+  </div>
+  <span class="level-badge level-{{ level }}">{{ level_hi }} ({{ level_en }})</span>
+</div>
+
+<!-- Roll number + Date -->
+<div class="roll-number-box">
+  <span class="roll-label">रोल नं. (Roll No.):</span>
+  <div class="roll-input-box"></div>
+  <div class="date-section">
+    दिनांक (Date): <span class="date-line"></span>
+  </div>
+</div>
+
+<!-- Instructions -->
+<div class="instructions">
+  <strong>निर्देश (Instructions):</strong> {{ instructions_hi }}
+  {% if instructions_en %}<br><span style="font-size:10pt;color:#888">{{ instructions_en }}</span>{% endif %}
+</div>
+
+<!-- Worked example (shown once, not a numbered question) -->
+{% if example_block %}
+<div class="example-block">
+  <span class="example-label">उदा. (Example):</span>
+  <span class="problem-text">{{ example_block.problem_hi }}</span>
+  {% if example_block.show_pv_grid %}
+  <div class="pv-grid">
+    {% if example_block.pv_columns == 3 %}
+    <div class="pv-column">
+      <div class="pv-header">सै.(H)</div>
+      <div class="pv-cell">{{ example_block.row1_h or '' }}</div>
+      <div class="pv-cell">{{ example_block.row2_h or '' }}</div>
+      <div class="pv-cell" style="border-top:2px solid #2D6A4F;color:#2D6A4F">{{ example_block.answer_h or '' }}</div>
+    </div>
+    {% endif %}
+    <div class="pv-column">
+      <div class="pv-header">द.(T)</div>
+      <div class="pv-cell">{{ example_block.row1_t }}</div>
+      <div class="pv-cell">{{ example_block.row2_t }}</div>
+      <div class="pv-cell" style="border-top:2px solid #2D6A4F;color:#2D6A4F">{{ example_block.answer_t }}</div>
+    </div>
+    <div class="pv-column">
+      <div class="pv-header">इ.(O)</div>
+      <div class="pv-cell">{{ example_block.row1_o }}</div>
+      <div class="pv-cell">{{ example_block.row2_o }}</div>
+      <div class="pv-cell" style="border-top:2px solid #2D6A4F;color:#2D6A4F">{{ example_block.answer_o }}</div>
+    </div>
+  </div>
+  {% elif example_block.example_text %}
+  <span class="example-text-only">{{ example_block.example_text }}</span>
+  {% endif %}
+  {% if example_block.answer and example_block.show_pv_grid %}
+  <span style="font-size:11pt;color:#2D6A4F;font-weight:700">उत्तर (Ans) = {{ example_block.answer }}</span>
+  {% endif %}
+</div>
+{% endif %}
+
+<!-- Reading passage header (shown once, not a numbered question) -->
+{% if passage_block %}
+<div class="passage-header">
+  <div class="passage-label">अनुच्छेद पढ़ो (Read the passage):</div>
+  {% if passage_block.title %}<div class="passage-title">{{ passage_block.title }}</div>{% endif %}
+  {{ passage_block.text }}
+</div>
+{% endif %}
+
+<!-- Render blocks in strict question-number order. Each block is pre-grouped in Python: -->
+<!-- {"kind": "grid_row"|"plain_row", "items": [...]} for 3-per-row cards, or {"kind": "full", "problem": {...}} for full-width -->
+{% for block in render_blocks %}
+
+{% if block.kind == 'full' %}
+{% set problem = block.problem %}
+<div class="problem">
+  <span class="problem-number">{{ problem.number }}</span>
+  <span class="problem-text">{{ problem.problem_hi }}</span>
+  {% if problem.problem_en %}<span style="font-size:10pt;color:#888;margin-left:4px">({{ problem.problem_en }})</span>{% endif %}
+
+  {% if problem.show_pv_grid %}
+  <div class="pv-grid">
+    {% if problem.pv_columns == 3 %}
+    <div class="pv-column"><div class="pv-header">सै. (H)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
+    {% endif %}
+    <div class="pv-column"><div class="pv-header">द. (T)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
+    <div class="pv-column"><div class="pv-header">इ. (O)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
+  </div>
+  {% endif %}
+
+  {% if problem.show_number_line %}
+  <div class="number-line">{{ problem.number_line_content }}</div>
+  {% endif %}
+
+  {% if problem.word_problem_text %}
+  <div class="word-problem">{{ problem.word_problem_text }}</div>
+  {% endif %}
+
+  {% if problem.show_letter_grid %}
+  <div class="letter-grid">
+    {% for cell in problem.letter_grid_cells %}
+    {% if cell.prefilled %}<div class="letter-cell">{{ cell.text }}</div>{% else %}<div class="letter-cell-dotted"></div>{% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if problem.show_passage %}
+  <div class="passage-box">
+    {% if problem.passage_title %}<div class="passage-title">{{ problem.passage_title }}</div>{% endif %}
+    {{ problem.passage_text }}
+  </div>
+  {% endif %}
+
+  {% if problem.answer_type == 'box' and not problem.show_pv_grid %}
+  <div class="answer-area">
+    <span class="answer-label">उत्तर (Ans):</span>
+    <div class="answer-box"></div>
+  </div>
+  {% elif problem.answer_type == 'wide' %}
+  <div class="answer-box-wide"></div>
+  {% elif problem.answer_type == 'lines' %}
+  {% for line in range(problem.answer_lines or 3) %}
+  <div style="margin:2px 0 2px 28px;border-bottom:1px solid #ccc;height:22px"></div>
+  {% endfor %}
+  {% endif %}
+</div>
+
+{% elif block.kind == 'grid_row' %}
+<div class="grid-row">
+  {% for problem in block.cells %}
+  <div class="grid-card">
+    <span class="problem-number">{{ problem.number }}</span>
+    <span class="problem-text">{{ problem.problem_hi }}</span>
+    <div class="pv-grid">
+      {% if problem.pv_columns == 3 %}
+      <div class="pv-column"><div class="pv-header">सै.(H)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
+      {% endif %}
+      <div class="pv-column"><div class="pv-header">द.(T)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
+      <div class="pv-column"><div class="pv-header">इ.(O)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
+    </div>
+  </div>
+  {% endfor %}
+  {% for _ in range(3 - block.cells|length) %}<div style="flex:1"></div>{% endfor %}
+</div>
+
+{% elif block.kind == 'plain_row' %}
+<div class="plain-row">
+  {% for problem in block.cells %}
+  <div class="plain-card">
+    <span class="problem-number">{{ problem.number }}</span>
+    <span class="problem-text">{{ problem.problem_hi }}</span>
+    <div class="answer-area">
+      <span class="answer-label">उत्तर (Ans):</span>
+      <div class="answer-box"></div>
+    </div>
+  </div>
+  {% endfor %}
+  {% for _ in range(3 - block.cells|length) %}<div style="flex:1"></div>{% endfor %}
+</div>
+{% endif %}
+
+{% endfor %}
+
+<!-- Footer -->
+<div class="worksheet-footer">
+  <span>🌱 अंकुर साथी (Ankur Saathi) — {{ date }}</span>
+  <span>{{ competency_id }} · {{ level_en }}</span>
+</div>
+
+</body>
+</html>
