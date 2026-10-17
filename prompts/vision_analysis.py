@@ -9,6 +9,7 @@ day's orchestration prompt.
 """
 
 import json
+from typing import Optional
 
 
 # ============================================================================
@@ -51,7 +52,8 @@ def build_vision_prompt(
     problems: list[dict],       # [{"number": 1, "problem_hi": "...", "answer": "..."}]
     misconceptions: list[dict], # From L1 taxonomy
     group_roll_numbers: list[int],
-    photo_count: int = 1
+    photo_count: int = 1,
+    required_count: Optional[int] = None,   # children must do problems 1..N; the rest are extras
 ) -> str:
     """Build the user prompt that accompanies the worksheet photograph(s)."""
     
@@ -75,6 +77,17 @@ def build_vision_prompt(
         if p.get('diagnostic_for_misconception'):
             diagnostic_map[str(p['number'])] = p['diagnostic_for_misconception']
     
+    scope_text = ""
+    if required_count and required_count < len(problems):
+        scope_text = f"""
+## WHICH PROBLEMS COUNT
+Children were told to solve problems 1-{required_count}. Problems {required_count + 1}-{len(problems)} are OPTIONAL EXTRAS for fast finishers.
+- A BLANK extra problem is NOT an error. Leave it out of `problems`, or mark it `"attempted": false`. Never count it as incorrect.
+- An extra the child DID attempt counts normally, right or wrong.
+- A blank REQUIRED problem counts as not correct. Do not diagnose a misconception from a blank answer.
+- `total_problems` = {required_count} + the number of extras the child attempted. `correct` counts only attempted problems. `accuracy` = correct / total_problems.
+"""
+
     prompt = f"""Analyse the attached photograph(s) of completed worksheets.
 
 ## WORKSHEET CONTEXT
@@ -99,6 +112,7 @@ def build_vision_prompt(
 {json.dumps(diagnostic_map, ensure_ascii=False, indent=2)}
 ```
 
+{scope_text}
 ## INSTRUCTIONS
 
 For each worksheet visible in the photo(s):
@@ -165,6 +179,38 @@ IMPORTANT:
     return prompt
 
 
+def rescore(child_result: dict, required_count: Optional[int]) -> dict:
+    """
+    Recompute correct / total_problems / accuracy from the per-problem entries, so that a
+    miscount by the model cannot distort the score when only the first N problems are required.
+    Total = N + the extras the child actually attempted. A required problem the model left
+    out counts as not correct. Without a required_count the model's own summary is kept.
+    """
+    summary = dict(child_result.get("summary") or {})
+    probs = child_result.get("problems") or []
+    if not required_count or not probs:
+        return summary
+
+    def blank(p):
+        a = p.get("extracted_answer")
+        return p.get("attempted") is False or a is None or str(a).strip() == ""
+
+    correct, extras_attempted = 0, 0
+    for p in probs:
+        n = p.get("number")
+        is_required = isinstance(n, int) and n <= required_count
+        if not is_required and blank(p):
+            continue                                  # skipped extra: not an error
+        if not is_required:
+            extras_attempted += 1
+        if p.get("is_correct") is True and not blank(p):
+            correct += 1
+    total = required_count + extras_attempted
+    summary.update(correct=correct, total_problems=total, incorrect=total - correct,
+                   accuracy=round(correct / total, 3))
+    return summary
+
+
 # ============================================================================
 # RESPONSE PROCESSOR — turns Vision output into DB updates
 # ============================================================================
@@ -176,6 +222,7 @@ async def process_vision_results(
     competency_id: str,
     vision_response: list[dict],
     teacher_pre_judgment: str,  # 'advance', 'reteach', 'not_sure'
+    required_count: Optional[int] = None,
 ) -> dict:
     """
     Takes Claude Vision's structured output and:
@@ -202,7 +249,7 @@ async def process_vision_results(
         if not roll:
             continue
         
-        summary = child_result.get('summary', {})
+        summary = rescore(child_result, required_count)
         accuracy = summary.get('accuracy', 0)
         status = summary.get('overall_status', 'not_achieved')
         detected = summary.get('detected_misconceptions', [])

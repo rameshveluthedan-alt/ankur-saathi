@@ -152,11 +152,25 @@ def render_worksheet(
     
     # Enrich problems with visual scaffolding
     enricher = _enrich_numeracy_problem if domain_id == "numeracy" else _enrich_literacy_problem
+
+    # How many problems every child must do. The rest are extras for fast finishers.
+    required_count = worksheet.get("required_count")
+    try:
+        required_count = int(required_count) if required_count is not None else None
+    except (TypeError, ValueError):
+        required_count = None
+    if required_count is not None and not (1 <= required_count < len(problems_raw)):
+        required_count = None      # nothing to mark as extra
+
     problems = []
     for i, p in enumerate(problems_raw):
         enriched = enricher(p, level)
+        # tolerate alternative field names so a slightly different plan still renders
         if "number" not in enriched:
-            enriched["number"] = i + 1
+            enriched["number"] = enriched.get("no", i + 1)
+        if not enriched.get("problem_hi"):
+            enriched["problem_hi"] = enriched.get("problem") or enriched.get("question") or ""
+        enriched["extra"] = required_count is not None and (i + 1) > required_count
         problems.append(enriched)
     
     # Extract example/passage blocks (separate from numbered problems)
@@ -180,6 +194,7 @@ def render_worksheet(
         example_block=example_block,
         passage_block=passage_block,
         render_blocks=render_blocks,
+        required_count=required_count,
         date=plan_date,
     )
     
@@ -199,6 +214,7 @@ def render_sample_worksheet(
     """
     example_block = None
     passage_block = None
+    required_count = None
     
     if domain_id == "numeracy":
         if level == "beginner":
@@ -219,9 +235,11 @@ def render_sample_worksheet(
                 {"number": 7, "problem_hi": "13 + 26", "answer": "39", "row_type": "grid", "show_pv_grid": True, "pv_columns": 2, "pv_row2": True},
                 {"number": 8, "problem_hi": "35 + 21", "answer": "56", "row_type": "grid", "show_pv_grid": True, "pv_columns": 2, "pv_row2": True},
             ]
+            required_count = 5   # first 5 required; 6-8 are extras (board-copy friendly)
             instructions_hi = "दहाई-इकाई चार्ट में अंक भरो और जोड़ करो। ऊपर दिया उदाहरण देखो।"
             instructions_en = "Fill the place-value chart and add. See the worked example above."
         elif level == "progressor":
+            required_count = 6   # first 6 required; the word problem is an extra
             example_block = {
                 "problem_hi": "27 + 15 = ___ (हासिल के साथ)", "answer": "42",
                 "show_pv_grid": True, "pv_columns": 2,
@@ -338,6 +356,7 @@ def render_sample_worksheet(
                 "instructions_en": instructions_en,
                 "example_block": example_block,
                 "passage_block": passage_block,
+                "required_count": required_count,
             }
         }
     }

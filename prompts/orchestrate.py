@@ -15,6 +15,13 @@ from typing import Optional
 # DATA CLASSES — typed structures for the orchestration context
 # ============================================================================
 
+# Stick-bundle kits (TLM-001). Fixed so the prep list is predictable and checkable in code.
+STICK_TEACHER_KIT = (9, 9)     # bundles, loose sticks -> 99 sticks
+STICK_PAIR_KIT = (4, 9)        # bundles, loose sticks -> 49 sticks (one kit per pair of Beginners)
+STICK_TEACHER_KIT_TOTAL = STICK_TEACHER_KIT[0] * 10 + STICK_TEACHER_KIT[1]
+STICK_PAIR_KIT_TOTAL = STICK_PAIR_KIT[0] * 10 + STICK_PAIR_KIT[1]
+
+
 @dataclass
 class Competency:
     id: str
@@ -132,6 +139,10 @@ class OrchestrationContext:
     # How the intervention template is used: 'reteach' (yesterday's gaps),
     # 'preteach' (no gaps yet: use it proactively for today's competency), or 'none'
     intervention_mode: str = "none"
+    # {'beginner': {'safe': [(id, name_hi), ...], 'new': (id, name_hi)}, ...}
+    group_skills: Optional[dict] = None
+    # {'beginner_children': n, 'pair_kits': k} when TLM-001 (bundling sticks) is in today's content
+    stick_policy: Optional[dict] = None
 
 
 # ============================================================================
@@ -440,7 +451,11 @@ Keep every talking point to at most 3 short sentences. Be concise; do not repeat
 Rules:
 - "blocks" must list EVERY segment in time order: anchor, setup, any reteach, then the three teach blocks with a transition between them. Use the durations given in PART C.
 - "explainability.items" must have 5-6 items covering: why these three groups; why this rotation order; which misconceptions to watch; WHICH RETRIEVED CONTENT you used and how (name the anchor ID and whether it was an exact, related, topic-area or loose match (or original, if none), the intervention ID, each TLM ID, and the curriculum note); and the assumptions and limitations (the curriculum plan is a representative plan, not the state's official weekly plan). Only say a resource was unavailable if it is genuinely absent from the context above.
-- Independent stations must use only previously mastered content.
+- Independent stations must follow the INDEPENDENT-WORK RULES above.
+- Numbers, prices and names in every group's anchor task must match the board you describe in narration_hi (same item, same price). If a group needs larger numbers, add new items to the board.
+- Each group's anchor task must use ONLY that group's own skills (see INDEPENDENT-WORK RULES): no other operations (for example no subtraction or 'how much is left' in an addition lesson). Do not repeat the group's name at the start of the task text, because the screen already shows it.
+- MATERIALS other than the TLM-001 sticks: for any hands-on activity, work out the largest total used and make "prep_hi" match it. Give a kit to every group that uses it, size each kit to the largest example, and count the kits from the group sizes above (children divided by children per kit, rounded up). Kits are reused between groups taught at different times, so prepare for the largest need, not the sum. If a STICK-BUNDLE POLICY section is present, it governs the sticks.
+- "required_count": children must do problems 1 to required_count; later problems are extras for fast finishers. Beginner sheet with more than 5 problems: required_count 5. Progressor sheet with more than 6 problems: required_count 6. Proficient: required_count = the number of problems. Every problem with a "diagnostic_for_misconception" must be among the required ones. The Beginner You Do talking point must say to copy and solve problems 1-5 first, and the Progressor You Do problems 1-6 first, and that the rest are extras; every statement about a sheet must match its required_count.
 - All text fields are PLAIN TEXT: no markdown (no **bold**, no # headings). To show a list inside one field, put each item on its own line starting with "• ".
 - Every worksheet problem needs an "answer". Use "diagnostic_for_misconception" (an ID from the misconception list, or null) on problems designed to reveal that error.
 - At most 8 problems per worksheet, so each sheet fits ONE A4 page. Fewer than 8 is fine.
@@ -452,7 +467,7 @@ Rules:
 _SCHEMA_WORKSHEET_NUMERACY = """
 <WORKSHEET> for numeracy:
 {
-  "instructions_hi": "...", "instructions_en": "...",
+  "instructions_hi": "...", "instructions_en": "...", "required_count": 5,
   "example_block": {"problem_hi": "21 + 15 = ___", "answer": "36", "show_pv_grid": true, "pv_columns": 2,
                     "row1_t": "2", "row1_o": "1", "row2_t": "1", "row2_o": "5", "answer_t": "3", "answer_o": "6"}
                    or null,
@@ -472,7 +487,7 @@ Numeracy worksheet rules (scaffolding fades with level):
 _SCHEMA_WORKSHEET_LITERACY = """
 <WORKSHEET> for literacy:
 {
-  "instructions_hi": "...", "instructions_en": "...",
+  "instructions_hi": "...", "instructions_en": "...", "required_count": 5,
   "example_block": {"problem_hi": "मात्रा जोड़ने का उदाहरण:", "example_text": "क + ो = को"} or null,
   "passage_block": {"title": "...", "text": "short passage at grade level"} or null,
   "problems": [
@@ -526,9 +541,54 @@ def _anchor_prompt_section(ctx: OrchestrationContext) -> str:
                 f"in the bank matches {today}. Keep only its story setting and format; rewrite every group's task "
                 f"so it practises that group's competency today. In explainability, state clearly that no anchor "
                 f"matched today's competency and this one was adapted loosely.\n")
+    elif a.match_quality == "exact":
+        note = ("**Match quality: EXACT.** This template was written for today's competency " + today +
+                ". Adapt it for today's number range and fill all {{placeholders}}. In explainability, "
+                "say the anchor was an exact match.\n")
     else:
         note = "Adapt this for today's competency and number range. Fill all {{placeholders}}.\n"
     return head + body + note
+
+
+def _independent_rules_section(ctx: OrchestrationContext) -> str:
+    """Names, per group, what is safe to practise alone and what is new today."""
+    gs = ctx.group_skills
+    if not gs:
+        return ""
+    names = {"beginner": "शुरुआती (Beginner)", "progressor": "प्रगतिशील (Progressor)", "proficient": "दक्ष (Proficient)"}
+    lines = ["## INDEPENDENT-WORK RULES (what the two groups NOT with the teacher may do)",
+             "Each group is taught its NEW skill only in its own teach block. Before that, no group may work on",
+             "ANY of the new skills below, not even as an extra for fast finishers.", ""]
+    for g in ("beginner", "progressor", "proficient"):
+        safe = "; ".join(f"{i} — {n}" for i, n in gs[g]["safe"]) or "(none identified: use a simple review of earlier skills)"
+        new_id, new_name = gs[g]["new"]
+        lines.append(f"- {names[g]}: ALREADY MASTERED, use for independent work: {safe}.  "
+                     f"NEW today, taught only in its own teach block: {new_id} — {new_name}.")
+    lines += ["", "Once a group's own teach block has finished, that group's NEW skill counts as taught: later blocks should use it "
+              "for consolidation (for example the Progressors practise the carry in the last block).",
+              "", "Independent work must be at the group's OWN level (its mastered skill above), not easier. "
+              "Fast finishers get more problems of the same mastered skill or check a partner's work, never a new skill.", ""]
+    return "\n".join(lines)
+
+
+def _materials_policy_section(ctx: OrchestrationContext) -> str:
+    """Fixed rules for bundling sticks: who handles them, kit sizes, and what the prep list must say."""
+    sp = ctx.stick_policy
+    if not sp:
+        return ""
+    n, k = sp["beginner_children"], sp["pair_kits"]
+    tb, tl = STICK_TEACHER_KIT
+    pb, pl = STICK_PAIR_KIT
+    total = STICK_TEACHER_KIT_TOTAL + k * STICK_PAIR_KIT_TOTAL
+    return f"""
+### STICK-BUNDLE (TLM-001) POLICY: follow exactly
+- The teacher's demonstration is the main use of sticks. Each I Do that teaches with sticks is done by the teacher, to that group only, inside that group's own teach block: explain every step aloud and draw the same step on the board (tens as vertical lines, ones as dots).
+- TEACHER DEMO KIT (always list it in prep_hi): {tb} bundles + {tl} loose sticks = {STICK_TEACHER_KIT_TOTAL} sticks. Every teacher demonstration with sticks must total at most {STICK_TEACHER_KIT_TOTAL}.
+- BEGINNER group ({n} children): hands-on in PAIRS. Pair kit = {pb} bundles + {pl} loose sticks = {STICK_PAIR_KIT_TOTAL} sticks, so {k} kits (children divided by 2, rounded up) = {k * pb} bundles + {k * pl} loose sticks. Every example or number the Beginners build with sticks must total at most {STICK_PAIR_KIT_TOTAL} (for the Beginners' skill: no carrying or borrowing), and so must the first two worksheet problems. They use sticks only for those first two problems, then DRAW, then use the grid. No free play: bundles are made before class, never during the lesson; sticks are counted back in at the end; the group monitor collects.
+- PROGRESSOR group: NO kits for children. In the We Do, one child comes to the teacher's kit and does the one key step (adding: trading 10 loose sticks for a bundle; subtracting: opening a bundle into 10 loose sticks) while every other child draws tens as lines and ones as dots in a Tens | Ones frame ruled in the notebook, and circles 10 dots to make a new line (or crosses one line out to borrow). In the You Do the first problems may be drawn beside the grid; the last ones use numerals only.
+- PROFICIENT group: no sticks and no kits. Use the written method on the board with the carry written in each column.
+- prep_hi must list exactly the teacher demo kit and the {k} Beginner pair kits, and nothing else made of sticks. Total sticks to prepare: {STICK_TEACHER_KIT_TOTAL} + {k} x {STICK_PAIR_KIT_TOTAL} = {total}. Also say to rule a Tens | Ones frame on a sheet or the notebook cover for each pair.
+"""
 
 
 def build_user_prompt(ctx: OrchestrationContext) -> str:
@@ -637,6 +697,8 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     # Top misconception IDs for worksheet design
     top_misconception_ids = [m.id for m in ctx.misconceptions[:3]]
     anchor_section = _anchor_prompt_section(ctx)
+    independent_rules = _independent_rules_section(ctx)
+    materials_policy = _materials_policy_section(ctx)
     week_notes_line = (f"**Curriculum note for this topic (state plan):** {ctx.week_notes}\n"
                        if ctx.week_notes else "")
     
@@ -681,6 +743,7 @@ Working on TODAY'S LAKSHYA with scaffolding: {ctx.progressor.target_competency.i
 ### दक्ष (Proficient) — {ctx.proficient.count} children (Roll: {ctx.proficient.roll_numbers})
 Working on EXTENSION: {ctx.proficient.target_competency.id} — {ctx.proficient.target_competency.name_hi}
 
+{independent_rules}
 ## PREREQUISITE CHAIN (from L1)
 {prereq_text}
 
@@ -698,6 +761,7 @@ Working on EXTENSION: {ctx.proficient.target_competency.id} — {ctx.proficient.
 
 ### Available TLMs
 {tlm_text}
+{materials_policy}
 
 ## GENERATE THE DAINIK YOJANA
 

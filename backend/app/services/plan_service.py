@@ -5,6 +5,7 @@ Wraps the orchestrate.py pipeline with proper error handling and DB access.
 """
 
 import json
+import re
 import time
 from collections import Counter
 from datetime import date
@@ -24,6 +25,7 @@ from orchestrate import (
     build_system_prompt, build_user_prompt,
     fetch_competency, fetch_prerequisite_chain, fetch_misconceptions,
     fetch_anchor_activity, fetch_intervention, fetch_tlms, fetch_tlms_for_competencies,
+    STICK_PAIR_KIT_TOTAL, STICK_TEACHER_KIT_TOTAL,
 )
 from baseline_assessment import compute_groups
 
@@ -79,10 +81,41 @@ def validate_plan_shape(plan: dict) -> list[str]:
             continue
         if len(problems) > 8:
             issues.append(f"worksheets.{level} has {len(problems)} problems (max 8 for one page)")
+        ws = (plan.get("worksheets") or {}).get(level) or {}
+        rc = ws.get("required_count")
+        if not isinstance(rc, int) or isinstance(rc, bool) or not 1 <= rc <= len(problems):
+            issues.append(f"worksheets.{level}.required_count missing or invalid: {rc!r}")
+        else:
+            if level == "beginner" and len(problems) > 5 and rc != 5:
+                issues.append(f"worksheets.beginner has {len(problems)} problems but required_count is {rc} (should be 5)")
+            if level == "progressor" and len(problems) > 6 and rc != 6:
+                issues.append(f"worksheets.progressor has {len(problems)} problems but required_count is {rc} (should be 6)")
+            for p in problems:
+                n = p.get("number")
+                if p.get("diagnostic_for_misconception") and isinstance(n, int) and n > rc:
+                    issues.append(f"worksheets.{level} problem {n} reveals a misconception but is an extra (required_count {rc})")
         for p in problems:
             for k in ("number", "problem_hi", "answer"):
                 if p.get(k) in (None, ""):
                     issues.append(f"worksheets.{level} problem {p.get('number', '?')}: {k} missing")
+
+    # Stick examples must fit the kits: teacher demo kit, and the Beginner pair kit for what children build
+    uses_sticks = False
+    for b in blocks:
+        if b.get("type") != "teach":
+            continue
+        g, tp = b.get("teach_group"), b.get("talking_points") or {}
+        for key in ("i_do_hi", "we_do_hi", "you_do_hi"):
+            text = tp.get(key) or ""
+            if not any(w in text for w in ("छड़ी", "छड़ियों", "छड़ियाँ")):
+                continue
+            uses_sticks = True
+            totals = [int(a) + int(c) for a, c in re.findall(r"(\d{1,3})\s*\+\s*(\d{1,3})", text)]
+            cap = STICK_PAIR_KIT_TOTAL if (g == "beginner" and key != "i_do_hi") else STICK_TEACHER_KIT_TOTAL
+            if totals and max(totals) > cap:
+                issues.append(f"{g} {key}: a stick example totals {max(totals)} but the kit holds only {cap} sticks")
+    if uses_sticks and "छड़" not in " ".join(plan.get("prep_hi") or []):
+        issues.append("sticks are used in the talking points but prep_hi does not mention them")
 
     items = (plan.get("explainability") or {}).get("items")
     if not isinstance(items, list) or not items:
@@ -289,6 +322,23 @@ async def generate_dainik_yojana(
     proficient_comp = await fetch_competency(db, proficient_row['id']) if proficient_row else selected
     
     prereq_chain = await fetch_prerequisite_chain(db, competency_id, beginner_target_id)
+
+    # What each group may safely practise on its own, and the new skill it is taught today
+    safe_beginner = []
+    if beginner_target_id != competency_id:
+        for r in await db.fetch("""
+            SELECT c.id, c.name_hi FROM competency_prerequisites cp
+            JOIN competencies c ON c.id = cp.prerequisite_id
+            WHERE cp.competency_id = $1 AND cp.prerequisite_type = 'hard'
+            ORDER BY c.sort_order LIMIT 3""", beginner_target_id):
+            safe_beginner.append((r['id'], r['name_hi']))
+    group_skills = {
+        "beginner": {"safe": safe_beginner, "new": (beginner_comp.id, beginner_comp.name_hi)},
+        "progressor": {"safe": [(beginner_comp.id, beginner_comp.name_hi)] if beginner_target_id != competency_id else [],
+                       "new": (selected.id, selected.name_hi)},
+        "proficient": {"safe": [(selected.id, selected.name_hi)] if proficient_comp.id != selected.id else [],
+                       "new": (proficient_comp.id, proficient_comp.name_hi)},
+    }
     
     # ── Groups ──
     groups = await get_current_groups(db, teacher_id, domain_id)
@@ -366,6 +416,14 @@ async def generate_dainik_yojana(
         if t.id not in seen_tlm_ids:
             seen_tlm_ids.add(t.id)
             available_tlms.append(t)
+
+    # Bundling sticks (TLM-001): teacher demo kit + Beginner pair kits sized from the Beginner group
+    stick_policy = None
+    sticks_for_skill = await db.fetchval(
+        "SELECT TRUE FROM tlm_references WHERE id = 'TLM-001' AND $1 = ANY(competency_ids)", competency_id)
+    if sticks_for_skill and any(t.id == "TLM-001" for t in available_tlms):
+        n_beg = beginner_g['count']
+        stick_policy = {"beginner_children": n_beg, "pair_kits": (n_beg + 1) // 2 if n_beg else 0}
     
     # ── Assemble context ──
     ctx = OrchestrationContext(
@@ -404,6 +462,8 @@ async def generate_dainik_yojana(
         reteach_competencies=reteach_competencies,
         week_notes=(week_info or {}).get('notes'),
         intervention_mode=intervention_mode,
+        group_skills=group_skills,
+        stick_policy=stick_policy,
     )
     
     # ── Call Claude ──
@@ -481,7 +541,9 @@ async def generate_dainik_yojana(
             plan_content = EXCLUDED.plan_content,
             explainability = EXCLUDED.explainability,
             groups_snapshot = EXCLUDED.groups_snapshot,
-            generation_time_ms = EXCLUDED.generation_time_ms
+            generation_time_ms = EXCLUDED.generation_time_ms,
+            selected_competency_id = EXCLUDED.selected_competency_id,
+            claude_model = EXCLUDED.claude_model
     """,
         teacher_id, plan_date, domain_id, competency_id,
         json.dumps(plan_json, ensure_ascii=False),

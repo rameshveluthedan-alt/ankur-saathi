@@ -107,6 +107,28 @@
     color: #B45309;
   }
 
+  /* first-N-required banner and the tag on extra problems */
+  .required-note {
+    background: #EEF4FB;
+    border-left: 3px solid #4C78A8;
+    padding: 3px 10px;
+    margin-bottom: 8px;
+    font-size: 10pt;
+    border-radius: 0 4px 4px 0;
+  }
+  .extra-tag {
+    display: inline-block;
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: #4C78A8;
+    border: 1px solid #4C78A8;
+    border-radius: 8px;
+    padding: 0 5px;
+    margin-left: 4px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
   /* ── Problem section ── */
   .problem {
     margin-bottom: 8px;
@@ -538,6 +560,10 @@
   <strong>निर्देश (Instructions):</strong> {{ instructions_hi }}
   {% if instructions_en %}<br><span style="font-size:10pt;color:#888">{{ instructions_en }}</span>{% endif %}
 </div>
+{% if required_count %}
+<div class="required-note"><strong>पहले {{ required_count }} सवाल ज़रूर करो।</strong> बाकी सवाल "अतिरिक्त" हैं — जल्दी खत्म हो तो करो।
+  <span style="font-size:9pt;color:#666">(Do problems 1–{{ required_count }} first; the rest are extra.)</span></div>
+{% endif %}
 
 <!-- Worked example (shown once, not a numbered question) -->
 {% if example_block %}
@@ -593,7 +619,7 @@
 {% set problem = block.problem %}
 <div class="problem">
   <span class="problem-number">{{ problem.number }}</span>
-  <span class="problem-text">{{ problem.problem_hi }}</span>
+  <span class="problem-text">{{ problem.problem_hi }}</span>{% if problem.extra %}<span class="extra-tag">अतिरिक्त</span>{% endif %}
   {% if problem.problem_en %}<span style="font-size:10pt;color:#888;margin-left:4px">({{ problem.problem_en }})</span>{% endif %}
 
   {% if problem.show_pv_grid %}
@@ -648,7 +674,7 @@
   {% for problem in block.cells %}
   <div class="grid-card">
     <span class="problem-number">{{ problem.number }}</span>
-    <span class="problem-text">{{ problem.problem_hi }}</span>
+    <span class="problem-text">{{ problem.problem_hi }}</span>{% if problem.extra %}<span class="extra-tag">अतिरिक्त</span>{% endif %}
     <div class="pv-grid">
       {% if problem.pv_columns == 3 %}
       <div class="pv-column"><div class="pv-header">सै.(H)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
@@ -666,7 +692,7 @@
   {% for problem in block.cells %}
   <div class="plain-card">
     <span class="problem-number">{{ problem.number }}</span>
-    <span class="problem-text">{{ problem.problem_hi }}</span>
+    <span class="problem-text">{{ problem.problem_hi }}</span>{% if problem.extra %}<span class="extra-tag">अतिरिक्त</span>{% endif %}
     <div class="answer-area">
       <span class="answer-label">उत्तर (Ans):</span>
       <div class="answer-box"></div>

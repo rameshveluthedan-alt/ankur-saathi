@@ -379,7 +379,7 @@ async def get_worksheet(teacher_id: str, plan_date: date, domain_id: str, level:
     async with get_db() as db:
         # Get the stored plan
         row = await db.fetchrow("""
-            SELECT plan_content, selected_competency_id FROM daily_plans
+            SELECT plan_content, selected_competency_id, groups_snapshot FROM daily_plans
             WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3
         """, teacher_id, plan_date, domain_id)
         
@@ -387,7 +387,11 @@ async def get_worksheet(teacher_id: str, plan_date: date, domain_id: str, level:
             raise HTTPException(404, "No plan found for this date. Generate a plan first.")
         
         plan_data = row['plan_content'] if isinstance(row['plan_content'], dict) else json.loads(row['plan_content'])
-        comp_id = row['selected_competency_id']
+        # Each level's sheet is titled with that group's own target skill (the Beginner sheet teaches
+        # the prerequisite, the Proficient sheet the extension), not the day's main skill for all three.
+        snapshot = row['groups_snapshot']
+        snapshot = json.loads(snapshot) if isinstance(snapshot, str) else (snapshot or {})
+        comp_id = (snapshot.get(level) or {}).get('target') or row['selected_competency_id']
         
         # Get competency names
         comp = await db.fetchrow(

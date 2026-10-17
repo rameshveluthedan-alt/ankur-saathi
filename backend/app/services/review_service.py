@@ -196,10 +196,15 @@ async def analyse_worksheet_photos(
     """, teacher_id, session_date, domain_id)
     
     problems = []
+    required_count = None
     if plan and plan['plan_content']:
         plan_data = plan['plan_content'] if isinstance(plan['plan_content'], dict) else json.loads(plan['plan_content'])
         worksheet_data = plan_data.get('worksheets', {}).get(worksheet_level, {})
         problems = worksheet_data.get('problems', [])
+        try:
+            required_count = int(worksheet_data['required_count']) if worksheet_data.get('required_count') else None
+        except (TypeError, ValueError):
+            required_count = None
     
     # Get misconceptions from L1
     misconception_rows = await db.fetch("""
@@ -224,6 +229,7 @@ async def analyse_worksheet_photos(
         misconceptions=misconceptions,
         group_roll_numbers=group_rolls,
         photo_count=len(photo_bytes_list),
+        required_count=required_count,
     )
     
     # Build Claude Vision request with images
@@ -269,7 +275,7 @@ async def analyse_worksheet_photos(
     # Process into DB updates
     summary = await process_vision_results(
         db, teacher_id, str(session_date), competency_id,
-        vision_results, teacher_pre_judgment,
+        vision_results, teacher_pre_judgment, required_count=required_count,
     )
     
     return summary

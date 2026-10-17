@@ -9,9 +9,9 @@
 INSERT INTO tlm_references (id, name_en, name_hi, description_en, domain_ids, competency_ids, availability, diy_instructions) VALUES
 
 ('TLM-001', 'Bundling sticks', 'बंडल की छड़ियाँ',
- 'Sets of 10 sticks bundled with rubber bands for place value. Single sticks as ones, bundles as tens.',
+ 'Sets of 10 sticks bundled with rubber bands for place value. Single sticks as ones, bundles as tens. Mainly the teacher''s demonstration; children handle sticks only in the Beginner group, in pairs.',
  ARRAY['numeracy'], ARRAY['N1.2.4','N2.2.2','N2.3.2','N2.3.4'], 'diy',
- 'Collect thin sticks or straws. Bundle groups of 10 with rubber bands. Each child needs 9 bundles + 9 loose sticks.'),
+ 'Collect thin sticks or straws and bundle groups of 10 with rubber bands BEFORE class; children never bundle during the lesson. Teacher demo kit: 9 bundles + 9 loose sticks (99 sticks). Beginner pair kit: 4 bundles + 9 loose sticks (49 sticks) for each pair, kept in a bag or box. Rule a Tens | Ones frame on a sheet or the notebook cover. Count the sticks back in at the end. Other groups draw tens as lines and ones as dots instead of using sticks.'),
 
 ('TLM-002', 'Number chart 1-100', 'संख्या चार्ट 1-100',
  'Wall chart showing numbers 1-100 in a 10×10 grid. For counting, patterns, and number recognition.',

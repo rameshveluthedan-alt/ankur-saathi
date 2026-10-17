@@ -12,6 +12,8 @@ const GROUP_LABELS = {
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
 const ML = { whiteSpace: 'pre-line', overflowWrap: 'anywhere' };
 const fmt = (s) => String(s ?? '').replace(/\*\*|__/g, '');
+// the screen already shows the group's name, so drop a repeated leading label such as "शुरुआती:"
+const stripGroup = (t) => fmt(t).replace(/^\s*(शुरुआती|प्रगतिशील|दक्ष)(\s*\([^)]*\))?\s*[:：]\s*/, '');
 
 export default function YojanaScreen() {
   const { currentPlan, setCurrentPlan, teacher, selectedDomain } = useAuth();
@@ -113,7 +115,7 @@ export default function YojanaScreen() {
             if (!anchor[key]) return null;
             return (
               <div key={level} style={{ fontSize: '0.8125rem', margin: '4px 0', padding: '4px 8px', borderRadius: 4, background: `var(--${level}-bg)`, ...ML }}>
-                <strong>{GROUP_LABELS[level]?.emoji} {GROUP_LABELS[level]?.hi} ({GROUP_LABELS[level]?.en}):</strong> {fmt(anchor[key])}
+                <strong>{GROUP_LABELS[level]?.emoji} {GROUP_LABELS[level]?.hi} ({GROUP_LABELS[level]?.en}):</strong> {stripGroup(anchor[key])}
               </div>
             );
           })}
@@ -190,17 +192,37 @@ export default function YojanaScreen() {
         </div>
       )}
 
-      {/* Worksheets */}
+      {/* Worksheets: each opens the printable A4 sheet for this plan and level */}
       <h2 style={{ margin: '16px 0 8px' }}>📝 वर्कशीट (Worksheets)</h2>
       <div style={{ display: 'flex', gap: 8 }}>
-        {['beginner', 'progressor', 'proficient'].map(level => (
-          <button key={level} className="btn btn-secondary" style={{ flex: 1, padding: '10px 4px', fontSize: '0.8125rem' }}>
-            {GROUP_LABELS[level]?.emoji}<br />
-            {GROUP_LABELS[level]?.hi}<br />
-            <span style={{fontSize:'0.6rem',color:'var(--text-light)'}}>{GROUP_LABELS[level]?.en}</span>
-          </button>
-        ))}
+        {['beginner', 'progressor', 'proficient'].map(level => {
+          const label = GROUP_LABELS[level];
+          const sheet = plan.worksheets?.[level];
+          const available = Array.isArray(sheet?.problems) && sheet.problems.length > 0;
+          const href = `/api/worksheet/${teacher.teacher_id}/${currentPlan.plan_date}/${currentPlan.domain_id}/${level}`;
+          const style = { flex: 1, flexDirection: 'column', gap: 2, padding: '10px 4px', fontSize: '0.8125rem', textDecoration: 'none', textAlign: 'center' };
+          const inner = (
+            <>
+              <span style={{ fontSize: '1.25rem' }}>{label?.emoji}</span>
+              <strong>{label?.hi}</strong>
+              <span style={{ fontSize: '0.6rem', opacity: 0.7 }}>{label?.en}</span>
+              {available && sheet.required_count && sheet.required_count < sheet.problems.length && (
+                <span style={{ fontSize: '0.6rem', opacity: 0.8 }}>पहले {sheet.required_count} सवाल</span>
+              )}
+            </>
+          );
+          return available ? (
+            <a key={level} href={href} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={style}>{inner}</a>
+          ) : (
+            <span key={level} className="btn" style={{ ...style, opacity: 0.45, border: '2px dashed var(--border)', color: 'var(--text-secondary)' }}>
+              {inner}<span style={{ fontSize: '0.6rem' }}>उपलब्ध नहीं (not available)</span>
+            </span>
+          );
+        })}
       </div>
+      <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }}>
+        खुलने पर प्रिंट करें, या बोर्ड पर उतारें। (Opens the sheet: print it, or copy it to the board.)
+      </p>
 
       {/* Why this plan? */}
       <div style={{ marginTop: 16, marginBottom: 80 }}>
