@@ -274,6 +274,7 @@
     font-weight: 600;
   }
 
+  .passage-credit { font-size: 7.5pt; color: #666; margin-top: 4px; font-style: italic; }
   /* Reading passage header — shown once, not a numbered question */
   .passage-header {
     background: #FEFCE8;
@@ -399,6 +400,19 @@
     font-weight: 600;
     border-top: 1px solid #95D5B2;
   }
+
+  /* carry cell above the tens column (Progressor scaffold) */
+  .pv-cell-carry {
+    height: 15px;
+    line-height: 15px;
+    font-size: 9pt;
+    font-weight: 700;
+    color: #B45309;
+    background: #FFFBEA;
+    border-top: 1px dashed #D4A017;
+  }
+  .pv-cell-carry:empty::before { content: "हासिल"; font-size: 6pt; font-weight: 400; color: #C9A227; }
+  .pv-cell-carry-gap { height: 15px; background: #FAFAFA; }
 
   .pv-cell-empty {
     padding: 4px;
@@ -582,12 +596,14 @@
     {% endif %}
     <div class="pv-column">
       <div class="pv-header">द.(T)</div>
+      {% if example_block.show_carry_box %}<div class="pv-cell-carry">{{ example_block.carry_t }}</div>{% endif %}
       <div class="pv-cell">{{ example_block.row1_t }}</div>
       <div class="pv-cell">{{ example_block.row2_t }}</div>
       <div class="pv-cell" style="border-top:2px solid #2D6A4F;color:#2D6A4F">{{ example_block.answer_t }}</div>
     </div>
     <div class="pv-column">
       <div class="pv-header">इ.(O)</div>
+      {% if example_block.show_carry_box %}<div class="pv-cell-carry-gap"></div>{% endif %}
       <div class="pv-cell">{{ example_block.row1_o }}</div>
       <div class="pv-cell">{{ example_block.row2_o }}</div>
       <div class="pv-cell" style="border-top:2px solid #2D6A4F;color:#2D6A4F">{{ example_block.answer_o }}</div>
@@ -608,6 +624,7 @@
   <div class="passage-label">अनुच्छेद पढ़ो (Read the passage):</div>
   {% if passage_block.title %}<div class="passage-title">{{ passage_block.title }}</div>{% endif %}
   {{ passage_block.text }}
+  {% if passage_block.attribution %}<div class="passage-credit">{{ passage_block.attribution }}</div>{% endif %}
 </div>
 {% endif %}
 
@@ -679,8 +696,8 @@
       {% if problem.pv_columns == 3 %}
       <div class="pv-column"><div class="pv-header">सै.(H)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
       {% endif %}
-      <div class="pv-column"><div class="pv-header">द.(T)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
-      <div class="pv-column"><div class="pv-header">इ.(O)</div><div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
+      <div class="pv-column"><div class="pv-header">द.(T)</div>{% if problem.show_carry_box %}<div class="pv-cell-carry"></div>{% endif %}<div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
+      <div class="pv-column"><div class="pv-header">इ.(O)</div>{% if problem.show_carry_box %}<div class="pv-cell-carry-gap"></div>{% endif %}<div class="pv-cell-empty"></div>{% if problem.pv_row2 %}<div class="pv-cell-empty"></div><div class="pv-cell-empty" style="border-top:2px solid #2D6A4F"></div>{% endif %}</div>
     </div>
   </div>
   {% endfor %}

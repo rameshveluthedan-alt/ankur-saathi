@@ -9,6 +9,7 @@ day's orchestration prompt.
 """
 
 import json
+from datetime import date
 from typing import Optional
 
 
@@ -38,7 +39,9 @@ VISION_SYSTEM_PROMPT = """You are the Ankur Saathi worksheet analyser. You exami
 
 5. **Never hallucinate answers.** If you cannot read a response, say so. An "unclear" is better than a wrong extraction.
 
-6. **Output JSON only.** No preamble, no markdown fences."""
+6. **Drawings and working are scaffolding, not answers.** Children may draw tens as vertical lines and ones as dots, or write a small carry digit. The photo may be a printed worksheet OR a notebook page where the child copied the problems from the board: in both, find the place where the final answer is written (the answer row of the grid, or the answer box). Never infer an answer from a drawing: if no number is written there, the answer is blank (extracted_answer null). Never mark a child down for a drawing, an untidy drawing, or no drawing, and never diagnose a misconception from a drawing alone.
+
+7. **Output JSON only.** No preamble, no markdown fences."""
 
 
 # ============================================================================
@@ -54,9 +57,27 @@ def build_vision_prompt(
     group_roll_numbers: list[int],
     photo_count: int = 1,
     required_count: Optional[int] = None,   # children must do problems 1..N; the rest are extras
+    domain_id: str = "numeracy",            # 'r1_literacy' adds the rules for judging Hindi text answers
 ) -> str:
     """Build the user prompt that accompanies the worksheet photograph(s)."""
     
+    # Hindi text answers need rules that digits never did
+    literacy_block = ""
+    if domain_id == "r1_literacy":
+        literacy_block = (
+            "## HINDI TEXT ANSWERS (this is a literacy worksheet)\n\n"
+            "- extracted_answer: copy EXACTLY what the child wrote in Devanagari, including spelling and matra mistakes. Do not correct or complete it.\n"
+            "- Judge MEANING, not exact wording. is_correct is true when the child's answer states the same fact as the answer key. Accept a different "
+            "but correct wording, extra correct detail, a different order of listed items, and spelling or matra slips that do not change which word is meant.\n"
+            "- is_correct is false when the key fact is missing or wrong, or when the child only copied a sentence that does not answer the question.\n"
+            "- If the key offers alternatives (separated by / or ; or marked कोई एक), any one is enough. If the question asks for two or more items, all "
+            "of them must be present: when only some are, set is_correct false and add \"partially_correct\": true to that problem.\n"
+            "- Neat handwriting is not a criterion. If you cannot read an answer, set confidence to needs_verification and is_correct to null.\n"
+            "- Do NOT diagnose reading or decoding misconceptions (for example a child who reads accurately but cannot answer) from written answers: "
+            "they need oral reading evidence. Set diagnosed_misconception only for an error pattern visible in the writing itself, otherwise null.\n"
+            "- carry_written does not apply: set it to null.\n\n"
+        )
+
     # Build answer key
     answer_key = {str(p['number']): p['answer'] for p in problems}
     
@@ -113,7 +134,7 @@ Children were told to solve problems 1-{required_count}. Problems {required_coun
 ```
 
 {scope_text}
-## INSTRUCTIONS
+{literacy_block}## INSTRUCTIONS
 
 For each worksheet visible in the photo(s):
 
@@ -121,7 +142,7 @@ For each worksheet visible in the photo(s):
 2. **Extract** the answer for each problem
 3. **Compare** to the answer key
 4. **Diagnose** any errors using the misconception taxonomy above
-5. **Classify** overall performance as A/PA/NA per the competency criteria
+5. **Classify** overall performance as A/PA/NA (give your best estimate; the system recomputes the final status in code from your per-problem results and the competency's own criteria)
 
 ## OUTPUT FORMAT
 
@@ -138,6 +159,7 @@ Return a JSON array, one entry per child worksheet found:
         "extracted_answer": "62",
         "correct_answer": "62",
         "is_correct": true,
+        "carry_written": true,
         "confidence": "high"
       }},
       {{
@@ -145,6 +167,7 @@ Return a JSON array, one entry per child worksheet found:
         "extracted_answer": "52",
         "correct_answer": "62",
         "is_correct": false,
+        "carry_written": false,
         "confidence": "high",
         "diagnosed_misconception": "N2.3.2-M1",
         "diagnosis_reasoning": "Answer is exactly 10 less than correct (52 vs 62), consistent with dropping the carry from ones to tens"
@@ -175,6 +198,7 @@ IMPORTANT:
 - If handwriting is truly illegible for a problem, output: "extracted_answer": null, "confidence": "unclear"
 - Diagnose misconceptions ONLY from the provided taxonomy — do not create new categories
 - A misconception requires 2+ consistent instances OR 1 instance on a diagnostic problem (from the diagnostic map)
+- "carry_written" (addition problems only, and only when the ones digits add to 10 or more): true if a small carry digit (usually 1) is visible above the tens column or in the carry cell, false if it is clearly absent, null if the problem has no carry or you cannot tell. It is supporting evidence only and NEVER changes is_correct. An answer exactly 10 less than correct with carry_written false supports the dropped-carry misconception; the same answer with a carry digit written is more likely an addition slip, so lower the confidence and say so in diagnosis_reasoning.
 """
     return prompt
 
@@ -211,6 +235,34 @@ def rescore(child_result: dict, required_count: Optional[int]) -> dict:
     return summary
 
 
+def derive_status(summary: dict, criteria, detected: list) -> Optional[str]:
+    """
+    Decide achieved / partially_achieved / not_achieved IN CODE from the competency's own criteria
+    (competencies.apna_criteria), using the rescored accuracy. Returns None when the criteria or the
+    accuracy are unavailable, so the caller can fall back to the model's own label.
+      achieved           accuracy >= min_accuracy, and no persistent misconception (2+ occurrences) if required
+      not_achieved       accuracy <= max_accuracy
+      partially_achieved everything in between, or a persistent misconception on a high score
+    """
+    if isinstance(criteria, str):
+        try:
+            criteria = json.loads(criteria)
+        except json.JSONDecodeError:
+            return None
+    if not isinstance(criteria, dict):
+        return None
+    achieved, not_achieved = criteria.get("achieved") or {}, criteria.get("not_achieved") or {}
+    lo, hi, acc = achieved.get("min_accuracy"), not_achieved.get("max_accuracy"), summary.get("accuracy")
+    if lo is None or hi is None or acc is None:
+        return None
+    persistent = any((m.get("occurrences") or 1) >= 2 for m in (detected or []))
+    if acc >= lo and not (achieved.get("no_persistent_misconception") and persistent):
+        return "achieved"
+    if acc <= hi:
+        return "not_achieved"
+    return "partially_achieved"
+
+
 # ============================================================================
 # RESPONSE PROCESSOR — turns Vision output into DB updates
 # ============================================================================
@@ -218,7 +270,7 @@ def rescore(child_result: dict, required_count: Optional[int]) -> dict:
 async def process_vision_results(
     db,
     teacher_id: str,
-    session_date: str,
+    session_date,   # date, or an ISO 'YYYY-MM-DD' string
     competency_id: str,
     vision_response: list[dict],
     teacher_pre_judgment: str,  # 'advance', 'reteach', 'not_sure'
@@ -232,6 +284,10 @@ async def process_vision_results(
     4. Returns summary for the Review screen
     """
     
+    # the database needs a real date (the caller used to pass text, which crashed on the first insert)
+    if isinstance(session_date, str):
+        session_date = date.fromisoformat(session_date)
+
     results_summary = {
         "children_analysed": len(vision_response),
         "misconceptions_detected": [],
@@ -243,6 +299,7 @@ async def process_vision_results(
     group_correct_total = 0
     group_problem_total = 0
     misconception_counts = {}
+    criteria = await db.fetchval("SELECT apna_criteria FROM competencies WHERE id = $1", competency_id)
     
     for child_result in vision_response:
         roll = child_result.get('roll_number')
@@ -251,8 +308,9 @@ async def process_vision_results(
         
         summary = rescore(child_result, required_count)
         accuracy = summary.get('accuracy', 0)
-        status = summary.get('overall_status', 'not_achieved')
+        model_status = summary.get('overall_status', 'not_achieved')
         detected = summary.get('detected_misconceptions', [])
+        status = derive_status(summary, criteria, detected) or model_status
         
         group_correct_total += summary.get('correct', 0)
         group_problem_total += summary.get('total_problems', 0)
@@ -273,6 +331,12 @@ async def process_vision_results(
         
         child_id = child['id']
         
+        # A second run on the same date replaces that day's result instead of adding a day
+        await db.execute("""
+            DELETE FROM assessment_evidence
+            WHERE child_id = $1 AND competency_id = $2 AND session_date = $3 AND channel = 'written_photo'
+        """, child_id, competency_id, session_date)
+
         # Store evidence
         await db.execute("""
             INSERT INTO assessment_evidence 
@@ -282,7 +346,7 @@ async def process_vision_results(
             VALUES ($1, $2, $3, 'written_photo', $4, $5, $6, $7, $8, 'daily', $9)
         """,
             child_id, competency_id, teacher_id, status,
-            json.dumps(child_result, ensure_ascii=False),
+            json.dumps({**child_result, "scoring": {"accuracy": accuracy, "status": status, "model_status": model_status}}, ensure_ascii=False),
             [m['misconception_id'] for m in detected] or None,
             'high' if all(p.get('confidence') == 'high' for p in child_result.get('problems', [])) else 'medium',
             session_date, teacher_pre_judgment
@@ -290,15 +354,18 @@ async def process_vision_results(
         
         # Update child_competency_status
         existing = await db.fetchrow("""
-            SELECT status, consecutive_days_at_status 
+            SELECT status, consecutive_days_at_status, last_assessment_date
             FROM child_competency_status
             WHERE child_id = $1 AND competency_id = $2
         """, child_id, competency_id)
-        
+
+        # "consecutive days" counts days, not runs: a re-run on the same date keeps the streak
+        same_day = bool(existing and existing['last_assessment_date'] == session_date)
         if existing and existing['status'] == status:
-            new_consecutive = existing['consecutive_days_at_status'] + 1
+            new_consecutive = existing['consecutive_days_at_status'] + (0 if same_day else 1)
         else:
             new_consecutive = 1
+        count_increment = 0 if same_day else 1
         
         await db.execute("""
             INSERT INTO child_competency_status 
@@ -308,7 +375,7 @@ async def process_vision_results(
             VALUES ($1, $2, $3, 1, $4, $5, 'high', $6)
             ON CONFLICT (child_id, competency_id) DO UPDATE SET
                 status = $3,
-                assessment_count = child_competency_status.assessment_count + 1,
+                assessment_count = child_competency_status.assessment_count + $7,
                 last_assessment_date = $4,
                 consecutive_days_at_status = $5,
                 confidence = 'high',
@@ -317,7 +384,8 @@ async def process_vision_results(
         """,
             child_id, competency_id, status, session_date,
             new_consecutive,
-            [m['misconception_id'] for m in detected] or None
+            [m['misconception_id'] for m in detected] or None,
+            count_increment
         )
         
         results_summary['per_child'].append({
@@ -397,12 +465,19 @@ async def check_level_changes(db, teacher_id: str, domain_id: str) -> list[dict]
         JOIN children c ON cs.child_id = c.id
         JOIN child_lakshya_positions clp ON clp.child_id = c.id AND clp.domain_id = $2
         JOIN competencies comp ON cs.competency_id = comp.id
+        JOIN subdomains sd ON sd.id = comp.subdomain_id AND sd.domain_id = $2   -- evidence counts only for its own subject
         WHERE c.teacher_id = $1
           AND cs.consecutive_days_at_status >= 3
           AND c.is_active = TRUE
         ORDER BY cs.consecutive_days_at_status DESC
     """, teacher_id, domain_id)
     
+    # teacher-facing Hindi: level names and the names of the active mistakes, not codes
+    level_hi = {"beginner": "शुरुआती", "progressor": "प्रगतिशील", "proficient": "दक्ष"}
+    active_ids = sorted({m for cand in candidates for m in (cand['active_misconception_ids'] or [])})
+    mis_hi = {r['id']: r['name_hi'] for r in await db.fetch(
+        "SELECT id, name_hi FROM misconceptions WHERE id = ANY($1::text[])", active_ids)} if active_ids else {}
+
     recommendations = []
     for cand in candidates:
         if cand['status'] == 'achieved' and cand['current_bpp'] != 'proficient':
@@ -420,7 +495,7 @@ async def check_level_changes(db, teacher_id: str, domain_id: str) -> list[dict]
                 "evidence_hi": (
                     f"Roll No. {cand['roll_number']} — {cand['consecutive_days_at_status']} दिनों से "
                     f"लगातार 'प्राप्त' ({cand['competency_name_hi']})। "
-                    f"सुझाव: {cand['current_bpp']} → {new_bpp}"
+                    f"सुझाव: {level_hi[cand['current_bpp']]} → {level_hi[new_bpp]}"
                 )
             })
         
@@ -429,7 +504,7 @@ async def check_level_changes(db, teacher_id: str, domain_id: str) -> list[dict]
             new_bpp = 'progressor' if cand['current_bpp'] == 'proficient' else 'beginner'
             misc_text = ""
             if cand['active_misconception_ids']:
-                misc_text = f" सक्रिय गलती: {', '.join(cand['active_misconception_ids'])}"
+                misc_text = " सक्रिय गलती: " + ", ".join(mis_hi.get(m, m) for m in cand['active_misconception_ids'])
             recommendations.append({
                 "roll_number": cand['roll_number'],
                 "child_id": str(cand['child_id']),
@@ -442,7 +517,7 @@ async def check_level_changes(db, teacher_id: str, domain_id: str) -> list[dict]
                 "evidence_hi": (
                     f"Roll No. {cand['roll_number']} — {cand['consecutive_days_at_status']} दिनों से "
                     f"लगातार 'अप्राप्त' ({cand['competency_name_hi']})।{misc_text} "
-                    f"सुझाव: {cand['current_bpp']} → {new_bpp}"
+                    f"सुझाव: {level_hi[cand['current_bpp']]} → {level_hi[new_bpp]}"
                 )
             })
     

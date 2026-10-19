@@ -47,6 +47,10 @@ else
     sed '/ivfflat/d' | psql "$DB_URL"
 fi
 
+psql "$DB_URL" -f "$SCRIPT_DIR/schema/03_content_provenance.sql"
+psql "$DB_URL" -f "$SCRIPT_DIR/schema/04_nipun_alignment.sql"
+psql "$DB_URL" -f "$SCRIPT_DIR/schema/05_coverage.sql"
+
 # Seed data — order matters (foreign key dependencies)
 echo "[5/8] Seeding numeracy competency tree..."
 psql "$DB_URL" -f "$SCRIPT_DIR/seeds/numeracy/01_competencies.sql"
@@ -69,6 +73,16 @@ psql "$DB_URL" -f "$SCRIPT_DIR/seeds/content/03_passages.sql"
 # Anchors added or edited through scripts/import_anchors.py (written by scripts/export_anchors.py)
 if [ -f "$SCRIPT_DIR/seeds/content/04_imported_anchors.sql" ]; then
   psql "$DB_URL" -f "$SCRIPT_DIR/seeds/content/04_imported_anchors.sql"
+fi
+
+# Proposed alignment of each skill to NIPUN Bharat Annexure I (written by scripts/nipun_alignment.py sql)
+if [ -f "$SCRIPT_DIR/seeds/content/05_nipun_alignment.sql" ]; then
+  psql "$DB_URL" -f "$SCRIPT_DIR/seeds/content/05_nipun_alignment.sql"
+fi
+
+# Coverage labels per skill (written by scripts/build_coverage.py)
+if [ -f "$SCRIPT_DIR/seeds/content/06_coverage.sql" ]; then
+  psql "$DB_URL" -f "$SCRIPT_DIR/seeds/content/06_coverage.sql"
 fi
 
 echo "[8/8] Seeding test classroom..."

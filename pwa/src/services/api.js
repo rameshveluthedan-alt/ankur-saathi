@@ -64,7 +64,11 @@ export const analysePhotos = async (teacherId, formData) => {
     method: 'POST',
     body: formData, // multipart — no Content-Type header (browser sets boundary)
   });
-  if (!res.ok) throw new Error('Photo analysis failed');
+  if (!res.ok) {
+    // show the server's reason (for example: no plan generated for today) instead of a generic message
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.detail || 'Photo analysis failed');
+  }
   return res.json();
 };
 

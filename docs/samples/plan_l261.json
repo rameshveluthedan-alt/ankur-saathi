@@ -1,0 +1,481 @@
+{
+    "anchor": {
+        "title_hi": "कहानी का समय: आगे क्या होगा?",
+        "narration_hi": "बच्चो, आज हम एक छोटी कहानी सुनेंगे 'मोनू और स्कूल का नया पौधा'। मोनू को स्कूल के आँगन में एक सूखा हुआ पौधा दिखा। मोनू ने बोतल से उसमें थोड़ा पानी डाला। फिर मैं रुकूँगा/रुकूँगी और आपसे पूछूँगा/पूछूँगी कि आगे क्या होगा।",
+        "closing_question_hi": "किसका अनुमान सबसे करीब था? क्यों?",
+        "opening_question_hi": "अब क्या होगा? सोचो!",
+        "beginner_participation_hi": "कहानी में कौन-कौन था? (मौखिक नाम बताओ।) मोनू ने क्या किया? (सुनी हुई बात बताओ।)",
+        "proficient_participation_hi": "तुम्हें क्या लगता है, आगे क्या होगा और क्यों? अगर तुम मोनू होते तो पौधे के लिए और क्या करते?",
+        "progressor_participation_hi": "मोनू ने जो पढ़ा/सुना, उसमें से बताओ: मोनू को पौधा कहाँ दिखा? उसने पौधे में क्या डाला? जवाब कहानी की बात से ही दो।"
+    },
+    "prep_hi": [
+        "बोर्ड पर 'मेरा स्कूल' (RP-003) और 'चिड़ियाघर की सैर' (RP-005) अनुच्छेद उनके प्रश्नों सहित पहले से बड़े अक्षरों में लिख लें (प्रगतिशील और दक्ष समूह के स्वतंत्र अभ्यास के लिए)।",
+        "शुरुआती समूह के स्वतंत्र अभ्यास के लिए कोई सामग्री नहीं चाहिए; निर्देश और कहानी सुनाने का अभ्यास मौखिक है।",
+        "प्रिंटर नहीं है: तीनों कार्यपत्रक (अनुच्छेद 'पानी बचाओ' और 'दादी की बगिया' सहित) बोर्ड से कॉपी में उतरवाने के लिए बोर्ड/चार्ट पर अलग-अलग हिस्सों में लिखने की तैयारी करें।",
+        "बोर्ड को तीन हिस्सों में बाँट लें: बाएँ शुरुआती, बीच में प्रगतिशील, दाएँ दक्ष।",
+        "प्रगतिशील समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «मेरा स्कूल» (RP-003): मेरा स्कूल घर से पास है। मैं रोज़ पैदल जाता हूँ। स्कूल में मेरे बहुत दोस्त हैं। हम साथ में खेलते हैं। हम साथ में पढ़ते हैं। मुझे स्कूल जाना अच्छा लगता है। सवाल: 1) स्कूल कहाँ है? 2) बच्चा स्कूल कैसे जाता है? 3) स्कूल में क्या करते हैं?",
+        "दक्ष समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «चिड़ियाघर की सैर» (RP-005): कल हम स्कूल से चिड़ियाघर गए। वहाँ बहुत सारे जानवर थे। हमने शेर देखा। शेर बहुत बड़ा था। उसकी दहाड़ सुनकर सब डर गए। फिर हमने हाथी देखा। हाथी सूँड से पानी फेंक रहा था। बंदर पेड़ पर कूद रहे थे। सबसे अच्छा मुझे तोता लगा। तोता हरे रंग का था और बोलता भी था। चिड़ियाघर में बहुत मज़ा आया। सवाल: 1) बच्चे कहाँ गए? 2) हाथी क्या कर रहा था? 3) बच्चे को सबसे अच्छा कौन सा जानवर लगा?"
+    ],
+    "worksheets": {
+        "beginner": {
+            "problems": [
+                {
+                    "answer": "सीता",
+                    "number": 1,
+                    "row_type": "plain",
+                    "problem_hi": "कहानी 1 (शिक्षक सुनाएँ): 'सीता बाज़ार से आम लाई।' प्रश्न: कौन बाज़ार गई?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "आम",
+                    "number": 2,
+                    "row_type": "plain",
+                    "problem_hi": "(कहानी 1 से) सीता क्या लाई?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "बाज़ार से",
+                    "number": 3,
+                    "row_type": "plain",
+                    "problem_hi": "(कहानी 1 से) सीता कहाँ से आम लाई?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "छोटू कुत्ता",
+                    "number": 4,
+                    "row_type": "plain",
+                    "problem_hi": "कहानी 2 (शिक्षक सुनाएँ): 'छोटू कुत्ता आँगन में सो रहा था।' प्रश्न: कौन सो रहा था?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "आँगन में",
+                    "number": 5,
+                    "row_type": "plain",
+                    "problem_hi": "(कहानी 2 से) छोटू कहाँ सो रहा था?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "मछली",
+                    "number": 6,
+                    "row_type": "plain",
+                    "problem_hi": "कहानी 3 (शिक्षक सुनाएँ): 'मीना ने नदी किनारे मछली देखी।' प्रश्न: मीना ने क्या देखा?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "नदी किनारे",
+                    "number": 7,
+                    "row_type": "plain",
+                    "problem_hi": "(कहानी 3 से) मीना ने मछली कहाँ देखी?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "तोता",
+                    "number": 8,
+                    "row_type": "plain",
+                    "problem_hi": "कहानी 4 (शिक्षक सुनाएँ): 'अमन ने पेड़ पर तोता देखा।' प्रश्न: पेड़ पर किसे देखा?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                }
+            ],
+            "example_block": {
+                "problem_hi": "उदाहरण: कहानी: 'राधा के पास लाल गेंद थी।' प्रश्न: राधा के पास क्या था?",
+                "example_text": "उत्तर: लाल गेंद"
+            },
+            "passage_block": null,
+            "required_count": 5,
+            "instructions_en": "The teacher tells each story aloud. Listen carefully and write the answers in your notebook.",
+            "instructions_hi": "शिक्षक हर कहानी बोलकर सुनाएँगे। ध्यान से सुनो और कॉपी में उत्तर लिखो।"
+        },
+        "proficient": {
+            "problems": [
+                {
+                    "answer": "क्योंकि वे मानती हैं कि पौधे भी जीवित हैं और उन्हें प्यार चाहिए",
+                    "number": 1,
+                    "row_type": null,
+                    "problem_hi": "दादी पौधों को प्यार क्यों देती हैं?",
+                    "answer_type": "lines",
+                    "answer_lines": 2,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "पौधों को पानी देने और उनकी देखभाल करने के लिए",
+                    "number": 2,
+                    "row_type": null,
+                    "problem_hi": "दादी रोज़ सुबह बगिया में क्यों जाती होंगी?",
+                    "answer_type": "lines",
+                    "answer_lines": 2,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "पानी, धूप और प्यार; दादी ने बताया कि पौधे हमारी तरह जीवित हैं",
+                    "number": 3,
+                    "row_type": null,
+                    "problem_hi": "पौधों को जीवित रहने के लिए क्या-क्या चाहिए? कैसे पता चला?",
+                    "answer_type": "lines",
+                    "answer_lines": 3,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "क्योंकि वह दादी के साथ मिलकर काम करता है और बीज बोना सीखता है",
+                    "number": 4,
+                    "row_type": null,
+                    "problem_hi": "बच्चे को बगिया में काम करना अच्छा क्यों लगता होगा?",
+                    "answer_type": "lines",
+                    "answer_lines": 2,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "दादी के साथ मिलकर बगिया में काम करके; दादी सिखाती हैं",
+                    "number": 5,
+                    "row_type": null,
+                    "problem_hi": "बीज बोना कैसे सीखा जाता है, इस अनुच्छेद के अनुसार?",
+                    "answer_type": "lines",
+                    "answer_lines": 2,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "पौधे मुरझा जाएँगे, क्योंकि उन्हें जीने के लिए पानी चाहिए",
+                    "number": 6,
+                    "row_type": null,
+                    "problem_hi": "अगर दादी पौधों को पानी देना बंद कर दें तो क्या होगा? क्यों?",
+                    "answer_type": "lines",
+                    "answer_lines": 2,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "गुलाब, गेंदा और चमेली",
+                    "number": 7,
+                    "row_type": null,
+                    "problem_hi": "बगिया में कौन-कौन से फूल खिलते हैं और बच्चे को वहाँ क्यों बुलाया जाता होगा? (फूलों के नाम लिखो)",
+                    "answer_type": "lines",
+                    "answer_lines": 2,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                }
+            ],
+            "example_block": null,
+            "passage_block": {
+                "text": "मेरी दादी के घर में एक छोटी सी बगिया है। दादी रोज़ सुबह बगिया में जाती हैं। वे पौधों को पानी देती हैं। गुलाब, गेंदा और चमेली के फूल खिलते हैं। दादी कहती हैं कि पौधे भी हमारी तरह जीवित हैं। उन्हें भी पानी, धूप और प्यार चाहिए। जब मैं दादी के पास जाता हूँ तो हम दोनों मिलकर बगिया में काम करते हैं। दादी मुझे बीज बोना सिखाती हैं। मुझे बगिया में काम करना बहुत अच्छा लगता है।",
+                "title": "दादी की बगिया",
+                "passage_id": "RP-009"
+            },
+            "required_count": 6,
+            "instructions_en": "Read the passage. Write the answers to the why and how questions in complete sentences. Always give a reason.",
+            "instructions_hi": "अनुच्छेद को पढ़ो। 'क्यों' और 'कैसे' वाले प्रश्नों के उत्तर पूरे वाक्य में लिखो। उत्तर में कारण ज़रूर बताओ।"
+        },
+        "progressor": {
+            "problems": [
+                {
+                    "answer": "पीने, खाना बनाने, नहाने और खेती में",
+                    "number": 1,
+                    "row_type": null,
+                    "problem_hi": "पानी किन-किन कामों में लगता है?",
+                    "answer_type": "lines",
+                    "answer_lines": 2,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": "L2.6.1-M1"
+                },
+                {
+                    "answer": "साफ़ पानी",
+                    "number": 2,
+                    "row_type": "plain",
+                    "problem_hi": "धरती पर कौन-सा पानी सीमित है?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": "L2.6.1-M1"
+                },
+                {
+                    "answer": "किसान",
+                    "number": 3,
+                    "row_type": "plain",
+                    "problem_hi": "खेती के लिए पानी का उपयोग कौन करते हैं?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": "L2.6.1-M1"
+                },
+                {
+                    "answer": "नल को",
+                    "number": 4,
+                    "row_type": "plain",
+                    "problem_hi": "हमें किसे खुला नहीं छोड़ना चाहिए?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "बारिश का पानी",
+                    "number": 5,
+                    "row_type": "plain",
+                    "problem_hi": "हमें किस पानी को इकट्ठा करना चाहिए?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "पानी की बहुत कमी होगी",
+                    "number": 6,
+                    "row_type": null,
+                    "problem_hi": "अगर हम पानी नहीं बचाएँगे तो आने वाले समय में क्या होगा?",
+                    "answer_type": "lines",
+                    "answer_lines": 2,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "बहुत ज़रूरी",
+                    "number": 7,
+                    "row_type": "plain",
+                    "problem_hi": "पानी हमारे जीवन के लिए कैसा है?",
+                    "answer_type": "box",
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                },
+                {
+                    "answer": "खाना बनाते हैं और नहाते हैं",
+                    "number": 8,
+                    "row_type": null,
+                    "problem_hi": "'पानी बचाओ' अनुच्छेद में हम पानी पीने के अलावा और क्या-क्या करते हैं? (दो काम लिखो)",
+                    "answer_type": "lines",
+                    "answer_lines": 2,
+                    "show_letter_grid": false,
+                    "diagnostic_for_misconception": null
+                }
+            ],
+            "example_block": null,
+            "passage_block": {
+                "text": "पानी हमारे जीवन के लिए बहुत ज़रूरी है। हम पानी पीते हैं, खाना बनाते हैं और नहाते हैं। किसान खेती के लिए पानी का उपयोग करते हैं। लेकिन धरती पर साफ़ पानी सीमित है। हमें पानी बचाना चाहिए। नल को खुला मत छोड़ो। बारिश का पानी इकट्ठा करो। अगर हम पानी नहीं बचाएँगे तो आने वाले समय में पानी की बहुत कमी होगी।",
+                "title": "पानी बचाओ",
+                "passage_id": "RP-006"
+            },
+            "required_count": 6,
+            "instructions_en": "Read the passage yourself. Stop after every 2 sentences and think about what happened. Then find the answers in the passage and write them.",
+            "instructions_hi": "अनुच्छेद को खुद पढ़ो। हर 2 वाक्य पर रुककर सोचो कि क्या हुआ। फिर प्रश्नों के उत्तर अनुच्छेद से ढूँढकर लिखो।"
+        }
+    },
+    "passages_used": {
+        "proficient": "RP-009",
+        "progressor": "RP-006"
+    },
+    "explainability": {
+        "items": [
+            {
+                "body_en": "Beginners (9) start with who/what/where on heard stories, Progressors (13) work on today's target L2.6.1, and Proficients (8) extend to inferential questions (L3.6.1).",
+                "body_hi": "शुरुआती (9) बच्चे सुनी हुई कहानी पर कौन/क्या/कहाँ से शुरू करते हैं, प्रगतिशील (13) आज के लक्ष्य L2.6.1 पर और दक्ष (8) अनुमानात्मक प्रश्नों (L3.6.1) पर।",
+                "title_en": "Why these three groups",
+                "title_hi": "तीन समूह क्यों"
+            },
+            {
+                "body_en": "Beginners get the first and longest slot (29 min) for prerequisite foundation. Progressors learn today's target in the second slot; Proficients last.",
+                "body_hi": "शुरुआती समूह को पहला स्लॉट (29 मिनट) दिया गया है ताकि उनकी पूर्वापेक्षा मज़बूत हो। प्रगतिशील दूसरे स्लॉट में आज का लक्ष्य सीखते हैं; दक्ष अंत में।",
+                "title_en": "Why this rotation order",
+                "title_hi": "घूर्णन का क्रम"
+            },
+            {
+                "body_en": "L2.6.1-M1 (word caller): the child reads accurately but cannot answer questions. Progressor problems 1-3 are designed to reveal this.",
+                "body_hi": "L2.6.1-M1 (शब्द-पाठक): बच्चा सही पढ़ता है पर प्रश्न का उत्तर नहीं दे पाता। प्रगतिशील कार्यपत्रक के प्रश्न 1-3 इसे पकड़ने के लिए बनाए गए हैं।",
+                "title_en": "Misconceptions to watch",
+                "title_hi": "ध्यान रखने वाली गलत धारणा"
+            },
+            {
+                "body_en": "Anchor ANC-L-001 was a related (not exact) match; the story was kept but each group's task rewritten for its own competency. INT-LIT-007 was used proactively in the Progressor I Do/We Do. No TLMs were required. Curriculum note: word-caller detection (L2.6.1-M1).",
+                "body_hi": "एंकर ANC-L-001 एक संबंधित (RELATED) मिलान था, सटीक नहीं; कहानी रखी गई पर हर समूह का कार्य उसकी अपनी दक्षता पर लिखा गया। INT-LIT-007 'रुको-और-जाँचो बोध' प्रगतिशील समूह की I Do/We Do में पहले से (रोकथाम के लिए) इस्तेमाल हुआ। कोई TLM आवश्यक नहीं। पाठ्यक्रम-नोट: शब्द-पाठक की पहचान (L2.6.1-M1)।",
+                "title_en": "Retrieved content used",
+                "title_hi": "उपयोग की गई सामग्री"
+            },
+            {
+                "body_en": "The curriculum plan is representative, not the state's official weekly plan. Without a printer, everything is copied from the board. The teacher may adapt the plan as they see fit.",
+                "body_hi": "पाठ्यक्रम-योजना एक प्रतिनिधि योजना है, राज्य की आधिकारिक साप्ताहिक योजना नहीं। प्रिंटर नहीं है इसलिए सब कुछ बोर्ड से उतारा जाएगा। शिक्षक अपने निर्णय से योजना बदल सकते हैं।",
+                "title_en": "Assumptions and limitations",
+                "title_hi": "धारणाएँ और सीमाएँ"
+            }
+        ]
+    },
+    "review_prompts": {
+        "photo_sample_rolls": {
+            "beginner": [
+                1,
+                2,
+                4,
+                9,
+                11,
+                12,
+                13,
+                23,
+                24
+            ],
+            "proficient": [
+                7,
+                19,
+                28
+            ],
+            "progressor": [
+                3,
+                5,
+                14,
+                21
+            ]
+        },
+        "observation_reminders_hi": [
+            "आज कोई अवलोकन-आधारित (observed) दक्षता नहीं है।"
+        ]
+    },
+    "rotation_schedule": {
+        "blocks": [
+            {
+                "type": "anchor",
+                "script_hi": null,
+                "time_start": "0:00",
+                "teach_group": null,
+                "talking_points": null,
+                "other_groups_hi": null,
+                "duration_minutes": 10
+            },
+            {
+                "type": "setup",
+                "script_hi": "बच्चो, अब हम तीन समूहों में बैठेंगे। शुरुआती समूह मेरे पास आएगा। प्रगतिशील समूह बोर्ड पर लिखा 'मेरा स्कूल' अनुच्छेद पढ़कर उसके तीन प्रश्नों के उत्तर कॉपी में लिखेगा। दक्ष समूह 'चिड़ियाघर की सैर' पढ़कर उसके तीन प्रश्नों के उत्तर कॉपी में लिखेगा। अपने समूह के साथी की मदद लो, शोर कम रखो।",
+                "time_start": "0:10",
+                "teach_group": null,
+                "talking_points": null,
+                "other_groups_hi": null,
+                "duration_minutes": 2
+            },
+            {
+                "type": "teach",
+                "script_hi": null,
+                "time_start": "0:12",
+                "teach_group": "beginner",
+                "talking_points": {
+                    "i_do_hi": "मैं एक छोटी कहानी सुनाता/सुनाती हूँ: 'राधा के पास एक लाल गेंद थी। वह बगीचे में खेल रही थी।' अब मैं पूछता/पूछती हूँ: कौन? राधा। क्या था उसके पास? लाल गेंद। कहाँ खेल रही थी? बगीचे में। देखो, जवाब कहानी की बात से मिला।",
+                    "we_do_hi": "अब मैं नई कहानी सुनाता/सुनाती हूँ: 'गोलू बिल्ली दूध पीने रसोई में गई।' हम साथ में पूछेंगे: कौन गया? क्या करने? कहाँ? पहले सब मिलकर बोलें, फिर एक-एक बच्चे से पूछें। गलत जवाब पर कहानी दोबारा सुनाएँ।",
+                    "you_do_hi": "मैं हर कहानी बोलकर सुनाऊँगा/सुनाऊँगी। बच्चे कॉपी में पहले प्रश्न 1-5 बोर्ड से उतारकर हल करें, बाकी अतिरिक्त हैं। जिन्हें लिखने में कठिनाई हो, उन्हें बोलकर जवाब बताने दें। सभी 9 बच्चों के जवाब मैं पास बैठकर देखूँगा/देखूँगी।"
+                },
+                "other_groups_hi": "प्रगतिशील समूह: बोर्ड पर लिखा 'मेरा स्कूल' (RP-003) अनुच्छेद चुपचाप पढ़े और उसके तीनों प्रश्नों (स्कूल कहाँ है? बच्चा स्कूल कैसे जाता है? स्कूल में क्या करते हैं?) के उत्तर कॉपी में लिखे; जल्दी करने वाले साथी की कॉपी जाँचें। दक्ष समूह: बोर्ड पर लिखा 'चिड़ियाघर की सैर' (RP-005) अनुच्छेद पढ़े और उसके तीनों प्रश्नों (बच्चे कहाँ गए? हाथी क्या कर रहा था? बच्चे को सबसे अच्छा कौन सा जानवर लगा?) के उत्तर कॉपी में लिखे; जल्दी करने वाले साथी की कॉपी जाँचें।",
+                "duration_minutes": 29
+            },
+            {
+                "type": "transition",
+                "script_hi": "सब अपनी कॉपी बंद करें। शुरुआती समूह अपनी जगह पर दो-चरणीय निर्देश वाला खेल खेलेगा। प्रगतिशील समूह मेरे पास आए और अपनी कॉपी साथ लाए।",
+                "time_start": "0:41",
+                "teach_group": null,
+                "talking_points": null,
+                "other_groups_hi": null,
+                "duration_minutes": 2
+            },
+            {
+                "type": "teach",
+                "script_hi": null,
+                "time_start": "0:43",
+                "teach_group": "progressor",
+                "talking_points": {
+                    "i_do_hi": "मैं 'पानी बचाओ' अनुच्छेद के पहले दो वाक्य पढ़ता/पढ़ती हूँ और रुकता/रुकती हूँ: 'अभी क्या हुआ? कौन-सी बात बताई गई?' मैं एक वाक्य में जवाब देता/देती हूँ। अगर जवाब न आए तो मैं दोबारा पढ़ता/पढ़ती हूँ। (सावधानी: प्रश्न-उत्तर के लिए आप 'किसान' वाले वाक्य का उदाहरण न लें; वह कार्यपत्रक में है।) देखो, पढ़कर रुकना और खुद से पूछना ज़रूरी है।",
+                    "we_do_hi": "अब बच्चे 'पानी बचाओ' के अगले 2 वाक्य पढ़ें। हर 2 वाक्य के बाद हम रुकें और मैं पूछूँ: क्या हुआ? बच्चा अपने शब्दों में बताए। अटकने पर वही 2 वाक्य फिर पढ़ें। पूरे अनुच्छेद को इसी तरह रुक-रुककर पढ़ें; 'शब्द सही पढ़ना' और 'बात समझना' अलग हैं, यह साफ़ करें।",
+                    "you_do_hi": "बच्चे बोर्ड से कार्यपत्रक कॉपी में उतारें। पहले प्रश्न 1-6 हल करें, बाकी अतिरिक्त हैं। अनुच्छेद पढ़ते समय हर 2 वाक्य पर खुद रुकें और जवाब अनुच्छेद से ढूँढकर लिखें। जो बच्चे अच्छा पढ़ते हैं पर प्रश्न का जवाब नहीं दे पाते, उन पर नज़र रखें।"
+                },
+                "other_groups_hi": "शुरुआती समूह: दो-चरणीय निर्देश का खेल: साथी बारी-बारी से 'ताली बजाओ और बैठ जाओ' जैसे दो-चरणीय निर्देश बोलें और दूसरा पालन करे; फिर कोई जानी-पहचानी कहानी या घटना 3 क्रम में एक-दूसरे को सुनाएँ। दक्ष समूह: 'चिड़ियाघर की सैर' के तीनों उत्तर पूरे कर लें और साथी की कॉपी से मिलान करें।",
+                "duration_minutes": 22
+            },
+            {
+                "type": "transition",
+                "script_hi": "प्रगतिशील समूह अपनी कॉपी लेकर जगह पर जाए। दक्ष समूह अपनी कॉपी बंद कर मेरे पास आए। शुरुआती समूह अपना खेल रोक दे।",
+                "time_start": "1:05",
+                "teach_group": null,
+                "talking_points": null,
+                "other_groups_hi": null,
+                "duration_minutes": 2
+            },
+            {
+                "type": "teach",
+                "script_hi": null,
+                "time_start": "1:07",
+                "teach_group": "proficient",
+                "talking_points": {
+                    "i_do_hi": "मैं एक छोटी कहानी सुनाता/सुनाती हूँ: 'रीना ने पौधे को पानी नहीं दिया और वह मुरझा गया।' अब पूछता/पूछती हूँ: पौधा मुरझाया क्यों? जवाब कहानी में सीधे नहीं लिखा, पर मैं सोचकर कहता/कहती हूँ: क्योंकि पानी नहीं मिला। यह अनुमान है; इसमें 'क्यों' और 'कैसे' के जवाब सुराग से निकलते हैं।",
+                    "we_do_hi": "अब हम साथ में एक और कहानी सुनें: 'आर्यन ने छाता खोला और घर से निकला।' पूछें: आर्यन ने छाता क्यों खोला? सब एक सुराग बताएँ और कारण बोलें। हर जवाब के साथ 'क्योंकि' जोड़ना सिखाएँ।",
+                    "you_do_hi": "बच्चे कार्यपत्रक में 'दादी की बगिया' पढ़कर 'क्यों' और 'कैसे' वाले प्रश्नों के जवाब पूरे वाक्य में लिखें। उत्तर में कारण ज़रूर लिखें। जल्दी पूरा करने वाले साथी की कॉपी जाँचें और आपस में कारण मिलाएँ।"
+                },
+                "other_groups_hi": "शुरुआती समूह: जानी-पहचानी कहानी साथी को 3 क्रम में सुनाएँ और दो-चरणीय निर्देशों का खेल दोहराएँ। प्रगतिशील समूह: 'पानी बचाओ' के प्रश्न पूरे करें और आज की सीख का स्वतंत्र अभ्यास करें: बोर्ड के 'मेरा स्कूल' अनुच्छेद पर वही तीन प्रश्न फिर से जाँचें और साथी की कॉपी देखें।",
+                "duration_minutes": 22
+            }
+        ],
+        "total_minutes": 90
+    },
+    "classroom_management": {
+        "peer_monitors": {
+            "beginner": "Roll 1",
+            "proficient": "Roll 7",
+            "progressor": "Roll 3"
+        },
+        "independent_activities_hi": {
+            "beginner": "दो-चरणीय निर्देश का खेल: जोड़ियों में बारी-बारी से एक बच्चा दो-चरणीय निर्देश बोले (जैसे 'ताली बजाओ और बैठ जाओ') और दूसरा पालन करे। फिर जोड़ी में कोई जानी-पहचानी कहानी या घटना 3 क्रम में सुनाओ (पहले, फिर, अंत में)। यह पूरे ब्लॉक (22-29 मिनट) के लिए पर्याप्त है; जल्दी पूरा करने वाले नई जानी-पहचानी कहानी चुनकर सुनाएँ, कोई नया कौशल नहीं।",
+            "proficient": "बोर्ड पर लिखा 'चिड़ियाघर की सैर' (RP-005) अनुच्छेद पढ़ो और उसके तीनों प्रश्नों (बच्चे कहाँ गए? हाथी क्या कर रहा था? बच्चे को सबसे अच्छा कौन सा जानवर लगा?) के उत्तर कॉपी में लिखो। जल्दी पूरा होने पर साथी की कॉपी जाँचो।",
+            "progressor": "बोर्ड पर लिखा 'मेरा स्कूल' (RP-003) अनुच्छेद चुपचाप पढ़ो और उसके तीनों प्रश्नों (स्कूल कहाँ है? बच्चा स्कूल कैसे जाता है? स्कूल में क्या करते हैं?) के उत्तर कॉपी में लिखो। जल्दी पूरा होने पर साथी की कॉपी जाँचो।"
+        }
+    },
+    "independent_passages": {
+        "proficient": {
+            "id": "RP-005",
+            "text": "कल हम स्कूल से चिड़ियाघर गए। वहाँ बहुत सारे जानवर थे। हमने शेर देखा। शेर बहुत बड़ा था। उसकी दहाड़ सुनकर सब डर गए। फिर हमने हाथी देखा। हाथी सूँड से पानी फेंक रहा था। बंदर पेड़ पर कूद रहे थे। सबसे अच्छा मुझे तोता लगा। तोता हरे रंग का था और बोलता भी था। चिड़ियाघर में बहुत मज़ा आया।",
+            "title": "चिड़ियाघर की सैर",
+            "questions": [
+                {
+                    "type": "literal",
+                    "answer_hi": "चिड़ियाघर",
+                    "question_hi": "बच्चे कहाँ गए?"
+                },
+                {
+                    "type": "literal",
+                    "answer_hi": "सूँड से पानी फेंक रहा था",
+                    "question_hi": "हाथी क्या कर रहा था?"
+                },
+                {
+                    "type": "literal",
+                    "answer_hi": "तोता",
+                    "question_hi": "बच्चे को सबसे अच्छा कौन सा जानवर लगा?"
+                }
+            ]
+        },
+        "progressor": {
+            "id": "RP-003",
+            "text": "मेरा स्कूल घर से पास है। मैं रोज़ पैदल जाता हूँ। स्कूल में मेरे बहुत दोस्त हैं। हम साथ में खेलते हैं। हम साथ में पढ़ते हैं। मुझे स्कूल जाना अच्छा लगता है।",
+            "title": "मेरा स्कूल",
+            "questions": [
+                {
+                    "type": "literal",
+                    "answer_hi": "घर से पास",
+                    "question_hi": "स्कूल कहाँ है?"
+                },
+                {
+                    "type": "literal",
+                    "answer_hi": "पैदल",
+                    "question_hi": "बच्चा स्कूल कैसे जाता है?"
+                },
+                {
+                    "type": "literal",
+                    "answer_hi": "खेलते और पढ़ते हैं",
+                    "question_hi": "स्कूल में क्या करते हैं?"
+                }
+            ]
+        }
+    }
+}

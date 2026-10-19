@@ -30,6 +30,11 @@ def _enrich_numeracy_problem(problem: dict, level: str) -> dict:
     # PV grids: only if explicitly set in the problem data (by Claude or sample)
     # Don't auto-add — keeps worksheets compact for single-page printing
     
+    # Carry cell above the tens column on the Progressor's grid problems (scaffold: the sheet's
+    # own instructions tell children to write the carry there)
+    if level == "progressor" and problem.get("show_pv_grid") and "show_carry_box" not in problem:
+        enriched["show_carry_box"] = True
+
     # Number line for counting and comparison
     if any(kw in problem_text for kw in ["गिनो", "count", "क्रम", "तुलना", "बीच"]):
         enriched["show_number_line"] = True
@@ -171,10 +176,19 @@ def render_worksheet(
         if not enriched.get("problem_hi"):
             enriched["problem_hi"] = enriched.get("problem") or enriched.get("question") or ""
         enriched["extra"] = required_count is not None and (i + 1) > required_count
+        # the model often puts the story in both fields: show it once
+        if (enriched.get("word_problem_text") or "").strip() == (enriched.get("problem_hi") or "").strip():
+            enriched["word_problem_text"] = ""
         problems.append(enriched)
     
     # Extract example/passage blocks (separate from numbered problems)
     example_block = worksheet.get("example_block")
+    if domain_id == "numeracy" and level == "progressor" and example_block and example_block.get("show_pv_grid"):
+        try:
+            ones = int(example_block.get("row1_o") or 0) + int(example_block.get("row2_o") or 0)
+        except (TypeError, ValueError):
+            ones = 0
+        example_block = {**example_block, "show_carry_box": True, "carry_t": "1" if ones >= 10 else ""}
     passage_block = worksheet.get("passage_block")
     
     render_blocks = _build_render_blocks(problems)

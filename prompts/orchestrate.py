@@ -133,6 +133,10 @@ class OrchestrationContext:
     orf_roll_numbers: list[int] = field(default_factory=list)
     orf_passage_id: Optional[str] = None
     orf_target_cwpm: Optional[int] = None
+    # Reading passages chosen in code from the content bank, per group (literacy only): {level: {id, title, text, attribution}}
+    group_passages: dict = field(default_factory=dict)
+    # Texts for each group's independent practice, from the bank: {level: {id, title, text, questions}}
+    independent_passages: dict = field(default_factory=dict)
     
     # Curriculum note for the week that teaches today's competency (from L1)
     week_notes: Optional[str] = None
@@ -456,6 +460,9 @@ Rules:
 - Each group's anchor task must use ONLY that group's own skills (see INDEPENDENT-WORK RULES): no other operations (for example no subtraction or 'how much is left' in an addition lesson). Do not repeat the group's name at the start of the task text, because the screen already shows it.
 - MATERIALS other than the TLM-001 sticks: for any hands-on activity, work out the largest total used and make "prep_hi" match it. Give a kit to every group that uses it, size each kit to the largest example, and count the kits from the group sizes above (children divided by children per kit, rounded up). Kits are reused between groups taught at different times, so prepare for the largest need, not the sum. If a STICK-BUNDLE POLICY section is present, it governs the sticks.
 - "required_count": children must do problems 1 to required_count; later problems are extras for fast finishers. Beginner sheet with more than 5 problems: required_count 5. Progressor sheet with more than 6 problems: required_count 6. Proficient: required_count = the number of problems. Every problem with a "diagnostic_for_misconception" must be among the required ones. The Beginner You Do talking point must say to copy and solve problems 1-5 first, and the Progressor You Do problems 1-6 first, and that the rest are extras; every statement about a sheet must match its required_count.
+- WORKSHEET PROBLEMS MUST BE NEW: none may repeat an example solved in the I Do or We Do talking points (use different numbers). On one sheet no two problems may have the same answer, and the sums must vary: for carry sheets vary the ones-column sum (include one that is exactly 10 and, where the skill allows, one of 15 or more).
+- In explainability, refer to worksheet problems by their NUMBER (for example "Progressor problems 1-3"), never by the numbers inside them: the system may replace a problem's numbers after you write.
+- instructions_hi and instructions_en must NOT say how many problems are required: the sheet prints that banner itself. Put a word problem's full text in problem_hi only and leave word_problem_text null. On the Progressor sheet the grid problems get a carry cell automatically, so you may tell children to write the carry there.
 - All text fields are PLAIN TEXT: no markdown (no **bold**, no # headings). To show a list inside one field, put each item on its own line starting with "• ".
 - Every worksheet problem needs an "answer". Use "diagnostic_for_misconception" (an ID from the misconception list, or null) on problems designed to reveal that error.
 - At most 8 problems per worksheet, so each sheet fits ONE A4 page. Fewer than 8 is fine.
@@ -583,7 +590,7 @@ def _materials_policy_section(ctx: OrchestrationContext) -> str:
     return f"""
 ### STICK-BUNDLE (TLM-001) POLICY: follow exactly
 - The teacher's demonstration is the main use of sticks. Each I Do that teaches with sticks is done by the teacher, to that group only, inside that group's own teach block: explain every step aloud and draw the same step on the board (tens as vertical lines, ones as dots).
-- TEACHER DEMO KIT (always list it in prep_hi): {tb} bundles + {tl} loose sticks = {STICK_TEACHER_KIT_TOTAL} sticks. Every teacher demonstration with sticks must total at most {STICK_TEACHER_KIT_TOTAL}.
+- TEACHER DEMO KIT (always list it in prep_hi): {tb} bundles + {tl} loose sticks = {STICK_TEACHER_KIT_TOTAL} sticks. Every teacher demonstration with sticks must total at most {STICK_TEACHER_KIT_TOTAL}. The kit holds spare pre-made bundles: when 10 loose sticks must become a ten, the teacher (or one child at the teacher's kit) EXCHANGES them for a spare bundle. Never say "tie" or "make" a new bundle, and never ask for rubber bands in class.
 - BEGINNER group ({n} children): hands-on in PAIRS. Pair kit = {pb} bundles + {pl} loose sticks = {STICK_PAIR_KIT_TOTAL} sticks, so {k} kits (children divided by 2, rounded up) = {k * pb} bundles + {k * pl} loose sticks. Every example or number the Beginners build with sticks must total at most {STICK_PAIR_KIT_TOTAL} (for the Beginners' skill: no carrying or borrowing), and so must the first two worksheet problems. They use sticks only for those first two problems, then DRAW, then use the grid. No free play: bundles are made before class, never during the lesson; sticks are counted back in at the end; the group monitor collects.
 - PROGRESSOR group: NO kits for children. In the We Do, one child comes to the teacher's kit and does the one key step (adding: trading 10 loose sticks for a bundle; subtracting: opening a bundle into 10 loose sticks) while every other child draws tens as lines and ones as dots in a Tens | Ones frame ruled in the notebook, and circles 10 dots to make a new line (or crosses one line out to borrow). In the You Do the first problems may be drawn beside the grid; the last ones use numerals only.
 - PROFICIENT group: no sticks and no kits. Use the written method on the board with the carry written in each column.
@@ -680,6 +687,36 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
         for oc in ctx.observed_competencies:
             obs_text += f"  - {oc['id']}: {oc['name_hi']} — for Roll Nos. {oc['target_roll_numbers']}\n"
     
+    # Passages chosen in code from the content bank: the model must use them, not invent its own
+    passages_text = ""
+    if ctx.group_passages:
+        passages_text = "\n### FIXED READING PASSAGES (from the content bank: do NOT invent or change a passage)\n"
+        for level, ps in ctx.group_passages.items():
+            passages_text += (f"- {level} worksheet: passage_id {ps['id']}, title \"{ps['title']}\" ({ps['word_count']} words)\n"
+                              f"  TEXT: {ps['text']}\n")
+        passages_text += ("Rules: set each worksheet's passage_block to exactly the title and text above (the system will also overwrite it), "
+                          "and write the comprehension questions about THAT passage only, using only facts stated in it.\n")
+        banked = {lvl: ps["questions"] for lvl, ps in ctx.group_passages.items() if ps.get("questions")}
+        if banked:
+            passages_text += "\n### BANK QUESTIONS (checked against the passage: the system places them FIRST on the worksheet, word for word, with these answers)\n"
+            for lvl, qs in banked.items():
+                passages_text += f"- {lvl}:\n" + "".join(f"    {n}. {q['question_hi']}  ->  {q['answer_hi']}\n" for n, q in enumerate(qs, 1))
+            passages_text += "Write only the REMAINING questions yourself, and do not repeat these.\n"
+        passages_text += ("\n### KEEP LESSON AND WORKSHEET APART\n"
+                          "- Never reuse in a worksheet a question, an example or an answer that you model in the I Do or We Do: model with a different part of the passage.\n"
+                          "- Never reuse the anchor story in a worksheet. The Beginner worksheet stories must be NEW short stories, and the Beginner instruction must say the teacher tells each story aloud.\n")
+        if ctx.independent_passages:
+            passages_text += "\n### INDEPENDENT-PRACTICE PASSAGES (from the bank: the teacher writes these on the board; do NOT invent other texts)\n"
+            for lvl, ps in ctx.independent_passages.items():
+                qs = ps["questions"][:3]
+                passages_text += (f"- {lvl} group, while the teacher is with another group: \"{ps['title']}\" ({ps['id']})\n  TEXT: {ps['text']}\n"
+                                  + "".join(f"  Question {n}: {q['question_hi']}\n" for n, q in enumerate(qs, 1)))
+            passages_text += ("Rules: in every teach block's other_groups_hi and in classroom_management.independent_activities_hi, send these groups to THEIR passage "
+                              "by its title and tell them to answer its listed questions. Do not mention any other independent text.\n")
+        passages_text += ("\n### HINDI STYLE FOR THE TEACHER'S WORDS\n"
+                          "- Write the teacher's first person without gender: use 'पढ़ता/पढ़ती हूँ' or 'हम पढ़ते हैं', never only the feminine forms.\n"
+                          "- Use 'स्वतंत्र अभ्यास' for independent practice.\n")
+
     # Compute rotation timing
     anchor_duration = 10
     setup_duration = 2
@@ -791,7 +828,7 @@ Rotation chart, peer monitors, transition scripts (Hindi), independent station a
 - Photo sample: ALL of {rotation_order[0]}, 3-4 each from other groups
 - Observation: {obs_text if obs_text else 'No observed-modality competencies today.'}
 {'- ORF: Roll Nos. ' + str(ctx.orf_roll_numbers) + ' on passage ' + ctx.orf_passage_id if ctx.orf_scheduled else ''}
-
+{passages_text}
 {output_schema}
 """
     

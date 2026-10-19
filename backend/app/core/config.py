@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     default_teaching_minutes: int = 90
 
     # Photo pipeline
-    max_image_size_bytes: int = 2_000_000
+    max_image_size_bytes: int = 15_000_000
     max_images_per_batch: int = 6
 
     # State

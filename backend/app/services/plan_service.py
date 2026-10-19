@@ -5,6 +5,7 @@ Wraps the orchestrate.py pipeline with proper error handling and DB access.
 """
 
 import json
+import random
 import re
 import time
 from collections import Counter
@@ -40,7 +41,523 @@ from baseline_assessment import compute_groups
 CLAUDE_THINKING_BODY = {"thinking": {"type": "between_tools"}}
 
 
-def validate_plan_shape(plan: dict) -> list[str]:
+_STICK_WORDS = ("छड़ी", "छड़ियों", "छड़ियाँ")
+_SUM_RE = re.compile(r"(\d{1,3})\s*\+\s*(\d{1,3})")
+_STATED_SUM_RE = re.compile(r"(\d{1,3})\s*\+\s*(\d{1,3})\s*=\s*(\d{1,3})")
+_TALK_KEYS = ("i_do_hi", "we_do_hi", "you_do_hi")
+
+
+def _teach_blocks(plan: dict) -> list:
+    return [b for b in ((plan.get("rotation_schedule") or {}).get("blocks") or []) if b.get("type") == "teach"]
+
+
+def _stick_cap(group: str, key: str) -> int:
+    """What children (Beginner We Do / You Do) build must fit a pair kit; the teacher's demo fits the teacher kit."""
+    return STICK_PAIR_KIT_TOTAL if (group == "beginner" and key != "i_do_hi") else STICK_TEACHER_KIT_TOTAL
+
+
+def _uses_sticks(plan: dict) -> bool:
+    return any(any(w in ((b.get("talking_points") or {}).get(k) or "") for w in _STICK_WORDS)
+               for b in _teach_blocks(plan) for k in _TALK_KEYS)
+
+
+def find_stick_overflows(plan: dict) -> list[dict]:
+    """Talking points that build an example with sticks which is bigger than the kit holds."""
+    out = []
+    for b in _teach_blocks(plan):
+        group, tp = b.get("teach_group"), b.get("talking_points") or {}
+        if group not in ("beginner", "progressor"):
+            continue            # Proficients use no sticks (policy), so their sums are never stick examples
+        for key in _TALK_KEYS:
+            text = tp.get(key) or ""
+            if not any(w in text for w in _STICK_WORDS):
+                continue
+            totals = [int(a) + int(c) for a, c in _SUM_RE.findall(text)]
+            cap = _stick_cap(group, key)
+            if totals and max(totals) > cap:
+                out.append({"group": group, "key": key, "text": text, "largest": max(totals), "cap": cap})
+    return out
+
+
+def _pairs_in(text: str) -> set:
+    return {tuple(sorted((int(a), int(c)))) for a, c in _SUM_RE.findall(text or "")}
+
+
+def _max_digits(text: str) -> int:
+    return max((len(str(n)) for a, c in _SUM_RE.findall(text or "") for n in (int(a), int(c))), default=0)
+
+
+def _fix_is_acceptable(group: str, key: str, old: str, new: str, avoid: set) -> tuple[bool, str]:
+    """A rewritten talking point is used only if it passes checks that do not depend on the model."""
+    if not isinstance(new, str) or not new.strip():
+        return False, "empty"
+    if not any(w in new for w in _STICK_WORDS):
+        return False, "no longer mentions the sticks"
+    if not 0.5 * len(old) <= len(new) <= 2.0 * len(old):
+        return False, "length changed too much"
+    for a, c, r in _STATED_SUM_RE.findall(new):
+        if int(a) + int(c) != int(r):
+            return False, f"stated sum is wrong ({a} + {c} = {r})"
+    if _max_digits(new) < _max_digits(old):
+        return False, "the rewrite uses smaller numbers than the original (fewer digits)"
+    cap = _stick_cap(group, key)
+    pairs = _pairs_in(new)
+    if any(a + c > cap for a, c in pairs):
+        return False, f"an example still totals more than {cap}"
+    if group == "beginner" and any((a % 10 + c % 10) >= 10 for a, c in pairs):
+        return False, "a Beginner example needs a carry"
+    if pairs & avoid:
+        return False, "uses an example that is already used elsewhere in the lesson"
+    return True, "ok"
+
+
+_PLAIN_ADD_RE = re.compile(r"^\s*(\d{1,3})\s*\+\s*(\d{1,3})\s*(=\s*[_\s]*\??)?\s*$")
+
+
+def _plain_addition(problem: dict):
+    """(a, b, suffix) if the problem is a plain 'a + b' (optionally '= ___'); None for word problems and others."""
+    m = _PLAIN_ADD_RE.match(str(problem.get("problem_hi") or ""))
+    return (int(m.group(1)), int(m.group(2)), (m.group(3) or "").strip()) if m else None
+
+
+def _taught_pairs(plan: dict) -> dict:
+    """The a + b examples the teacher solves in each group's block (a worksheet problem must not repeat them)."""
+    taught = {"beginner": set(), "progressor": set(), "proficient": set()}
+    for b in _teach_blocks(plan):
+        if b.get("teach_group") in taught:
+            for text in (b.get("talking_points") or {}).values():
+                taught[b["teach_group"]] |= _pairs_in(str(text))
+    return taught
+
+
+def _gen_addition(level: str, digits: int, rng, used_answers: set, avoid_pairs: set, cap=None, want_ones=None):
+    """
+    A plain addition of the kind this level practises, correct by construction:
+      Beginner (2-digit): no carrying anywhere.   Progressor / Proficient (2-digit): exactly one carry, total stays 2-digit.
+      3-digit: at least one carry, total stays 3-digit.
+    The answer and the pair must be new; `cap` limits the total (sticks), `want_ones` fixes the ones-column sum.
+    """
+    lo, hi = (10, 89) if digits == 2 else (100, 899)
+    carry_needed = not (level == "beginner" and digits == 2)
+    for _ in range(800):
+        a, b = rng.randint(lo, hi), rng.randint(lo, hi)
+        if a == b or a % 10 == 0 or b % 10 == 0:
+            continue                       # no doubles (23 + 23) and no round addends (23 + 10): too easy to teach anything
+        ones = a % 10 + b % 10
+        if digits == 2:
+            tens = a // 10 + b // 10
+            if carry_needed:
+                if ones < 10 or tens + 1 > 9:
+                    continue
+            elif ones > 9 or tens > 9:
+                continue
+        else:
+            if not (ones >= 10 or (a // 10) % 10 + (b // 10) % 10 >= 10) or a + b > 999:
+                continue
+        if want_ones is not None and ones != want_ones:
+            continue
+        if str(a + b) in used_answers or tuple(sorted((a, b))) in avoid_pairs:
+            continue
+        if cap is not None and a + b > cap:
+            continue
+        return a, b
+    return None
+
+
+def repair_worksheet_numbers(plan: dict) -> list[str]:
+    """
+    Replace plain-addition worksheet problems that (1) copy an example solved in the lesson, (2) repeat an answer
+    among the problems every child must do, or (3) are too big for the sticks the Beginners use on problems 1-2.
+    Replacements are generated in code (so the answer is right by construction), keep the layout fields, are
+    deterministic, and avoid every answer and pair already on the sheet. Word problems are never touched.
+    """
+    log = []
+    taught = _taught_pairs(plan)
+    uses_sticks = _uses_sticks(plan)
+    expl = " ".join(str(it.get(k) or "") for it in ((plan.get("explainability") or {}).get("items") or []) for k in ("body_hi", "body_en"))
+
+    for level in ("beginner", "progressor", "proficient"):
+        ws = (plan.get("worksheets") or {}).get(level) or {}
+        problems = ws.get("problems") or []
+        if not problems:
+            continue
+        rc = ws.get("required_count")
+        rc_ok = isinstance(rc, int) and not isinstance(rc, bool) and 1 <= rc <= len(problems)
+        replace = {}
+        for i, pr in enumerate(problems):
+            pa = _plain_addition(pr)
+            if not pa:
+                continue
+            if tuple(sorted(pa[:2])) in taught[level]:
+                replace[i] = "copies an example solved in the lesson"
+            elif level == "beginner" and uses_sticks and i < 2 and pa[0] + pa[1] > STICK_PAIR_KIT_TOTAL:
+                replace[i] = f"is solved with sticks but totals more than {STICK_PAIR_KIT_TOTAL}"
+        seen = {}
+        for i, pr in enumerate(problems[:rc] if rc_ok else problems):
+            ans = str(pr.get("answer", "")).strip()
+            if ans:
+                seen.setdefault(ans, []).append(i)
+        for ans, idxs in seen.items():
+            if len(idxs) < 2:
+                continue
+            keep = next((i for i in idxs if i not in replace and not _plain_addition(problems[i])), None)   # keep a word problem if there is one
+            if keep is None:
+                keep = next((i for i in idxs if i not in replace), idxs[0])
+            for i in idxs:
+                if i != keep and i not in replace and _plain_addition(problems[i]):
+                    replace[i] = f"repeats the answer {ans}"
+        if not replace:
+            continue
+
+        kept = [pr for j, pr in enumerate(problems) if j not in replace]
+        used_answers = {str(pr.get("answer", "")).strip() for pr in kept}
+        used_pairs = {tuple(sorted(_plain_addition(pr)[:2])) for pr in kept if _plain_addition(pr)}
+        ones_used = [(_plain_addition(pr)[0] % 10 + _plain_addition(pr)[1] % 10) for pr in kept if _plain_addition(pr)]
+        for i in sorted(replace):
+            pr = problems[i]
+            a0, b0, suffix = _plain_addition(pr)
+            digits = 3 if max(a0, b0) >= 100 else 2
+            cap = STICK_PAIR_KIT_TOTAL if (level == "beginner" and uses_sticks and i < 2) else None
+            rng = random.Random(f"{level}:{pr.get('number')}:{a0}:{b0}")
+            targets = [None]
+            if digits == 2 and level != "beginner":          # vary the ones-column sums across the sheet
+                targets = [t for t in (10, 15, 16, 17, 18, 13, 11, 14, 12) if t not in ones_used] + [None]
+            res = None
+            for t in targets:
+                res = _gen_addition(level, digits, rng, used_answers, used_pairs | taught[level], cap, t)
+                if res:
+                    break
+            if not res:
+                log.append(f"{level} problem {pr.get('number')}: no replacement could be generated; kept as is")
+                continue
+            a, b = res
+            old = str(pr.get("problem_hi"))
+            pr["problem_hi"] = f"{a} + {b} {suffix}".strip()
+            pr["answer"] = str(a + b)
+            used_answers.add(str(a + b))
+            used_pairs.add(tuple(sorted((a, b))))
+            ones_used.append(a % 10 + b % 10)
+            log.append(f"{level} problem {pr.get('number')}: {old.strip()} -> {pr['problem_hi']} ({replace[i]})")
+            if re.search(rf"{a0}\s*\+\s*{b0}|{b0}\s*\+\s*{a0}", expl):
+                log.append(f"NOTE: 'Why this plan?' mentions {a0} + {b0}, which was just replaced; check that panel")
+    return log
+
+
+def _assign_replacements(group: str, o: dict, avoid: set) -> dict:
+    """For every oversized example in a text, pick the replacement IN CODE: right kind, fits the kit, not used elsewhere."""
+    mapping = {}
+    for m in _SUM_RE.finditer(o["text"]):
+        a, b = int(m.group(1)), int(m.group(2))
+        old = tuple(sorted((a, b)))
+        if a + b <= o["cap"] or old in mapping:
+            continue
+        rng = random.Random(f"stick:{group}:{o['key']}:{a}:{b}")
+        res = _gen_addition(group, 3 if max(a, b) >= 100 else 2, rng, set(), set(avoid) | {tuple(sorted(v)) for v in mapping.values()}, o["cap"])
+        if res:
+            mapping[old] = res
+    return mapping
+
+
+def _substitute_pairs(text: str, mapping: dict):
+    """
+    Swap the oversized examples for the assigned ones directly in the text. Returns None when that cannot be done
+    safely: if the text spells out steps for another sum, or the old total appears elsewhere, we cannot tell what to change.
+    """
+    for a, c, r in _STATED_SUM_RE.findall(text):
+        if tuple(sorted((int(a), int(c)))) not in mapping:
+            return None
+    out = text
+    for (a, b), (c, d) in mapping.items():
+        out = re.sub(rf"(?<!\d)(?:{a}\s*\+\s*{b}|{b}\s*\+\s*{a})\s*=\s*{a + b}(?!\d)", f"{c} + {d} = {c + d}", out)
+        out = re.sub(rf"(?<!\d)(?:{a}\s*\+\s*{b}|{b}\s*\+\s*{a})(?!\d)", f"{c} + {d}", out)
+        if re.search(rf"(?<!\d){a + b}(?!\d)", out):
+            return None
+    return out
+
+
+# Which bank question types fit a skill (a skill not listed accepts any type).
+_QTYPE_FOR_SKILL = {"L1.6.1": ("literal",), "L2.6.1": ("literal",), "L2.6.2": ("main_idea",), "L2.6.3": ("inferential",),
+                    "L3.6.1": ("inferential",), "L3.6.2": ("cause_effect",), "L3.6.3": ("main_idea",), "L3.6.4": ("fact_opinion",)}
+_PASSAGE_COLS = "p.id, p.title_hi, p.passage_hi, p.word_count, p.target_grade, p.license, p.attribution, p.comprehension_questions"
+
+
+def _questions_for_skill(comp_id: str, raw) -> list:
+    qs = json.loads(raw) if isinstance(raw, str) else (raw or [])
+    types = _QTYPE_FOR_SKILL.get(comp_id)
+    return [{"type": q.get("type"), "question_hi": q["question_hi"], "answer_hi": q.get("answer_hi", "")}
+            for q in qs if q.get("question_hi") and (not types or q.get("type") in types)]
+
+
+async def _pick_passage(db, comp_id: str, plan_date, exclude: set):
+    """A passage that lists the competency wins; otherwise one of the competency's grade. Rotates by date, skips `exclude`."""
+    rows = await db.fetch(f"""
+        SELECT {_PASSAGE_COLS} FROM reading_passages p
+        WHERE p.is_active AND (p.fluency_competency_id = $1 OR $1 = ANY(p.comprehension_competency_ids))
+        ORDER BY p.id""", comp_id)
+    match = "competency"
+    if not [r for r in rows if r["id"] not in exclude]:
+        rows = await db.fetch(f"""
+            SELECT {_PASSAGE_COLS} FROM reading_passages p JOIN competencies c ON c.id = $1
+            WHERE p.is_active AND p.target_grade = c.grade_level ORDER BY p.id""", comp_id)
+        match = "grade"
+    fresh = [r for r in rows if r["id"] not in exclude]
+    if not fresh:
+        return None, match
+    return fresh[plan_date.toordinal() % len(fresh)], match
+
+
+def _passage_dict(r, comp_id: str, match: str) -> dict:
+    return {"id": r["id"], "title": r["title_hi"], "text": r["passage_hi"], "word_count": r["word_count"],
+            "attribution": r["attribution"], "license": r["license"], "match": match,
+            "questions": _questions_for_skill(comp_id, r["comprehension_questions"])}
+
+
+async def retrieve_group_passages(db, domain_id: str, targets: dict, plan_date) -> dict:
+    """
+    Literacy plans: pick each group's worksheet passage from the content bank, deterministically.
+    targets = {'progressor': competency_id, 'proficient': competency_id}. The choice rotates by date and two groups never share one.
+    Each passage carries the bank's questions that fit the group's skill.
+    """
+    if domain_id != "r1_literacy":
+        return {}
+    out, used = {}, set()
+    for level, comp_id in targets.items():
+        r, match = await _pick_passage(db, comp_id, plan_date, used)
+        if r is None:
+            r, match = await _pick_passage(db, comp_id, plan_date, set())      # only one passage exists: allow sharing
+        if r is None:
+            continue
+        used.add(r["id"])
+        out[level] = _passage_dict(r, comp_id, match)
+    return out
+
+
+async def retrieve_independent_passages(db, domain_id: str, targets: dict, plan_date, exclude: set) -> dict:
+    """
+    Literacy plans: a text for each group's INDEPENDENT practice (a skill the group has already mastered),
+    from the bank, never one of the day's worksheet passages. targets = {'progressor': prior skill, 'proficient': skill}.
+    """
+    if domain_id != "r1_literacy":
+        return {}
+    out, used = {}, set(exclude)
+    for level, comp_id in targets.items():
+        r, match = await _pick_passage(db, comp_id, plan_date, used)
+        if r is None:
+            continue
+        used.add(r["id"])
+        out[level] = _passage_dict(r, comp_id, match)
+    return out
+
+
+def _problem_from_bank(q: dict, number: int) -> dict:
+    literal = q.get("type") == "literal"
+    p = {"number": number, "problem_hi": q["question_hi"], "answer": q.get("answer_hi", ""), "row_type": "plain" if literal else None,
+         "answer_type": "box" if literal else "lines", "show_letter_grid": False, "diagnostic_for_misconception": None, "from_bank": True}
+    if not literal:
+        p["answer_lines"] = 2
+    return p
+
+
+def apply_bank_questions(plan: dict, group_passages: dict) -> list[str]:
+    """
+    The bank's questions for the passage go FIRST, word for word, with the bank's answers. The model's own questions
+    follow, and the sheet keeps its length and its required count (the model's last questions are dropped).
+    """
+    log = []
+    for level, ps in (group_passages or {}).items():
+        ws = (plan.get("worksheets") or {}).get(level)
+        if not ws or not ps.get("questions") or not ws.get("problems"):
+            continue
+        have = {str(p.get("problem_hi", "")).strip() for p in ws["problems"]}
+        new = [q for q in ps["questions"] if q["question_hi"].strip() not in have]
+        if not new:
+            continue
+        n0 = len(ws["problems"])
+        rc = ws.get("required_count")
+        R = rc if isinstance(rc, int) and not isinstance(rc, bool) and 1 <= rc <= n0 else n0
+        merged = [_problem_from_bank(q, 0) for q in new] + ws["problems"]
+        # keep the sheet's length: trim from the end, never dropping a bank question or a diagnostic problem
+        k = len(merged) - 1
+        while len(merged) > n0 and k >= 0:
+            if not merged[k].get("from_bank") and not merged[k].get("diagnostic_for_misconception"):
+                merged.pop(k)
+            k -= 1
+        merged = merged[:n0]
+        # the bank questions pushed everything down: a diagnostic problem must stay inside the required zone
+        for idx in range(R, len(merged)):
+            if merged[idx].get("diagnostic_for_misconception"):
+                for jdx in range(R - 1, -1, -1):
+                    if not merged[jdx].get("diagnostic_for_misconception") and not merged[jdx].get("from_bank"):
+                        merged[idx], merged[jdx] = merged[jdx], merged[idx]
+                        break
+        for n, pr in enumerate(merged, start=1):
+            pr["number"] = n
+        ws["problems"] = merged
+        log.append(f"{level}: {len(new)} question(s) from the bank placed first")
+    return log
+
+
+_GROUP_HI = {"beginner": "शुरुआती", "progressor": "प्रगतिशील", "proficient": "दक्ष"}
+
+
+def inject_independent(plan: dict, independent: dict) -> list[str]:
+    """Put the independent-practice texts in the plan and in the 'before class' list, so the teacher has them to copy."""
+    log = []
+    if not independent:
+        return log
+    plan["independent_passages"] = {lvl: {"id": ps["id"], "title": ps["title"], "text": ps["text"], "questions": ps["questions"][:3]}
+                                    for lvl, ps in independent.items()}
+    prep = plan.setdefault("prep_hi", [])
+    for lvl, ps in independent.items():
+        qs = ps["questions"][:3]
+        line = (f"{_GROUP_HI.get(lvl, lvl)} समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «{ps['title']}» ({ps['id']}): {ps['text']}"
+                + (" सवाल: " + " ".join(f"{n}) {q['question_hi']}" for n, q in enumerate(qs, 1)) if qs else ""))
+        if line not in prep:
+            prep.append(line)
+        log.append(f"{lvl}: independent practice on {ps['id']} ({ps['match']} match)")
+    return log
+
+
+_PUNCT = re.compile(r"[।?!,.:;\"'‘’“”()\[\]/–—\-]")
+
+
+def _tokens(text) -> list:
+    return _PUNCT.sub(" ", str(text or "")).split()
+
+
+def _ngrams_ordered(tokens: list, n: int) -> list:
+    return [tuple(tokens[i:i + n]) for i in range(len(tokens) - n + 1)]
+
+
+def find_text_overlaps(plan: dict, n: int = 5) -> list[str]:
+    """
+    Literacy: a worksheet question that repeats wording from the group's own lesson or from the anchor lets a child copy.
+    Wording that is quoted from the group's passage is expected and ignored.
+    """
+    issues = []
+    anchor = plan.get("anchor") or {}
+    blocks = {b.get("teach_group"): b for b in _teach_blocks(plan)}
+    for level, ws in (plan.get("worksheets") or {}).items():
+        b = blocks.get(level) or {}
+        lesson = " ".join(str(v) for v in (b.get("talking_points") or {}).values())
+        anchor_text = " ".join(str(anchor.get(k) or "") for k in ("narration_hi", "opening_question_hi", "closing_question_hi", f"{level}_participation_hi"))
+        seen = set(_ngrams_ordered(_tokens(lesson + " " + anchor_text), n))
+        quoted = set(_ngrams_ordered(_tokens((ws.get("passage_block") or {}).get("text")), n))
+        for pr in ws.get("problems") or []:
+            hits = [g for g in _ngrams_ordered(_tokens(pr.get("problem_hi")), n) if g in seen and g not in quoted]
+            if hits:
+                issues.append(f"worksheets.{level} problem {pr.get('number')} repeats wording from the lesson or anchor: \u00ab{' '.join(hits[0])}\u00bb")
+    return issues
+
+
+def inject_passages(plan: dict, group_passages: dict) -> list[str]:
+    """The model may paraphrase or invent: the passage that is printed is the one from the content bank."""
+    log = []
+    for level, ps in (group_passages or {}).items():
+        ws = (plan.get("worksheets") or {}).get(level)
+        if ws is None:
+            continue
+        block = {"title": ps["title"], "text": ps["text"], "passage_id": ps["id"]}
+        if ps.get("attribution"):
+            block["attribution"] = ps["attribution"]
+        changed = (ws.get("passage_block") or {}).get("text") != ps["text"]
+        ws["passage_block"] = block
+        log.append(f"{level}: passage {ps['id']} ({ps['match']} match)" + ("; the model's own text was replaced" if changed else ""))
+    if group_passages:
+        plan["passages_used"] = {lvl: ps["id"] for lvl, ps in group_passages.items()}
+    return log
+
+
+async def repair_stick_overflows(client, model: str, plan: dict) -> tuple[dict, list[str]]:
+    """
+    If a talking point builds an example with more sticks than the kit holds, ask the model to rewrite ONLY
+    that text. The rewrite is accepted only if _fix_is_acceptable passes. Costs nothing when nothing overflows.
+    """
+    overflows = find_stick_overflows(plan)
+    if not overflows:
+        return plan, []
+
+    avoid = {}
+    for o in overflows:
+        g = o["group"]
+        pairs = set()
+        for pr in ((plan.get("worksheets") or {}).get(g) or {}).get("problems") or []:
+            pairs |= _pairs_in(str(pr.get("problem_hi") or ""))
+        for b in _teach_blocks(plan):
+            if b.get("teach_group") == g:
+                for k, t in (b.get("talking_points") or {}).items():
+                    if k != o["key"]:
+                        pairs |= _pairs_in(t)
+        avoid[(g, o["key"])] = pairs
+
+    assigned = {(o["group"], o["key"]): _assign_replacements(o["group"], o, avoid[(o["group"], o["key"])]) for o in overflows}
+    items = []
+    for n, o in enumerate(overflows, 1):
+        extra = ("The new example must be an addition WITHOUT carrying (the ones digits add to less than 10)."
+                 if o["group"] == "beginner" else "Keep the same kind of problem as the original (with a carry if it had one).")
+        mp = assigned[(o["group"], o["key"])]
+        def _as_written(a, b, text=o["text"]):          # show the old pair in the order the text writes it
+            return f"{b} + {a}" if re.search(rf"(?<!\d){b}\s*\+\s*{a}(?!\d)", text) and not re.search(rf"(?<!\d){a}\s*\+\s*{b}(?!\d)", text) else f"{a} + {b}"
+        use = "; ".join(f"replace {_as_written(a, b)} with {c} + {d} (total {c + d})" for (a, b), (c, d) in mp.items()) or "choose a new example yourself"
+        pairs = ", ".join(f"{a}+{b}" for a, b in sorted(avoid[(o["group"], o["key"])])) or "none"
+        items.append(f"ITEM {n}: teach_group={o['group']} key={o['key']}\n"
+                     f"Largest stick example now totals {o['largest']}, but the kit holds only {o['cap']} sticks. {extra}\n"
+                     f"USE EXACTLY THESE NUMBERS: {use}\n"
+                     f"Do not use these pairs, in either order (already used elsewhere in this lesson): {pairs}\n"
+                     f"TEXT:\n{o['text']}")
+    user = ("Each talking point below (Hindi, for a teacher) builds an example with sticks that is too big for the kit.\n"
+            "Rewrite each text IN HINDI. Keep the same wording, steps and structure. Replace only the oversized example, "
+            "and the numbers that depend on it, using exactly the numbers given for that item. Keep every other sentence unchanged. "
+            "Any sum you write (a + b = c) must be arithmetically correct.\n"
+            'Return JSON only: {"fixes":[{"teach_group":"...","key":"...","text":"..."}]}\n\n' + "\n\n".join(items))
+    data, model_note = {}, ""
+    try:
+        response = await client.messages.create(
+            model=model, max_tokens=2500,
+            system="You make one small correction to a teacher's talking point in a Hindi lesson plan. Output JSON only.",
+            messages=[{"role": "user", "content": user}],
+            extra_body=CLAUDE_THINKING_BODY,
+        )
+        text = next((b.text for b in response.content if getattr(b, "type", None) == "text"), "")
+        print(f"   Stick repair call: usage={response.usage}")
+        try:
+            data = json.loads(text)
+        except json.JSONDecodeError:
+            a_, b_ = text.find("{"), text.rfind("}")
+            data = json.loads(text[a_:b_ + 1]) if a_ != -1 and b_ > a_ else {}
+    except Exception as e:
+        model_note = f"model call failed ({type(e).__name__})"
+
+    log = []
+    fixes = {(fx.get("teach_group"), fx.get("key")): fx.get("text") for fx in (data.get("fixes") or []) if isinstance(fx, dict)}
+    for o in overflows:
+        key = (o["group"], o["key"])
+        new, how, why = None, "", model_note
+        if key in fixes:
+            ok, why = _fix_is_acceptable(key[0], key[1], o["text"], fixes[key], avoid[key])
+            if ok:
+                new, how = fixes[key].strip(), "rewritten by the model"
+        if new is None and assigned[key]:                       # the model failed or was rejected: swap the example in code
+            sub_text = _substitute_pairs(o["text"], assigned[key])
+            if sub_text:
+                ok2, why2 = _fix_is_acceptable(key[0], key[1], o["text"], sub_text, avoid[key])
+                if ok2:
+                    new, how = sub_text, f"example replaced in code ({why or 'no usable model rewrite'})"
+                else:
+                    why = why2
+            else:
+                why = (why + "; " if why else "") + "the text has other steps that depend on the example"
+        if new is None:
+            log.append(f"{key[0]}.{key[1]}: kept the original ({why})")
+            continue
+        for b in _teach_blocks(plan):
+            if b.get("teach_group") == key[0]:
+                b["talking_points"][key[1]] = new
+        log.append(f"{key[0]}.{key[1]}: {how}; largest stick example {o['largest']} -> {max(a + c for a, c in _pairs_in(new))} (kit {o['cap']})")
+    return plan, log
+
+
+def validate_plan_shape(plan: dict, domain_id: str = None) -> list[str]:
     """
     Check Claude's plan against the shape the PWA, worksheet renderer and Vision
     analysis read. Returns human-readable problems (empty list = good).
@@ -74,6 +591,9 @@ def validate_plan_shape(plan: dict) -> list[str]:
     if sorted(g for g in teach_groups if g) != sorted(levels):
         issues.append(f"teach blocks should cover each group once, got {teach_groups}")
 
+    # examples the teacher solves in each group's block (a worksheet problem must not repeat them)
+    taught = _taught_pairs(plan)
+
     for level in levels:
         problems = ((plan.get("worksheets") or {}).get(level) or {}).get("problems") or []
         if not problems:
@@ -94,26 +614,40 @@ def validate_plan_shape(plan: dict) -> list[str]:
                 n = p.get("number")
                 if p.get("diagnostic_for_misconception") and isinstance(n, int) and n > rc:
                     issues.append(f"worksheets.{level} problem {n} reveals a misconception but is an extra (required_count {rc})")
+        # repeated answers among the problems every child must do, and problems copied from the lesson
+        rc_ok = isinstance(rc, int) and not isinstance(rc, bool) and 1 <= rc <= len(problems)
+        seen = {}
+        req = problems[:rc] if rc_ok else problems
+        for p in req:
+            ans = str(p.get("answer", "")).strip()
+            if ans and _plain_addition(p):          # a repeated answer matters when a SUM is involved
+                seen.setdefault(ans, []).append(p.get("number"))
+        for p in req:                               # ...including a word problem that copies a sum's answer
+            ans = str(p.get("answer", "")).strip()
+            if ans in seen and not _plain_addition(p):
+                seen[ans].append(p.get("number"))
+        for ans, nums in seen.items():              # literacy answers and non-addition skills may legitimately repeat
+            if len(nums) > 1:
+                issues.append(f"worksheets.{level}: problems {nums} all have the answer {ans}")
+        if level == "beginner" and _uses_sticks(plan):
+            for p in problems[:2]:
+                pa = _plain_addition(p)
+                if pa and pa[0] + pa[1] > STICK_PAIR_KIT_TOTAL:
+                    issues.append(f"worksheets.beginner problem {p.get('number')} totals {pa[0] + pa[1]} but the first two problems use sticks "
+                                  f"and the pair kit holds {STICK_PAIR_KIT_TOTAL}")
+        for p in problems:
+            m = re.search(r"(\d{1,3})\s*\+\s*(\d{1,3})", str(p.get("problem_hi") or ""))
+            if m and tuple(sorted((int(m.group(1)), int(m.group(2))))) in taught[level]:
+                issues.append(f"worksheets.{level} problem {p.get('number')} repeats an example solved in the talking points")
         for p in problems:
             for k in ("number", "problem_hi", "answer"):
                 if p.get(k) in (None, ""):
                     issues.append(f"worksheets.{level} problem {p.get('number', '?')}: {k} missing")
 
     # Stick examples must fit the kits: teacher demo kit, and the Beginner pair kit for what children build
-    uses_sticks = False
-    for b in blocks:
-        if b.get("type") != "teach":
-            continue
-        g, tp = b.get("teach_group"), b.get("talking_points") or {}
-        for key in ("i_do_hi", "we_do_hi", "you_do_hi"):
-            text = tp.get(key) or ""
-            if not any(w in text for w in ("छड़ी", "छड़ियों", "छड़ियाँ")):
-                continue
-            uses_sticks = True
-            totals = [int(a) + int(c) for a, c in re.findall(r"(\d{1,3})\s*\+\s*(\d{1,3})", text)]
-            cap = STICK_PAIR_KIT_TOTAL if (g == "beginner" and key != "i_do_hi") else STICK_TEACHER_KIT_TOTAL
-            if totals and max(totals) > cap:
-                issues.append(f"{g} {key}: a stick example totals {max(totals)} but the kit holds only {cap} sticks")
+    for o in find_stick_overflows(plan):
+        issues.append(f"{o['group']} {o['key']}: a stick example totals {o['largest']} but the kit holds only {o['cap']} sticks")
+    uses_sticks = _uses_sticks(plan)
     if uses_sticks and "छड़" not in " ".join(plan.get("prep_hi") or []):
         issues.append("sticks are used in the talking points but prep_hi does not mention them")
 
@@ -129,26 +663,48 @@ def validate_plan_shape(plan: dict) -> list[str]:
                 if not it.get(k):
                     issues.append(f"explainability.items[{i}].{k} missing")
 
+    if domain_id == "r1_literacy":
+        issues += find_text_overlaps(plan)
+        text = json.dumps({"o": [b.get("other_groups_hi") for b in blocks], "c": plan.get("classroom_management")}, ensure_ascii=False)
+        for lvl, ip in (plan.get("independent_passages") or {}).items():
+            if ip["title"] not in text:
+                issues.append(f"the independent-practice passage \u00ab{ip['title']}\u00bb for {lvl} is not mentioned in what the other groups do")
+
     return issues
 
 
 
 async def get_competency_tree(db, domain_id: str) -> list[dict]:
-    """Get the full competency tree for the Plan screen's Lakshya selector."""
-    rows = await db.fetch("""
-        SELECT c.id, c.name_en, c.name_hi, c.grade_level, c.assessment_modality,
-               s.name_en as subdomain_name
-        FROM competencies c
-        JOIN subdomains s ON c.subdomain_id = s.id
-        WHERE s.domain_id = $1 AND c.is_active = TRUE
-        ORDER BY 
-            CASE c.grade_level 
-                WHEN 'balvatika' THEN 0 WHEN 'grade_1' THEN 1 
-                WHEN 'grade_2' THEN 2 WHEN 'grade_3' THEN 3 
-            END,
-            s.sort_order, c.sort_order
-    """, domain_id)
+    """The full competency tree for the Plan screen's Lakshya selector, each skill with its coverage label."""
+    order = """ORDER BY CASE c.grade_level WHEN 'balvatika' THEN 0 WHEN 'grade_1' THEN 1 WHEN 'grade_2' THEN 2 WHEN 'grade_3' THEN 3 END,
+               s.sort_order, c.sort_order"""
+    try:
+        rows = await db.fetch(f"""
+            SELECT c.id, c.name_en, c.name_hi, c.grade_level, c.assessment_modality, s.name_en AS subdomain_name,
+                   COALESCE(cc.tier, 'untested') AS coverage_tier, cc.note AS coverage_note
+            FROM competencies c JOIN subdomains s ON c.subdomain_id = s.id
+            LEFT JOIN competency_coverage cc ON cc.competency_id = c.id
+            WHERE s.domain_id = $1 AND c.is_active = TRUE {order}""", domain_id)
+    except Exception as e:                      # a database that has not loaded the coverage table yet
+        if e.__class__.__name__ != "UndefinedTableError":
+            raise
+        rows = await db.fetch(f"""
+            SELECT c.id, c.name_en, c.name_hi, c.grade_level, c.assessment_modality, s.name_en AS subdomain_name,
+                   'untested' AS coverage_tier, NULL AS coverage_note
+            FROM competencies c JOIN subdomains s ON c.subdomain_id = s.id
+            WHERE s.domain_id = $1 AND c.is_active = TRUE {order}""", domain_id)
     return [dict(r) for r in rows]
+
+
+async def get_coverage(db, competency_id: str):
+    """{'tier', 'note'} for one skill, or None if the coverage table is not there."""
+    try:
+        r = await db.fetchrow("SELECT tier, note FROM competency_coverage WHERE competency_id = $1", competency_id)
+    except Exception as e:
+        if e.__class__.__name__ != "UndefinedTableError":
+            raise
+        return None
+    return {"tier": r["tier"], "note": r["note"]} if r else {"tier": "untested", "note": None}
 
 
 async def get_curriculum_week_for_competency(db, state_id: str, domain_id: str, competency_id: str) -> Optional[dict]:
@@ -466,6 +1022,15 @@ async def generate_dainik_yojana(
         stick_policy=stick_policy,
     )
     
+    # ── Reading passages (literacy): chosen in code from the content bank ──
+    group_passages = await retrieve_group_passages(
+        db, domain_id, {"progressor": competency_id, "proficient": proficient_comp.id}, plan_date)
+    ctx.group_passages = group_passages
+    independent_passages = await retrieve_independent_passages(
+        db, domain_id, {"progressor": beginner_target_id, "proficient": competency_id}, plan_date,
+        {ps["id"] for ps in group_passages.values()})
+    ctx.independent_passages = independent_passages
+
     # ── Call Claude ──
     system_prompt = build_system_prompt()
     user_prompt = build_user_prompt(ctx)
@@ -513,8 +1078,31 @@ async def generate_dainik_yojana(
     response_text = response_text.strip()
     
     plan_json = json.loads(response_text)
-    
-    validation_warnings = validate_plan_shape(plan_json)
+
+    for line in inject_passages(plan_json, group_passages):
+        print(f"   Passage: {line}")
+    for line in apply_bank_questions(plan_json, group_passages):
+        print(f"   Bank questions: {line}")
+    for line in inject_independent(plan_json, independent_passages):
+        print(f"   Independent practice: {line}")
+
+    # A talking point that builds an example bigger than the stick kit is rewritten once (only that text)
+    try:
+        plan_json, repair_log = await repair_stick_overflows(client, settings.claude_model, plan_json)
+        for line in repair_log:
+            print(f"   Stick repair: {line}")
+    except Exception as e:      # a failed repair must never break plan generation
+        print(f"   Stick repair skipped: {type(e).__name__}: {e}")
+
+    # Worksheet numbers (repeated answers, problems copied from the lesson) are repaired in code, not by the model
+    try:
+        for line in repair_worksheet_numbers(plan_json):
+            print(f"   Worksheet repair: {line}")
+    except Exception as e:      # never let a repair break plan generation
+        print(f"   Worksheet repair skipped: {type(e).__name__}: {e}")
+
+    validation_warnings = validate_plan_shape(plan_json, domain_id)
+    plan_json["coverage"] = await get_coverage(db, competency_id)      # shown on the plan screen
     if validation_warnings:
         print(f"   PLAN SHAPE WARNINGS ({len(validation_warnings)}):")
         for w in validation_warnings[:15]:

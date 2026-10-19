@@ -238,10 +238,15 @@ async def analyse_photos(
         photo_bytes_list.append(data)
     
     async with get_db() as db:
-        result = await review_service.analyse_worksheet_photos(
-            db, teacher_id, session_date, domain_id, competency_id,
-            worksheet_level, photo_bytes_list, teacher_pre_judgment,
-        )
+        try:
+            result = await review_service.analyse_worksheet_photos(
+                db, teacher_id, session_date, domain_id, competency_id,
+                worksheet_level, photo_bytes_list, teacher_pre_judgment,
+            )
+        except LookupError as e:
+            raise HTTPException(404, str(e))
+        except review_service.BadImageError as e:
+            raise HTTPException(400, f"{e}. Please choose a photo of the worksheet.")
         return result
 
 

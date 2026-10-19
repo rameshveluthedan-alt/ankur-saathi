@@ -71,6 +71,11 @@ export default function YojanaScreen() {
         <h1>📋 दैनिक योजना <span style={{fontSize:'0.75rem',color:'var(--text-secondary)',fontWeight:400}}>Daily Plan</span></h1>
         <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
           {currentPlan.plan_date} · {currentPlan.selected_competency_id}
+          {plan.coverage && plan.coverage.tier && plan.coverage.tier !== 'tested' && (
+            <span title={plan.coverage.note || ''} style={{ marginLeft: 8, background: '#FFF1CC', color: '#8A5A00', borderRadius: 8, padding: '1px 7px', fontSize: '0.65rem', fontWeight: 600 }}>
+              {({ ai_written: '◐ AI-लिखित सामग्री', experimental: '⚠ प्रयोगात्मक', untested: '○ अभी परखा नहीं' })[plan.coverage.tier]}
+            </span>
+          )}
         </span>
       </div>
 

@@ -1,0 +1,2 @@
+story_id,title_hi,author,illustrator,publisher,source_url,license,original_level,target_grade,difficulty,fluency_competency_id,comprehension_competency_ids,theme,setting,genre,text_file,excerpt_words
+EXAMPLE-1,कहानी का हिंदी शीर्षक,Name of the author as shown on the story page,Name of the illustrator,Pratham Books,https://storyweaver.org.in/en/stories/00000-example,CC BY 4.0,2,grade_2,medium,L2.5.1,L2.6.1;L2.6.2,family,rural,narrative,stories/example-1.txt,70

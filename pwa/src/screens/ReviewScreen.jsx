@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../App';
 import { recordDecisions, recordObserved, recordORF, analysePhotos } from '../services/api';
+import { compressImage } from '../utils/imageCompress';
 
 const GROUP_LABELS = {
   beginner: { hi: 'शुरुआती', en: 'Beginner' },
@@ -15,6 +16,7 @@ export default function ReviewScreen() {
   const [channel, setChannel] = useState(null);
   const [photos, setPhotos] = useState([]);
   const [analysisResult, setAnalysisResult] = useState(null);
+  const [sheetLevel, setSheetLevel] = useState('progressor');   // which group's worksheet the photos are of
   const [loading, setLoading] = useState(false);
   const [observedItems, setObservedItems] = useState([]);
   const [orfEntry, setOrfEntry] = useState({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });
@@ -36,9 +38,11 @@ export default function ReviewScreen() {
     setLoading(false);
   };
 
-  const handlePhotoCapture = (e) => {
+  const handlePhotoCapture = async (e) => {
     const files = Array.from(e.target.files);
-    setPhotos(prev => [...prev, ...files].slice(0, 6));
+    const shrunk = await Promise.all(files.map(f => compressImage(f)));      // 5-10 MB phone photos become a few hundred KB
+    setPhotos(prev => [...prev, ...shrunk].slice(0, 6));
+    e.target.value = '';
   };
 
   const submitPhotos = async () => {
@@ -50,8 +54,8 @@ export default function ReviewScreen() {
       fd.append('session_date', today);
       fd.append('domain_id', selectedDomain);
       fd.append('competency_id', currentPlan.selected_competency_id);
-      fd.append('worksheet_level', 'progressor');
-      fd.append('teacher_pre_judgment', decisions.progressor || '');
+      fd.append('worksheet_level', sheetLevel);
+      fd.append('teacher_pre_judgment', decisions[sheetLevel] || '');
       photos.forEach(p => fd.append('photos', p));
       const result = await analysePhotos(teacher.teacher_id, fd);
       setAnalysisResult(result);
@@ -198,6 +202,16 @@ export default function ReviewScreen() {
           {channel === 'photo' && (
             <div className="card">
               <h3 style={{ marginBottom: 4 }}>📸 वर्कशीट फ़ोटो (Worksheet Photos)</h3>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0' }}>किस समूह की वर्कशीट? (Which group's sheet?)</div>
+              <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
+                {[['beginner', 'शुरुआती', 'Beginner'], ['progressor', 'प्रगतिशील', 'Progressor'], ['proficient', 'दक्ष', 'Proficient']].map(([id, hi, en]) => (
+                  <button key={id} type="button" onClick={() => setSheetLevel(id)}
+                    style={{ flex: 1, padding: '6px 4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.75rem', fontWeight: 600,
+                             background: sheetLevel === id ? 'var(--green-dark)' : 'var(--surface)', color: sheetLevel === id ? 'white' : 'var(--text)' }}>
+                    {hi}<div style={{ fontSize: '0.6rem', fontWeight: 400 }}>{en}</div>
+                  </button>
+                ))}
+              </div>
               <div className="capture-area" onClick={() => fileInput.current?.click()}>
                 <div className="capture-icon">📷</div>
                 <p>वर्कशीट की फ़ोटो लें या चुनें</p>

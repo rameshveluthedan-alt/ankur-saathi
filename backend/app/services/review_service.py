@@ -82,6 +82,11 @@ async def record_observed_assessments(db, teacher_id: str, session_date: date, i
             continue
         
         await db.execute("""
+            DELETE FROM assessment_evidence
+            WHERE child_id = $1 AND competency_id = $2 AND session_date = $3 AND channel = 'observed'
+        """, child['id'], item['competency_id'], session_date)
+
+        await db.execute("""
             INSERT INTO assessment_evidence
                 (child_id, competency_id, teacher_id, channel, status,
                  evidence_data, confidence, session_date, assessment_tier)
@@ -94,12 +99,14 @@ async def record_observed_assessments(db, teacher_id: str, session_date: date, i
         
         # Update child_competency_status
         existing = await db.fetchrow("""
-            SELECT status, consecutive_days_at_status 
+            SELECT status, consecutive_days_at_status, last_assessment_date
             FROM child_competency_status
             WHERE child_id = $1 AND competency_id = $2
         """, child['id'], item['competency_id'])
-        
-        consecutive = (existing['consecutive_days_at_status'] + 1) if (existing and existing['status'] == item['status']) else 1
+
+        same_day = bool(existing and existing['last_assessment_date'] == session_date)   # a re-entry replaces, not adds a day
+        consecutive = (existing['consecutive_days_at_status'] + (0 if same_day else 1)) if (existing and existing['status'] == item['status']) else 1
+        count_increment = 0 if same_day else 1
         
         await db.execute("""
             INSERT INTO child_competency_status
@@ -108,12 +115,12 @@ async def record_observed_assessments(db, teacher_id: str, session_date: date, i
             VALUES ($1, $2, $3, 1, $4, $5, 'medium')
             ON CONFLICT (child_id, competency_id) DO UPDATE SET
                 status = EXCLUDED.status,
-                assessment_count = child_competency_status.assessment_count + 1,
+                assessment_count = child_competency_status.assessment_count + $6,
                 last_assessment_date = EXCLUDED.last_assessment_date,
                 consecutive_days_at_status = $5,
                 confidence = 'medium',
                 updated_at = NOW()
-        """, child['id'], item['competency_id'], item['status'], session_date, consecutive)
+        """, child['id'], item['competency_id'], item['status'], session_date, consecutive, count_increment)
         
         recorded += 1
     
@@ -170,6 +177,74 @@ async def record_orf_assessment(db, teacher_id: str, session_date: date, entry: 
     return {"status": "recorded", "roll_number": entry['roll_number'], "cwpm": entry['cwpm'], "classification": status}
 
 
+def _extract_json_array(text: str):
+    """Parse the model's JSON array even if it added a markdown fence or a line of preamble."""
+    text = (text or "").strip()
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+    i, j = text.find("["), text.rfind("]")
+    if i != -1 and j > i:
+        return json.loads(text[i:j + 1])
+    raise ValueError("The Vision reply did not contain a JSON array")
+
+
+class BadImageError(ValueError):
+    """The upload is not an image we can read."""
+
+
+def prepare_photo(data: bytes, max_side: int = 1800, quality: int = 85, max_bytes: int = 1_500_000) -> bytes:
+    """
+    Phone photos are 3 to 10 MB and often rotated by an EXIF flag, and the model API has a size limit.
+    Turn any upload into an upright JPEG with its longest side at most max_side and a size under max_bytes.
+    Handwriting stays legible at 1800 px. Anything that is not an image raises ValueError.
+    """
+    from io import BytesIO
+    from PIL import Image, ImageOps, UnidentifiedImageError
+    try:
+        img = Image.open(BytesIO(data))
+        img = ImageOps.exif_transpose(img)
+    except (UnidentifiedImageError, OSError) as e:
+        raise BadImageError("The upload is not a readable image") from e
+    img = img.convert("RGB")
+    if max(img.size) > max_side:
+        scale = max_side / max(img.size)
+        img = img.resize((round(img.width * scale), round(img.height * scale)), Image.LANCZOS)
+    for q in (quality, 75, 65, 55):
+        buf = BytesIO()
+        img.save(buf, "JPEG", quality=q, optimize=True)
+        if buf.tell() <= max_bytes:
+            break
+    return buf.getvalue()
+
+
+async def call_vision(photo_bytes_list: list, vision_prompt: str):
+    """
+    The one place the worksheet photos go to Claude Vision. Production and scripts/eval_vision.py both use it,
+    so what is measured is exactly what runs. Returns (the parsed JSON array, a usage dict).
+    """
+    settings = get_settings()
+    content = []
+    for photo_bytes in photo_bytes_list:
+        b64 = base64.b64encode(prepare_photo(photo_bytes)).decode("utf-8")
+        content.append({"type": "image", "source": {"type": "base64", "media_type": "image/jpeg", "data": b64}})
+    content.append({"type": "text", "text": vision_prompt})
+    client = anthropic.AsyncAnthropic(api_key=settings.anthropic_api_key)
+    response = await client.messages.create(
+        model=settings.claude_vision_model,
+        max_tokens=12000,
+        system=VISION_SYSTEM_PROMPT,
+        messages=[{"role": "user", "content": content}],
+        extra_body=CLAUDE_THINKING_BODY,
+    )
+    response_text = next((b.text for b in response.content if getattr(b, "type", None) == "text"), None)
+    if response_text is None:
+        raise ValueError(f"No text block found in Claude Vision's response. Block types received: {[getattr(b, 'type', '?') for b in response.content]}")
+    usage = {"input_tokens": getattr(response.usage, "input_tokens", 0), "output_tokens": getattr(response.usage, "output_tokens", 0)}
+    return _extract_json_array(response_text), usage
+
+
 async def analyse_worksheet_photos(
     db,
     teacher_id: str,
@@ -191,9 +266,15 @@ async def analyse_worksheet_photos(
     
     # Get worksheet problems (from today's plan)
     plan = await db.fetchrow("""
-        SELECT plan_content FROM daily_plans
+        SELECT plan_content, groups_snapshot FROM daily_plans
         WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3
     """, teacher_id, session_date, domain_id)
+    # Each level's sheet is credited to THAT group's own skill (the Beginner sheet to the prerequisite, the
+    # Proficient sheet to the extension), not to the day's main skill for all three.
+    if plan and plan['groups_snapshot']:
+        snap = plan['groups_snapshot']
+        snap = json.loads(snap) if isinstance(snap, str) else snap
+        competency_id = (snap.get(worksheet_level) or {}).get('target') or competency_id
     
     problems = []
     required_count = None
@@ -218,6 +299,12 @@ async def analyse_worksheet_photos(
     groups = await get_current_groups(db, teacher_id, domain_id)
     group_rolls = next((g['roll_numbers'] for g in groups if g['label'] == worksheet_level), [])
     
+    if not problems:
+        raise LookupError(
+            "No worksheet found for this date, subject and level. Generate today's plan first, "
+            "so the photos can be checked against its answer key."
+        )
+
     # Build Vision prompt
     vision_prompt = build_vision_prompt(
         worksheet_level=worksheet_level,
@@ -230,51 +317,14 @@ async def analyse_worksheet_photos(
         group_roll_numbers=group_rolls,
         photo_count=len(photo_bytes_list),
         required_count=required_count,
+        domain_id=domain_id,
     )
     
-    # Build Claude Vision request with images
-    content = []
-    for photo_bytes in photo_bytes_list:
-        b64 = base64.b64encode(photo_bytes).decode('utf-8')
-        content.append({
-            "type": "image",
-            "source": {"type": "base64", "media_type": "image/jpeg", "data": b64}
-        })
-    content.append({"type": "text", "text": vision_prompt})
-    
-    # Call Claude Vision
-    client = anthropic.AsyncAnthropic(api_key=settings.anthropic_api_key)
-    
-    response = await client.messages.create(
-        model=settings.claude_vision_model,
-        max_tokens=12000,
-        system=VISION_SYSTEM_PROMPT,
-        messages=[{"role": "user", "content": content}],
-        extra_body=CLAUDE_THINKING_BODY,
-    )
-    
-    response_text = None
-    for block in response.content:
-        if getattr(block, "type", None) == "text":
-            response_text = block.text
-            break
-    
-    if response_text is None:
-        raise ValueError(
-            f"No text block found in Claude Vision's response. "
-            f"Block types received: {[getattr(b, 'type', '?') for b in response.content]}"
-        )
-    
-    if "```json" in response_text:
-        response_text = response_text.split("```json", 1)[1]
-    if "```" in response_text:
-        response_text = response_text.split("```", 1)[0]
-    
-    vision_results = json.loads(response_text.strip())
+    vision_results, _usage = await call_vision(photo_bytes_list, vision_prompt)
     
     # Process into DB updates
     summary = await process_vision_results(
-        db, teacher_id, str(session_date), competency_id,
+        db, teacher_id, session_date, competency_id,
         vision_results, teacher_pre_judgment, required_count=required_count,
     )
     
