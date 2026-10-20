@@ -10,7 +10,7 @@ from datetime import date
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
-from vision_analysis import check_level_changes
+from vision_analysis import check_reassessment_flags
 
 
 async def get_bpp_summary(db, teacher_id: str) -> list[dict]:
@@ -42,8 +42,10 @@ async def get_children_progress(db, teacher_id: str) -> list[dict]:
             c.roll_number, c.enrolled_grade,
             num.bpp_level as num_bpp, num.current_competency_id as num_comp,
             num_c.name_hi as num_comp_hi,
+            COALESCE(GREATEST(num.last_assessed, num.level_changed_at), num.created_at)::date as num_as_of, num.source as num_source,
             lit.bpp_level as lit_bpp, lit.current_competency_id as lit_comp,
-            lit_c.name_hi as lit_comp_hi
+            lit_c.name_hi as lit_comp_hi,
+            COALESCE(GREATEST(lit.last_assessed, lit.level_changed_at), lit.created_at)::date as lit_as_of, lit.source as lit_source
         FROM children c
         LEFT JOIN child_lakshya_positions num 
             ON num.child_id = c.id AND num.domain_id = 'numeracy'
@@ -65,49 +67,21 @@ async def get_children_progress(db, teacher_id: str) -> list[dict]:
             "literacy_bpp": r['lit_bpp'],
             "literacy_competency_id": r['lit_comp'],
             "literacy_competency_name_hi": r['lit_comp_hi'],
+            # when the level was last set (registration, baseline or a periodic round), so the teacher can see how old it is
+            "numeracy_level_as_of": r['num_as_of'].isoformat() if r['num_as_of'] else None,
+            "numeracy_level_source": r['num_source'],
+            "literacy_level_as_of": r['lit_as_of'].isoformat() if r['lit_as_of'] else None,
+            "literacy_level_source": r['lit_source'],
         }
         for r in rows
     ]
 
 
-async def get_level_change_recommendations(db, teacher_id: str) -> dict:
-    """Get level change recommendations for both domains."""
-    numeracy_recs = await check_level_changes(db, teacher_id, 'numeracy')
-    literacy_recs = await check_level_changes(db, teacher_id, 'r1_literacy')
+async def get_reassessment_flags(db, teacher_id: str) -> dict:
+    """Children whose daily work no longer matches their level, per subject. A flag changes nothing: levels change only through an assessment."""
     return {
-        "numeracy": numeracy_recs,
-        "r1_literacy": literacy_recs,
-    }
-
-
-async def apply_level_change(db, teacher_id: str, child_id: str, domain_id: str, new_bpp: str):
-    """Apply a teacher-approved level change."""
-    current = await db.fetchrow("""
-        SELECT current_competency_id, bpp_level 
-        FROM child_lakshya_positions
-        WHERE child_id = $1 AND domain_id = $2
-    """, child_id, domain_id)
-    
-    if not current:
-        return {"status": "error", "message": "Position not found"}
-    
-    await db.execute("""
-        UPDATE child_lakshya_positions SET
-            previous_competency_id = current_competency_id,
-            previous_bpp_level = bpp_level,
-            bpp_level = $3,
-            source = 'daily',
-            level_changed_at = NOW(),
-            updated_at = NOW()
-        WHERE child_id = $1 AND domain_id = $2
-    """, child_id, domain_id, new_bpp)
-    
-    return {
-        "status": "applied",
-        "child_id": child_id,
-        "domain_id": domain_id,
-        "from": current['bpp_level'],
-        "to": new_bpp,
+        "numeracy": await check_reassessment_flags(db, teacher_id, 'numeracy'),
+        "r1_literacy": await check_reassessment_flags(db, teacher_id, 'r1_literacy'),
     }
 
 
@@ -143,3 +117,24 @@ async def export_mlo_report_csv(db, teacher_id: str) -> str:
         ])
     
     return output.getvalue()
+
+
+async def export_class_report_csv(db, teacher_id: str) -> str:
+    """The teacher's OWN class report, with names. It is separate from the officer (MLO) report, which has roll numbers only."""
+    from app.services import names_service
+    children = await get_children_progress(db, teacher_id)
+    names = await names_service.names_for_teacher(db, teacher_id)
+    school_rolls = {}
+    try:
+        school_rolls = {r["roll_number"]: r["school_roll"] for r in await db.fetch("SELECT roll_number, school_roll FROM children WHERE teacher_id = $1", teacher_id)}
+    except Exception as e:
+        if e.__class__.__name__ != "UndefinedColumnError":
+            raise
+    out = io.StringIO()
+    w = csv.writer(out)
+    w.writerow(['Class No', 'Grade', 'School Roll', 'Name', 'Numeracy Level', 'Numeracy Skill', 'Literacy Level', 'Literacy Skill'])
+    for c in children:
+        w.writerow([c['roll_number'], c['enrolled_grade'], school_rolls.get(c['roll_number']) or '', names.get(c['roll_number'], ''),
+                    c['numeracy_bpp'] or '', (c['numeracy_competency_id'] or '') + ' ' + (c['numeracy_competency_name_hi'] or ''),
+                    c['literacy_bpp'] or '', (c['literacy_competency_id'] or '') + ' ' + (c['literacy_competency_name_hi'] or '')])
+    return out.getvalue()

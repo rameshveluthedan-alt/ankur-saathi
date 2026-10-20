@@ -10,6 +10,8 @@ from dataclasses import dataclass, field, asdict
 from datetime import date
 from typing import Optional
 
+from hindi_style import STYLE_PROMPT          # the Hindi tone rules from Vaishnavi's review (prompts/hindi_style.py)
+
 
 # ============================================================================
 # DATA CLASSES — typed structures for the orchestration context
@@ -442,7 +444,7 @@ Keep every talking point to at most 3 short sentences. Be concise; do not repeat
     "independent_activities_hi": {"beginner": "...", "progressor": "...", "proficient": "..."}
   },
   "review_prompts": {
-    "photo_sample_rolls": {"beginner": [<roll numbers>], "progressor": [...], "proficient": [...]},
+    "photo_sample_rolls": {"beginner": [], "progressor": [], "proficient": []},
     "observation_reminders_hi": ["..."]
   },
   "explainability": {
@@ -609,10 +611,10 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
         reteach_groups = [r.get('group', 'beginner') for r in ctx.reteach_competencies]
         if 'progressor' in reteach_groups:
             priority_group = "progressor"
-            priority_reason = f"Yesterday's analysis detected misconceptions in Progressor group."
+            priority_reason = f"The last review detected misconceptions in Progressor group."
         elif 'proficient' in reteach_groups:
             priority_group = "proficient"
-            priority_reason = f"Yesterday's analysis detected misconceptions in Proficient group."
+            priority_reason = f"The last review detected misconceptions in Proficient group."
     
     # Build misconception section
     misconception_text = ""
@@ -638,11 +640,11 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     # Build reteach section
     reteach_text = ""
     if ctx.reteach_competencies:
-        reteach_text = "Yesterday's gaps require a 5-minute re-teaching segment:\n"
+        reteach_text = "The last review's gaps require a 5-minute re-teaching segment:\n"
         for r in ctx.reteach_competencies:
             reteach_text += f"- {r['competency_id']}: {r['misconception_name_hi']} ({r['affected_count']} children)\n"
     else:
-        reteach_text = "No re-teaching needed from yesterday."
+        reteach_text = "No re-teaching needed from the last review."
     
     # Build intervention section
     intervention_text = ""
@@ -688,6 +690,12 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
             obs_text += f"  - {oc['id']}: {oc['name_hi']} — for Roll Nos. {oc['target_roll_numbers']}\n"
     
     # Passages chosen in code from the content bank: the model must use them, not invent its own
+    hindi_style_text = (
+        "\n### HINDI STYLE FOR THE TEACHER'S WORDS\n"
+        "- Write the teacher's first person without gender: use 'पढ़ता/पढ़ती हूँ' or 'हम पढ़ते हैं', never only the feminine forms, and write 'शिक्षक', not 'शिक्षिका'.\n"
+        "- Use 'स्वतंत्र अभ्यास' for independent practice.\n"
+        "- In place-value and number-reading problems, never print the numeral beside its number word: write 'छत्तीस लिखिए', not 'छत्तीस (36) लिखिए'. "
+        "The system writes and checks every Hindi number word from its digits, so do not worry about spelling them.\n" + STYLE_PROMPT)
     passages_text = ""
     if ctx.group_passages:
         passages_text = "\n### FIXED READING PASSAGES (from the content bank: do NOT invent or change a passage)\n"
@@ -713,9 +721,6 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
                                   + "".join(f"  Question {n}: {q['question_hi']}\n" for n, q in enumerate(qs, 1)))
             passages_text += ("Rules: in every teach block's other_groups_hi and in classroom_management.independent_activities_hi, send these groups to THEIR passage "
                               "by its title and tell them to answer its listed questions. Do not mention any other independent text.\n")
-        passages_text += ("\n### HINDI STYLE FOR THE TEACHER'S WORDS\n"
-                          "- Write the teacher's first person without gender: use 'पढ़ता/पढ़ती हूँ' or 'हम पढ़ते हैं', never only the feminine forms.\n"
-                          "- Use 'स्वतंत्र अभ्यास' for independent practice.\n")
 
     # Compute rotation timing
     anchor_duration = 10
@@ -825,10 +830,11 @@ Each block: I Do → We Do → You Do with Hindi talking points.
 Rotation chart, peer monitors, transition scripts (Hindi), independent station activities (on PREVIOUSLY MASTERED content only).
 
 ### PART E: REVIEW PROMPTS
-- Photo sample: ALL of {rotation_order[0]}, 3-4 each from other groups
+- Photo sample: leave photo_sample_rolls as empty lists. The system chooses which children to photograph
 - Observation: {obs_text if obs_text else 'No observed-modality competencies today.'}
 {'- ORF: Roll Nos. ' + str(ctx.orf_roll_numbers) + ' on passage ' + ctx.orf_passage_id if ctx.orf_scheduled else ''}
 {passages_text}
+{hindi_style_text}
 {output_schema}
 """
     

@@ -13,13 +13,41 @@ from datetime import date
 # ============================================================================
 
 class LoginRequest(BaseModel):
-    phone_hash: str = Field(..., description="SHA-256 hash of phone number")
+    phone_hash: str = Field(..., description="'hash_' + the phone number: an identifier, not a secret. The PIN is the secret.")
+    pin: str = Field(..., description="4 to 6 digits")
+
+
+class RegisterTeacherRequest(BaseModel):
+    phone_hash: str
+    school_code: str
+    enrolled_grades: list[str]
+    pin: str
+    join_code: Optional[str] = None      # required when the school already exists: the admin shares it
+
+
+class ChangePinRequest(BaseModel):
+    current_pin: str
+    new_pin: str
+
+
+class RegisterCommitRequest(BaseModel):
+    teacher_id: str
+    filename: Optional[str] = None
+    rows: list[dict]
+
 
 class LoginResponse(BaseModel):
     teacher_id: str
     school_code: str
     enrolled_grades: list[str]
     total_children: int
+    token: Optional[str] = None
+    role: str = "teacher"
+    must_change_pin: bool = False
+    is_demo: bool = False
+    pin_fixed: bool = False
+    join_code: Optional[str] = None       # only when this registration created a new school (so its admin sees it once)
+    expires_in_hours: Optional[float] = None
 
 
 # ============================================================================
@@ -110,9 +138,12 @@ class PhotoAnalysisRequest(BaseModel):
 
 class ChildAnalysisResult(BaseModel):
     roll_number: int
-    accuracy: float
+    accuracy: Optional[float] = None         # None when nothing could be scored (every problem copied differently or blank)
     status: str
     misconceptions: list[str]
+    assessed_problems: Optional[int] = None  # how many problems the accuracy is out of
+    copy_errors: list[dict] = []             # problems the child copied differently: shown to the teacher, not scored
+    needs_check: list[int] = []              # problems the AI was not sure it read: check them in the notebook
 
 class PhotoAnalysisResponse(BaseModel):
     children_analysed: int
@@ -121,6 +152,13 @@ class PhotoAnalysisResponse(BaseModel):
     misconceptions_detected: list[dict]
     discrepancy: Optional[dict] = None
     per_child: list[ChildAnalysisResult]
+    skipped_duplicates: list[dict] = []      # children already analysed today: the earlier result was kept
+    duplicates_in_batch: list[int] = []      # a child photographed twice in one batch: the clearer photo was used
+    unknown_rolls: list[int] = []            # roll numbers that are not in this class
+    outside_group_rolls: list[int] = []      # a sheet from another group than the one selected
+    not_assessed: list[int] = []             # nothing on the sheet could be scored
+    unreadable_sheets: int = 0               # sheets whose roll number could not be read
+    copy_errors_excluded: int = 0            # problems left out of the scores because they were copied differently
 
 
 # ============================================================================
@@ -136,6 +174,10 @@ class ChildProgressEntry(BaseModel):
     literacy_bpp: Optional[str] = None
     literacy_competency_id: Optional[str] = None
     literacy_competency_name_hi: Optional[str] = None
+    numeracy_level_as_of: Optional[str] = None
+    numeracy_level_source: Optional[str] = None
+    literacy_level_as_of: Optional[str] = None
+    literacy_level_source: Optional[str] = None
 
 class BPPSummary(BaseModel):
     domain_id: str
@@ -146,7 +188,7 @@ class BPPSummary(BaseModel):
 class ProgressDashboardResponse(BaseModel):
     bpp_summary: list[BPPSummary]
     children: list[ChildProgressEntry]
-    level_change_recommendations: list[dict]
+    reassessment_flags: dict
 
 
 # ============================================================================

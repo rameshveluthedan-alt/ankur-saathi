@@ -3,22 +3,23 @@ Ankur Saathi — API Routes
 Organized by PWA screen: Plan, Dainik Yojana, Review, Progress.
 """
 
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
-from fastapi.responses import PlainTextResponse, HTMLResponse
+from fastapi import APIRouter, Depends, HTTPException, Request, UploadFile, File, Form
+from fastapi.responses import PlainTextResponse, HTMLResponse, Response
 import json
 from datetime import date
 from typing import Optional
 
 from app.core.database import get_db
+from app.core.security import ensure_owner
 from app.models.schemas import (
-    LoginRequest, LoginResponse,
+    RegisterCommitRequest,
     GeneratePlanRequest, GeneratePlanResponse,
     AdvanceReteachRequest, ObservedAssessmentRequest, ORFEntryRequest,
     PhotoAnalysisResponse,
     ProgressDashboardResponse,
     StartBaselineRequest, SubmitBaselineRequest,
 )
-from app.services import plan_service, review_service, progress_service, worksheet_service
+from app.services import ai_budget, plan_service, review_service, progress_service, worksheet_service, register_service, names_service
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
@@ -31,27 +32,61 @@ router = APIRouter()
 # AUTH
 # ============================================================================
 
-@router.post("/auth/login", response_model=LoginResponse, tags=["Auth"])
-async def login(req: LoginRequest):
-    """Simple phone-hash login. Returns teacher context."""
+# ============================================================================
+# CLASS REGISTER (bulk enrolment)
+# ============================================================================
+
+def _needs_register_sql(e: Exception):
+    if e.__class__.__name__ in ("UndefinedColumnError", "UndefinedTableError"):
+        raise HTTPException(503, "The class register needs a database update: run db/schema/07_register.sql, then restart the backend.")
+    raise e
+
+
+@router.get("/children/names/{teacher_id}", tags=["Register"])
+async def get_child_names(teacher_id: str):
+    """The names the teacher entered, for HER OWN screens. Never used for anything sent to the AI."""
     async with get_db() as db:
-        teacher = await db.fetchrow("""
-            SELECT t.id, t.enrolled_grades, s.school_code,
-                   (SELECT count(*) FROM children WHERE teacher_id = t.id AND is_active = TRUE) as child_count
-            FROM teachers t
-            JOIN schools s ON t.school_id = s.id
-            WHERE t.phone_hash = $1
-        """, req.phone_hash)
-        
-        if not teacher:
-            raise HTTPException(status_code=404, detail="Teacher not found")
-        
-        return LoginResponse(
-            teacher_id=str(teacher['id']),
-            school_code=teacher['school_code'],
-            enrolled_grades=teacher['enrolled_grades'],
-            total_children=teacher['child_count'],
-        )
+        return {"names": {str(k): v for k, v in (await names_service.names_for_teacher(db, teacher_id)).items()}}
+
+
+@router.get("/register/template", tags=["Register"])
+async def register_template():
+    """The CSV template for a class register: grade, roll_number and optional starting levels. No names."""
+    return Response(content="\ufeff" + register_service.TEMPLATE_CSV, media_type="text/csv; charset=utf-8",
+                    headers={"Content-Disposition": "attachment; filename=class_register_template.csv"})
+
+
+@router.post("/register/preview", tags=["Register"])
+async def register_preview(request: Request, teacher_id: str = Form(...), file: UploadFile = File(...)):
+    """Read a register file and show what would happen. Nothing is written."""
+    ensure_owner(request, teacher_id)
+    data = await file.read()
+    if len(data) > 1_000_000:
+        raise HTTPException(400, "The file is too large for a class register.")
+    async with get_db() as db:
+        try:
+            return await register_service.preview_register(db, teacher_id, data, file.filename or "")
+        except LookupError as e:
+            raise HTTPException(404, str(e))
+        except ValueError as e:
+            raise HTTPException(400, str(e))
+        except Exception as e:
+            _needs_register_sql(e)
+
+
+@router.post("/register/commit", tags=["Register"])
+async def register_commit(req: RegisterCommitRequest, request: Request):
+    """Enrol the children from a previewed register. Already-enrolled children are skipped; rows with errors are not added."""
+    ensure_owner(request, req.teacher_id)
+    async with get_db() as db:
+        try:
+            return await register_service.commit_register(db, req.teacher_id, req.rows, req.filename or "")
+        except LookupError as e:
+            raise HTTPException(404, str(e))
+        except ValueError as e:
+            raise HTTPException(400, str(e))
+        except Exception as e:
+            _needs_register_sql(e)
 
 
 # ============================================================================
@@ -107,6 +142,8 @@ async def generate_plan(req: GeneratePlanRequest, teacher_id: str):
                 db, teacher_id, req.competency_id, req.domain_id, req.plan_date
             )
             return result
+        except ai_budget.AICapReached as e:
+            raise HTTPException(429, {"message": e.message, "code": "ai_cap", "reason": e.reason, "sample_skills": ai_budget.sample_skills()})
         except Exception as e:
             import traceback
             traceback.print_exc()
@@ -164,6 +201,7 @@ async def get_cached_plan(teacher_id: str, plan_date: date, domain_id: str):
             "plan": plan,
             "explainability": plan.get('explainability', {}),
             "generation_time_ms": row['generation_time_ms'],
+            "served_from": plan.get('served_from', 'ai'),
         }
 
 
@@ -211,12 +249,15 @@ async def record_orf(req: ORFEntryRequest, teacher_id: str):
 
 @router.post("/review/analyse-photos", response_model=PhotoAnalysisResponse, tags=["Review"])
 async def analyse_photos(
+    request: Request,
     teacher_id: str = Form(...),
     session_date: date = Form(...),
     domain_id: str = Form(...),
     competency_id: str = Form(...),
     worksheet_level: str = Form(...),
     teacher_pre_judgment: Optional[str] = Form(None),
+    on_duplicate: str = Form("skip"),               # a child already analysed today: 'skip' keeps the earlier result
+    replace_rolls: Optional[str] = Form(None),      # comma-separated roll numbers to overwrite
     photos: list[UploadFile] = File(...),
 ):
     """
@@ -225,6 +266,7 @@ async def analyse_photos(
     Returns per-child results with misconception diagnosis.
     """
     from app.core.config import get_settings
+    ensure_owner(request, teacher_id)
     settings = get_settings()
     
     if len(photos) > settings.max_images_per_batch:
@@ -242,12 +284,49 @@ async def analyse_photos(
             result = await review_service.analyse_worksheet_photos(
                 db, teacher_id, session_date, domain_id, competency_id,
                 worksheet_level, photo_bytes_list, teacher_pre_judgment,
+                on_duplicate=on_duplicate if on_duplicate in ("skip", "replace") else "skip",
+                replace_rolls=[int(x) for x in (replace_rolls or "").split(",") if x.strip().isdigit()],
             )
         except LookupError as e:
             raise HTTPException(404, str(e))
         except review_service.BadImageError as e:
             raise HTTPException(400, f"{e}. Please choose a photo of the worksheet.")
+        except ai_budget.AICapReached as e:
+            raise HTTPException(429, {"message": e.message, "code": "ai_cap", "reason": e.reason})
+        # keep what the teacher is about to see, so Back or a reload does not lose it (a run that found only
+        # children already analysed has nothing new to keep, and must not hide the earlier analysis)
+        if result.get("children_analysed"):
+            await review_service.save_analysis(db, teacher_id, session_date, domain_id, worksheet_level, competency_id,
+                                               PhotoAnalysisResponse(**result).model_dump(mode="json"))
         return result
+
+
+@router.get("/review/channels/{teacher_id}/{session_date}/{domain_id}", tags=["Review"])
+async def get_review_channels(teacher_id: str, session_date: date, domain_id: str):
+    """Which evidence channel (photo, observed, oral reading) each group's skill needs today."""
+    async with get_db() as db:
+        return await review_service.get_review_channels(db, teacher_id, session_date, domain_id)
+
+
+@router.get("/review/coverage/{teacher_id}/{session_date}/{domain_id}/{worksheet_level}", tags=["Review"])
+async def get_review_coverage(teacher_id: str, session_date: date, domain_id: str, worksheet_level: str,
+                              sample_size: Optional[int] = None, absent: Optional[str] = None, channel: str = "photo"):
+    """
+    Who in the group has been analysed today and who is still to do (so no one is photographed twice), and, for a large
+    group, a suggested sample (systematic sampling). `absent` is a comma-separated list of sampled children who are away.
+    """
+    async with get_db() as db:
+        return await review_service.get_review_coverage(
+            db, teacher_id, session_date, domain_id, worksheet_level, sample_size=sample_size,
+            absent=[int(x) for x in (absent or "").split(",") if x.strip().isdigit()],
+            channel=channel if channel in ("photo", "observed", "orf") else "photo")
+
+
+@router.get("/review/analyses/{teacher_id}/{session_date}/{domain_id}", tags=["Review"])
+async def get_saved_analyses(teacher_id: str, session_date: date, domain_id: str):
+    """The latest photo analysis for each worksheet level on a day, to reopen after going back or reloading."""
+    async with get_db() as db:
+        return {"analyses": await review_service.get_latest_analyses(db, teacher_id, session_date, domain_id)}
 
 
 # ============================================================================
@@ -256,28 +335,27 @@ async def analyse_photos(
 
 @router.get("/progress/dashboard/{teacher_id}", tags=["Progress"])
 async def get_progress_dashboard(teacher_id: str):
-    """Full progress dashboard: B/P/P summary + per-child tracker + level change recommendations."""
+    """Full progress dashboard: B/P/P summary, the per-child tracker, and 're-assess' flags. Levels change only through an assessment."""
     async with get_db() as db:
         bpp = await progress_service.get_bpp_summary(db, teacher_id)
         children = await progress_service.get_children_progress(db, teacher_id)
-        level_changes = await progress_service.get_level_change_recommendations(db, teacher_id)
+        flags = await progress_service.get_reassessment_flags(db, teacher_id)
         
         return {
             "bpp_summary": bpp,
             "children": children,
-            "level_change_recommendations": level_changes,
+            "reassessment_flags": flags,
         }
 
 
-@router.post("/progress/level-change", tags=["Progress"])
-async def apply_level_change(teacher_id: str, child_id: str, domain_id: str, new_bpp: str):
-    """Teacher approves a level change recommendation."""
-    if new_bpp not in ('beginner', 'progressor', 'proficient'):
-        raise HTTPException(400, "new_bpp must be beginner, progressor, or proficient")
-    
+@router.get("/progress/export/class/{teacher_id}", tags=["Progress"])
+async def export_class_csv(teacher_id: str):
+    """The teacher's own class report WITH names. The officer (MLO) report below has roll numbers only."""
     async with get_db() as db:
-        result = await progress_service.apply_level_change(db, teacher_id, child_id, domain_id, new_bpp)
-        return result
+        content = await progress_service.export_class_report_csv(db, teacher_id)
+        from app.services import auth_service
+        await auth_service.log_event(db, teacher_id, "class_report_export")        # a report with names leaves the app: it is logged
+    return Response(content="\ufeff" + content, media_type="text/csv; charset=utf-8", headers={"Content-Disposition": "attachment; filename=class_report.csv"})
 
 
 @router.get("/progress/export/{teacher_id}", tags=["Progress"])
@@ -403,6 +481,13 @@ async def get_worksheet(teacher_id: str, plan_date: date, domain_id: str, level:
             "SELECT name_hi, name_en FROM competencies WHERE id = $1", comp_id
         )
         
+        try:
+            class_numbers = bool(await db.fetchval(
+                "SELECT EXISTS (SELECT 1 FROM children WHERE teacher_id = $1 AND school_roll IS NOT NULL AND school_roll <> roll_number)", teacher_id))
+        except Exception as e:                       # a database that has not loaded db/schema/07_register.sql yet: the worksheet says Roll No.
+            if e.__class__.__name__ != "UndefinedColumnError":
+                raise
+            class_numbers = False
         html = worksheet_service.render_worksheet(
             plan_data=plan_data,
             level=level,
@@ -411,6 +496,7 @@ async def get_worksheet(teacher_id: str, plan_date: date, domain_id: str, level:
             competency_name_en=comp['name_en'] if comp else '',
             domain_id=domain_id,
             plan_date=str(plan_date),
+            class_numbers=class_numbers,
         )
         return HTMLResponse(content=html)
 

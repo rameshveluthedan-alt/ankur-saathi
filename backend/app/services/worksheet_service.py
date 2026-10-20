@@ -130,6 +130,7 @@ def render_worksheet(
     competency_name_en: str,
     domain_id: str,
     plan_date: str,
+    class_numbers: bool = False,       # the class uses numbers that carry the grade (305 = Grade 3, roll 5)
 ) -> str:
     """
     Render a printable worksheet HTML from plan data.
@@ -196,6 +197,7 @@ def render_worksheet(
     # Render template
     template = jinja_env.get_template("worksheet.html")
     html = template.render(
+        class_numbers=class_numbers,
         title=f"{competency_id} — {competency_name_hi}",
         competency_id=competency_id,
         competency_name_hi=competency_name_hi,

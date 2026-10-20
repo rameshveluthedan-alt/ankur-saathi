@@ -16,10 +16,15 @@ import anthropic
 
 from app.core.config import get_settings
 from app.core.database import get_db
+from app.services import ai_budget
+from app.services.sampling import sample_for_group
+from app.services.hindi_numbers import find_number_word_errors, find_numeric_overlaps, repair_place_value
 
 # Import the orchestration module (copied from prompts/ into services/ or added to path)
+import copy
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
+import hindi_style
 from orchestrate import (
     OrchestrationContext, Competency, GroupInfo, Prerequisite,
     Misconception, AnchorTemplate, InterventionTemplate, TLMRef,
@@ -512,6 +517,7 @@ async def repair_stick_overflows(client, model: str, plan: dict) -> tuple[dict, 
             'Return JSON only: {"fixes":[{"teach_group":"...","key":"...","text":"..."}]}\n\n' + "\n\n".join(items))
     data, model_note = {}, ""
     try:
+        await ai_budget.guard("plan_repair")                      # over the AI limit: skip the repair (the plan is still valid)
         response = await client.messages.create(
             model=model, max_tokens=2500,
             system="You make one small correction to a teacher's talking point in a Hindi lesson plan. Output JSON only.",
@@ -520,6 +526,7 @@ async def repair_stick_overflows(client, model: str, plan: dict) -> tuple[dict, 
         )
         text = next((b.text for b in response.content if getattr(b, "type", None) == "text"), "")
         print(f"   Stick repair call: usage={response.usage}")
+        await ai_budget.record_ctx("plan_repair", model, response.usage)
         try:
             data = json.loads(text)
         except json.JSONDecodeError:
@@ -663,6 +670,8 @@ def validate_plan_shape(plan: dict, domain_id: str = None) -> list[str]:
                 if not it.get(k):
                     issues.append(f"explainability.items[{i}].{k} missing")
 
+    if domain_id == "numeracy":
+        issues += find_number_word_errors(plan) + find_numeric_overlaps(plan)
     if domain_id == "r1_literacy":
         issues += find_text_overlaps(plan)
         text = json.dumps({"o": [b.get("other_groups_hi") for b in blocks], "c": plan.get("classroom_management")}, ensure_ascii=False)
@@ -740,6 +749,32 @@ async def get_curriculum_week(db, state_id: str, grade_level: str, domain_id: st
         LIMIT 1
     """, state_id, grade_level, domain_id, week_number)
     return dict(row) if row else None
+
+
+FEEDBACK_LOOKBACK_DAYS = 7
+
+
+async def previous_review_feedback(db, teacher_id: str, domain_id: str, plan_date):
+    """
+    The misconceptions found at the teacher's most recent review before plan_date, and the date of that review.
+
+    It looks back up to a week, not only at the previous calendar day: a Friday review must still feed a Monday plan. It looks only
+    at the same subject, so numeracy gaps never turn into a literacy re-teach. If the last review found no misconceptions the result
+    is empty (the group got it). Returns ([], None) when there was no review in the last week.
+    """
+    feedback_date = await db.fetchval("""
+        SELECT max(e.session_date) FROM assessment_evidence e
+        JOIN competencies c ON c.id = e.competency_id JOIN subdomains s ON s.id = c.subdomain_id
+        WHERE e.teacher_id = $1 AND s.domain_id = $2 AND e.session_date < $3::date AND e.session_date >= $3::date - $4::int
+    """, teacher_id, domain_id, plan_date, FEEDBACK_LOOKBACK_DAYS)
+    if not feedback_date:
+        return [], None
+    rows = await db.fetch("""
+        SELECT DISTINCT unnest(e.detected_misconception_ids) AS misc_id FROM assessment_evidence e
+        JOIN competencies c ON c.id = e.competency_id JOIN subdomains s ON s.id = c.subdomain_id
+        WHERE e.teacher_id = $1 AND s.domain_id = $2 AND e.session_date = $3 AND e.detected_misconception_ids IS NOT NULL
+    """, teacher_id, domain_id, feedback_date)
+    return [r["misc_id"] for r in rows], feedback_date
 
 
 async def get_current_groups(db, teacher_id: str, domain_id: str) -> list[dict]:
@@ -922,14 +957,8 @@ async def generate_dainik_yojana(
         db, settings.default_state_id, selected.grade_level, domain_id, week_number
     )
     
-    # ── Yesterday's feedback ──
-    yesterday_evidence = await db.fetch("""
-        SELECT DISTINCT unnest(detected_misconception_ids) as misc_id
-        FROM assessment_evidence
-        WHERE teacher_id = $1 AND session_date = $2::date - interval '1 day'
-          AND detected_misconception_ids IS NOT NULL
-    """, teacher_id, plan_date)
-    yesterday_misc_ids = [r['misc_id'] for r in yesterday_evidence]
+    # ── The last review's feedback (the most recent review within a week, in THIS subject) ──
+    yesterday_misc_ids, feedback_date = await previous_review_feedback(db, teacher_id, domain_id, plan_date)
     
     reteach_competencies = []
     if yesterday_misc_ids:
@@ -940,9 +969,9 @@ async def generate_dainik_yojana(
             if misc_detail:
                 count = await db.fetchval("""
                     SELECT count(DISTINCT child_id) FROM assessment_evidence
-                    WHERE teacher_id = $1 AND session_date = $2::date - interval '1 day'
+                    WHERE teacher_id = $1 AND session_date = $2::date
                       AND $3 = ANY(detected_misconception_ids)
-                """, teacher_id, plan_date, mid)
+                """, teacher_id, feedback_date, mid)
                 reteach_competencies.append({
                     "competency_id": misc_detail['competency_id'],
                     "misconception_name_hi": misc_detail['name_hi'],
@@ -1031,53 +1060,68 @@ async def generate_dainik_yojana(
         {ps["id"] for ps in group_passages.values()})
     ctx.independent_passages = independent_passages
 
-    # ── Call Claude ──
-    system_prompt = build_system_prompt()
-    user_prompt = build_user_prompt(ctx)
+    # ── Call Claude, unless the AI limit is reached: then a recorded plan for the same skill goes through the SAME checks and repairs ──
+    ai_budget.bind(db, teacher_id)
+    served_from, recorded = "ai", None
+    try:
+        await ai_budget.check(db, teacher_id, "plan")
+    except ai_budget.AICapReached:
+        recorded = ai_budget.sample_plan_for(competency_id)
+        if recorded is None:
+            raise
+        served_from = "sample"
+    client = None
+    if served_from == "sample":
+        plan_json = copy.deepcopy(recorded)
+        print("   AI limit reached: serving a recorded sample plan for this skill")
+    else:
+        system_prompt = build_system_prompt()
+        user_prompt = build_user_prompt(ctx)
     
-    client = anthropic.AsyncAnthropic(api_key=settings.anthropic_api_key)
+        client = anthropic.AsyncAnthropic(api_key=settings.anthropic_api_key)
     
-    response = await client.messages.create(
-        model=settings.claude_model,
-        max_tokens=settings.claude_max_tokens,
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_prompt}],
-        extra_body=CLAUDE_THINKING_BODY,
-    )
-    
-    # Find the text block — content[0] may be a thinking block on some models,
-    # so search for the block with type == "text" rather than assuming position.
-    response_text = None
-    for block in response.content:
-        if getattr(block, "type", None) == "text":
-            response_text = block.text
-            break
-    
-    print(f"   Claude: stop_reason={response.stop_reason}, usage={response.usage}")
-    
-    if response_text is None:
-        raise ValueError(
-            f"No text block found in Claude's response. "
-            f"Block types: {[getattr(b, 'type', '?') for b in response.content]}, "
-            f"stop_reason={response.stop_reason}. "
-            f"If stop_reason is 'max_tokens', thinking used the whole budget: "
-            f"raise CLAUDE_MAX_TOKENS in .env."
+        response = await client.messages.create(
+            model=settings.claude_model,
+            max_tokens=settings.claude_max_tokens,
+            system=system_prompt,
+            messages=[{"role": "user", "content": user_prompt}],
+            extra_body=CLAUDE_THINKING_BODY,
         )
+        await ai_budget.record(db, teacher_id, "plan", settings.claude_model, response.usage)     # paid for, whatever happens to the reply next
     
-    if response.stop_reason == "max_tokens":
-        raise ValueError(
-            "Claude's response was cut off by max_tokens, so the plan JSON is incomplete. "
-            "Raise CLAUDE_MAX_TOKENS in .env."
-        )
+        # Find the text block — content[0] may be a thinking block on some models,
+        # so search for the block with type == "text" rather than assuming position.
+        response_text = None
+        for block in response.content:
+            if getattr(block, "type", None) == "text":
+                response_text = block.text
+                break
     
-    # Strip markdown fences if Claude wraps in ```json
-    if "```json" in response_text:
-        response_text = response_text.split("```json", 1)[1]
-    if "```" in response_text:
-        response_text = response_text.split("```", 1)[0]
-    response_text = response_text.strip()
+        print(f"   Claude: stop_reason={response.stop_reason}, usage={response.usage}")
     
-    plan_json = json.loads(response_text)
+        if response_text is None:
+            raise ValueError(
+                f"No text block found in Claude's response. "
+                f"Block types: {[getattr(b, 'type', '?') for b in response.content]}, "
+                f"stop_reason={response.stop_reason}. "
+                f"If stop_reason is 'max_tokens', thinking used the whole budget: "
+                f"raise CLAUDE_MAX_TOKENS in .env."
+            )
+    
+        if response.stop_reason == "max_tokens":
+            raise ValueError(
+                "Claude's response was cut off by max_tokens, so the plan JSON is incomplete. "
+                "Raise CLAUDE_MAX_TOKENS in .env."
+            )
+    
+        # Strip markdown fences if Claude wraps in ```json
+        if "```json" in response_text:
+            response_text = response_text.split("```json", 1)[1]
+        if "```" in response_text:
+            response_text = response_text.split("```", 1)[0]
+        response_text = response_text.strip()
+    
+        plan_json = json.loads(response_text)
 
     for line in inject_passages(plan_json, group_passages):
         print(f"   Passage: {line}")
@@ -1087,10 +1131,17 @@ async def generate_dainik_yojana(
         print(f"   Independent practice: {line}")
 
     # A talking point that builds an example bigger than the stick kit is rewritten once (only that text)
+    try:                                         # the Hindi tone rules, as a safety net: whole-word swaps in what the teacher says and reads
+        style = hindi_style.soften_plan(plan_json)
+        if style:
+            print(f"   Hindi style: {sum(style.values())} wording changes ({', '.join(f'{k} x{v}' for k, v in sorted(style.items()))})")
+    except Exception as e:
+        print(f"   Hindi style step skipped: {type(e).__name__}: {e}")
     try:
-        plan_json, repair_log = await repair_stick_overflows(client, settings.claude_model, plan_json)
-        for line in repair_log:
-            print(f"   Stick repair: {line}")
+        if served_from == "ai":
+            plan_json, repair_log = await repair_stick_overflows(client, settings.claude_model, plan_json)
+            for line in repair_log:
+                print(f"   Stick repair: {line}")
     except Exception as e:      # a failed repair must never break plan generation
         print(f"   Stick repair skipped: {type(e).__name__}: {e}")
 
@@ -1100,6 +1151,27 @@ async def generate_dainik_yojana(
             print(f"   Worksheet repair: {line}")
     except Exception as e:      # never let a repair break plan generation
         print(f"   Worksheet repair skipped: {type(e).__name__}: {e}")
+
+    # Place-value and number-reading worksheets: number words written from the digits, answers not printed in the question,
+    # numbers the lesson already used replaced, and the flash-card list built from the cards the lesson shows
+    try:
+        if domain_id == "numeracy":
+            for line in repair_place_value(plan_json):
+                print(f"   Place-value repair: {line}")
+    except Exception as e:      # never let a repair break plan generation
+        print(f"   Place-value repair skipped: {type(e).__name__}: {e}")
+
+    # Which children to photograph is chosen by code (systematic sampling, the same every time for the same group and day),
+    # not by the model: the model's own pick was arbitrary and could not be reproduced
+    try:
+        plan_json.setdefault("review_prompts", {})["photo_sample_rolls"] = {
+            "beginner": sample_for_group(ctx.beginner.roll_numbers, plan_date, "beginner", beginner_target_id)["rolls"],
+            "progressor": sample_for_group(ctx.progressor.roll_numbers, plan_date, "progressor", competency_id)["rolls"],
+            "proficient": sample_for_group(ctx.proficient.roll_numbers, plan_date, "proficient", proficient_comp.id)["rolls"],
+        }
+        plan_json["review_prompts"]["photo_sample_method"] = "systematic sampling, the start moves each day"
+    except Exception as e:
+        print(f"   Photo sample skipped: {type(e).__name__}: {e}")
 
     validation_warnings = validate_plan_shape(plan_json, domain_id)
     plan_json["coverage"] = await get_coverage(db, competency_id)      # shown on the plan screen
@@ -1120,6 +1192,7 @@ async def generate_dainik_yojana(
         'proficient': {'count': ctx.proficient.count, 'rolls': ctx.proficient.roll_numbers, 'target': proficient_comp.id},
     }
     
+    plan_json["served_from"] = served_from          # 'ai', or 'sample' when the AI limit was reached: the screen says so
     await db.execute("""
         INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
                                  plan_content, explainability, groups_snapshot, 
@@ -1137,7 +1210,7 @@ async def generate_dainik_yojana(
         json.dumps(plan_json, ensure_ascii=False),
         json.dumps(explainability, ensure_ascii=False),
         json.dumps(groups_snapshot, ensure_ascii=False),
-        generation_time_ms, settings.claude_model,
+        generation_time_ms, settings.claude_model if served_from == "ai" else "sample-replay",
     )
     
     return {
@@ -1156,4 +1229,5 @@ async def generate_dainik_yojana(
         "explainability": explainability,
         "generation_time_ms": generation_time_ms,
         "validation_warnings": validation_warnings,
+        "served_from": served_from,
     }

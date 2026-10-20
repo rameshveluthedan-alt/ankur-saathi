@@ -10,6 +10,7 @@ from datetime import date
 from typing import Optional
 
 import anthropic
+from app.services import ai_budget
 
 from app.core.config import get_settings
 from app.services.plan_service import get_current_groups
@@ -18,7 +19,7 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
 from vision_analysis import (
     VISION_SYSTEM_PROMPT, build_vision_prompt, 
-    process_vision_results, check_level_changes,
+    process_vision_results,
 )
 
 
@@ -219,7 +220,7 @@ def prepare_photo(data: bytes, max_side: int = 1800, quality: int = 85, max_byte
     return buf.getvalue()
 
 
-async def call_vision(photo_bytes_list: list, vision_prompt: str):
+async def call_vision(photo_bytes_list: list, vision_prompt: str, on_usage=None):
     """
     The one place the worksheet photos go to Claude Vision. Production and scripts/eval_vision.py both use it,
     so what is measured is exactly what runs. Returns (the parsed JSON array, a usage dict).
@@ -238,11 +239,117 @@ async def call_vision(photo_bytes_list: list, vision_prompt: str):
         messages=[{"role": "user", "content": content}],
         extra_body=CLAUDE_THINKING_BODY,
     )
+    usage = {"input_tokens": getattr(response.usage, "input_tokens", 0), "output_tokens": getattr(response.usage, "output_tokens", 0)}
+    if on_usage:
+        await on_usage(usage)               # metered the moment the reply arrives: it is paid for even if it cannot be read
     response_text = next((b.text for b in response.content if getattr(b, "type", None) == "text"), None)
     if response_text is None:
         raise ValueError(f"No text block found in Claude Vision's response. Block types received: {[getattr(b, 'type', '?') for b in response.content]}")
-    usage = {"input_tokens": getattr(response.usage, "input_tokens", 0), "output_tokens": getattr(response.usage, "output_tokens", 0)}
     return _extract_json_array(response_text), usage
+
+
+async def save_analysis(db, teacher_id, session_date, domain_id: str, worksheet_level: str, competency_id: str, payload: dict) -> None:
+    """Keep the analysis a teacher just saw, so it can be opened again. Never lets a storage problem break the analysis itself."""
+    try:
+        await db.execute(
+            """INSERT INTO review_analyses (teacher_id, session_date, domain_id, worksheet_level, competency_id, result)
+               VALUES ($1, $2, $3, $4, $5, $6::jsonb)""",
+            teacher_id, session_date, domain_id, worksheet_level, competency_id, json.dumps(payload, ensure_ascii=False, default=str))
+    except Exception as e:                       # a database that has not loaded db/schema/06_review_analyses.sql yet
+        print(f"   (analysis not saved for later: {type(e).__name__})")
+
+
+async def get_latest_analyses(db, teacher_id, session_date, domain_id: str) -> list:
+    """Every photo analysis done that day for the subject, newest first, so any of them can be reopened."""
+    try:
+        rows = await db.fetch(
+            """SELECT id, worksheet_level, competency_id, created_at, result
+               FROM review_analyses
+               WHERE teacher_id = $1 AND session_date = $2 AND domain_id = $3
+               ORDER BY created_at DESC LIMIT 12""", teacher_id, session_date, domain_id)
+    except Exception as e:
+        if e.__class__.__name__ != "UndefinedTableError":
+            raise
+        return []
+    out = []
+    for row in rows:
+        res = row["result"]
+        out.append({"id": row["id"], "worksheet_level": row["worksheet_level"], "competency_id": row["competency_id"],
+                    "created_at": row["created_at"].isoformat(), "result": json.loads(res) if isinstance(res, str) else res})
+    return out
+
+
+# How a skill is assessed -> the capture channel the Review screen offers -> the evidence channel stored
+CHANNEL_OF = {"written": "photo", "observed": "observed", "oral_reading": "orf"}
+EVIDENCE_CHANNEL = {"photo": "written_photo", "observed": "observed", "orf": "oral_reading"}
+
+
+async def get_review_channels(db, teacher_id, session_date, domain_id: str) -> dict:
+    """
+    Which way of capturing evidence today's skills need, per group. Each skill has its own assessment mode (a written
+    sheet to photograph, something the teacher observes, or oral reading), so the Review screen offers only the channels
+    today's groups actually use. Without a stored plan for the day it says so, and the screen offers everything.
+    """
+    plan = await db.fetchrow("SELECT groups_snapshot FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3",
+                             teacher_id, session_date, domain_id)
+    if not plan or not plan["groups_snapshot"]:
+        return {"has_plan": False, "levels": [], "channels": {}}
+    snap = plan["groups_snapshot"]
+    snap = json.loads(snap) if isinstance(snap, str) else snap
+    levels, channels = [], {}
+    for level in ("beginner", "progressor", "proficient"):
+        g = snap.get(level) or {}
+        comp, rolls = g.get("target"), g.get("rolls") or []
+        if not comp or not rolls:
+            continue
+        row = await db.fetchrow("SELECT name_hi, name_en, assessment_modality FROM competencies WHERE id = $1", comp)
+        if not row:
+            continue
+        ch = CHANNEL_OF.get(row["assessment_modality"], "photo")
+        entry = {"level": level, "competency_id": comp, "name_hi": row["name_hi"], "name_en": row["name_en"],
+                 "modality": row["assessment_modality"], "channel": ch, "rolls": sorted(rolls)}
+        levels.append(entry)
+        channels.setdefault(ch, []).append(level)
+    return {"has_plan": True, "levels": levels, "channels": channels}
+
+
+async def get_review_coverage(db, teacher_id, session_date, domain_id: str, worksheet_level: str, sample_size=None, absent=None, channel: str = "photo") -> dict:
+    """Who in the group has been analysed today and who is still to do, so nobody is photographed twice."""
+    plan = await db.fetchrow("SELECT groups_snapshot FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3",
+                             teacher_id, session_date, domain_id)
+    competency = None
+    if plan and plan["groups_snapshot"]:
+        snap = plan["groups_snapshot"]
+        snap = json.loads(snap) if isinstance(snap, str) else snap
+        competency = (snap.get(worksheet_level) or {}).get("target")
+    groups = await get_current_groups(db, teacher_id, domain_id)
+    group_rolls = sorted(next((g["roll_numbers"] for g in groups if g["label"] == worksheet_level), []))
+    analysed = []
+    if competency:
+        rows = await db.fetch(
+            """SELECT DISTINCT c.roll_number FROM assessment_evidence e JOIN children c ON c.id = e.child_id
+               WHERE e.teacher_id = $1 AND e.competency_id = $2 AND e.session_date = $3 AND e.channel = $4""",
+            teacher_id, competency, session_date, EVIDENCE_CHANNEL.get(channel, "written_photo"))
+        analysed = sorted(x["roll_number"] for x in rows)
+    from app.services.sampling import sample_for_group
+    sug = sample_for_group(group_rolls, session_date, worksheet_level, competency or "", sample_size, absent)
+    labels = {}
+    if group_rolls:
+        try:
+            for ch in await db.fetch("SELECT roll_number, enrolled_grade, school_roll FROM children WHERE teacher_id = $1 AND roll_number = ANY($2::smallint[])", teacher_id, group_rolls):
+                if ch["school_roll"] is not None and ch["school_roll"] != ch["roll_number"]:
+                    g = "BV" if ch["enrolled_grade"] == "balvatika" else "G" + ch["enrolled_grade"].split("_")[-1]
+                    labels[ch["roll_number"]] = f"{g}·{ch['school_roll']}"
+        except Exception as e:                       # a database that has not loaded db/schema/07_register.sql yet: no labels, nothing else changes
+            if e.__class__.__name__ != "UndefinedColumnError":
+                raise
+    return {"worksheet_level": worksheet_level, "competency_id": competency, "group_rolls": group_rolls, "labels": labels,
+            "analysed_rolls": [x for x in analysed if x in group_rolls], "other_analysed_rolls": [x for x in analysed if x not in group_rolls],
+            "pending_rolls": [x for x in group_rolls if x not in analysed],
+            # a large group need not be done in full: these children, spread evenly over the roll list, give a rough picture of the group
+            "sample": {"mode": sug["mode"], "size": sug["size"], "group_size": sug["group_size"], "rolls": sug["rolls"],
+                       "done": [x for x in sug["rolls"] if x in analysed], "left": [x for x in sug["rolls"] if x not in analysed],
+                       "margin_points": sug["margin_points"], "absent": sorted({int(a) for a in (absent or [])})}}
 
 
 async def analyse_worksheet_photos(
@@ -254,6 +361,8 @@ async def analyse_worksheet_photos(
     worksheet_level: str,
     photo_bytes_list: list[bytes],
     teacher_pre_judgment: Optional[str] = None,
+    on_duplicate: str = "skip",
+    replace_rolls: Optional[list] = None,
 ) -> dict:
     """
     Full Claude Vision analysis pipeline:
@@ -320,12 +429,26 @@ async def analyse_worksheet_photos(
         domain_id=domain_id,
     )
     
-    vision_results, _usage = await call_vision(photo_bytes_list, vision_prompt)
+    await ai_budget.check(db, teacher_id, "vision")        # over the AI limit: raises AICapReached (the route answers 429); a photo analysis cannot be faked
+    async def meter(usage):
+        await ai_budget.record(db, teacher_id, "vision", get_settings().claude_vision_model, usage)
+
+    vision_results, _usage = await call_vision(photo_bytes_list, vision_prompt, on_usage=meter)
+
+    # The AI is told never to use names, but a name written on a notebook page can still slip into its free text.
+    # Remove any class member's name from what it said before it is stored. (Names are NEVER sent to the AI: the request above is built
+    # without them. This only cleans the reply.)
+    try:
+        from app.services import names_service
+        names_service.scrub_names(vision_results, await names_service.names_for_teacher(db, teacher_id))
+    except Exception as e:
+        print(f"   (name scrub skipped: {type(e).__name__})")
     
     # Process into DB updates
     summary = await process_vision_results(
         db, teacher_id, session_date, competency_id,
         vision_results, teacher_pre_judgment, required_count=required_count,
+        problems=problems, on_duplicate=on_duplicate, replace_rolls=replace_rolls, expected_rolls=group_rolls,
     )
     
     return summary

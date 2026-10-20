@@ -4,12 +4,14 @@ Entry point. Configures lifespan (DB pool), CORS, and mounts the API router.
 """
 
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import get_settings
 from app.core.database import create_pool, close_pool
 from app.api.routes import router
+from app.api.auth_routes import auth_router
+from app.core.security import require_auth
 
 
 @asynccontextmanager
@@ -17,7 +19,7 @@ async def lifespan(app: FastAPI):
     """Startup: create DB pool. Shutdown: close it."""
     settings = get_settings()
     print(f"🌱 {settings.app_name} v{settings.app_version} starting...")
-    print(f"   Database: {settings.db_host}:{settings.db_port}/{settings.db_name}")
+    print(f"   Database: {settings.database_url.split('@')[-1]}")  # Don't log credentials
     print(f"   Claude model: {settings.claude_model}")
     
     await create_pool()
@@ -47,7 +49,8 @@ app.add_middleware(
 )
 
 # Mount API routes under /api
-app.include_router(router, prefix="/api")
+app.include_router(router, prefix="/api", dependencies=[Depends(require_auth)])
+app.include_router(auth_router, prefix="/api", dependencies=[Depends(require_auth)])
 
 
 # Health check (no auth, no DB — for monitoring)

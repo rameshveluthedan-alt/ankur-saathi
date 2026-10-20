@@ -562,8 +562,9 @@
 
 <!-- Roll number + Date -->
 <div class="roll-number-box">
-  <span class="roll-label">रोल नं. (Roll No.):</span>
+  <span class="roll-label">{% if class_numbers %}कक्षा नं. (Class No.):{% else %}रोल नं. (Roll No.):{% endif %}</span>
   <div class="roll-input-box"></div>
+  {% if class_numbers %}<span style="font-size:8pt;color:#666;">जैसे 305 = कक्षा 3, रोल 5</span>{% endif %}
   <div class="date-section">
     दिनांक (Date): <span class="date-line"></span>
   </div>
