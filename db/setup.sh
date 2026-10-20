@@ -50,6 +50,11 @@ fi
 psql "$DB_URL" -f "$SCRIPT_DIR/schema/03_content_provenance.sql"
 psql "$DB_URL" -f "$SCRIPT_DIR/schema/04_nipun_alignment.sql"
 psql "$DB_URL" -f "$SCRIPT_DIR/schema/05_coverage.sql"
+psql "$DB_URL" -f "$SCRIPT_DIR/schema/06_review_analyses.sql"
+psql "$DB_URL" -f "$SCRIPT_DIR/schema/07_register.sql"
+psql "$DB_URL" -f "$SCRIPT_DIR/schema/08_child_names.sql"
+psql "$DB_URL" -f "$SCRIPT_DIR/schema/09_auth.sql"
+psql "$DB_URL" -f "$SCRIPT_DIR/schema/10_ai_usage.sql"
 
 # Seed data — order matters (foreign key dependencies)
 echo "[5/8] Seeding numeracy competency tree..."
@@ -87,6 +92,7 @@ fi
 
 echo "[8/8] Seeding test classroom..."
 psql "$DB_URL" -f "$SCRIPT_DIR/seeds/classroom/01_profile.sql"
+psql "$DB_URL" -f "$SCRIPT_DIR/seeds/classroom/02_child_names.sql"
 
 echo ""
 echo "============================================"
