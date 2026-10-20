@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../App';
-import { getProgressDashboard, applyLevelChange, exportMLOCsv } from '../services/api';
+import { getProgressDashboard, downloadClassReport, downloadOfficerReport } from '../services/api';
 
 const BPP = {
   beginner: { hi: 'शुरुआती', en: 'Beginner', color: 'var(--beginner)' },
@@ -9,7 +9,8 @@ const BPP = {
 };
 
 export default function ProgressScreen() {
-  const { teacher, selectedDomain, setSelectedDomain } = useAuth();
+  const { teacher, selectedDomain, setSelectedDomain, names } = useAuth();
+  const nameOf = (roll) => (names && names[roll]) ? ` · ${names[roll]}` : '';
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedChild, setSelectedChild] = useState(null);
@@ -24,27 +25,30 @@ export default function ProgressScreen() {
   if (loading) return <div className="screen"><div className="loading"><div className="spinner" /><span>प्रगति लोड हो रही (Loading progress)...</span></div></div>;
   if (!data) return <div className="screen"><div className="empty-state"><div className="empty-icon">📊</div><p>डेटा उपलब्ध नहीं (No data available)</p></div></div>;
 
-  const { bpp_summary, children, level_change_recommendations } = data;
+  const { bpp_summary, children, reassessment_flags } = data;
   const ds = bpp_summary.find(s => s.domain_id === selectedDomain) || { beginner_count: 0, progressor_count: 0, proficient_count: 0 };
   const total = ds.beginner_count + ds.progressor_count + ds.proficient_count;
-  const domainRecs = level_change_recommendations?.[selectedDomain] || [];
-
-  const handleLevelChange = async (rec) => {
-    try {
-      await applyLevelChange(teacher.teacher_id, rec.child_id, selectedDomain, rec.to_level);
-      const d = await getProgressDashboard(teacher.teacher_id);
-      setData(d);
-    } catch (e) { alert('Error: ' + e.message); }
+  const domainFlags = reassessment_flags?.[selectedDomain] || [];
+  // when a child's level was last set (registration, baseline or a periodic round)
+  const asOf = (c) => {
+    const v = selectedDomain === 'numeracy' ? c.numeracy_level_as_of : c.literacy_level_as_of;
+    return v ? new Date(v).toLocaleDateString('hi-IN', { day: 'numeric', month: 'short' }) : '';
   };
 
   return (
     <div className="screen">
       <div className="screen-header">
         <h1>📊 प्रगति <span style={{fontSize:'0.75rem',color:'var(--text-secondary)',fontWeight:400}}>Progress</span></h1>
-        <a href={exportMLOCsv(teacher.teacher_id)} download
-          style={{ fontSize: '0.75rem', color: 'var(--green-dark)', textDecoration: 'none' }}>
-          📥 CSV (MLO Report)
-        </a>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
+          <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => alert(e.message))}
+            style={{ background: 'none', border: 'none', padding: 0, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit' }}>
+            📥 कक्षा रिपोर्ट, नामों के साथ (Class report)
+          </button>
+          <button type="button" data-testid="mlo-report" onClick={() => downloadOfficerReport(teacher.teacher_id).catch(e => alert(e.message))}
+            style={{ background: 'none', border: 'none', padding: 0, fontSize: '0.65rem', color: 'var(--text-secondary)', fontFamily: 'inherit' }}>
+            📥 अधिकारी रिपोर्ट, सिर्फ़ रोल नंबर (Officer report)
+          </button>
+        </div>
       </div>
 
       <div className="domain-tabs">
@@ -74,30 +78,23 @@ export default function ProgressScreen() {
         </div>
       </div>
 
-      {/* Level changes */}
-      {domainRecs.length > 0 && (
+      {/* Daily work that no longer matches a child's level. A flag changes NOTHING: a level changes only through an assessment. */}
+      {domainFlags.length > 0 && (
         <>
-          <h2 style={{ margin: '12px 0 8px' }}>⬆⬇ स्तर परिवर्तन सुझाव (Level Change Recommendations)</h2>
-          {domainRecs.map((rec, i) => (
-            <div key={i} className="card" style={{ borderLeft: `4px solid ${rec.direction === 'up' ? 'var(--proficient)' : 'var(--beginner)'}` }}>
+          <h2 style={{ margin: '12px 0 4px' }}>🔎 दोबारा आकलन पर विचार करें (Consider re-assessing)</h2>
+          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '0 0 8px' }}>
+            स्तर सिर्फ़ आकलन से बदलता है। इन बच्चों का आकलन पहले करना ठीक रहेगा। (Levels change only through an assessment. These children are worth assessing first.)
+          </p>
+          {domainFlags.map(f => (
+            <div key={f.child_id} className="card" data-testid={`flag-${f.direction}`}
+              style={{ borderLeft: `4px solid ${f.direction === 'higher' ? 'var(--proficient)' : '#C9A227'}` }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <div>
-                  <strong>Roll {rec.roll_number}</strong>
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 8 }}>
-                    {rec.consecutive_days} दिन (days)
-                  </span>
-                </div>
-                <div>
-                  <span className={`badge badge-${rec.from_level}`}>{BPP[rec.from_level]?.hi}</span>
-                  <span style={{ margin: '0 4px' }}>→</span>
-                  <span className={`badge badge-${rec.to_level}`}>{BPP[rec.to_level]?.hi}</span>
-                </div>
+                <strong>Roll {f.roll_number}{nameOf(f.roll_number)}</strong>
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: f.direction === 'higher' ? 'var(--proficient)' : '#8A5A00' }}>
+                  {f.direction === 'higher' ? '⬆ अच्छा प्रदर्शन (Doing well)' : '⬇ कठिनाई (Struggling)'}
+                </span>
               </div>
-              <p style={{ fontSize: '0.8125rem', margin: '6px 0', color: 'var(--text-secondary)' }}>{rec.evidence_hi}</p>
-              <div style={{ display: 'flex', gap: 8 }}>
-                <button className="btn btn-primary btn-small" onClick={() => handleLevelChange(rec)}>✓ स्वीकार (Accept)</button>
-                <button className="btn btn-secondary btn-small" onClick={() => {}}>✗ बाद में (Later)</button>
-              </div>
+              <p style={{ fontSize: '0.8125rem', margin: '6px 0 0', color: 'var(--text-secondary)' }}>{f.evidence_hi}</p>
             </div>
           ))}
         </>
@@ -114,10 +111,11 @@ export default function ProgressScreen() {
             onClick={() => setSelectedChild(selectedChild === c.roll_number ? null : c.roll_number)}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <strong style={{ fontSize: '1rem' }}>Roll {c.roll_number}</strong>
+                <strong style={{ fontSize: '1rem' }}>Roll {c.roll_number}{nameOf(c.roll_number)}</strong>
                 <span style={{ fontSize: '0.6875rem', color: 'var(--text-light)', marginLeft: 6 }}>
                   {c.enrolled_grade === 'grade_1' ? 'कक्षा 1 (Gr1)' : c.enrolled_grade === 'grade_2' ? 'कक्षा 2 (Gr2)' : 'कक्षा 3 (Gr3)'}
                 </span>
+                {asOf(c) && <span style={{ fontSize: '0.625rem', color: 'var(--text-light)', marginLeft: 6 }} data-testid={`as-of-${c.roll_number}`} title="level as of">· स्तर: {asOf(c)}</span>}
               </div>
               <span className={`badge badge-${bpp || 'beginner'}`}>
                 {BPP[bpp]?.hi || '—'} <span style={{fontSize:'0.55rem'}}>({BPP[bpp]?.en || '—'})</span>

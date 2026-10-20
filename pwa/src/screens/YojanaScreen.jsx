@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../App';
-import { getCachedPlan } from '../services/api';
+import { getCachedPlan, openAuthedPage, worksheetPath } from '../services/api';
 
 const GROUP_LABELS = {
   beginner: { hi: 'शुरुआती', en: 'Beginner', emoji: '🟠', css: 'beginner' },
@@ -67,6 +67,12 @@ export default function YojanaScreen() {
 
   return (
     <div className="screen">
+      {currentPlan.served_from === 'sample' && (
+        <div data-testid="sample-banner" style={{ background: '#FFF4D6', border: '1px solid #E8D28A', borderRadius: 10, padding: '8px 12px', margin: '0 0 10px', fontSize: '0.8125rem' }}>
+          📄 <b>नमूना योजना</b>: AI की सीमा पूरी होने से यह इसी कौशल की पहले से बनी योजना है। समूह और वर्कशीट आपकी कक्षा के हिसाब से जाँचे गए हैं।
+          <div style={{ fontSize: '0.7rem', color: '#6B4A00', marginTop: 2 }}>Sample plan: the AI limit was reached, so this is a recorded plan for the same skill. The groups and worksheets are checked for your class.</div>
+        </div>
+      )}
       <div className="screen-header">
         <h1>📋 दैनिक योजना <span style={{fontSize:'0.75rem',color:'var(--text-secondary)',fontWeight:400}}>Daily Plan</span></h1>
         <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
@@ -204,7 +210,6 @@ export default function YojanaScreen() {
           const label = GROUP_LABELS[level];
           const sheet = plan.worksheets?.[level];
           const available = Array.isArray(sheet?.problems) && sheet.problems.length > 0;
-          const href = `/api/worksheet/${teacher.teacher_id}/${currentPlan.plan_date}/${currentPlan.domain_id}/${level}`;
           const style = { flex: 1, flexDirection: 'column', gap: 2, padding: '10px 4px', fontSize: '0.8125rem', textDecoration: 'none', textAlign: 'center' };
           const inner = (
             <>
@@ -217,7 +222,8 @@ export default function YojanaScreen() {
             </>
           );
           return available ? (
-            <a key={level} href={href} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={style}>{inner}</a>
+            <button key={level} type="button" className="btn btn-secondary" style={style} data-testid={`worksheet-${level}`}
+              onClick={() => openAuthedPage(worksheetPath(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id, level)).catch(e => alert(e.message))}>{inner}</button>
           ) : (
             <span key={level} className="btn" style={{ ...style, opacity: 0.45, border: '2px dashed var(--border)', color: 'var(--text-secondary)' }}>
               {inner}<span style={{ fontSize: '0.6rem' }}>उपलब्ध नहीं (not available)</span>

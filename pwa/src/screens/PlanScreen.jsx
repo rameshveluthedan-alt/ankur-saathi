@@ -70,7 +70,12 @@ export default function PlanScreen() {
       setCurrentPlan(plan);
       navigate('/yojana');
     } catch (e) {
-      alert('योजना बनाने में समस्या (Plan generation error): ' + e.message);
+      if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
+        const samples = (e.detail && e.detail.sample_skills) || [];
+        alert(e.message + (samples.length ? `\n\nइन कौशलों की नमूना योजना उपलब्ध है (Sample plans are available for): ${samples.join(', ')}` : ''));
+      } else {
+        alert('योजना बनाने में समस्या (Plan generation error): ' + e.message);
+      }
     }
     setGenerating(false);
   };
@@ -88,7 +93,19 @@ export default function PlanScreen() {
     <div className="screen">
       <div className="screen-header">
         <h1>🎯 योजना बनाएँ <span style={{fontSize:'0.75rem',color:'var(--text-secondary)',fontWeight:400}}>Select Lakshya</span></h1>
+        <div style={{ display: 'flex', gap: 6 }}>
+          <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/register')} data-testid="open-register">👥 कक्षा रजिस्टर</button>
+          <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/account')} data-testid="open-account" aria-label="प्रोफ़ाइल (Profile)">👤</button>
+        </div>
       </div>
+
+      {!teacher.total_children && (
+        <div className="card" style={{ borderLeft: '4px solid #C9A227', background: '#FFF8E1' }} data-testid="empty-class">
+          <h3 style={{ marginBottom: 4 }}>आपकी कक्षा में अभी कोई बच्चा नहीं है</h3>
+          <p style={{ fontSize: '0.8125rem', marginBottom: 8 }}>No children in your class yet. Upload your class register first, then plans can be made for your groups.</p>
+          <button type="button" className="btn btn-primary" onClick={() => navigate('/register')}>कक्षा रजिस्टर अपलोड करें (Upload class register)</button>
+        </div>
+      )}
 
       <div className="domain-tabs">
         <button className={`domain-tab ${selectedDomain === 'numeracy' ? 'active' : ''}`}

@@ -5,6 +5,10 @@ import YojanaScreen from './screens/YojanaScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import ProgressScreen from './screens/ProgressScreen';
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import AccountScreen from './screens/AccountScreen';
+import ChangePinScreen from './screens/ChangePinScreen';
+import { getNames, getToken, setToken } from './services/api';
 
 export const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
@@ -19,12 +23,13 @@ function BottomNav() {
     { id: '/yojana', icon: '📋', hi: 'दैनिक योजना', en: 'Yojana' },
     { id: '/review', icon: '📷', hi: 'समीक्षा', en: 'Review' },
     { id: '/progress', icon: '📊', hi: 'प्रगति', en: 'Progress' },
+    { id: '/account', icon: '👤', hi: 'प्रोफ़ाइल', en: 'Profile' },        // on every screen: log out, change PIN, and the admin's reset
   ];
 
   return (
     <nav className="bottom-nav">
       {tabs.map(t => (
-        <button key={t.id} className={`nav-item ${path === t.id ? 'active' : ''}`}
+        <button key={t.id} className={`nav-item ${path === t.id ? 'active' : ''}`} data-testid={`nav-${t.id.replace('/', '') || 'plan'}`}
           onClick={() => navigate(t.id)}>
           <span className="nav-icon">{t.icon}</span>
           <span style={{fontSize:'0.7rem'}}>{t.hi}</span>
@@ -37,14 +42,22 @@ function BottomNav() {
 
 function AppShell() {
   const { teacher } = useAuth();
-  if (!teacher) return <LoginScreen />;
+  if (!teacher || !getToken()) return <LoginScreen />;
+  if (teacher.must_change_pin) return <ChangePinScreen forced />;       // an admin reset the PIN: choose a new one first
   return (
     <>
+      {teacher.is_demo && (
+        <div data-testid="demo-banner" style={{ background: '#FFF4D6', color: '#6B4A00', fontSize: '0.7rem', padding: '4px 10px', textAlign: 'center', position: 'sticky', top: 0, zIndex: 30 }}>
+          डेमो अकाउंट: सिर्फ़ काल्पनिक डेटा, असली बच्चों के नाम न डालें। (Demo account: fictional data only. Do not enter real children's names.)
+        </div>
+      )}
       <Routes>
         <Route path="/" element={<PlanScreen />} />
         <Route path="/yojana" element={<YojanaScreen />} />
         <Route path="/review" element={<ReviewScreen />} />
         <Route path="/progress" element={<ProgressScreen />} />
+        <Route path="/register" element={<RegisterScreen />} />
+        <Route path="/account" element={<AccountScreen />} />
       </Routes>
       <BottomNav />
     </>
@@ -53,10 +66,23 @@ function AppShell() {
 
 export default function App() {
   const [teacher, setTeacher] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('ankur_teacher')); } catch { return null; }
+    // a stored teacher without a sign-in token is a leftover from before PIN login: do not treat it as signed in
+    try { return getToken() ? JSON.parse(localStorage.getItem('ankur_teacher')) : null; } catch { return null; }
   });
   const [currentPlan, setCurrentPlan] = useState(null);
   const [selectedDomain, setSelectedDomain] = useState('numeracy');
+  const [names, setNames] = useState({});        // {class number: name}: the teacher's own screens only, never sent to the AI
+  const refreshNames = () => { if (teacher && teacher.teacher_id && getToken()) getNames(teacher.teacher_id).then(setNames).catch(() => setNames({})); };
+  useEffect(() => { if (teacher && teacher.teacher_id && getToken()) refreshNames(); else setNames({}); }, [teacher && teacher.teacher_id]);
+
+  const logout = () => { setToken(null); setTeacher(null); setCurrentPlan(null); setNames({}); };
+  useEffect(() => {      // the session ended (expired, or the PIN was changed elsewhere), or an admin reset made a new PIN necessary
+    const ended = () => { setToken(null); setTeacher(null); };
+    const mustChange = () => setTeacher(t => (t ? { ...t, must_change_pin: true } : t));
+    window.addEventListener('ankur-auth-ended', ended);
+    window.addEventListener('ankur-pin-change', mustChange);
+    return () => { window.removeEventListener('ankur-auth-ended', ended); window.removeEventListener('ankur-pin-change', mustChange); };
+  }, []);
 
   useEffect(() => {
     if (teacher) localStorage.setItem('ankur_teacher', JSON.stringify(teacher));
@@ -64,7 +90,7 @@ export default function App() {
   }, [teacher]);
 
   return (
-    <AuthContext.Provider value={{ teacher, setTeacher, currentPlan, setCurrentPlan, selectedDomain, setSelectedDomain }}>
+    <AuthContext.Provider value={{ teacher, setTeacher, currentPlan, setCurrentPlan, selectedDomain, setSelectedDomain, names, refreshNames, logout }}>
       <BrowserRouter>
         <AppShell />
       </BrowserRouter>
