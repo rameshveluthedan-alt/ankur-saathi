@@ -7,6 +7,8 @@ is 60 seconds, shorter than a plan takes). The API keeps answering under /api.
   * a real file in the build (a script, an icon, the manifest) is sent as it is;
   * any other path is an app screen, so the app's index.html is sent and the app's own router takes over;
   * an unknown /api path is a real 404 in JSON, never the app's page (that would hide mistakes from the app and from monitoring);
+  * a missing FILE (a path whose last part has an extension: an icon, a script, a map) is a real 404 too. Answering it with the app's page would
+    hand a browser HTML where it asked for an image, and nobody would see an error. Only a path without an extension is an app screen;
   * a path that tries to climb out of the folder (../../etc/passwd) never reaches the file system.
 
 Caching: files with a hash in their name (assets/) are cached for a year; the page itself, the service worker and the manifest are never
@@ -55,6 +57,8 @@ def mount_pwa(app: FastAPI, dist: str = "") -> bool:
             candidate = (root / full_path).resolve()
             if root in candidate.parents and candidate.is_file():           # never outside the build folder
                 return FileResponse(candidate, headers=cache_headers_for(full_path))
+            if "." in full_path.rstrip("/").rsplit("/", 1)[-1]:              # looks like a file, and it is not there
+                return JSONResponse({"detail": "Not found"}, status_code=404)
         return FileResponse(index, headers=NO_CACHE)
 
     # GET and HEAD: monitors and some browsers ask with HEAD, and FastAPI's get() alone would answer 405

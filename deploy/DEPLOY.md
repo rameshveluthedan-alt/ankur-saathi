@@ -140,6 +140,8 @@ proves the AI key, the models and the token setting all work in the cloud. Then 
 ```powershell
 gcloud run services logs read $SERVICE --region=$REGION --limit=40
 ```
+**Check the icons and "Install":** open `$URL/ankur-saathi-icon-192.png`, which must show a green square with a sprout (not an error or a web page). Then in Chrome press F12, open
+**Application, then Manifest**: it lists both icons and an "Installability" section. On a phone, Chrome's menu then offers **Install app** (the app also works offline once opened).
 The first lines of a start-up should show `Database pool ready.` and no `WARNING`. A warning about `CLAUDE_MAX_TOKENS`, `ANTHROPIC_API_KEY` or `SESSION_SECRET` means step 4 or 6 is incomplete.
 
 ## 10. The nightly reset of the demo

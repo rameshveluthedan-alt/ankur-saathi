@@ -51,6 +51,9 @@ r = c.get("/assets/app.abc123.js")
 check("a hashed file is sent as it is and cached for a year", r.status_code == 200 and "console.log" in r.text and "immutable" in r.headers["cache-control"])
 check("the service worker, its helpers and the manifest are never cached (a new version must reach people)",
       all(c.get(p).headers["cache-control"] == "no-cache" for p in ("/sw.js", "/registerSW.js", "/manifest.webmanifest", "/workbox-1a2b.js")))
+check("a MISSING file is a real 404, not the app's page (a missing icon must not look like a web page)",
+      all(c.get(p).status_code == 404 and "APP" not in c.get(p).text for p in ("/ankur-saathi-icon-192.png", "/assets/nope.js", "/missing.map", "/a/b/c.css")))
+check("...while a path without an extension is still an app screen", all(c.get(p).status_code == 200 and "APP" in c.get(p).text for p in ("/yojana", "/account", "/review/today", "/plan/2026-10-20")))
 check("other files (the icon) are cached for a day", c.get("/ankur-saathi-icon.svg").headers["cache-control"] == "public, max-age=86400")
 
 r = c.head("/sw.js")
