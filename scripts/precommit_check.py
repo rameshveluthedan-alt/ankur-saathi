@@ -39,6 +39,8 @@ PLACEHOLDER = re.compile(r"change[-_ ]?me|your[-_]|<.*>|xxx|\.\.\.|dummy|example
 
 # a value that is itself a dummy, as in `postgresql://user:password@localhost/db` in an example file
 DUMMY_VALUE = re.compile(r"^(password|passwd|pass|pwd|secret|postgres|user|username|test|root|admin|yourpassword|mypassword)$", re.I)
+# a reference to a Secret Manager secret (the secret's name, a colon, then 'latest' or a version number, as in a --set-secrets argument): the opposite of a secret
+SECRET_REFERENCE = re.compile(r"^[a-z][a-z0-9_-]*:(latest|\d+)(,|$)")
 
 
 def git(*args):
@@ -165,7 +167,7 @@ def main():
                 if not m:
                     continue
                 value = m.group(m.lastindex) if m.lastindex else m.group(0)
-                if PLACEHOLDER.search(text) or PLACEHOLDER.search(value or "") or DUMMY_VALUE.match(value or ""):
+                if PLACEHOLDER.search(text) or PLACEHOLDER.search(value or "") or DUMMY_VALUE.match(value or "") or SECRET_REFERENCE.match(value or ""):
                     continue
                 fails.append(f"{current}:{line_no}: looks like {what} (value hidden)")
                 break

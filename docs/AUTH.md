@@ -45,11 +45,15 @@ python scripts/auth_admin.py demo-setup --env-file backend/.env
 Accounts that exist but have **no PIN cannot sign in** and are told to ask their admin. Set one with `auth_admin.py set-pin`.
 
 ## Not done, and worth knowing
-- **HTTPS is required in any real deployment.** A PIN and a token sent over plain HTTP can be read on the network.
+- **HTTPS is required in any real deployment.** A PIN and a token sent over plain HTTP can be read on the network. On Cloud Run the address is HTTPS only (deploy/DEPLOY.md), and the app sends
+  `Strict-Transport-Security` and other security headers.
 - The phone number is an **identifier, not a secret**: the app sends `hash_` plus the number, which is not a real hash. The PIN is the secret.
 - The token is kept in the browser's local storage, like most single-page apps: a script injected into the page could read it.
   The app does not render untrusted HTML, but this is the usual trade-off against an HttpOnly cookie.
-- There is **no limit per network address**, only per account, so a determined guesser can try many different accounts.
-  Put a rate limit in front of `/api/auth/login` when hosting.
+- The lockout is per account, so on its own it would not stop one address trying many accounts, or registering many schools (each can spend AI credit). **A limit per network
+  address is built** (`backend/app/rate_limit.py`, switched on by `app/production.py`): by default 20 sign-ins a minute, 5 registrations an hour and 10 PIN changes a minute per address, answered with
+  HTTP 429 and a `Retry-After` header. The address is the last entry of `X-Forwarded-For`, the one Google's front end added, because a client can write anything at the start. The counts are kept
+  in memory per container, so with up to 3 containers the real limit can be up to 3 times higher; that is acceptable for a demo, and a shared store would be needed for more. Change the numbers
+  with `RATE_LOGIN_PER_MIN`, `RATE_REGISTER_PER_HOUR`, `RATE_CHANGE_PIN_PER_MIN`.
 - No one-time codes by SMS yet (the plan is to add them later); no screen to read the audit trail; registration of a new
   school is open to anyone, which is a prototype convenience.

@@ -1,0 +1,13 @@
+.git
+**/node_modules
+**/venv
+**/.venv
+**/__pycache__
+**/*.pyc
+**/.env
+pwa/dist
+docs
+backend/tests
+deploy/cloudrun-env.generated.yaml
+*.tar.gz
+*.csv
