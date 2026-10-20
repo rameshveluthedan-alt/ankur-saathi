@@ -1,4 +1,4 @@
-# Python
+﻿# Python
 __pycache__/
 *.pyc
 .env
@@ -15,3 +15,5 @@ pwa/dist/
 # OS
 .DS_Store
 Thumbs.db
+
+deploy/cloudrun-env.generated.yaml
