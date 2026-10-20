@@ -93,6 +93,8 @@ async def main():
                      "passage_match": passage, "nipun_match": c["nipun_match"] or "", "batch_status": (b or {}).get("status", "not_run"),
                      "batch_warnings": (b or {}).get("warnings_after", ""), "note": note, "tested_at": (b or {}).get("generated_at", "")})
     if args.load:
+        # make sure the table exists first (a database that never ran db/schema/05_coverage.sql)
+        await db.execute((ROOT / "db" / "schema" / "05_coverage.sql").read_text(encoding="utf-8"))
         for r in rows:
             await db.execute("""INSERT INTO competency_coverage (competency_id, tier, anchor_match, passage_match, nipun_match, batch_status, batch_warnings, note, tested_at)
                                 VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)

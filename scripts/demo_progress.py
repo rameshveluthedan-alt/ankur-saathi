@@ -8,7 +8,7 @@ Ankur Saathi — demo data for the Progress screen.
   seed    does a reset, then records THREE CONSECUTIVE DAYS of Progressor worksheet evidence for N2.3.2,
           ending on --end-date (default: yesterday). It goes through the same code as a real photo
           (process_vision_results), so statuses, streaks and suggestions are exactly what the app would produce.
-          Three days in a row is what makes the Progress screen show level-change suggestions; the photos you
+          Three qualifying days is what makes the Progress screen show 're-assess' flags; the photos you
           take on the demo day then become day 4.
   reset   deletes ALL assessment evidence and status rows for the demo teacher and restores every child's
           level to the baseline in db/seeds/classroom/01_profile.sql (so a level change accepted during a
@@ -39,7 +39,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "prompts"))
 sys.path.insert(0, os.path.dirname(__file__))
 
 import anchor_common as ac
-from vision_analysis import check_level_changes, process_vision_results
+from vision_analysis import check_reassessment_flags, process_vision_results
 
 DEMO_TEACHER = "10000001-aaaa-bbbb-cccc-000000000001"
 COMPETENCY = "N2.3.2"
@@ -216,13 +216,13 @@ async def cmd_status(db, args):
         short = {"achieved": "A", "partially_achieved": "PA", "not_achieved": "NA"}
         print(f"\n{COMPETENCY} status by roll (latest status, streak in days):")
         print("  " + "   ".join(f"{r['roll_number']}:{short[r['status']]}x{r['streak']}" for r in rows))
-    recs = await check_level_changes(db, args.teacher_id, "numeracy")
-    print(f"\nLevel-change suggestions the Progress screen shows ({len(recs)}):")
+    recs = await check_reassessment_flags(db, args.teacher_id, "numeracy")
+    print(f"\n'Consider re-assessing' flags the Progress screen shows ({len(recs)}). They change no level: only an assessment does.")
     for r in recs:
-        arrow = "UP  " if r["direction"] == "up" else "DOWN"
-        print(f"  {arrow} roll {r['roll_number']:>2}: {r['from_level']} -> {r['to_level']}, {r['consecutive_days']} days")
+        word = "doing well" if r["direction"] == "higher" else "struggling "
+        print(f"  {word} roll {r['roll_number']:>2}: level {r['level']}, {r['matching_days']} of the last {r['days_counted']} days")
     if not recs:
-        print("  none yet (a child needs 3 days in a row at Achieved, or at Not achieved)")
+        print("  none yet (a child needs 3 qualifying days among the last 4, mostly Achieved or mostly Not achieved)")
 
 
 async def main():

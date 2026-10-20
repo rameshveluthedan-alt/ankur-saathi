@@ -19,6 +19,10 @@ all correct (a few) | forgets the carry (62 written 52) on several problems | wr
 one careless slip only (should NOT be called a pattern) | extras left blank, and some attempted | a rubbed-out answer, a crossing-out |
 a carry digit written above the tens, and one sheet with no carry digit.
 
+### Also write some copying slips on purpose
+Real notebooks always have them: a digit reversed (35 copied as 53), a different problem copied (25 + 35 for 25 + 45), a problem copied twice, or a number copied
+into the grid wrongly. The AI should answer "copied differently", and the child should NOT be marked down or given a mistake pattern for it.
+
 ## Hindi literacy sheets: the answers to write
 
 Hindi answers are where jurors will probe, so cover these on purpose:
@@ -47,13 +51,20 @@ Copy `vision_truth_template.csv` and write **one row per problem on every photo*
 | judged | what a teacher would say: correct / partial / incorrect / blank (numeracy: filled in for you if you leave it empty) |
 | carry_digit_visible | yes / no / na (numeracy only) |
 | expected_pattern | a mistake id such as N2.3.2-M1, or `slip` for a careless error; empty otherwise |
+| copy_error | `yes` if the child copied the problem differently from the printed or board one (25 + 35 for 25 + 45, or 53 for 35); otherwise `no`. Leave `judged` empty for these: they are not scored |
 | notes | anything useful |
 
 The `judged` column is **your** judgement, written before you see the AI's answer. Do not look at the AI's output first.
 
+## Keep names out of the photos
+A photo goes to the AI. Cover or leave out any name written on the page (a roll or class number is all the sheet needs). The app never sends names itself, and removes a registered child's name from the AI's reply before storing it, but it cannot remove a name from the photo.
+
+## Do not photograph a child twice
+The Review screen lists who is done and who is left for the selected group. Photograph each child's sheet once; a second photo of a child already analysed today keeps the earlier result unless you choose Replace.
+
 ## What gets scored
 
-Roll number read correctly | each written answer read correctly (exact and "close enough") | right and wrong judged as the teacher
+Copy errors found, missed and falsely flagged | Roll number read correctly | each written answer read correctly (exact and "close enough") | right and wrong judged as the teacher
 would, split into wrongly accepted and wrongly rejected | partly-correct answers flagged | carry digit seen | mistake pattern named
 correctly | time and cost per photo | and the worst misreadings, listed. Results go to `docs/vision/` (commit them).
 

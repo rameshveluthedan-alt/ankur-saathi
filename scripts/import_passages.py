@@ -22,6 +22,11 @@ the licence requires is built for you and printed under the passage on the works
 Requires: pip install asyncpg
 """
 
+import sys as _sys
+for _stream in (_sys.stdout, _sys.stderr):          # a pipe on Windows uses a legacy code page that cannot print Hindi
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+
 import argparse
 import asyncio
 import csv

@@ -1,6 +1,7 @@
-photo_file,roll_number,problem_number,child_wrote,judged,carry_digit_visible,expected_pattern,notes
-EXAMPLE_roll07_printed_a.jpg,7,1,62,,yes,,"numeracy: all correct, carry digit 1 written above the tens"
-EXAMPLE_roll07_printed_a.jpg,7,2,52,,no,N2.3.2-M1,"numeracy: forgot the carry, 10 short"
-EXAMPLE_roll07_printed_a.jpg,7,7,,blank,na,,"numeracy: extra problem left blank"
-EXAMPLE_roll12_notebook_b.jpg,12,2,वह किसान होते हैं,correct,na,,"literacy: worded differently, same fact"
-EXAMPLE_roll12_notebook_b.jpg,12,3,पीने,partial,na,,"literacy: only one of the two things asked for"
+photo_file,roll_number,problem_number,child_wrote,judged,carry_digit_visible,expected_pattern,copy_error,notes
+EXAMPLE_roll07_printed_a.jpg,7,1,62,,yes,,no,"numeracy: all correct, carry digit 1 written above the tens"
+EXAMPLE_roll07_printed_a.jpg,7,2,52,,no,N2.3.2-M1,no,"numeracy: forgot the carry, 10 short"
+EXAMPLE_roll07_printed_a.jpg,7,3,60,,na,,yes,"numeracy: copied 25 + 35 instead of 25 + 45, then added correctly"
+EXAMPLE_roll07_printed_a.jpg,7,7,,blank,na,,no,"numeracy: extra problem left blank"
+EXAMPLE_roll12_notebook_b.jpg,12,2,वह किसान होते हैं,correct,na,,no,"literacy: worded differently, same fact"
+EXAMPLE_roll12_notebook_b.jpg,12,3,पीने,partial,na,,no,"literacy: only one of the two things asked for"

@@ -12,11 +12,12 @@ describe what a juror will get. It spends YOUR Anthropic credits (about 3 to 6 c
 a scored report out. See docs/VISION_PHOTO_TEST.md for how to prepare the sheets and the truth file.
 
 Truth file columns (see docs/vision_truth_template.csv):
-    photo_file, roll_number, problem_number, child_wrote, judged, carry_digit_visible, expected_pattern, notes
+    photo_file, roll_number, problem_number, child_wrote, judged, carry_digit_visible, expected_pattern, copy_error, notes
   child_wrote          exactly what the child wrote, even if wrong; empty if left blank
   judged               what a teacher would say: correct | partial | incorrect | blank (numeric answers: filled in for you if empty)
   carry_digit_visible  yes | no | na          (numeracy only)
   expected_pattern     a mistake id such as N2.3.2-M1, or "slip" for a careless error, or empty
+  copy_error           yes if the child copied the problem differently from the printed one (25 + 35 for 25 + 45); otherwise no
 
 Requires: pip install pillow asyncpg   (asyncpg only if you want the misconception list from the database)
 """
@@ -90,7 +91,9 @@ def install_stub(review_service, truth_by_photo, state, seed=7):
                 pred = {"correct": True, "incorrect": False, "partial": False, "blank": False}.get(j)
                 if pred is not None and rng.random() < 0.06:           # and flips 6% of judgements
                     pred = not pred
+                copied = (r.get("copy_error") or "").lower() == "yes"
                 probs.append({"number": int(r["problem_number"]), "extracted_answer": read or None, "correct_answer": state["key"][int(r["problem_number"])],
+                              "problem_as_written": "1 + 1" if copied else state["key_text"].get(int(r["problem_number"]), ""), "copied_correctly": not copied,
                               "is_correct": pred, "partially_correct": j == "partial", "carry_written": {"yes": True, "no": False}.get((r.get("carry_digit_visible") or "").lower()),
                               "confidence": "high"})
             body = [{"roll_number": int(rows[0]["roll_number"]), "roll_number_confidence": "high", "problems": probs,
@@ -138,7 +141,7 @@ async def main():
         os.environ.setdefault("ANTHROPIC_API_KEY", "stub")
     from app.core.config import get_settings
     from app.services import review_service
-    from vision_analysis import build_vision_prompt
+    from vision_analysis import apply_copy_checks, build_vision_prompt
     if not args.stub and not get_settings().anthropic_api_key:
         sys.exit("ANTHROPIC_API_KEY is not set in backend/.env. Use --stub for a dry run.")
 
@@ -174,7 +177,7 @@ async def main():
         except Exception as e:
             print(f"(no database: scoring without the misconception list: {type(e).__name__})")
 
-    state = {"photo": None, "key": key}
+    state = {"photo": None, "key": key, "key_text": {int(p['number']): str(p.get('problem_hi', '')) for p in problems}}
     if args.stub:
         install_stub(review_service, truth, state)
     elif not args.yes:
@@ -203,20 +206,23 @@ async def main():
         pred_roll = child.get("roll_number") if child else None
         photo_log.append({"photo": f.name, "truth_roll": want_roll, "pred_roll": pred_roll, "roll_ok": str(pred_roll) == str(want_roll), "seconds": secs,
                           "in": usage["input_tokens"], "out": usage["output_tokens"], "error": err, "children_found": len(results)})
+        if child:
+            apply_copy_checks(child, problems)                      # the same code check the app runs
         by_n = {int(p.get("number", 0)): p for p in (child or {}).get("problems", [])}
         diagnosed = sorted({p.get("diagnosed_misconception") for p in by_n.values() if p.get("diagnosed_misconception")})
         for r in t_rows:
             n = int(r["problem_number"]); p = by_n.get(n, {})
             wrote, read = (r.get("child_wrote") or "").strip(), p.get("extracted_answer")
             read = "" if read is None else str(read)
-            tj = truth_correct(r, key.get(n, ""))
+            tcopy = (r.get("copy_error") or "").strip().lower()
+            tj = "copy_error" if tcopy == "yes" else truth_correct(r, key.get(n, ""))
             pj = p.get("is_correct")
             rows_out.append({"photo": f.name, "roll": want_roll, "problem": n, "kind": "numeric" if is_numeric(key.get(n, "")) else "text",
                              "truth_wrote": wrote, "ai_read": read, "exact": norm(wrote) == norm(read), "similarity": round(similarity(wrote, read), 3),
                              "truth_judged": tj, "ai_is_correct": "" if pj is None else pj, "ai_partial": bool(p.get("partially_correct")),
                              "truth_carry": (r.get("carry_digit_visible") or "").lower(), "ai_carry": p.get("carry_written"),
                              "expected_pattern": (r.get("expected_pattern") or "").strip(), "ai_diagnosed": ";".join(diagnosed), "confidence": p.get("confidence", ""),
-                             "found_by_ai": bool(p)})
+                             "truth_copy": tcopy, "ai_copy": bool(p.get("copy_error")), "found_by_ai": bool(p)})
 
     # ── scoring ──
     def pct(a, b): return f"{100 * a / b:.0f}%" if b else "n/a"
@@ -249,6 +255,12 @@ async def main():
     if carry:
         ok = sum(1 for r in carry if (r["ai_carry"] is True) == (r["truth_carry"] == "yes") and r["ai_carry"] is not None)
         md += ["## Carry digit (numeracy)", "", f"- Seen or not seen correctly: {ok} of {len(carry)} ({pct(ok, len(carry))}); not reported: {sum(1 for r in carry if r['ai_carry'] is None)}", ""]
+    cp = [r for r in rows_out if r["truth_copy"] in ("yes", "no")]
+    if cp:
+        tp = sum(1 for r in cp if r["truth_copy"] == "yes" and r["ai_copy"]); fn = sum(1 for r in cp if r["truth_copy"] == "yes" and not r["ai_copy"])
+        fp = sum(1 for r in cp if r["truth_copy"] == "no" and r["ai_copy"])
+        md += ["## Copy errors (problems the child copied differently)", "", f"- Copy errors found: {tp} of {tp + fn}; missed: {fn}; correct problems wrongly flagged as copy errors: {fp}",
+               "- A missed copy error is scored as a wrong answer, so the child is marked down for copying; a false flag hides a real answer from the score.", ""]
     pat = {r["photo"]: r["expected_pattern"] for r in rows_out if r["expected_pattern"]}
     if pat:
         diag = {r["photo"]: r["ai_diagnosed"] for r in rows_out}

@@ -18,6 +18,11 @@ Plans are written under far-future dates so they never touch your real plans, an
 Output: docs/batch/batch_results.csv (one row per skill). Then run: python scripts/build_coverage.py
 """
 
+import sys as _sys
+for _stream in (_sys.stdout, _sys.stderr):          # a pipe on Windows uses a legacy code page that cannot print Hindi
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+
 import argparse
 import asyncio
 import contextlib
@@ -36,7 +41,7 @@ ROOT = Path(__file__).resolve().parent.parent
 BACKEND = ROOT / "backend"
 DEMO_TEACHER = "10000001-aaaa-bbbb-cccc-000000000001"
 FIELDS = ["competency_id", "domain", "grade", "status", "error", "seconds", "input_tokens", "output_tokens", "repair_input_tokens",
-          "repair_output_tokens", "est_cost_usd", "warnings_after", "warnings", "stick_repairs", "worksheet_repairs",
+          "repair_output_tokens", "est_cost_usd", "warnings_after", "warnings", "stick_repairs", "worksheet_repairs", "style_changes",
           "anchor_id", "anchor_match", "passage_match", "render_ok", "generated_at"]
 
 
@@ -112,7 +117,9 @@ async def run_one(database, plan_service, worksheet_service, fetch_anchor_activi
                    est_cost_usd=round((main_in + rep_in) * args.price_in / 1e6 + (main_out + rep_out) * args.price_out / 1e6, 4),
                    warnings_after=len(warns), warnings=" | ".join(w[:140] for w in warns),
                    stick_repairs=sum(1 for l in out.splitlines() if l.strip().startswith("Stick repair:") and ("rewritten" in l or "replaced in code" in l)),
-                   worksheet_repairs=sum(1 for l in out.splitlines() if l.strip().startswith("Worksheet repair:") and "NOTE" not in l))
+                   worksheet_repairs=sum(1 for l in out.splitlines() if l.strip().startswith("Worksheet repair:") and "NOTE" not in l),
+                   # how many wording changes the Hindi style safety net had to make: near 0 means the model followed the prompt (docs/HINDI_STYLE.md)
+                   style_changes=sum(int(m.group(1)) for m in (re.match(r"Hindi style: (\d+) wording changes", l.strip()) for l in out.splitlines()) if m))
         # what the knowledge base offered for this skill
         a = await fetch_anchor_activity(db, domain, grade, cid)
         row["anchor_id"], row["anchor_match"] = (a.id, a.match_quality) if a else ("", "none")
@@ -129,6 +136,11 @@ async def run_one(database, plan_service, worksheet_service, fetch_anchor_activi
                                            teacher_id, plan_date, domain)
                 plan_data = stored["plan_content"] if isinstance(stored["plan_content"], dict) else json.loads(stored["plan_content"])
                 snap = stored["groups_snapshot"]; snap = json.loads(snap) if isinstance(snap, str) else (snap or {})
+                if getattr(args, "save_samples", False) and not args.stub and plan_data.get("served_from") == "ai" and not warns:
+                    sample = {k: v for k, v in plan_data.items() if k != "served_from"}          # only CLEAN plans from the real model are kept as samples
+                    out = ROOT / "db" / "seeds" / "sample_plans"; out.mkdir(parents=True, exist_ok=True)
+                    (out / f"{cid}.json").write_text(json.dumps(sample, ensure_ascii=False, indent=1), encoding="utf-8")
+                    row["error"] = row["error"] or ""
                 ok = True
                 for level in ("beginner", "progressor", "proficient"):
                     target = (snap.get(level) or {}).get("target") or cid
@@ -151,8 +163,9 @@ async def main():
     ap.add_argument("--limit", type=int, help="only the first N skills (after the other filters)")
     ap.add_argument("--redo", action="store_true", help="run skills again even if already recorded as ok")
     ap.add_argument("--max-cost", type=float, default=25.0, help="stop when the estimated spend reaches this many USD (default 25)")
-    ap.add_argument("--price-in", type=float, default=2.0, help="assumed USD per million input tokens (an estimate; default 2)")
-    ap.add_argument("--price-out", type=float, default=10.0, help="assumed USD per million output tokens (an estimate; default 10)")
+    ap.add_argument("--price-in", type=float, default=None, help="USD per million input tokens (default: AI_PRICE_INPUT_PER_MTOK from the settings)")
+    ap.add_argument("--price-out", type=float, default=None, help="USD per million output tokens (default: AI_PRICE_OUTPUT_PER_MTOK from the settings)")
+    ap.add_argument("--save-samples", action="store_true", help="save each clean plan to db/seeds/sample_plans/ (the recorded plans served when the AI limit is reached)")
     ap.add_argument("--out", default=str(ROOT / "docs" / "batch" / "batch_results.csv"))
     ap.add_argument("--teacher-id", default=DEMO_TEACHER)
     ap.add_argument("--start-date", default="2031-01-01", help="first scratch plan date (far in the future, so real plans are never touched)")
@@ -176,6 +189,12 @@ async def main():
         sys.exit("ANTHROPIC_API_KEY is not set in backend/.env. Use --stub for a dry run.")
     if args.stub:
         install_stub(plan_service)
+    from app.services import ai_budget
+    ai_budget.operator_mode()          # the team's own batch: no daily caps, but the total budget and the evaluator reserve still apply
+    if args.price_in is None:
+        args.price_in = get_settings().ai_price_input_per_mtok
+    if args.price_out is None:
+        args.price_out = get_settings().ai_price_output_per_mtok
 
     await database.create_pool()
     async with database.get_db() as db:

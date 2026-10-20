@@ -5,6 +5,11 @@ The template builder and the importer both read COLUMNS, so the spreadsheet and 
 loader can never drift apart. Change a column here and re-run build_anchor_template.py.
 """
 
+import sys as _sys
+for _stream in (_sys.stdout, _sys.stderr):          # a pipe on Windows uses a legacy code page that cannot print Hindi
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+
 import argparse
 import os
 from pathlib import Path
