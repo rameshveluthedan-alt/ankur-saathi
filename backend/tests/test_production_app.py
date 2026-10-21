@@ -23,6 +23,7 @@ for rel, text in {"index.html": "<html><body><div id=root></div>APP</body></html
     open(os.path.join(DIST, rel), "w", encoding="utf-8").write(text)
 SECRET_FILE = os.path.join(os.path.dirname(DIST), "outside_secret.txt")
 open(SECRET_FILE, "w").write("TOP SECRET OUTSIDE THE BUILD")
+os.environ["AUTH_MODE"] = "enforce"          # this test is about sign-in being required: it must not inherit AUTH_MODE=off from the shell
 os.environ.update(PWA_DIST=DIST, DB_HOST="/cloudsql/proj:asia-south1:inst", DB_USER="ankur", DB_PASSWORD="p@ss:w/rd#1", DB_NAME="ankur_saathi", DEBUG="true")
 os.environ.pop("DATABASE_URL", None)
 

@@ -6,13 +6,32 @@ Handles numeracy (place-value grids, number lines) and literacy
 """
 
 import json
+import sys
 from datetime import date
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "prompts"))        # the same place plan_service finds it
+try:
+    import hindi_style
+except ImportError:                                                           # never stop a sheet from printing for want of the style module
+    hindi_style = None
+
 TEMPLATE_DIR = Path(__file__).parent.parent / "templates"
 jinja_env = Environment(loader=FileSystemLoader(str(TEMPLATE_DIR)))
+
+def _polite_on() -> bool:
+    return bool(hindi_style and hindi_style.POLITE_IN_WORKSHEETS)
+
+
+def _polite(text):
+    """A line printed for the children, in the respectful form (जोड़ें, लिखें, पढ़ें) when the app is set to it. Text inside quotation marks is material the
+    child reads and is left alone. Idempotent, so a plan stored in the new style, or an older plan in the old one, both print the same."""
+    if not text or not isinstance(text, str) or not _polite_on():
+        return text
+    return hindi_style.soften_text(text, polite=True, frame=True, protect_quotes=True)[0]
+
 
 LEVEL_LABELS = {
     "beginner": {"hi": "शुरुआती", "en": "Beginner"},
@@ -36,7 +55,7 @@ def _enrich_numeracy_problem(problem: dict, level: str) -> dict:
         enriched["show_carry_box"] = True
 
     # Number line for counting and comparison
-    if any(kw in problem_text for kw in ["गिनो", "count", "क्रम", "तुलना", "बीच"]):
+    if any(kw in problem_text for kw in ["गिनो", "गिनें", "count", "क्रम", "तुलना", "बीच"]):
         enriched["show_number_line"] = True
         enriched["number_line_content"] = "◁ __|__|__|__|__|__|__|__|__|__|__|__|__|__|__ ▷"
     
@@ -58,7 +77,7 @@ def _enrich_literacy_problem(problem: dict, level: str) -> dict:
     problem_text = (problem.get("problem_hi") or "").lower()
     
     # Letter/matra writing grid
-    if any(kw in problem_text for kw in ["लिखो", "write", "अक्षर", "मात्रा"]):
+    if any(kw in problem_text for kw in ["लिखो", "लिखें", "लिखिए", "write", "अक्षर", "मात्रा"]):
         if level == "beginner":
             enriched["show_letter_grid"] = True
             # Create alternating prefilled + empty cells for tracing
@@ -76,10 +95,10 @@ def _enrich_literacy_problem(problem: dict, level: str) -> dict:
     # Answer type based on problem type
     if problem.get("answer_type"):
         pass
-    elif any(kw in problem_text for kw in ["वाक्य", "sentence", "लिखो", "write", "पत्र", "letter"]):
+    elif any(kw in problem_text for kw in ["वाक्य", "sentence", "लिखो", "लिखें", "लिखिए", "write", "पत्र", "letter"]):
         enriched["answer_type"] = "lines"
         enriched["answer_lines"] = 4 if level == "proficient" else 3
-    elif any(kw in problem_text for kw in ["पढ़ो", "read", "सुनो", "बोलो"]):
+    elif any(kw in problem_text for kw in ["पढ़ो", "पढ़ें", "पढ़िए", "read", "सुनो", "सुनें", "बोलो", "बोलें"]):
         enriched["answer_type"] = "box"  # Short answer
     else:
         enriched["answer_type"] = "box"
@@ -153,7 +172,7 @@ def render_worksheet(
     worksheet = worksheets.get(level, {})
     
     problems_raw = worksheet.get("problems", [])
-    instructions_hi = worksheet.get("instructions_hi", "सभी प्रश्न हल करो। अपना काम दिखाओ।")
+    instructions_hi = _polite(worksheet.get("instructions_hi", "सभी प्रश्न हल करें। अपना काम दिखाएँ।"))
     instructions_en = worksheet.get("instructions_en", "Solve all problems. Show your work.")
     
     # Enrich problems with visual scaffolding
@@ -170,6 +189,10 @@ def render_worksheet(
 
     problems = []
     for i, p in enumerate(problems_raw):
+        p = dict(p)
+        for field in ("problem_hi", "word_problem_text"):
+            if p.get(field):
+                p[field] = _polite(p[field])
         enriched = enricher(p, level)
         # tolerate alternative field names so a slightly different plan still renders
         if "number" not in enriched:
@@ -198,6 +221,7 @@ def render_worksheet(
     template = jinja_env.get_template("worksheet.html")
     html = template.render(
         class_numbers=class_numbers,
+        polite=_polite_on(),
         title=f"{competency_id} — {competency_name_hi}",
         competency_id=competency_id,
         competency_name_hi=competency_name_hi,

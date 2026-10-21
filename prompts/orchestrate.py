@@ -600,21 +600,36 @@ def _materials_policy_section(ctx: OrchestrationContext) -> str:
 """
 
 
+GROUP_ORDER = ("beginner", "progressor", "proficient")           # furthest behind first: the tie-break
+
+
+def choose_reteach_group(children_by_group: dict) -> str:
+    """The group a re-teach is FOR: the one with the most children who made the mistake. A tie goes to the group furthest behind. If none of the
+    children can be placed in a group (a level changed since the review), the Progressors, because today's skill is theirs."""
+    best = max(children_by_group.values(), default=0)
+    if best <= 0:
+        return "progressor"
+    return next(g for g in GROUP_ORDER if children_by_group.get(g, 0) == best)
+
+
+def pick_priority_group(reteach_items: list) -> tuple:
+    """(group taught first, why). With no re-teach it is the Beginners, as before. With one, it is the group whose children made the most of the
+    mistakes: several items are added up by group. It used to be 'the Progressors' whatever group the children were in."""
+    if not reteach_items:
+        return "beginner", "Default: Beginners get first slot for prerequisite foundation."
+    weights = {}
+    for r in reteach_items:
+        g = r.get("group", "progressor")
+        weights[g] = weights.get(g, 0) + (r.get("affected_count") or 1)
+    group = choose_reteach_group(weights)
+    return group, f"The last review found mistakes mainly in the {group.title()} group, so they are taught first, after a short re-teach."
+
+
 def build_user_prompt(ctx: OrchestrationContext) -> str:
     """Assembles the user prompt with all L1 + L2 context injected."""
     
     # Priority group logic
-    priority_group = "beginner"
-    priority_reason = "Default: Beginners get first slot for prerequisite foundation."
-    if ctx.reteach_competencies:
-        # If reteach needed, that group gets priority
-        reteach_groups = [r.get('group', 'beginner') for r in ctx.reteach_competencies]
-        if 'progressor' in reteach_groups:
-            priority_group = "progressor"
-            priority_reason = f"The last review detected misconceptions in Progressor group."
-        elif 'proficient' in reteach_groups:
-            priority_group = "proficient"
-            priority_reason = f"The last review detected misconceptions in Proficient group."
+    priority_group, priority_reason = pick_priority_group(ctx.reteach_competencies)
     
     # Build misconception section
     misconception_text = ""
@@ -642,7 +657,7 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     if ctx.reteach_competencies:
         reteach_text = "The last review's gaps require a 5-minute re-teaching segment:\n"
         for r in ctx.reteach_competencies:
-            reteach_text += f"- {r['competency_id']}: {r['misconception_name_hi']} ({r['affected_count']} children)\n"
+            reteach_text += f"- {r['competency_id']}: {r['misconception_name_hi']} ({r['affected_count']} children, in the {r.get('group', 'progressor').upper()} group: the re-teach is FOR them)\n"
     else:
         reteach_text = "No re-teaching needed from the last review."
     

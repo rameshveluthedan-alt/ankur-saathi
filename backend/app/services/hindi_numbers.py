@@ -50,7 +50,7 @@ _SAU_K, _HAZ_K = _key("सौ"), {_key("हज़ार"), _key("हजार")}
 _MULT = {_SAU_K} | _HAZ_K
 _TOK = re.compile(r"[\u0900-\u0963]+")                      # Devanagari letters and marks; the danda (।) is not a letter
 _NUMERAL = re.compile(r"(?<![\w\-])\d[\d,]*(?![\w\-])")
-_FILLER = {_n(w) for w in ("लिखिए", "लिखो", "अंकों", "में", "संख्या")}
+_FILLER = {_n(w) for w in ("लिखिए", "लिखो", "लिखें", "अंकों", "में", "संख्या")}
 _PLACE = {_n("हज़ार"): 3, _n("सैकड़े"): 2, _n("सैकड़ा"): 2, _n("दहाइयाँ"): 1, _n("दहाई"): 1, _n("इकाइयाँ"): 0, _n("इकाई"): 0}
 _PV = re.compile(r"(\d)\s*(" + "|".join(sorted(_PLACE, key=len, reverse=True)) + r")")
 _PLAIN_ADD = re.compile(r"\s*\d+\s*\+\s*\d+\s*(=\s*_*)?\s*$")
@@ -198,7 +198,7 @@ def repair_number_words(plan) -> list:
                     text = str(pr.get("problem_hi") or "")
             # (b) a number word to be written in digits, whose word does not match the answer
             text = str(pr.get("problem_hi") or "")
-            if ans is not None and re.search(r"अंकों में|=\s*_+|लिखिए", text) and not re.search(r"[+×÷−]", text) and not re.search(r"\(\d", text):
+            if ans is not None and re.search(r"अंकों में|=\s*_+|लिखिए|लिखें", text) and not re.search(r"[+×÷−]", text) and not re.search(r"\(\d", text):
                 ps = phrases(text)
                 if ps and not any(p["value"] == ans for p in ps):
                     cand = max(ps, key=lambda p: (len(p["tokens"]), p["value"]))
@@ -210,7 +210,7 @@ def repair_number_words(plan) -> list:
             # (c) a number to be written in words, whose answer names a different number
             text = str(pr.get("problem_hi") or "")
             nums = [v for v, _, _ in numerals(text) if v >= 10]
-            if len(nums) == 1 and re.search(r"शब्दों में (लिखिए|लिखो)", text) and ans is None:
+            if len(nums) == 1 and re.search(r"शब्दों में (लिखिए|लिखो|लिखें)", text) and ans is None:
                 aphr = phrases(str(pr.get("answer") or ""))
                 if aphr and aphr[0]["value"] != nums[0] and name(nums[0]):
                     log.append(f"{level} problem {n}: the answer «{pr['answer']}» names {aphr[0]['value']} but the question number is {nums[0]}; rewritten as «{name(nums[0])}»")

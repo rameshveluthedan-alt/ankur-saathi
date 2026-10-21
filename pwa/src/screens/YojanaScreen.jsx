@@ -141,7 +141,7 @@ export default function YojanaScreen() {
             className={`timeline-block ${block.type === 'teach' ? 'teach' : block.type === 'anchor' ? 'anchor' : 'transition'}`}
             onClick={() => setExpandedBlock(expandedBlock === i ? null : i)}
           >
-            <div className="timeline-dot" style={{ background: block.type === 'teach' ? `var(--${block.teach_group || 'green-dark'})` : 'var(--border)' }} />
+            <div className="timeline-dot" style={{ background: (block.type === 'teach' || block.type === 'reteach') ? `var(--${block.teach_group || 'green-dark'})` : 'var(--border)' }} />
             {block.time_start && (
               <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)', marginBottom: 2 }}>{block.time_start}</div>
             )}
@@ -150,13 +150,18 @@ export default function YojanaScreen() {
                 {block.type === 'teach' && `👩‍🏫 ${GROUP_LABELS[block.teach_group]?.hi || block.teach_group} पढ़ाएँ (Teach ${GROUP_LABELS[block.teach_group]?.en || ''})`}
                 {block.type === 'anchor' && '🎯 एंकर (Anchor)'}
                 {block.type === 'setup' && '📢 सेटअप (Setup)'}
-                {block.type === 'reteach' && '🔄 पुनः शिक्षण (Re-teach)'}
+                {block.type === 'reteach' && `🔄 पुनः शिक्षण${block.teach_group && GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].hi}` : ''} (Re-teach${block.teach_group && GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].en}` : ''})`}
                 {block.type === 'transition' && '↔️ संक्रमण (Transition)'}
               </strong>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{block.duration_minutes} मि.</span>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 8 }}>{block.duration_minutes} मि.</span>
             </div>
 
-            {block.type === 'teach' && block.other_groups_hi && (
+            {block.type === 'reteach' && block.affected_rolls && block.affected_rolls.length > 0 && (
+              <div data-testid="reteach-rolls" style={{ fontSize: '0.75rem', marginTop: 4, ...ML }}>
+                👥 जिन बच्चों के लिए (For): रोल {block.affected_rolls.join(', ')}
+              </div>
+            )}
+            {(block.type === 'teach' || block.type === 'reteach') && block.other_groups_hi && (
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4, ...ML }}>
                 बाकी समूह (Other groups): {fmt(block.other_groups_hi)}
               </div>

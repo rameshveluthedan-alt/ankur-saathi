@@ -9,6 +9,7 @@ respectful, and one term was unclear for young children:
   * "मेरे पास आओ", "अपना काम बंद करो", "छड़ियाँ मॉनिटर को दो"
                               -> "आएँ", "रोक दें", "दें"  (model respectful language: it is a goal of foundational learning)
   * "दहाई | इकाई का खाना"   -> "दहाई-इकाई का बॉक्स"   (खाना is ambiguous for a 6-year-old; बॉक्स matches the printed place-value grids)
+  * "ग्रिड से हल करें"        -> "बॉक्स से हल करें"     (in a place-value sentence only: a letter grid in a literacy plan is left alone)
   * "कितने दहाई, कितने इकाई" -> "कितनी दहाई, कितनी इकाई"  (not in her review: found on a careful read; both words are feminine)
 
 Kept as they are, by her review: हासिल, खुली छड़ियाँ, शब्द-सवाल, and the collective praise "आज बहुत अच्छा काम हुआ".
@@ -25,14 +26,15 @@ worksheet instructions to children also use the respectful forms, or keep the te
 import re
 
 FRAME_WORD = "बॉक्स"             # decided 20 Oct: it matches the place-value grids the app prints ("घर" only works if children were taught that way)
-POLITE_IN_WORKSHEETS = False      # worksheet instructions are printed for the children; the textbook style (जोड़ो, लिखो) is kept until she says otherwise
+POLITE_IN_WORKSHEETS = True       # decided 21 Oct: respectful forms on the printed sheets too (जोड़ें, लिखें, पढ़ें), consistent with what the teacher says
 
 STYLE_PROMPT = (
     "- When the teacher speaks TO THE CHILDREN (transitions, tasks, questions, instructions for independent work), use respectful plural forms, "
     "never abrupt 'तुम' commands: write 'मेरे पास आएँ', 'अपना काम रोक दें', 'कॉपी बंद करें', 'छड़ियाँ मॉनिटर को दें', 'अपनी जगह जाएँ', 'सुनें', "
-    "not 'आओ', 'बंद करो', 'दो', 'जाओ', 'सुनो'. (Worksheet instructions printed for the children keep the textbook style.)\n"
+    "not 'आओ', 'बंद करो', 'दो', 'जाओ', 'सुनो'. The same on the printed worksheets: 'जोड़ें', 'लिखें', 'पढ़ें', not 'जोड़ो', 'लिखो', 'पढ़ो'.\n"
+    "- Say 'वर्कशीट' for a worksheet, never 'कार्यपत्रक'.\n"
     "- Keep every line warm and positive. Never use 'फालतू' (write 'अतिरिक्त') or 'चुपचाप' (write 'शांति से' or 'बिना शोर किए').\n"
-    f"- Call the Tens | Ones frame 'दहाई-इकाई का {FRAME_WORD}' (plural '{FRAME_WORD}'), never 'खाना' or 'खाने'. Keep 'हासिल', 'खुली छड़ियाँ' and "
+    f"- Call the Tens | Ones frame 'दहाई-इकाई का {FRAME_WORD}' (plural '{FRAME_WORD}'), never 'खाना', 'खाने' or 'ग्रिड'. Keep 'हासिल', 'खुली छड़ियाँ' and "
     "'शब्द-सवाल' as they are, and end the lesson with a praise for the whole class such as 'आज बहुत अच्छा काम हुआ'.\n"
     "- दहाई and इकाई are feminine: write 'कितनी दहाई और कितनी इकाई', not 'कितने दहाई'.\n"
 )
@@ -47,6 +49,9 @@ def _word(w: str) -> str:
 
 # word-level swaps that are safe wherever they appear in a teacher's text or a printed instruction
 WORD_SWAPS = [
+    (re.compile(_word("कार्यपत्रकों")), "वर्कशीटों"),                 # one word for a worksheet, the one the app uses (decided 21 Oct)
+    (re.compile(_word("कार्यपत्रक")), "वर्कशीट"),
+    (re.compile(_word("कार्यपत्र")), "वर्कशीट"),
     (re.compile(_word("फालतू")), "अतिरिक्त"),
     (re.compile(_word("चुपचाप")), "शांति से"),
 ]
@@ -73,7 +78,7 @@ _GIVE_RE = re.compile(rf"(?<![{_DEV}])((?:को|वापस|इसे|उस�
 # the Tens | Ones frame: only in a sentence about place value, and only the whole word
 _PLACE_CUES = ("दहाई", "इकाई", "सैकड़ा", "हज़ार", "हासिल", "कॉलम", "रेखा", "बिंदु")
 _FRAME_PHRASE = re.compile(rf"दहाई\s*[|\-]\s*इकाई का {_word('खाना')}")
-_FRAME_WORD = re.compile(_word("खाना") + "|" + _word("खाने"))
+_FRAME_WORD = re.compile(_word("खाना") + "|" + _word("खाने") + "|" + _word("ग्रिड"))       # "ग्रिड" too: the model sometimes calls the frame a grid
 _FRAME_IN = re.compile(_word("खाने") + " में")            # "खाने में हासिल लिखकर": with nothing before it that says which frame, say it in full
 _SENTENCE = re.compile(r"[^।?!]*[।?!]?\s*")
 
@@ -92,8 +97,20 @@ def _soften_frame(text: str, changes: list) -> str:
     return "".join(out)
 
 
-def soften_text(text: str, *, polite: bool = True, frame: bool = True) -> tuple:
-    """(new text, list of what changed). Idempotent: running it again changes nothing."""
+_QUOTED = re.compile(r"""(["“«'‘])(.*?)(["”»'’])""", re.S)
+
+
+def soften_text(text: str, *, polite: bool = True, frame: bool = True, protect_quotes: bool = False) -> tuple:
+    """(new text, list of what changed). Idempotent: running it again changes nothing.
+    protect_quotes: on a worksheet, text inside quotation marks is material the child reads ('रानी, यहाँ आओ'), so only the text OUTSIDE quotes is softened.
+    (A teacher's quoted speech is the opposite: it is addressed to the children and must be softened, so teacher fields do not use it.)"""
+    if protect_quotes and _QUOTED.search(text):
+        out, last, changes = [], 0, []
+        for m in _QUOTED.finditer(text):
+            part, ch = soften_text(text[last:m.start()], polite=polite, frame=frame)
+            out.append(part); changes += ch; out.append(m.group(0)); last = m.end()
+        part, ch = soften_text(text[last:], polite=polite, frame=frame)
+        return "".join(out) + part, changes + ch
     changes = []
     new = text
     for pat, rep in GENDER_FIXES:
@@ -119,7 +136,7 @@ def soften_text(text: str, *, polite: bool = True, frame: bool = True) -> tuple:
 _TEACHER_SPEECH = [r"^\.anchor\.(?!title_hi)\w+_hi$", r"^\.rotation_schedule\.blocks\[\]\.(?:script_hi|other_groups_hi)$",
                    r"^\.rotation_schedule\.blocks\[\]\.talking_points\.\w+$", r"^\.classroom_management\.independent_activities_hi\.\w+$"]
 _TEACHER_NOTES = [r"^\.prep_hi\[\]$"]
-_PRINTED = [r"^\.worksheets\.\w+\.instructions_hi$"]
+_PRINTED = [r"^\.worksheets\.\w+\.instructions_hi$", r"^\.worksheets\.\w+\.problems\[\]\.(?:problem_hi|word_problem_text)$"]
 _SPEECH_RE = [re.compile(p) for p in _TEACHER_SPEECH]
 _NOTES_RE = [re.compile(p) for p in _TEACHER_NOTES]
 _PRINTED_RE = [re.compile(p) for p in _PRINTED]
@@ -151,7 +168,7 @@ def soften_plan(plan: dict) -> dict:
         printed = any(r.match(path) for r in _PRINTED_RE)
         if not (speech or notes or printed):
             return
-        new, changes = soften_text(text, polite=speech or (printed and POLITE_IN_WORKSHEETS), frame=True)
+        new, changes = soften_text(text, polite=speech or (printed and POLITE_IN_WORKSHEETS), frame=True, protect_quotes=printed)
         if new != text:
             container[key] = new
             for c in changes:

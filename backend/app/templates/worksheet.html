@@ -359,7 +359,9 @@
   }
 
   .answer-box-wide {
-    width: 100%;
+    /* NOT width: 100%: with the 28px left margin below that is 28px wider than the page, and the right edge is cut off when printed */
+    display: block;
+    width: auto;
     min-height: 36px;
     border: 1.5px solid #ccc;
     border-radius: 4px;
@@ -576,7 +578,7 @@
   {% if instructions_en %}<br><span style="font-size:10pt;color:#888">{{ instructions_en }}</span>{% endif %}
 </div>
 {% if required_count %}
-<div class="required-note"><strong>पहले {{ required_count }} सवाल ज़रूर करो।</strong> बाकी सवाल "अतिरिक्त" हैं — जल्दी खत्म हो तो करो।
+<div class="required-note">{% if polite %}<strong>पहले {{ required_count }} सवाल ज़रूर करें।</strong> बाकी सवाल "अतिरिक्त" हैं — जल्दी खत्म हो तो करें।{% else %}<strong>पहले {{ required_count }} सवाल ज़रूर करो।</strong> बाकी सवाल "अतिरिक्त" हैं — जल्दी खत्म हो तो करो।{% endif %}
   <span style="font-size:9pt;color:#666">(Do problems 1–{{ required_count }} first; the rest are extra.)</span></div>
 {% endif %}
 
@@ -622,7 +624,7 @@
 <!-- Reading passage header (shown once, not a numbered question) -->
 {% if passage_block %}
 <div class="passage-header">
-  <div class="passage-label">अनुच्छेद पढ़ो (Read the passage):</div>
+  <div class="passage-label">{% if polite %}अनुच्छेद पढ़ें{% else %}अनुच्छेद पढ़ो{% endif %} (Read the passage):</div>
   {% if passage_block.title %}<div class="passage-title">{{ passage_block.title }}</div>{% endif %}
   {{ passage_block.text }}
   {% if passage_block.attribution %}<div class="passage-credit">{{ passage_block.attribution }}</div>{% endif %}

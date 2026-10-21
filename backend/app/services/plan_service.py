@@ -25,6 +25,7 @@ import copy
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
 import hindi_style
+from orchestrate import choose_reteach_group, pick_priority_group
 from orchestrate import (
     OrchestrationContext, Competency, GroupInfo, Prerequisite,
     Misconception, AnchorTemplate, InterventionTemplate, TLMRef,
@@ -111,7 +112,10 @@ def _fix_is_acceptable(group: str, key: str, old: str, new: str, avoid: set) -> 
         return False, f"an example still totals more than {cap}"
     if group == "beginner" and any((a % 10 + c % 10) >= 10 for a, c in pairs):
         return False, "a Beginner example needs a carry"
-    if pairs & avoid:
+    # only the examples the rewrite INTRODUCES count: one that was already in the text is not the rewrite's doing. (It used to count: the model's first
+    # worksheet often copies an example from the We Do, the worksheet is repaired only AFTER this step, and the fix was refused because of the unchanged
+    # example, so a 67-stick sum stayed in a lesson whose kit holds 49.)
+    if (pairs - _pairs_in(old)) & avoid:
         return False, "uses an example that is already used elsewhere in the lesson"
     return True, "ok"
 
@@ -777,6 +781,49 @@ async def previous_review_feedback(db, teacher_id: str, domain_id: str, plan_dat
     return [r["misc_id"] for r in rows], feedback_date
 
 
+async def build_reteach_items(db, teacher_id: str, misc_ids: list, feedback_date, groups: list) -> list[dict]:
+    """One item per mistake found at the last review: what it was, how many children made it, and WHICH GROUP they are in now (the re-teach is for
+    that group). The group used to be written in as 'progressor' for every item, whoever the children were."""
+    roll_group = {str(r): g["label"] for g in groups for r in g.get("roll_numbers", [])}
+    items = []
+    for mid in misc_ids:
+        detail = await db.fetchrow("SELECT name_hi, competency_id FROM misconceptions WHERE id = $1", mid)
+        if not detail:
+            continue
+        rolls = await db.fetch("""SELECT DISTINCT ch.roll_number FROM assessment_evidence e JOIN children ch ON ch.id = e.child_id
+                                  WHERE e.teacher_id = $1 AND e.session_date = $2::date AND $3 = ANY(e.detected_misconception_ids)""", teacher_id, feedback_date, mid)
+        by_group, rolls_by_group = {}, {}
+        for r in rolls:
+            g = roll_group.get(str(r["roll_number"]))
+            if g:
+                by_group[g] = by_group.get(g, 0) + 1
+                rolls_by_group.setdefault(g, []).append(r["roll_number"])
+        items.append({"competency_id": detail["competency_id"], "misconception_name_hi": detail["name_hi"], "affected_count": len(rolls),
+                      "group": choose_reteach_group(by_group), "affected_by_group": by_group,
+                      "rolls_by_group": {g: sorted(v) for g, v in rolls_by_group.items()}})        # roll numbers go to the plan, never to the AI
+    return items
+
+
+def stamp_reteach_block(blocks: list, reteach_items: list) -> bool:
+    """Fill in, in code, what the model leaves out of the re-teach block: WHICH GROUP it is for, WHICH CHILDREN (roll numbers) made the mistake, and
+    what the OTHER groups do during its 5 minutes (they start the independent work given for the next teach block, so the text is copied from it:
+    otherwise nobody is told what two thirds of the class do). Returns whether a re-teach block was found."""
+    group = pick_priority_group(reteach_items)[0]
+    rolls = sorted({r for item in reteach_items for r in (item.get("rolls_by_group") or {}).get(group, [])})
+    found = False
+    for i, blk in enumerate(blocks):
+        if blk.get("type") != "reteach":
+            continue
+        found = True
+        blk["teach_group"] = group
+        blk["affected_rolls"] = rolls
+        if not blk.get("other_groups_hi"):
+            nxt = next((b for b in blocks[i + 1:] if b.get("type") == "teach" and b.get("other_groups_hi")), None)
+            if nxt:
+                blk["other_groups_hi"] = nxt["other_groups_hi"]
+    return found
+
+
 async def get_current_groups(db, teacher_id: str, domain_id: str) -> list[dict]:
     """
     The current Beginner / Progressor / Proficient groups for this teacher and subject.
@@ -960,24 +1007,7 @@ async def generate_dainik_yojana(
     # ── The last review's feedback (the most recent review within a week, in THIS subject) ──
     yesterday_misc_ids, feedback_date = await previous_review_feedback(db, teacher_id, domain_id, plan_date)
     
-    reteach_competencies = []
-    if yesterday_misc_ids:
-        for mid in yesterday_misc_ids:
-            misc_detail = await db.fetchrow(
-                "SELECT name_hi, competency_id FROM misconceptions WHERE id = $1", mid
-            )
-            if misc_detail:
-                count = await db.fetchval("""
-                    SELECT count(DISTINCT child_id) FROM assessment_evidence
-                    WHERE teacher_id = $1 AND session_date = $2::date
-                      AND $3 = ANY(detected_misconception_ids)
-                """, teacher_id, feedback_date, mid)
-                reteach_competencies.append({
-                    "competency_id": misc_detail['competency_id'],
-                    "misconception_name_hi": misc_detail['name_hi'],
-                    "affected_count": count,
-                    "group": "progressor"
-                })
+    reteach_competencies = await build_reteach_items(db, teacher_id, yesterday_misc_ids, feedback_date, groups) if yesterday_misc_ids else []
     
     # ── L2 Queries ──
     anchor = await fetch_anchor_activity(db, domain_id, selected.grade_level, competency_id)
@@ -1131,6 +1161,11 @@ async def generate_dainik_yojana(
         print(f"   Independent practice: {line}")
 
     # A talking point that builds an example bigger than the stick kit is rewritten once (only that text)
+    try:                                         # the re-teach block: its group, its children and the other groups' work are set by the code, not left to the model
+        if ctx.reteach_competencies:
+            stamp_reteach_block((plan_json.get("rotation_schedule") or {}).get("blocks", []), ctx.reteach_competencies)
+    except Exception as e:
+        print(f"   Re-teach group step skipped: {type(e).__name__}: {e}")
     try:                                         # the Hindi tone rules, as a safety net: whole-word swaps in what the teacher says and reads
         style = hindi_style.soften_plan(plan_json)
         if style:
