@@ -216,9 +216,14 @@ def rescore(child_result: dict, required_count: Optional[int]) -> dict:
     """
     Recompute correct / total_problems / accuracy from the per-problem entries, so that a
     miscount by the model cannot distort the score when only the first N problems are required.
-    Total = N + the extras the child actually attempted. A required problem the model left
-    out counts as not correct. A problem the child COPIED DIFFERENTLY (copy_error) is not scored
-    at all: the child did not attempt the printed problem, so it is neither right nor wrong.
+    A required problem the model left out counts as not correct. A problem the child COPIED
+    DIFFERENTLY (copy_error) is not scored at all: the child did not attempt the printed problem,
+    so it is neither right nor wrong. A blank extra is not an error.
+    EXTRAS CAN ONLY HELP (decided 21 Oct): the result is the better of (a) the required problems
+    alone and (b) the required problems plus the extras the child attempted. Before, an attempted extra
+    that was wrong counted against the child, so a child who got all 6 required problems right and tried
+    two extras wrong was "partly achieved" (6 of 8 = 75%): it punished the children who try more.
+    correct / total_problems / accuracy always describe the SAME basis, and score_basis says which.
     Without a required_count the model's own summary is kept.
     """
     summary = dict(child_result.get("summary") or {})
@@ -230,7 +235,7 @@ def rescore(child_result: dict, required_count: Optional[int]) -> dict:
         a = p.get("extracted_answer")
         return p.get("attempted") is False or a is None or str(a).strip() == ""
 
-    correct, extras_attempted, excluded_required, copy_excluded = 0, 0, 0, 0
+    req_correct, extras_correct, extras_attempted, excluded_required, copy_excluded = 0, 0, 0, 0, 0
     for p in probs:
         n = p.get("number")
         is_required = isinstance(n, int) and n <= required_count
@@ -241,13 +246,20 @@ def rescore(child_result: dict, required_count: Optional[int]) -> dict:
             continue
         if not is_required and blank(p):
             continue                                  # skipped extra: not an error
-        if not is_required:
+        right = p.get("is_correct") is True and not blank(p)
+        if is_required:
+            req_correct += 1 if right else 0
+        else:
             extras_attempted += 1
-        if p.get("is_correct") is True and not blank(p):
-            correct += 1
-    total = required_count - excluded_required + extras_attempted
+            extras_correct += 1 if right else 0
+    req_total = required_count - excluded_required
+    all_total, all_correct = req_total + extras_attempted, req_correct + extras_correct
+    # extras can only help: take whichever basis gives the child the better score (the required problems alone win a tie)
+    use_all = extras_attempted > 0 and all_total > 0 and (req_total <= 0 or all_correct * req_total > req_correct * all_total)
+    correct, total = (all_correct, all_total) if use_all else (req_correct, req_total)
     summary.update(correct=correct, total_problems=total, incorrect=max(total - correct, 0), copy_excluded=copy_excluded,
-                   accuracy=round(correct / total, 3) if total > 0 else None)
+                   accuracy=round(correct / total, 3) if total > 0 else None,
+                   extras_attempted=extras_attempted, extras_correct=extras_correct, score_basis="required+extras" if use_all else "required")
     return summary
 
 
