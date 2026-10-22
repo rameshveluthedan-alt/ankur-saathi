@@ -1,0 +1,487 @@
+{
+ "anchor": {
+  "title_hi": "कक्षा में आकृति खोज",
+  "narration_hi": "आज हम अपनी कक्षा में आकृतियाँ खोजेंगे! खिड़की, दरवाज़ा, घड़ी और ब्लैकबोर्ड, सबकी अपनी एक आकृति है। हम सब मिलकर देखेंगे कि कौन सी चीज़ किस आकृति की है।",
+  "closing_question_hi": "आज सबसे मज़ेदार आकृति आपको कौन सी चीज़ में मिली? हर समूह अपनी सबसे अच्छी खोज बताए।",
+  "opening_question_hi": "खिड़की कौन सी आकृति की है? बताएँ।",
+  "beginner_participation_hi": "शुरुआती समूह: कक्षा में कोई एक चीज़ चुनकर उसकी आकृति का नाम बताएँ: वृत्त, वर्ग, त्रिभुज या आयत। जैसे, घड़ी कौन सी आकृति है?",
+  "proficient_participation_hi": "दक्ष समूह: ऐसी चीज़ खोजें जो 2D आकृति जैसी दिखे और बताएँ कि उसकी भुजाएँ और कोने कैसे हैं। जैसे, ब्लैकबोर्ड की आमने-सामने की भुजाओं में क्या खास है?",
+  "progressor_participation_hi": "प्रगतिशील समूह: एक चीज़ चुनें और गिनकर बताएँ कि उसकी कितनी भुजाएँ और कितने कोने हैं। जैसे, दरवाज़ा: कितनी भुजाएँ? कितने कोने?"
+ },
+ "prep_hi": [
+  "कोई विशेष सामग्री नहीं चाहिए: कक्षा की खिड़की, दरवाज़ा, ब्लैकबोर्ड, घड़ी, रोटी/थाली जैसी चीज़ें ही आकृति खोजने के लिए इस्तेमाल होंगी।",
+  "बोर्ड पर चार आकृतियाँ (वृत्त, वर्ग, त्रिभुज, आयत) पहले से बड़ी-बड़ी बनाकर रखें; वर्गाकार और आयताकार दोनों साफ़ दिखें।",
+  "बोर्ड-कॉपी मोड: तीनों वर्कशीट के सवाल बोर्ड पर तीन हिस्सों में लिख लें या बच्चों की कॉपी में लिखवाने के लिए तैयार रखें। प्रिंटर की ज़रूरत नहीं है।",
+  "दक्ष समूह के अनुभव के लिए स्वतंत्र अभ्यास की सूची (आकृति खोजकर नाम लिखना) बोर्ड के एक कोने में लिख दें।"
+ ],
+ "coverage": {
+  "note": "Not yet run through the real model: the plan may need more editing.",
+  "tier": "untested"
+ },
+ "worksheets": {
+  "beginner": {
+   "problems": [
+    {
+     "answer": "वृत्त",
+     "number": 1,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: गोल घड़ी। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "त्रिभुज",
+     "number": 2,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: तीन भुजाओं वाली झंडी। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "वर्ग",
+     "number": 3,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: चारों भुजाएँ बराबर वाली रुमाल की आकृति। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "आयत",
+     "number": 4,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: लंबी किताब का कवर, दो भुजाएँ लंबी और दो छोटी। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "वृत्त",
+     "number": 5,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: चूड़ी। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "आयत",
+     "number": 6,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: खिड़की का पल्ला (लंबा और चौड़ा)। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "त्रिभुज",
+     "number": 7,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: पतंग की ऊपरी आधी आकृति जैसा तीन कोनों वाला टुकड़ा। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "वर्ग",
+     "number": 8,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: लूडो का चौकोर घर (चारों भुजाएँ बराबर)। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": {
+    "answer": "वृत्त",
+    "row1_o": null,
+    "row1_t": null,
+    "row2_o": null,
+    "row2_t": null,
+    "answer_o": null,
+    "answer_t": null,
+    "problem_hi": "चित्र: गोल रोटी। आकृति का नाम?",
+    "pv_columns": null,
+    "show_pv_grid": false
+   },
+   "required_count": 5,
+   "instructions_en": "Look at each picture and write the shape's name. Options: circle, square, triangle, rectangle.",
+   "instructions_hi": "हर चित्र देखें और आकृति का नाम लिखें। विकल्प हैं: वृत्त, वर्ग, त्रिभुज, आयत।"
+  },
+  "proficient": {
+   "problems": [
+    {
+     "answer": "3",
+     "number": 1,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "त्रिभुज की कितनी भुजाएँ होती हैं? ___",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "4",
+     "number": 2,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "आयत के कितने कोने होते हैं? ___",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "0",
+     "number": 3,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "वृत्त में कितने कोने होते हैं? ___",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "4",
+     "number": 4,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "वर्ग की कितनी भुजाएँ होती हैं? ___",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "7",
+     "number": 5,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "एक त्रिभुज और एक वर्ग की भुजाओं को मिलाकर कुल कितनी भुजाएँ हुईं? ___",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "7",
+     "number": 6,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "एक आयत और एक त्रिभुज के कोनों को मिलाकर कुल कितने कोने हुए? ___",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "8",
+     "number": 7,
+     "pv_row2": false,
+     "row_type": null,
+     "problem_hi": "रीना ने कागज़ पर दो वर्ग बनाए। दोनों वर्गों की भुजाएँ मिलाकर कुल कितनी हुईं?",
+     "pv_columns": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "7",
+     "number": 8,
+     "pv_row2": false,
+     "row_type": null,
+     "problem_hi": "मोहन ने एक त्रिभुज और एक आयत बनाया। दोनों के कोनों को मिलाकर कुल कितने कोने हुए?",
+     "pv_columns": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": null,
+   "required_count": 8,
+   "instructions_en": "For each question, think about the sides and corners of the shape and write the answer.",
+   "instructions_hi": "हर सवाल में आकृति की भुजाओं और कोनों की गिनती सोचकर उत्तर लिखें।"
+  },
+  "progressor": {
+   "problems": [
+    {
+     "answer": "वर्ग",
+     "number": 1,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: चारों भुजाएँ बराबर, चार कोने। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "आयत",
+     "number": 2,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: आमने-सामने की भुजाएँ बराबर, पर दो लंबी और दो छोटी। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "त्रिभुज",
+     "number": 3,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: तीन भुजाएँ, तीन कोने। यह कौन सी आकृति है?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "वृत्त",
+     "number": 4,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "गोल चपाती कौन सी आकृति की है? नाम लिखें।",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "वर्ग",
+     "number": 5,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "लूडो बोर्ड और माचिस की डिब्बी की ऊपरी सतह: कौन सी आकृति वर्ग जैसी और कौन सी आयत जैसी है? पहली का नाम लिखें।",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "आयत",
+     "number": 6,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "लंबे-चौड़े ब्लैकबोर्ड की आकृति कौन सी है? नाम लिखें।",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "वर्ग",
+     "number": 7,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "एक आकृति के चारों कोने हैं और चारों भुजाएँ बराबर हैं। उसका नाम लिखें।",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "वृत्त",
+     "number": 8,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "आपको एक ऐसी आकृति चाहिए जिसमें कोई कोना न हो। कौन सी आकृति चुनेंगे?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": {
+    "answer": "आयत",
+    "row1_o": null,
+    "row1_t": null,
+    "row2_o": null,
+    "row2_t": null,
+    "answer_o": null,
+    "answer_t": null,
+    "problem_hi": "दरवाज़े की आकृति: दो भुजाएँ लंबी, दो छोटी, चार कोने। यह कौन सी आकृति है?",
+    "pv_columns": null,
+    "show_pv_grid": false
+   },
+   "required_count": 6,
+   "instructions_en": "Name the shape from each picture or description. Where asked, also count and write sides and corners.",
+   "instructions_hi": "हर चित्र या वर्णन देखकर आकृति का नाम लिखें। जहाँ पूछा गया हो, भुजाएँ और कोने भी गिनकर लिखें।"
+  }
+ },
+ "explainability": {
+  "items": [
+   {
+    "body_en": "Children were grouped into Beginner (7), Progressor (14) and Proficient (9) based on today's competency N0.5.1. Each group gets work at its own level.",
+    "body_hi": "आज के लक्ष्य N0.5.1 के आधार पर बच्चों को तीन स्तरों में बाँटा गया: शुरुआती (7), प्रगतिशील (14) और दक्ष (9)। हर समूह को उसके स्तर की गतिविधि मिलती है।",
+    "title_en": "Why these three groups",
+    "title_hi": "ये तीन समूह क्यों"
+   },
+   {
+    "body_en": "Beginners go first because they need foundational support most, then Progressors, then Proficients, so each gets full teacher attention. No group does its new skill independently before being taught.",
+    "body_hi": "शुरुआती समूह को पहला समय दिया गया क्योंकि उन्हें आधारभूत पहचान पर सबसे अधिक मदद चाहिए। फिर प्रगतिशील और अंत में दक्ष समूह, ताकि हर समूह को शिक्षक का पूरा ध्यान मिले। कोई भी समूह अपना नया काम शिक्षक के सिखाने से पहले स्वतंत्र रूप से नहीं करता।",
+    "title_en": "Why this rotation order",
+    "title_hi": "घुमाव का क्रम"
+   },
+   {
+    "body_en": "No specific misconception list was provided. The criteria mention square/rectangle confusion as the likely error, so the Progressor sheet targets it.",
+    "body_hi": "संदर्भ में कोई विशिष्ट भ्रांति सूची नहीं दी गई थी। फिर भी पाठ्यक्रम के मानदंड के अनुसार वर्ग और आयत को आपस में मिलाना सबसे संभावित गलती है। इसलिए प्रगतिशील वर्कशीट में उन पर ध्यान दिया गया है।",
+    "title_en": "Misconceptions to watch",
+    "title_hi": "किन भ्रांतियों पर नज़र रखें"
+   },
+   {
+    "body_en": "Anchor ANC-N-006 was used as an exact match for N0.5.1. No intervention template or TLM was available, so everyday classroom objects were used. Following the curriculum note to interleave with number work, independent stations include counting review.",
+    "body_hi": "एंकर ANC-N-006 'कक्षा में आकृति खोज' का उपयोग किया गया, जो आज के लक्ष्य N0.5.1 के लिए EXACT मैच था। कोई हस्तक्षेप टेम्पलेट और कोई TLM नहीं मिला, इसलिए कक्षा की मौजूदा चीज़ें ही इस्तेमाल की गईं। पाठ्यक्रम नोट 'संक्रियाओं के साथ मिलाएँ' के अनुसार स्वतंत्र अभ्यास में गिनती की समीक्षा रखी गई ताकि संख्या-थकान न हो।",
+    "title_en": "Retrieved content used",
+    "title_hi": "उपयोग की गई सामग्री"
+   },
+   {
+    "body_en": "The curriculum plan is representative, not the state's official weekly plan. No mastered skill was identified for Beginners and Progressors, so independent work is a simple counting review. With no printer, worksheets are copied from the board.",
+    "body_hi": "पाठ्यक्रम योजना एक प्रतिनिधि योजना है, राज्य की आधिकारिक साप्ताहिक योजना नहीं। शुरुआती और प्रगतिशील समूह के लिए पहले से सीखा हुआ कौशल उपलब्ध नहीं था, इसलिए उनके स्वतंत्र अभ्यास में गिनती की सरल समीक्षा रखी गई। प्रिंटर न होने से वर्कशीट बोर्ड से उतारी जाएगी।",
+    "title_en": "Assumptions and limitations",
+    "title_hi": "मान्यताएँ और सीमाएँ"
+   },
+   {
+    "body_en": "The Proficient group has mastered N0.5.1, so their independent work is finding and naming shapes, and with the teacher they work on N1.5.1, describing sides and corners.",
+    "body_hi": "दक्ष समूह N0.5.1 पहले से सीख चुका है, इसलिए उनका स्वतंत्र अभ्यास आकृति खोजकर नाम लिखना है और शिक्षक के साथ वे N1.5.1 पर काम करते हैं, यानी भुजाओं और कोनों का वर्णन।",
+    "title_en": "Proficient extension",
+    "title_hi": "दक्ष समूह का विस्तार"
+   }
+  ]
+ },
+ "review_prompts": {
+  "photo_sample_rolls": {
+   "beginner": [
+    1,
+    2,
+    3,
+    11,
+    12,
+    13,
+    23
+   ],
+   "proficient": [
+    8,
+    9,
+    20,
+    21,
+    28,
+    29
+   ],
+   "progressor": [
+    4,
+    6,
+    15,
+    17,
+    19,
+    26
+   ]
+  },
+  "photo_sample_method": "systematic sampling, the start moves each day",
+  "observation_reminders_hi": [
+   "आज मुख्य लक्ष्य की मोडैलिटी 'observed' है। शुरुआती और प्रगतिशील समूह के बच्चों से सीधे आकृति का नाम बोलवाकर देखें। वर्ग और आयत में अंतर कौन-कौन कर पाता है, यह खास तौर पर नोट करें।"
+  ]
+ },
+ "rotation_schedule": {
+  "blocks": [
+   {
+    "type": "anchor",
+    "script_hi": null,
+    "time_start": "0:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 10
+   },
+   {
+    "type": "setup",
+    "script_hi": "अब हम तीन समूहों में बैठेंगे। शुरुआती समूह मेरे पास आगे आ जाएँ। बाकी दोनों समूह अपनी जगह पर बैठकर अपने स्वतंत्र अभ्यास का काम शुरू करें। अपने मॉनिटर की बात सुनें।",
+    "time_start": "0:10",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:12",
+    "teach_group": "beginner",
+    "talking_points": {
+     "i_do_hi": "बोर्ड पर वृत्त बनाकर कहें: यह वृत्त है, इसमें कोई कोना नहीं है, यह गोल है। फिर वर्ग, त्रिभुज और आयत एक-एक करके बनाएँ। हर आकृति की उँगली से रेखा खींचकर दिखाएँ और नाम बोलें।",
+     "we_do_hi": "बच्चों को कहें कि मेरे साथ बोलें: यह वृत्त है, यह वर्ग है। फिर कक्षा की चीज़ें दिखाकर पूछें: रोटी कौन सी आकृति है? घड़ी कौन सी आकृति है? वर्ग और आयत का फ़र्क साथ में समझाएँ: वर्ग की चारों भुजाएँ बराबर होती हैं।",
+     "you_do_hi": "बच्चे बोर्ड से वर्कशीट के सवाल 1 से 5 पहले अपनी कॉपी में उतारें और हल करें। बाकी सवाल अतिरिक्त हैं, जल्दी खत्म करने वाले उन्हें करें। मैं घूमकर हर बच्चे से आकृति का नाम बोलवाकर देखूँगा/देखूँगी।"
+    },
+    "other_groups_hi": "प्रगतिशील समूह: पुरानी सीखी हुई बातों की सरल समीक्षा, यानी 1 से 20 तक की गिनती कॉपी में लिखें और जोड़ीदार को सुनाएँ। दक्ष समूह: कक्षा में अलग-अलग चीज़ें खोजकर कॉपी में उनकी आकृति का नाम लिखें (वृत्त, वर्ग, त्रिभुज, आयत), यह उनका पहले से सीखा हुआ काम है। जल्दी खत्म करने वाले और चीज़ें खोजकर लिखें या जोड़ीदार का काम जाँचें।",
+    "duration_minutes": 29
+   },
+   {
+    "type": "transition",
+    "script_hi": "अपना काम रोक दें और कॉपी बंद करें। शुरुआती समूह अपनी जगह जाएँ। अब प्रगतिशील समूह मेरे पास आएँ। शुरुआती समूह अपना स्वतंत्र अभ्यास शुरू करें: गिनती 1 से 20 तक कॉपी में लिखें।",
+    "time_start": "0:41",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:43",
+    "teach_group": "progressor",
+    "talking_points": {
+     "i_do_hi": "बोर्ड पर वर्ग और आयत साथ-साथ बनाएँ। नाप-गिनकर दिखाएँ कि वर्ग की चारों भुजाएँ बराबर हैं और आयत की आमने-सामने की भुजाएँ बराबर हैं। कहें: दोनों के चार कोने हैं, पर भुजाओं की लंबाई अलग है।",
+     "we_do_hi": "बोर्ड पर अलग-अलग आकृतियाँ दिखाकर पूछें: यह वर्ग है या आयत? कैसे पता चला? कक्षा की चीज़ें दिखाएँ: दरवाज़ा, डस्टर, घड़ी। हर बार बच्चों से कारण भी बुलवाएँ।",
+     "you_do_hi": "बच्चे बोर्ड से वर्कशीट के सवाल 1 से 6 पहले अपनी कॉपी में उतारकर हल करें। बाकी सवाल अतिरिक्त हैं। वर्ग और आयत वाले सवालों पर खास ध्यान दें।"
+    },
+    "other_groups_hi": "शुरुआती समूह: पुरानी सीखी हुई बातों की सरल समीक्षा, यानी 1 से 20 तक की गिनती कॉपी में लिखें और जोड़ीदार को सुनाएँ। दक्ष समूह: कक्षा की चीज़ें खोजकर उनकी आकृति का नाम कॉपी में लिखें। जल्दी खत्म करने वाले और चीज़ें खोजें या जोड़ीदार का काम जाँचें।",
+    "duration_minutes": 22
+   },
+   {
+    "type": "transition",
+    "script_hi": "सब अपना काम रोक दें। प्रगतिशील समूह अपनी जगह जाएँ और स्वतंत्र अभ्यास शुरू करें। अब दक्ष समूह मेरे पास आएँ। शुरुआती और प्रगतिशील समूह अपना काम शांति से जारी रखें।",
+    "time_start": "1:05",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "1:07",
+    "teach_group": "proficient",
+    "talking_points": {
+     "i_do_hi": "बोर्ड पर एक त्रिभुज बनाकर कहें: इसकी तीन भुजाएँ हैं और तीन कोने हैं। कोनों को बिंदु लगाकर और भुजाओं को रेखा पर उँगली फेरकर गिनकर दिखाएँ। फिर आयत बनाकर वही करें: चार भुजाएँ, चार कोने।",
+     "we_do_hi": "बच्चों के साथ वृत्त, वर्ग, त्रिभुज और आयत की भुजाएँ और कोने साथ में गिनें। सवाल पूछें: किस आकृति में कोई कोना नहीं होता? किसकी तीन भुजाएँ होती हैं? क्या कोई आकृति है जिसमें भुजाएँ तो हैं पर कोने कम हैं?",
+     "you_do_hi": "बच्चे बोर्ड से वर्कशीट के सारे सवाल अपनी कॉपी में उतारकर हल करें। मैं देखूँगा/देखूँगी कि हर बच्चा भुजाओं और कोनों को सही गिन रहा है।"
+    },
+    "other_groups_hi": "शुरुआती समूह: अब आकृतियों का अभ्यास अपनी कॉपी में बनाकर नाम लिखें। प्रगतिशील समूह: अब सीखी हुई आकृतियों की पहचान का अभ्यास करें, कक्षा में चीज़ें ढूँढकर नाम लिखें। जल्दी खत्म करने वाले जोड़ीदार का काम जाँचें।",
+    "duration_minutes": 22
+   },
+   {
+    "type": "transition",
+    "script_hi": "सब अपना काम रोक दें और कॉपी बंद करें। आज आप सबने आकृतियों की बहुत अच्छी खोज की। आज बहुत अच्छा काम हुआ! अपनी जगह पर शांति से बैठें।",
+    "time_start": "1:29",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 1
+   }
+  ],
+  "total_minutes": 90
+ },
+ "classroom_management": {
+  "peer_monitors": {
+   "beginner": "Roll 1",
+   "proficient": "Roll 8",
+   "progressor": "Roll 4"
+  },
+  "independent_activities_hi": {
+   "beginner": "पुरानी सीखी हुई बातों की सरल समीक्षा: 1 से 20 तक की गिनती कॉपी में लिखें और जोड़ीदार को बोलकर सुनाएँ। यह लगभग 22 से 29 मिनट का काम है। जल्दी खत्म करने वाले अपनी पसंद की गिनती दोहराएँ और जोड़ीदार का लिखा जाँचें।",
+   "proficient": "कक्षा में अलग-अलग चीज़ें खोजें और कॉपी में लिखें कि वे किस आकृति की हैं (वृत्त, वर्ग, त्रिभुज, आयत)। कम से कम 8 चीज़ें लिखें। यह लगभग 22 मिनट का काम है। जल्दी खत्म करने वाले और चीज़ें खोजें या जोड़ीदार की सूची जाँचें।",
+   "progressor": "पुरानी सीखी हुई बातों की सरल समीक्षा: 1 से 20 तक की गिनती कॉपी में लिखें, फिर उल्टी गिनती 20 से 1 तक लिखें। यह लगभग 22 से 29 मिनट का काम है। जल्दी खत्म करने वाले जोड़ीदार का लिखा जाँचें।"
+  }
+ }
+}

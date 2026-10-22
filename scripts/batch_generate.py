@@ -27,6 +27,7 @@ import argparse
 import asyncio
 import contextlib
 import csv
+import shutil
 import io
 import json
 import os
@@ -40,9 +41,15 @@ from types import SimpleNamespace
 ROOT = Path(__file__).resolve().parent.parent
 BACKEND = ROOT / "backend"
 DEMO_TEACHER = "10000001-aaaa-bbbb-cccc-000000000001"
-FIELDS = ["competency_id", "domain", "grade", "status", "error", "seconds", "input_tokens", "output_tokens", "repair_input_tokens",
-          "repair_output_tokens", "est_cost_usd", "warnings_after", "warnings", "stick_repairs", "worksheet_repairs", "style_changes",
-          "cfu_written", "cfu_kept", "cfu_dropped", "anchor_id", "anchor_match", "passage_match", "render_ok", "generated_at"]
+FIELDS = ["competency_id", "domain", "grade", "status", "error", "seconds", "input_tokens", "output_tokens",
+          "repair_input_tokens", "repair_output_tokens", "est_cost_usd", "warnings_after", "warnings", "stick_repairs",
+          "worksheet_repairs", "style_changes", "anchor_id", "anchor_match", "passage_match", "render_ok", "generated_at",
+          "cfu_written", "cfu_kept", "cfu_dropped", "cfu_topup"]
+# the order version v27i wrote (the CFU columns in the MIDDLE): rows written that way are repaired by migrate_csv
+FIELDS_V27I = ["competency_id", "domain", "grade", "status", "error", "seconds", "input_tokens", "output_tokens",
+          "repair_input_tokens", "repair_output_tokens", "est_cost_usd", "warnings_after", "warnings", "stick_repairs",
+          "worksheet_repairs", "style_changes", "cfu_written", "cfu_kept", "cfu_dropped", "anchor_id", "anchor_match",
+          "passage_match", "render_ok", "generated_at"]
 
 
 def domain_of(cid: str) -> str:
@@ -88,6 +95,39 @@ def install_stub(plan_service):
 
 
 # ── one skill ───────────────────────────────────────────────────────────────
+
+def migrate_csv(path: Path) -> None:
+    """Bring an existing report file up to the current columns, and repair rows written by v27i (new CFU columns in the MIDDLE, under an older header, so every cell after them
+    was under the wrong name). Old rows get empty CFU cells. The original is kept as <name>.bak. A file that is already current is not touched."""
+    if not path.exists():
+        return
+    with path.open(encoding="utf-8", newline="") as fh:
+        rows = [r for r in csv.reader(fh) if r]
+    if not rows:
+        return
+    header, body = rows[0], rows[1:]
+    if header == FIELDS and all(len(r) == len(FIELDS) for r in body):
+        return
+    fixed, repaired = [], 0
+    for r in body:
+        if len(r) == len(header):
+            d = dict(zip(header, r))
+        elif len(r) == len(FIELDS_V27I):                          # a row v27i appended under an older header: its own order says what each cell is
+            d, repaired = dict(zip(FIELDS_V27I, r)), repaired + 1
+        else:
+            d = dict(zip(header, r))                              # anything else: keep what lines up, drop stray cells
+        fixed.append({k: d.get(k, "") for k in FIELDS})
+    backup = path.with_name(path.name + ".bak")
+    if not backup.exists():
+        shutil.copy2(path, backup)
+    tmp = path.with_name(path.name + ".tmp")
+    with tmp.open("w", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=FIELDS)
+        w.writeheader()
+        w.writerows(fixed)
+    tmp.replace(path)
+    print(f"Updated {path.name} to the current columns: {len(fixed)} rows kept" + (f", {repaired} repaired" if repaired else "") + f" (the original is saved as {backup.name}).")
+
 
 def show_cfu(cid: str, plan: dict) -> None:
     """Print the check-for-understanding questions of one plan, to read (and for Vaishnavi to review)."""
@@ -140,7 +180,8 @@ async def run_one(database, plan_service, worksheet_service, fetch_anchor_activi
         # check for understanding (docs/CFU.md): how many questions the model wrote, how many the code let through, and why the rest were dropped
         stats = ((res.get("plan") or {}).get("cfu_stats") or {}) if row["status"] == "ok" else {}
         row.update(cfu_written=sum(x.get("written", 0) for x in stats.values()), cfu_kept=sum(x.get("kept", 0) for x in stats.values()),
-                   cfu_dropped=" | ".join(l.strip()[4:].strip()[:150] for l in out.splitlines() if l.strip().startswith("CFU:") and ("dropped" in l or "no CFU" in l or "only" in l)))
+                   cfu_dropped=" | ".join(l.strip()[4:].strip()[:300] for l in out.splitlines() if l.strip().startswith("CFU:") and ("dropped" in l or "no CFU" in l or "only" in l)))
+        row["cfu_topup"] = ",".join(g for g, x in stats.items() if x.get("topped_up"))          # which groups needed the extra call
         if args.show_cfu and row["status"] == "ok":
             show_cfu(cid, res.get("plan") or {})
         # what the knowledge base offered for this skill
@@ -192,12 +233,16 @@ async def main():
     ap.add_argument("--out", default=str(ROOT / "docs" / "batch" / "batch_results.csv"))
     ap.add_argument("--teacher-id", default=DEMO_TEACHER)
     ap.add_argument("--start-date", default="2031-01-01", help="first scratch plan date (far in the future, so real plans are never touched)")
+    ap.add_argument("--upgrade-csv", action="store_true", help="only bring the report file up to date with the current columns (a backup is kept), then stop: no plans are generated, nothing is spent")
     ap.add_argument("--show-cfu", action="store_true", help="print the check-for-understanding questions of every plan (to read them, or to give Vaishnavi to review)")
     ap.add_argument("--keep-plans", action="store_true", help="keep the generated plans in the database")
     ap.add_argument("--stub", action="store_true", help="use a FAKE model: a dry run that costs nothing and needs no key")
     ap.add_argument("--yes", action="store_true", help="do not ask for confirmation")
     ap.add_argument("--database-url", help="override DATABASE_URL")
     args = ap.parse_args()
+    if args.upgrade_csv:
+        migrate_csv(Path(args.out))
+        return
 
     os.chdir(BACKEND)                                           # the app reads backend/.env from here
     if args.database_url:
@@ -229,6 +274,7 @@ async def main():
     if args.domain:
         comps = [c for c in comps if domain_of(c["id"]) == args.domain]
     out_path = Path(args.out)
+    migrate_csv(out_path)                                    # an older report file is brought up to date first (with a backup)
     done = set()
     if out_path.exists() and not args.redo:
         done = {r["competency_id"] for r in csv.DictReader(out_path.open(encoding="utf-8")) if r["status"] == "ok"}

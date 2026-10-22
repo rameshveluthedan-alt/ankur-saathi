@@ -1,0 +1,439 @@
+{
+ "anchor": {
+  "title_hi": "कक्षा में छँटाई का खेल",
+  "narration_hi": "आज हम अपनी कक्षा की चीज़ें छाँटेंगे। मेरे पास कुछ चीज़ें हैं: लाल और नीले बटन, गोल और चौकोर ढक्कन। देखें, इन्हें हम किस आधार पर अलग-अलग रख सकते हैं?",
+  "closing_question_hi": "आज हमने चीज़ें किस आधार पर छाँटीं? कौन बता सकता है कि छाँटने का नियम क्या था?",
+  "opening_question_hi": "बच्चो, इन चीज़ों में क्या-क्या अलग है? क्या सब एक जैसी हैं?",
+  "beginner_participation_hi": "शिक्षक एक चीज़ उठाएँ और पूछें: 'यह किस रंग की है?' बच्चे रंग बताएँ और उसे सही ढेर में रखें।",
+  "proficient_participation_hi": "बच्चे एक ही चीज़ों को दो अलग तरीकों से छाँटकर दिखाएँ (पहले रंग से, फिर आकार से) और बताएँ कि नियम बदलने पर ढेर कैसे बदले।",
+  "progressor_participation_hi": "बच्चे बताएँ कि ढेर किस आधार पर बना है: 'इस ढेर में सब लाल हैं, इसलिए हमने रंग के आधार पर छाँटा।'"
+ },
+ "prep_hi": [
+  "कक्षा में उपलब्ध चीज़ें इकट्ठा करें: कम से कम 12 पत्थर/बीज/बटन/ढक्कन (दो-तीन रंग या आकार के) और 3 छोटे डिब्बे या कपड़े के टुकड़े। हर समूह के लिए एक सेट रखें (छपी वर्कशीट नहीं हैं)।",
+  "बोर्ड पर तीनों वर्कशीट के चित्र-सवाल पहले से बनाकर रखें: शुरुआती (बोर्ड का बायाँ हिस्सा), प्रगतिशील (बीच का), दक्ष (दायाँ)। बच्चे बोर्ड से कॉपी में उतारेंगे।",
+  "स्वतंत्र अभ्यास के लिए हर समूह को 10-10 ऐसी चीज़ें दें जिन्हें वे ख़ुद छाँट सकें (जैसे कंचे, पत्ते, चूड़ियाँ, पेंसिल, ढक्कन)।"
+ ],
+ "coverage": {
+  "note": "Not yet run through the real model: the plan may need more editing.",
+  "tier": "untested"
+ },
+ "worksheets": {
+  "beginner": {
+   "problems": [
+    {
+     "answer": "लाल 4, पीली 3",
+     "number": 1,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 4 लाल गेंद, 3 पीली गेंद। रंग से छाँटें। लाल कितनी? पीली कितनी?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "गोल 2, चौकोर 5",
+     "number": 2,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 2 गोल और 5 चौकोर ढक्कन। आकार से छाँटें। गोल कितने? चौकोर कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "बड़े 3, छोटे 4",
+     "number": 3,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 3 बड़े और 4 छोटे पत्ते। बड़ाई से छाँटें। बड़े कितने? छोटे कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "हरे 5, लाल 1",
+     "number": 4,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 5 हरे और 1 लाल कंचे। रंग से छाँटें। हरे कितने? लाल कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "त्रिभुज 3, गोल 3",
+     "number": 5,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 3 त्रिभुज और 3 गोल। आकार से छाँटें। त्रिभुज कितने? गोल कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "नीली 2, लाल 2, पीली 2",
+     "number": 6,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 2 नीली, 2 लाल, 2 पीली चूड़ियाँ। रंग से छाँटें। हर रंग की कितनी?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": {
+    "answer": "लाल 3, नीले 2",
+    "row1_o": null,
+    "row1_t": null,
+    "row2_o": null,
+    "row2_t": null,
+    "answer_o": null,
+    "answer_t": null,
+    "problem_hi": "चित्र: 3 लाल बटन, 2 नीले बटन। रंग से छाँटें। लाल कितने? नीले कितने?",
+    "pv_columns": null,
+    "show_pv_grid": false
+   },
+   "required_count": 5,
+   "instructions_en": "Look at the picture. Sort by one rule and write how many objects are in each group.",
+   "instructions_hi": "चित्र देखें। एक ही नियम से छाँटें और ढेर में चीज़ों की संख्या लिखें।"
+  },
+  "proficient": {
+   "problems": [
+    {
+     "answer": "लाल 7, नीले 2",
+     "number": 1,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 3 लाल गोल, 2 नीले गोल, 4 लाल चौकोर। रंग से छाँटें। लाल कितने? नीले कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "गोल 5, चौकोर 4",
+     "number": 2,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "वही चित्र (सवाल 1) अब आकार से छाँटें। गोल कितने? चौकोर कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "बड़ी 3, छोटी 3",
+     "number": 3,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 2 बड़ी लाल, 3 छोटी लाल, 1 बड़ी नीली गेंद। बड़ाई से छाँटें। बड़ी कितनी? छोटी कितनी?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "रंग",
+     "number": 4,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 8 चीज़ें हैं: 4 लाल, 4 नीली। एक नियम बनाएँ जिससे दोनों ढेर बराबर बनें। नियम लिखें।",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "5",
+     "number": 5,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 5 त्रिभुज, 2 गोल, 3 चौकोर। आकार से छाँटें। सबसे बड़े ढेर में कितनी चीज़ें?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "लाल गोल और लाल चौकोर",
+     "number": 6,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 2 लाल गोल, 2 लाल चौकोर, 2 नीले गोल, 2 नीले चौकोर। कौन सी चीज़ें रंग के ढेर में साथ रहेंगी पर आकार के ढेर में अलग होंगी? एक उदाहरण लिखें।",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "4",
+     "number": 7,
+     "pv_row2": false,
+     "row_type": null,
+     "problem_hi": "शब्द-सवाल: राधा के पास 4 लाल और 3 हरे कंचे हैं। उसने रंग से छाँटा। सबसे बड़े ढेर में कितने कंचे हैं?",
+     "pv_columns": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "2",
+     "number": 8,
+     "pv_row2": false,
+     "row_type": null,
+     "problem_hi": "शब्द-सवाल: मोहन के पास 3 गोल और 5 चौकोर बिस्कुट हैं। उसने आकार से छाँटा। चौकोर ढेर में गोल ढेर से कितने ज़्यादा हैं?",
+     "pv_columns": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": null,
+   "required_count": 6,
+   "instructions_en": "Look at the picture. Sort by the rule given and write the answer.",
+   "instructions_hi": "चित्र देखें। हर सवाल में दिए नियम से छाँटें और उत्तर लिखें।"
+  },
+  "progressor": {
+   "problems": [
+    {
+     "answer": "आकार; गोल 5, चौकोर 3",
+     "number": 1,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 5 गोल और 3 चौकोर ढक्कन। नियम बताएँ। गोल कितने? चौकोर कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "बड़ाई; बड़े 4, छोटे 4",
+     "number": 2,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 4 बड़े और 4 छोटे पत्ते। नियम बताएँ। हर ढेर में कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "हरे 6, नीले 2",
+     "number": 3,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 6 हरे, 2 नीले बटन। रंग से छाँटें। हरे कितने? नीले कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "गोल 7, चौकोर 2",
+     "number": 4,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 3 लाल गोल, 2 लाल चौकोर, 4 नीले गोल। आकार से छाँटें। गोल कितने? चौकोर कितने?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "नीला",
+     "number": 5,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 5 ढेर में 1 चीज़ अलग रंग की है (4 लाल और 1 नीला)। छँटाई में कौन सी चीज़ ग़लत ढेर में है? उसका रंग लिखें।",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "लाल 3, पीले 3, हरे 2",
+     "number": 6,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "चित्र: 3 लाल, 3 पीले, 2 हरे कंचे। रंग से छाँटें। हर रंग की कितनी?",
+     "pv_columns": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": {
+    "answer": "रंग; लाल 4, नीले 3",
+    "row1_o": null,
+    "row1_t": null,
+    "row2_o": null,
+    "row2_t": null,
+    "answer_o": null,
+    "answer_t": null,
+    "problem_hi": "चित्र: 4 लाल और 3 नीले ढक्कन। नियम: रंग। लाल कितने? नीले कितने?",
+    "pv_columns": null,
+    "show_pv_grid": false
+   },
+   "required_count": 6,
+   "instructions_en": "Look at the picture. Name the sorting rule and write how many in each group.",
+   "instructions_hi": "चित्र देखें। छाँटने का नियम बताएँ और हर ढेर में संख्या लिखें।"
+  }
+ },
+ "explainability": {
+  "items": [
+   {
+    "body_en": "The 30 children are split by prior assessment into 7 Beginners, 14 Progressors and 9 Proficients, so each group gets level-matched work.",
+    "body_hi": "कक्षा के 30 बच्चों को पिछले आकलन के आधार पर 7 शुरुआती, 14 प्रगतिशील और 9 दक्ष में बाँटा गया है। हर समूह को उसके स्तर की गतिविधि मिलती है।",
+    "title_en": "Why these three groups",
+    "title_hi": "तीन समूह क्यों"
+   },
+   {
+    "body_en": "Beginners go first with the longest block (29 min) as they need the foundation. Progressors and Proficients get 22 minutes each. Waiting groups only do simple review sorting, never new content.",
+    "body_hi": "पहले शुरुआती समूह को सबसे ज़्यादा समय (29 मिनट) मिला क्योंकि उन्हें नींव चाहिए। फिर प्रगतिशील और दक्ष को 22-22 मिनट। बाकी दोनों समूह अपनी चीज़ों की सरल छँटाई करते हैं, कोई नई चीज़ नहीं सीखते।",
+    "title_en": "Why this rotation order",
+    "title_hi": "घुमाव का क्रम"
+   },
+   {
+    "body_en": "No misconception taxonomy was supplied for this topic, so no problems are tagged with a diagnostic misconception. Watch for children switching rules mid-sort or mixing attributes within a group.",
+    "body_hi": "इस विषय के लिए कोई ग़लत-धारणा सूची नहीं मिली, इसलिए कोई पूर्व-निर्धारित भूल चिह्नित नहीं की गई है। देखें कि बच्चे छँटाई के बीच में नियम न बदलें और एक ढेर में अलग-अलग गुण वाली चीज़ें न मिलाएँ।",
+    "title_en": "Misconceptions to watch",
+    "title_hi": "किन ग़लत धारणाओं पर नज़र रखें"
+   },
+   {
+    "body_en": "Anchor ANC-N-006 was only a LOOSE match (nothing in the bank matches N0.1.1), so only its classroom setting and format were kept and each group's task was rewritten for sorting. No intervention template or TLM was provided. Curriculum note: revision for Beginners.",
+    "body_hi": "एंकर ANC-N-006 'कक्षा में आकृति खोज' केवल ढीले ढंग से (LOOSE) मिला क्योंकि N0.1.1 के लिए कोई एंकर नहीं था; इसकी कक्षा-थीम और प्रारूप लिए गए पर हर समूह का काम छँटाई के लिए नए सिरे से लिखा गया। कोई हस्तक्षेप टेम्पलेट या TLM उपलब्ध नहीं था। पाठ्यक्रम नोट: शुरुआती के लिए पुनरावृत्ति।",
+    "title_en": "Retrieved content used",
+    "title_hi": "इस्तेमाल हुई सामग्री"
+   },
+   {
+    "body_en": "The curriculum plan is a representative plan, not the state's official weekly plan. With no printer, worksheets are copied from the board and the teacher must draw the picture items beforehand.",
+    "body_hi": "यह पाठ्यक्रम योजना एक प्रतिनिधि योजना है, राज्य की आधिकारिक साप्ताहिक योजना नहीं। प्रिंटर न होने से वर्कशीट बोर्ड से उतारी जाती हैं और चित्र-सवाल शिक्षक को बोर्ड पर बनाने होंगे।",
+    "title_en": "Assumptions and limitations",
+    "title_hi": "मान्यताएँ और सीमाएँ"
+   },
+   {
+    "body_en": "No mastered skills were listed for any group, so independent stations use a simple review (sorting own objects by colour or shape).",
+    "body_hi": "किसी समूह की पहले से सीखी हुई क्षमता सूची में नहीं थी, इसलिए स्वतंत्र अभ्यास में सरल पुनरावृत्ति (अपनी चीज़ों को रंग या आकार से छाँटना) रखी गई है।",
+    "title_en": "On independent work",
+    "title_hi": "स्वतंत्र अभ्यास के बारे में"
+   }
+  ]
+ },
+ "review_prompts": {
+  "photo_sample_rolls": {
+   "beginner": [
+    1,
+    2,
+    3,
+    11,
+    12,
+    13,
+    23
+   ],
+   "proficient": [
+    8,
+    9,
+    20,
+    21,
+    28,
+    29
+   ],
+   "progressor": [
+    5,
+    7,
+    16,
+    18,
+    24,
+    27
+   ]
+  },
+  "photo_sample_method": "systematic sampling, the start moves each day",
+  "observation_reminders_hi": [
+   "छँटाई के समय देखें कि बच्चा एक ही नियम पर टिका रहता है या बीच में बदल देता है।",
+   "देखें कि बच्चा बिना कहे छाँटने का नियम (रंग, आकार या बड़ाई) बता पाता है या नहीं।",
+   "जो बच्चे 10 से ज़्यादा चीज़ें बिना ग़लती छाँट पाएँ, उन्हें 'प्राप्त' चिह्नित करें; 1-2 ग़लती या संकेत की ज़रूरत वाले बच्चे 'आंशिक'; और जो बेतरतीब ढेर बनाएँ उन्हें 'अप्राप्त'।"
+  ]
+ },
+ "rotation_schedule": {
+  "blocks": [
+   {
+    "type": "anchor",
+    "script_hi": null,
+    "time_start": "0:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 10
+   },
+   {
+    "type": "setup",
+    "script_hi": "अब हम तीन समूहों में बैठेंगे। शुरुआती समूह मेरे पास आएँ। बाकी दोनों समूह अपनी जगह पर बैठकर स्वतंत्र अभ्यास शुरू करें। अपने मॉनिटर की बात सुनें।",
+    "time_start": "0:10",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:12",
+    "teach_group": "beginner",
+    "talking_points": {
+     "i_do_hi": "मैं 6 बटन लेता/लेती हूँ: 3 लाल, 3 नीले। देखें, मैं एक-एक बटन उठाकर बोलता/बोलती हूँ 'लाल' और लाल ढेर में रखता/रखती हूँ, 'नीला' तो नीले ढेर में। अब सब लाल एक जगह, सब नीले दूसरी जगह।",
+     "we_do_hi": "अब हम साथ में करते हैं। मैं बटन दिखाऊँगा/दिखाऊँगी, आप रंग बोलें और ढेर बताएँ। फिर दो-दो बच्चे आकर एक-एक चीज़ सही ढेर में रखें और सब मिलकर जाँचें: 'क्या इस ढेर में सब एक जैसे हैं?'",
+     "you_do_hi": "बोर्ड से वर्कशीट के सवाल 1 से 5 पहले कॉपी में उतारें और हल करें। बाकी सवाल अतिरिक्त हैं, समय बचे तो करें। हर सवाल में चित्र देखकर एक ही नियम से ढेर बनाएँ और नियम बताएँ।"
+    },
+    "other_groups_hi": "प्रगतिशील और दक्ष समूह अपने स्टेशन पर स्वतंत्र अभ्यास करें: अपनी दी हुई 10 चीज़ों को पहले रंग से और फिर आकार से अलग-अलग ढेरों में रखें, और हर ढेर के बारे में अपने साथी को बताएँ। जल्दी खत्म करने वाले साथी का काम जाँचें।",
+    "duration_minutes": 29
+   },
+   {
+    "type": "transition",
+    "script_hi": "अपना काम रोक दें और चीज़ें डिब्बे में रखें। शुरुआती समूह अपने स्टेशन पर जाएँ। अब प्रगतिशील समूह मेरे पास आएँ। दक्ष समूह स्वतंत्र अभ्यास जारी रखे।",
+    "time_start": "0:41",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:43",
+    "teach_group": "progressor",
+    "talking_points": {
+     "i_do_hi": "मेरे पास रंग-बिरंगे ढक्कन हैं। मैं बोलता/बोलती हूँ 'मैंने रंग देखकर छाँटा' और सब लाल एक ढेर में रखता/रखती हूँ। फिर समझाता/समझाती हूँ कि हर ढेर में नियम एक ही रहता है।",
+     "we_do_hi": "अब आप बताएँ कि इन चीज़ों को किस आधार पर छाँटें: रंग, आकार या बड़ाई? एक बच्चा छाँटे और बाकी बताएँ कि उसका नियम क्या है। ग़लत ढेर में रखी चीज़ पर सब मिलकर बात करें।",
+     "you_do_hi": "बोर्ड से वर्कशीट के सवाल 1 से 6 पहले कॉपी में उतारें और हल करें। बाकी सवाल अतिरिक्त हैं। हर सवाल में छाँटने का नियम भी लिखें या बोलें।"
+    },
+    "other_groups_hi": "शुरुआती और दक्ष समूह अपने स्टेशन पर स्वतंत्र अभ्यास करें: अपनी दी हुई चीज़ों को रंग या आकार से छाँटें और साथी को बताएँ कि ढेर किस नियम से बना। जल्दी खत्म करने वाले साथी का काम जाँचें।",
+    "duration_minutes": 22
+   },
+   {
+    "type": "transition",
+    "script_hi": "अपना काम रोक दें और चीज़ें समेट लें। प्रगतिशील समूह अपने स्टेशन पर जाएँ। अब दक्ष समूह मेरे पास आएँ। शुरुआती समूह अपनी चीज़ों से स्वतंत्र अभ्यास जारी रखे।",
+    "time_start": "1:05",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "1:07",
+    "teach_group": "proficient",
+    "talking_points": {
+     "i_do_hi": "मैं 8 चीज़ें लेता/लेती हूँ: कुछ गोल, कुछ चौकोर, कुछ लाल, कुछ नीले। पहले मैं रंग से छाँटता/छाँटती हूँ, फिर वही चीज़ें आकार से। देखें, चीज़ें वही हैं पर नियम बदलने से ढेर बदल गए।",
+     "we_do_hi": "अब आप बताएँ कि किसी एक चीज़ को कितने तरीकों से छाँटा जा सकता है। एक बच्चा छाँटे और बाकी नियम बताएँ। फिर पूछें: 'कौन सी चीज़ दो नियमों में अलग ढेर में जाएगी?'",
+     "you_do_hi": "बोर्ड से वर्कशीट के सारे सवाल कॉपी में उतारकर हल करें। हर सवाल में छाँटने का नियम लिखें और यह भी कि कोई चीज़ किस ढेर में नहीं जाएगी और क्यों।"
+    },
+    "other_groups_hi": "शुरुआती और प्रगतिशील समूह अपने स्टेशन पर स्वतंत्र अभ्यास करें: अपनी चीज़ों को रंग और आकार, दोनों तरीकों से बारी-बारी छाँटें और साथी को नियम बताएँ। जल्दी खत्म करने वाले साथी का काम जाँचें।",
+    "duration_minutes": 22
+   }
+  ],
+  "total_minutes": 90
+ },
+ "classroom_management": {
+  "peer_monitors": {
+   "beginner": "Roll 2",
+   "proficient": "Roll 8",
+   "progressor": "Roll 5"
+  },
+  "independent_activities_hi": {
+   "beginner": "अपनी दी हुई 10 चीज़ों को रंग के आधार पर दो ढेरों में रखें, फिर साथी को बताएँ कि हर ढेर में कितनी चीज़ें हैं। यह 20-25 मिनट का अभ्यास है। जल्दी खत्म करने वाले साथी का काम जाँचें।",
+   "proficient": "अपनी चीज़ों को रंग और आकार, दोनों तरीकों से छाँटें और साथी के साथ मिलकर देखें कि किन चीज़ों का ढेर नियम बदलने पर बदल गया। 20-25 मिनट का अभ्यास है। जल्दी खत्म करने वाले साथी का काम जाँचें।",
+   "progressor": "अपनी चीज़ों को पहले रंग से और फिर आकार से छाँटें और साथी को हर बार नियम बताएँ। 20-25 मिनट चलेगा। जल्दी खत्म करने वाले साथी की छँटाई में ग़लती खोजें।"
+  }
+ }
+}

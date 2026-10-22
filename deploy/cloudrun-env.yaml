@@ -19,6 +19,10 @@ DEBUG: "false"
 # check-for-understanding show-me questions in every lesson (docs/CFU.md). "false" = plans exactly as before, with no redeploy of code:
 #   gcloud run services update ankur-saathi --region=asia-south1 --update-env-vars=CFU_ENABLED=false
 CFU_ENABLED: "true"
+# when the model skips a block's questions (about 1 plan in 6 in the first real runs) or too many are rejected, the app asks it ONCE for just the missing ones (a second paid call, about 2 to 5 cents,
+# checked against the AI limit and metered). "0" switches that extra call off:
+#   gcloud run services update ankur-saathi --region=asia-south1 --update-env-vars=CFU_TOPUP=0
+CFU_TOPUP: "1"
 
 # the hackathon credit (docs/AI_BUDGET.md). Prices: USD per million tokens, from the pricing page for your model.
 AI_ENABLED: "true"

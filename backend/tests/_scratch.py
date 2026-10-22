@@ -6,6 +6,7 @@ import uuid
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
 sys.path[:0] = [os.path.join(ROOT, "backend"), os.path.join(ROOT, "prompts"), os.path.join(ROOT, "scripts")]
 os.environ.setdefault("ANTHROPIC_API_KEY", "dummy")
+os.environ.setdefault("CFU_TOPUP", "0")          # tests count model calls and metered rows exactly, so the CFU top-up call is OFF unless a test turns it on (test_cfu.py does)
 
 import anchor_common as ac
 from app.services import register_service as rs

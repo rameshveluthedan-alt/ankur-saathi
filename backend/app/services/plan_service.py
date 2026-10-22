@@ -18,7 +18,8 @@ from app.core.config import get_settings
 from app.core.database import get_db
 from app.services import ai_budget
 from app.services.sampling import sample_for_group
-from app.services.cfu import clean_plan_cfu, strip_cfu
+from app.services.cfu import clean_plan_cfu, strip_cfu, MIN_ITEMS, _avoid_for as _cfu_lesson_ops
+from app.services.model_json import parse_model_json, ModelJSONError
 from app.services.hindi_numbers import find_number_word_errors, find_numeric_overlaps, repair_place_value
 
 # Import the orchestration module (copied from prompts/ into services/ or added to path)
@@ -783,6 +784,73 @@ async def previous_review_feedback(db, teacher_id: str, domain_id: str, plan_dat
     return [r["misc_id"] for r in rows], feedback_date
 
 
+def _criteria_type(comp) -> Optional[str]:
+    """'computation' (a numeric rule: sums to check), 'observational', 'written_production' or 'fluency'; None when unknown (the checks are then strict)."""
+    c = getattr(comp, "apna_criteria", None)
+    if isinstance(c, str):
+        try:
+            c = json.loads(c)
+        except Exception:
+            c = None
+    return c.get("type") if isinstance(c, dict) else None
+
+
+def _cfu_criteria_type(comp, domain_id: str) -> Optional[str]:
+    """How strictly the CFU checks treat a skill. 'computation' ONLY for a NUMERACY skill with a numeric rule (there are sums to verify). Every literacy skill is 'literacy': eight of them are typed
+    'computation' in the knowledge base (punctuation, matras, comprehension) because they are scored with a numeric accuracy rule, but they contain no arithmetic, and a good question such as
+    'which mark ends this sentence: । or ?' must not be dropped for lacking an operation."""
+    return "literacy" if domain_id != "numeracy" else _criteria_type(comp)
+
+
+async def topup_cfu(client, model: str, plan_json: dict, cfu_kb: dict, deficient: list, lines: list, detected: dict) -> dict:
+    """The model sometimes skips the check-for-understanding questions altogether (4 of about 25 plans in the first real runs: N0.2.2, L3.6.1, N3.3.2, L1.5.1), and in a skill with few possible examples (single-digit sums,
+    multiplication tables) most of a block is rejected for repeating the lesson. When a block ends with fewer than 2 valid questions, the model is asked ONCE for just the missing ones, told which mistakes to aim at,
+    what is already written, which examples the lesson uses and why earlier ones were rejected. The new questions go through the SAME checks (clean_plan_cfu runs again). The call is checked against the AI limit before and
+    metered after, like the repairs; if anything fails the plan simply keeps what it has. Returns how many questions were added per group."""
+    from cfu_prompt import render_topup
+    blocks = {b.get("teach_group"): b for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or [] if b.get("type") == "teach"}
+    sym = {"*": "×", "/": "÷", "-": "−", "+": "+"}
+    needs = {}
+    for g in deficient:
+        b = blocks.get(g)
+        if b is None or g not in cfu_kb:
+            continue
+        kept = [q["question_hi"] for q in (b.get("cfu") or []) if isinstance(q, dict) and q.get("question_hi")]
+        lesson, _ = _cfu_lesson_ops(plan_json, g, b)
+        needs[g] = {"need": max(1, 3 - len(kept)), "existing": kept, "avoid": sorted(f"{a} {sym.get(op, op)} {c}" for op, a, c in lesson),
+                    "why": [re.sub(rf"^{g}[: ]+", "", l.split(" | ")[0])[:200] for l in lines if l.startswith((g + " ", g + ":"))][:4]}
+    if not needs:
+        return {}
+    try:
+        await ai_budget.guard("plan_repair")                      # over the AI limit: no top-up (the plan is still valid)
+        response = await client.messages.create(
+            model=model, max_tokens=4000,
+            system="You write check-for-understanding questions for a Hindi classroom lesson plan. Output JSON only.",
+            messages=[{"role": "user", "content": render_topup(cfu_kb, detected or {}, needs)}],
+            extra_body=CLAUDE_THINKING_BODY,
+        )
+        text = next((b.text for b in response.content if getattr(b, "type", None) == "text"), "")
+        print(f"   CFU top-up call for {', '.join(needs)}: usage={response.usage}")
+        await ai_budget.record_ctx("plan_repair", model, response.usage)
+        if "```json" in text:
+            text = text.split("```json", 1)[1]
+        text = text.split("```", 1)[0].strip()
+        data, note = parse_model_json(text)
+        if note:
+            print(f"   CFU top-up JSON: {note}")
+    except Exception as e:
+        print(f"   CFU top-up skipped: {type(e).__name__}: {str(e)[:140]}")
+        return {}
+    added = {}
+    for g in needs:
+        items = data.get(g) if isinstance(data, dict) else None
+        if isinstance(items, list):
+            new = [x for x in items if isinstance(x, dict)]
+            blocks[g]["cfu"] = list(blocks[g].get("cfu") or []) + new
+            added[g] = len(new)
+    return added
+
+
 async def build_reteach_items(db, teacher_id: str, misc_ids: list, feedback_date, groups: list) -> list[dict]:
     """One item per mistake found at the last review: what it was, how many children made it, and WHICH GROUP they are in now (the re-teach is for
     that group). The group used to be written in as 'progressor' for every item, whoever the children were."""
@@ -969,7 +1037,7 @@ async def generate_dainik_yojana(
         cfu_kb = {}
         for _g, _comp in (("beginner", beginner_comp), ("progressor", selected), ("proficient", proficient_comp)):
             _ms = misconceptions if _comp.id == competency_id else await fetch_misconceptions(db, _comp.id)
-            cfu_kb[_g] = {"competency_id": _comp.id, "name_hi": _comp.name_hi, "name_en": getattr(_comp, "name_en", ""), "mistakes": [asdict(m) for m in _ms]}
+            cfu_kb[_g] = {"competency_id": _comp.id, "name_hi": _comp.name_hi, "name_en": getattr(_comp, "name_en", ""), "criteria_type": _cfu_criteria_type(_comp, domain_id), "mistakes": [asdict(m) for m in _ms]}
 
     # What each group may safely practise on its own, and the new skill it is taught today
     safe_beginner = []
@@ -1122,48 +1190,64 @@ async def generate_dainik_yojana(
     
         client = anthropic.AsyncAnthropic(api_key=settings.anthropic_api_key)
     
-        response = await client.messages.create(
-            model=settings.claude_model,
-            max_tokens=settings.claude_max_tokens,
-            system=system_prompt,
-            messages=[{"role": "user", "content": user_prompt}],
-            extra_body=CLAUDE_THINKING_BODY,
-        )
-        await ai_budget.record(db, teacher_id, "plan", settings.claude_model, response.usage)     # paid for, whatever happens to the reply next
-    
-        # Find the text block — content[0] may be a thinking block on some models,
-        # so search for the block with type == "text" rather than assuming position.
-        response_text = None
-        for block in response.content:
-            if getattr(block, "type", None) == "text":
-                response_text = block.text
+        plan_json = None
+        for attempt in (1, 2):
+            if attempt == 2:                          # a second paid call is checked against the AI limit again, exactly like the first
+                try:
+                    await ai_budget.check(db, teacher_id, "plan")
+                except ai_budget.AICapReached as cap:
+                    raise ValueError("The model's reply was not valid JSON and the AI limit is reached, so it could not be asked again.") from cap
+            response = await client.messages.create(
+                model=settings.claude_model,
+                max_tokens=settings.claude_max_tokens,
+                system=system_prompt,
+                messages=[{"role": "user", "content": user_prompt}],
+                extra_body=CLAUDE_THINKING_BODY,
+            )
+            await ai_budget.record(db, teacher_id, "plan", settings.claude_model, response.usage)     # paid for, whatever happens to the reply next
+
+            # Find the text block: content[0] may be a thinking block on some models,
+            # so search for the block with type == "text" rather than assuming position.
+            response_text = None
+            for block in response.content:
+                if getattr(block, "type", None) == "text":
+                    response_text = block.text
+                    break
+
+            print(f"   Claude: stop_reason={response.stop_reason}, usage={response.usage}")
+
+            if response_text is None:
+                raise ValueError(
+                    f"No text block found in Claude's response. "
+                    f"Block types: {[getattr(b, 'type', '?') for b in response.content]}, "
+                    f"stop_reason={response.stop_reason}. "
+                    f"If stop_reason is 'max_tokens', thinking used the whole budget: "
+                    f"raise CLAUDE_MAX_TOKENS in .env."
+                )
+
+            if response.stop_reason == "max_tokens":
+                raise ValueError(
+                    "Claude's response was cut off by max_tokens, so the plan JSON is incomplete. "
+                    "Raise CLAUDE_MAX_TOKENS in .env."
+                )
+
+            # Strip markdown fences if Claude wraps in ```json
+            if "```json" in response_text:
+                response_text = response_text.split("```json", 1)[1]
+            if "```" in response_text:
+                response_text = response_text.split("```", 1)[0]
+            response_text = response_text.strip()
+
+            try:
+                plan_json, note = parse_model_json(response_text)
+                if note:
+                    print(f"   Model JSON: {note}")
                 break
-    
-        print(f"   Claude: stop_reason={response.stop_reason}, usage={response.usage}")
-    
-        if response_text is None:
-            raise ValueError(
-                f"No text block found in Claude's response. "
-                f"Block types: {[getattr(b, 'type', '?') for b in response.content]}, "
-                f"stop_reason={response.stop_reason}. "
-                f"If stop_reason is 'max_tokens', thinking used the whole budget: "
-                f"raise CLAUDE_MAX_TOKENS in .env."
-            )
-    
-        if response.stop_reason == "max_tokens":
-            raise ValueError(
-                "Claude's response was cut off by max_tokens, so the plan JSON is incomplete. "
-                "Raise CLAUDE_MAX_TOKENS in .env."
-            )
-    
-        # Strip markdown fences if Claude wraps in ```json
-        if "```json" in response_text:
-            response_text = response_text.split("```json", 1)[1]
-        if "```" in response_text:
-            response_text = response_text.split("```", 1)[0]
-        response_text = response_text.strip()
-    
-        plan_json = json.loads(response_text)
+            except ModelJSONError as e:
+                print(f"   Model JSON problem (attempt {attempt} of 2): {e}")
+                if attempt == 2:
+                    raise
+                print("   Asking the model again (this second call is checked and metered like the first)")
 
     for line in inject_passages(plan_json, group_passages):
         print(f"   Passage: {line}")
@@ -1224,6 +1308,16 @@ async def generate_dainik_yojana(
     try:
         if getattr(settings, "cfu_enabled", True) and served_from == "ai" and ctx.cfu_kb:
             cfu_lines, cfu_stats = clean_plan_cfu(plan_json, ctx.cfu_kb)
+            deficient = [g for g, st in cfu_stats.items() if st["kept"] < MIN_ITEMS]
+            if deficient and os.environ.get("CFU_TOPUP", "1") != "0":         # CFU_TOPUP=0 switches the extra call off
+                added = await topup_cfu(client, settings.claude_model, plan_json, ctx.cfu_kb, deficient, cfu_lines, ctx.cfu_detected)
+                if added:
+                    lines2, stats2 = clean_plan_cfu(plan_json, ctx.cfu_kb)       # the new questions are judged by the same checks
+                    cfu_lines += [f"top-up: {l}" for l in lines2 if any(l.startswith((g + " ", g + ":")) for g in added)]
+                    for g in added:
+                        stats2[g]["written"] = cfu_stats[g]["written"] + added[g]
+                        stats2[g]["topped_up"] = True
+                        cfu_stats[g] = stats2[g]
             plan_json["cfu_stats"] = cfu_stats
             for line in cfu_lines:
                 print(f"   CFU: {line}")

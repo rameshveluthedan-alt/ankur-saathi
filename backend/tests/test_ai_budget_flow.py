@@ -189,7 +189,7 @@ async def main():
             check("a reply that is not JSON is an error", False)
         except Exception:
             check("a reply that is not JSON is an error", True)
-        check("...and it was still metered (it cost money)", await db.fetchval("SELECT count(*) FROM ai_usage WHERE teacher_id = $1 AND kind = 'plan'", A) == n0 + 1)
+        check("...and BOTH paid calls were metered (it cost money twice: the model is asked once more)", await db.fetchval("SELECT count(*) FROM ai_usage WHERE teacher_id = $1 AND kind = 'plan'", A) == n0 + 2)
         mode["plan"] = "ok"
 
         print("9. photo analysis: metered, capped, and refused honestly")

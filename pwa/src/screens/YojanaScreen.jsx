@@ -194,8 +194,8 @@ export default function YojanaScreen() {
                   <div className="talking-point" style={ML} data-testid="cfu">
                     <div className="talking-point-label">समझ की जाँच: शो-मी (Check for understanding)</div>
                     <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 6 }}>
-                      हर बच्चा उत्तर कॉपी या स्लेट पर लिखकर छिपाए। संकेत पर सब एक साथ ऊपर दिखाएँ। फिर दो बच्चों से समझाने को कहें।
-                      <span style={{ display: 'block' }}>(Everyone writes the answer and hides it; on the signal all show it at once. Then ask two children to explain.)</span>
+                      हर बच्चा उत्तर कॉपी या स्लेट पर लिखकर या बनाकर (या उँगलियों या कार्ड से) तैयार करे और छिपाए। संकेत पर सब एक साथ दिखाएँ। फिर दो बच्चों से समझाने को कहें।
+                      <span style={{ display: 'block' }}>(Everyone prepares the answer, written, drawn, on fingers or on a card, and hides it; on the signal all show it at once. Then ask two children to explain.)</span>
                     </div>
                     {block.cfu.map((q, k) => (
                       <div key={k} data-testid="cfu-item" style={{ marginTop: 6, paddingTop: 6, borderTop: k ? '1px dashed var(--border)' : 'none' }}>
