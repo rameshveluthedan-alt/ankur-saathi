@@ -18,10 +18,12 @@ from app.core.config import get_settings
 from app.core.database import get_db
 from app.services import ai_budget
 from app.services.sampling import sample_for_group
+from app.services.cfu import clean_plan_cfu, strip_cfu
 from app.services.hindi_numbers import find_number_word_errors, find_numeric_overlaps, repair_place_value
 
 # Import the orchestration module (copied from prompts/ into services/ or added to path)
 import copy
+from dataclasses import asdict
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
 import hindi_style
@@ -798,7 +800,7 @@ async def build_reteach_items(db, teacher_id: str, misc_ids: list, feedback_date
             if g:
                 by_group[g] = by_group.get(g, 0) + 1
                 rolls_by_group.setdefault(g, []).append(r["roll_number"])
-        items.append({"competency_id": detail["competency_id"], "misconception_name_hi": detail["name_hi"], "affected_count": len(rolls),
+        items.append({"misconception_id": mid, "competency_id": detail["competency_id"], "misconception_name_hi": detail["name_hi"], "affected_count": len(rolls),
                       "group": choose_reteach_group(by_group), "affected_by_group": by_group,
                       "rolls_by_group": {g: sorted(v) for g, v in rolls_by_group.items()}})        # roll numbers go to the plan, never to the AI
     return items
@@ -961,6 +963,14 @@ async def generate_dainik_yojana(
     
     prereq_chain = await fetch_prerequisite_chain(db, competency_id, beginner_target_id)
 
+    # Check for understanding: the recorded mistakes of EACH group's own skill (only the selected skill's reached the prompt before)
+    cfu_kb = None
+    if getattr(settings, "cfu_enabled", True):
+        cfu_kb = {}
+        for _g, _comp in (("beginner", beginner_comp), ("progressor", selected), ("proficient", proficient_comp)):
+            _ms = misconceptions if _comp.id == competency_id else await fetch_misconceptions(db, _comp.id)
+            cfu_kb[_g] = {"competency_id": _comp.id, "name_hi": _comp.name_hi, "name_en": getattr(_comp, "name_en", ""), "mistakes": [asdict(m) for m in _ms]}
+
     # What each group may safely practise on its own, and the new skill it is taught today
     safe_beginner = []
     if beginner_target_id != competency_id:
@@ -1079,7 +1089,9 @@ async def generate_dainik_yojana(
         intervention_mode=intervention_mode,
         group_skills=group_skills,
         stick_policy=stick_policy,
+        cfu_kb=cfu_kb,
     )
+    ctx.cfu_detected = {r["misconception_id"]: r["affected_count"] for r in reteach_competencies if r.get("misconception_id")}
     
     # ── Reading passages (literacy): chosen in code from the content bank ──
     group_passages = await retrieve_group_passages(
@@ -1207,6 +1219,20 @@ async def generate_dainik_yojana(
         plan_json["review_prompts"]["photo_sample_method"] = "systematic sampling, the start moves each day"
     except Exception as e:
         print(f"   Photo sample skipped: {type(e).__name__}: {e}")
+
+    # Check for understanding: the model writes the questions, the CODE decides which a teacher may use (arithmetic, mistake IDs, no reuse, the skill's own rule)
+    try:
+        if getattr(settings, "cfu_enabled", True) and served_from == "ai" and ctx.cfu_kb:
+            cfu_lines, cfu_stats = clean_plan_cfu(plan_json, ctx.cfu_kb)
+            plan_json["cfu_stats"] = cfu_stats
+            for line in cfu_lines:
+                print(f"   CFU: {line}")
+            print("   CFU kept: " + ", ".join(f"{g} {s['kept']}/{s['written']}" for g, s in cfu_stats.items()))
+        else:
+            strip_cfu(plan_json)        # switched off, or a recorded sample plan: no unchecked question may reach a teacher
+    except Exception as e:              # a failed check must never break plan generation, and nothing unchecked is kept
+        strip_cfu(plan_json)
+        print(f"   CFU check skipped (questions removed): {type(e).__name__}: {e}")
 
     validation_warnings = validate_plan_shape(plan_json, domain_id)
     plan_json["coverage"] = await get_coverage(db, competency_id)      # shown on the plan screen

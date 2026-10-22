@@ -71,6 +71,7 @@ class Settings(BaseSettings):
     anchor_duration_minutes: int = 10
     setup_duration_minutes: int = 2
     reteach_duration_minutes: int = 5
+    cfu_enabled: bool = True                    # check-for-understanding show-me questions in every lesson (docs/CFU.md). false = plans exactly as before
     transition_duration_minutes: int = 2
     default_teaching_minutes: int = 90
     

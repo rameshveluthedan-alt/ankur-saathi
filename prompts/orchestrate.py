@@ -11,6 +11,7 @@ from datetime import date
 from typing import Optional
 
 from hindi_style import STYLE_PROMPT          # the Hindi tone rules from Vaishnavi's review (prompts/hindi_style.py)
+from cfu_prompt import render_cfu_section      # check-for-understanding show-me questions in every lesson (prompts/cfu_prompt.py, docs/CFU.md)
 
 
 # ============================================================================
@@ -147,6 +148,9 @@ class OrchestrationContext:
     intervention_mode: str = "none"
     # {'beginner': {'safe': [(id, name_hi), ...], 'new': (id, name_hi)}, ...}
     group_skills: Optional[dict] = None
+    # check for understanding: {group: {competency_id, name_hi, name_en, mistakes: [dict]}} for each group's OWN skill (None = CFU switched off), and {mistake id: children} detected at the last review
+    cfu_kb: Optional[dict] = None
+    cfu_detected: Optional[dict] = None
     # {'beginner_children': n, 'pair_kits': k} when TLM-001 (bundling sticks) is in today's content
     stick_policy: Optional[dict] = None
 
@@ -705,6 +709,7 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
             obs_text += f"  - {oc['id']}: {oc['name_hi']} — for Roll Nos. {oc['target_roll_numbers']}\n"
     
     # Passages chosen in code from the content bank: the model must use them, not invent its own
+    cfu_text = render_cfu_section(ctx.cfu_kb, ctx.cfu_detected) if ctx.cfu_kb else ""        # empty when CFU is switched off: the plan is then as before
     hindi_style_text = (
         "\n### HINDI STYLE FOR THE TEACHER'S WORDS\n"
         "- Write the teacher's first person without gender: use 'पढ़ता/पढ़ती हूँ' or 'हम पढ़ते हैं', never only the feminine forms, and write 'शिक्षक', not 'शिक्षिका'.\n"
@@ -850,6 +855,7 @@ Rotation chart, peer monitors, transition scripts (Hindi), independent station a
 {'- ORF: Roll Nos. ' + str(ctx.orf_roll_numbers) + ' on passage ' + ctx.orf_passage_id if ctx.orf_scheduled else ''}
 {passages_text}
 {hindi_style_text}
+{cfu_text}
 {output_schema}
 """
     

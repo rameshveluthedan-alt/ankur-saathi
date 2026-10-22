@@ -42,7 +42,7 @@ BACKEND = ROOT / "backend"
 DEMO_TEACHER = "10000001-aaaa-bbbb-cccc-000000000001"
 FIELDS = ["competency_id", "domain", "grade", "status", "error", "seconds", "input_tokens", "output_tokens", "repair_input_tokens",
           "repair_output_tokens", "est_cost_usd", "warnings_after", "warnings", "stick_repairs", "worksheet_repairs", "style_changes",
-          "anchor_id", "anchor_match", "passage_match", "render_ok", "generated_at"]
+          "cfu_written", "cfu_kept", "cfu_dropped", "anchor_id", "anchor_match", "passage_match", "render_ok", "generated_at"]
 
 
 def domain_of(cid: str) -> str:
@@ -89,6 +89,23 @@ def install_stub(plan_service):
 
 # ── one skill ───────────────────────────────────────────────────────────────
 
+def show_cfu(cid: str, plan: dict) -> None:
+    """Print the check-for-understanding questions of one plan, to read (and for Vaishnavi to review)."""
+    print(f"\n  ── CFU for {cid} ──")
+    for b in (plan.get("rotation_schedule") or {}).get("blocks") or []:
+        if b.get("type") != "teach":
+            continue
+        tag = "grounded in recorded mistakes" if b.get("cfu_grounded") else "NO recorded mistakes for this skill"
+        print(f"   {b.get('teach_group'):<11} ({tag}): {len(b.get('cfu') or [])} question(s)")
+        for n, q in enumerate(b.get("cfu") or [], 1):
+            print(f"     {n}. [{q.get('kind')}] {q.get('question_hi')}\n        right: {q.get('expected_hi')}")
+            for l in q.get("listen_for") or []:
+                print(f"        listen for {l.get('wrong_answer_hi')!r} -> {l.get('misconception_id')} {l.get('misconception_name_hi')}")
+            if q.get("shows_hi"):
+                print(f"        a right answer shows: {q['shows_hi']}")
+    print()
+
+
 async def run_one(database, plan_service, worksheet_service, fetch_anchor_activity, comp, plan_date, teacher_id, args) -> dict:
     cid, grade, domain = comp["id"], comp["grade_level"], domain_of(comp["id"])
     row = {k: "" for k in FIELDS}
@@ -120,6 +137,12 @@ async def run_one(database, plan_service, worksheet_service, fetch_anchor_activi
                    worksheet_repairs=sum(1 for l in out.splitlines() if l.strip().startswith("Worksheet repair:") and "NOTE" not in l),
                    # how many wording changes the Hindi style safety net had to make: near 0 means the model followed the prompt (docs/HINDI_STYLE.md)
                    style_changes=sum(int(m.group(1)) for m in (re.match(r"Hindi style: (\d+) wording changes", l.strip()) for l in out.splitlines()) if m))
+        # check for understanding (docs/CFU.md): how many questions the model wrote, how many the code let through, and why the rest were dropped
+        stats = ((res.get("plan") or {}).get("cfu_stats") or {}) if row["status"] == "ok" else {}
+        row.update(cfu_written=sum(x.get("written", 0) for x in stats.values()), cfu_kept=sum(x.get("kept", 0) for x in stats.values()),
+                   cfu_dropped=" | ".join(l.strip()[4:].strip()[:150] for l in out.splitlines() if l.strip().startswith("CFU:") and ("dropped" in l or "no CFU" in l or "only" in l)))
+        if args.show_cfu and row["status"] == "ok":
+            show_cfu(cid, res.get("plan") or {})
         # what the knowledge base offered for this skill
         a = await fetch_anchor_activity(db, domain, grade, cid)
         row["anchor_id"], row["anchor_match"] = (a.id, a.match_quality) if a else ("", "none")
@@ -169,6 +192,7 @@ async def main():
     ap.add_argument("--out", default=str(ROOT / "docs" / "batch" / "batch_results.csv"))
     ap.add_argument("--teacher-id", default=DEMO_TEACHER)
     ap.add_argument("--start-date", default="2031-01-01", help="first scratch plan date (far in the future, so real plans are never touched)")
+    ap.add_argument("--show-cfu", action="store_true", help="print the check-for-understanding questions of every plan (to read them, or to give Vaishnavi to review)")
     ap.add_argument("--keep-plans", action="store_true", help="keep the generated plans in the database")
     ap.add_argument("--stub", action="store_true", help="use a FAKE model: a dry run that costs nothing and needs no key")
     ap.add_argument("--yes", action="store_true", help="do not ask for confirmation")

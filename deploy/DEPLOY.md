@@ -101,7 +101,18 @@ This prints your model settings (it does not print the key). Compare with these 
 (Get-Content deploy\cloudrun-env.yaml) -replace "PROJECT:REGION:INSTANCE", $CONN | Set-Content -Encoding ascii deploy\cloudrun-env.generated.yaml
 Select-String -Path deploy\cloudrun-env.generated.yaml -Pattern "DB_HOST|CLAUDE_"
 ```
-`DB_HOST` must now read `/cloudsql/` followed by your connection name. The generated file holds no secrets, but it is not needed in git.
+`DB_HOST` must now read `/cloudsql/` followed by your connection name. The generated file holds no secrets, but it is generated, so keep it out of git: add the line
+`deploy/cloudrun-env.generated.yaml` to `.gitignore` (edit it in VS Code and save as UTF-8). If it is already committed, `git rm --cached deploy/cloudrun-env.generated.yaml` and commit.
+
+**6b. Check the packages (2 minutes, and it saves a failed 10-minute build).** The container installs packages from **your** `backend\requirements.txt`. This builds a clean environment from
+that file and checks that every package the production code uses is there, including ones imported only when a feature runs (Pillow, for photos):
+```powershell
+python -m venv $env:TEMP\reqtest
+& $env:TEMP\reqtest\Scripts\python.exe -m pip install -q -r backend\requirements.txt tzdata openpyxl
+& $env:TEMP\reqtest\Scripts\python.exe scripts\check_imports.py
+```
+It must end with `OK: every package the code imports is installed.` If it says `NOT READY`, add the package it names to `backend\requirements.txt` and run the last two lines again. (`tzdata` and `openpyxl` are
+added by the Dockerfile itself, so they need not be in the file.)
 
 ## 7. Deploy
 ```powershell

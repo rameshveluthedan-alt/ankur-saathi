@@ -16,6 +16,10 @@ CLAUDE_MAX_TOKENS: "24000"
 AUTH_MODE: "enforce"
 DEBUG: "false"
 
+# check-for-understanding show-me questions in every lesson (docs/CFU.md). "false" = plans exactly as before, with no redeploy of code:
+#   gcloud run services update ankur-saathi --region=asia-south1 --update-env-vars=CFU_ENABLED=false
+CFU_ENABLED: "true"
+
 # the hackathon credit (docs/AI_BUDGET.md). Prices: USD per million tokens, from the pricing page for your model.
 AI_ENABLED: "true"
 AI_ALLOCATION_USD: "500"

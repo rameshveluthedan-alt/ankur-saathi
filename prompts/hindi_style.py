@@ -136,7 +136,8 @@ def soften_text(text: str, *, polite: bool = True, frame: bool = True, protect_q
 _TEACHER_SPEECH = [r"^\.anchor\.(?!title_hi)\w+_hi$", r"^\.rotation_schedule\.blocks\[\]\.(?:script_hi|other_groups_hi)$",
                    r"^\.rotation_schedule\.blocks\[\]\.talking_points\.\w+$", r"^\.classroom_management\.independent_activities_hi\.\w+$"]
 _TEACHER_NOTES = [r"^\.prep_hi\[\]$"]
-_PRINTED = [r"^\.worksheets\.\w+\.instructions_hi$", r"^\.worksheets\.\w+\.problems\[\]\.(?:problem_hi|word_problem_text)$"]
+_PRINTED = [r"^\.worksheets\.\w+\.instructions_hi$", r"^\.worksheets\.\w+\.problems\[\]\.(?:problem_hi|word_problem_text)$",
+            r"^\.rotation_schedule\.blocks\[\]\.cfu\[\]\.(?:question_hi|shows_hi)$"]        # CFU: only the teacher's QUESTION is softened, and quote-safe. expected_hi and wrong_answer_hi are material (a right or wrong answer), never changed
 _SPEECH_RE = [re.compile(p) for p in _TEACHER_SPEECH]
 _NOTES_RE = [re.compile(p) for p in _TEACHER_NOTES]
 _PRINTED_RE = [re.compile(p) for p in _PRINTED]

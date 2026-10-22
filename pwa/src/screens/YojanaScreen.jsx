@@ -190,11 +190,39 @@ export default function YojanaScreen() {
                     {fmt(block.talking_points.you_do_hi)}
                   </div>
                 )}
+                {Array.isArray(block.cfu) && block.cfu.length > 0 && (
+                  <div className="talking-point" style={ML} data-testid="cfu">
+                    <div className="talking-point-label">समझ की जाँच: शो-मी (Check for understanding)</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 6 }}>
+                      हर बच्चा उत्तर कॉपी या स्लेट पर लिखकर छिपाए। संकेत पर सब एक साथ ऊपर दिखाएँ। फिर दो बच्चों से समझाने को कहें।
+                      <span style={{ display: 'block' }}>(Everyone writes the answer and hides it; on the signal all show it at once. Then ask two children to explain.)</span>
+                    </div>
+                    {block.cfu.map((q, k) => (
+                      <div key={k} data-testid="cfu-item" style={{ marginTop: 6, paddingTop: 6, borderTop: k ? '1px dashed var(--border)' : 'none' }}>
+                        <div><strong>{k + 1}.</strong> {fmt(q.question_hi)}</div>
+                        <div style={{ fontSize: '0.8125rem' }}>✓ सही उत्तर: {fmt(q.expected_hi)}</div>
+                        {(q.listen_for || []).map((l, j) => (
+                          <div key={j} style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+                            👂 सुनें: {fmt(l.wrong_answer_hi)} → <em>{fmt(l.misconception_name_hi)}</em>
+                          </div>
+                        ))}
+                        {q.shows_hi && !(q.listen_for || []).length && (
+                          <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>सही उत्तर से पता चलता है: {fmt(q.shows_hi)}</div>
+                        )}
+                      </div>
+                    ))}
+                    {block.cfu_note_hi && (
+                      <div style={{ fontSize: '0.75rem', fontStyle: 'italic', marginTop: 6 }} data-testid="cfu-note">
+                        {fmt(block.cfu_note_hi)} <span>({fmt(block.cfu_note_en)})</span>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             )}
             {expandedBlock !== i && block.talking_points && (
               <div style={{ fontSize: '0.75rem', color: 'var(--text-light)', marginTop: 4 }}>
-                ▸ बात के मुद्दे देखें (Tap for talking points)
+                ▸ बात के मुद्दे{Array.isArray(block.cfu) && block.cfu.length > 0 ? ' और समझ की जाँच' : ''} देखें (Tap for talking points)
               </div>
             )}
           </div>

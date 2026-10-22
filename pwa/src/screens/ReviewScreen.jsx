@@ -544,8 +544,14 @@ export default function ReviewScreen() {
                 <div key={c.roll_number} className="card" style={{ padding: 10 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <strong>Roll {c.roll_number}</strong>
-                    <span className={`badge badge-${c.status === 'achieved' ? 'proficient' : c.status === 'partially_achieved' ? 'progressor' : 'beginner'}`}>
-                      {c.status === 'achieved' ? 'A' : c.status === 'partially_achieved' ? 'PA' : c.status === 'not_assessed' ? '—' : 'NA'}
+                    <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      {/* the result of THIS check, in words: one day on a sample says nothing about mastery of the skill */}
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }} data-testid="today-result">
+                        आज की जाँच में: {c.status === 'achieved' ? 'प्राप्त' : c.status === 'partially_achieved' ? 'आंशिक' : c.status === 'not_assessed' ? 'आँका नहीं गया' : 'प्राप्त नहीं'}
+                      </span>
+                      <span className={`badge badge-${c.status === 'achieved' ? 'proficient' : c.status === 'partially_achieved' ? 'progressor' : 'beginner'}`}>
+                        {c.status === 'achieved' ? 'A' : c.status === 'partially_achieved' ? 'PA' : c.status === 'not_assessed' ? '—' : 'NA'}
+                      </span>
                     </span>
                   </div>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
