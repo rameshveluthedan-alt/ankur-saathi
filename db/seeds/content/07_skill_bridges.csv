@@ -39,7 +39,7 @@ N1.2.4,N1.2.3,N2.2.2,Proficient jumps to hundreds place value (N2.2.2),yes
 N1.3.1,N1.2.2,N1.3.2,Beginner needs counting objects; Proficient moves to subtraction,yes
 N1.3.2,N0.2.2,N1.3.3,reviewer's decision,yes
 N1.3.3,N1.3.2,N1.3.3,reviewer's decision,yes
-N1.4.1,N0.4.1,N2.4.1,Beginner goes back to visual comparison; Proficient moves to formal tools (rulers).,yes
+N1.4.1,N1.4.1,N2.4.1,Beginners stay on the skill itself: the earlier skill the original table suggested (N0.4.1) does not exist in the knowledge graph. Proficients move to N2.4.1 (non-standard units).,yes
 N1.4.2,N1.4.2,N2.4.2,reviewer's decision,yes
 N1.5.2,N1.5.2,N1.5.2,reviewer's decision,yes
 N2.2.1,N1.2.3,N2.2.2,Beginner reads/writes 1-99; Proficient does hundreds place value,yes
@@ -49,8 +49,8 @@ N2.3.2,N2.3.1,N3.3.1,Beginner non-carry addition; Proficient 3-digit carry addit
 N2.3.3,N1.3.2,N2.3.4,Proficient moves to subtraction with borrowing,yes
 N2.3.4,N2.3.3,N2.3.5,reviewer's decision,yes
 N2.3.5,N2.3.4,N2.3.5,reviewer's decision,yes
-N2.4.2,N0.4.2,N3.4.2,Beginner needs kinesthetic feel of heavy/light before reading a scale.,yes
-N2.6.1,N1.6.1,N2.6.2,Proficient expands from reading the daily clock to reading the yearly calendar.,yes
+N2.4.2,N2.4.2,N3.4.2,Beginners stay on the skill itself: a calendar-reading skill with no earlier bridge in the graph. Proficients move to N3.4.2.,yes
+N2.6.1,N2.6.1,N3.6.1,"Beginners stay on the skill itself; Proficients move to N3.6.1 (interpreting bar graphs): a data-handling skill, not a time/clock skill.",yes
 N3.2.2,N3.2.1,N3.2.3,reviewer's decision,yes
 N3.3.1,N2.3.2,N3.3.6,Beginner 2-digit carry; Proficient multi-step word problems (fixes Perimeter bug),yes
 N3.3.2,N2.3.4,N3.3.6,reviewer's decision,yes
