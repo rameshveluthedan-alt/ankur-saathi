@@ -55,6 +55,8 @@ CHECKS = [
     ("v28t", "the Plan screen goes back to choosing a skill", "pwa/src/screens/PlanScreen.jsx", "TAB_RESELECT_EVENT"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/services/groupSkills.js", "export function toggleReteach"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/components/GroupSkillsPanel.jsx", "toggleReteach"),
+    ("v29f", "one closing bracket too many is removed instead of asking the model again", "backend/app/services/model_json.py", "def repair_stray_closers"),
+    ("v29f", "the stray-bracket repair is tested (it never turns a reply into a different plan)", "backend/tests/test_model_json_closers.py", None),
     ("v29e", "a show-me cannot be two wrong right-or-wrong lines (a child guesses)", "backend/app/services/cfu.py", "def _is_wrong_line"),
     ("v29e", "...and the CFU rules ask for a question the child works out", "prompts/cfu_prompt.py", "WORK OUT an answer"),
     ("v29e", "the guessable-question rule is tested", "backend/tests/test_cfu_guessable.py", None),
@@ -94,7 +96,7 @@ def kind_of(bundle, rel):
     return "older" if bundle.startswith("v27") else "current"
 
 
-VERSION = "v29e, 24 Oct: lists the bundles v27l to v29e; the package v29e-current replaces v28m to v29d"
+VERSION = "v29f, 24 Oct: lists the bundles v27l to v29f; the package v29f-current replaces v28m to v29e"
 
 
 def main():
@@ -121,15 +123,15 @@ def main():
     # the packages: v28p-current holds the current version of every file of the v28 series, so it is 'in' when every v28 row is OK
     series = [b for b in status if b.startswith("v28")]
     package_ok = all(status[b] for b in series)
-    print(f"\n  PACKAGE v29e-current (every file of v28a to v29e, current):  {'OK' if package_ok else 'BEHIND'}")
+    print(f"\n  PACKAGE v29f-current (every file of v28a to v29f, current):  {'OK' if package_ok else 'BEHIND'}")
     print()
     if not kinds:
         print("Everything listed is in this working copy.")
         return 0
     if "current" in kinds:
-        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29e-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
-        print("    tar -xzf <downloads>\\v29e-current.tar.gz -C <this folder>")
-        print("  and do NOT extract v28a to v29d afterwards: each holds older copies of some of the same files and would put them back.")
+        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29f-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
+        print("    tar -xzf <downloads>\\v29f-current.tar.gz -C <this folder>")
+        print("  and do NOT extract v28a to v29e afterwards: each holds older copies of some of the same files and would put them back.")
     if "older" in kinds:
         print(f"Older bundles missing: {', '.join(sorted(kinds['older']))}. Apply each, oldest first, with  tar -xzf <downloads>\\<bundle>.tar.gz -C <this folder>")
     print("Run this check again afterwards: python scripts\\check_applied.py")
