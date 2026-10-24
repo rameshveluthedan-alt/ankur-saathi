@@ -11,3 +11,5 @@ backend/tests
 deploy/cloudrun-env.generated.yaml
 *.tar.gz
 *.csv
+
+!db/seeds/content/07_skill_bridges.csv
