@@ -43,7 +43,7 @@ def check(label, ok, extra=""):
 
 lf = lambda mid, w: [{"misconception_id": mid, "wrong_answer_hi": w}]
 V = {"X-M1", "X-M2"}
-ck = lambda item, avoid=(), rules=None, strict=True, compare=True: cfu.check_item(item, valid_ids=V, avoid=set(avoid), rules=rules or {}, strict=strict, compare=compare)
+ck = lambda item, avoid=(), rules=None, strict=True, compare=True, lesson_results=(): cfu.check_item(item, valid_ids=V, avoid=set(avoid), rules=rules or {}, strict=strict, compare=compare, lesson_results=frozenset(lesson_results))
 
 print("the checks on one question")
 check("compute: a right expected answer passes", not ck({"kind": "compute", "question_hi": "58 + 27 कितना होगा?", "expected_hi": "85", "listen_for": lf("X-M1", "75")}))
@@ -71,8 +71,8 @@ print("readiness and observed skills (found in the first real-model run: good qu
 sh = {"listen_for": [], "shows_hi": "बच्चा पहचानता है"}
 check("a three-way comparison of equal amounts passes, whatever kind the model gave it", not ck({"kind": "choose", "question_hi": "3 फूल और 3 फूल हैं। ज़्यादा, कम या बराबर?", "expected_hi": "बराबर", **sh}, strict=False))
 check("...and is wrong if the amounts differ but the answer says बराबर", ck({"kind": "choose", "question_hi": "5 फूल और 3 फूल हैं। ज़्यादा, कम या बराबर?", "expected_hi": "बराबर", **sh}, strict=False) != [])
-check("in an observed skill a compute or spot_error question with no sum is kept, not dropped", not ck({"kind": "compute", "question_hi": "गिनकर बताइए: कितने फूल हैं?", "expected_hi": "4", **sh}, strict=False) and not ck({"kind": "spot_error", "question_hi": "बच्चे ने ● ○ ● ● लिखा। पैटर्न सही है?", "expected_hi": "गलत", **sh}, strict=False))
-check("in a COMPUTATION skill the same questions stay dropped (arithmetic written in words cannot be checked)", ck({"kind": "compute", "question_hi": "सैंतीस और बीस जोड़ें", "expected_hi": "57", **sh}, strict=True) != [] and ck({"kind": "spot_error", "question_hi": "बच्चे ने जोड़ में गलती की। कहाँ?", "expected_hi": "x", **sh}, strict=True) != [])
+check("in an observed skill a compute or spot_error question with no sum is kept, not dropped", not ck({"kind": "compute", "question_hi": "गिनकर बताइए: कितने फूल हैं?", "expected_hi": "4", **sh}, strict=False) and not ck({"kind": "spot_error", "question_hi": "बोर्ड पर देखो: ● ○ ● ● लिखा है। पैटर्न सही है?", "expected_hi": "गलत", **sh}, strict=False))
+check("in a COMPUTATION skill the same questions stay dropped (arithmetic written in words cannot be checked)", ck({"kind": "compute", "question_hi": "सैंतीस और बीस जोड़ें", "expected_hi": "57", **sh}, strict=True) != [] and ck({"kind": "spot_error", "question_hi": "बोर्ड पर देखो: जोड़ में गलती है। कहाँ?", "expected_hi": "x", **sh}, strict=True) != [])
 check("a plain comparison is verified in every skill: 'which is bigger, 47 or 74?'", not ck({"kind": "choose", "question_hi": "47 और 74 में कौन बड़ा है?", "expected_hi": "74", **sh}) and ck({"kind": "choose", "question_hi": "47 और 74 में कौन बड़ा है?", "expected_hi": "47", **sh}) != []
       and not ck({"kind": "choose", "question_hi": "47 और 74 में कौन छोटा है?", "expected_hi": "47", **sh}) and ck({"kind": "answer", "question_hi": "47 और 74 में कौन छोटा है?", "expected_hi": "74", **sh}) != [])
 check("'how many more to stay equal' (5 and 5, answer 0) is not mistaken for the three-way question", not ck({"kind": "answer", "question_hi": "5 पत्ते और 5 पत्ते हैं। कितने और जोड़ें तो बराबर रहें? संख्या लिखें।", "expected_hi": "0", **sh}, strict=False))
@@ -116,22 +116,22 @@ labels = [{"kind": "choose", "question_hi": "वाक्य 1 और वाक�
 for ctype_kb in ("literacy",):
     kb = {"progressor": {"competency_id": "L", "name_en": "x", "name_hi": "x", "criteria_type": ctype_kb, "mistakes": []}}
     pl = {"rotation_schedule": {"blocks": [{"type": "teach", "teach_group": "progressor", "talking_points": {}, "cfu": copy.deepcopy(labels)}]}}
-    cfu.clean_plan_cfu(pl, kb)
-    check("all three literacy questions with labelled numbers are KEPT (the comparison check does not run for literacy)", len(pl["rotation_schedule"]["blocks"][0]["cfu"]) == 3, pl["rotation_schedule"]["blocks"][0]["cfu"])
+    ln_, _ = cfu.clean_plan_cfu(pl, kb)
+    check("none of the three literacy questions with labelled numbers is DROPPED (the comparison check does not run for literacy; two are used)", not any("dropped" in l for l in ln_) and len(pl["rotation_schedule"]["blocks"][0]["cfu"]) == cfu.MAX_ITEMS, ln_)
 check("the same questions ARE judged as numeric comparisons when the check is on (so the switch is what protects literacy)", all(ck(item, strict=False, compare=True) != [] for item in labels[:2]) and all(ck(item, strict=False, compare=False) == [] for item in labels))
 check("a numeracy comparison is still verified, but only when the question really asks WHICH is bigger or smaller", ck({"kind": "choose", "question_hi": "47 और 74 में कौन बड़ा है?", "expected_hi": "47", **sh}) != []
       and ck({"kind": "answer", "question_hi": "वाक्य 1 और वाक्य 2 में बड़ा वाक्य लिखें।", "expected_hi": "वाक्य 1", **sh}, strict=False) == [])
 
 print("what the first broad run (16 skills) dropped wrongly: the check must judge what a question ASKS, not the skill's type")
 sh2 = {"listen_for": [], "shows_hi": "बच्चा पहचानता है"}
-check("a pattern question (N1.1.1 is typed 'computation') is kept in a numeracy skill: it asks for no arithmetic", ck({"kind": "spot_error", "question_hi": "बच्चे ने ● ○ ● ● लिखा। पैटर्न सही है? सही या गलत?", "expected_hi": "गलत", **sh2}, strict=True) == []
+check("a pattern question (N1.1.1 is typed 'computation') is kept in a numeracy skill: it asks for no arithmetic", ck({"kind": "spot_error", "question_hi": "बोर्ड पर देखो: ● ○ ● ● लिखा है। पैटर्न सही है? सही या गलत?", "expected_hi": "गलत", **sh2}, strict=True) == []
       and ck({"kind": "choose", "question_hi": "किस आकृति में 4 कोने हैं: 1 या 2?", "expected_hi": "1", **sh2}, strict=True) == [])
 check("arithmetic written in WORDS with digits is checked for plausibility: 50 - 20 = 30 passes, 40 does not", ck({"kind": "compute", "question_hi": "रीता के पास 50 रुपये थे। उसने 20 रुपये खर्च किए। कितने रुपये बचे?", "expected_hi": "30 रुपये", **sh2}, strict=True) == []
       and ck({"kind": "compute", "question_hi": "रीता के पास 50 रुपये थे। उसने 20 रुपये खर्च किए। कितने रुपये बचे?", "expected_hi": "40 रुपये", **sh2}, strict=True) != [])
 check("a two-step word problem is plausible too: 3 x 12 - 10 = 26 passes, 28 does not", ck({"kind": "compute", "question_hi": "3 थान हैं, हर थान में 12 मीटर कपड़ा है। 10 मीटर बिक गया। कितना कपड़ा बचा?", "expected_hi": "26 मीटर", **sh2}, strict=True) == []
       and ck({"kind": "compute", "question_hi": "3 थान हैं, हर थान में 12 मीटर कपड़ा है। 10 मीटर बिक गया। कितना कपड़ा बचा?", "expected_hi": "28 मीटर", **sh2}, strict=True) != [])
 check("arithmetic in words with NO digits cannot be checked: dropped in numeracy, kept in an observed skill", ck({"kind": "compute", "question_hi": "सैंतीस और बीस जोड़ें", "expected_hi": "57", **sh2}, strict=True) != [] and ck({"kind": "compute", "question_hi": "सैंतीस और बीस जोड़ें", "expected_hi": "57", **sh2}, strict=False) == [])
-decoy = lambda e_: ck({"kind": "spot_error", "question_hi": "बच्चे ने 6 × 7 = 42 लिखा। सही या गलत?", "expected_hi": e_, **sh2})
+decoy = lambda e_: ck({"kind": "spot_error", "question_hi": "बोर्ड पर देखो: 6 × 7 = 42 लिखा है। सही या गलत?", "expected_hi": e_, **sh2})
 check("a 'right or wrong?' question whose line is RIGHT is a fair decoy: the answer must say सही; saying गलत, or neither, is wrong", decoy("सही") == [] and decoy("सही, 6 × 7 = 42") == [] and decoy("गलत") != [] and decoy("42") != [])
 check("an answer written as a Hindi number word counts (मेरा 2 × 2 = चार), a wrong word does not", ck({"kind": "compute", "question_hi": "2 × 2 कितना होगा?", "expected_hi": "चार", **sh2}) == [] and ck({"kind": "compute", "question_hi": "2 × 2 कितना होगा?", "expected_hi": "पाँच", **sh2}) != [])
 check("the length of a PHRASE is not mistaken for the total ('पहला वाक्यांश कितने शब्द का है?' answer 3 for a 7-word sentence), but the TOTAL is still checked",
@@ -158,7 +158,7 @@ check("a hyphen between digits is '25 in each', not subtraction: 4 packets of 25
       ck({"kind": "compute", "question_hi": "4 पैकेट में 25-25 पेंसिल हैं, 30 पेंसिल दे दीं। कितनी बचीं?", "expected_hi": "70", **sh3}) == []
       and ck({"kind": "compute", "question_hi": "4 पैकेट में 25-25 पेंसिल हैं, 30 पेंसिल दे दीं। कितनी बचीं?", "expected_hi": "75", **sh3}) != [])
 check("a real subtraction written with spaces is still a subtraction", ck({"kind": "compute", "question_hi": "50 - 20 कितना होगा?", "expected_hi": "30", **sh3}) == [] and ck({"kind": "compute", "question_hi": "50 - 20 कितना होगा?", "expected_hi": "70", **sh3}) != [])
-wp = lambda e_: ck({"kind": "spot_error", "question_hi": "3 थैलों में 15-15 आम हैं, 9 आम खराब निकले, बचे कितने? एक बच्चे ने 39 लिखा। सही है या गलत?", "expected_hi": e_, **sh3})
+wp = lambda e_: ck({"kind": "spot_error", "question_hi": "बोर्ड पर देखो: 3 थैलों में 15-15 आम हैं, 9 आम खराब निकले, बचे कितने? उत्तर 39 लिखा है। सही है या गलत?", "expected_hi": e_, **sh3})
 check("a word problem with a child's answer but no equation: the correct answer in the key must be possible (3 x 15 - 9 = 36 is, 40 is not)", wp("गलत; सही उत्तर 36") == [] and wp("गलत; सही उत्तर 40") != [])
 wrong_key = ck({"kind": "spot_error", "question_hi": "बोर्ड पर लिखें: 62 + 15 = 87। सही है या गलत? गलत है तो सही उत्तर लिखें", "expected_hi": "सही है", **sh3})
 check("N1.3.1: the line 62 + 15 = 87 is WRONG (77), so the key 'सही है' is the model's mistake and is rightly dropped", wrong_key != [], wrong_key)
@@ -170,7 +170,16 @@ check("the child writes only the verdict: the key 'गलत' is complete (the r
 ask_q = "बोर्ड पर लिखें: 62 + 15 = 87। सही या गलत? गलत है तो सही उत्तर लिखें।"
 check("when the question ASKS for the correct answer the key must give it (77): 'गलत' alone is incomplete, 'गलत; सही उत्तर 77' passes, 'सही है' is wrong, and a bare 'सही उत्तर 77' is not read as a verdict",
       vk("गलत", ask_q) != [] and vk("गलत; सही उत्तर 77", ask_q) == [] and vk("सही है", ask_q) != [] and vk("सही उत्तर 77", ask_q) == [])
-check("a correct line with the key 'सही नहीं' is wrong (it says the right line is not right)", ck({"kind": "spot_error", "question_hi": "बच्चे ने 6 × 7 = 42 लिखा। सही या गलत?", "expected_hi": "सही नहीं", **sh3}) != [])
+check("a correct line with the key 'सही नहीं' is wrong (it says the right line is not right)", ck({"kind": "spot_error", "question_hi": "बोर्ड पर देखो: 6 × 7 = 42 लिखा है। सही या गलत?", "expected_hi": "सही नहीं", **sh3}) != [])
+
+print("what the teachers' review ruled out (Vaishnavi, 23 Oct)")
+shx = {"listen_for": [], "shows_hi": "बच्चा पहचानता है"}
+story = lambda q_: ck({"kind": "answer", "question_hi": q_, "expected_hi": "गलत", **shx}, strict=False)
+check("a question told as a story about a child is dropped, with the reason and what to write instead", all(story(q_) != [] and "story about a child" in " ".join(story(q_)) for q_ in ("एक बच्चे ने 8 + 3 = 10 लिखा। सही या गलत?", "बच्चे ने 9 कंकड़ गिने। फिर दोबारा गिना।", "एक बच्चा कहता है: तेज़ पढ़ो। सही या गलत?", "दो बच्चों ने वाक्य पढ़ा। कौन सा अच्छा है?")))
+check("...the same thing written as what is ON THE BOARD is kept", story("बोर्ड पर देखो: 34 + 28 = 52 लिखा है। क्या यह सही है?") == [])
+check("a child inside QUOTES is not a story (it may be the sentence the children read), and the teacher's own first person is fine", story("'बच्चे ने किताब पढ़ी' के अंत में कौन-सा चिह्न लगेगा?") == [] and story("मैं 'गाय हरी घर खाती है' पढ़ती हूँ। सही या गलत?") == [])
+check("a question about the structure or purpose of a paragraph is dropped; punctuation and 'what happened first' are kept", story("अनुच्छेद का पहला वाक्य किस काम के लिए होता है?") != [] and story("अनुच्छेद में 'परिचय' और 'निष्कर्ष' में से क्या पहले आता है?") != [] and story("अनुच्छेद के अंत में कौन-सा चिह्न लगेगा?") == [] and story("कहानी में पहले क्या हुआ: 1 या 2?") == [])
+check("two show-me questions per group (a lesson has no time for more: eight in a block cost 5 to 7 minutes of 27)", cfu.MAX_ITEMS == 2 and cfu.MIN_ITEMS == 2)
 
 print("cleaning a whole plan")
 KB = {"progressor": {"competency_id": "X", "name_en": "Adds with regrouping", "name_hi": "x", "mistakes": [
@@ -183,8 +192,8 @@ plan = {"worksheets": {"progressor": {"problems": [{"problem_hi": "12 + 19"}]}},
                 good("58 + 27 कितना होगा?", "85", "X-M1", "75"),                         # fine
                 good("29 + 48 कितना होगा?", "76", "X-M1", "x"),                          # wrong answer: dropped
                 good("47 + 25 कितना होगा?", "72", "X-M1", "x"),                          # reuses the lesson's example: dropped
-                good("12 + 19 कितना होगा?", "31", "X-M1", "x"),                          # repeats a worksheet problem: KEPT and noted (only a repeat of the LESSON's example is dropped)
                 {"kind": "answer", "question_hi": "इकाई का योग 13: इकाई में क्या?", "expected_hi": "3", "listen_for": [{"misconception_id": "X-M2", "wrong_answer_hi": "13"}, {"misconception_id": "N9-M9", "wrong_answer_hi": "q"}]},
+                good("12 + 19 कितना होगा?", "31", "X-M1", "x"),                          # repeats a worksheet problem: KEPT and noted (only a repeat of the LESSON's example is dropped)
                 good("36 + 48 कितना होगा?", "84", "X-M2", "714"), good("67 + 15 कितना होगा?", "82", "X-M1", "72"), good("28 + 46 कितना होगा?", "74", "X-M1", "64")]},
             {"type": "teach", "teach_group": "beginner", "talking_points": {}, "cfu": [{"kind": "compute", "question_hi": "21 + 36 कितना होगा?", "expected_hi": "57", "listen_for": [], "shows_hi": "बच्चा दहाई और इकाई अलग जोड़ता है"}]},
             {"type": "teach", "teach_group": "proficient", "talking_points": {}}]}}
@@ -192,22 +201,63 @@ lines, stats = cfu.clean_plan_cfu(plan, KB)
 blocks = plan["rotation_schedule"]["blocks"]
 prog, beg, prof = blocks[1], blocks[2], blocks[3]
 check("a block that is not a teach block gets no CFU, whatever the model wrote", "cfu" not in blocks[0])
-check("the invalid questions are dropped and the valid ones kept (58+27, the worksheet repeat 12+19, the grounded answer item, 36+48: more than four are valid, but only four are allowed)", len(prog["cfu"]) == 4 and prog["cfu"][0]["question_hi"].startswith("58 + 27"), [q["question_hi"] for q in prog["cfu"]])
+check("the invalid questions are dropped and the valid ones kept (58+27 and the grounded answer item are the first two valid ones: more are valid, but only two are allowed)", len(prog["cfu"]) == cfu.MAX_ITEMS and prog["cfu"][0]["question_hi"].startswith("58 + 27") and prog["cfu"][1]["kind"] == "answer", [q["question_hi"] for q in prog["cfu"]])
 check("only the two bad ones are dropped (a wrong answer, a repeat of the LESSON's example), each with its reason and the question itself in the log; the worksheet repeat is kept and noted", sum("dropped" in l for l in lines) == 2 and any("already used" in l and "47 + 25" in l for l in lines) and any("real result 77" in l for l in lines) and any("kept, though it repeats a worksheet problem" in l for l in lines), lines)
-check("a question beyond the four allowed is left out, and that is logged", any("beyond the 4 allowed" in l for l in lines))
+check("a question beyond the allowed two is left out, and that is logged", any(f"beyond the {cfu.MAX_ITEMS} allowed" in l for l in lines))
 item = next(q for q in prog["cfu"] if q["kind"] == "answer")
 check("the mistake's Hindi name and its detect sign come from the knowledge base, not from the model", item["listen_for"] == [{"misconception_id": "X-M2", "misconception_name_hi": "पूरा योग लिखना", "detect_en": "Three digits where two expected", "wrong_answer_hi": "13"}], item["listen_for"])
 check("an invented mistake id is removed from listen_for, the rest of the question stays", len(item["listen_for"]) == 1 and any("N9-M9" in l for l in lines))
 check("a skill with recorded mistakes is marked grounded, and every kept question names one", prog["cfu_grounded"] is True and all(q["grounded"] for q in prog["cfu"]) and "cfu_note_hi" not in prog)
 check("a skill with NO recorded mistakes is kept only through 'what a right answer shows', marked, and the screen note is set by the code", beg["cfu_grounded"] is False and len(beg["cfu"]) == 1 and beg["cfu"][0]["grounded"] is False and "दर्ज नहीं" in beg["cfu_note_hi"] and beg["cfu_note_en"])
 check("a block where the model wrote no CFU gets an empty list and is logged", prof["cfu"] == [] and any("proficient: no CFU written" in l for l in lines))
-check("the stats say what was written and kept", stats["progressor"] == {"written": 8, "kept": 4, "grounded_items": 4, "skill_has_mistakes": True} and stats["beginner"]["kept"] == 1, stats)
+check("the stats say what was written and kept", stats["progressor"] == {"written": 8, "kept": cfu.MAX_ITEMS, "grounded_items": cfu.MAX_ITEMS, "skill_has_mistakes": True} and stats["beginner"]["kept"] == 1, stats)
 lines2, _ = cfu.clean_plan_cfu({"rotation_schedule": {"blocks": [
     {"type": "teach", "teach_group": "progressor", "talking_points": {"i_do_hi": "x", "cfu": [good("58 + 27 कितना होगा?", "85", "X-M1", "75"), good("68 + 17 कितना होगा?", "85", "X-M1", "75")]}},
     {"type": "teach", "teach_group": "beginner", "talking_points": {"i_do_hi": "x"}, "mystery_key": 1}]}}, KB)
 check("questions the model put among the talking points are found and moved out of them", not any("cfu" in (b.get("talking_points") or {}) for b in []) and any("under talking_points: moved" in l for l in lines2), lines2)
 check("when nothing was written the log says which keys the block has (to see what the model did instead)", any("no CFU written (the model's block has:" in l and "mystery_key" in l and "cfu_grounded" not in l for l in lines2), lines2)
 check("strip_cfu removes everything", (cfu.strip_cfu(plan) or True) and not any(k in b for b in blocks for k in ("cfu", "cfu_grounded", "cfu_note_hi")))
+
+print("a wrong answer that is a RIGHT answer in the lesson (first real re-teach run: '176 + 349 = 425' on the board, while the I Do's right answer to 267 + 158 was 425)")
+spw = lambda q_, e_: {"kind": "spot_error", "question_hi": q_, "expected_hi": e_, "listen_for": lf("X-M1", "425")}
+w425 = spw("बोर्ड पर देखें: 176 + 349 = 425 लिखा है। सही या गलत?", "गलत, सही उत्तर 525")
+check("the wrong line is dropped when its answer is a right answer in the lesson, and the reason says so", any("right answer in this group's lesson" in p for p in ck(w425, lesson_results={425, 15, 11})), ck(w425, lesson_results={425}))
+check("...and kept when the lesson never works that number out", ck(w425) == [] and ck(w425, lesson_results={83, 13, 43}) == [])
+check("a small number is not a collision (single digits are everywhere in a lesson)", ck(spw("बोर्ड पर देखें: 3 + 4 = 8 लिखा है। सही या गलत?", "गलत, सही उत्तर 7"), lesson_results={8}) == [])
+lesson_plan = {"rotation_schedule": {"blocks": [{"type": "teach", "teach_group": "progressor", "talking_points": {"i_do_hi": "बोर्ड पर 267 + 158 लिखें और हल करें।", "we_do_hi": "185 + 247 साथ में हल करें।", "you_do_hi": ""}, "cfu": [dict(w425), good("286 + 157 कितना होगा?", "443", "X-M1", "343")]}]}}
+ll, _ = cfu.clean_plan_cfu(lesson_plan, KB)
+check("through the whole plan: the colliding question is dropped with its reason in the log, and the other one is kept", [q["question_hi"][:8] for q in lesson_plan["rotation_schedule"]["blocks"][0]["cfu"]] == ["286 + 15"] and any("right answer in this group's lesson" in l for l in ll), ll)
+check("the lesson's right answers are the results of the operations in it, I Do, We Do and You Do", cfu._lesson_results(lesson_plan["rotation_schedule"]["blocks"][0]) >= {425, 432})
+
+print("what the second real batch run showed (23 Oct): the strings are from the run")
+person = lambda q_: ck({"kind": "answer", "question_hi": q_, "expected_hi": "गलत", **shx}, strict=False)
+check("a story about ANY person is dropped, not only 'a child': 'एक पाठक ने', 'किसी ने', 'एक विद्यार्थी ने'", all(person(q_) != [] and "story" in " ".join(person(q_)) for q_ in ("बोर्ड पर लिखा है: 'तोता हरे रंग का था।' एक पाठक ने इसे 'तोता हरा रंग का था' पढ़ा। क्या यह पढ़ना सही है या गलत?", "किसी ने 'श्रमिक मधुमक्खियाँ' को 'श्रमिक मधुमक्खी' पढ़ दिया। क्या यह ठीक पढ़ना है: सही या गलत?", "एक विद्यार्थी ने 7 + 5 = 11 लिखा। सही या गलत?")))
+check("...while the teacher's own first person and a line on the board are kept", person("मैं 'तोता हरे रंग का था' को 'तोता हरा रंग का था' पढ़ता/पढ़ती हूँ। क्या यह सही है?") == [] and person("बोर्ड पर देखें: 7 + 5 = 11 लिखा है। सही या गलत?") == [])
+check("'which sentence is different from the topic' is dropped even without the word 'paragraph' (the batch run had one), and 'sequence' and 'punctuation' questions are not mistaken for it",
+      person("बोर्ड पर लिखा है: 'मेरा विषय है मेरा स्कूल। मेरे स्कूल में एक बड़ा मैदान है। मुझे आम बहुत पसंद हैं।' कौन सा वाक्य विषय से अलग है? संख्या (1, 2 या 3) लिखें।") != []
+      and person("'पेड़ पर कौन बैठा है' के अंत में कौन-सा चिह्न लगेगा?") == [] and person("कहानी में पहले कौन सा वाक्य आएगा: 1 या 2?") == [])
+long_q = "बोर्ड पर लिखें: दहाई-इकाई के बॉक्स में 43 + 25 में पहली पंक्ति 4 दहाई और 3 इकाई, दूसरी पंक्ति में 2 इकाई और 5 दहाई लिखी है, यानी अंक उलटे स्तंभ में हैं। क्या यह सही है? सही हो तो 1, गलत हो तो 2 उँगलियाँ दिखाएँ।"
+good_q = "मैं वाक्य दो तरह से पढ़ूँगा/पढ़ूँगी: 1) हम...स्कूल...जाते...हैं 2) हम स्कूल जाते हैं। कौन सा पढ़ना ठीक है: 1 या 2? उंगलियों से दिखाएँ।"
+check("a 210-character verbal description of a table, which also gives its answer away, is too long; the longest good question seen (134 characters) is kept",
+      len(long_q) > cfu.MAX_QUESTION_CHARS >= len(good_q) and ck({"kind": "spot_error", "question_hi": long_q, "expected_hi": "गलत", **shx}, strict=False) != [] and ck({"kind": "choose", "question_hi": good_q, "expected_hi": "2", **shx}, strict=False) == [])
+check("a key is a verdict and a number: 100 characters at most (the key that reversed the places was an explanation)", cfu.MAX_EXPECTED_CHARS == 100 and ck({"kind": "answer", "question_hi": "क्यों?", "expected_hi": "ग" * 120, **shx}, strict=False) != [] and ck({"kind": "answer", "question_hi": "क्यों?", "expected_hi": "गलत, सही उत्तर 83 है (इकाई 13 में से 1 हासिल दहाई में जुड़ा नहीं)", **shx}, strict=False) == [])
+kb_v = {"beginner": {"competency_id": "N", "name_en": "Adds without regrouping", "name_hi": "x", "criteria_type": "computation", "mistakes": [{"id": "X-M1", "name_hi": "m", "diagnostic_indicator": "d"}]}}
+mk = lambda q_, e_, w_: {"kind": "compute", "question_hi": q_, "expected_hi": e_, "listen_for": lf("X-M1", w_)}
+vp = {"rotation_schedule": {"blocks": [{"type": "teach", "teach_group": "beginner", "talking_points": {}, "cfu": [
+    mk("बोर्ड पर देखें: 52 + 36। जोड़ स्लेट पर लिखें।", "88", "इकाई और दहाई मिलाकर गलत उत्तर, जैसे 7 + 8 जैसा बेमेल जोड़"),
+    mk("बोर्ड पर देखें: 23 + 14। जोड़ स्लेट पर लिखें।", "37", "तीन-चार जैसा बेतरतीब उत्तर, जैसे 99 या 79"),
+    mk("बोर्ड पर देखें: 41 + 27। जोड़ स्लेट पर लिखें।", "68", "115"),
+    mk("बोर्ड पर देखें: 12 + 31। जोड़ स्लेट पर लिखें।", "43", "उत्तर नहीं लिखा या अंदाज़ से कोई संख्या लिखी")]}]}}
+vl, _ = cfu.clean_plan_cfu(vp, kb_v)
+kept_v = [q["question_hi"] for q in vp["rotation_schedule"]["blocks"][0]["cfu"]]
+check("a 'listen for' that only DESCRIBES ('जैसे 7 + 8 जैसा बेमेल जोड़', 'बेतरतीब उत्तर') is removed, and a question left with nothing is dropped; an exact answer ('115') and a behaviour ('उत्तर नहीं लिखा...') stay",
+      len(kept_v) == 2 and "41 + 27" in kept_v[0] and "12 + 31" in kept_v[1] and sum("removed 1 vague listen-for" in l for l in vl) == 2, (kept_v, vl))
+check("a vague note is only removed for a NUMERIC question: a literacy question may describe", cfu._without_vague_listen({"kind": "compute", "listen_for": lf("X-M1", "कोई जैसा उत्तर")}, False)[1] == 0)
+
+print("the log line 'the model's block has' lists what the MODEL wrote, not what the code stamped (seen in the first re-teach test output)")
+pl_k = {"rotation_schedule": {"blocks": [{"type": "teach", "teach_group": "progressor", "talking_points": {}, "reteach": True, "affected_rolls": [4, 5], "reteach_mistakes": [], "mystery_key": 1}]}}
+lk, _ = cfu.clean_plan_cfu(pl_k, KB)
+check("a re-teach block's own marks (reteach, affected_rolls, reteach_mistakes) are not listed as keys the model wrote, but the model's keys are", any("mystery_key" in l for l in lk) and not any(k in l for l in lk for k in ("reteach", "affected_rolls")), lk)
 
 print("the prompt")
 M = [{"id": "A-M1", "name_hi": "एक", "severity": "moderate", "frequency": "uncommon", "error_pattern": "p1", "diagnostic_indicator": "d1", "example_correct": "c", "example_incorrect": "w"},
@@ -216,6 +266,11 @@ M = [{"id": "A-M1", "name_hi": "एक", "severity": "moderate", "frequency": "u
 check("mistakes are ranked: most common and most serious first", [m["id"] for m in cfu_prompt.rank_mistakes(M, {})] == ["A-M2", "A-M3", "A-M1"])
 check("...and a mistake detected at the last review comes before everything", [m["id"] for m in cfu_prompt.rank_mistakes(M, {"A-M1": 2})][0] == "A-M1")
 txt = cfu_prompt.render_cfu_section({"beginner": {"competency_id": "B", "name_en": "b", "name_hi": "ब", "mistakes": []}, "progressor": {"competency_id": "A", "name_en": "a", "name_hi": "अ", "mistakes": M}}, {"A-M1": 2})
+check("the rules say: write 3, most important first, two are used; no story about a child, no objects, no abstract paragraph questions, real matra pairs, plain Hindi",
+      all(w in txt for w in ("MOST IMPORTANT FIRST", "Do NOT tell a story about a child", "No object is ever handed out", "NEVER about the structure or purpose of a paragraph", "दिन / दीन", "इसके बाद", "a choice is better than writing")))
+check("the rules say a wrong line must not carry a number the lesson shows as right, and that listen_for is the exact wrong answer, never a description", all(w in txt for w in ("must never be a number the lesson shows as a RIGHT answer", "EXACT wrong answer", "never a description")))
+check("the rules say: no person who 'did' something, a key is only a verdict and a number, no table described in words, punctuation choices as '1) । 2) ?'",
+      all(w in txt for w in ("No PERSON at all", "ONLY: no explanation", "Never describe a drawing or a table in words", "1) । 2) ?")))
 check("the section carries the rules, the show-me, and no choral answering", "SHOW-ME" in txt and "Never choral" in txt and '"cfu"' in txt)
 check("it allows other ways to show an answer (fingers, cards, drawing) for readiness skills, and asks for questions in EVERY skill", "fingers" in txt and "cards" in txt and "EVERY skill" in txt)
 check("it asks for self-contained questions, one task each, nothing copied or written as a sentence, a number for pauses, and different shapes for the groups (found in the first literacy run)",
@@ -367,7 +422,7 @@ async def main():
         check("blocks with fewer than 2 valid questions get ONE more call, and no other block is asked about", fk.calls == 2 and "GROUP BEGINNER: write exactly 2" in p2 and "GROUP PROFICIENT: write exactly 3" in p2 and "GROUP PROGRESSOR" not in p2, (fk.calls, p2[-700:]))
         check("the top-up call is metered like the plan: two paid calls, two rows", rows5 == 2, rows5)
         check("the request carries what the model needs: the questions already written, why earlier ones were rejected, the recorded mistakes of THAT group's skill", "21 + 36 कितना होगा?" in p2 and "needs a carry" in p2 and "no CFU written" in p2 and id_prof in p2 and "WHAT IS MISSING" in p2, p2[:400])
-        check("the new questions are added to the old ones and every block now has at least 2", [q["question_hi"][:7] for q in bl5["beginner"]["cfu"]] == ["21 + 36", "12 + 34", "52 में "] and len(bl5["proficient"]["cfu"]) == 2 and len(bl5["progressor"]["cfu"]) == 2, {g: len(b.get("cfu") or []) for g, b in bl5.items()})
+        check("the new questions are added to the old ones and every block now has at least 2", [q["question_hi"][:7] for q in bl5["beginner"]["cfu"]] == ["21 + 36", "12 + 34"] and len(bl5["proficient"]["cfu"]) == 2 and len(bl5["progressor"]["cfu"]) == 2, {g: len(b.get("cfu") or []) for g, b in bl5.items()})
         check("the stats say which groups were topped up, and how many questions the model wrote in all", pc5["cfu_stats"]["beginner"].get("topped_up") is True and pc5["cfu_stats"]["proficient"].get("topped_up") is True and "topped_up" not in pc5["cfu_stats"]["progressor"] and pc5["cfu_stats"]["beginner"]["written"] == 4, pc5["cfu_stats"])
         fk, log, pc6, bl6, rows6 = await run([plan_with(full)], d0 + timedelta(days=1))
         check("when every block is fine there is NO second call", fk.calls == 1 and rows6 == 1 and not any("topped_up" in s for s in pc6["cfu_stats"].values()), (fk.calls, rows6))

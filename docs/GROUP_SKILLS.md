@@ -1,0 +1,99 @@
+# Each group's skill for the day
+
+## Why
+The plan used to derive all three groups' skills from the ONE skill the teacher selects: the Beginners get its first hard prerequisite, the Progressors the skill itself, the Proficients the first skill that depends on it
+(for N2.3.2: N2.3.1, N2.3.2, N3.3.1). That cannot express what real groups do: one group repeats a skill while another moves on. Teaching at the Right Level (Pratham) assesses simply, groups children by learning level rather than grade,
+gives each group its own goal, tracks progress and regroups as children progress. Each group needs its own path.
+
+The skill ladder is a **graph, not a chain**: selecting N3.3.1 gives Beginners N2.2.2 (place value) and Proficients N3.5.2 (perimeter), and selecting N2.3.3 (subtraction) gives Beginners N1.2.4. No single selected skill can give
+"Beginners N2.3.2, Progressors N2.3.2, Proficients the next step".
+
+## How it works now
+- **A group's position** is read from the last plan it was part of (within 14 days): the skill it was taught (`groups_snapshot`) and the teacher's decision recorded at the Review screen
+  (Advance / Re-teach / Not sure, in `daily_plans.explainability` as `teacher_decision_<group>`). **Nothing new is stored: no database change.**
+- **The proposal** (`GET /api/plan/proposal/{teacher_id}/{domain_id}?plan_date=`): Advance proposes the skill that depends on the group's skill (the graph's first, with the alternatives listed: the graph is only a guide, so the teacher can choose another);
+  Re-teach and Not sure keep the group on its skill; no decision proposes nothing (the plan derives the skill as before).
+- **The teacher's choice** (`POST /api/plan/generate`, field `group_skills: {"beginner": id, "proficient": id}`): replaces the derived skill. The Progressors' skill is the day's skill (`competency_id`). A choice is checked (it must exist and belong to the subject;
+  a bad one is HTTP 400 `bad_group_skill` BEFORE any paid call). The saved plan records `group_skills` and `group_skills_source` (`derived` / `selected` / `teacher`).
+- **Decisions survive regenerating a plan:** the plan row's `explainability` used to be overwritten when a plan was regenerated for the same date, which would erase the teacher's recorded decisions. They are now kept.
+
+## "Moved on", not "achieved"
+A group that moves on is the TEACHER'S JUDGEMENT. It is not recorded as achieved: in Pratham's practice a group moves up when a simple assessment shows progress, and in this app "achieved" has stricter rules (scoring thresholds, each child's own results).
+Children in a group differ (re-teach is recommended when at least a third of those assessed made a mistake, so up to two thirds can still move on). Each child's A/PA/NA stays what the child's own evidence says.
+
+## Assessment, as the board work is simplified (agreed 22 Oct)
+- **During teaching: assessment as and for learning**, kept simple: the show-me questions (check for understanding) and short independent work. These guide the group decision.
+- **Periodic assessment: assessment of learning**, separate and standard (the backend exists; the screen is not built).
+
+## The re-teach as the group's MAIN block (step 2, 23 Oct)
+- **The request:** `POST /api/plan/generate` takes `reteach_groups`: the groups the TEACHER chose to re-teach. An empty list means move on with every group. **Omitted: the old way** (a separate 5-minute block when yesterday's photos found mistakes), so an older app keeps working.
+- **What changes in the lesson** when the teacher decided: there is **no separate re-teach block** and no 5 minutes taken from the teaching time. The chosen group's MAIN teach block is the re-teach, it is marked `reteach: true`, and the group
+  (the one with most children who made a mistake, of those chosen) is taught first. A group that moves on is simply taught its skill.
+- **The teachers' points on the re-teach (23 Oct), in `RETEACH_MAIN_RULES`:** a very short recall first ("कल हमने क्या सीखा था"), new numbers, never yesterday's script; show the wrong working, explain it, then **ERASE it** at the end of the I Do so only the right way stays (no big red cross);
+  the pace for about 27 minutes: recall 2, I Do 6, We Do 7, show-me 4, You Do 8; in the You Do visit FIRST the children who made the mistake, **quietly, on the normal round, never calling out names or roll numbers**; if more than a quarter of the group is wrong in the show-me,
+  re-teach that step at once, with sticks. She called the "wrong, then right" sequence safe and powerful if framed this way, and the pace realistic.
+- **What the model is told** (`prompts/orchestrate.py`: `render_reteach_main`, and **`RETEACH_MAIN_RULES`: the one constant to tune after the teachers' review**): which groups are re-taught, the mistakes found in THAT group in the skill it is taught today (names and how many children),
+  and the shape of the block: the mistake shown FIRST and then the right way (I Do), the children FIND AND FIX it (We Do), a short try with new numbers (You Do), no child named. **Never a child's roll number.**
+- **What the code stamps into the block** (`stamp_reteach_main`): `affected_rolls` (the children of that group who made a mistake in the group's skill today), `reteach_mistakes` (name and number of children). The plan records `reteach_groups`.
+- **The skill matters:** a mistake found in N2.3.2 is not the Beginners' to re-teach while they are taught N2.3.1 (until the teacher puts them on N2.3.2).
+- **If the model writes a separate re-teach block anyway,** it is reported as a plan shape warning, and the main block is still marked.
+- **Try it with the real model:** `python scripts\try_reteach.py` (about 14 cents) builds a scratch class with yesterday's mistakes, generates the plan with the Progressors re-taught and writes `docs/batch/try_reteach_N2.3.2.md` for the teachers to read. `--stub` is free.
+
+## The Plan screen (step 3, 23 Oct)
+Once the teacher has chosen a skill, a panel **"आज हर समूह का कौशल"** appears under the groups card, and a bar above the Generate button summarises it ("समूहों के कौशल: शु N2.3.2 · प्र N2.3.2🔄 · द N3.5.2 — देखें/बदलें ↑").
+- **What it shows for each group:** the group and its size; yesterday's skill and the teacher's own decision, in the Review screen's words ("▲ आगे बढ़ें", "🔄 दोहराएँ", "❓ पक्का नहीं"); today's skill; where that skill comes from ("आपके कल के निर्णय से", "चुने कौशल से तय", "आपकी पसंद"); a re-teach box.
+- **The Progressors' skill is the skill the teacher chose.** The Beginners and the Proficients start from the suggestion (Advance: the skill that depends on yesterday's; Re-teach or Not sure: yesterday's again; no decision: the skill the plan derives from the chosen one). The teacher can pick any skill of the subject for them, and "↺ सुझाव पर लौटें" brings the suggestion back.
+- **Re-teach** is ticked by default only when the group stays on yesterday's skill and the teacher said Re-teach or Not sure. It is never offered when there is no earlier plan, or for a group with no children. Choosing another skill than yesterday's ends it (a re-teach is the same skill), and the panel says so.
+- **What is sent** (`buildGenerateOptions`): `group_skills` only for skills that DIFFER from what the plan derives, and `reteach_groups` always, once the panel is shown. **If the panel could not be shown (the suggestions could not be loaded) nothing is sent and the plan decides, as before.**
+- **One rule for the screen and the plan:** `GET /api/plan/ladder/{skill}` returns the skills the plan derives, using the same two functions (`derived_beginner_id`, `derived_proficient_id`) that the plan itself now calls. A test checks that a generated plan's groups equal the ladder.
+- **Tests:** `node tests/group_skills.test.mjs` (from `pwa/`; needs only react, react-dom and esbuild, which comes with vite): 20 checks of the rules and of what the panel shows, with the design example. Backend: `tests/test_group_skills.py`.
+- **A consequence to know:** because the screen now always sends `reteach_groups`, the old automatic separate 5-minute re-teach block no longer appears in the app. A re-teach happens when the teacher's decision at the Review screen says so (or the teacher ticks the box). The demo teacher therefore needs decisions recorded for the demo to show one.
+
+## Which skills a group may take, and when a re-teach may be ticked (found on the first click-through, 23 Oct)
+The first version of the panel let the Beginners and the Proficients take ANY skill of the subject (a tester picked N3.6.1 for the Beginners and N0.2.1 for the Proficients), and it let a re-teach be ticked on a group that was not on yesterday's skill: it printed a warning and made the plan anyway. Both are fixed, on the screen and on the server.
+- **The Beginners** may take today's skill or a **foundation** of it (its prerequisites, and theirs: for N2.3.2, 8 skills). **The Proficients** may take today's skill or a skill that **builds on it** (for N2.3.2, 4 skills). A group may always stay where it was yesterday, or take the suggestion from the review, even if that is outside those lists. `GET /api/plan/ladder/{skill}` returns the lists (`options`), nearest first.
+- **On the screen** each list is grouped under its own heading ("आज का कौशल", "आधार कौशल" or "आगे के कौशल", "कल का / सुझाया कौशल"). **The server refuses anything else** with a message in Hindi and English, before any paid call (`allowed_skills`), so no other client can get around the screen.
+- **A re-teach is the same skill as yesterday.** The box is **disabled** unless the group is on yesterday's skill, and a button ("🔄 N2.3.1 चुनकर दोहराएँ") puts the group back on yesterday's skill and ticks the box in one tap. For the Progressors the button chooses yesterday's skill as the day's skill. Choosing another skill ends a ticked re-teach. A re-teach for a group that is not on yesterday's skill is never sent, and **the server refuses it too** (`check_reteach_same_skill`). Where there is no yesterday, nothing is refused.
+
+## The lesson screen: each group's skill at the top right (23 Oct)
+At the top right of the daily plan the date is now followed by **each group's skill, when the groups are on different skills**: one line per group (🟠 शु, 🟡 प्र, 🟢 द, in that order) with the skill id (the Hindi name is in the tooltip), and **"🔄 पुनः शिक्षण Re-teach" against a group that is re-teaching**. If every group is on the same skill, the one skill is shown as before, and a re-teach is still named (with the groups). The group cards below carry the same tag.
+It reads what the plan already carries: each group's `target_competency_id` and name (fresh and stored plans), and the plan's blocks: a teach block marked `reteach` (the re-teach as the group's main block) or, in a plan made the old way, the separate re-teach block that names its group. Nothing new is stored.
+Test: `node tests/plan_summary.test.mjs` from `pwa/` (13 checks).
+
+## The re-teach block on the lesson screen (step 4, 23 Oct)
+A teach block the plan marks as a re-teach (`reteach: true`, step 2) now says so on the lesson screen:
+- **Its title** becomes "🔄 पुनः शिक्षण: प्रगतिशील पढ़ाएँ (Re-teach Progressor)" (a normal teach block keeps "👩‍🏫 ... पढ़ाएँ").
+- **A note under the title, always visible:** "🔄 पुनः शिक्षण (Re-teach)", **the children who made the mistake** ("👥 कल गलती करने वाले बच्चे: रोल 4, 5": the teacher's own screen, stamped by the code, never sent to the AI) and **the mistakes**, each with how many children made it ("हासिल भूलना (2 बच्चे)"). With no recorded mistake: "कोई खास गलती दर्ज नहीं हुई: इस कौशल की आम गलतियाँ दोबारा समझाई जाएँगी".
+- **When the block is opened: the pace line and three tips.** The pace the teachers called realistic is **recall 2 · I Do 6 · We Do 7 · show-me 4 · You Do 8 = 27 minutes**, scaled to this block's length in whole minutes that add up to exactly its duration (29 minutes: 2·6·8·4·9; 22 minutes: 2·5·6·3·6); under 10 minutes no pace line is shown. The tips are the teachers' own: show the wrong way first and **erase it at the end of the I Do**; in the You Do visit these children first, **quietly**, never calling out names or roll numbers; and if **more than a quarter** are wrong in the show-me, re-teach that step at once.
+- **The old separate re-teach block** (plans made the old way) keeps its own display and gets nothing added.
+- Files: `services/reteachInfo.js` (pure: the pace, the title, the summary), `components/ReteachNote.jsx`, `screens/YojanaScreen.jsx`. Test: `node tests/reteach_note.test.mjs` from `pwa/` (14 checks, including the real block from the first real run). A block from a plan generated through the real pipeline was also rendered, to prove the screen and the backend agree on the keys.
+
+## The day's skill is not the one yesterday's decisions were about (second click-through, 23 Oct)
+With **N0.1.1** (Balvatika sorting) chosen for the day, the Beginners were given **N2.3.2**: yesterday's review had said Advance for them, and the screen used that suggestion whatever skill was chosen today. The Beginners ended up AHEAD of the Progressors. A tester saw it at once ("it should also be N0.1.1, right?").
+- **The rule:** the Beginners are never **ahead** of the day's skill, and the Proficients never **behind** it, **by grade** (Balvatika, 1, 2, 3). A suggestion, or yesterday's skill, that is on the wrong side is **not used**: the group follows the day's skill, and the panel says why ("कल के निर्णय से सुझाया कौशल N2.3.2 आज के कौशल से मेल नहीं खाता…"). The same grade, or an unknown grade, fits. It is on the screen (`fitsDay`) and on the server (`group_skills.fits_day`, in `allowed_skills`: a choice on the wrong side is refused with a message in Hindi and English).
+- **Why grade, not `sort_order`:** a skill's `sort_order` is only its place inside its own strand (1 to 6, repeated in every grade), so it cannot be compared across strands. Checked in the database before the rule was written.
+- **Yesterday's skill is offered for a group only where it may go back to it.** If going back would put the Beginners ahead of the day's skill, the re-teach box is disabled with a plain reason ("कल का कौशल आज के कौशल से आगे है, इसलिए इस समूह के लिए आज दोहराना संभव नहीं") and **no button**. The Progressors can always go back: the day's skill itself becomes yesterday's.
+- On the day the suggestion is about (the demo's N2.3.2) nothing changes.
+
+## The panel is a drawer in the bottom bar (24 Oct)
+The first version put the group panel at the **top of the page**, above the coverage card, the grade filters and the whole long skill list, and the bar's "देखें/बदलें ↑" button **scrolled up to it**. After looking at the groups the teacher had lost their place and had to scroll all the way down to choose another skill ("navigating back to selecting a different skill is not smooth").
+- **Now the panel is a drawer in the bottom bar, above Generate.** Closed: one line with each group's skill ("समूहों के कौशल: शु N0.1.2 · प्र N1.1.1 · द N1.1.1 — देखें/बदलें ▲"). Open: the panel, which scrolls inside the drawer (at most 55% of the screen height), and a button "▼ बंद करें: कौशल सूची पर लौटें". **The page never scrolls**, so the list is exactly where it was. Generate stays visible and usable while the drawer is open. Choosing another skill closes the drawer.
+- **A race found while reading the code, fixed:** when another skill was chosen, the PREVIOUS skill's groups stayed on screen (and in use) until the new ones arrived; Generate in that moment would have combined the new skill with the old groups. Now they are cleared at once, Generate is disabled and says "समूहों के कौशल लोड हो रहे हैं…" until the new ones arrive (`panelStatus`), an answer that arrives late for an earlier skill is ignored, and if the fetch fails Generate is not stuck: the plan is made the old way (the plan decides).
+- **Tests:** `group_skills.test.mjs` (55 checks, including the drawer and the status rule) and **`plan_screen.dom.test.mjs`**, which runs the REAL Plan screen in a simulated browser with a fake server whose answers it releases by hand (14 checks). It needs `jsdom` (`npm install --save-dev jsdom`, once) and skips politely without it. Run against the previous screen it fails 7 of the 14: the jump to the top (scrollIntoView called) and the stale groups.
+
+## Which plan the suggestions come from, and what it did (24 Oct)
+The suggestions are read from the **latest plan stored before today** (within 14 days), and the evidence must be dated the same day as that plan (the review of that lesson). So a plan generated yesterday while testing, with no review, is "yesterday": the panel then has no evidence and no decision, and says nothing: it did not lose anything, the review it was looking for does not exist. (The seeded plan, a day older, is no longer the latest.)
+- The panel's first line now says **which plan** it reads ("सुझाव 2026-10-23 की योजना, उसकी समीक्षा में आपके निर्णयों और बच्चों की जाँच से…").
+- Each group's "कल:" line now says if that group **re-taught in that plan** ("🔄 कल पुनः शिक्षण हुआ"): read from the plan's `reteach_groups`, a teach block marked `reteach`, or, in a plan made the old way, the separate re-teach block (`group_skills.reteached_groups`). Before, a re-teach left no trace the next day.
+- `python scripts\demo_progress.py status --env-file backend\.env` lists the plans of the last 14 days and marks the one used as yesterday.
+- **Open design question, not changed:** the evidence is looked up for the day of the plan only. If the teacher generates a plan on a day and never reviews it, the older review (of the day before) is not used by the panel, although the plan generation still reads the last week's evidence for the AI. This is the safe reading (a review that predates a lesson cannot say how that lesson went), and it keeps the panel and the nightly seed simple; it can be reconsidered.
+
+## The app's own recommendation (step 3b, 23 Oct)
+The rule decided on 21 October existed only in the notes: **recommend a re-teach when at least a third of the children ASSESSED, rounded up, made a mistake** (6 assessed: 2; 7: 3; 4: 2; 9: 3), so up to two thirds can still move on. **Under 4 assessed is a very small group: the numbers are shown and nothing is recommended.** It is now in the code (`group_skills.recommend`), and the teacher decides.
+- **Where the numbers come from** (`review_evidence`): for each group, of the children who were in it (the roll numbers saved with the plan) and were assessed on the skill it was taught on the review date, how many made a recognised mistake. A child counts once however many sheets were read. Another skill, another day, or another group's child is ignored. The panel also shows the children's roll numbers and the mistakes named: that is the teacher's own screen; no roll number goes to the AI.
+- **What the proposal now carries for each group:** `evidence` (assessed, with_mistakes, needed, very_small, recommend, rolls, mistakes), `recommendation` (`reteach`, `very_small` or none) and `conflict`.
+- **The teacher's recorded decision always comes first.** With NO decision recorded and the evidence recommending a re-teach, the group stays on yesterday's skill with the box ticked ("कल की जाँच के सुझाव से"). With a decision of Re-teach or Not sure, nothing changes. With Advance against the evidence, the decision stands and `conflict` is set: the panel asks once ("आपने आगे बढ़ना चुना था, पर 2/6 बच्चों ने गलती की। क्या दोहराना चाहेंगे?") with a button; the Progressors' button chooses yesterday's skill and ticks the box.
+- **Not to be confused with** "the group is moved on": nothing here marks a child achieved.
+
+## Not yet built
+The demo teacher's seeded decisions and evidence; the one-tap show-me tally; the recent-record line; a note for a skill a group skipped.

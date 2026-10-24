@@ -17,3 +17,4 @@ pwa/dist/
 Thumbs.db
 
 deploy/cloudrun-env.generated.yaml
+pwa/tests/.tmp-*

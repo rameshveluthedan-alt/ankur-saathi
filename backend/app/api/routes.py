@@ -20,6 +20,7 @@ from app.models.schemas import (
     StartBaselineRequest, SubmitBaselineRequest,
 )
 from app.services import ai_budget, plan_service, review_service, progress_service, worksheet_service, register_service, names_service
+from app.services import group_skills
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
@@ -117,6 +118,26 @@ async def get_curriculum_week(grade_level: str, domain_id: str, week_number: int
         return week
 
 
+@router.get("/plan/ladder/{competency_id}", tags=["Plan"])
+async def get_group_ladder(competency_id: str):
+    """The skills the plan derives for the Beginners, Progressors and Proficients when this skill is selected (the screen shows them before the plan is generated)."""
+    async with get_db() as db:
+        out = await group_skills.ladder(db, competency_id)
+    if out is None:
+        raise HTTPException(404, "No such skill")
+    return out
+
+
+@router.get("/plan/proposal/{teacher_id}/{domain_id}", tags=["Plan"])
+async def get_group_proposal(teacher_id: str, domain_id: str, plan_date: date):
+    """What each group's skill could be on plan_date, from the teacher's decisions at the last review (advance, re-teach, not sure).
+    Declared BEFORE the cached-plan route, which would otherwise read 'proposal' as a teacher id."""
+    if domain_id not in ('numeracy', 'r1_literacy'):
+        raise HTTPException(400, "domain_id must be 'numeracy' or 'r1_literacy'")
+    async with get_db() as db:
+        return await group_skills.propose(db, teacher_id, domain_id, plan_date)
+
+
 @router.get("/plan/groups/{teacher_id}/{domain_id}", tags=["Plan"])
 async def get_groups(teacher_id: str, domain_id: str):
     """Get current B/P/P groups for this teacher + domain."""
@@ -139,9 +160,11 @@ async def generate_plan(req: GeneratePlanRequest, teacher_id: str):
     async with get_db() as db:
         try:
             result = await plan_service.generate_dainik_yojana(
-                db, teacher_id, req.competency_id, req.domain_id, req.plan_date
+                db, teacher_id, req.competency_id, req.domain_id, req.plan_date, group_skills=req.group_skills, reteach_groups=req.reteach_groups
             )
             return result
+        except group_skills.GroupSkillError as e:
+            raise HTTPException(400, {"message": str(e), "code": "bad_group_skill"})
         except ai_budget.AICapReached as e:
             raise HTTPException(429, {"message": e.message, "code": "ai_cap", "reason": e.reason, "sample_skills": ai_budget.sample_skills()})
         except Exception as e:

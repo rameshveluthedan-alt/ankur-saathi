@@ -122,11 +122,23 @@ export const getCurriculumWeek = (gradeLevel, domainId, weekNumber) =>
 export const getGroups = (teacherId, domainId) =>
   request(`/plan/groups/${teacherId}/${domainId}`);
 
-export const generatePlan = (teacherId, competencyId, domainId, planDate) =>
+// options: { groupSkills: {beginner, proficient}, reteachGroups: [...] }. Omitted: the plan derives each group's skill from competencyId, and decides about a re-teach itself (the old way).
+export const generatePlan = (teacherId, competencyId, domainId, planDate, options = {}) =>
   request(`/plan/generate?teacher_id=${teacherId}`, {
     method: 'POST',
-    body: JSON.stringify({ competency_id: competencyId, domain_id: domainId, plan_date: planDate }),
+    body: JSON.stringify({
+      competency_id: competencyId, domain_id: domainId, plan_date: planDate,
+      ...(options.groupSkills ? { group_skills: options.groupSkills } : {}),
+      ...(options.reteachGroups ? { reteach_groups: options.reteachGroups } : {}),
+    }),
   });
+
+// What each group's skill could be on planDate, from the teacher's decisions at the last review
+export const getGroupProposal = (teacherId, domainId, planDate) =>
+  request(`/plan/proposal/${teacherId}/${domainId}?plan_date=${planDate}`);
+
+// The skills the plan derives for the three groups when this skill is selected
+export const getLadder = (competencyId) => request(`/plan/ladder/${competencyId}`);
 
 export const getCachedPlan = (teacherId, planDate, domainId) =>
   request(`/plan/${teacherId}/${planDate}/${domainId}`);

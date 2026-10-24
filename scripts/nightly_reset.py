@@ -4,7 +4,8 @@ The nightly reset of the public demo (run by a Cloud Run job, scheduled by Cloud
 
   1. the "Change PIN" practice account is put back (its PIN, its lock, its must-change flag), because reviewers are meant to change and lock it;
   2. the demo teacher's progress is cleared and seeded again up to YESTERDAY (India time), because the "consider re-assessing" flags
-     are only shown for the last 14 days, so the demo would otherwise slowly go empty.
+     are only shown for the last 14 days, so the demo would otherwise slowly go empty. The seed also stores YESTERDAY'S PLAN with the teacher's decisions,
+     so that the Plan screen has a yesterday to suggest each group's skill from.
 
 It does not touch real accounts, reviewers' new schools or the AI usage meter. The database settings come from DB_HOST, DB_USER,
 DB_PASSWORD, DB_NAME (and DB_PORT) in the environment, or from --env-file when run on your own machine.

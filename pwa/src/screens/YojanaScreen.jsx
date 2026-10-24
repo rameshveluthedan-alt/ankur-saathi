@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../App';
 import { getCachedPlan, openAuthedPage, worksheetPath } from '../services/api';
+import PlanGroupSkills from '../components/PlanGroupSkills';
+import { reteachGroupsOf } from '../services/planSummary';
+import ReteachNote from '../components/ReteachNote';
+import { reteachTitle } from '../services/reteachInfo';
 
 const GROUP_LABELS = {
   beginner: { hi: 'शुरुआती', en: 'Beginner', emoji: '🟠', css: 'beginner' },
@@ -63,6 +67,7 @@ export default function YojanaScreen() {
   const anchor = plan.anchor || {};
   const rotation = plan.rotation_schedule || {};
   const blocks = rotation.blocks || [];
+  const reteachSet = reteachGroupsOf(blocks);       // the groups that re-teach in this plan
   const explainability = currentPlan.explainability || plan.explainability || {};
 
   return (
@@ -75,14 +80,14 @@ export default function YojanaScreen() {
       )}
       <div className="screen-header">
         <h1>📋 दैनिक योजना <span style={{fontSize:'0.75rem',color:'var(--text-secondary)',fontWeight:400}}>Daily Plan</span></h1>
-        <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-          {currentPlan.plan_date} · {currentPlan.selected_competency_id}
+        <div style={{ textAlign: 'right' }}>
+          <PlanGroupSkills planDate={currentPlan.plan_date} selectedId={currentPlan.selected_competency_id} groups={groups} blocks={blocks} />
           {plan.coverage && plan.coverage.tier && plan.coverage.tier !== 'tested' && (
             <span title={plan.coverage.note || ''} style={{ marginLeft: 8, background: '#FFF1CC', color: '#8A5A00', borderRadius: 8, padding: '1px 7px', fontSize: '0.65rem', fontWeight: 600 }}>
               {({ ai_written: '◐ AI-लिखित सामग्री', experimental: '⚠ प्रयोगात्मक', untested: '○ अभी परखा नहीं' })[plan.coverage.tier]}
             </span>
           )}
-        </span>
+        </div>
       </div>
 
       {/* Groups summary */}
@@ -93,6 +98,7 @@ export default function YojanaScreen() {
             <div style={{ fontSize: '0.55rem', color: 'var(--text-light)' }}>{GROUP_LABELS[g.label]?.en}</div>
             <div style={{ fontWeight: 700, fontSize: '1.125rem', margin: '4px 0' }}>{g.count}</div>
             <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)' }}>{g.target_competency_name_hi}</div>
+            {reteachSet.has(g.label) && <div style={{ fontSize: '0.6rem', color: 'var(--beginner)', fontWeight: 600, marginTop: 2 }}>🔄 पुनः शिक्षण</div>}
           </div>
         ))}
       </div>
@@ -147,7 +153,7 @@ export default function YojanaScreen() {
             )}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <strong style={{ fontSize: '0.875rem' }}>
-                {block.type === 'teach' && `👩‍🏫 ${GROUP_LABELS[block.teach_group]?.hi || block.teach_group} पढ़ाएँ (Teach ${GROUP_LABELS[block.teach_group]?.en || ''})`}
+                {block.type === 'teach' && (block.reteach ? reteachTitle(block, GROUP_LABELS) : `👩‍🏫 ${GROUP_LABELS[block.teach_group]?.hi || block.teach_group} पढ़ाएँ (Teach ${GROUP_LABELS[block.teach_group]?.en || ''})`)}
                 {block.type === 'anchor' && '🎯 एंकर (Anchor)'}
                 {block.type === 'setup' && '📢 सेटअप (Setup)'}
                 {block.type === 'reteach' && `🔄 पुनः शिक्षण${block.teach_group && GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].hi}` : ''} (Re-teach${block.teach_group && GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].en}` : ''})`}
@@ -161,6 +167,7 @@ export default function YojanaScreen() {
                 👥 जिन बच्चों के लिए (For): रोल {block.affected_rolls.join(', ')}
               </div>
             )}
+            <ReteachNote block={block} expanded={expandedBlock === i} />
             {(block.type === 'teach' || block.type === 'reteach') && block.other_groups_hi && (
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4, ...ML }}>
                 बाकी समूह (Other groups): {fmt(block.other_groups_hi)}
@@ -194,8 +201,8 @@ export default function YojanaScreen() {
                   <div className="talking-point" style={ML} data-testid="cfu">
                     <div className="talking-point-label">समझ की जाँच: शो-मी (Check for understanding)</div>
                     <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 6 }}>
-                      हर बच्चा उत्तर कॉपी या स्लेट पर लिखकर या बनाकर (या उँगलियों या कार्ड से) तैयार करे और छिपाए। संकेत पर सब एक साथ दिखाएँ। फिर दो बच्चों से समझाने को कहें।
-                      <span style={{ display: 'block' }}>(Everyone prepares the answer, written, drawn, on fingers or on a card, and hides it; on the signal all show it at once. Then ask two children to explain.)</span>
+                       हर बच्चा उत्तर स्लेट या कॉपी पर लिखकर, बनाकर या उँगलियों से तैयार करे और छिपाए। लगभग 20 सेकंड रुकें, फिर 'तीन, दो, एक — दिखाएँ!' कहें और सब एक साथ दिखाएँ। फिर दो बच्चों से समझाने को कहें: एक जिसने पहले गलती की थी (चुपचाप चुनें, नाम न बुलाएँ) और एक किसी भी बच्चे से, सिर्फ़ हाथ उठाने वालों से नहीं। अगर समूह के एक-चौथाई से ज़्यादा बच्चों के उत्तर गलत हों, तो आगे बढ़ने से पहले वही कदम अभी दोबारा समझाएँ (छड़ियों से)।
+                       <span style={{ display: 'block' }}>(Everyone prepares the answer on a slate or notebook page, written, drawn or on fingers, and hides it. Wait about 20 seconds, say 'three, two, one, show!' and everyone shows together. Then ask two children to explain: one who made the mistake before (chosen quietly, never named) and one at random, not only those with a hand up. If more than a quarter of the group is wrong, re-teach that step at once, with sticks, before moving on.)</span>
                     </div>
                     {block.cfu.map((q, k) => (
                       <div key={k} data-testid="cfu-item" style={{ marginTop: 6, paddingTop: 6, borderTop: k ? '1px dashed var(--border)' : 'none' }}>

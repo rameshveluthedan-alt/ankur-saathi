@@ -10,9 +10,11 @@ Ankur Saathi — demo data for the Progress screen.
           (process_vision_results), so statuses, streaks and suggestions are exactly what the app would produce.
           Three qualifying days is what makes the Progress screen show 're-assess' flags; the photos you
           take on the demo day then become day 4.
+          It also stores YESTERDAY'S PLAN (the three groups, their children's roll numbers and their skills for N2.3.2) with the decisions the demo teacher
+          recorded at that review, so that the Plan screen has a yesterday to suggest from.
   reset   deletes ALL assessment evidence and status rows for the demo teacher and restores every child's
           level to the baseline in db/seeds/classroom/01_profile.sql (so a level change accepted during a
-          rehearsal is undone). Stored plans are left alone.
+          rehearsal is undone). Stored plans are left alone, except the one that seed stores for the last seeded day (marked demo_seed), which reset removes.
   status  shows what is recorded now and which suggestions the Progress screen would show.
 
 What the seed models (Progressor group, 14 children):
@@ -45,6 +47,12 @@ DEMO_TEACHER = "10000001-aaaa-bbbb-cccc-000000000001"
 COMPETENCY = "N2.3.2"
 REQUIRED = 6
 BASELINE_SQL = Path(__file__).resolve().parent.parent / "db" / "seeds" / "classroom" / "01_profile.sql"
+BACKEND = Path(__file__).resolve().parent.parent / "backend"
+SAMPLE_PLAN = Path(__file__).resolve().parent.parent / "db" / "seeds" / "sample_plans" / "N2.3.2.json"
+
+# What the demo teacher "recorded" at yesterday's review (the Review screen's Advance / Re-teach / Not sure). The Progressors have NO decision on purpose: the three days of
+# evidence recommend a re-teach, so the Plan screen shows the app's OWN recommendation. The Beginners advance, so the screen shows a decision-based suggestion too.
+DEMO_DECISIONS = {"beginner": "advance"}
 
 # roll -> (correct answers out of the 6 required, on each of the 3 days; the mistake behind the wrong ones; extras attempted on day 3)
 PATTERNS = {
@@ -146,6 +154,26 @@ def read_baseline() -> list[tuple]:
     return rows
 
 
+async def seed_yesterday_plan(db, teacher_id: str, day: date) -> dict:
+    """Store the plan of `day` (the last seeded day) for the demo teacher: each group's children (roll numbers) and skill for COMPETENCY, the way a generated plan keeps them, with the decisions in DEMO_DECISIONS.
+    Without it the Plan screen has no 'yesterday' to suggest from and says so. The plan itself is the recorded sample for N2.3.2 (it is yesterday's: nobody opens it). The row is marked `demo_seed`,
+    so reset removes it and leaves every real plan alone. A real plan already stored for that date is replaced: the demo must tell the same story each day."""
+    sys.path.insert(0, str(BACKEND))
+    from app.services import group_skills, plan_service
+    groups = {g["label"]: g for g in await plan_service.derive_groups_from_positions(db, teacher_id, "numeracy")}
+    ladder = await group_skills.ladder(db, COMPETENCY)
+    snapshot = {label: {"count": g["count"], "rolls": g["roll_numbers"], "target": ladder[label]["id"]} for label, g in groups.items()}
+    explainability = {"demo_seed": True, **{f"teacher_decision_{label}": d for label, d in DEMO_DECISIONS.items() if label in snapshot}}
+    plan = json.loads(SAMPLE_PLAN.read_text(encoding="utf-8"))
+    await db.execute("""
+        INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id, plan_content, explainability, groups_snapshot)
+        VALUES ($1, $2, 'numeracy', $3, $4::jsonb, $5::jsonb, $6::jsonb)
+        ON CONFLICT (teacher_id, plan_date, domain_id) DO UPDATE SET selected_competency_id = EXCLUDED.selected_competency_id,
+               plan_content = EXCLUDED.plan_content, explainability = EXCLUDED.explainability, groups_snapshot = EXCLUDED.groups_snapshot
+    """, teacher_id, day, COMPETENCY, json.dumps(plan, ensure_ascii=False), json.dumps(explainability), json.dumps(snapshot))
+    return snapshot
+
+
 async def counts(db, teacher_id: str) -> dict:
     return {
         "evidence": await db.fetchval("SELECT count(*) FROM assessment_evidence WHERE teacher_id = $1", teacher_id),
@@ -162,6 +190,7 @@ async def reset(db, teacher_id: str) -> dict:
     before = await counts(db, teacher_id)
     await db.execute("DELETE FROM assessment_evidence WHERE teacher_id = $1", teacher_id)
     await db.execute("DELETE FROM child_competency_status WHERE child_id IN (SELECT id FROM children WHERE teacher_id = $1)", teacher_id)
+    plans = await db.execute("DELETE FROM daily_plans WHERE teacher_id = $1 AND explainability ? 'demo_seed'", teacher_id)      # only the plans that seed stored
     restored = 0
     for cid, domain, comp, level, source, days, last in baseline:
         res = await db.execute("""
@@ -170,7 +199,7 @@ async def reset(db, teacher_id: str) -> dict:
             WHERE child_id = $1 AND domain_id = $2 AND child_id IN (SELECT id FROM children WHERE teacher_id = $8)
         """, cid, domain, comp, level, source, days, last, teacher_id)
         restored += int(res.split()[-1])
-    return {"evidence_deleted": before["evidence"], "status_deleted": before["status"], "positions_restored": restored}
+    return {"evidence_deleted": before["evidence"], "status_deleted": before["status"], "positions_restored": restored, "plans_deleted": int(plans.split()[-1])}
 
 
 # ── commands ────────────────────────────────────────────────────────────────
@@ -183,18 +212,25 @@ def confirm(args, message: str):
         sys.exit("Cancelled. Nothing was changed.")
 
 
+async def do_seed(db, teacher_id: str, end: date) -> tuple:
+    """The whole seed, in the caller's transaction: reset, three days of evidence, and yesterday's plan. Returns (what reset did, the stored groups)."""
+    r = await reset(db, teacher_id)
+    for i, day in enumerate([end - timedelta(days=2), end - timedelta(days=1), end]):
+        vision = [child_result(roll, day, i) for roll in sorted(PATTERNS)]
+        await process_vision_results(db, teacher_id, day, COMPETENCY, vision, None, required_count=REQUIRED)
+    return r, await seed_yesterday_plan(db, teacher_id, end)
+
+
 async def cmd_seed(db, args):
     end = date.fromisoformat(args.end_date) if args.end_date else date.today() - timedelta(days=1)
     days = [end - timedelta(days=2), end - timedelta(days=1), end]
     confirm(args, f"This deletes ALL assessment evidence for the demo teacher, restores every child's level to the baseline, "
                   f"then records {days[0]} to {days[2]} for {len(PATTERNS)} Progressors.")
     async with db.transaction():
-        r = await reset(db, args.teacher_id)
-        for i, day in enumerate(days):
-            vision = [child_result(roll, day, i) for roll in sorted(PATTERNS)]
-            await process_vision_results(db, args.teacher_id, day, COMPETENCY, vision, None, required_count=REQUIRED)
+        r, snap = await do_seed(db, args.teacher_id, end)
     print(f"Reset: {r['evidence_deleted']} evidence rows and {r['status_deleted']} status rows deleted, {r['positions_restored']} positions restored.")
-    print(f"Seeded {days[0]} to {days[2]} for {COMPETENCY}. Your photos on {days[2] + timedelta(days=1)} or later become the next day.\n")
+    print(f"Seeded {days[0]} to {days[2]} for {COMPETENCY}. Your photos on {days[2] + timedelta(days=1)} or later become the next day.")
+    print(f"Stored the plan of {days[2]}: " + ", ".join(f"{k} {v['count']} children on {v['target']}" for k, v in snap.items()) + f"; decisions recorded: {DEMO_DECISIONS or 'none'}.\n")
     await cmd_status(db, args)
 
 
@@ -223,6 +259,37 @@ async def cmd_status(db, args):
         print(f"  {word} roll {r['roll_number']:>2}: level {r['level']}, {r['matching_days']} of the last {r['days_counted']} days")
     if not recs:
         print("  none yet (a child needs 3 qualifying days among the last 4, mostly Achieved or mostly Not achieved)")
+    await print_suggestions(db, args.teacher_id)
+
+
+async def print_suggestions(db, teacher_id: str):
+    """What the Plan screen would suggest for each group today, from the last plan and the evidence."""
+    sys.path.insert(0, str(BACKEND))
+    from app.services import group_skills
+    rows = await db.fetch("SELECT plan_date, selected_competency_id, plan_content, explainability, groups_snapshot FROM daily_plans WHERE teacher_id = $1 AND domain_id = 'numeracy' AND plan_date >= $2 ORDER BY plan_date DESC",
+                          teacher_id, date.today() - timedelta(days=14))
+    used = next((r["plan_date"] for r in rows if r["plan_date"] < date.today()), None)
+    print(f"\nPlans stored for the last 14 days (the Plan screen takes the latest one BEFORE today, {date.today()}, as 'yesterday'):")
+    if not rows:
+        print("  none")
+    for r in rows:
+        j = lambda v: json.loads(v) if isinstance(v, str) else (v or {})
+        expl, snap, retaught = j(r["explainability"]), j(r["groups_snapshot"]), group_skills.reteached_groups(r["plan_content"])
+        parts = [f"{label} {snap[label].get('target')}" + (" RE-TAUGHT" if label in retaught else "") + (f" [decision {expl.get('teacher_decision_' + label)}]" if expl.get("teacher_decision_" + label) else "") for label in ("beginner", "progressor", "proficient") if label in snap]
+        print(f"  {r['plan_date']}  {r['selected_competency_id']:<7} {'seeded by this script' if expl.get('demo_seed') else 'made in the app':<22} " + "; ".join(parts) + ("   <-- 'yesterday'" if r["plan_date"] == used else ""))
+    p = await group_skills.propose(db, teacher_id, "numeracy", date.today())
+    if not p["has_history"]:
+        print("\nThe Plan screen has no earlier plan to suggest from (no plan in the last 14 days): it says so, and derives each group's skill from the skill chosen.")
+        return
+    print(f"\nWhat the Plan screen suggests today, from the plan of {p['previous_date']}:")
+    for label in ("beginner", "progressor", "proficient"):
+        g = p["groups"].get(label)
+        if not g:
+            continue
+        ev = g["evidence"]
+        saw = f"{ev['with_mistakes']} of {ev['assessed']} assessed made a mistake (needed {ev['needed']})" if ev["assessed"] else "no evidence"
+        goes = f"suggests {g['proposed']['id']} ({g['reason']})" if g["proposed"] else "no suggestion: the skill follows the one chosen"
+        print(f"  {label:<10} yesterday {g['previous_target']['id']}, decision {g['previous_decision'] or 'none'}; {saw}; {goes}")
 
 
 async def main():

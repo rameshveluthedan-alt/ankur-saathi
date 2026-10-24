@@ -128,6 +128,10 @@ class OrchestrationContext:
     
     # Yesterday's feedback
     reteach_competencies: list[dict] = field(default_factory=list)
+    # None: the old way (a separate 5-minute re-teach block, written in when yesterday's photos found mistakes).
+    # A list (it may be EMPTY): the TEACHER decided at the review. Those groups' MAIN teach block is a focused re-teach, there is NO separate block, and a group that moves on is simply taught.
+    reteach_groups: Optional[list] = None
+    group_skill_ids: dict = field(default_factory=dict)      # {'beginner': id, 'progressor': id, 'proficient': id}: the skill each group is taught today
     yesterday_analysis: Optional[dict] = None
     
     # Assessment prompts
@@ -459,7 +463,7 @@ Keep every talking point to at most 3 short sentences. Be concise; do not repeat
 }
 
 Rules:
-- "blocks" must list EVERY segment in time order: anchor, setup, any reteach, then the three teach blocks with a transition between them. Use the durations given in PART C.
+- "blocks" must list EVERY segment in time order: anchor, setup, a reteach block ONLY if PART C lists one, then the three teach blocks with a transition between them. Use the durations given in PART C.
 - "explainability.items" must have 5-6 items covering: why these three groups; why this rotation order; which misconceptions to watch; WHICH RETRIEVED CONTENT you used and how (name the anchor ID and whether it was an exact, related, topic-area or loose match (or original, if none), the intervention ID, each TLM ID, and the curriculum note); and the assumptions and limitations (the curriculum plan is a representative plan, not the state's official weekly plan). Only say a resource was unavailable if it is genuinely absent from the context above.
 - Independent stations must follow the INDEPENDENT-WORK RULES above.
 - Numbers, prices and names in every group's anchor task must match the board you describe in narration_hi (same item, same price). If a group needs larger numbers, add new items to the board.
@@ -601,6 +605,7 @@ def _materials_policy_section(ctx: OrchestrationContext) -> str:
 - PROGRESSOR group: NO kits for children. In the We Do, one child comes to the teacher's kit and does the one key step (adding: trading 10 loose sticks for a bundle; subtracting: opening a bundle into 10 loose sticks) while every other child draws tens as lines and ones as dots in a Tens | Ones frame ruled in the notebook, and circles 10 dots to make a new line (or crosses one line out to borrow). In the You Do the first problems may be drawn beside the grid; the last ones use numerals only.
 - PROFICIENT group: no sticks and no kits. Use the written method on the board with the carry written in each column.
 - prep_hi must list exactly the teacher demo kit and the {k} Beginner pair kits, and nothing else made of sticks. Total sticks to prepare: {STICK_TEACHER_KIT_TOTAL} + {k} x {STICK_PAIR_KIT_TOTAL} = {total}. Also say to rule a Tens | Ones frame on a sheet or the notebook cover for each pair.
+- In the talking points write each example PLAINLY: NEVER explain the kit size or a stick limit there (prep_hi carries it). Choose examples that fit the kit and say nothing about the limit.
 """
 
 
@@ -616,9 +621,20 @@ def choose_reteach_group(children_by_group: dict) -> str:
     return next(g for g in GROUP_ORDER if children_by_group.get(g, 0) == best)
 
 
-def pick_priority_group(reteach_items: list) -> tuple:
+def pick_priority_group(reteach_items: list, reteach_groups: Optional[list] = None) -> tuple:
     """(group taught first, why). With no re-teach it is the Beginners, as before. With one, it is the group whose children made the most of the
     mistakes: several items are added up by group. It used to be 'the Progressors' whatever group the children were in."""
+    if reteach_groups is not None:                         # the teacher decided: of the groups being re-taught, the one with most children who made a mistake; none: the Beginners, as before
+        if not reteach_groups:
+            return "beginner", "Default: Beginners get first slot for prerequisite foundation."
+        weights = {g: 0 for g in reteach_groups}
+        for r in reteach_items:
+            for g, n in (r.get("affected_by_group") or {}).items():
+                if g in weights:
+                    weights[g] += n
+        best = max(weights.values())
+        group = next(g for g in GROUP_ORDER if g in weights and weights[g] == best)
+        return group, f"The teacher chose to re-teach the {group.title()} group, so their main block is a focused re-teach, and they are taught first."
     if not reteach_items:
         return "beginner", "Default: Beginners get first slot for prerequisite foundation."
     weights = {}
@@ -629,11 +645,48 @@ def pick_priority_group(reteach_items: list) -> tuple:
     return group, f"The last review found mistakes mainly in the {group.title()} group, so they are taught first, after a short re-teach."
 
 
+# THE SHAPE OF A RE-TEACH BLOCK. One place, so it can be tuned after the teachers' review (Part D of the review document: the wrong-then-right sequence, the timings).
+RETEACH_MAIN_RULES = """For a RE-TEACH group the group's own teach block IS the re-teach: it is NOT the first lesson again, and there is NO separate re-teach block. Write its talking_points like this:
+- i_do_hi: show the mistake FIRST, then the right way. Do one worked example the way a child with the mistake would do it (the wrong working or the wrong answer), say aloud what is wrong with it, then do it again correctly.
+- we_do_hi: the children FIND AND FIX the mistake: give them one or two wrong examples (the mistakes listed for the group) to correct with you, then one new example together.
+- you_do_hi: a short try on their own with new numbers, where the same mistake would show up if it were still there.
+- Begin i_do_hi with a very short recall: 'कल हमने क्या सीखा था' (one or two sentences): it is NOT a second lecture. Use NEW numbers, never yesterday's script.
+- When the wrong working has been shown and explained, ERASE it at the end of i_do_hi, so that only the right way stays on the board (no big red cross: children remember what they see most). Say so in the talking point.
+- Pace for a block of about 27 minutes: recall 2, I Do 6, We Do 7, the show-me questions 4, You Do 8. Scale it to this block's length.
+- In you_do_hi the teacher visits FIRST the children who made the mistake, quietly, as part of the normal round: never call out their names or roll numbers.
+- If more than a quarter of the group shows a wrong answer in the show-me, the teacher re-teaches that step at once, with sticks, before You Do: it is not a few children's slip.
+- Name no child. The check-for-understanding questions of this block aim at the listed mistakes.
+- A group that is NOT being re-taught is simply taught its skill, as usual."""
+
+
+def render_reteach_main(ctx) -> str:
+    """YESTERDAY'S FEEDBACK when the teacher decided. Only counts and groups: never a child's roll number (the code stamps those into the block afterwards)."""
+    groups = [g for g in GROUP_ORDER if g in (ctx.reteach_groups or [])]
+    if not groups:
+        return ("The teacher decided to MOVE ON with every group: there is NO re-teach block and no group repeats a skill. "
+                "(Any mistakes found at the last review are aimed at by the check-for-understanding questions.)")
+    comp = {"beginner": ctx.beginner.target_competency, "progressor": ctx.selected_competency, "proficient": ctx.proficient.target_competency}
+    out = ["The teacher decided at the review to RE-TEACH: " + ", ".join(g.upper() for g in groups) + ". There is NO separate re-teach block: for these groups the main TEACH block is the re-teach.\n"]
+    for g in groups:
+        skill_id = (ctx.group_skill_ids or {}).get(g) or comp[g].id
+        out.append(f"### {g.upper()}: {skill_id} {comp[g].name_hi}")
+        found = [(r, (r.get("affected_by_group") or {}).get(g, 0)) for r in ctx.reteach_competencies if r.get("competency_id") == skill_id]
+        found = [(r, n) for r, n in found if n > 0]
+        if found:
+            out.append("Mistakes found at the last review in this group:")
+            out.extend(f"- {r['misconception_id']}: {r['misconception_name_hi']} ({n} children)" for r, n in found)
+        else:
+            out.append("No specific mistake was recorded for this group: re-teach the skill's commonest mistakes from the MISCONCEPTION TAXONOMY above.")
+        out.append("")
+    out.append(RETEACH_MAIN_RULES)
+    return "\n".join(out)
+
+
 def build_user_prompt(ctx: OrchestrationContext) -> str:
     """Assembles the user prompt with all L1 + L2 context injected."""
     
     # Priority group logic
-    priority_group, priority_reason = pick_priority_group(ctx.reteach_competencies)
+    priority_group, priority_reason = pick_priority_group(ctx.reteach_competencies, ctx.reteach_groups)
     
     # Build misconception section
     misconception_text = ""
@@ -658,7 +711,9 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     
     # Build reteach section
     reteach_text = ""
-    if ctx.reteach_competencies:
+    if ctx.reteach_groups is not None:                       # the teacher decided: a re-teach is the group's MAIN block
+        reteach_text = render_reteach_main(ctx)
+    elif ctx.reteach_competencies:
         reteach_text = "The last review's gaps require a 5-minute re-teaching segment:\n"
         for r in ctx.reteach_competencies:
             reteach_text += f"- {r['competency_id']}: {r['misconception_name_hi']} ({r['affected_count']} children, in the {r.get('group', 'progressor').upper()} group: the re-teach is FOR them)\n"
@@ -672,6 +727,8 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
                      "Use this template PROACTIVELY as the teaching model for the group whose target is today's "
                      "competency (Progressor): build their I Do / We Do around these steps so the listed "
                      "misconceptions are prevented, not just corrected later.\n")
+    elif ctx.intervention and ctx.reteach_groups:
+        mode_note = "**How to use it:** use this for the MAIN block of each re-teach group (see YESTERDAY'S FEEDBACK). There is no separate re-teach segment.\n"
     elif ctx.intervention:
         mode_note = "**How to use it:** use this for the re-teach segment described in PART C.\n"
     else:
@@ -745,7 +802,8 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     # Compute rotation timing
     anchor_duration = 10
     setup_duration = 2
-    reteach_duration = 5 if ctx.reteach_competencies else 0
+    reteach_duration = 0 if ctx.reteach_groups is not None else (5 if ctx.reteach_competencies else 0)      # a teacher's decision: no separate block, so no 5 minutes taken from the teaching time
+    rt_marks = {g: (" — RE-TEACH (see YESTERDAY'S FEEDBACK)" if ctx.reteach_groups and g in ctx.reteach_groups else "") for g in ("beginner", "progressor", "proficient")}
     transition_total = 4  # 2 transitions × 2 min each
     teaching_time = ctx.available_minutes - anchor_duration - setup_duration - reteach_duration - transition_total
     priority_duration = max(teaching_time * 4 // 10, 15)  # ~40% of teaching time
@@ -840,9 +898,9 @@ Include answer keys and misconception diagnostic maps.
 - Anchor: {anchor_duration} min
 - Setup: {setup_duration} min
 {f'- Re-teach: {reteach_duration} min' if reteach_duration else ''}
-- Block 1: TEACH {rotation_order[0]} ({priority_duration} min) — {priority_reason}
-- Block 2: TEACH {rotation_order[1]} ({standard_duration} min)
-- Block 3: TEACH {rotation_order[2]} ({standard_duration} min)
+- Block 1: TEACH {rotation_order[0]} ({priority_duration} min){rt_marks[rotation_order[0]]} — {priority_reason}
+- Block 2: TEACH {rotation_order[1]} ({standard_duration} min){rt_marks[rotation_order[1]]}
+- Block 3: TEACH {rotation_order[2]} ({standard_duration} min){rt_marks[rotation_order[2]]}
 - Transitions: 2 min each
 Each block: I Do → We Do → You Do with Hindi talking points.
 

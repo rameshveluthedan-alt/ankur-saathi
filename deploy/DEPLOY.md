@@ -166,6 +166,17 @@ It runs every night at 01:30 India time: it puts the "Change PIN" practice accou
 Check it with `gcloud run jobs executions list --job=ankur-nightly --region=$REGION` (the latest should say succeeded).
 
 ## 11. Day to day
+
+### After EVERY redeploy: point the nightly job at the new image
+The job `ankur-nightly` was created with a FIXED copy of the image (`--image=$IMAGE`). Redeploying the app builds a new image but does **not** change the job, so without this step the nightly reset keeps running the OLD code
+(for example the old demo seed, without yesterday's plan that the Plan screen suggests from).
+```powershell
+$IMAGE = gcloud run services describe $SERVICE --region $REGION --format="value(spec.template.spec.containers[0].image)"
+gcloud run jobs update ankur-nightly --image=$IMAGE --region=$REGION
+gcloud scheduler jobs run ankur-nightly-reset --location=$REGION
+gcloud run jobs executions list --job=ankur-nightly --region=$REGION
+```
+The last command should show the newest execution as succeeded. (The one-off `ankur-setup` job was deleted after the first setup and is not touched.)
 **See the AI budget** (run it daily, and before a demo). It uses a one-off job:
 ```powershell
 gcloud run jobs create ankur-usage --image=$IMAGE --region=$REGION --set-cloudsql-instances=$CONN --env-vars-file=deploy\cloudrun-env.generated.yaml --set-secrets="DB_PASSWORD=ankur-db-password:latest" --command=python --args=/srv/scripts/ai_usage.py,status --task-timeout=300s --max-retries=0

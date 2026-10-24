@@ -20,6 +20,7 @@ from app.services import ai_budget
 from app.services.sampling import sample_for_group
 from app.services.cfu import clean_plan_cfu, strip_cfu, MIN_ITEMS, _avoid_for as _cfu_lesson_ops
 from app.services.model_json import parse_model_json, ModelJSONError
+from app.services import group_skills as _group_skills
 from app.services.hindi_numbers import find_number_word_errors, find_numeric_overlaps, repair_place_value
 
 # Import the orchestration module (copied from prompts/ into services/ or added to path)
@@ -894,6 +895,28 @@ def stamp_reteach_block(blocks: list, reteach_items: list) -> bool:
     return found
 
 
+def stamp_reteach_main(blocks: list, reteach_groups: list, reteach_items: list, group_skill_ids: dict) -> list:
+    """The teacher chose to re-teach these groups: each one's MAIN teach block is marked as a re-teach (`reteach`: True), and the code fills in what the model must not be given: WHICH CHILDREN of that
+    group made a mistake (roll numbers) and WHICH mistakes (their names and how many children). Only mistakes found in the skill the group is taught today count, in that group. The other groups' blocks
+    are left alone. Returns the groups marked."""
+    marked = []
+    for blk in blocks:
+        g = blk.get("teach_group")
+        if blk.get("type") != "teach" or g not in (reteach_groups or []):
+            continue
+        skill, rolls, mistakes = (group_skill_ids or {}).get(g), set(), []
+        for item in reteach_items or []:
+            n = (item.get("affected_by_group") or {}).get(g, 0)
+            if item.get("competency_id") == skill and n > 0:
+                rolls |= set((item.get("rolls_by_group") or {}).get(g, []))
+                mistakes.append({"misconception_id": item.get("misconception_id"), "name_hi": item.get("misconception_name_hi"), "children": n})
+        blk["reteach"] = True
+        blk["affected_rolls"] = sorted(rolls)
+        blk["reteach_mistakes"] = mistakes
+        marked.append(g)
+    return marked
+
+
 async def get_current_groups(db, teacher_id: str, domain_id: str) -> list[dict]:
     """
     The current Beginner / Progressor / Proficient groups for this teacher and subject.
@@ -999,9 +1022,15 @@ async def generate_dainik_yojana(
     competency_id: str, 
     domain_id: str,
     plan_date: date,
+    group_skills: Optional[dict] = None,
+    reteach_groups: Optional[list] = None,
 ) -> dict:
     """
     Full Dainik Yojana generation pipeline.
+    group_skills: the skills a teacher chose for the Beginners and the Proficients ({'beginner': id, 'proficient': id}); the Progressors' skill is competency_id.
+    Without it each group's skill is derived from competency_id, as before.
+    reteach_groups: the groups the TEACHER chose to re-teach (an empty list: move on with every group). Their main teach block is a focused re-teach and there is no separate re-teach block.
+    Omitted (None): the old way, a separate 5-minute block when yesterday's photos found mistakes.
     Returns the complete plan + metadata.
     """
     settings = get_settings()
@@ -1012,22 +1041,23 @@ async def generate_dainik_yojana(
     misconceptions = await fetch_misconceptions(db, competency_id)
     
     # Beginner target: direct hard prerequisite
-    beginner_row = await db.fetchrow("""
-        SELECT prerequisite_id FROM competency_prerequisites
-        WHERE competency_id = $1 AND prerequisite_type = 'hard'
-        ORDER BY prerequisite_id LIMIT 1
-    """, competency_id)
-    beginner_target_id = beginner_row['prerequisite_id'] if beginner_row else competency_id
+    beginner_target_id = await _group_skills.derived_beginner_id(db, competency_id)      # the same rule the screen's panel uses
     beginner_comp = await fetch_competency(db, beginner_target_id)
     
     # Proficient extension: next competency that depends on this one
-    proficient_row = await db.fetchrow("""
-        SELECT cp.competency_id as id FROM competency_prerequisites cp
-        JOIN competencies c ON c.id = cp.competency_id
-        WHERE cp.prerequisite_id = $1 AND cp.prerequisite_type = 'hard'
-        ORDER BY c.sort_order LIMIT 1
-    """, competency_id)
-    proficient_comp = await fetch_competency(db, proficient_row['id']) if proficient_row else selected
+    proficient_comp = await fetch_competency(db, await _group_skills.derived_proficient_id(db, competency_id))
+
+    # A teacher's choice for a group replaces the derived skill (checked: it must exist and belong to this subject)
+    allowed = await _group_skills.allowed_skills(db, teacher_id, domain_id, plan_date, competency_id) if group_skills else None
+    overrides = await _group_skills.clean_group_skills(db, domain_id, competency_id, group_skills, allowed=allowed)     # a skill the group cannot sensibly take is refused here, before any paid call
+    decided_groups = _group_skills.clean_reteach_groups(reteach_groups)       # None: not asked (the old way); a list, maybe empty: the teacher decided
+    if overrides.get("beginner"):
+        beginner_target_id = overrides["beginner"]
+        beginner_comp = await fetch_competency(db, beginner_target_id)
+    if overrides.get("proficient"):
+        proficient_comp = await fetch_competency(db, overrides["proficient"])
+    await _group_skills.check_reteach_same_skill(db, teacher_id, domain_id, plan_date, decided_groups,
+                                                 {"beginner": beginner_target_id, "progressor": competency_id, "proficient": proficient_comp.id})
     
     prereq_chain = await fetch_prerequisite_chain(db, competency_id, beginner_target_id)
 
@@ -1089,7 +1119,7 @@ async def generate_dainik_yojana(
     
     # ── L2 Queries ──
     anchor = await fetch_anchor_activity(db, domain_id, selected.grade_level, competency_id)
-    if yesterday_misc_ids:
+    if yesterday_misc_ids and (decided_groups is None or decided_groups):      # the old way, or the teacher chose to re-teach: the template for yesterday's gaps
         intervention = await fetch_intervention(db, yesterday_misc_ids)
         intervention_mode = "reteach" if intervention else "none"
     else:
@@ -1153,6 +1183,8 @@ async def generate_dainik_yojana(
         intervention=intervention,
         available_tlms=available_tlms,
         reteach_competencies=reteach_competencies,
+        reteach_groups=decided_groups,
+        group_skill_ids={"beginner": beginner_target_id, "progressor": competency_id, "proficient": proficient_comp.id},
         week_notes=(week_info or {}).get('notes'),
         intervention_mode=intervention_mode,
         group_skills=group_skills,
@@ -1258,7 +1290,11 @@ async def generate_dainik_yojana(
 
     # A talking point that builds an example bigger than the stick kit is rewritten once (only that text)
     try:                                         # the re-teach block: its group, its children and the other groups' work are set by the code, not left to the model
-        if ctx.reteach_competencies:
+        if ctx.reteach_groups is not None:       # the teacher decided: the re-teach groups' MAIN blocks are marked, with their children and mistakes
+            marked = stamp_reteach_main((plan_json.get("rotation_schedule") or {}).get("blocks", []), ctx.reteach_groups, ctx.reteach_competencies, ctx.group_skill_ids)
+            plan_json["reteach_groups"] = ctx.reteach_groups
+            print(f"   Re-teach as the main block: {', '.join(marked) or 'none (move on with every group)'}")
+        elif ctx.reteach_competencies:
             stamp_reteach_block((plan_json.get("rotation_schedule") or {}).get("blocks", []), ctx.reteach_competencies)
     except Exception as e:
         print(f"   Re-teach group step skipped: {type(e).__name__}: {e}")
@@ -1329,6 +1365,8 @@ async def generate_dainik_yojana(
         print(f"   CFU check skipped (questions removed): {type(e).__name__}: {e}")
 
     validation_warnings = validate_plan_shape(plan_json, domain_id)
+    if decided_groups is not None and any(b.get("type") == "reteach" for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or []):
+        validation_warnings.append("a separate re-teach block was written, but the teacher decided the re-teach is the group's main block")
     plan_json["coverage"] = await get_coverage(db, competency_id)      # shown on the plan screen
     if validation_warnings:
         print(f"   PLAN SHAPE WARNINGS ({len(validation_warnings)}):")
@@ -1339,6 +1377,10 @@ async def generate_dainik_yojana(
     
     generation_time_ms = int((time.time() - start_time) * 1000)
     
+    plan_json["group_skills"] = {"beginner": beginner_target_id, "progressor": competency_id, "proficient": proficient_comp.id}
+    plan_json["group_skills_source"] = {"beginner": "teacher" if "beginner" in overrides else "derived", "progressor": "selected",
+                                        "proficient": "teacher" if "proficient" in overrides else "derived"}
+
     # ── Store plan ──
     explainability = plan_json.get('explainability', {})
     groups_snapshot = {
@@ -1355,7 +1397,9 @@ async def generate_dainik_yojana(
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
         ON CONFLICT (teacher_id, plan_date, domain_id) DO UPDATE SET
             plan_content = EXCLUDED.plan_content,
-            explainability = EXCLUDED.explainability,
+            explainability = EXCLUDED.explainability || COALESCE((SELECT jsonb_object_agg(e.key, e.value)
+                                 FROM jsonb_each(COALESCE(daily_plans.explainability, '{}'::jsonb)) e
+                                 WHERE starts_with(e.key, 'teacher_decision_')), '{}'::jsonb),
             groups_snapshot = EXCLUDED.groups_snapshot,
             generation_time_ms = EXCLUDED.generation_time_ms,
             selected_competency_id = EXCLUDED.selected_competency_id,

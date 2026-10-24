@@ -36,3 +36,18 @@ python scripts/ai_usage.py status --env-file backend/.env                 # befo
 ```
 Nightly: `auth_admin.py restore-practice` (puts the "Change PIN" account right), and re-seed the demo data (flags expire after 14 days).
 If you change a demo PIN, change it in `pwa/src/screens/LoginScreen.jsx` too. For a real school set `VITE_DEMO_HINT=false`.
+
+
+## What the Plan screen shows on the demo (seeded every night)
+The nightly reset (01:30 IST) records three days of Progressor worksheets for N2.3.2 **and stores yesterday's plan** for the demo teacher (the three groups with their children and skills, and the decisions "recorded" at that review). So when you open **योजना** and choose **N2.3.2**, the panel *"आज हर समूह का कौशल"* shows:
+- **Beginners:** yesterday N2.3.1, decision **▲ आगे बढ़ें**: N2.3.2 is suggested ("आपके कल के निर्णय से").
+- **Progressors:** yesterday N2.3.2, **no decision recorded**: on the last day **6 of the 14 children made a mistake** (rolls 16, 19, 24, 25, 26, 27: the dropped carry four times, the whole ones sum twice) and a third (5) is the threshold, so a **🔄 re-teach is recommended** ("कल की जाँच के सुझाव से"), with the children's roll numbers and the mistakes named. The box is ticked. Generate the plan: the Progressors' block is the re-teach, with the pace line and the quiet-visit tips, and the top right of the plan lists the groups' skills with "🔄 पुनः शिक्षण".
+- **Proficients:** no decision and no evidence: their skill follows the one chosen.
+The seeded plan is replaced every night, so the demo tells the same story each day. A plan you generate today becomes "yesterday" at midnight, but the 01:30 reset replaces it with the seeded one.
+Check it on your machine: `python scripts\demo_progress.py status` prints what the Plan screen would suggest. `python scripts\demo_progress.py seed --yes` sets it up (it clears the demo teacher's evidence, as the nightly reset does).
+
+
+## "The Plan screen shows a yesterday I did not expect" (found on the click-through, 24 Oct)
+The Plan screen takes the **latest plan stored before today** as "yesterday": a plan you generated yourself counts, exactly like the seeded one. If you generated a plan yesterday (for example while testing), THAT is yesterday: it has no review evidence and no recorded decision, so the panel suggests nothing, and its groups' skills may be whatever you chose. The panel's first line says which plan it reads ("सुझाव 2026-10-23 की योजना…"), and each group's "कल:" line says if that group re-taught.
+To see which plans are stored and which one is used: `python scripts\demo_progress.py status --env-file backend\.env` (it lists the plans of the last 14 days and marks "yesterday").
+To bring the demo back to its story: `python scripts\demo_progress.py seed --yes --env-file backend\.env`. It replaces the plan of yesterday with the seeded one and records the three days of worksheets up to yesterday (the nightly reset does the same at 01:30 IST, so in the cloud the demo is right every morning).

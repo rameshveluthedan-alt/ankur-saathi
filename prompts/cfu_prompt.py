@@ -29,7 +29,7 @@ CFU_RULES = """
 ## CHECK FOR UNDERSTANDING (CFU): add the key "cfu" to EVERY teach block (type "teach") and to no other block.
 A CFU is a SHOW-ME: the teacher asks, every child writes the answer on a slate or a notebook page and hides it, and on one signal all children hold it up at the same moment. The teacher
 scans the room, then asks two children to explain why. Never choral answering (the teacher could not tell who was right).
-Each teach block gets 2 or 3 questions (4 at most, and only when a mistake below is marked as detected at the last review). This holds for EVERY skill, including the early counting, pattern and comparing skills: never leave a teach block without them. Each question is one object:
+Write 3 questions for each teach block, MOST IMPORTANT FIRST: the app uses the first 2 that pass its checks (two show-me questions per group is what a lesson has time for). This holds for EVERY skill, including the early counting, pattern and comparing skills: never leave a teach block without them. Each question is one object:
   {"kind": "compute|choose|spot_error|answer",
    "question_hi": "what the teacher asks, one or two short sentences",
    "expected_hi": "the right answer, short",
@@ -42,7 +42,18 @@ Rules for the questions:
 - How a child shows the answer: written or drawn on a slate or notebook page, shown on fingers, or a card or object held up. For readiness skills (counting, patterns, comparing quantities), where children cannot write yet,
   use fingers, objects, cards, pointing or drawing. The answer must be quick to show: a number, a word, a mark, "सही / गलत", a shape, or one of two options. Never a sentence.
 - Do not repeat the show-me procedure (hide, wait for the signal, show together) inside a question: the screen says it once.
+- Do NOT tell a story about a child ('एक बच्चे ने ... लिखा'): it adds reading and listening load for Class 1 and 2. Write what is ON THE BOARD, as the teacher would say it: 'बोर्ड पर देखो: 34 + 28 = 52 लिखा है। क्या यह सही है?'
+- No PERSON at all may have 'done' something in a question: not 'एक बच्चे ने', not 'एक पाठक ने', not 'किसी ने'. Either the teacher does it ('मैं ... पढ़ता/पढ़ती हूँ') or it is already ON THE BOARD.
+- expected_hi is the verdict and the right number, word or mark ONLY: no explanation. Explanations are where mistakes hide (one key told the teacher to write the digits in exactly the places its own question called wrong).
+- Never describe a drawing or a table in words (rows, columns, which digit sits where): a Class 2 child cannot follow it, and it tends to give the answer away. Put the numbers on one board line: 'बोर्ड पर देखें: 43 + 25 = 68'.
+- When the choice is between punctuation marks write it as '1) । 2) ?', never 'लगेगा या ?'. A sentence 'different from the topic' is a paragraph-structure question: not allowed.
+- No object is ever handed out for a show-me (no pebbles, buttons or counters: they cause distraction and mess): children use their slate, their fingers, or what is drawn on the board. Objects belong to the I Do and the We Do.
+- A paragraph or writing skill: ask about punctuation, what happened first or next, or a missing full stop. NEVER about the structure or purpose of a paragraph (an introduction, a conclusion, a sentence out of topic): too abstract for Class 2 and 3.
+- A matra skill: use real-word pairs a teacher would use, such as दिन / दीन, कुल / कूल, कल / काल, सिल / सील, पुल / पूल.
+- Plain spoken Hindi: 'इसके बाद' (not 'इसके तुरंत बाद'); to give an oral cue write 'मैं एक संख्या बोलूँगा/बोलूँगी: 14'; for marks on a slate 'अगले दो निशान'.
 - Each question must be SELF-CONTAINED: write into it every letter, word, sentence, number or picture the children need. Never refer to a text, a paragraph, a picture or a passage that is not written in the question itself.
+- A WRONG answer you put on the board (a spot_error) must never be a number the lesson shows as a RIGHT answer: children remember the lesson's numbers and may take the wrong line for right.
+- listen_for.wrong_answer_hi is the EXACT wrong answer a child with that mistake would give for THIS question (the number, the word, the mark), worked out from the mistake's error pattern, and never a description such as 'a random answer'.
 - Never give the answer away inside the question (for example by saying what the right form "should" be). Ask ONE thing per question: do not ask the children to write something AND answer a second question about it.
 - Children answer with one letter, one matra, one short word, a number, a mark, a choice (1 or 2 on fingers, or on a card) or a quick drawing. NEVER ask them to copy a sentence, to write a sentence, or to write more than one short word.
   To show where to pause in a sentence, ask for the NUMBER of the word after which to pause.
@@ -51,7 +62,7 @@ Rules for the questions:
 - When you show a pause as 'N (words before the pause / words after)', N is the number of words BEFORE the slash: count them. The same for 'how many words' and 'the third word': count carefully.
 - The right answer (expected_hi) is ONLY the answer: a few words, with no working out and no correction of yourself in the middle of it.
 - Do not ask children to write a word that is not a real word, or to rearrange a word. Ask them to choose between real written forms, or to write the one letter or matra.
-- Beginner children answer with a finger choice (1 or 2) or one letter. Avoid making them write long words.
+- Beginner children answer with a finger choice (1 or 2) or one letter: a choice is better than writing, especially for letters and early Class 1 skills. Avoid making them write long words.
 - Children are 6 to 9 years old: no percentages, no fractions and no calculations beyond the skill itself, even to explain fluency or accuracy.
 - Every child must be able to answer from their own place at the same moment: never 'touch the letter on the board' or 'come to the board'.
 - The three groups must not get questions of the same shape: the Beginners' questions are easier than the Progressors', and the Proficients' go further. Two questions in one block must not test the same thing in the same way.

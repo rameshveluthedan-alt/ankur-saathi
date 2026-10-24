@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../App';
-import { getCompetencies, getGroups, generatePlan } from '../services/api';
+import { getCompetencies, getGroups, generatePlan, getGroupProposal, getLadder } from '../services/api';
+import GroupSkillsPanel from '../components/GroupSkillsPanel';
+import GroupSkillsDrawer from '../components/GroupSkillsDrawer';
+import { initialRows, buildGenerateOptions, summarize, panelStatus } from '../services/groupSkills';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -28,6 +31,8 @@ const GROUP_LABELS = {
   proficient: { hi: 'दक्ष', en: 'Proficient' },
 };
 
+const GROUP_SHORT = { beginner: 'शु', progressor: 'प्र', proficient: 'द' };
+
 export default function PlanScreen() {
   const { teacher, selectedDomain, setSelectedDomain, setCurrentPlan } = useAuth();
   const navigate = useNavigate();
@@ -38,6 +43,16 @@ export default function PlanScreen() {
   const [generating, setGenerating] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [gradeFilter, setGradeFilter] = useState(null);
+  // each group's skill for today, and the re-teach choice (see services/groupSkills.js)
+  const [proposal, setProposal] = useState(null);
+  const [ladder, setLadder] = useState(null);
+  const [rows, setRows] = useState(null);
+  const [reteach, setReteach] = useState({});
+  const [drawerOpen, setDrawerOpen] = useState(false);          // the group panel is a drawer in the bottom bar: it opens in place, the page never scrolls
+  const [panelFailed, setPanelFailed] = useState(false);
+  const loadingPanel = panelStatus({ selectedId, rows, failed: panelFailed }) === 'loading';      // a skill was just chosen: its groups are still coming
+  const pendingReteach = useRef([]);       // groups to tick once the skill the teacher just chose has loaded ("re-teach instead?")
+  const selectSkill = (id, opts) => { pendingReteach.current = (opts && opts.reteach) || []; setSelectedId(id); };
 
   useEffect(() => {
     setLoading(true);
@@ -52,6 +67,28 @@ export default function PlanScreen() {
     }).catch(() => setLoading(false));
   }, [selectedDomain, teacher.teacher_id]);
 
+  // what the teacher decided at the last review: it fills in the suggestions (if it cannot be fetched, the panel simply has none)
+  useEffect(() => {
+    setProposal(null);
+    getGroupProposal(teacher.teacher_id, selectedDomain, today).then(setProposal).catch(() => setProposal(null));
+  }, [selectedDomain, teacher.teacher_id]);
+
+  // the skills the plan derives for the groups when this skill is selected: the panel starts from them
+  useEffect(() => {
+    if (!selectedId) { setLadder(null); setRows(null); setReteach({}); setPanelFailed(false); return undefined; }
+    // clear the PREVIOUS skill's groups at once: until the new ones arrive nothing is shown or used (before, the bar showed them, and Generate could combine the new skill with the old groups)
+    setLadder(null); setRows(null); setReteach({}); setPanelFailed(false);
+    let cancelled = false;
+    getLadder(selectedId).then((l) => {
+      if (cancelled) return;
+      const init = initialRows({ ladder: l, proposal, selectedId });
+      pendingReteach.current.forEach((g) => { if (init.rows[g] && init.rows[g].previous) init.reteach[g] = true; });
+      pendingReteach.current = [];
+      setLadder(l); setRows(init.rows); setReteach(init.reteach);
+    }).catch(() => { if (!cancelled) { setLadder(null); setRows(null); setReteach({}); setPanelFailed(true); } });
+    return () => { cancelled = true; };
+  }, [selectedId, proposal]);
+
   // running timer while a plan is being generated (counts from the real clock, so a throttled tab stays accurate)
   useEffect(() => {
     if (!generating) { setElapsed(0); return undefined; }
@@ -63,10 +100,13 @@ export default function PlanScreen() {
   const today = new Date().toISOString().split('T')[0];
 
   const handleGenerate = async () => {
+    if (loadingPanel) return;
     if (!selectedId) return;
     setGenerating(true);
     try {
-      const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today);
+      // with the panel shown, the teacher's choices go with the request; without it (the suggestions could not be loaded) the plan decides, as before
+      const options = buildGenerateOptions({ rows, reteach, groups, ready: !!(rows && ladder) });
+      const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today, options);
       setCurrentPlan(plan);
       navigate('/yojana');
     } catch (e) {
@@ -172,7 +212,7 @@ export default function PlanScreen() {
               </div>
               {grouped[grade].map(c => (
                 <div key={c.id} className={`competency-item ${selectedId === c.id ? 'recommended' : ''}`}
-                  onClick={() => setSelectedId(c.id)}>
+                  onClick={() => { setDrawerOpen(false); setSelectedId(c.id); }}>
                   <span className="competency-id">{c.id}</span>
                   <span className="competency-name">
                     {c.name_hi || c.name_en}
@@ -195,10 +235,20 @@ export default function PlanScreen() {
       {selectedId && (
         <div style={{ position: 'fixed', bottom: 'calc(var(--nav-height) + var(--safe-bottom) + 8px)', left: 16, right: 16, maxWidth: 448, margin: '0 auto',
                       background: 'var(--bg)', borderRadius: 12, padding: 6, boxShadow: '0 -2px 10px rgba(0,0,0,0.08)' }}>
-          {!generating && selectedTier && selectedTier !== 'tested' && (
+          {!generating && !drawerOpen && selectedTier && selectedTier !== 'tested' && (
             <div style={{ fontSize: '0.7rem', textAlign: 'center', background: TIERS[selectedTier].bg, color: TIERS[selectedTier].color, borderRadius: 8, padding: '4px 8px', marginBottom: 6 }}>
               {TIERS[selectedTier].icon} {TIERS[selectedTier].hi}: {selectedSkill.coverage_note || TIERS[selectedTier].what}
             </div>
+          )}
+          {!generating && rows && ladder && groups.length > 0 && (
+            <GroupSkillsDrawer open={drawerOpen} onToggle={() => setDrawerOpen((o) => !o)}
+              summary={summarize(rows, reteach).map((s) => `${GROUP_SHORT[s.label]} ${s.skillId}${s.reteach ? '🔄' : ''}`).join(' · ')}>
+              <GroupSkillsPanel
+                groups={groups} competencies={competencies} ladder={ladder} selectedId={selectedId}
+                rows={rows} setRows={setRows} reteach={reteach} setReteach={setReteach}
+                onSelectSkill={selectSkill} hasHistory={!!(proposal && proposal.has_history)} previousDate={proposal && proposal.previous_date} disabled={generating}
+              />
+            </GroupSkillsDrawer>
           )}
           {generating && (
             <div style={{ fontSize: '0.75rem', textAlign: 'center', background: 'var(--green-bg)', borderRadius: 8, padding: '6px 10px', marginBottom: 6, color: 'var(--text-secondary)' }}>
@@ -207,10 +257,12 @@ export default function PlanScreen() {
                 : 'थोड़ा और समय लग रहा है, कृपया प्रतीक्षा करें। (Taking a little longer. Please keep waiting.)'}
             </div>
           )}
-          <button className="btn btn-primary" onClick={handleGenerate} disabled={generating}
+          <button className="btn btn-primary" onClick={handleGenerate} disabled={generating || loadingPanel}
             style={generating ? { opacity: 1, cursor: 'wait' } : undefined}>
             {generating ? (
               <><div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }} /> योजना बन रही है (Generating)... {fmtClock(elapsed)}</>
+            ) : loadingPanel ? (
+              <>समूहों के कौशल लोड हो रहे हैं… (Loading the groups)</>
             ) : (
               <>📋 दैनिक योजना बनाएँ (Generate Plan) → {selectedId}</>
             )}

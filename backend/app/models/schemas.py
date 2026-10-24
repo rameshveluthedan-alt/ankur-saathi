@@ -82,6 +82,8 @@ class GeneratePlanRequest(BaseModel):
     competency_id: str = Field(..., description="Teacher-selected Lakshya competency ID")
     plan_date: date = Field(..., description="Date for this plan")
     domain_id: str = Field(..., description="'numeracy' or 'r1_literacy'")
+    group_skills: Optional[dict[str, str]] = Field(None, description="Skills the teacher chose for the 'beginner' and 'proficient' groups; the Progressors' skill is competency_id. Without it each is derived from competency_id.")
+    reteach_groups: Optional[list[str]] = Field(None, description="Groups the teacher chose to re-teach: their MAIN block is a focused re-teach and there is no separate re-teach block. An empty list means move on with every group. Omitted: the old way (a separate 5-minute block when yesterday's photos found mistakes).")
 
 class GroupSnapshot(BaseModel):
     label: str

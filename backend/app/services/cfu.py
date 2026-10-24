@@ -18,8 +18,8 @@ import re
 from typing import Optional
 
 KINDS = ("compute", "choose", "spot_error", "answer")
-MIN_ITEMS, MAX_ITEMS = 2, 4
-MAX_QUESTION_CHARS, MAX_EXPECTED_CHARS = 260, 160
+MIN_ITEMS, MAX_ITEMS = 2, 2          # two show-me questions per group is what a lesson has time for (the teachers' review: 8 in a block eats 5 to 7 minutes of 27); the model writes 3, the first 2 that pass the checks are used
+MAX_QUESTION_CHARS, MAX_EXPECTED_CHARS = 170, 100      # the longest GOOD question seen is about 135 characters; a 210-character verbal description of a table was not one. A key is a verdict and a number, not an explanation: explanations are where mistakes hide
 NOTE_NO_MISTAKES_HI = "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।"
 NOTE_NO_MISTAKES_EN = "No common mistakes are recorded for this skill; these questions test its key idea."
 
@@ -271,7 +271,27 @@ def _check_word_counts(q: str, e: str) -> Optional[str]:
     return None
 
 
-def check_item(item, *, valid_ids: set, avoid: set, rules: dict, strict: bool = True, compare: bool = True) -> list:
+_QUOTED_SPAN = re.compile(r"['\u2018\u201c][^'\u2019\u201d]*['\u2019\u201d]")
+_END = r"(?=\s|$|[,\u0964.?!:;])"            # NOT \b: in Devanagari a vowel sign (े, ा) is not a word character, so \b fails after most words
+_PERSON = r"(?:बच्चे|बच्ची|पाठक|विद्यार्थी|छात्र|छात्रा|लड़के|लड़की)"
+_STORY = re.compile(r"(?:^|\s)(?:(?:एक|किसी)\s+)?" + _PERSON + r"\s+ने" + _END + r"|(?:^|\s)(?:बच्चों|विद्यार्थियों|पाठकों)\s+ने" + _END + r"|(?:^|\s)किसी\s+ने" + _END + r"|(?:^|\s)एक\s+(?:बच्चा|बच्ची|पाठक|विद्यार्थी)" + _END)
+_PARAGRAPH_WORDS = ("अनुच्छेद", "पैराग्राफ")
+_ABSTRACT = ("परिचय", "निष्कर्ष", "विषय से बाहर", "विषय से अलग", "विषय से हट", "विषय से जुड़", "किस काम", "मुख्य विचार", "सुसंगत", "विषय पर")
+
+
+def _style_problems(q: str) -> list:
+    """What the teachers' review ruled out, whatever the skill: (1) a question TOLD AS A STORY about a child ('एक बच्चे ने ... लिखा'): it adds reading and listening load for Class 1 and 2: write what is ON THE BOARD instead
+    ('बोर्ड पर देखो: 34 + 28 = 52 लिखा है। क्या यह सही है?'). Text inside quotes is exempt: it may be a sentence the children read. (2) a question about the STRUCTURE or PURPOSE of a paragraph (introduction, conclusion,
+    a sentence out of topic): too abstract for Class 2 and 3: ask about punctuation, what happened first or next, or a missing full stop."""
+    out, outside = [], _QUOTED_SPAN.sub(" ", q)
+    if _STORY.search(outside):
+        out.append("it is told as a story about a child: write what is on the board instead (बोर्ड पर देखो: ...)")
+    if any(w in q for w in _ABSTRACT) and (any(w in q for w in _PARAGRAPH_WORDS) or "वाक्य" in q):
+        out.append("a question about the structure or purpose of a paragraph is too abstract for Class 2 and 3: ask about punctuation, sequence or a missing full stop")
+    return out
+
+
+def check_item(item, *, valid_ids: set, avoid: set, rules: dict, strict: bool = True, compare: bool = True, lesson_results: frozenset = frozenset()) -> list:
     """The problems with one question (an empty list = fine).
     strict: a NUMERACY skill. A question that asks for arithmetic (add, subtract, multiply, how many are left) must contain the operation it claims, so it can be checked; arithmetic written in words is checked for
     plausibility (see _plausible). A question that asks for NO arithmetic (a pattern, a shape) is kept as it is, whatever the skill's type.
@@ -294,6 +314,7 @@ def check_item(item, *, valid_ids: set, avoid: set, rules: dict, strict: bool = 
     if not has_valid_mistake and not str(item.get("shows_hi") or "").strip():
         problems.append("it names no recorded mistake and does not say what a right answer shows")
 
+    problems.extend(_style_problems(q))
     qn, en = _prep(q), _prep(e)
     ops = OP_RE.findall(qn)
     stated = [(int(a), _norm_op(op), int(b), int(c)) for a, op, b, c in STATED_RE.findall(qn)]
@@ -350,6 +371,9 @@ def check_item(item, *, valid_ids: set, avoid: set, rules: dict, strict: bool = 
             elif not says_right and not says_wrong:
                 problems.append("every line in the question is correct, and the answer does not say it is right")
         else:                                         # a line that IS wrong: the key must say so; the real result is needed only when the question asks the child for the correct answer
+            for _a, _op, _b, c_ in wrong:
+                if c_ >= 10 and c_ in lesson_results:
+                    problems.append(f"the wrong answer {c_} on the board is a right answer in this group's lesson: children may remember it as right")
             says_right, says_wrong = _verdict(e)
             asks_correct = any(w in q for w in ("सही उत्तर", "सही जवाब", "सही योग", "सही अंतर", "सही गुणनफल"))
             if says_right and not says_wrong:
@@ -383,6 +407,21 @@ def check_item(item, *, valid_ids: set, avoid: set, rules: dict, strict: bool = 
     return problems
 
 
+_STAMPED_BY_CODE = {"affected_rolls", "reteach", "reteach_mistakes"}      # added to a re-teach block by the code BEFORE the questions are cleaned
+
+
+def _lesson_results(block: dict) -> set:
+    """The RIGHT answers the group's lesson works out (its I Do, We Do and You Do): the result of every operation written in them. A wrong answer shown in a spot_error must not be one of them: the first real re-teach run showed
+    '176 + 349 = 425' as the wrong line, while the I Do's right answer to 267 + 158 was 425, and a child who remembers 425 as right would call the wrong line right."""
+    out = set()
+    for text in (block.get("talking_points") or {}).values():
+        for a, op, b in OP_RE.findall(_prep(str(text or ""))):
+            r = apply(int(a), _norm_op(op), int(b))
+            if r is not None:
+                out.add(r)
+    return out
+
+
 def _avoid_for(plan: dict, group: str, block: dict) -> tuple:
     """(operations this group's LESSON uses (I Do, We Do, You Do), operations its WORKSHEET uses). A question repeating a lesson example is dropped: the answer was shown seconds earlier.
     One repeating a worksheet problem is KEPT and noted: a skill with few possible examples (single-digit sums: 45 pairs; multiplication tables) cannot avoid it, and the first broad run lost
@@ -397,6 +436,24 @@ def _avoid_for(plan: dict, group: str, block: dict) -> tuple:
     return lesson, worksheet
 
 
+_VAGUE = ("जैसे", "जैसा", "बेतरतीब", "बेमेल")
+
+
+def _without_vague_listen(item, numeric: bool) -> tuple:
+    """(item, how many entries were removed). For a NUMERIC computation question a 'listen for' must be the EXACT wrong answer a child with that mistake gives, and it begins with that answer ('64', '10 या 11 (...)').
+    An entry that begins with words and only describes it ('तीन-चार जैसा बेतरतीब उत्तर, जैसे 99 या 79') is of no use to a teacher: removed BEFORE the checks, so that a question left with no valid mistake and no explanation is dropped
+    (and the top-up asks again). A behaviour ('उत्तर नहीं लिखा या अंदाज़ से कोई संख्या लिखी') is not an exemplifying description and stays."""
+    if not numeric or not isinstance(item, dict) or item.get("kind") not in ("compute", "choose") or not isinstance(item.get("listen_for"), list):
+        return item, 0
+    keep = []
+    for x in item["listen_for"]:
+        w = str((x or {}).get("wrong_answer_hi") or "").strip() if isinstance(x, dict) else ""
+        if w and not w[0].isdigit() and any(v in w for v in _VAGUE):
+            continue
+        keep.append(x)
+    return ({**item, "listen_for": keep}, len(item["listen_for"]) - len(keep)) if len(keep) != len(item["listen_for"]) else (item, 0)
+
+
 def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
     """Keep only valid CFU questions in every teach block, add what the code knows (the mistakes' Hindi names, whether the skill has recorded mistakes), and say what was dropped.
     Returns (log lines, stats per group). Never raises for bad model output: a block with nothing valid simply gets an empty list."""
@@ -409,6 +466,7 @@ def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
         kb = (cfu_kb or {}).get(g) or {}
         mistakes = {m["id"]: m for m in kb.get("mistakes") or []}
         (avoid, ws_ops), rules = _avoid_for(plan, g, block), skill_rules(kb.get("name_en"))
+        lesson_results = _lesson_results(block)
         strict = kb.get("criteria_type") != "literacy"                       # every numeracy skill: judged by what the question ASKS (arithmetic words), not by the skill's type
         compare = kb.get("criteria_type") != "literacy"                      # numbers in a literacy question are labels, not quantities
         raw = block.get("cfu")
@@ -420,14 +478,17 @@ def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
                 lines.append(f"{g}: the questions were under talking_points: moved")
         written = len(raw) if isinstance(raw, list) else 0
         if not written:
-            keys_written = ", ".join(sorted(block)[:14])                       # before the code adds its own keys below
+            keys_written = ", ".join([k for k in sorted(block) if k not in _STAMPED_BY_CODE][:14])      # what the MODEL wrote: not the keys the code stamped earlier (the re-teach's), nor those it adds below
             block["cfu"], block["cfu_grounded"] = [], bool(mistakes)
             stats[g] = {"written": 0, "kept": 0, "grounded_items": 0, "skill_has_mistakes": bool(mistakes)}
             lines.append(f"{g}: no CFU written (the model's block has: {keys_written})")
             continue
         kept = []
         for n, item in enumerate(raw, 1):
-            problems = check_item(item, valid_ids=set(mistakes), avoid=avoid, rules=rules, strict=strict, compare=compare)
+            item, vague = _without_vague_listen(item, strict)
+            if vague:
+                lines.append(f"{g} question {n}: removed {vague} vague listen-for entry(ies): it must be the exact wrong answer, not a description")
+            problems = check_item(item, valid_ids=set(mistakes), avoid=avoid, rules=rules, strict=strict, compare=compare, lesson_results=lesson_results)
             if problems:
                 qs, es = (item.get("question_hi") or "") if isinstance(item, dict) else "", (item.get("expected_hi") or "") if isinstance(item, dict) else ""
                 lines.append(f"{g} question {n} dropped: {'; '.join(problems)} | «{str(qs)[:70]}» → «{str(es)[:35]}»")
