@@ -129,7 +129,10 @@ def has_number(text: str, n: int) -> bool:
 def skill_rules(name_en: str) -> dict:
     t = (name_en or "").lower()
     return {"no_carry": any(w in t for w in ("without regrouping", "without carry", "without carrying")),
-            "no_borrow": "without borrowing" in t or ("subtract" in t and "without regrouping" in t)}
+            "no_borrow": "without borrowing" in t or ("subtract" in t and "without regrouping" in t),
+            # a TWO-DIGIT addition skill never reaches 100 (three-digit numbers are the next skill, the Proficients'): the knowledge base's number range says max 99 and the model read it as a limit on the
+            # numbers added, not on the total (found on the second real block: worksheet problem 6 was 79 + 21 = 100)
+            "max_result": 99 if t.startswith(("add", "adds")) and ("2-digit" in t or "two-digit" in t) else None}
 
 
 def _digits(n: int) -> list:
@@ -320,6 +323,11 @@ def check_item(item, *, valid_ids: set, avoid: set, rules: dict, strict: bool = 
     stated = [(int(a), _norm_op(op), int(b), int(c)) for a, op, b, c in STATED_RE.findall(qn)]
     exprs = [m.group(0) for m in EXPR_RE.finditer(qn)]
     vals = [_eval_expr(x) for x in exprs]
+    cap = (rules or {}).get("max_result")
+    if cap:                                         # REAL results only: a worked line may deliberately show a wrong result over the cap (a spot_error such as 56 + 28 = 714)
+        over = [v for v in vals if v is not None and v > cap]
+        if over:
+            problems.append(f"its result {over[0]} is over {cap}: three-digit numbers belong to a later skill, and this skill is two-digit")
     if kind == "compute":
         if not exprs:
             if strict and _has_arith_intent(q):
@@ -454,6 +462,142 @@ def _without_vague_listen(item, numeric: bool) -> tuple:
     return ({**item, "listen_for": keep}, len(item["listen_for"]) - len(keep)) if len(keep) != len(item["listen_for"]) else (item, 0)
 
 
+# ---- the listen-for answers are checked by CODE (found on the first real re-teach block: for 54 + 29 the model listed 613 for "writes the whole ones sum"; the child writes 713, the 613 was copied from the I Do's 46 + 27).
+# The validator checked the RIGHT answer, the worked lines and the carry rule, but not what a child with a recorded mistake would write. The knowledge base records the pattern of these mistakes (each with its own worked
+# example), so the code computes the wrong answer itself, as it computes the right one.
+IMPOSSIBLE = "impossible"            # this recorded mistake cannot happen on these numbers (no carry is needed, so nobody can drop it)
+
+
+def _two(*xs) -> bool:
+    return all(10 <= x <= 99 for x in xs)
+
+
+def _drop_carry(a, b):                                                  # N2.3.2-M1: 34 + 28 -> 52 (writes 2, forgets the carry)
+    o = a % 10 + b % 10
+    return None if not _two(a, b) else IMPOSSIBLE if o < 10 else (a // 10 + b // 10) * 10 + o % 10
+
+
+def _whole_ones(a, b):                                                  # N2.3.2-M2: 34 + 28 -> 512 (writes 12 in the ones place)
+    o = a % 10 + b % 10
+    return None if not _two(a, b) else IMPOSSIBLE if o < 10 else int(str(a // 10 + b // 10) + str(o))
+
+
+def _carry_wrong_digit(a, b):                                           # N2.3.2-M3: 34 + 28 -> 72 (carries the ones digit, 2, not the tens digit, 1)
+    o = a % 10 + b % 10
+    return None if not _two(a, b) else IMPOSSIBLE if o < 10 else (a // 10 + b // 10 + o % 10) * 10 + o % 10
+
+
+def _second_carry_dropped(a, b):                                        # N3.3.1-M1: 167 + 245 -> 312 (carries ones to tens, forgets tens to hundreds)
+    if not (100 <= a <= 999 and 100 <= b <= 999):
+        return None
+    o = a % 10 + b % 10
+    t = (a // 10) % 10 + (b // 10) % 10 + o // 10
+    return IMPOSSIBLE if t < 10 else (a // 100 + b // 100) * 100 + (t % 10) * 10 + o % 10
+
+
+def _smaller_from_larger(a, b):                                         # N2.3.4-M1: 42 - 17 -> 35 (ones: 7 - 2, no borrow)
+    if not (_two(a, b) and a >= b):
+        return None
+    return IMPOSSIBLE if a % 10 >= b % 10 else (a // 10 - b // 10) * 10 + (b % 10 - a % 10)
+
+
+def _forgot_to_reduce(a, b):                                            # N2.3.4-M2: 42 - 17 -> 35 (ones: 12 - 7, but the tens digit is not reduced)
+    if not (_two(a, b) and a >= b):
+        return None
+    return IMPOSSIBLE if a % 10 >= b % 10 else (a // 10 - b // 10) * 10 + (a % 10 + 10 - b % 10)
+
+
+def _digitwise_product(a, b):                                           # N3.3.4-M1: 23 x 4 -> 812 (8 and 12 written side by side)
+    if not (_two(a) and 2 <= b <= 9):
+        return None
+    return IMPOSSIBLE if (a % 10) * b < 10 else int(str((a // 10) * b) + str((a % 10) * b))
+
+
+def _divide_as_subtract(a, b):                                          # N3.3.5-M1: 24 / 6 -> 18 (subtracts)
+    return a - b if a > b >= 2 else None
+
+
+LISTEN_PATTERNS = {"N2.3.2-M1": ("+", _drop_carry), "N2.3.2-M2": ("+", _whole_ones), "N2.3.2-M3": ("+", _carry_wrong_digit), "N3.3.1-M1": ("+", _second_carry_dropped),
+                   "N2.3.4-M1": ("-", _smaller_from_larger), "N2.3.4-M2": ("-", _forgot_to_reduce), "N3.3.4-M1": ("*", _digitwise_product), "N3.3.5-M1": ("/", _divide_as_subtract)}
+
+
+def wrong_answer_for(mid, a: int, op: str, b: int):
+    """What a child with the recorded mistake `mid` writes for a op b: an integer; IMPOSSIBLE when the mistake cannot occur on these numbers (or happens to give the right answer);
+    None when the code has no pattern for that mistake, or the numbers do not suit it (the entry is then left as the model wrote it)."""
+    spec = LISTEN_PATTERNS.get(mid)
+    if not spec or _norm_op(op) != spec[0]:
+        return None
+    out = spec[1](a, b)
+    if out is None:
+        return None
+    return IMPOSSIBLE if out == apply(a, op, b) else out
+
+
+def _single_operation(q: str):
+    """(a, op, b) when the question contains exactly ONE operation between two numbers, else None (a chain such as 2 + 2 + 2, or two sums, is not checked)."""
+    qn = _prep(q)
+    exprs, ops = [m.group(0) for m in EXPR_RE.finditer(qn)], OP_RE.findall(qn)
+    if len(exprs) != 1 or len(ops) != 1 or len(NUM_RE.findall(exprs[0])) != 2:
+        return None
+    a, op, b = ops[0]
+    return int(a), _norm_op(op), int(b)
+
+
+def verified_listen(item) -> tuple:
+    """(item, notes). For a numeric 'compute' question with ONE operation, every listen-for entry whose mistake the code can compute is checked against what that mistake really gives:
+    a different number is CORRECTED (when the text holds several numbers and none is right, the entry becomes the right one alone), an entry for a mistake that cannot happen on these numbers is REMOVED,
+    and the rest is left alone (a behaviour in words, another kind of question, a mistake the code has no pattern for). Run BEFORE the checks, like the vague-entry cleaner, so that a question left with
+    no valid mistake and no explanation is dropped and the top-up asks again."""
+    notes = []
+    if not isinstance(item, dict) or item.get("kind") != "compute" or not isinstance(item.get("listen_for"), list):
+        return item, notes
+    expr = _single_operation(str(item.get("question_hi") or ""))
+    if not expr:
+        return item, notes
+    a, op, b = expr
+    keep = []
+    for x in item["listen_for"]:
+        mid = x.get("misconception_id") if isinstance(x, dict) else None
+        want = wrong_answer_for(mid, a, op, b) if mid else None
+        if want is None:
+            keep.append(x)
+            continue
+        if want == IMPOSSIBLE:
+            notes.append(f"removed {mid}: that mistake cannot happen on {a} {op} {b}")
+            continue
+        text = _prep(str(x.get("wrong_answer_hi") or "")).strip()
+        found = [int(n) for n in NUM_RE.findall(text)]
+        if not found or want in found:                      # a behaviour in words, or already right
+            keep.append(x)
+            continue
+        fixed = NUM_RE.sub(str(want), text, count=1) if len(found) == 1 else str(want)
+        notes.append(f"{mid}: listed {text[:40]!r} but that mistake gives {want} on {a} {op} {b}: corrected to {fixed[:40]!r}")
+        keep.append({**x, "wrong_answer_hi": fixed})
+    if not notes:
+        return item, notes
+    return {**item, "listen_for": keep}, notes
+
+
+def right_answer(item):
+    """The right answer of a numeric question, worked out from the question itself: for a worked line to judge ('49 + 35 = 74') the real result of 49 + 35, otherwise the value of the last expression.
+    None when the question has no arithmetic. Used to keep the show-me questions of one group from sharing an answer (found on the second real block: 56 + 28 and 49 + 35 were both 84, so a child
+    who solved the first knew the second without computing)."""
+    if not isinstance(item, dict):
+        return None
+    qn = _prep(str(item.get("question_hi") or ""))
+    stated = STATED_RE.findall(qn)
+    if stated:
+        a, op, b, _c = stated[-1]
+        return apply(int(a), op, int(b))
+    exprs = [m.group(0) for m in EXPR_RE.finditer(qn)]
+    return _eval_expr(exprs[-1]) if exprs else None
+
+
+def _is_wrong_line(item) -> bool:
+    """A 'right or wrong?' question whose worked line IS wrong (the answer starts with गलत). A child can answer it without working anything out: in a lesson about mistakes, 'wrong' is the safe guess."""
+    return isinstance(item, dict) and item.get("kind") == "spot_error" and _prep(str(item.get("expected_hi") or "")).strip().startswith("गलत")
+
+
 def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
     """Keep only valid CFU questions in every teach block, add what the code knows (the mistakes' Hindi names, whether the skill has recorded mistakes), and say what was dropped.
     Returns (log lines, stats per group). Never raises for bad model output: a block with nothing valid simply gets an empty list."""
@@ -483,16 +627,38 @@ def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
             stats[g] = {"written": 0, "kept": 0, "grounded_items": 0, "skill_has_mistakes": bool(mistakes)}
             lines.append(f"{g}: no CFU written (the model's block has: {keys_written})")
             continue
-        kept = []
+        kept, answers_kept = [], {}
         for n, item in enumerate(raw, 1):
             item, vague = _without_vague_listen(item, strict)
             if vague:
                 lines.append(f"{g} question {n}: removed {vague} vague listen-for entry(ies): it must be the exact wrong answer, not a description")
+            if strict:
+                item, listen_notes = verified_listen(item)
+                for note in listen_notes:
+                    lines.append(f"{g} question {n}: listen-for {note}")
             problems = check_item(item, valid_ids=set(mistakes), avoid=avoid, rules=rules, strict=strict, compare=compare, lesson_results=lesson_results)
             if problems:
                 qs, es = (item.get("question_hi") or "") if isinstance(item, dict) else "", (item.get("expected_hi") or "") if isinstance(item, dict) else ""
                 lines.append(f"{g} question {n} dropped: {'; '.join(problems)} | «{str(qs)[:70]}» → «{str(es)[:35]}»")
                 continue
+            if strict:                                  # numeracy: two questions of one group must not share a right answer
+                ra = right_answer(item)
+                if ra is not None and ra in lesson_results:       # WARNING ONLY (a drop would trigger an extra model call): the lesson has put this result on the board
+                    lines.append(f"{g} question {n}: warning: its right answer {ra} is already a result in the lesson (on the board): a child could copy it")
+                for x in item.get("listen_for") or []:
+                    w = _prep(str((x or {}).get("wrong_answer_hi") or "")) if isinstance(x, dict) else ""
+                    lead = NUM_RE.findall(w)
+                    if lead and w.strip()[:1].isdigit() and int(lead[0]) in lesson_results:
+                        lines.append(f"{g} question {n}: warning: the listed wrong answer {lead[0]} for {x.get('misconception_id')} is a right result in the lesson: a child who writes it may have copied it")
+                if ra is not None and ra in answers_kept:
+                    lines.append(f"{g} question {n} dropped: its right answer {ra} is the same as question {answers_kept[ra]}'s (a child who knows one knows the other) | «{str(item.get('question_hi') or '')[:70]}»")
+                    continue
+                if _is_wrong_line(item) and kept and len(kept) == MAX_ITEMS - 1 and all(_is_wrong_line(k) for k in kept):
+                    # found on the fourth real block: BOTH show-me questions were 'right or wrong?' lines with a WRONG line (answers 'गलत, 83' and 'गलत, 63'): a child guesses 'wrong' twice and passes
+                    lines.append(f"{g} question {n} dropped: both show-me questions would be wrong 'right or wrong?' lines, so a child can guess 'wrong'. Write a question where the child WORKS OUT an answer (compute or choose) | «{str(item.get('question_hi') or '')[:70]}»")
+                    continue
+                if ra is not None:                      # only a question that is KEPT claims its answer (a dropped one claims nothing)
+                    answers_kept[ra] = n
             if ops_in(item["question_hi"]) & ws_ops:
                 lines.append(f"{g} question {n}: kept, though it repeats a worksheet problem")
             listen = []

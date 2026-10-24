@@ -18,7 +18,7 @@ from app.core.config import get_settings
 from app.core.database import get_db
 from app.services import ai_budget
 from app.services.sampling import sample_for_group
-from app.services.cfu import clean_plan_cfu, strip_cfu, MIN_ITEMS, _avoid_for as _cfu_lesson_ops
+from app.services.cfu import clean_plan_cfu, strip_cfu, MIN_ITEMS, right_answer as _cfu_right_answer, _avoid_for as _cfu_lesson_ops
 from app.services.model_json import parse_model_json, ModelJSONError
 from app.services import group_skills as _group_skills
 from app.services.hindi_numbers import find_number_word_errors, find_numeric_overlaps, repair_place_value
@@ -180,7 +180,8 @@ def _gen_addition(level: str, digits: int, rng, used_answers: set, avoid_pairs: 
 def repair_worksheet_numbers(plan: dict) -> list[str]:
     """
     Replace plain-addition worksheet problems that (1) copy an example solved in the lesson, (2) repeat an answer
-    among the problems every child must do, or (3) are too big for the sticks the Beginners use on problems 1-2.
+    among the problems every child must do, (3) are too big for the sticks the Beginners use on problems 1-2, or
+    (4) on a Beginner or Progressor sheet add two two-digit numbers to a total of 100 or more (found on the second real block: 79 + 21 = 100).
     Replacements are generated in code (so the answer is right by construction), keep the layout fields, are
     deterministic, and avoid every answer and pair already on the sheet. Word problems are never touched.
     """
@@ -205,6 +206,8 @@ def repair_worksheet_numbers(plan: dict) -> list[str]:
                 replace[i] = "copies an example solved in the lesson"
             elif level == "beginner" and uses_sticks and i < 2 and pa[0] + pa[1] > STICK_PAIR_KIT_TOTAL:
                 replace[i] = f"is solved with sticks but totals more than {STICK_PAIR_KIT_TOTAL}"
+            elif level in ("beginner", "progressor") and max(pa[0], pa[1]) < 100 and pa[0] + pa[1] >= 100:
+                replace[i] = f"its total is {pa[0] + pa[1]}: three-digit numbers are a later (the Proficients') skill"
         seen = {}
         for i, pr in enumerate(problems[:rc] if rc_ok else problems):
             ans = str(pr.get("answer", "")).strip()
@@ -818,7 +821,8 @@ async def topup_cfu(client, model: str, plan_json: dict, cfu_kb: dict, deficient
             continue
         kept = [q["question_hi"] for q in (b.get("cfu") or []) if isinstance(q, dict) and q.get("question_hi")]
         lesson, _ = _cfu_lesson_ops(plan_json, g, b)
-        needs[g] = {"need": max(1, 3 - len(kept)), "existing": kept, "avoid": sorted(f"{a} {sym.get(op, op)} {c}" for op, a, c in lesson),
+        taken = sorted({ra for ra in (_cfu_right_answer(q) for q in (b.get("cfu") or [])) if ra is not None})
+        needs[g] = {"need": max(1, 3 - len(kept)), "existing": kept, "taken": taken, "avoid": sorted(f"{a} {sym.get(op, op)} {c}" for op, a, c in lesson),
                     "why": [re.sub(rf"^{g}[: ]+", "", l.split(" | ")[0])[:200] for l in lines if l.startswith((g + " ", g + ":"))][:4]}
     if not needs:
         return {}

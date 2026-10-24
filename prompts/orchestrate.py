@@ -465,7 +465,7 @@ Keep every talking point to at most 3 short sentences. Be concise; do not repeat
 Rules:
 - "blocks" must list EVERY segment in time order: anchor, setup, a reteach block ONLY if PART C lists one, then the three teach blocks with a transition between them. Use the durations given in PART C.
 - "explainability.items" must have 5-6 items covering: why these three groups; why this rotation order; which misconceptions to watch; WHICH RETRIEVED CONTENT you used and how (name the anchor ID and whether it was an exact, related, topic-area or loose match (or original, if none), the intervention ID, each TLM ID, and the curriculum note); and the assumptions and limitations (the curriculum plan is a representative plan, not the state's official weekly plan). Only say a resource was unavailable if it is genuinely absent from the context above.
-- Independent stations must follow the INDEPENDENT-WORK RULES above.
+- Independent stations must follow the INDEPENDENT-WORK RULES above. For numeracy, other_groups_hi and every independent activity must NAME the actual practice: two or three example problems at that group's own level (for example 'जैसे 47 + 28, 56 + 35'), never just 'the problems on the board' without saying which; every example obeys the number range of its skill.
 - Numbers, prices and names in every group's anchor task must match the board you describe in narration_hi (same item, same price). If a group needs larger numbers, add new items to the board.
 - Each group's anchor task must use ONLY that group's own skills (see INDEPENDENT-WORK RULES): no other operations (for example no subtraction or 'how much is left' in an addition lesson). Do not repeat the group's name at the start of the task text, because the screen already shows it.
 - MATERIALS other than the TLM-001 sticks: for any hands-on activity, work out the largest total used and make "prep_hi" match it. Give a kit to every group that uses it, size each kit to the largest example, and count the kits from the group sizes above (children divided by children per kit, rounded up). Kits are reused between groups taught at different times, so prepare for the largest need, not the sum. If a STICK-BUNDLE POLICY section is present, it governs the sticks.
@@ -477,7 +477,7 @@ Rules:
 - Every worksheet problem needs an "answer". Use "diagnostic_for_misconception" (an ID from the misconception list, or null) on problems designed to reveal that error.
 - At most 8 problems per worksheet, so each sheet fits ONE A4 page. Fewer than 8 is fine.
 - Every problem must have ONE checkable answer (the photo analysis compares against the answer key). Do NOT include open-ended items such as "make your own problem".
-- Compute every answer. State which columns carry only after verifying by computing, and never ask for something impossible (e.g. a carry in every column of a 3-digit sum).
+- Compute every answer. State which columns carry only after verifying by computing, and never ask for something impossible (e.g. a carry in every column of a 3-digit sum). In a skill whose number range ends at 99, the TOTAL of every sum on the sheet also stays at 99 or less.
 - Size each independent activity to the length of the teach blocks (22-29 minutes), and say what fast finishers do. Do not label an activity shorter than the block.
 """
 
@@ -647,9 +647,10 @@ def pick_priority_group(reteach_items: list, reteach_groups: Optional[list] = No
 
 # THE SHAPE OF A RE-TEACH BLOCK. One place, so it can be tuned after the teachers' review (Part D of the review document: the wrong-then-right sequence, the timings).
 RETEACH_MAIN_RULES = """For a RE-TEACH group the group's own teach block IS the re-teach: it is NOT the first lesson again, and there is NO separate re-teach block. Write its talking_points like this:
-- i_do_hi: show the mistake FIRST, then the right way. Do one worked example the way a child with the mistake would do it (the wrong working or the wrong answer), say aloud what is wrong with it, then do it again correctly.
+- i_do_hi: show the mistake FIRST, then the right way. Do one worked example the way a child with the mistake would do it (the wrong working or the wrong answer), say aloud what is wrong with it, then do the SAME sum again correctly (the same numbers, first the way the mistake does it, then the right way: that is the contrast).
 - we_do_hi: the children FIND AND FIX the mistake: give them one or two wrong examples (the mistakes listed for the group) to correct with you, then one new example together.
-- you_do_hi: a short try on their own with new numbers, where the same mistake would show up if it were still there.
+- you_do_hi: do NOT write problems of your own. The group's worksheet IS its try on its own: send the group to the worksheet problems by NUMBER (for example 'वर्कशीट के सवाल 1 से 6 पहले हल करें', using the worksheet's own required count) and say where the teacher visits first. The system writes those problems under the You Do for the teacher, so a list of sums here would be a second, competing list with its own numbering.
+- Never repeat a sum between the PARTS of the block: 47 + 36 and 36 + 47 are the SAME sum. The one sum an I Do uses twice is its own: the right working is of the SAME sum as the wrong working. The I Do, each wrong example in We Do and the new example in We Do use a sum of their own and, as far as you can, a different answer from each other, so that a child cannot answer by remembering a number from the board.
 - Begin i_do_hi with a very short recall: 'कल हमने क्या सीखा था' (one or two sentences): it is NOT a second lecture. Use NEW numbers, never yesterday's script.
 - When the wrong working has been shown and explained, ERASE it at the end of i_do_hi, so that only the right way stays on the board (no big red cross: children remember what they see most). Say so in the talking point.
 - Pace for a block of about 27 minutes: recall 2, I Do 6, We Do 7, the show-me questions 4, You Do 8. Scale it to this block's length.
@@ -663,7 +664,8 @@ def render_reteach_main(ctx) -> str:
     """YESTERDAY'S FEEDBACK when the teacher decided. Only counts and groups: never a child's roll number (the code stamps those into the block afterwards)."""
     groups = [g for g in GROUP_ORDER if g in (ctx.reteach_groups or [])]
     if not groups:
-        return ("The teacher decided to MOVE ON with every group: there is NO re-teach block and no group repeats a skill. "
+        return ("The teacher decided to MOVE ON with every group: there is NO re-teach block, and no group is re-taught from yesterday's mistakes: each group is taught its own skill as a NORMAL lesson "
+                "(a group that is on yesterday's skill again is taught it as a normal lesson, not as a re-teach). "
                 "(Any mistakes found at the last review are aimed at by the check-for-understanding questions.)")
     comp = {"beginner": ctx.beginner.target_competency, "progressor": ctx.selected_competency, "proficient": ctx.proficient.target_competency}
     out = ["The teacher decided at the review to RE-TEACH: " + ", ".join(g.upper() for g in groups) + ". There is NO separate re-teach block: for these groups the main TEACH block is the re-teach.\n"]
@@ -680,6 +682,17 @@ def render_reteach_main(ctx) -> str:
         out.append("")
     out.append(RETEACH_MAIN_RULES)
     return "\n".join(out)
+
+
+def range_note(number_range) -> str:
+    """One sentence under the skill's number range: the knowledge base's maximum limits every number written for the skill AND the total of every addition (found on the second real block: the range said
+    max 99, the model read it as a limit on the numbers added, and a worksheet problem was 79 + 21 = 100). Empty when the skill has no maximum."""
+    try:
+        mx = int((number_range or {}).get("max"))
+    except (TypeError, ValueError, AttributeError):
+        return ""
+    extra = f" A two-digit skill never reaches 100: three-digit numbers belong to the Proficients' later skill, so 79 + 21 = 100 is NOT allowed here." if mx <= 99 else ""
+    return f"(Today's skill stays inside this range: every number you write for it, and the TOTAL of every addition, is at most {mx}.{extra})"
 
 
 def build_user_prompt(ctx: OrchestrationContext) -> str:
@@ -850,6 +863,7 @@ A/PA/NA Criteria:
 ```
 
 Number range: {json.dumps(ctx.selected_competency.number_range, ensure_ascii=False) if ctx.selected_competency.number_range else 'N/A'}
+{range_note(ctx.selected_competency.number_range)}
 Problem types: {', '.join(ctx.selected_competency.problem_types) if ctx.selected_competency.problem_types else 'General'}
 
 ## THREE GROUPS

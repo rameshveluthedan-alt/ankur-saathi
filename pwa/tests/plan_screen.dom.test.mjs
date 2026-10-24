@@ -3,14 +3,14 @@
 // Generate disabled until the new ones arrive, an answer that arrives late for an earlier skill is ignored, and a failed fetch does not leave Generate stuck.
 //
 //     cd pwa
-//     npm install --save-dev jsdom        (once: it is only used by this test)
+//     npm install --save-dev jsdom@24     (once: it is only used by this test; version 24 works with Node 18 and up, the newest jsdom needs a very recent Node)
 //     node tests/plan_screen.dom.test.mjs
 //
 // Without jsdom the test says so and stops without failing.
 import fs from 'node:fs'; import path from 'node:path'; import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build } from 'esbuild';
 let JSDOM;
-try { ({ JSDOM } = await import('jsdom')); } catch (e) { console.log('SKIPPED: jsdom is not installed. To run this test: cd pwa; npm install --save-dev jsdom'); process.exit(0); }
+try { ({ JSDOM } = await import('jsdom')); } catch (e) { console.log('SKIPPED: jsdom is not installed. To run this test: cd pwa; npm install --save-dev jsdom@24'); process.exit(0); }
 const here = path.dirname(fileURLToPath(import.meta.url)); const src = path.join(here, '..', 'src'); const out = path.join(here, `.tmp-screen-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));
 const stubs = { '../App': 'export const useAuth = () => globalThis.__auth;', 'react-router-dom': 'export const useNavigate = () => globalThis.__navigate;',
@@ -79,10 +79,63 @@ await click(card('N2.3.2')); await click(card('N1.1.1'));
 await release('N1.1.1', LADDER['N1.1.1']); await release('N2.3.2', LADDER['N2.3.2']);
 check('two skills chosen quickly and the FIRST answer arrives LAST: the screen keeps the last skill\'s groups', /शु N0\.1\.2 · प्र N1\.1\.1/.test(q('[data-testid="edit-group-skills"]').textContent), q('[data-testid="edit-group-skills"]') && q('[data-testid="edit-group-skills"]').textContent);
 
+console.log('tapping the Plan tab again (found on the click-through: it did nothing)');
+const fire = async (detail) => act(async () => { dom.window.dispatchEvent(new dom.window.CustomEvent('ankur-tab-reselect', { detail })); });
+await click(q('[data-testid="edit-group-skills"]'));
+check('(the drawer is open and N1.1.1 is chosen)', !!q('[data-testid="group-skills-drawer-body"]'));
+await fire('/yojana');
+check('another tab being tapped again does not touch this screen: the drawer stays open and the choice stays', !!q('[data-testid="group-skills-drawer-body"]') && !!q('[data-testid="edit-group-skills"]'));
+await fire('/');
+check('tapping the Plan tab again closes the drawer and clears the choice: no summary line, no Generate bar', !q('[data-testid="group-skills-drawer-body"]') && !q('[data-testid="edit-group-skills"]') && !generateBtn());
+check('...and the skill list is still there to choose from', !!card('N1.1.1') && !!card('N2.3.2'));
+await click(card('N2.3.2')); await release('N2.3.2', LADDER['N2.3.2']);
+check('a skill can be chosen again straight away, and its groups load', /शु N2\.3\.1 · प्र N2\.3\.2 · द N3\.3\.1/.test(q('[data-testid="edit-group-skills"]').textContent));
+const gen = deferred(); globalThis.__api.generatePlan = (...a) => { generateCalls.push(a); return gen.promise; };
+await click(generateBtn());
+await fire('/');
+check('while a plan is being generated the tab does NOT interrupt it: the bar is still there, still generating', !!qa('button.btn-primary').find((b) => /Generating/.test(b.textContent)));
+await act(async () => { gen.resolve({ plan: {} }); await new Promise((r) => setTimeout(r, 0)); });
+globalThis.__api.generatePlan = async (...a) => { generateCalls.push(a); return { plan: {} }; };
+await fire('/');      // back to choosing, so the next scenario starts from a clean list
+
 console.log('the groups cannot be fetched');
 await click(card('N2.3.2'));
 await act(async () => { pending['N2.3.2'].reject(new Error('offline')); await new Promise((r) => setTimeout(r, 0)); });
 check('the fetch fails: no group summary, but Generate is NOT stuck: it is enabled and makes the plan the old way (the plan decides)', !q('[data-testid="edit-group-skills"]') && !generateBtn().disabled && /→ N2\.3\.2/.test(generateBtn().textContent), generateBtn().textContent);
 await click(generateBtn()); await flush();
-check('...and it sends no group choices at all', generateCalls.length === 2 && generateCalls[1][1] === 'N2.3.2' && JSON.stringify(generateCalls[1][4]) === '{}', JSON.stringify(generateCalls[1]));
+const lastCall = generateCalls[generateCalls.length - 1];
+check('...and it sends no group choices at all', generateCalls.length === 3 && lastCall[1] === 'N2.3.2' && JSON.stringify(lastCall[4]) === '{}', JSON.stringify(lastCall));
+console.log('the re-teach box is the decision, and the skill follows it (on the REAL screen, with the seeded demo\'s suggestions)');
+await act(async () => { root.unmount(); });
+const ZERO = { assessed: 0, with_mistakes: 0, needed: 0, very_small: false, recommend: false, rolls: [], mistakes: [] };
+const seeded = { has_history: true, previous_date: '2026-10-23', groups: {
+  beginner: { previous_target: sk('N2.3.1'), previous_decision: 'advance', proposed: sk('N2.3.2'), reason: 'advance', alternatives: [], evidence: ZERO, recommendation: null, conflict: false, previous_reteach: false },
+  progressor: { previous_target: sk('N2.3.2'), previous_decision: null, proposed: sk('N2.3.2'), reason: 'recommended', alternatives: [], evidence: { assessed: 14, with_mistakes: 6, needed: 5, very_small: false, recommend: true, rolls: [16, 19], mistakes: [] }, recommendation: 'reteach', conflict: false, previous_reteach: false },
+  proficient: { previous_target: sk('N3.3.1'), previous_decision: null, proposed: null, reason: 'no_decision', alternatives: [], evidence: ZERO, recommendation: null, conflict: false, previous_reteach: false } } };
+globalThis.__api.getGroupProposal = async () => seeded;
+const root2 = createRoot(document.getElementById('root')); await act(async () => { root2.render(React.createElement(Screen)); }); await flush();
+await click(card('N2.3.2')); await release('N2.3.2', LADDER['N2.3.2']);
+await click(q('[data-testid="edit-group-skills"]'));
+const bsel = () => q('[data-testid="group-skill-select-beginner"]');
+const pick = async (sel, value) => act(async () => { Object.getOwnPropertyDescriptor(dom.window.HTMLSelectElement.prototype, 'value').set.call(sel, value); sel.dispatchEvent(new dom.window.Event('change', { bubbles: true })); });
+check('the Beginners start on N2.3.2 (the Advance suggestion); there is NO checkbox for them, and their list offers "re-teach N2.3.1"', bsel().value === 'N2.3.2' && !q('[data-testid="reteach-toggle-beginner"]') && [...bsel().options].some((o) => o.value === 'reteach:N2.3.1'));
+await pick(bsel(), 'reteach:N2.3.1');
+check('choosing it puts the Beginners on yesterday\'s skill, re-teaching: the list shows it and a one-line caption appears', bsel().value === 'reteach:N2.3.1' && !!q('[data-testid="reteach-on-beginner"]'));
+check('yesterday\'s N2.3.1 is offered ONLY as a re-teach: there is no plain N2.3.1 in the Beginners\' list (they moved on, and "the same lesson again" is not a choice)', ![...bsel().options].some((o) => o.value === 'N2.3.1'));
+await click(q('[data-testid="restore-suggestion-beginner"]'));
+check('the back-to-the-suggestion button restores BOTH the skill and the re-teach setting', bsel().value === 'N2.3.2' && !q('[data-testid="reteach-on-beginner"]') && !q('[data-testid="restore-suggestion-beginner"]'));
+const xsel = () => q('[data-testid="group-skill-select-proficient"]');
+check('the Proficients, with no decision and no evidence, are on N3.3.1 as a normal lesson: the plain entry IS there (it is what they are on, labelled a normal lesson) and the re-teach entry is offered', xsel().value === 'N3.3.1' && [...xsel().options].some((o) => o.value === 'reteach:N3.3.1') && /नया पाठ/.test([...xsel().options].find((o) => o.value === 'N3.3.1').textContent));
+await pick(xsel(), 'reteach:N3.3.1');
+check('once they re-teach, the plain N3.3.1 is gone from their list', ![...xsel().options].some((o) => o.value === 'N3.3.1') && xsel().value === 'reteach:N3.3.1');
+await click(q('[data-testid="restore-suggestion-proficient"]'));
+check('and the back-to-the-suggestion button brings them back to the normal lesson', xsel().value === 'N3.3.1' && !q('[data-testid="reteach-on-proficient"]'));
+await pick(bsel(), 'reteach:N2.3.1');
+await pick(bsel(), 'reteach:N2.3.1');
+await click(q('[data-testid="edit-group-skills"]'));
+check('closed again, the summary line shows the re-teach for the Beginners and the Progressors', /शु N2\.3\.1🔄 · प्र N2\.3\.2🔄 · द N3\.3\.1/.test(q('[data-testid="edit-group-skills"]').textContent), q('[data-testid="edit-group-skills"]').textContent);
+await click(generateBtn()); await flush();
+const lastGen = generateCalls[generateCalls.length - 1];
+check('Generate sends both groups for re-teach and NO group skill (N2.3.1 is what the plan derives for the Beginners)', JSON.stringify(lastGen[4]) === '{"reteachGroups":["beginner","progressor"]}', JSON.stringify(lastGen[4]));
+
 console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks on the real Plan screen: the group panel is a drawer that opens in place, and the previous skill\'s groups never outlive a new choice'}`);

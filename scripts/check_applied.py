@@ -50,6 +50,39 @@ CHECKS = [
     ("v28s", "the group panel is a drawer in the bottom bar", "pwa/src/components/GroupSkillsDrawer.jsx", None),
     ("v28s", "the group panel is a drawer in the bottom bar", "pwa/src/screens/PlanScreen.jsx", "GroupSkillsDrawer"),
     ("v28s", "the real-screen test", "pwa/tests/plan_screen.dom.test.mjs", None),
+    ("v28t", "tapping the tab you are on takes that screen back to its start", "pwa/src/services/tabs.js", None),
+    ("v28t", "tapping the tab you are on takes that screen back to its start", "pwa/src/App.jsx", "tabTap"),
+    ("v28t", "the Plan screen goes back to choosing a skill", "pwa/src/screens/PlanScreen.jsx", "TAB_RESELECT_EVENT"),
+    ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/services/groupSkills.js", "export function toggleReteach"),
+    ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/components/GroupSkillsPanel.jsx", "toggleReteach"),
+    ("v29e", "a show-me cannot be two wrong right-or-wrong lines (a child guesses)", "backend/app/services/cfu.py", "def _is_wrong_line"),
+    ("v29e", "...and the CFU rules ask for a question the child works out", "prompts/cfu_prompt.py", "WORK OUT an answer"),
+    ("v29e", "the guessable-question rule is tested", "backend/tests/test_cfu_guessable.py", None),
+    ("v29d", "a two-digit addition skill never reaches 100: the show-me rules", "backend/app/services/cfu.py", "max_result"),
+    ("v29d", "...and the worksheet repair replaces a total of 100 or more", "backend/app/services/plan_service.py", "three-digit numbers are a later"),
+    ("v29d", "the number range note in the plan prompt", "prompts/orchestrate.py", "def range_note"),
+    ("v29d", "the I Do uses the SAME sum for the wrong and the right working", "prompts/orchestrate.py", "do the SAME sum again correctly"),
+    ("v29d", "the show-me avoids results already on the board", "prompts/cfu_prompt.py", "already written on the board"),
+    ("v29d", "the two-digit limit is tested", "backend/tests/test_two_digit_limit.py", None),
+    ("v29c", "two questions of one group never share a right answer", "backend/app/services/cfu.py", "def right_answer"),
+    ("v29c", "the top-up is told which answers are taken", "prompts/cfu_prompt.py", "The right answers of the questions above"),
+    ("v29c", "the You Do points to the worksheet, and no sum is repeated", "prompts/orchestrate.py", "do NOT write problems of your own"),
+    ("v29c", "the board problems are separate lines", "pwa/src/components/BoardWork.jsx", "gridTemplateColumns"),
+    ("v29c", "the answers check is tested", "backend/tests/test_cfu_answers.py", None),
+    ("v29b", "the listen-for wrong answers are computed and checked by code", "backend/app/services/cfu.py", "def verified_listen"),
+    ("v29b", "the listen-for check is tested", "backend/tests/test_cfu_listen_for.py", None),
+    ("v29a", "the carry strip is a tab above the tens column (no empty box; the other headers grow)", "backend/app/templates/worksheet.html", "pv-header-tall"),
+    ("v29a", "the board-work line under the You Do", "pwa/src/screens/YojanaScreen.jsx", "BoardWork"),
+    ("v29a", "the board-work line reads the worksheet itself", "pwa/src/services/boardWork.js", "export function boardProblems"),
+    ("v28z", "yesterday's skill is offered only as a re-teach, plain only while it is the current choice", "pwa/src/services/groupSkills.js", "export function visibleChoices"),
+    ("v28z", "the model is told the truth when a group is on yesterday's skill as a normal lesson", "prompts/orchestrate.py", "NORMAL lesson"),
+    ("v28y", "one dropdown holds both decisions (skill and re-teach)", "pwa/src/services/groupSkills.js", "export function chooseOption"),
+    ("v28y", "one dropdown holds both decisions (skill and re-teach)", "pwa/src/components/GroupSkillsPanel.jsx", "restore-suggestion"),
+    ("v28x", "curated skill bridges: the loader", "scripts/load_bridges.py", None),
+    ("v28x", "curated skill bridges: the app consults them first", "backend/app/services/group_skills.py", "async def curated_pick"),
+    ("v28x", "curated skill bridges: the table", "db/schema/11_skill_bridges.sql", None),
+    ("v28x", "curated skill bridges: the nightly job loads them without stopping the reset", "scripts/nightly_reset.py", "fatal=False"),
+    ("v28x", "curated skill bridges: the starter proposals", "db/seeds/content/07_skill_bridges.starter.csv", None),
     ("v28l", "the front-end tests run on Windows", "pwa/tests/group_skills.test.mjs", "pathToFileURL"),
     ("v28l", "the front-end tests run on Windows", "pwa/tests/plan_summary.test.mjs", "pathToFileURL"),
     ("v28l", "the front-end tests run on Windows", "pwa/tests/reteach_note.test.mjs", "pathToFileURL"),
@@ -61,7 +94,7 @@ def kind_of(bundle, rel):
     return "older" if bundle.startswith("v27") else "current"
 
 
-VERSION = "v28s, 24 Oct: lists the bundles v27l to v28s; the package v28s-current replaces v28m to v28r"
+VERSION = "v29e, 24 Oct: lists the bundles v27l to v29e; the package v29e-current replaces v28m to v29d"
 
 
 def main():
@@ -88,15 +121,15 @@ def main():
     # the packages: v28p-current holds the current version of every file of the v28 series, so it is 'in' when every v28 row is OK
     series = [b for b in status if b.startswith("v28")]
     package_ok = all(status[b] for b in series)
-    print(f"\n  PACKAGE v28s-current (every file of v28a to v28s, current):  {'OK' if package_ok else 'BEHIND'}")
+    print(f"\n  PACKAGE v29e-current (every file of v28a to v29e, current):  {'OK' if package_ok else 'BEHIND'}")
     print()
     if not kinds:
         print("Everything listed is in this working copy.")
         return 0
     if "current" in kinds:
-        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v28s-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
-        print("    tar -xzf <downloads>\\v28s-current.tar.gz -C <this folder>")
-        print("  and do NOT extract v28a to v28r afterwards: each holds older copies of some of the same files and would put them back.")
+        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29e-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
+        print("    tar -xzf <downloads>\\v29e-current.tar.gz -C <this folder>")
+        print("  and do NOT extract v28a to v29d afterwards: each holds older copies of some of the same files and would put them back.")
     if "older" in kinds:
         print(f"Older bundles missing: {', '.join(sorted(kinds['older']))}. Apply each, oldest first, with  tar -xzf <downloads>\\<bundle>.tar.gz -C <this folder>")
     print("Run this check again afterwards: python scripts\\check_applied.py")

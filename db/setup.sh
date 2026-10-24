@@ -55,6 +55,7 @@ psql "$DB_URL" -f "$SCRIPT_DIR/schema/07_register.sql"
 psql "$DB_URL" -f "$SCRIPT_DIR/schema/08_child_names.sql"
 psql "$DB_URL" -f "$SCRIPT_DIR/schema/09_auth.sql"
 psql "$DB_URL" -f "$SCRIPT_DIR/schema/10_ai_usage.sql"
+psql "$DB_URL" -f "$SCRIPT_DIR/schema/11_skill_bridges.sql"
 
 # Seed data — order matters (foreign key dependencies)
 echo "[5/8] Seeding numeracy competency tree..."

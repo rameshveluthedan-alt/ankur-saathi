@@ -30,12 +30,17 @@ def yesterday_india() -> str:
     return (datetime.now(timezone(timedelta(hours=5, minutes=30))).date() - timedelta(days=1)).isoformat()
 
 
-def run(label, args, env_args):
+def run(label, args, env_args, fatal=True):
+    """Run one step. A FATAL step (the default) that fails stops everything; a step that is not fatal prints a warning, returns its exit code, and the reset goes on."""
     print(f"--- {label}", flush=True)
     r = subprocess.run([sys.executable, *args, *env_args], cwd=os.path.dirname(HERE))
     if r.returncode != 0:
+        if not fatal:
+            print(f"!!! '{label}' failed with exit code {r.returncode}: this step is not essential, the reset goes on.", flush=True)
+            return r.returncode
         print(f"!!! '{label}' failed with exit code {r.returncode}: the reset is incomplete.", flush=True)
         sys.exit(r.returncode)
+    return 0
 
 
 def main():
@@ -46,6 +51,7 @@ def main():
     env_args = ["--env-file", args.env_file] if args.env_file else []
     day = args.end_date or yesterday_india()
     run("the practice account is restored", [os.path.join(HERE, "auth_admin.py"), "restore-practice"], env_args)
+    run("the curated skill bridges are loaded (the reviewer's picks for the Beginners and the Proficients)", [os.path.join(HERE, "load_bridges.py")], env_args, fatal=False)
     run("the demo progress is cleared", [os.path.join(HERE, "demo_progress.py"), "reset", "--yes"], env_args)
     run(f"the demo progress is seeded up to {day}", [os.path.join(HERE, "demo_progress.py"), "seed", "--end-date", day, "--yes"], env_args)
     print("--- the demo is reset", flush=True)

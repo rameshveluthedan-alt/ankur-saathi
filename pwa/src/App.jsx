@@ -5,6 +5,7 @@ import YojanaScreen from './screens/YojanaScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import ProgressScreen from './screens/ProgressScreen';
 import LoginScreen from './screens/LoginScreen';
+import { TAB_RESELECT_EVENT, tabTap } from './services/tabs';
 import RegisterScreen from './screens/RegisterScreen';
 import AccountScreen from './screens/AccountScreen';
 import ChangePinScreen from './screens/ChangePinScreen';
@@ -30,7 +31,12 @@ function BottomNav() {
     <nav className="bottom-nav">
       {tabs.map(t => (
         <button key={t.id} className={`nav-item ${path === t.id ? 'active' : ''}`} data-testid={`nav-${t.id.replace('/', '') || 'plan'}`}
-          onClick={() => navigate(t.id)}>
+          onClick={() => {
+            if (tabTap(path, t.id) === 'reselect') {            // the screen we are on: scroll it to the top, and tell it (the Plan screen goes back to choosing a skill)
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.dispatchEvent(new CustomEvent(TAB_RESELECT_EVENT, { detail: t.id }));
+            } else navigate(t.id);
+          }}>
           <span className="nav-icon">{t.icon}</span>
           <span style={{fontSize:'0.7rem'}}>{t.hi}</span>
           <span style={{fontSize:'0.5rem',opacity:0.6}}>{t.en}</span>

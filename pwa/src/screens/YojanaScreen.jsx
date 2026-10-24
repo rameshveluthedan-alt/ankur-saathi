@@ -4,6 +4,7 @@ import { getCachedPlan, openAuthedPage, worksheetPath } from '../services/api';
 import PlanGroupSkills from '../components/PlanGroupSkills';
 import { reteachGroupsOf } from '../services/planSummary';
 import ReteachNote from '../components/ReteachNote';
+import BoardWork from '../components/BoardWork';
 import { reteachTitle } from '../services/reteachInfo';
 
 const GROUP_LABELS = {
@@ -195,6 +196,7 @@ export default function YojanaScreen() {
                   <div className="talking-point" style={ML}>
                     <div className="talking-point-label">तुम करोगे (You Do)</div>
                     {fmt(block.talking_points.you_do_hi)}
+                    <BoardWork plan={plan} group={block.teach_group} domain={currentPlan.domain_id} />
                   </div>
                 )}
                 {Array.isArray(block.cfu) && block.cfu.length > 0 && (

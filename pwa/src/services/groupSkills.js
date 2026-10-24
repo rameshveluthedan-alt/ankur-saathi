@@ -65,6 +65,7 @@ export function initialRows({ ladder, proposal, selectedId }) {
       evidence: prop ? prop.evidence || null : null, recommendation: prop ? prop.recommendation || null : null, conflict: !!(prop && prop.conflict),
     };
     reteach[label] = !!(previous && skillId === previous.id && (STAYS.includes(decision) || reason === 'recommended'));
+    rows[label].initialReteach = reteach[label];
   }
   return { rows, reteach };
 }
@@ -76,7 +77,7 @@ export function staysOnYesterdaysSkill(row) {
 
 /** The teacher picked a skill for a group: the row, with its source updated (the suggestion again counts as the suggestion). */
 export function withSkill(row, skillId) {
-  return { ...row, skillId, source: skillId === row.initialId ? row.initialSource : 'teacher' };
+  return { ...row, skillId, source: skillId === row.initialId ? row.initialSource : 'teacher', beforeReteachId: null };
 }
 
 /**
@@ -158,4 +159,63 @@ export function panelStatus({ selectedId, rows, failed }) {
   if (!selectedId) return 'none';
   if (rows) return 'ready';
   return failed ? 'failed' : 'loading';
+}
+
+/**
+ * The teacher ticks or unticks the re-teach box of a group. THE BOX IS THE DECISION AND THE SKILL FOLLOWS IT (found on the click-through: for the Beginners, who had moved on,
+ * the box was disabled and a separate button did the job, while the other groups just had a box: two ways to make one decision).
+ *  - Beginners and Proficients: ticking puts the group back on YESTERDAY'S skill (that is what a re-teach is) and remembers the skill it was on; unticking puts it back on that skill
+ *    (or leaves it where it is, when it was already on yesterday's skill). Not possible when going back would put the Beginners ahead of the day's skill or the Proficients behind it.
+ *  - Progressors: their skill IS the day's skill chosen in the list, and changing it changes every group's skill; so ticking only works when the day's skill is yesterday's already,
+ *    otherwise the day's skill must be changed on purpose (acceptReteach 'select').
+ * Returns { row, reteach }, or null when it is not possible.
+ */
+export function toggleReteach({ label, row, checked, selectedId, ladder }) {
+  if (!row || !row.previous) return null;
+  if (!checked) {
+    if (label !== 'progressor' && row.beforeReteachId && row.beforeReteachId !== row.skillId) return { row: withSkill(row, row.beforeReteachId), reteach: false };
+    return { row: { ...row, beforeReteachId: null }, reteach: false };
+  }
+  if (label === 'progressor') return row.previous.id === selectedId ? { row, reteach: true } : null;
+  if (!canReturnToYesterday({ label, row, ladder })) return null;
+  if (row.skillId === row.previous.id) return { row, reteach: true };
+  return { row: { ...withSkill(row, row.previous.id), beforeReteachId: row.skillId }, reteach: true };
+}
+
+// ---- ONE DROPDOWN for the Beginners and the Proficients: it holds BOTH decisions, which skill and whether to RE-TEACH it (asked on the click-through: why a box AND a list?) ----
+// The list has an entry "re-teach yesterday's skill" (value 'reteach:N2.3.1') beside the plain skills. The plain entry for yesterday's skill is a NORMAL lesson (for example the second day
+// of a skill that takes two days). The state stays as before (rows[label].skillId and reteach[label]): only the way it is chosen changed. The Progressors keep their box: their skill is the day's skill.
+export const RETEACH_PREFIX = 'reteach:';
+
+/** The "re-teach yesterday's skill" entry of the list, or null when it cannot be offered (the Progressors, no yesterday, or going back would put the group on the wrong side of the day's skill). */
+export function reteachChoice({ label, row, ladder }) {
+  if (label === 'progressor' || !row || !row.previous) return null;
+  if (!canReturnToYesterday({ label, row, ladder })) return null;
+  return { value: RETEACH_PREFIX + row.previous.id, id: row.previous.id };
+}
+
+/** What the dropdown shows now: the re-teach entry when the group re-teaches yesterday's skill, otherwise its skill. */
+export function selectValue({ label, row, reteachOn }) {
+  if (!row) return '';
+  if (label !== 'progressor' && reteachOn && row.previous && row.skillId === row.previous.id) return RETEACH_PREFIX + row.skillId;
+  return row.skillId;
+}
+
+/** The teacher picks an entry of the list. Returns { row, reteach } or null. The re-teach entry puts the group on yesterday's skill and switches the re-teach on; ANY plain skill, yesterday's too, is a normal lesson. */
+export function chooseOption({ label, row, value, selectedId, ladder }) {
+  if (String(value).startsWith(RETEACH_PREFIX)) return toggleReteach({ label, row, checked: true, selectedId, ladder });
+  return { row: withSkill(row, value), reteach: false };
+}
+
+/**
+ * The plain skills the list shows. Where a re-teach is offered, yesterday's skill as a PLAIN entry would be "the same lesson again", which is a re-teach in all but name, so it is NOT offered as a choice
+ * (asked on the click-through). It stays only while it is what the group is on (the default of a group with no decision and no evidence), because the list must be able to show the current choice;
+ * the "back to the suggestion" button returns to it. Groups left empty are dropped.
+ */
+export function visibleChoices({ label, ladder, row, selectedId, reteachOn }) {
+  const groups = skillChoices({ label, ladder, row, selectedId });
+  if (!reteachChoice({ label, row, ladder })) return groups;
+  const current = selectValue({ label, row, reteachOn });
+  const yesterday = row.previous.id;
+  return groups.map((g) => ({ ...g, ids: g.ids.filter((id) => id !== yesterday || id === current) })).filter((g) => g.ids.length > 0);
 }

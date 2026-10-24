@@ -23,7 +23,7 @@ await build({
 const logic = await import(pathToFileURL(path.join(out, 'logic.mjs')).href);
 const { default: Panel } = await import(pathToFileURL(path.join(out, 'panel.mjs')).href);
 const { default: Drawer } = await import(pathToFileURL(path.join(out, 'drawer.mjs')).href);
-const { initialRows, buildGenerateOptions, withSkill, staysOnYesterdaysSkill, summarize, acceptReteach, skillChoices, fitsDay, canReturnToYesterday, panelStatus } = logic;
+const { initialRows, buildGenerateOptions, withSkill, staysOnYesterdaysSkill, summarize, acceptReteach, skillChoices, fitsDay, canReturnToYesterday, panelStatus, toggleReteach, reteachChoice, selectValue, chooseOption, visibleChoices } = logic;
 
 let n = 0;
 const check = (label, fn) => { fn(); n += 1; console.log(`  OK  ${label}`); };
@@ -109,6 +109,7 @@ console.log('what the panel shows');
 const comps = [sk('N2.3.1', 'बिना हासिल जोड़'), sk('N2.3.2', 'हासिल वाला जोड़'), sk('N3.3.1', '3 अंकों का जोड़'), sk('N3.5.2', 'परिमाप')];
 const render = (rows, reteach, hasHistory = true, extra = {}) => ReactDOMServer.renderToStaticMarkup(
   React.createElement(Panel, { groups, competencies: comps, ladder, selectedId: 'N2.3.2', rows, setRows: () => {}, reteach, setReteach: () => {}, onSelectSkill: () => {}, hasHistory, disabled: false, ...extra }));
+const selectOf = (h, label) => h.split(`data-testid="group-skill-select-${label}"`)[1].split('</select>')[0];
 const html = render(ex.rows, ex.reteach);
 check('three group rows, a skill choice for the Beginners and the Proficients, and the Progressors\' skill as plain text', () => {
   for (const l of ['beginner', 'progressor', 'proficient']) assert.ok(html.includes(`data-testid="group-row-${l}"`), l);
@@ -123,9 +124,10 @@ check('yesterday and the teacher\'s decision are shown in the review screen\'s o
   assert.ok(html.includes('कल: N2.3.1') && html.includes('कल: N2.3.2') && html.includes('कल: N3.3.1'));
   assert.ok(html.includes('▲ आगे बढ़ें') && html.includes('🔄 दोहराएँ'));
 });
-check('the re-teach box is ticked for the Progressors only, with what it means', () => {
+check('the Progressors keep a re-teach BOX (ticked, with what it means); the Beginners and Proficients have NO box: their list holds the decision', () => {
   assert.match(html, /data-testid="reteach-toggle-progressor"[^>]*checked=""|checked=""[^>]*data-testid="reteach-toggle-progressor"/);
-  assert.ok(!/data-testid="reteach-toggle-beginner"[^>]*checked=""|checked=""[^>]*data-testid="reteach-toggle-beginner"/.test(html));
+  assert.ok(!html.includes('reteach-toggle-beginner') && !html.includes('reteach-toggle-proficient'));
+  assert.match(selectOf(html, 'beginner'), /<option value="N2\.3\.2" selected="">/);       // the Beginners are on the Advance suggestion, not re-teaching
   assert.ok(html.includes('मुख्य ब्लॉक कल की गलतियों को दोबारा समझाएगा'));
 });
 check('the sources are named: from the review, from the chosen skill, the teacher\'s own', () => {
@@ -139,14 +141,15 @@ check('no earlier plan: the panel says so, and offers no re-teach box (there is 
   const h4 = render(fresh.rows, fresh.reteach, false);
   assert.ok(h4.includes('पिछली योजना नहीं मिली') && !h4.includes('reteach-toggle'));
 });
-check('a group with no children has no re-teach box, and while generating everything is disabled', () => {
+check('a group with no children is not offered a re-teach, and while generating everything is disabled', () => {
   const g0 = [{ label: 'beginner', count: 0 }, { label: 'progressor', count: 3 }, { label: 'proficient', count: 2 }];
   const h5 = render(ex.rows, ex.reteach, true, { groups: g0 });
-  assert.ok(!h5.includes('reteach-toggle-beginner') && h5.includes('reteach-toggle-progressor'));
+  assert.ok(!selectOf(h5, 'beginner').includes('reteach:') && h5.includes('reteach-toggle-progressor'));
   const h6 = render(ex.rows, ex.reteach, true, { disabled: true });
-  assert.ok((h6.match(/disabled=""/g) || []).length >= 4);
+  for (const testid of ['group-skill-select-beginner', 'group-skill-select-proficient', 'reteach-toggle-progressor']) {
+    assert.ok(new RegExp(`<(select|input)[^>]*disabled=""[^>]*data-testid="${testid}"|<(select|input)[^>]*data-testid="${testid}"[^>]*disabled=""`).test(h6), testid);
+  }
 });
-
 console.log('the app\'s own recommendation from the children\'s evidence');
 const ev = (assessed, wrong, over = {}) => ({ assessed, with_mistakes: wrong, needed: Math.ceil(assessed / 3), very_small: assessed > 0 && assessed < 4, recommend: assessed >= 4 && wrong >= Math.ceil(assessed / 3), rolls: [5, 6].slice(0, wrong), mistakes: wrong ? [{ misconception_id: 'N2.3.2-M1', name_hi: 'हासिल भूलना', children: wrong }] : [], ...over });
 const entry = (target, decision, proposed, reason, evidence, recommendation, conflict = false) => ({ previous_target: sk(target), previous_decision: decision, proposed: proposed ? sk(proposed) : null, reason, alternatives: [], evidence, recommendation, conflict });
@@ -235,19 +238,20 @@ check('yesterday\'s skill and the suggestion are offered, even outside the lists
   assert.ok(idsOf(b).includes(far.rows.beginner.skillId));
 });
 const html2 = render(ex.rows, ex.reteach);
-const selectOf = (h, label) => h.split(`data-testid="group-skill-select-${label}"`)[1].split('</select>')[0];
 check('on the screen: the Beginners\' list has only today\'s skill and foundations, the Proficients\' only today\'s skill and what builds on it, each under its own heading', () => {
   const b = selectOf(html2, 'beginner'); const x = selectOf(html2, 'proficient');
-  assert.ok(b.includes('value="N2.3.1"') && b.includes('value="N1.3.1"') && !b.includes('N3.6.1') && !b.includes('N3.5.2'));
-  assert.ok(x.includes('value="N3.3.1"') && x.includes('value="N3.5.2"') && !x.includes('N0.2.1') && !x.includes('value="N2.3.1"'));
+  assert.ok(b.includes('value="reteach:N2.3.1"') && !b.includes('value="N2.3.1"') && b.includes('value="N1.3.1"') && !b.includes('N3.6.1') && !b.includes('N3.5.2'));      // yesterday's N2.3.1: only as a re-teach
+  assert.ok(x.includes('value="reteach:N3.3.1"') && !x.includes('value="N3.3.1"') && x.includes('value="N3.5.2"') && !x.includes('N0.2.1') && !x.includes('value="N2.3.1"'));      // likewise N3.3.1
   assert.ok(b.includes('आधार कौशल') && x.includes('आगे के कौशल') && b.includes('आज का कौशल'));
 });
-check('a re-teach can only be ticked for a group that is on yesterday\'s skill: otherwise the box is DISABLED and a button puts the group back on yesterday\'s skill and ticks it (no error message that lets the plan go on)', () => {
+check('ONE LIST holds the decision: for the Beginners, who advanced to N2.3.2 (yesterday N2.3.1), N2.3.1 is offered ONLY as "re-teach N2.3.1" (a plain "same lesson again" is not a choice); no box, no button', () => {
   const rows = { ...ex.rows, beginner: withSkill(ex.rows.beginner, 'N2.3.2') };      // the Beginners advanced to N2.3.2: yesterday they were on N2.3.1
   const h = render(rows, { ...ex.reteach, beginner: false });
-  assert.ok(/disabled=""/.test(h.match(/<input[^>]*data-testid="reteach-toggle-beginner"[^>]*>/)[0]));
-  assert.ok(h.includes('data-testid="go-back-reteach-beginner"') && h.includes('N2.3.1 चुनकर दोहराएँ') && h.includes('कल वाले कौशल N2.3.1 पर होना चाहिए'));
-  const pbox = html2.match(/<input[^>]*data-testid="reteach-toggle-progressor"[^>]*>/)[0];      // the Progressors ARE on yesterday's skill
+  const sel = selectOf(h, 'beginner');
+  assert.ok(sel.includes('value="reteach:N2.3.1"') && sel.includes('🔄 दोहराएँ: N2.3.1') && sel.includes('कल का कौशल दोहराएँ'));
+  assert.ok(!/<option value="N2\.3\.1"/.test(sel), sel.slice(0, 700));
+  assert.ok(!h.includes('reteach-toggle-beginner') && !h.includes('go-back-reteach-beginner') && !h.includes('reteach-not-today-beginner') && !h.includes('reteach-goes-back'));
+  const pbox = html2.match(/<input[^>]*data-testid="reteach-toggle-progressor"[^>]*>/)[0];      // the Progressors ARE on yesterday's skill: just a box
   assert.ok(!/disabled=""/.test(pbox) && !html2.includes('go-back-reteach-progressor'));
 });
 check('the Progressors on another day\'s skill than yesterday\'s: the box is disabled and the button chooses yesterday\'s skill (which changes the day\'s skill)', () => {
@@ -303,10 +307,11 @@ check('the Beginners\' list offers only N0.1.1: yesterday\'s N2.3.1 and the sugg
   const sel = hu.split('data-testid="group-skill-select-beginner"')[1].split('</select>')[0];
   assert.ok(sel.includes('value="N0.1.1"') && !sel.includes('N2.3.1') && !sel.includes('N2.3.2'));
 });
-check('their re-teach box is disabled with a plain reason and NO button (going back to N2.3.1 would put them ahead of the day\'s skill)', () => {
-  assert.ok(/disabled=""/.test(hu.match(/<input[^>]*data-testid="reteach-toggle-beginner"[^>]*>/)[0]));
+check('the Beginners are NOT offered "re-teach N2.3.1" (it would put them ahead of the day\'s skill): no such entry, a plain reason, no button, no box', () => {
+  assert.ok(!selectOf(hu, 'beginner').includes('reteach:') && !hu.includes('reteach-toggle-beginner'));
   assert.ok(hu.includes('data-testid="reteach-not-today-beginner"') && !hu.includes('go-back-reteach-beginner'));
   assert.equal(canReturnToYesterday({ label: 'beginner', row: u.rows.beginner, ladder: day0 }), false);
+  assert.equal(reteachChoice({ label: 'beginner', row: u.rows.beginner, ladder: day0 }), null);
   assert.equal(acceptReteach({ label: 'beginner', row: u.rows.beginner, selectedId: 'N0.1.1', ladder: day0 }), null);
 });
 check('the Progressors can always go back (the day\'s skill itself becomes yesterday\'s), and the others\' suggestions that fit are still used', () => {
@@ -367,6 +372,118 @@ check('what the panel is doing for the chosen skill: nothing chosen, loading (ro
   assert.equal(panelStatus({ selectedId: 'N2.3.2', rows: null, failed: false }), 'loading');
   assert.equal(panelStatus({ selectedId: 'N2.3.2', rows: { beginner: {} }, failed: false }), 'ready');
   assert.equal(panelStatus({ selectedId: 'N2.3.2', rows: null, failed: true }), 'failed');
+});
+
+console.log('the re-teach box is the decision, and the skill follows it (asked on the click-through: why is it different for the Beginners?)');
+const adv = { ...ex.rows, beginner: withSkill(ex.rows.beginner, 'N2.3.2') };       // the Beginners advanced to N2.3.2; yesterday N2.3.1
+check('ticking puts a Beginner group back on yesterday\'s skill and remembers where it was; unticking puts it back', () => {
+  const t = toggleReteach({ label: 'beginner', row: adv.beginner, checked: true, selectedId: 'N2.3.2', ladder });
+  assert.deepEqual([t.row.skillId, t.row.beforeReteachId, t.reteach], ['N2.3.1', 'N2.3.2', true]);
+  const u = toggleReteach({ label: 'beginner', row: t.row, checked: false, selectedId: 'N2.3.2', ladder });
+  assert.deepEqual([u.row.skillId, u.row.beforeReteachId, u.reteach], ['N2.3.2', null, false]);
+  assert.equal(u.row.source, 'review');       // back on the Advance suggestion, said to come from the teacher's decision
+});
+check('the same for the Proficients (Advance had moved them to N3.5.2; yesterday N3.3.1)', () => {
+  const row = withSkill(ex.rows.proficient, 'N3.5.2');
+  const t = toggleReteach({ label: 'proficient', row, checked: true, selectedId: 'N2.3.2', ladder });
+  assert.deepEqual([t.row.skillId, t.reteach], ['N3.3.1', true]);
+  assert.equal(toggleReteach({ label: 'proficient', row: t.row, checked: false, selectedId: 'N2.3.2', ladder }).row.skillId, 'N3.5.2');
+});
+check('a group already on yesterday\'s skill: ticking only switches the re-teach on, unticking leaves the skill where it is (same skill, taught as a normal lesson)', () => {
+  const onYesterdays = initialRows({ ladder, proposal: { has_history: true, groups: { ...proposal.groups, proficient: entry('N3.3.1', null, null, 'no_decision', ev(0, 0), null) } }, selectedId: 'N2.3.2' }).rows.proficient;
+  assert.equal(onYesterdays.skillId, 'N3.3.1');       // no decision: the derived skill, which IS yesterday's
+  const t = toggleReteach({ label: 'proficient', row: onYesterdays, checked: true, selectedId: 'N2.3.2', ladder });
+  assert.deepEqual([t.row.skillId, t.reteach, t.row.beforeReteachId], ['N3.3.1', true, undefined]);
+  const u = toggleReteach({ label: 'proficient', row: t.row, checked: false, selectedId: 'N2.3.2', ladder });
+  assert.deepEqual([u.row.skillId, u.reteach], ['N3.3.1', false]);
+});
+check('picking a skill in the list yourself while ticked forgets the remembered skill (and ends the re-teach, as before)', () => {
+  const t = toggleReteach({ label: 'beginner', row: adv.beginner, checked: true, selectedId: 'N2.3.2', ladder });
+  assert.equal(withSkill(t.row, 'N1.3.1').beforeReteachId, null);
+});
+check('not possible: going back would put the Beginners AHEAD of the day\'s skill (N0.1.1 day, yesterday N2.3.1), or there is no yesterday', () => {
+  assert.equal(toggleReteach({ label: 'beginner', row: u0row(), checked: true, selectedId: 'N0.1.1', ladder: day0 }), null);
+  assert.equal(toggleReteach({ label: 'beginner', row: { ...adv.beginner, previous: null }, checked: true, selectedId: 'N2.3.2', ladder }), null);
+});
+function u0row() { return initialRows({ ladder: day0, proposal: demoProposal, selectedId: 'N0.1.1' }).rows.beginner; }
+check('the Progressors: their skill IS the day\'s skill, so ticking works only when that is yesterday\'s already; otherwise it is not done silently (the explicit button changes the day\'s skill)', () => {
+  assert.equal(toggleReteach({ label: 'progressor', row: ex.rows.progressor, checked: true, selectedId: 'N2.3.2', ladder }).reteach, true);
+  assert.equal(toggleReteach({ label: 'progressor', row: ex.rows.progressor, checked: true, selectedId: 'N2.3.3', ladder }), null);
+});
+check('after choosing "re-teach N2.3.1" for the Beginners, the list shows it, a caption says what it means, the summary says so, and Generate sends the re-teach and no group skill (N2.3.1 is what the plan derives)', () => {
+  const t = chooseOption({ label: 'beginner', row: adv.beginner, value: 'reteach:N2.3.1', selectedId: 'N2.3.2', ladder });
+  const rows = { ...adv, beginner: t.row }; const re = { ...ex.reteach, beginner: t.reteach };
+  const h = render(rows, re);
+  assert.match(selectOf(h, 'beginner'), /<option value="reteach:N2\.3\.1" selected="">/);
+  assert.ok(h.includes('data-testid="reteach-on-beginner"') && h.includes('मुख्य ब्लॉक कल की गलतियों को दोबारा समझाएगा'));
+  assert.deepEqual(summarize(rows, re).map((x) => [x.skillId, x.reteach]), [['N2.3.1', true], ['N2.3.2', true], ['N3.5.2', false]]);
+  assert.deepEqual(buildGenerateOptions({ rows, reteach: re, groups, ready: true }), { groupSkills: { proficient: 'N3.5.2' }, reteachGroups: ['beginner', 'progressor'] });
+});
+check('when going back is NOT possible the box is disabled with ONE plain sentence (the redundant first sentence is gone) and no button', () => {
+  const hu2 = render(u0row() && initialRows({ ladder: day0, proposal: demoProposal, selectedId: 'N0.1.1' }).rows, { beginner: false, progressor: false, proficient: false }, true, { selectedId: 'N0.1.1', ladder: day0 });
+  assert.ok(hu2.includes('कल का कौशल (N2.3.1) आज के कौशल से आगे है, इसलिए इस समूह के लिए आज दोहराना संभव नहीं'));
+  assert.ok(!hu2.includes('कल वाले कौशल N2.3.1 पर होना चाहिए') && !hu2.includes('go-back-reteach-beginner'));
+});
+
+console.log('one dropdown holds both decisions (asked on the click-through: if yesterday decided, why a box AND a list?)');
+check('the re-teach entry exists only where it can be chosen: not for the Progressors, not without a yesterday, not when it would put the group on the wrong side of the day\'s skill', () => {
+  assert.deepEqual(reteachChoice({ label: 'beginner', row: adv.beginner, ladder }), { value: 'reteach:N2.3.1', id: 'N2.3.1' });
+  assert.equal(reteachChoice({ label: 'progressor', row: ex.rows.progressor, ladder }), null);
+  assert.equal(reteachChoice({ label: 'beginner', row: { ...adv.beginner, previous: null }, ladder }), null);
+  assert.equal(reteachChoice({ label: 'beginner', row: initialRows({ ladder: day0, proposal: demoProposal, selectedId: 'N0.1.1' }).rows.beginner, ladder: day0 }), null);
+});
+check('what the list shows: the re-teach entry when the group re-teaches yesterday\'s skill, otherwise the skill', () => {
+  const back = chooseOption({ label: 'beginner', row: adv.beginner, value: 'reteach:N2.3.1', selectedId: 'N2.3.2', ladder });
+  assert.equal(selectValue({ label: 'beginner', row: back.row, reteachOn: back.reteach }), 'reteach:N2.3.1');
+  assert.equal(selectValue({ label: 'beginner', row: adv.beginner, reteachOn: false }), 'N2.3.2');
+  assert.equal(selectValue({ label: 'progressor', row: ex.rows.progressor, reteachOn: true }), 'N2.3.2');       // the Progressors never use the list for it
+});
+check('choosing: the re-teach entry = yesterday\'s skill + re-teach; ANY plain skill, even yesterday\'s, is a NORMAL lesson; another skill after a re-teach ends it', () => {
+  const back = chooseOption({ label: 'beginner', row: adv.beginner, value: 'reteach:N2.3.1', selectedId: 'N2.3.2', ladder });
+  assert.deepEqual([back.row.skillId, back.reteach], ['N2.3.1', true]);
+  const normal = chooseOption({ label: 'beginner', row: back.row, value: 'N2.3.1', selectedId: 'N2.3.2', ladder });
+  assert.deepEqual([normal.row.skillId, normal.reteach], ['N2.3.1', false]);
+  const other = chooseOption({ label: 'beginner', row: back.row, value: 'N1.3.1', selectedId: 'N2.3.2', ladder });
+  assert.deepEqual([other.row.skillId, other.reteach, other.row.source], ['N1.3.1', false, 'teacher']);
+  assert.equal(chooseOption({ label: 'beginner', row: initialRows({ ladder: day0, proposal: demoProposal, selectedId: 'N0.1.1' }).rows.beginner, value: 'reteach:N2.3.1', selectedId: 'N0.1.1', ladder: day0 }), null);
+});
+check('a Beginner group whose decision was RE-TEACH opens on the re-teach entry (and the summary says so); the Proficients likewise', () => {
+  const rp = initialRows({ ladder, proposal: { has_history: true, groups: { ...proposal.groups, beginner: entry('N2.3.1', 'reteach', 'N2.3.1', 'reteach', ev(4, 3), 'reteach'), proficient: entry('N3.3.1', 'not_sure', 'N3.3.1', 'not_sure', ev(0, 0), null) } }, selectedId: 'N2.3.2' });
+  const h = render(rp.rows, rp.reteach);
+  assert.match(selectOf(h, 'beginner'), /<option value="reteach:N2\.3\.1" selected="">/);
+  assert.match(selectOf(h, 'proficient'), /<option value="reteach:N3\.3\.1" selected="">/);
+  assert.equal(rp.rows.beginner.initialReteach, true);
+});
+
+console.log('yesterday\'s skill as a plain entry: not a choice (asked on the click-through: is "the same lesson again" ever needed if re-teach is offered?)');
+check('a group that MOVED ON does not get yesterday\'s skill as a plain entry; it stays in the other groups of the list untouched', () => {
+  const g = visibleChoices({ label: 'beginner', ladder, row: adv.beginner, selectedId: 'N2.3.2', reteachOn: false });
+  const ids = g.flatMap((x) => x.ids);
+  assert.ok(!ids.includes('N2.3.1') && ids.includes('N2.3.2'), ids);
+  assert.ok(g.every((x) => x.ids.length > 0));
+});
+const sameSkill = (() => {                                       // the Proficients are on yesterday's N3.3.1 again, with no decision and no evidence: the app's default is a normal lesson
+  const lad = { ...ladder, proficient: sk('N3.3.1') };
+  const r = initialRows({ ladder: lad, proposal: { has_history: true, groups: { ...proposal.groups, proficient: entry('N3.3.1', null, null, 'no_decision', ev(0, 0), null) } }, selectedId: 'N2.3.2' });
+  return { lad, r };
+})();
+check('a group that is on yesterday\'s skill by DEFAULT (no decision, no evidence) still shows it as a plain entry, labelled a normal lesson, because it is the current choice; the re-teach entry is offered beside it', () => {
+  const h = render(sameSkill.r.rows, sameSkill.r.reteach, true, { ladder: sameSkill.lad });
+  const sel = selectOf(h, 'proficient');
+  assert.equal(sameSkill.r.reteach.proficient, false);
+  assert.ok(/<option value="N3\.3\.1" selected="">N3\.3\.1 · [^<]* — नया पाठ \(दोहराव नहीं\)<\/option>/.test(sel), sel.slice(0, 600));
+  assert.ok(sel.includes('value="reteach:N3.3.1"'));
+});
+check('once that group re-teaches, the plain entry is gone (it is no longer the current choice) and the re-teach entry is selected; the suggestion button restores the default', () => {
+  const t = chooseOption({ label: 'proficient', row: sameSkill.r.rows.proficient, value: 'reteach:N3.3.1', selectedId: 'N2.3.2', ladder: sameSkill.lad });
+  const h = render({ ...sameSkill.r.rows, proficient: t.row }, { ...sameSkill.r.reteach, proficient: t.reteach }, true, { ladder: sameSkill.lad });
+  const sel = selectOf(h, 'proficient');
+  assert.ok(!/<option value="N3\.3\.1"/.test(sel) && /<option value="reteach:N3\.3\.1" selected="">/.test(sel));
+  assert.equal(t.row.initialReteach, false);
+});
+check('where a re-teach is NOT offered nothing is hidden (the Beginners on a Balvatika skill: yesterday\'s skill is not in their list at all)', () => {
+  const dayRows = initialRows({ ladder: day0, proposal: demoProposal, selectedId: 'N0.1.1' }).rows;
+  assert.deepEqual(visibleChoices({ label: 'beginner', ladder: day0, row: dayRows.beginner, selectedId: 'N0.1.1', reteachOn: false }), skillChoices({ label: 'beginner', ladder: day0, row: dayRows.beginner, selectedId: 'N0.1.1' }));
 });
 
 fs.rmSync(out, { recursive: true, force: true });

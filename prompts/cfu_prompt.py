@@ -72,6 +72,9 @@ Rules for the questions:
 - Every piece of arithmetic must be exactly right, including every worked line you write, except the one deliberate mistake in a spot_error (which must really be wrong).
 - Use NEW numbers: no sum, difference or product in a question may repeat an example the group's lesson uses (its I Do, We Do or You Do). A skill with few possible examples (single-digit sums, multiplication tables)
   still has plenty: choose pairs the lesson does not show.
+- A show-me question's right answer, and any wrong answer you list in listen_for, must not be a result the lesson has already written on the board (the results of its I Do, We Do and You Do): a child could copy it from there instead of working it out.
+- At least one of a group's questions must make the child WORK OUT an answer (kind compute or choose). Two 'right or wrong?' questions (kind spot_error) whose lines are both WRONG are not enough: in a lesson about mistakes a child can simply guess 'wrong' twice. If you do write two 'right or wrong?' questions, at least one of the lines you show must be CORRECT (a fair decoy).
+- The questions of ONE group must have DIFFERENT right answers: if one question's right answer is 84, no other question of that group has 84 (a child who knows one answer would know the other).
 - For a comprehension or passage skill, QUOTE the sentence you ask about inside the question: the children are not looking at a page. Never leave a teach block without questions.
 - Stay inside the group's own skill. If the skill is "without regrouping" or "without borrowing", no question may need a carry or a borrow.
 - If the skill is oral (reading aloud, listening, speaking), still make a show-me that needs no speaking: children write the word they heard, mark the pauses with a slash on a sentence on the board,
@@ -112,6 +115,8 @@ def render_topup(cfu_kb: dict, detected: dict, needs: dict) -> str:
         out.append(f"\nGROUP {g.upper()}: write exactly {n['need']} NEW questions.")
         if n.get("existing"):
             out.append("  Already written and valid (do NOT repeat or rephrase them):\n" + "\n".join(f"    - {x}" for x in n["existing"]))
+        if n.get("taken"):
+            out.append("  The right answers of the questions above are " + ", ".join(str(x) for x in n["taken"]) + ": every NEW question must have a DIFFERENT right answer.")
         if n.get("avoid"):
             out.append("  The group's lesson already uses these examples: do NOT use them: " + ", ".join(n["avoid"]))
         if n.get("why"):

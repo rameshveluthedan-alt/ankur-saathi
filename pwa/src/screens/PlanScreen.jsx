@@ -5,6 +5,7 @@ import { getCompetencies, getGroups, generatePlan, getGroupProposal, getLadder }
 import GroupSkillsPanel from '../components/GroupSkillsPanel';
 import GroupSkillsDrawer from '../components/GroupSkillsDrawer';
 import { initialRows, buildGenerateOptions, summarize, panelStatus } from '../services/groupSkills';
+import { TAB_RESELECT_EVENT } from '../services/tabs';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -88,6 +89,13 @@ export default function PlanScreen() {
     }).catch(() => { if (!cancelled) { setLadder(null); setRows(null); setReteach({}); setPanelFailed(true); } });
     return () => { cancelled = true; };
   }, [selectedId, proposal]);
+
+  // tapping the Plan tab again (we are already on this screen) goes back to choosing a skill: the drawer closes and the choice is cleared. Never while a plan is being generated.
+  useEffect(() => {
+    const onReselect = (e) => { if (e.detail === '/' && !generating) { setDrawerOpen(false); setSelectedId(null); } };
+    window.addEventListener(TAB_RESELECT_EVENT, onReselect);
+    return () => window.removeEventListener(TAB_RESELECT_EVENT, onReselect);
+  }, [generating]);
 
   // running timer while a plan is being generated (counts from the real clock, so a throttled tab stays accurate)
   useEffect(() => {

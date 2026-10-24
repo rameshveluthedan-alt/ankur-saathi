@@ -11,6 +11,7 @@ A group's POSITION is read from the last plan it was part of: the skill it was t
 """
 import json
 import math
+import os
 from datetime import timedelta
 from typing import Optional
 
@@ -52,7 +53,7 @@ async def next_options(db, competency_id: str, limit: int = 6) -> list:
         WHERE cp.prerequisite_id = $1 AND cp.prerequisite_type = 'hard'
         ORDER BY c.sort_order LIMIT $2
     """, competency_id, limit)
-    return [dict(r) for r in rows]
+    return (await _curated_first(db, "proficient", competency_id, [dict(r) for r in rows]))[:limit]
 
 
 def reteached_groups(plan_content) -> set:
@@ -180,6 +181,10 @@ async def allowed_skills(db, teacher_id: str, domain_id: str, plan_date, compete
     (A Grade 3 skill for the Beginners, or a Balvatika skill for the Proficients, is not a choice: both were tried on the first screen.)"""
     below = {x["id"] for x in await related_skills(db, competency_id, "below", 200)}
     above = {x["id"] for x in await related_skills(db, competency_id, "above", 200)}
+    for label, bucket in (("beginner", below), ("proficient", above)):          # the reviewer's pick is always a choice, even where the graph does not connect it
+        pick = await curated_pick(db, label, competency_id)
+        if pick:
+            bucket.add(pick)
     day = await _brief(db, competency_id)
     prop = (await propose(db, teacher_id, domain_id, plan_date))["groups"]
     out = {}
@@ -243,9 +248,46 @@ def clean_reteach_groups(reteach_groups) -> Optional[list]:
     return out
 
 
+async def curated_bridge(db, skill_id: str) -> Optional[dict]:
+    """The reviewer-APPROVED bridge for this skill, if there is one: {'predecessor_id', 'successor_id'} (either may be None: that side follows the rule). The table may not exist yet
+    (a deploy before the loader has run): then there is none and nothing breaks. (to_regclass does not raise, so it cannot poison a transaction the way a failed query would.)
+    THE SWITCH: SKILL_BRIDGES=off (also 0, false, no) ignores the table altogether, like CFU_ENABLED: if a wrong row were ever approved, the bridges can be turned off in one command, without a deploy."""
+    if os.environ.get("SKILL_BRIDGES", "on").strip().lower() in ("off", "0", "false", "no"):
+        return None
+    if not await db.fetchval("SELECT to_regclass('skill_bridges') IS NOT NULL"):
+        return None
+    row = await db.fetchrow("SELECT predecessor_id, successor_id FROM skill_bridges WHERE skill_id = $1 AND approved", skill_id)
+    return dict(row) if row else None
+
+
+async def curated_pick(db, label: str, skill_id: str) -> Optional[str]:
+    """The reviewer's skill for this group when the day's skill is skill_id (the Beginners' predecessor, the Proficients' successor), or None. The skill itself means 'stay on it'.
+    Ignored when it would break the grade rule (the Beginners AHEAD of the day's skill, the Proficients BEHIND it): the loader refuses such a row, and this is the belt to its braces."""
+    cb = await curated_bridge(db, skill_id)
+    pick = (cb or {}).get("predecessor_id" if label == "beginner" else "successor_id")
+    if not pick:
+        return None
+    if pick == skill_id:
+        return skill_id
+    grades = {r["id"]: r["grade_level"] for r in await db.fetch("SELECT id, grade_level FROM competencies WHERE id = ANY($1::text[])", [skill_id, pick])}
+    return pick if pick in grades and fits_day(label, grades[pick], grades.get(skill_id)) else None
+
+
+async def _curated_first(db, label: str, skill_id: str, listing: list) -> list:
+    """A list of candidate skills with the reviewer's pick moved to the front (added if the graph does not offer it). The day's skill itself is never listed here."""
+    pick = await curated_pick(db, label, skill_id)
+    if not pick or pick == skill_id:
+        return listing
+    brief = await _brief(db, pick)
+    return ([brief] if brief else []) + [x for x in listing if x["id"] != pick]
+
+
 async def derived_beginner_id(db, competency_id: str) -> str:
     """The Beginners' skill when the teacher selects competency_id and chooses nothing else: its first hard prerequisite (by id), or the skill itself if it has none.
-    The plan and the screen's panel BOTH use this, so they cannot disagree."""
+    The plan and the screen's panel BOTH use this, so they cannot disagree. A reviewer-approved bridge (skill_bridges) comes FIRST."""
+    pick = await curated_pick(db, "beginner", competency_id)
+    if pick:
+        return pick
     row = await db.fetchrow("""
         SELECT prerequisite_id FROM competency_prerequisites
         WHERE competency_id = $1 AND prerequisite_type = 'hard'
@@ -255,7 +297,10 @@ async def derived_beginner_id(db, competency_id: str) -> str:
 
 
 async def derived_proficient_id(db, competency_id: str) -> str:
-    """The Proficients' skill: the first skill (in curriculum order) that depends on this one, or the skill itself if nothing does."""
+    """The Proficients' skill: the first skill (in curriculum order) that depends on this one, or the skill itself if nothing does. A reviewer-approved bridge (skill_bridges) comes FIRST."""
+    pick = await curated_pick(db, "proficient", competency_id)
+    if pick:
+        return pick
     row = await db.fetchrow("""
         SELECT cp.competency_id AS id FROM competency_prerequisites cp
         JOIN competencies c ON c.id = cp.competency_id
@@ -272,4 +317,5 @@ async def ladder(db, competency_id: str) -> Optional[dict]:
         return None
     b, x = await derived_beginner_id(db, competency_id), await derived_proficient_id(db, competency_id)
     return {"beginner": sel if b == competency_id else await _brief(db, b), "progressor": sel, "proficient": sel if x == competency_id else await _brief(db, x),
-            "options": {"beginner": await related_skills(db, competency_id, "below", 40), "proficient": await related_skills(db, competency_id, "above", 40)}}
+            "options": {"beginner": await _curated_first(db, "beginner", competency_id, await related_skills(db, competency_id, "below", 40)),
+                        "proficient": await _curated_first(db, "proficient", competency_id, await related_skills(db, competency_id, "above", 40))}}

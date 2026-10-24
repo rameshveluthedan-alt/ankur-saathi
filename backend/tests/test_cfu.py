@@ -312,7 +312,7 @@ async def main():
         M1, M2 = [i for i in ids["N2.3.2"] if i.endswith("M1")][0], [i for i in ids["N2.3.2"] if i.endswith("M2")][0]
         written = {
             "progressor": [{"kind": "compute", "question_hi": "68 + 17 कितना होगा?", "expected_hi": "85", "listen_for": lf(M1, "75")},
-                           {"kind": "choose", "question_hi": "39 + 46: उत्तर 75 है या 85?", "expected_hi": "85", "listen_for": lf(M1, "75")},
+                           {"kind": "choose", "question_hi": "39 + 47: उत्तर 76 है या 86?", "expected_hi": "86", "listen_for": lf(M1, "76")},       # its own right answer: two questions of one group may not share one (test_cfu_answers.py)
                            {"kind": "compute", "question_hi": "29 + 48 कितना होगा?", "expected_hi": "76", "listen_for": lf(M1, "66")},              # wrong answer: dropped
                            {"kind": "answer", "question_hi": "इकाई का योग 13 आए तो इकाई में क्या?", "expected_hi": "3", "listen_for": lf("N9.9.9-M1", "13")}],  # invented id, no shows: dropped
             "beginner": [{"kind": "compute", "question_hi": "21 + 36 कितना होगा?", "expected_hi": "57", "listen_for": lf(ids["N2.3.1"][0], "x")},
@@ -339,7 +339,7 @@ async def main():
               all(f"GROUP {g.upper()}" in prompt for g in ("BEGINNER", "PROGRESSOR", "PROFICIENT")) and ids["N2.3.1"][0] in prompt and ids["N3.3.1"][0] in prompt and M1 in prompt)
         sec = prompt[prompt.index("GROUP PROGRESSOR"):]
         check("the mistake detected at the last review is flagged and listed before the other Progressor mistakes", "DETECTED at the last review in 2 child(ren)" in sec and sec.index(M2) < sec.index(M1), sec[:300])
-        check("the Progressor block keeps its two valid questions and drops the two bad ones", [q["question_hi"][:8] for q in blocks["progressor"]["cfu"]] == ["68 + 17 ", "39 + 46:"], blocks["progressor"].get("cfu"))
+        check("the Progressor block keeps its two valid questions and drops the two bad ones", [q["question_hi"][:8] for q in blocks["progressor"]["cfu"]] == ["68 + 17 ", "39 + 47:"], blocks["progressor"].get("cfu"))
         check("...with the mistake's Hindi name from the knowledge base", blocks["progressor"]["cfu"][0]["listen_for"][0]["misconception_name_hi"] and blocks["progressor"]["cfu_grounded"] is True)
         check("the Beginner block drops the question that needs a carry (the skill is 'without regrouping') and keeps the others", [q["question_hi"][:8] for q in blocks["beginner"]["cfu"]] == ["21 + 36 ", "47 में क"], blocks["beginner"].get("cfu"))
         check("a model answer that is not a list for the Proficients gives an empty CFU, no crash", blocks["proficient"]["cfu"] == [])
