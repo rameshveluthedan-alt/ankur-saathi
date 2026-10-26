@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../App';
-import { adminSchool, adminTeachers, adminResetPin, adminUnlock, adminRotateJoinCode } from '../services/api';
+import { adminSchool, adminTeachers, adminResetPin, adminUnlock, adminRotateJoinCode, adminRecordConsent } from '../services/api';
+import { CONSENT } from '../services/consent';
 import { PinChangeForm } from './ChangePinScreen';
 
 const GRADE_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -31,6 +32,11 @@ export default function AccountScreen() {
     catch (e) { setError(e.message); }
   };
   const unlock = async (t) => { setError(''); try { await adminUnlock(t.teacher_id); load(); } catch (e) { setError(e.message); } };
+  const confirmConsent = async () => {
+    if (!window.confirm(`${CONSENT.hi}\n\n${CONSENT.en}\n\nक्या यह सही है? (Is this correct?)`)) return;
+    setError('');
+    try { await adminRecordConsent(CONSENT.version); load(); } catch (e) { setError(e.message); }
+  };
   const rotate = async () => {
     if (!window.confirm('नया जॉइन कोड बनाएँ? पुराना कोड बंद हो जाएगा। (Make a new join code? The old one stops working.)')) return;
     try { setSchool({ ...school, ...(await adminRotateJoinCode()) }); } catch (e) { setError(e.message); }
@@ -74,6 +80,20 @@ export default function AccountScreen() {
               <span style={{ fontSize: '0.8125rem' }}>जॉइन कोड (Join code): </span>
               <b data-testid="join-code-value" style={{ fontSize: '1.25rem', letterSpacing: 4 }}>{school.join_code || '—'}</b>
               <button type="button" onClick={rotate} style={{ marginLeft: 8, background: 'none', border: 'none', color: 'var(--green-dark)', textDecoration: 'underline', fontSize: '0.75rem' }} data-testid="rotate-join">नया कोड (New code)</button>
+            </div>
+          )}
+          {school && (
+            <div data-testid="consent-row" style={{ marginBottom: 10, fontSize: '0.8125rem' }}>
+              {school.consent ? (
+                <span data-testid="consent-recorded" style={{ color: 'var(--green-dark)' }}>
+                  ✓ {school.consent.demo ? 'डेमो स्कूल: सभी बच्चे काल्पनिक हैं (Demonstration school: every child is fictional)' : `अभिभावकों की जानकारी और अनुमति की पुष्टि हो चुकी है (Consent confirmed) · ${new Date(school.consent.attested_at).toLocaleDateString('en-IN')}`}
+                </span>
+              ) : (
+                <span data-testid="consent-missing">
+                  <span style={{ color: '#8A5A00' }}>⚠ अभिभावकों की अनुमति की पुष्टि दर्ज नहीं है (Consent is not confirmed yet)</span>
+                  <button type="button" onClick={confirmConsent} data-testid="consent-confirm" style={{ marginLeft: 8, background: 'none', border: 'none', color: 'var(--green-dark)', textDecoration: 'underline', fontSize: '0.8125rem' }}>पुष्टि करें (Confirm)</button>
+                </span>
+              )}
             </div>
           )}
           {temp && (

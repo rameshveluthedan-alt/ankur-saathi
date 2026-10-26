@@ -18,7 +18,7 @@ tapping one fills in the phone number and PIN.
 2. **PIN reset:** sign in as the admin (9876500000), open Profile (the last tab), reset the "Change PIN" account's PIN. A temporary PIN appears once.
    Sign out, sign in as 9000000199 with it: the only screen is "choose a new PIN".
 3. **A new school:** choose "New teacher? Register" with any new phone number and school code: you become that school's admin and
-   see its join code. Registering into the demo school needs its join code: **DEMO26**.
+   see its join code. Creating a school asks you to **confirm a short statement** (that the children's parents have been told and have given permission, that photos are not kept and names never go to the AI): tick the box under the join code field. Joining an existing school asks for nothing, because that school confirmed it when it was created. Registering into the demo school needs its join code: **DEMO26**. The admin's Profile shows the school's confirmation, or a button to confirm it for a school created earlier.
 
 ## If the AI limit is reached
 The demo's AI use is capped so the credits last through evaluation (`docs/AI_BUDGET.md`). When a limit is reached, a plan for a skill with a

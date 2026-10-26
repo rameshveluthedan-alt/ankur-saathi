@@ -319,7 +319,7 @@ def run_checks(root: Path, final: bool = False, deadline: str = DEADLINE, histor
         add("FAIL" if lacks else "PASS", "guide_content", ("docs/EVALUATOR_GUIDE.md lacks: " + ", ".join(lacks)) if lacks else "the evaluator guide has the live link, the sign-ins, a 'Sample inputs' section and a 'Frozen version' section")
         left = g.count("FILL ON FREEZE")
         if left:
-            add("PENDING", "guide_placeholders", f"docs/EVALUATOR_GUIDE.md still has {left} 'FILL ON FREEZE' place(s) (the repository link, the video, the commit, the tag, the revision, the sample photos...): fill them on the freeze day; --final refuses to pass until they are gone")
+            add("PENDING", "guide_placeholders", f"docs/EVALUATOR_GUIDE.md still has {left} 'FILL ON FREEZE' place(s) (the video, the commit, the tag, the revision, the sample photos...): fill them on the freeze day; --final refuses to pass until they are gone")
         else:
             add("PASS", "guide_placeholders", "the evaluator guide has no unfilled FILL ON FREEZE marker")
         # The recorded plans are what a teacher (or an evaluator) sees when the AI limit is reached, and the app lists every file in db/seeds/sample_plans. So the folder must hold exactly the plans
@@ -393,6 +393,12 @@ def exit_code(res: list, final: bool) -> int:
     return 1 if any(r.level == "FAIL" or (final and r.level == "PENDING") for r in res) else 0
 
 
+def format_lines(res) -> list:
+    """One line per result, in aligned columns. The key column is as wide as the longest key: it was a fixed 17, and 'guide_placeholders' (18) and 'sample_plans_review' (19) ran into their messages."""
+    w = max((len(r.key) for r in res), default=0) + 2
+    return [f"  {r.level:<8}{r.key:<{w}}{r.text}" for r in res]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="The gate for the Stage 2 source-code deliverable.", epilog=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--final", action="store_true", help="the freeze-day mode: PENDING counts as FAIL; git must be clean and tagged")
@@ -402,8 +408,8 @@ def main() -> int:
     args = ap.parse_args()
     res = run_checks(Path(args.root), args.final, args.deadline, history=not args.no_history)
     print(f"Ankur Saathi submission check ({'FINAL' if args.final else 'normal'} mode), repository {Path(args.root).resolve()}\n")
-    for r in res:
-        print(f"  {r.level:<8}{r.key:<17}{r.text}")
+    for line in format_lines(res):
+        print(line)
     n = {k: sum(1 for r in res if r.level == k) for k in ("FAIL", "PENDING", "WARN")}
     bad = exit_code(res, args.final)
     print(f"\nRESULT: {n['FAIL']} FAIL, {n['PENDING']} PENDING, {n['WARN']} WARN" + ("" if not bad else ("  <-- fix the FAIL lines" + (" (and the PENDING ones: this is --final)" if args.final and n['PENDING'] else ""))))

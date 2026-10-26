@@ -161,6 +161,14 @@ res = run({"docs/EVALUATOR_GUIDE.md": GOOD["docs/EVALUATOR_GUIDE.md"].replace("r
 check("a guide that does not say which skills have a recorded plan is a FAIL (the folder cannot be checked against it)", has(res, "FAIL", "sample_plans", "ONE line"))
 res = run(remove=("db/seeds/sample_plans/N2.3.2.json", "db/seeds/sample_plans/N0.1.1.json"))
 check("a repository with no recorded-plans folder at all is not asked about it (there is nothing to compare)", not any(r.key in ("sample_plans", "sample_plans_extra") for r in res), [r.key for r in res])
+print("the printed lines")
+lines = sc.format_lines([sc.R("PASS", "secrets", "ok"), sc.R("PENDING", "guide_placeholders", "docs/EVALUATOR_GUIDE.md still has 9 places"), sc.R("PENDING", "sample_plans_review", "2 recorded plans are unsigned")])
+import re as _re
+parsed = [_re.match(r"^  (\S+)\s+(\S+)\s{2,}(.*)$", l) for l in lines]
+check("every line splits into level, key and message, however long the key (the 18- and 19-letter keys used to run into their messages)", all(parsed) and [m.group(2) for m in parsed] == ["secrets", "guide_placeholders", "sample_plans_review"] and parsed[1].group(3).startswith("docs/EVALUATOR_GUIDE.md") and parsed[2].group(3).startswith("2 recorded"), lines)
+check("the messages start in the same column on every line", len({l.index(m.group(3)) for l, m in zip(lines, parsed)}) == 1, [l.index(m.group(3)) for l, m in zip(lines, parsed)])
+check("an empty list prints nothing and does not fail", sc.format_lines([]) == [])
+
 print("a plan made by the fake model must never be in the folder")
 res = run({"db/seeds/sample_plans/N0.1.1.json": '{"anchor": {}, "_stub": true, "_reviewed_by": null}\n'})
 check("a _stub plan in db/seeds/sample_plans is a FAIL that says it came from the fake model", has(res, "FAIL", "sample_plans", "FAKE model") and sc.exit_code(res, final=False) == 1)

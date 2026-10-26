@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../App';
 import { login, registerTeacher, setToken } from '../services/api';
+import { CONSENT } from '../services/consent';
 
 // Published demo accounts (fictional data only). Shown for reviewers; set VITE_DEMO_HINT=false for a real school.
 // If you change the demo PINs with scripts/auth_admin.py, change them here too.
@@ -25,6 +26,7 @@ export default function LoginScreen() {
   const [schoolCode, setSchoolCode] = useState('');
   const [joinCode, setJoinCode] = useState('');
   const [grades, setGrades] = useState([]);
+  const [consent, setConsent] = useState(false);       // only asked when the school is NEW (no join code): the school confirms that parents have been told
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [welcome, setWelcome] = useState(null);       // a new school's join code, shown once to its admin
@@ -48,8 +50,10 @@ export default function LoginScreen() {
     if (!phone.trim() || !schoolCode.trim() || !grades.length) { setError('फ़ोन, स्कूल कोड और कम से कम एक कक्षा चुनें (Phone, school code and at least one grade).'); return; }
     if (pin.length < 4) { setError('पिन 4 से 6 अंकों का होना चाहिए (The PIN must be 4 to 6 digits).'); return; }
     if (pin !== pin2) { setError('दोनों पिन एक जैसे नहीं हैं (The two PINs do not match).'); return; }
+    const creating = !joinCode.trim();
+    if (creating && !consent) { setError('नया स्कूल बनाने के लिए ऊपर की बात की पुष्टि करें (To create a new school, confirm the statement above).'); return; }
     setLoading(true); setError('');
-    try { finish(await registerTeacher('hash_' + phone.trim(), pin, schoolCode.trim(), joinCode.trim(), grades)); }
+    try { finish(await registerTeacher('hash_' + phone.trim(), pin, schoolCode.trim(), joinCode.trim(), grades, creating ? CONSENT.version : null)); }
     catch (e) { setError(e.message || 'पंजीकरण नहीं हो सका (Registration failed)'); }
     setLoading(false);
   };
@@ -86,6 +90,17 @@ export default function LoginScreen() {
             <input type="text" value={schoolCode} onChange={e => setSchoolCode(e.target.value)} placeholder="MP-1234" data-testid="school-code" style={field} />
             <label style={label}>जॉइन कोड, अगर आपका स्कूल पहले से जुड़ा है (Join code, if your school is already registered)</label>
             <input type="text" value={joinCode} onChange={e => setJoinCode(e.target.value.toUpperCase().slice(0, 8))} placeholder="ABC234" data-testid="join-code" style={{ ...field, letterSpacing: 3 }} />
+            {!joinCode.trim() && (
+              <div data-testid="consent-block" style={{ background: 'var(--green-bg)', border: '1px solid var(--green-light)', borderRadius: 8, padding: 10, margin: '4px 0 12px' }}>
+                <div style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: 4 }}>नया स्कूल जोड़ रहे हैं? पुष्टि करें (Adding a new school? Please confirm)</div>
+                <p lang="hi" data-testid="consent-hi" style={{ fontSize: '0.8125rem', margin: '0 0 4px' }}>{CONSENT.hi}</p>
+                <p lang="en" data-testid="consent-en" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '0 0 8px' }}>{CONSENT.en}</p>
+                <label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: '0.875rem', minHeight: 44 }}>
+                  <input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)} data-testid="consent-check" style={{ width: 24, height: 24 }} />
+                  <span>हाँ, यह सही है (Yes, this is correct)</span>
+                </label>
+              </div>
+            )}
             <label style={label}>आप किन कक्षाओं को पढ़ाते हैं? (Grades you teach)</label>
             <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
               {GRADE_CHOICES.map(([g, hi]) => (

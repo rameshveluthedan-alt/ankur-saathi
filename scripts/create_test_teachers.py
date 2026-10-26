@@ -82,6 +82,7 @@ async def ensure_admin(db, pin: str):
     if not await db.fetchval("SELECT 1 FROM teachers WHERE phone_hash = $1", ph):
         await rs.register_teacher(db, ph, TEST_SCHOOL, ["grade_1"], pin_hash=auth.hash_pin(pin), enforce_join=False)
     await db.execute("UPDATE teachers SET role = 'school_admin', is_demo = TRUE, pin_fixed = TRUE WHERE phone_hash = $1", ph)
+    await auth.ensure_demo_consent(db, TEST_SCHOOL)          # the test school says that everything in it is fictional
 
 
 async def cmd_normalise(db, args):

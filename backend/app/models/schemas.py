@@ -23,6 +23,11 @@ class RegisterTeacherRequest(BaseModel):
     enrolled_grades: list[str]
     pin: str
     join_code: Optional[str] = None      # required when the school already exists: the admin shares it
+    consent_version: Optional[str] = None   # required when the school is NEW: the version of the consent statement the person confirmed (pwa/src/services/consent.js)
+
+
+class ConsentRequest(BaseModel):
+    version: str                         # the version of the consent statement the admin read and confirmed
 
 
 class ChangePinRequest(BaseModel):

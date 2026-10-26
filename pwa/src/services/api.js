@@ -63,8 +63,9 @@ export const login = (phoneHash, pin) =>
 
 // A new teacher registers with a school code, the grades taught and a PIN. A new school code makes them the school admin;
 // an existing school needs its join code.
-export const registerTeacher = (phoneHash, pin, schoolCode, joinCode, grades) =>
-  request('/auth/register', { method: 'POST', body: JSON.stringify({ phone_hash: phoneHash, pin, school_code: schoolCode, join_code: joinCode || null, enrolled_grades: grades }) });
+// consentVersion: needed when the school is NEW (the version of the consent statement the person confirmed: services/consent.js); joining a school with its join code needs none.
+export const registerTeacher = (phoneHash, pin, schoolCode, joinCode, grades, consentVersion) =>
+  request('/auth/register', { method: 'POST', body: JSON.stringify({ phone_hash: phoneHash, pin, school_code: schoolCode, join_code: joinCode || null, enrolled_grades: grades, consent_version: consentVersion || null }) });
 
 export const changePin = (currentPin, newPin) =>
   request('/auth/change-pin', { method: 'POST', body: JSON.stringify({ current_pin: currentPin, new_pin: newPin }) });
@@ -77,6 +78,7 @@ export const adminTeachers = () => request('/admin/teachers');
 export const adminResetPin = (id) => request(`/admin/teachers/${id}/reset-pin`, { method: 'POST' });
 export const adminUnlock = (id) => request(`/admin/teachers/${id}/unlock`, { method: 'POST' });
 export const adminRotateJoinCode = () => request('/admin/school/join-code', { method: 'POST' });
+export const adminRecordConsent = (version) => request('/admin/school/consent', { method: 'POST', body: JSON.stringify({ version }) });
 
 // A plain link cannot carry the token, so printed pages and downloads are fetched with it and then opened.
 export async function openAuthedPage(path) {

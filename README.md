@@ -158,7 +158,7 @@ docs/             one note per design topic (below)
 - No child's name is ever sent to the AI; photos are read in memory and never stored; there are no trackers, advertisements or third-party scripts.
 - The demo holds **fictional data only**; its PINs are public on purpose.
 - Secrets live only in `backend/.env` (git-ignored) or in Secret Manager. `scripts/precommit_check.py` and `scripts/submission_check.py` fail on a key, a password or a `.env` file in the repository.
-- What is not done yet (for example recording parental consent) is listed honestly in [docs/PRIVACY.md](docs/PRIVACY.md) and [docs/STATUS.md](docs/STATUS.md).
+- What is not done yet (for example consent from each parent: the app records the school's confirmation only) is listed honestly in [docs/PRIVACY.md](docs/PRIVACY.md) and [docs/STATUS.md](docs/STATUS.md).
 
 ## Documentation
 | | |

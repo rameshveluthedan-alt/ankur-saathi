@@ -46,13 +46,13 @@ def sql(q, *args, fetch=False):
 
 def clean():
     sql("DELETE FROM teachers WHERE phone_hash LIKE 'hash_authtest_%'")
-    sql("DELETE FROM schools WHERE school_code LIKE 'AUTHTEST-%'")
+    sql("DELETE FROM schools WHERE school_code LIKE 'AUTHTEST-%'")          # a school's consent rows go with it (ON DELETE CASCADE)
 
 
 H = lambda t: {"Authorization": f"Bearer {t}"}
 clean()
 with TestClient(app) as c:
-    reg = lambda phone, pin, school, grades=("grade_1",), join=None: c.post("/api/auth/register", json={"phone_hash": f"hash_authtest_{phone}", "pin": pin, "school_code": school, "enrolled_grades": list(grades), "join_code": join})
+    reg = lambda phone, pin, school, grades=("grade_1",), join=None: c.post("/api/auth/register", json={"phone_hash": f"hash_authtest_{phone}", "pin": pin, "school_code": school, "enrolled_grades": list(grades), "consent_version": "v1", "join_code": join})
     login = lambda phone, pin: c.post("/api/auth/login", json={"phone_hash": f"hash_authtest_{phone}", "pin": pin})
     code = lambda r: (r.json().get("detail") or {}).get("code") if isinstance(r.json().get("detail"), dict) else None
 
@@ -66,6 +66,37 @@ with TestClient(app) as c:
     r = reg("a2", "5937", "authtest-a", join=A1["join_code"].lower()); A2 = r.json()
     check("...with the right code (any case) is accepted as a teacher", r.status_code == 200 and A2["role"] == "teacher", r.text[:100])
     B1 = reg("b1", "6048", "authtest-b").json()
+
+    print("1b. consent: a NEW school needs the school's confirmation (kept with its exact wording); joining one does not")
+    post_new = lambda phone, school, **extra: c.post("/api/auth/register", json={"phone_hash": f"hash_authtest_{phone}", "pin": "7392", "school_code": school, "enrolled_grades": ["grade_1"], **extra})
+    r = post_new("c0", "authtest-c")
+    check("a new school WITHOUT the confirmation is refused (400, consent_required), with a message in Hindi as well", r.status_code == 400 and code(r) == "consent_required" and "सहमति" in r.text, r.text[:140])
+    check("...and nothing was created: no school and no teacher", not sql("SELECT 1 FROM schools WHERE school_code = 'AUTHTEST-C'", fetch=True) and not sql("SELECT 1 FROM teachers WHERE phone_hash = 'hash_authtest_c0'", fetch=True))
+    r = post_new("c0", "authtest-c", consent_version="v0")
+    check("a confirmation of an OLD wording is refused too", r.status_code == 400 and code(r) == "consent_required", r.text[:120])
+    r = post_new("c1", "authtest-c", consent_version="v1"); C1 = r.json()
+    check("the current wording creates the school, with its admin", r.status_code == 200 and C1["role"] == "school_admin" and C1.get("join_code"), r.text[:140])
+    rows = sql("SELECT version, statement, attested_by FROM school_consents WHERE school_id = (SELECT id FROM schools WHERE school_code = 'AUTHTEST-C')", fetch=True)
+    check("ONE confirmation is kept: its version, who gave it, and the exact wording in English AND Hindi (the server's own, not text from the browser)",
+          len(rows) == 1 and rows[0]["version"] == "v1" and rows[0]["attested_by"] is not None and "Children’s names are never sent to the AI." in rows[0]["statement"] and "अनुमति" in rows[0]["statement"], [dict(x) for x in rows][:1])
+    r = c.post("/api/auth/register", json={"phone_hash": "hash_authtest_c2", "pin": "7392", "school_code": "authtest-c", "enrolled_grades": ["grade_1"], "join_code": C1["join_code"]})
+    check("a teacher JOINING that school with its join code needs no confirmation: the school gave it when it was created", r.status_code == 200 and r.json()["role"] == "teacher", r.text[:120])
+    C2 = r.json()
+    r = c.get("/api/admin/school", headers=H(C1["token"])); sch = r.json()
+    check("the admin's school screen shows the confirmation: version, the date and only the END of the phone number", r.status_code == 200 and sch["consent"]["version"] == "v1" and sch["consent"]["by"].startswith("••••") and sch["consent"]["attested_at"], r.text[:200])
+    check("...and the exact wording to read (both languages), so a school created earlier can confirm it", sch["consent_text"]["version"] == "v1" and "classwork" in sch["consent_text"]["en"] and "कक्षा-कार्य" in sch["consent_text"]["hi"])
+    sql("DELETE FROM school_consents WHERE school_id = (SELECT id FROM schools WHERE school_code = 'AUTHTEST-A')")          # school A becomes one registered before this existed
+    r = c.get("/api/admin/school", headers=H(A1["token"]))
+    check("a school registered BEFORE this existed (simulated: its record removed) shows 'nothing recorded' (None), not an error", r.status_code == 200 and r.json()["consent"] is None, r.text[:160])
+    r = c.post("/api/admin/school/consent", headers=H(A1["token"]), json={"version": "v0"})
+    check("an admin confirming the OLD wording is refused (409, consent_stale)", r.status_code == 409 and code(r) == "consent_stale", r.text[:120])
+    r = c.post("/api/admin/school/consent", headers=H(A1["token"]), json={"version": "v1"})
+    check("an admin confirms for a school that has none: recorded, and her school screen now shows it", r.status_code == 200 and r.json()["consent"]["version"] == "v1" and c.get("/api/admin/school", headers=H(A1["token"])).json()["consent"] is not None, r.text[:160])
+    r = c.post("/api/admin/school/consent", headers=H(C1["token"]), json={"version": "v1"})
+    check("confirming again adds a second row and the LATEST counts (the first is kept: it shows what was agreed, and when)", r.status_code == 200 and sql("SELECT count(*) AS n FROM school_consents WHERE school_id = (SELECT id FROM schools WHERE school_code = 'AUTHTEST-C')", fetch=True)[0]["n"] == 2)
+    r = c.post("/api/admin/school/consent", headers=H(C2["token"]), json={"version": "v1"})
+    check("an ordinary teacher cannot confirm for the school (403, not_admin)", r.status_code == 403 and code(r) == "not_admin", r.text[:120])
+    check("...and nobody without a session can (401)", c.post("/api/admin/school/consent", json={"version": "v1"}).status_code == 401)
 
     print("2. login")
     r = login("a1", "4826"); check("the right PIN signs in and returns a token", r.status_code == 200 and r.json()["token"])
@@ -148,7 +179,7 @@ with TestClient(app) as c:
     print("9. the audit trail")
     r = c.get(f"/api/progress/export/class/{ida1}", headers=H(tA1)); check("exporting a class report (it has names) works for the owner", r.status_code == 200)
     ev = {x["event"] for x in sql("SELECT event FROM auth_events WHERE teacher_id IN (SELECT id FROM teachers WHERE phone_hash LIKE 'hash_authtest_%')", fetch=True)}
-    want = {"registered", "login_ok", "login_failed", "locked", "unlocked", "pin_changed", "pin_reset_by_admin", "class_report_export"}
+    want = {"registered", "login_ok", "login_failed", "locked", "unlocked", "pin_changed", "pin_reset_by_admin", "class_report_export", "consent_recorded"}
     check("every sign-in event is recorded", want <= ev, want - ev)
 clean()
 if failures:

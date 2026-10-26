@@ -6,7 +6,7 @@ from fastapi import APIRouter, HTTPException, Request
 
 from app.core.database import get_db
 from app.core.security import ensure_owner
-from app.models.schemas import ChangePinRequest, LoginRequest, LoginResponse, RegisterTeacherRequest
+from app.models.schemas import ChangePinRequest, ConsentRequest, LoginRequest, LoginResponse, RegisterTeacherRequest
 from app.services import auth_service, register_service
 
 auth_router = APIRouter()
@@ -35,7 +35,10 @@ async def register(req: RegisterTeacherRequest):
     async with get_db() as db:
         try:
             made = await register_service.register_teacher(db, req.phone_hash, req.school_code, req.enrolled_grades,
-                                                           pin_hash=auth_service.hash_pin(req.pin), join_code=req.join_code)
+                                                           pin_hash=auth_service.hash_pin(req.pin), join_code=req.join_code,
+                                                           require_consent=True, consent_version=req.consent_version)
+        except register_service.ConsentRequired as e:
+            raise HTTPException(400, {"message": str(e), "code": "consent_required"})
         except FileExistsError as e:
             raise HTTPException(409, {"message": str(e), "code": "exists"})
         except PermissionError as e:
@@ -86,6 +89,16 @@ async def admin_rotate_join_code(request: Request):
     async with get_db() as db:
         try:
             return await auth_service.admin_rotate_join_code(db, request.state.session.teacher_id)
+        except auth_service.AuthError as e:
+            _raise(e)
+
+
+@auth_router.post("/admin/school/consent", tags=["Admin"])
+async def admin_record_consent(req: ConsentRequest, request: Request):
+    """The school admin confirms the consent statement for a school created before it existed. The wording kept is the server's own for the version named."""
+    async with get_db() as db:
+        try:
+            return await auth_service.admin_record_consent(db, request.state.session.teacher_id, req.version)
         except auth_service.AuthError as e:
             _raise(e)
 

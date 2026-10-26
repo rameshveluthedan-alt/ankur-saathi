@@ -292,13 +292,21 @@ async def commit_register(db, teacher_id: str, rows: list, filename: str = "") -
             "total_children": total, "enrolled_grades": grades, "names_saved": names_saved}
 
 
-async def register_teacher(db, phone_hash: str, school_code: str, grades: list, pin_hash: str = None, join_code: str = None, enforce_join: bool = True) -> dict:
+class ConsentRequired(ValueError):
+    """A NEW school may only be created by someone who confirms the consent statement (the API asks for it; the operator's own scripts do not)."""
+
+
+async def register_teacher(db, phone_hash: str, school_code: str, grades: list, pin_hash: str = None, join_code: str = None, enforce_join: bool = True,
+                           require_consent: bool = False, consent_version: str = None) -> dict:
     """
     A new teacher. A NEW school code creates the school: its first teacher becomes the school admin and the school gets a join code.
     For a school that already exists the teacher must give its join code (which the admin shares), so that knowing a school's name
     is not enough to attach to it. enforce_join=False is for the operator's own scripts only.
+    require_consent=True (the API sets it): a NEW school is created only when consent_version names the current wording of the consent statement, and the confirmation is kept in the same
+    transaction as the school and its admin, so a school cannot exist without it. Joining an existing school asks for nothing: the school confirmed when it was created.
     """
     import hmac
+    from app.services import auth_service
     code = re.sub(r"\s+", "", _clean(school_code)).upper()
     if not re.fullmatch(r"[A-Z0-9][A-Z0-9\-_]{2,24}", code):
         raise ValueError("School code must be 3 to 25 letters, digits or dashes.")
@@ -309,10 +317,16 @@ async def register_teacher(db, phone_hash: str, school_code: str, grades: list, 
         raise ValueError("Enter a phone number.")
     if await db.fetchval("SELECT 1 FROM teachers WHERE phone_hash = $1", phone_hash):
         raise FileExistsError("This phone number is already registered. Please log in.")
+    if require_consent:
+        await auth_service.ensure_consent_table(db)            # before the transaction: a failure here cannot abort it
     async with db.transaction():
         school = await db.fetchrow("SELECT id, join_code FROM schools WHERE school_code = $1", code)
         role, new_code = "teacher", None
         if not school:
+            if require_consent and not consent_version:
+                raise ConsentRequired("To create a new school, confirm the consent statement. (नया स्कूल बनाने के लिए सहमति की पुष्टि करें।)")
+            if require_consent and consent_version != auth_service.CONSENT_VERSION:
+                raise ConsentRequired("The consent wording has changed: reload the page and read it again. (शब्द बदल गए हैं: पेज दोबारा खोलकर पढ़ें।)")
             from app.services.auth_service import new_join_code
             new_code = new_join_code()
             school_id = await db.fetchval("INSERT INTO schools (state_id, school_code, join_code) VALUES ('mp', $1, $2) RETURNING id", code, new_code)
@@ -329,4 +343,6 @@ async def register_teacher(db, phone_hash: str, school_code: str, grades: list, 
             """INSERT INTO teachers (school_id, phone_hash, enrolled_grades, is_multigrade, role, pin_hash, pin_changed_at)
                VALUES ($1, $2, $3, $4, $5, $6, CASE WHEN $6::text IS NULL THEN NULL ELSE now() END) RETURNING id""",
             school_id, phone_hash, wanted, len(wanted) > 1, role, pin_hash)
+        if new_code and require_consent:
+            await auth_service.record_consent(db, school_id, teacher_id)          # the school, its admin and its confirmation: together or not at all
     return {"teacher_id": str(teacher_id), "school_code": code, "enrolled_grades": wanted, "total_children": 0, "role": role, "join_code": new_code}

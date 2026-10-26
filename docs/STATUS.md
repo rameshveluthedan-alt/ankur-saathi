@@ -81,7 +81,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 | ❌ | The name-to-roll mapping lives ONLY on the teacher's device (IndexedDB); the server holds no mapping | Different in the build: names are stored in a separate teacher-only table on the server and shown only on the teacher's own screens. They are never sent to the AI (a test fails the build if code that builds an AI request reads that table: `docs/PRIVACY.md`). |
 | ❌ | Local-first storage; the server holds only anonymised aggregates | The server holds per-child positions and evidence keyed by roll number (and the names table above). |
 | ✅ | Hosted in India | Cloud Run and Cloud SQL in asia-south1 (Mumbai). Worksheet photos (roll numbers and handwritten answers) are sent to the AI provider for analysis: `docs/PRIVACY.md`. |
-| ❌ | Verifiable parental consent recorded at onboarding | Not built. `docs/PRIVACY.md` lists it under 'Before real children's names are used (not done yet)'. |
+| 🟡 | Verifiable parental consent recorded at onboarding | The school confirms, when it is created, that parents have been told and have given permission; the exact wording, its version, the date and who confirmed are kept, and an older school's admin can confirm later. It is the SCHOOL's confirmation, not a record from each parent (`docs/PRIVACY.md`, "Consent"). |
 | ✅ | No tracking, profiling or behavioural monitoring | No analytics, ads, trackers or third-party hosts. |
 | ✅ | Sign-in, school join code, admin tools, rate limits, spend caps | Beyond the proposal: phone + PIN, lockouts, admin PIN reset and unlock, daily spend caps. |
 
@@ -125,7 +125,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 5. **Speed** is about 65 seconds per plan (up to about 2 minutes when a retry is needed), not under 60.
 6. **Offline:** reading what was loaded works offline; capture and decisions are not queued for later.
 7. **Worksheets** are print-ready HTML printed from the browser, not server-made PDFs.
-8. **Consent:** recording of parental consent is not built (`docs/PRIVACY.md`).
+8. **Consent from each parent:** the school's confirmation is recorded; consent from each parent, and the lawful basis, are not (`docs/PRIVACY.md`).
 
 ## Roadmap (not built)
 

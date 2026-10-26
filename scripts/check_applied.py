@@ -55,6 +55,17 @@ CHECKS = [
     ("v28t", "the Plan screen goes back to choosing a skill", "pwa/src/screens/PlanScreen.jsx", "TAB_RESELECT_EVENT"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/services/groupSkills.js", "export function toggleReteach"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/components/GroupSkillsPanel.jsx", "toggleReteach"),
+    ("v29x", "the school's consent confirmation: a table created on first use, kept with the exact wording", "db/schema/13_school_consent.sql", "CREATE TABLE IF NOT EXISTS school_consents"),
+    ("v29x", "a new school is created only with the confirmation, and the record is kept in the same transaction", "backend/app/services/register_service.py", "ConsentRequired"),
+    ("v29x", "the wording, the record, the admin's confirmation and the demo statement", "backend/app/services/auth_service.py", "CONSENT_VERSION"),
+    ("v29x", "the admin route to confirm consent", "backend/app/api/auth_routes.py", "/admin/school/consent"),
+    ("v29x", "the consent wording, the same as the server's (a test compares them)", "pwa/src/services/consent.js", "CONSENT"),
+    ("v29x", "the sign-up form asks a NEW school to confirm; joining a school asks nothing", "pwa/src/screens/LoginScreen.jsx", "consent-block"),
+    ("v29x", "the admin's Profile shows the confirmation or a button to give it", "pwa/src/screens/AccountScreen.jsx", "consent-row"),
+    ("v29x", "the consent rules are tested (backend, screens)", "backend/tests/test_consent.py", None),
+    ("v29x", "the consent screens are tested in a simulated browser", "pwa/tests/consent.dom.test.mjs", None),
+    ("v29w", "the gate prints its results in aligned columns, however long a key is", "scripts/submission_check.py", "def format_lines"),
+    ("v29w", "the evaluator guide has the repository address (GitHub)", "docs/EVALUATOR_GUIDE.md", "github.com/rameshveluthedan-alt/ankur-saathi"),
     ("v29v", "the Hindi style check flags the old Tens | Ones box word only in a place-value sentence (खाना = food, खाने = to eat)", "backend/tests/test_hindi_style.py", "def frame_left"),
     ("v29u", "EVERY recorded plan must be read and signed, with warnings or without (the tool and the gate)", "scripts/review_sample_plans.py", "not yet read"),
     ("v29t", "the review page carries a checklist for the reader (Hindi, answers, the skill, the story, no names, the warnings)", "scripts/review_sample_plans.py", "What to check"),
@@ -160,7 +171,7 @@ def kind_of(bundle, rel):
     return "older" if bundle.startswith("v27") else "current"
 
 
-VERSION = "v29v, 25 Oct: lists the bundles v27l to v29v; the package v29v-current replaces v28m to v29u"
+VERSION = "v29x, 26 Oct: lists the bundles v27l to v29x; the package v29x-current replaces v28m to v29w"
 
 
 def main():
@@ -187,15 +198,15 @@ def main():
     # the packages: v28p-current holds the current version of every file of the v28 series, so it is 'in' when every v28 row is OK
     series = [b for b in status if b.startswith("v28")]
     package_ok = all(status[b] for b in series)
-    print(f"\n  PACKAGE v29v-current (every file of v28a to v29v, current):  {'OK' if package_ok else 'BEHIND'}")
+    print(f"\n  PACKAGE v29x-current (every file of v28a to v29x, current):  {'OK' if package_ok else 'BEHIND'}")
     print()
     if not kinds:
         print("Everything listed is in this working copy.")
         return 0
     if "current" in kinds:
-        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29v-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
-        print("    tar -xzf <downloads>\\v29v-current.tar.gz -C <this folder>")
-        print("  and do NOT extract v28a to v29u afterwards: each holds older copies of some of the same files and would put them back.")
+        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29x-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
+        print("    tar -xzf <downloads>\\v29x-current.tar.gz -C <this folder>")
+        print("  and do NOT extract v28a to v29w afterwards: each holds older copies of some of the same files and would put them back.")
     if "older" in kinds:
         print(f"Older bundles missing: {', '.join(sorted(kinds['older']))}. Apply each, oldest first, with  tar -xzf <downloads>\\<bundle>.tar.gz -C <this folder>")
     print("Run this check again afterwards: python scripts\\check_applied.py")

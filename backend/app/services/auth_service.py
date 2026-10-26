@@ -16,6 +16,7 @@ import hashlib
 import hmac
 import json
 import re
+from pathlib import Path
 import secrets
 import time
 from datetime import datetime, timedelta, timezone
@@ -215,6 +216,65 @@ async def change_pin(db, teacher_id, current_pin: str, new_pin: str) -> dict:
     return {**await _profile(db, fresh), "token": _issue(fresh), "expires_in_hours": get_settings().session_hours}
 
 
+# ── the school's consent confirmation ───────────────────────────────────────
+
+# What a school confirms when it is created, and the wording is kept with every confirmation. pwa/src/services/consent.js holds the SAME words: backend/tests/test_consent.py compares them.
+CONSENT_VERSION = "v1"
+CONSENT_TEXT = {
+    "en": "The school has told the children’s parents or guardians that the children’s classwork will be read in this app, and has their permission. "
+          "Photos are read by an AI and are not kept. Children’s names are never sent to the AI.",
+    "hi": "स्कूल ने बच्चों के अभिभावकों को बता दिया है कि बच्चों का कक्षा-कार्य इस ऐप में पढ़ा जाएगा, और उनकी अनुमति ले ली है। "
+          "फ़ोटो AI द्वारा पढ़ी जाती हैं और सहेजी नहीं जातीं। बच्चों के नाम AI को कभी नहीं भेजे जाते।",
+}
+DEMO_CONSENT = {"version": "demo", "statement": "Demonstration school: every child and every record in it is fictional. No real child's data is held here."}
+_CONSENT_DDL = Path(__file__).resolve().parents[3] / "db" / "schema" / "13_school_consent.sql"
+_consent_table_ready = False
+
+
+def consent_statement() -> str:
+    """The wording as it is stored with a confirmation: English, then Hindi."""
+    return CONSENT_TEXT["en"] + "\n" + CONSENT_TEXT["hi"]
+
+
+async def ensure_consent_table(db):
+    """Create the table on first use (idempotent), once per process. Called BEFORE a transaction starts, so a failure here cannot abort one."""
+    global _consent_table_ready
+    if not _consent_table_ready:
+        await db.execute(_CONSENT_DDL.read_text(encoding="utf-8"))
+        _consent_table_ready = True
+
+
+async def record_consent(db, school_id, teacher_id, version: str = None, statement: str = None) -> dict:
+    """Keep one confirmation. The wording stored is the server's own for that version, never text sent by a browser. Run inside the caller's transaction if there is one."""
+    version = version or CONSENT_VERSION
+    if version == CONSENT_VERSION and statement is None:
+        statement = consent_statement()
+    if not statement:
+        raise ValueError("A confirmation needs its wording.")
+    row = await db.fetchrow("INSERT INTO school_consents (school_id, attested_by, version, statement) VALUES ($1, $2, $3, $4) RETURNING attested_at", school_id, teacher_id, version, statement)
+    return {"version": version, "attested_at": row["attested_at"].isoformat()}
+
+
+async def latest_consent(db, school_id):
+    """The school's latest confirmation as the admin screen shows it (who: only the end of the phone number), or None."""
+    await ensure_consent_table(db)
+    r = await db.fetchrow("""SELECT c.version, c.attested_at, t.phone_hash FROM school_consents c LEFT JOIN teachers t ON t.id = c.attested_by
+                             WHERE c.school_id = $1 ORDER BY c.attested_at DESC LIMIT 1""", school_id)
+    if not r:
+        return None
+    return {"version": r["version"], "attested_at": r["attested_at"].isoformat(), "by": ("••••" + re.sub(r"\D", "", r["phone_hash"])[-4:]) if r["phone_hash"] else None, "demo": r["version"] == "demo"}
+
+
+async def ensure_demo_consent(db, school_code: str):
+    """A demonstration school (the demo school, the test school) carries the statement that everything in it is fictional, so its admin screen never shows 'not recorded'. Idempotent."""
+    await ensure_consent_table(db)
+    sid = await db.fetchval("SELECT id FROM schools WHERE school_code = $1", school_code)
+    if not sid or await db.fetchval("SELECT 1 FROM school_consents WHERE school_id = $1", sid):
+        return False
+    await record_consent(db, sid, None, DEMO_CONSENT["version"], DEMO_CONSENT["statement"])
+    return True
+
+
 # ── the school admin ────────────────────────────────────────────────────────
 
 def _admin_only(admin):
@@ -225,7 +285,23 @@ def _admin_only(admin):
 async def admin_school(db, admin_id) -> dict:
     admin = await session_row(db, admin_id)
     _admin_only(admin)
-    return dict(await db.fetchrow("SELECT school_code, join_code FROM schools WHERE id = $1", admin["school_id"]))
+    out = dict(await db.fetchrow("SELECT school_code, join_code FROM schools WHERE id = $1", admin["school_id"]))
+    out["consent"] = await latest_consent(db, admin["school_id"])          # None: nothing recorded yet
+    out["consent_text"] = {"version": CONSENT_VERSION, **CONSENT_TEXT}
+    return out
+
+
+async def admin_record_consent(db, admin_id, version: str) -> dict:
+    """A school created before this existed (or one that skipped it) confirms now. Only its admin can."""
+    admin = await session_row(db, admin_id)
+    _admin_only(admin)
+    if version != CONSENT_VERSION:
+        raise AuthError("The wording has changed. Reload the page and read it again.", 409, "consent_stale")
+    await ensure_consent_table(db)
+    async with db.transaction():
+        done = await record_consent(db, admin["school_id"], admin_id)
+    await log_event(db, admin_id, "consent_recorded", CONSENT_VERSION)
+    return {"consent": await latest_consent(db, admin["school_id"]), **done}
 
 
 async def admin_rotate_join_code(db, admin_id) -> dict:

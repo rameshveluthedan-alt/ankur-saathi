@@ -1,7 +1,7 @@
 # Evaluator guide: Ankur Saathi (अंकुर साथी)
 
 **Live app:** https://ankur-saathi-434145152242.asia-south1.run.app (open it on a phone, or a desktop browser narrowed to phone width; it installs like an app: "Add to Home Screen")
-**Source code and README:** [FILL ON FREEZE: repository link] · **Video (3 minutes):** [FILL ON FREEZE: YouTube link]
+**Source code and README:** https://github.com/rameshveluthedan-alt/ankur-saathi · **Video (3 minutes):** [FILL ON FREEZE: YouTube link]
 
 ## Sign-in (every role; the demo holds fictional data only, so the PINs are public)
 | Role | Phone | PIN | Use it to |
@@ -11,7 +11,7 @@
 | **School admin** | 9876500000 | 7351 | Profile: the school's join code, its accounts, resetting a PIN |
 | **School admin** (test school) | 9000000100 | 7351 | The same for the school the five test teachers belong to |
 | **"Change PIN" account** | 9000000199 | 3917 | Try changing a PIN, or having the admin reset it. Every other demo PIN is fixed on purpose |
-| *New teacher* | any new number | your own | "Register": join the demo school with the join code **DEMO26**, or create a new school and become its admin |
+| *New teacher* | any new number | your own | "Register": join the demo school with the join code **DEMO26**, or leave the join code empty to create a new school and become its admin (you confirm a short consent statement shown on the form) |
 
 ## Five sample inputs that show it at its best
 1. **The daily loop, with a re-teach (about 3 minutes).** Sign in as 9876543210. On **Plan**, choose the skill **N2.3.2 (adds two 2-digit numbers with regrouping)**. The group panel shows the three groups: the Beginners moved on to this skill, the Progressors are marked **re-teach** because 6 of 14 children made a mistake yesterday, and the Proficients continue with N3.3.1. Press **Generate**. *It takes 1 to 2.5 minutes: leave the screen open.* Then open **Yojana** (the plan): read the Progressors' re-teach block, the rotation with transition scripts and the "show me" questions. At the bottom open the Progressors' **worksheet** and use the browser's print preview: the roll-number answer grid, the carry tab above the tens column, and the one-line version to copy on the board where there is no printer.

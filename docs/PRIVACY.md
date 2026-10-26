@@ -26,6 +26,11 @@ enforced, and what is NOT yet done.
 ## Audio
 The app **records no audio** and never asks the browser for the microphone (`pwa/tests/no_audio.test.mjs` checks the code and the screens). Reading aloud is timed by the teacher, who types the result. If voice assessment is added for the periodic assessments (`docs/ROADMAP.md`, section 6), it will need the school's consent on record and audio that is scored in memory and not kept, as photos are; none of that is built.
 
+## Consent
+When a school is created in the app, the person creating it confirms on the sign-up screen that the children's parents or guardians have been told that the children's classwork will be read in the app and have given their permission, that photos are read by an AI and are not kept, and that children's names are never sent to the AI. The confirmation is kept with its exact wording, the version of that wording, the date and who gave it (the table `school_consents`). The school's admin sees it in her Profile; the admin of a school created before this existed can confirm there. Joining a school with its join code asks for nothing, because the school confirmed when it was created. The demonstration and test schools carry the statement that every child in them is fictional.
+
+**What this is not.** It is the school's confirmation, **not a record of consent from each parent**. The app holds no parent's name, signature or date of permission, and it cannot check that what the school says is true. Recording each parent's consent, and the lawful basis under India's Digital Personal Data Protection Act, 2023, remains to be agreed with the school and the state (see the list at the end of this document).
+
 ## Names the AI might read off a photo
 The AI is told never to use names. But a child may write their name in a notebook, and a **photo goes to the AI** whatever
 we do in the database. So:

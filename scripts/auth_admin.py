@@ -69,6 +69,7 @@ async def cmd_demo_setup(db, args):
     if not await db.fetchval("SELECT 1 FROM schools WHERE school_code = $1", DEMO_SCHOOL):
         sys.exit(f"The demo school {DEMO_SCHOOL} is not in the database: load db/seeds/classroom/01_profile.sql first.")
     await db.execute("UPDATE schools SET join_code = $2 WHERE school_code = $1", DEMO_SCHOOL, JOIN_CODE)
+    await auth.ensure_demo_consent(db, DEMO_SCHOOL)          # the demo school says that everything in it is fictional
     made = await ensure_account(db, "9876500000", "school_admin", ["grade_1"])
     made_p = await ensure_account(db, "9000000199", "teacher", ["grade_1"])
     if made_p:                                           # the practice teacher gets a small fictional class, so there is something to look at
@@ -95,6 +96,7 @@ async def cmd_demo_setup(db, args):
 
 
 async def cmd_restore_practice(db, args):
+    await auth.ensure_demo_consent(db, DEMO_SCHOOL)          # the nightly job runs this: a cloud demo school gets its statement without a manual step
     ok = await set_pin(db, "9000000199", args.practice_pin, fixed=False, demo=True)
     print("The 'Change PIN' account is restored." if ok else "The 'Change PIN' account does not exist: run demo-setup first.")
 
