@@ -1,11 +1,6 @@
 import React from 'react';
 import { GROUPS, DECISION_LABELS, staysOnYesterdaysSkill, withSkill, acceptReteach, skillChoices, canReturnToYesterday, toggleReteach, reteachChoice, selectValue, chooseOption, visibleChoices } from '../services/groupSkills';
-
-const GROUP_LABELS = {
-  beginner: { hi: 'शुरुआती', en: 'Beginner' },
-  progressor: { hi: 'प्रगतिशील', en: 'Progressor' },
-  proficient: { hi: 'दक्ष', en: 'Proficient' },
-};
+import { GROUP_LABELS } from '../tiers';
 const SOURCE_TAGS = {
   selected: { hi: 'आपका चुना कौशल', en: 'The skill you chose' },
   review: { hi: 'आपके कल के निर्णय से', en: 'From your decision at the review' },
@@ -78,10 +73,10 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
         const canTick = !!reteach[label] || (label === 'progressor' ? stays : canReturn);       // may the box be ticked now?
         const canReteach = !!row.previous && count > 0;
         return (
-          <div key={label} style={{ borderTop: '1px solid var(--border)', padding: '8px 0' }} data-testid={`group-row-${label}`}>
+          <div key={label} className={`tier-${label}`} style={{ borderTop: '1px solid var(--border)', borderLeft: '4px solid var(--tier)', padding: '8px 0 8px 8px' }} data-testid={`group-row-${label}`}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span className={`badge badge-${label}`}>{GROUP_LABELS[label].hi}</span>
-              <span style={{ fontSize: '0.7rem', color: 'var(--text-light)' }}>{GROUP_LABELS[label].en} · {count} बच्चे</span>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{GROUP_LABELS[label].en} · {count} बच्चे</span>
             </div>
             {row.previous && (
               <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 4 }}>
@@ -102,7 +97,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                   </div>
                 )}
                 {row.recommendation === 'reteach' && (
-                  <div style={{ color: 'var(--beginner)', fontWeight: 600 }} data-testid={`recommendation-${label}`}>
+                  <div style={{ color: 'var(--reteach)', fontWeight: 600 }} data-testid={`recommendation-${label}`}>
                     ✔ सुझाव: 🔄 दोहराएँ — कम से कम {row.evidence.needed} बच्चों ने गलती की। (A re-teach is suggested: at least {row.evidence.needed} children made a mistake.)
                   </div>
                 )}
@@ -119,7 +114,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                 {row.conflict && !reteach[label] && canReturn && (
                   <div style={{ marginTop: 4, background: 'var(--green-bg)', borderRadius: 6, padding: '4px 8px' }} data-testid={`conflict-${label}`}>
                     आपने आगे बढ़ना चुना था, पर {row.evidence.with_mistakes}/{row.evidence.assessed} बच्चों ने गलती की। क्या दोहराना चाहेंगे? (You chose to advance, but {row.evidence.with_mistakes} of {row.evidence.assessed} made a mistake. Re-teach instead?)
-                    <button type="button" className="btn btn-secondary btn-small" style={{ marginLeft: 6, padding: '0 8px', fontSize: '0.7rem' }}
+                    <button type="button" className="btn btn-secondary btn-small" style={{ marginLeft: 6, fontSize: '0.8125rem' }}
                       onClick={() => accept(label)} disabled={disabled} data-testid={`accept-reteach-${label}`}>🔄 दोहराएँ</button>
                   </div>
                 )}
@@ -136,7 +131,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                   disabled={disabled}
                   onChange={(e) => choose(label, e.target.value)}
                   data-testid={`group-skill-select-${label}`}
-                  style={{ width: '100%', padding: '6px 4px', fontSize: '0.8rem', borderRadius: 6, border: '1px solid var(--border)' }}
+                  style={{ width: '100%', padding: '6px 4px', fontSize: '0.875rem', borderRadius: 6, border: '1px solid var(--border)', fontFamily: 'inherit' }}
                 >
                   {(() => {
                     const groupsOfSkills = visibleChoices({ label, ladder, row, selectedId, reteachOn: !!reteach[label] });
@@ -169,7 +164,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                   </div>
                 )}
                 {label !== 'progressor' && (row.skillId !== row.initialId || !!reteach[label] !== !!row.initialReteach) && (
-                  <button type="button" className="btn btn-secondary btn-small" style={{ marginLeft: 6, padding: '0 6px', fontSize: '0.65rem' }}
+                  <button type="button" className="btn btn-secondary btn-small" style={{ marginLeft: 6, marginTop: 4, fontSize: '0.8125rem' }}
                     onClick={() => restoreSuggestion(label)} disabled={disabled} data-testid={`restore-suggestion-${label}`}>↺ सुझाव पर लौटें</button>
                 )}
               </div>
@@ -186,7 +181,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
             )}
             {label === 'progressor' && canReteach && (
               <div style={{ marginTop: 6 }}>
-                <label style={{ fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: 6, opacity: canTick ? 1 : 0.55 }}>
+                <label style={{ fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: 8, minHeight: 44, opacity: canTick ? 1 : 0.55 }}>
                   <input type="checkbox" checked={!!reteach[label]} disabled={disabled || !canTick} data-testid={`reteach-toggle-${label}`}
                     onChange={(e) => toggle(label, e.target.checked)} />
                   🔄 पुनः शिक्षण (Re-teach)
@@ -199,7 +194,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                 {!canTick && (
                   <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginLeft: 22 }} data-testid="reteach-needs-yesterday-progressor">
                     दोहराने के लिए आज का कौशल कल वाला {row.previous.id} होना चाहिए। (To re-teach, today's skill must be yesterday's, {row.previous.id}.)
-                    <button type="button" className="btn btn-secondary btn-small" style={{ marginLeft: 6, padding: '0 8px', fontSize: '0.65rem' }}
+                    <button type="button" className="btn btn-secondary btn-small" style={{ margin: '4px 0 4px 6px', fontSize: '0.8125rem' }}
                       onClick={() => accept(label)} disabled={disabled} data-testid="go-back-reteach-progressor">🔄 {row.previous.id} चुनकर दोहराएँ</button>
                     <div>यह आज का कौशल बदलता है, इसलिए दूसरे समूहों के कौशल भी बदल सकते हैं। (This changes today's skill, so the other groups' skills can change too.)</div>
                   </div>

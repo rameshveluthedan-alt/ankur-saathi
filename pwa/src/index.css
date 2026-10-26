@@ -17,7 +17,15 @@
   --progressor-bg: #FFFBEB;
   --proficient: #2A9D8F;
   --proficient-bg: #ECFDF5;
-  
+  /* darker shades of the same hues, for TEXT (the light hues above are below 3:1 on their backgrounds) */
+  --beginner-ink: #B23A1E;
+  --progressor-ink: #8A6100;
+  --proficient-ink: #1E6F65;
+
+  /* Re-teach is an action, not a group: it never borrows a group's colour */
+  --reteach: #6D28D9;
+  --reteach-bg: #F3EEFF;
+
   /* Neutral */
   --bg: #FAFAF8;
   --surface: #FFFFFF;
@@ -50,6 +58,7 @@ body {
   color: var(--text);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
   padding-top: var(--safe-top);
   padding-bottom: calc(var(--safe-bottom) + var(--nav-height));
   min-height: 100dvh;
@@ -103,9 +112,36 @@ h3 { font-size: 1rem; font-weight: 600; }
   font-size: 0.75rem; 
   font-weight: 600; 
 }
-.badge-beginner { background: var(--beginner-bg); color: var(--beginner); }
-.badge-progressor { background: var(--progressor-bg); color: var(--progressor); }
-.badge-proficient { background: var(--proficient-bg); color: var(--proficient); }
+/* a shape as well as a colour, so the groups stay apart on a washed-out screen, in sunlight, or for a colour-blind teacher */
+.badge-beginner { background: var(--beginner-bg); color: var(--beginner-ink); box-shadow: inset 0 0 0 1.5px var(--beginner); }
+.badge-progressor { background: var(--progressor-bg); color: var(--progressor-ink); box-shadow: inset 0 0 0 1.5px var(--progressor); }
+.badge-proficient { background: var(--proficient-bg); color: var(--proficient-ink); box-shadow: inset 0 0 0 1.5px var(--proficient); }
+.badge-beginner::before { content: '● '; color: var(--beginner); }
+.badge-progressor::before { content: '▲ '; color: var(--progressor); }
+.badge-proficient::before { content: '■ '; color: var(--proficient); }
+/* a child's result in one check (A / PA / NA): neutral, so it never looks like a group */
+.badge-result { background: #F1F1EF; color: var(--text); box-shadow: inset 0 0 0 1px var(--border); }
+
+/* ── Tier frame: cards, timeline blocks and selectors take their group's colour ── */
+.tier-beginner { --tier: var(--beginner); --tier-bg: var(--beginner-bg); --tier-ink: var(--beginner-ink); }
+.tier-progressor { --tier: var(--progressor); --tier-bg: var(--progressor-bg); --tier-ink: var(--progressor-ink); }
+.tier-proficient { --tier: var(--proficient); --tier-bg: var(--proficient-bg); --tier-ink: var(--proficient-ink); }
+.tier-card { border-left: 6px solid var(--tier); }
+.tier-option {
+  flex: 1;
+  min-height: 48px;
+  padding: 6px 4px;
+  border-radius: 8px;
+  border: 2px solid var(--tier);
+  background: var(--surface);
+  color: var(--tier-ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+.tier-option.selected { background: var(--tier); color: #fff; }
+.tier-option.tier-progressor.selected { color: var(--text); }   /* white on yellow is unreadable */
 
 /* ── Buttons ── */
 .btn {
@@ -122,6 +158,7 @@ h3 { font-size: 1rem; font-weight: 600; }
   transition: transform 0.1s, opacity 0.15s;
   width: 100%;
   font-family: inherit;
+  min-height: 44px;
 }
 .btn:active { transform: scale(0.97); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; }
@@ -130,7 +167,26 @@ h3 { font-size: 1rem; font-weight: 600; }
 .btn-secondary { background: var(--surface); color: var(--green-dark); border: 2px solid var(--green-dark); }
 .btn-danger { background: #DC2626; color: white; }
 
-.btn-small { padding: 8px 14px; font-size: 0.875rem; width: auto; }
+.btn-small { padding: 8px 14px; font-size: 0.875rem; width: auto; min-height: 40px; }
+
+/* ── Tap targets: inputs, selects, ticks and roll-number chips ── */
+select, input:not([type="checkbox"]):not([type="radio"]):not([type="file"]) { min-height: 44px; }
+input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  min-width: 44px;
+  justify-content: center;
+  margin: 0 4px 4px 0;
+  padding: 4px 12px;
+  border-radius: 18px;
+  border: 1px solid #9CC4A8;
+  background: white;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  cursor: pointer;
+}
 
 /* ── Decision buttons (Advance / Re-teach / Not sure) ── */
 .decision-row {
@@ -140,6 +196,7 @@ h3 { font-size: 1rem; font-weight: 600; }
 }
 .decision-btn {
   flex: 1;
+  min-height: 52px;
   padding: 10px 8px;
   border-radius: 8px;
   border: 2px solid var(--border);
@@ -152,10 +209,10 @@ h3 { font-size: 1rem; font-weight: 600; }
   font-family: inherit;
 }
 .decision-btn.selected { border-color: var(--green-dark); background: var(--green-bg); }
-.decision-btn.advance { color: var(--proficient); }
 .decision-btn.advance.selected { border-color: var(--proficient); background: var(--proficient-bg); }
-.decision-btn.reteach { color: var(--beginner); }
-.decision-btn.reteach.selected { border-color: var(--beginner); background: var(--beginner-bg); }
+.decision-btn.advance { color: var(--proficient-ink); }
+.decision-btn.reteach { color: var(--reteach); }
+.decision-btn.reteach.selected { border-color: var(--reteach); background: var(--reteach-bg); }
 
 /* ── Domain selector tabs ── */
 .domain-tabs {
@@ -165,6 +222,7 @@ h3 { font-size: 1rem; font-weight: 600; }
 }
 .domain-tab {
   flex: 1;
+  min-height: 44px;
   padding: 10px;
   border-radius: 8px;
   border: 2px solid var(--border);
@@ -203,29 +261,23 @@ h3 { font-size: 1rem; font-weight: 600; }
 /* ── Rotation timeline (Dainik Yojana screen) ── */
 .timeline-block {
   position: relative;
-  padding: 12px 12px 12px 48px;
-  border-left: 3px solid var(--border);
-  margin-left: 20px;
+  padding: 12px 12px 12px 20px;
+  border-left: 4px solid var(--border);
+  margin-left: 8px;
   margin-bottom: 4px;
-}
-.timeline-block::before {
-  content: attr(data-time);
-  position: absolute;
-  left: -32px;
-  top: 12px;
-  font-size: 0.6875rem;
-  color: var(--text-secondary);
-  width: 40px;
-  text-align: right;
+  cursor: pointer;
 }
 .timeline-block.teach { border-left-color: var(--green-dark); }
+.timeline-block.teach[class*="tier-"] { border-left-color: var(--tier); background: var(--tier-bg); border-radius: 0 8px 8px 0; }
+.timeline-block.reteach { border-left-color: var(--reteach); background: var(--reteach-bg); border-radius: 0 8px 8px 0; }
 .timeline-block.anchor { border-left-color: var(--channel-written); }
-.timeline-block.transition { border-left-color: var(--border); padding: 4px 12px 4px 48px; }
+.timeline-block.setup { border-left-color: var(--text-light); }
+.timeline-block.transition { border-left-color: var(--border); padding: 4px 12px 4px 20px; }
 
 .timeline-dot {
   position: absolute;
   left: -8px;
-  top: 16px;
+  top: 14px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -245,8 +297,7 @@ h3 { font-size: 1rem; font-weight: 600; }
   font-size: 0.6875rem;
   font-weight: 700;
   color: var(--green-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  /* no letter-spacing or uppercase: spacing splits the Devanagari headline bar (शिरोरेखा) between letters */
 }
 
 /* ── Photo capture ── */
@@ -281,6 +332,7 @@ h3 { font-size: 1rem; font-weight: 600; }
   align-items: center;
   justify-content: center;
   gap: 2px;
+  min-height: 44px;
   font-size: 0.625rem;
   color: var(--text-light);
   text-decoration: none;

@@ -7,6 +7,7 @@ import GroupSkillsDrawer from '../components/GroupSkillsDrawer';
 import { initialRows, buildGenerateOptions, summarize, panelStatus } from '../services/groupSkills';
 import { TAB_RESELECT_EVENT } from '../services/tabs';
 import { useOnline } from '../components/OfflineBanner';
+import { GROUP_LABELS } from '../tiers';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -27,11 +28,6 @@ const TIERS = {
 };
 const TIER_ORDER = ['tested', 'ai_written', 'experimental', 'untested'];
 const fmtClock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
-const GROUP_LABELS = {
-  beginner: { hi: 'शुरुआती', en: 'Beginner' },
-  progressor: { hi: 'प्रगतिशील', en: 'Progressor' },
-  proficient: { hi: 'दक्ष', en: 'Proficient' },
-};
 
 const GROUP_SHORT = { beginner: 'शु', progressor: 'प्र', proficient: 'द' };
 
@@ -171,7 +167,7 @@ export default function PlanScreen() {
             {groups.map(g => (
               <div key={g.label} style={{ flex: 1, textAlign: 'center' }}>
                 <span className={`badge badge-${g.label}`}>{GROUP_LABELS[g.label]?.hi}</span>
-                <div style={{ fontSize: '0.6rem', color: 'var(--text-light)' }}>{GROUP_LABELS[g.label]?.en}</div>
+                <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)' }}>{GROUP_LABELS[g.label]?.en}</div>
                 <div style={{ fontSize: '1.25rem', fontWeight: 700, marginTop: 4 }}>{g.count}</div>
               </div>
             ))}
@@ -203,10 +199,10 @@ export default function PlanScreen() {
       )}
 
       <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
-        <button style={{ padding: '4px 10px', fontSize: '0.75rem', borderRadius: 6, border: '1px solid var(--border)', background: !gradeFilter ? 'var(--green-dark)' : 'var(--surface)', color: !gradeFilter ? 'white' : 'var(--text)', cursor: 'pointer', fontFamily: 'inherit' }}
+        <button style={{ minHeight: 40, minWidth: 48, padding: '4px 12px', fontSize: '0.8125rem', borderRadius: 6, border: '1px solid var(--border)', background: !gradeFilter ? 'var(--green-dark)' : 'var(--surface)', color: !gradeFilter ? 'white' : 'var(--text)', cursor: 'pointer', fontFamily: 'inherit' }}
           onClick={() => setGradeFilter(null)}>सभी (All)</button>
         {GRADE_ORDER.map(g => (
-          <button key={g} style={{ padding: '4px 10px', fontSize: '0.75rem', borderRadius: 6, border: '1px solid var(--border)', background: gradeFilter === g ? 'var(--green-dark)' : 'var(--surface)', color: gradeFilter === g ? 'white' : 'var(--text)', cursor: 'pointer', fontFamily: 'inherit' }}
+          <button key={g} style={{ minHeight: 40, minWidth: 48, padding: '4px 12px', fontSize: '0.8125rem', borderRadius: 6, border: '1px solid var(--border)', background: gradeFilter === g ? 'var(--green-dark)' : 'var(--surface)', color: gradeFilter === g ? 'white' : 'var(--text)', cursor: 'pointer', fontFamily: 'inherit' }}
             onClick={() => setGradeFilter(g)}>{GRADE_LABELS[g]}</button>
         ))}
       </div>
@@ -242,6 +238,8 @@ export default function PlanScreen() {
         </div>
       )}
 
+      {/* room for the fixed Generate bar, so it never covers the last skills in the list */}
+      {selectedId && <div style={{ height: 160 }} aria-hidden="true" />}
       {selectedId && (
         <div style={{ position: 'fixed', bottom: 'calc(var(--nav-height) + var(--safe-bottom) + 8px)', left: 16, right: 16, maxWidth: 448, margin: '0 auto',
                       background: 'var(--bg)', borderRadius: 12, padding: 6, boxShadow: '0 -2px 10px rgba(0,0,0,0.08)' }}>

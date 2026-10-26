@@ -7,12 +7,7 @@ import { reteachGroupsOf } from '../services/planSummary';
 import ReteachNote from '../components/ReteachNote';
 import BoardWork from '../components/BoardWork';
 import { reteachTitle } from '../services/reteachInfo';
-
-const GROUP_LABELS = {
-  beginner: { hi: 'शुरुआती', en: 'Beginner', emoji: '🟠', css: 'beginner' },
-  progressor: { hi: 'प्रगतिशील', en: 'Progressor', emoji: '🟡', css: 'progressor' },
-  proficient: { hi: 'दक्ष', en: 'Proficient', emoji: '🟢', css: 'proficient' },
-};
+import { GROUP_LABELS } from '../tiers';
 
 // Generated text may contain line breaks (lists) and stray markdown markers.
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
@@ -104,12 +99,12 @@ export default function YojanaScreen() {
       {/* Groups summary */}
       <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
         {groups.map(g => (
-          <div key={g.label} className="card" style={{ flex: 1, padding: 10, textAlign: 'center' }}>
+          <div key={g.label} className={`card tier-card tier-${g.label}`} style={{ flex: 1, padding: 10, textAlign: 'center' }}>
             <span className={`badge badge-${g.label}`}>{GROUP_LABELS[g.label]?.hi}</span>
-            <div style={{ fontSize: '0.55rem', color: 'var(--text-light)' }}>{GROUP_LABELS[g.label]?.en}</div>
+            <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)' }}>{GROUP_LABELS[g.label]?.en}</div>
             <div style={{ fontWeight: 700, fontSize: '1.125rem', margin: '4px 0' }}>{g.count}</div>
-            <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)' }}>{g.target_competency_name_hi}</div>
-            {reteachSet.has(g.label) && <div style={{ fontSize: '0.6rem', color: 'var(--beginner)', fontWeight: 600, marginTop: 2 }}>🔄 पुनः शिक्षण</div>}
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{g.target_competency_name_hi}</div>
+            {reteachSet.has(g.label) && <div style={{ fontSize: '0.75rem', color: 'var(--reteach)', fontWeight: 600, marginTop: 2 }}>🔄 पुनः शिक्षण</div>}
           </div>
         ))}
       </div>
@@ -155,10 +150,13 @@ export default function YojanaScreen() {
       {blocks.length > 0 ? (
         blocks.map((block, i) => (
           <div key={i}
-            className={`timeline-block ${block.type === 'teach' ? 'teach' : block.type === 'anchor' ? 'anchor' : 'transition'}`}
+            className={`timeline-block ${block.type === 'teach' ? `teach${block.reteach ? ' reteach' : GROUP_LABELS[block.teach_group] ? ` tier-${block.teach_group}` : ''}`
+              : ['anchor', 'reteach', 'setup'].includes(block.type) ? block.type : 'transition'}`}
+            role="button" tabIndex={0} aria-expanded={expandedBlock === i}
             onClick={() => setExpandedBlock(expandedBlock === i ? null : i)}
+            onKeyDown={(e) => { if (e.target === e.currentTarget && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); setExpandedBlock(expandedBlock === i ? null : i); } }}
           >
-            <div className="timeline-dot" style={{ background: (block.type === 'teach' || block.type === 'reteach') ? `var(--${block.teach_group || 'green-dark'})` : 'var(--border)' }} />
+            <div className="timeline-dot" style={{ background: (block.type === 'reteach' || block.reteach) ? 'var(--reteach)' : block.type === 'teach' ? `var(--${block.teach_group || 'green-dark'})` : 'var(--border)' }} />
             {block.time_start && (
               <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)', marginBottom: 2 }}>{block.time_start}</div>
             )}
@@ -290,7 +288,7 @@ export default function YojanaScreen() {
       {/* Why this plan? */}
       <div style={{ marginTop: 16, marginBottom: 80 }}>
         <button onClick={() => setShowWhyPanel(!showWhyPanel)}
-          style={{ background: 'none', border: 'none', color: 'var(--green-dark)', fontSize: '0.875rem', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600 }}>
+          style={{ background: 'none', border: 'none', color: 'var(--green-dark)', fontSize: '0.875rem', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600, minHeight: 44, padding: '0 4px' }}>
           {showWhyPanel ? '▾' : '▸'} यह योजना क्यों? (Why this plan?)
         </button>
         {showWhyPanel && (

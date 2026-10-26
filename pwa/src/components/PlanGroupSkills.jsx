@@ -7,7 +7,7 @@ import { groupSkillLines, GROUP_HI } from '../services/planSummary';
  */
 export default function PlanGroupSkills({ planDate, selectedId, groups, blocks }) {
   const s = groupSkillLines({ groups, blocks, selectedId });
-  const tag = { marginLeft: 4, color: 'var(--beginner)', fontWeight: 600 };
+  const tag = { marginLeft: 4, color: 'var(--reteach)', fontWeight: 600 };
   return (
     <div style={{ textAlign: 'right', fontSize: '0.7rem', color: 'var(--text-secondary)', lineHeight: 1.4 }} data-testid="plan-group-skills">
       <div>{planDate}{!s.differ && <span> · {selectedId}</span>}</div>

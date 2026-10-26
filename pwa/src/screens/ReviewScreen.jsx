@@ -3,12 +3,7 @@ import { useAuth } from '../App';
 import { recordDecisions, recordObserved, recordORF, analysePhotos, getSavedAnalyses, getReviewCoverage, getReviewChannels } from '../services/api';
 import { compressImage } from '../utils/imageCompress';
 import { useOnline } from '../components/OfflineBanner';
-
-const GROUP_LABELS = {
-  beginner: { hi: 'शुरुआती', en: 'Beginner' },
-  progressor: { hi: 'प्रगतिशील', en: 'Progressor' },
-  proficient: { hi: 'दक्ष', en: 'Proficient' },
-};
+import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 
 export default function ReviewScreen() {
   const { teacher, currentPlan, selectedDomain, names } = useAuth();
@@ -198,26 +193,26 @@ export default function ReviewScreen() {
           </p>
 
           {groups.map(g => (
-            <div key={g.label} className="card">
+            <div key={g.label} className={`card tier-card tier-${g.label}`}>
               <div className="card-header">
                 <div>
                   <span className={`badge badge-${g.label}`}>{GROUP_LABELS[g.label]?.hi}</span>
-                  <span style={{ fontSize: '0.65rem', color: 'var(--text-light)', marginLeft: 4 }}>{GROUP_LABELS[g.label]?.en}</span>
+                  <span style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)', marginLeft: 4 }}>{GROUP_LABELS[g.label]?.en}</span>
                 </div>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{g.count} बच्चे</span>
               </div>
               <div className="decision-row">
                 <button className={`decision-btn advance ${decisions[g.label] === 'advance' ? 'selected' : ''}`}
                   onClick={() => handleDecision(g.label, 'advance')}>
-                  ▲ आगे बढ़ें<br/><span style={{fontSize:'0.6rem'}}>Advance</span>
+                  ▲ आगे बढ़ें<br/><span style={{fontSize:'0.6875rem'}}>Advance</span>
                 </button>
                 <button className={`decision-btn reteach ${decisions[g.label] === 'reteach' ? 'selected' : ''}`}
                   onClick={() => handleDecision(g.label, 'reteach')}>
-                  🔄 दोहराएँ<br/><span style={{fontSize:'0.6rem'}}>Re-teach</span>
+                  🔄 दोहराएँ<br/><span style={{fontSize:'0.6875rem'}}>Re-teach</span>
                 </button>
                 <button className={`decision-btn ${decisions[g.label] === 'not_sure' ? 'selected' : ''}`}
                   onClick={() => handleDecision(g.label, 'not_sure')}>
-                  ❓ पक्का नहीं<br/><span style={{fontSize:'0.6rem'}}>Not sure</span>
+                  ❓ पक्का नहीं<br/><span style={{fontSize:'0.6875rem'}}>Not sure</span>
                 </button>
               </div>
             </div>
@@ -268,14 +263,14 @@ export default function ReviewScreen() {
             const tap = (r, s) => statusOf(r) === s
               ? setObservedItems(prev => prev.filter(i => !(i.roll_number === r && i.competency_id === observedLevel.competency_id)))
               : addObservedItem(r, observedLevel.competency_id, s);
-            const btn = (on, color) => ({ minWidth: 44, padding: '5px 4px', borderRadius: 8, border: `1px solid ${color}`, fontSize: '0.75rem', fontWeight: 600, background: on ? color : 'white', color: on ? 'white' : color });
-            const mode = (on) => ({ flex: 1, padding: '5px 4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.7rem', fontWeight: 600, background: on ? 'var(--green-dark)' : 'var(--surface)', color: on ? 'white' : 'var(--text)' });
+            const btn = (on, color) => ({ minWidth: 52, minHeight: 44, padding: '5px 4px', borderRadius: 8, border: `1px solid ${color}`, fontSize: '0.75rem', fontWeight: 600, background: on ? color : 'white', color: on ? 'white' : color });
+            const mode = (on) => ({ flex: 1, minHeight: 40, padding: '5px 4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.75rem', fontWeight: 600, background: on ? 'var(--green-dark)' : 'var(--surface)', color: on ? 'white' : 'var(--text)' });
             return (
               <div className="card" data-testid="observed-list">
                 <h3 style={{ marginBottom: 4 }}>✓ शिक्षक अवलोकन (Teacher Observation)</h3>
                 {levelsFor('observed').length > 1 && (
                   <div style={{ display: 'flex', gap: 6, margin: '6px 0' }}>
-                    {levelsFor('observed').map(l => <button key={l} type="button" style={mode(sheetLevel === l)} onClick={() => setSheetLevel(l)}>{LEVEL_HI[l]}</button>)}
+                    {levelsFor('observed').map(l => <button key={l} type="button" className={`tier-option tier-${l} ${sheetLevel === l ? 'selected' : ''}`} onClick={() => setSheetLevel(l)}>{GROUP_LABELS[l].mark} {LEVEL_HI[l]}</button>)}
                   </div>
                 )}
                 <p style={{ fontSize: '0.8125rem', margin: '4px 0 8px' }}>कौशल (Skill): <b>{observedLevel.competency_id}</b> · {observedLevel.name_hi}</p>
@@ -288,11 +283,11 @@ export default function ReviewScreen() {
                 {rolls.map(r => (
                   <div key={r} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
                     <b style={{ width: 78, fontSize: '0.8125rem' }}>Roll {r}{names && names[r] && <div style={{ fontSize: '0.7rem', fontWeight: 500 }} data-testid={`name-${r}`}>{names[r]}</div>}{coverage?.labels?.[r] && <div style={{ fontSize: '0.55rem', fontWeight: 400, color: 'var(--text-secondary)' }}>{coverage.labels[r]}</div>}</b>
-                    <button type="button" data-testid={`obs-${r}-achieved`} style={btn(statusOf(r) === 'achieved', 'var(--proficient)')} onClick={() => tap(r, 'achieved')}>A</button>
-                    <button type="button" data-testid={`obs-${r}-partially_achieved`} style={btn(statusOf(r) === 'partially_achieved', '#C9A227')} onClick={() => tap(r, 'partially_achieved')}>PA</button>
-                    <button type="button" data-testid={`obs-${r}-not_achieved`} style={btn(statusOf(r) === 'not_achieved', 'var(--beginner)')} onClick={() => tap(r, 'not_achieved')}>NA</button>
+                    <button type="button" data-testid={`obs-${r}-achieved`} style={btn(statusOf(r) === 'achieved', 'var(--proficient-ink)')} onClick={() => tap(r, 'achieved')}>A</button>
+                    <button type="button" data-testid={`obs-${r}-partially_achieved`} style={btn(statusOf(r) === 'partially_achieved', 'var(--progressor-ink)')} onClick={() => tap(r, 'partially_achieved')}>PA</button>
+                    <button type="button" data-testid={`obs-${r}-not_achieved`} style={btn(statusOf(r) === 'not_achieved', 'var(--beginner-ink)')} onClick={() => tap(r, 'not_achieved')}>NA</button>
                     {saved.has(r) && <span style={{ fontSize: '0.7rem', color: 'var(--proficient)' }} title="आज दर्ज हो चुका">✓</span>}
-                    {useSample && !saved.has(r) && <button type="button" data-testid={`obs-absent-${r}`} style={{ marginLeft: 'auto', background: 'none', border: 'none', fontSize: '0.65rem', color: 'var(--text-secondary)', textDecoration: 'underline' }}
+                    {useSample && !saved.has(r) && <button type="button" data-testid={`obs-absent-${r}`} style={{ marginLeft: 'auto', minHeight: 44, padding: '0 6px', background: 'none', border: 'none', fontSize: '0.75rem', color: 'var(--text-secondary)', textDecoration: 'underline', fontFamily: 'inherit' }}
                       onClick={() => setAbsent(prev => [...prev, r])}>अनुपस्थित</button>}
                   </div>
                 ))}
@@ -311,7 +306,7 @@ export default function ReviewScreen() {
                 Tap A / PA / NA for each child
               </p>
               <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-                <input type="number" placeholder="Roll No." min="1"
+                <input type="number" inputMode="numeric" placeholder="Roll No." min="1"
                   style={{ flex: 1, padding: 8, borderRadius: 6, border: '1px solid var(--border)', fontFamily: 'inherit' }} id="obs-roll" />
                 <input type="text" placeholder="Comp ID (N1.2.4)"
                   style={{ flex: 1, padding: 8, borderRadius: 6, border: '1px solid var(--border)', fontFamily: 'inherit' }} id="obs-comp" />
@@ -343,11 +338,9 @@ export default function ReviewScreen() {
               <h3 style={{ marginBottom: 4 }}>📸 वर्कशीट फ़ोटो (Worksheet Photos)</h3>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0' }}>किस समूह की वर्कशीट? (Which group's sheet?)</div>
               <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
-                {[['beginner', 'शुरुआती', 'Beginner'], ['progressor', 'प्रगतिशील', 'Progressor'], ['proficient', 'दक्ष', 'Proficient']].filter(([id]) => levelsFor('photo').includes(id)).map(([id, hi, en]) => (
-                  <button key={id} type="button" onClick={() => setSheetLevel(id)}
-                    style={{ flex: 1, padding: '6px 4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.75rem', fontWeight: 600,
-                             background: sheetLevel === id ? 'var(--green-dark)' : 'var(--surface)', color: sheetLevel === id ? 'white' : 'var(--text)' }}>
-                    {hi}<div style={{ fontSize: '0.6rem', fontWeight: 400 }}>{en}</div>
+                {GROUP_ORDER.filter((id) => levelsFor('photo').includes(id)).map((id) => (
+                  <button key={id} type="button" onClick={() => setSheetLevel(id)} className={`tier-option tier-${id} ${sheetLevel === id ? 'selected' : ''}`}>
+                    {GROUP_LABELS[id].mark} {GROUP_LABELS[id].hi}<div style={{ fontSize: '0.6875rem', fontWeight: 400 }}>{GROUP_LABELS[id].en}</div>
                   </button>
                 ))}
               </div>
@@ -359,8 +352,7 @@ export default function ReviewScreen() {
                 const left = useSample ? sample.left : coverage.pending_rolls;
                 const total = useSample ? sample.size : coverage.group_rolls.length;
                 const toggleAbsent = (r) => setAbsent(prev => prev.includes(r) ? prev.filter(x => x !== r) : [...prev, r]);
-                const chip = { margin: '0 4px 4px 0', padding: '2px 9px', borderRadius: 12, border: '1px solid #9CC4A8', background: 'white', fontSize: '0.75rem' };
-                const mode = (on) => ({ flex: 1, padding: '5px 4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.7rem', fontWeight: 600,
+                const mode = (on) => ({ flex: 1, minHeight: 40, padding: '5px 4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.7rem', fontWeight: 600,
                                         background: on ? 'var(--green-dark)' : 'var(--surface)', color: on ? 'white' : 'var(--text)' });
                 return (
                   <div data-testid="coverage" style={{ fontSize: '0.75rem', background: '#F3F8F4', border: '1px solid #D5E6DA', borderRadius: 8, padding: '6px 10px', marginBottom: 8 }}>
@@ -374,12 +366,12 @@ export default function ReviewScreen() {
                     <div style={{ marginTop: 2 }}>
                       ⏳ {useSample ? 'इन बच्चों की फ़ोटो लें (Photograph these)' : 'बाकी (Left)'}:{' '}
                       {left.length === 0 ? 'कोई नहीं (none)' : useSample
-                        ? left.map(r => <button key={r} type="button" data-testid={`chip-${r}`} title={[names && names[r], coverage.labels?.[r]].filter(Boolean).join(' · ')} style={chip} onClick={() => toggleAbsent(r)}>{r}{coverage.labels?.[r] ? <span style={{ fontSize: '0.55rem', color: 'var(--text-secondary)' }}> {coverage.labels[r]}</span> : null}</button>)
+                        ? left.map(r => <button key={r} type="button" data-testid={`chip-${r}`} title={[names && names[r], coverage.labels?.[r]].filter(Boolean).join(' · ')} className="chip" onClick={() => toggleAbsent(r)}>{r}{coverage.labels?.[r] ? <span style={{ fontSize: '0.55rem', color: 'var(--text-secondary)' }}> {coverage.labels[r]}</span> : null}</button>)
                         : left.join(', ')}
                     </div>
                     {useSample && left.length > 0 && <div style={{ color: 'var(--text-secondary)' }}>कोई बच्चा अनुपस्थित है? उसके रोल पर दबाएँ, उसकी जगह दूसरा बच्चा सुझाया जाएगा (Absent? Tap the roll and another child is suggested)</div>}
                     {useSample && sample.absent.length > 0 && (
-                      <div style={{ marginTop: 4 }}>अनुपस्थित (Absent): {sample.absent.map(r => <button key={r} type="button" data-testid={`absent-${r}`} style={chip} onClick={() => toggleAbsent(r)}>{r} ✕</button>)}</div>
+                      <div style={{ marginTop: 4 }}>अनुपस्थित (Absent): {sample.absent.map(r => <button key={r} type="button" data-testid={`absent-${r}`} className="chip" onClick={() => toggleAbsent(r)}>{r} ✕</button>)}</div>
                     )}
                     {useSample && (
                       <div data-testid="sample-note" style={{ color: 'var(--text-secondary)', marginTop: 4 }}>
@@ -433,24 +425,24 @@ export default function ReviewScreen() {
                   <div style={{ marginBottom: 4 }}>कौशल (Skill): <b>{orfLevel.competency_id}</b> · {orfLevel.name_hi}</div>
                   {levelsFor('orf').length > 1 && (
                     <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
-                      {levelsFor('orf').map(l => <button key={l} type="button" style={{ flex: 1, padding: '4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.7rem', fontWeight: 600, background: sheetLevel === l ? 'var(--green-dark)' : 'var(--surface)', color: sheetLevel === l ? 'white' : 'var(--text)' }} onClick={() => setSheetLevel(l)}>{LEVEL_HI[l]}</button>)}
+                      {levelsFor('orf').map(l => <button key={l} type="button" className={`tier-option tier-${l} ${sheetLevel === l ? 'selected' : ''}`} onClick={() => setSheetLevel(l)}>{GROUP_LABELS[l].mark} {LEVEL_HI[l]}</button>)}
                     </div>
                   )}
                   {(coverage ? (coverage.sample.mode === 'sample' && sampleMode === 'sample' ? coverage.sample.rolls : coverage.group_rolls) : orfLevel.rolls).map(r => {
                     const done = (coverage?.analysed_rolls || []).includes(r);
-                    return <button key={r} type="button" data-testid={`orf-chip-${r}`} onClick={() => setOrfEntry(o => ({ ...o, roll_number: String(r) }))}
-                      style={{ margin: '0 4px 4px 0', padding: '3px 10px', borderRadius: 12, border: '1px solid #9CC4A8', background: String(orfEntry.roll_number) === String(r) ? 'var(--green-dark)' : done ? '#E4F4EA' : 'white', color: String(orfEntry.roll_number) === String(r) ? 'white' : 'inherit' }}>{r}{done ? ' ✓' : ''}</button>;
+                    return <button key={r} type="button" className="chip" data-testid={`orf-chip-${r}`} onClick={() => setOrfEntry(o => ({ ...o, roll_number: String(r) }))}
+                      style={{ background: String(orfEntry.roll_number) === String(r) ? 'var(--green-dark)' : done ? '#E4F4EA' : 'white', color: String(orfEntry.roll_number) === String(r) ? 'white' : 'inherit' }}>{r}{done ? ' ✓' : ''}</button>;
                   })}
                 </div>
               )}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <input type="number" placeholder="Roll No." value={orfEntry.roll_number}
+                <input type="number" inputMode="numeric" placeholder="Roll No." value={orfEntry.roll_number}
                   onChange={e => setOrfEntry(o => ({ ...o, roll_number: e.target.value }))}
                   style={{ padding: 10, borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', fontFamily: 'inherit' }} />
-                <input type="number" placeholder="CWPM (सही शब्द/मिनट — Correct Words Per Minute)" value={orfEntry.cwpm}
+                <input type="number" inputMode="numeric" placeholder="CWPM (सही शब्द/मिनट — Correct Words Per Minute)" value={orfEntry.cwpm}
                   onChange={e => setOrfEntry(o => ({ ...o, cwpm: e.target.value }))}
                   style={{ padding: 10, borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', fontFamily: 'inherit' }} />
-                <input type="number" placeholder="गलतियाँ (Errors)" value={orfEntry.error_count}
+                <input type="number" inputMode="numeric" placeholder="गलतियाँ (Errors)" value={orfEntry.error_count}
                   onChange={e => setOrfEntry(o => ({ ...o, error_count: e.target.value }))}
                   style={{ padding: 10, borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', fontFamily: 'inherit' }} />
               </div>
@@ -496,7 +488,7 @@ export default function ReviewScreen() {
                 )}
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <span>AI सुझाव (AI recommendation)</span>
-                  <strong style={{ color: analysisResult.ai_recommendation === 'advance' ? 'var(--proficient)' : 'var(--beginner)' }}>
+                  <strong style={{ color: analysisResult.ai_recommendation === 'advance' ? 'var(--proficient-ink)' : 'var(--reteach)' }}>
                     {analysisResult.ai_recommendation === 'advance' ? '▲ आगे बढ़ें (Advance)' : '🔄 दोहराएँ (Re-teach)'}
                   </strong>
                 </div>
@@ -553,8 +545,9 @@ export default function ReviewScreen() {
                       <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }} data-testid="today-result">
                         आज की जाँच में: {c.status === 'achieved' ? 'प्राप्त' : c.status === 'partially_achieved' ? 'आंशिक' : c.status === 'not_assessed' ? 'आँका नहीं गया' : 'प्राप्त नहीं'}
                       </span>
-                      <span className={`badge badge-${c.status === 'achieved' ? 'proficient' : c.status === 'partially_achieved' ? 'progressor' : 'beginner'}`}>
-                        {c.status === 'achieved' ? 'A' : c.status === 'partially_achieved' ? 'PA' : c.status === 'not_assessed' ? '—' : 'NA'}
+                      {/* a neutral badge with a symbol: a tier colour here would make "NA" look like the Beginner group */}
+                      <span className="badge badge-result">
+                        {c.status === 'achieved' ? '✓ A' : c.status === 'partially_achieved' ? '~ PA' : c.status === 'not_assessed' ? '—' : '✗ NA'}
                       </span>
                     </span>
                   </div>

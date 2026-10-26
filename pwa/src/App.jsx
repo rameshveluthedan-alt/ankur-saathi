@@ -41,8 +41,8 @@ function BottomNav() {
             } else navigate(t.id);
           }}>
           <span className="nav-icon">{t.icon}</span>
-          <span style={{fontSize:'0.7rem'}}>{t.hi}</span>
-          <span style={{fontSize:'0.5rem',opacity:0.6}}>{t.en}</span>
+          <span style={{fontSize:'0.75rem'}}>{t.hi}</span>
+          <span style={{fontSize:'0.625rem',opacity:0.75}}>{t.en}</span>
         </button>
       ))}
     </nav>

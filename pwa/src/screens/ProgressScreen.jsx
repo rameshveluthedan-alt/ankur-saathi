@@ -3,9 +3,9 @@ import { useAuth } from '../App';
 import { getProgressDashboard, downloadClassReport, downloadOfficerReport } from '../services/api';
 
 const BPP = {
-  beginner: { hi: 'शुरुआती', en: 'Beginner', color: 'var(--beginner)' },
-  progressor: { hi: 'प्रगतिशील', en: 'Progressor', color: 'var(--progressor)' },
-  proficient: { hi: 'दक्ष', en: 'Proficient', color: 'var(--proficient)' },
+  beginner: { hi: 'शुरुआती', en: 'Beginner', color: 'var(--beginner-ink)' },
+  progressor: { hi: 'प्रगतिशील', en: 'Progressor', color: 'var(--progressor-ink)' },
+  proficient: { hi: 'दक्ष', en: 'Proficient', color: 'var(--proficient-ink)' },
 };
 
 export default function ProgressScreen() {
