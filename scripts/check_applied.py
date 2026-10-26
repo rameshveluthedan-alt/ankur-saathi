@@ -55,6 +55,10 @@ CHECKS = [
     ("v28t", "the Plan screen goes back to choosing a skill", "pwa/src/screens/PlanScreen.jsx", "TAB_RESELECT_EVENT"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/services/groupSkills.js", "export function toggleReteach"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/components/GroupSkillsPanel.jsx", "toggleReteach"),
+    ("v29z", "how the skills relate to NCF-FS (2022), proposed by AI and awaiting an educator", "docs/NCF_FS_COMPARISON.md", "not yet confirmed by an educator"),
+    ("v29z", "the coverage document says the NIPUN alignment is AI-proposed, not confirmed", "docs/COVERAGE.md", "proposed by AI and not yet confirmed by an educator"),
+    ("v29y", "the login screen lists the test school admin, with its PIN", "pwa/src/screens/LoginScreen.jsx", "9000000100"),
+    ("v29y", "every published single-number account is on the login screen (a test compares it with the access guide)", "pwa/tests/demo_accounts.test.mjs", None),
     ("v29x", "the school's consent confirmation: a table created on first use, kept with the exact wording", "db/schema/13_school_consent.sql", "CREATE TABLE IF NOT EXISTS school_consents"),
     ("v29x", "a new school is created only with the confirmation, and the record is kept in the same transaction", "backend/app/services/register_service.py", "ConsentRequired"),
     ("v29x", "the wording, the record, the admin's confirmation and the demo statement", "backend/app/services/auth_service.py", "CONSENT_VERSION"),
@@ -171,7 +175,7 @@ def kind_of(bundle, rel):
     return "older" if bundle.startswith("v27") else "current"
 
 
-VERSION = "v29x, 26 Oct: lists the bundles v27l to v29x; the package v29x-current replaces v28m to v29w"
+VERSION = "v29z, 26 Oct: lists the bundles v27l to v29z; the package v29z-current replaces v28m to v29y"
 
 
 def main():
@@ -198,15 +202,15 @@ def main():
     # the packages: v28p-current holds the current version of every file of the v28 series, so it is 'in' when every v28 row is OK
     series = [b for b in status if b.startswith("v28")]
     package_ok = all(status[b] for b in series)
-    print(f"\n  PACKAGE v29x-current (every file of v28a to v29x, current):  {'OK' if package_ok else 'BEHIND'}")
+    print(f"\n  PACKAGE v29z-current (every file of v28a to v29z, current):  {'OK' if package_ok else 'BEHIND'}")
     print()
     if not kinds:
         print("Everything listed is in this working copy.")
         return 0
     if "current" in kinds:
-        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29x-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
-        print("    tar -xzf <downloads>\\v29x-current.tar.gz -C <this folder>")
-        print("  and do NOT extract v28a to v29w afterwards: each holds older copies of some of the same files and would put them back.")
+        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29z-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
+        print("    tar -xzf <downloads>\\v29z-current.tar.gz -C <this folder>")
+        print("  and do NOT extract v28a to v29y afterwards: each holds older copies of some of the same files and would put them back.")
     if "older" in kinds:
         print(f"Older bundles missing: {', '.join(sorted(kinds['older']))}. Apply each, oldest first, with  tar -xzf <downloads>\\<bundle>.tar.gz -C <this folder>")
     print("Run this check again afterwards: python scripts\\check_applied.py")
