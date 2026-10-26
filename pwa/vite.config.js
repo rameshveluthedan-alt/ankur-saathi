@@ -25,14 +25,23 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            urlPattern: /^https?:\/\/.*\/api\/plan\/.*$/,
-            handler: 'NetworkFirst',
-            options: { cacheName: 'plan-cache', expiration: { maxEntries: 30, maxAgeSeconds: 86400 } },
+            // FIRST: Workbox uses the first rule that matches, and /api/plan/competencies/ also matches the broader /api/plan/ rule below.
+            // The list of skills is public reference data (no child, no teacher): shown at once from the copy kept, refreshed in the background, and NOT removed at sign-out.
+            urlPattern: /^https?:\/\/.*\/api\/plan\/competencies\/.*$/,
+            handler: 'StaleWhileRevalidate',
+            options: { cacheName: 'competency-cache', expiration: { maxEntries: 5, maxAgeSeconds: 604800 } },
           },
           {
-            urlPattern: /^https?:\/\/.*\/api\/plan\/competencies\/.*$/,
-            handler: 'CacheFirst',
-            options: { cacheName: 'competency-cache', expiration: { maxEntries: 5, maxAgeSeconds: 604800 } },
+            urlPattern: /^https?:\/\/.*\/api\/plan\/.*$/,
+            handler: 'NetworkFirst',
+            // networkTimeoutSeconds: on a slow or hanging connection, answer from the cached copy after 6 seconds instead of waiting for ever
+            options: { cacheName: 'plan-cache', networkTimeoutSeconds: 6, expiration: { maxEntries: 30, maxAgeSeconds: 86400 } },
+          },
+          {
+            // a teacher's worksheets (printed pages): kept for a day so they can be opened and printed with no network. Removed at sign-in and sign-out (src/services/offlineCache.js).
+            urlPattern: /^https?:\/\/.*\/api\/worksheet\/.*$/,
+            handler: 'NetworkFirst',
+            options: { cacheName: 'worksheet-cache', networkTimeoutSeconds: 6, expiration: { maxEntries: 30, maxAgeSeconds: 86400 } },
           },
         ],
       },

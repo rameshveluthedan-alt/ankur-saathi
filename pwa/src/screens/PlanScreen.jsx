@@ -6,6 +6,7 @@ import GroupSkillsPanel from '../components/GroupSkillsPanel';
 import GroupSkillsDrawer from '../components/GroupSkillsDrawer';
 import { initialRows, buildGenerateOptions, summarize, panelStatus } from '../services/groupSkills';
 import { TAB_RESELECT_EVENT } from '../services/tabs';
+import { useOnline } from '../components/OfflineBanner';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -42,6 +43,7 @@ export default function PlanScreen() {
   const [selectedId, setSelectedId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [generating, setGenerating] = useState(false);
+  const online = useOnline();            // Generate needs the internet: it is off, with a reason, when there is none
   const [elapsed, setElapsed] = useState(0);
   const [gradeFilter, setGradeFilter] = useState(null);
   // each group's skill for today, and the re-teach choice (see services/groupSkills.js)
@@ -231,7 +233,7 @@ export default function PlanScreen() {
                       </span>); })()}
                   </span>
                   <span className="grade-tag">
-                    {c.assessment_modality === 'observed' ? '✓' : c.assessment_modality === 'oral_reading' ? '🎤' : '📝'}
+                    {c.assessment_modality === 'observed' ? '✓' : c.assessment_modality === 'oral_reading' ? '⏱️' : '📝'}
                   </span>
                 </div>
               ))}
@@ -265,7 +267,12 @@ export default function PlanScreen() {
                 : 'थोड़ा और समय लग रहा है, कृपया प्रतीक्षा करें। (Taking a little longer. Please keep waiting.)'}
             </div>
           )}
-          <button className="btn btn-primary" onClick={handleGenerate} disabled={generating || loadingPanel}
+          {!online && !generating && (
+            <div data-testid="generate-offline" style={{ fontSize: '0.75rem', textAlign: 'center', background: '#E8EEF4', color: '#26405A', borderRadius: 8, padding: '6px 10px', marginBottom: 6 }}>
+              योजना बनाने के लिए इंटरनेट चाहिए। (Making a plan needs the internet.)
+            </div>
+          )}
+          <button className="btn btn-primary" onClick={handleGenerate} disabled={generating || loadingPanel || !online}
             style={generating ? { opacity: 1, cursor: 'wait' } : undefined}>
             {generating ? (
               <><div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }} /> योजना बन रही है (Generating)... {fmtClock(elapsed)}</>

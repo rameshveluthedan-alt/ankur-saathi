@@ -3,11 +3,18 @@
  * Centralized backend calls. In dev, Vite proxies /api to localhost:8000.
  */
 
+import { NetworkError, markNetworkFailed } from './network';
+import { clearPrivateCaches } from './offlineCache';
+
 const BASE = '/api';
 const TOKEN_KEY = 'ankur_token';
 
 export const getToken = () => { try { return localStorage.getItem(TOKEN_KEY); } catch { return null; } };
-export const setToken = (t) => { try { if (t) localStorage.setItem(TOKEN_KEY, t); else localStorage.removeItem(TOKEN_KEY); } catch { /* storage unavailable */ } };
+export const setToken = (t) => {
+  const before = getToken();
+  try { if (t) localStorage.setItem(TOKEN_KEY, t); else localStorage.removeItem(TOKEN_KEY); } catch { /* storage unavailable */ }
+  if (before !== (t || null)) clearPrivateCaches();       // signing in or out: the offline copies of the last person's plan and worksheets go (see offlineCache.js)
+};
 
 // Every call carries the session token. A 401 means the session has ended (sign in again); a 403 "pin_change_required"
 // means an admin reset the PIN and the teacher must choose a new one before anything else.
@@ -15,7 +22,9 @@ export async function authFetch(url, options = {}) {
   const headers = { ...(options.headers || {}) };
   const token = getToken();
   if (token) headers.Authorization = `Bearer ${token}`;
-  const res = await fetch(url, { ...options, headers });
+  let res;
+  try { res = await fetch(url, { ...options, headers }); } catch { markNetworkFailed(); throw new NetworkError(); }      // no connection: say so plainly instead of the browser's "Failed to fetch"
+  // (an answer does NOT clear a failure: the service worker may have answered from its saved copy; only a probe does, see network.js)
   if (res.status === 401 && token) window.dispatchEvent(new Event('ankur-auth-ended'));
   if (res.status === 403) {
     const body = await res.clone().json().catch(() => ({}));
@@ -72,7 +81,8 @@ export const adminRotateJoinCode = () => request('/admin/school/join-code', { me
 // A plain link cannot carry the token, so printed pages and downloads are fetched with it and then opened.
 export async function openAuthedPage(path) {
   const w = window.open('', '_blank');                       // opened first, so a phone's pop-up blocker allows it
-  const res = await authFetch(`${BASE}${path}`);
+  let res;
+  try { res = await authFetch(`${BASE}${path}`); } catch (e) { if (w) w.close(); throw e; }       // no network: do not leave a blank tab behind
   if (!res.ok) { if (w) w.close(); const err = await res.json().catch(() => ({})); throw new Error(detailText(err, 'Could not open the page')); }
   const url = URL.createObjectURL(new Blob([await res.text()], { type: 'text/html' }));
   if (w) w.location.href = url; else window.open(url);
@@ -86,6 +96,16 @@ export async function downloadAuthed(path, filename) {
   setTimeout(() => URL.revokeObjectURL(url), 4000);
 }
 export const worksheetPath = (teacherId, planDate, domainId, level) => `/worksheet/${teacherId}/${planDate}/${domainId}/${level}`;
+
+// Right after a plan appears, make its offline copy, one request at a time and quietly: first the STORED plan (the address the app reopens it from after a reload: a plan just generated came
+// straight from the server's reply, so that address had never been asked for), then each level's worksheet. The service worker keeps every answer (vite.config.js), so the teacher can
+// reopen the plan and print the worksheets later with no network. A failure stops it silently: this only prepares a copy.
+export async function prepareOfflineCopy(teacherId, planDate, domainId, levels) {
+  const paths = [`/plan/${teacherId}/${planDate}/${domainId}`, ...(levels || []).map(level => worksheetPath(teacherId, planDate, domainId, level))];
+  for (const p of paths) {
+    try { await authFetch(`${BASE}${p}`); } catch { return; }
+  }
+}
 
 // The names the teacher entered: shown on her own screens only (never sent to the AI)
 export const getNames = async (teacherId) => {

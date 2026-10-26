@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../App';
-import { getCachedPlan, openAuthedPage, worksheetPath } from '../services/api';
+import { getCachedPlan, openAuthedPage, worksheetPath, prepareOfflineCopy } from '../services/api';
+import { isOnline } from '../services/network';
 import PlanGroupSkills from '../components/PlanGroupSkills';
 import { reteachGroupsOf } from '../services/planSummary';
 import ReteachNote from '../components/ReteachNote';
@@ -25,6 +26,15 @@ export default function YojanaScreen() {
   const [expandedBlock, setExpandedBlock] = useState(null);
   const [showWhyPanel, setShowWhyPanel] = useState(false);
   const [loadingStored, setLoadingStored] = useState(false);
+
+  // With a plan on screen, make its offline copy once, quietly: the stored plan and its worksheets (see prepareOfflineCopy in api.js).
+  // The key changes when a regenerated plan has different worksheets (there is no plan id), so the offline copy is never an older plan's.
+  const sheets = currentPlan && currentPlan.plan && currentPlan.plan.worksheets;
+  const sheetsKey = sheets ? Array.from(JSON.stringify(sheets)).reduce((h, c) => (h * 33 + c.charCodeAt(0)) >>> 0, 5381) : 0;
+  useEffect(() => {
+    if (!currentPlan || !sheets || !isOnline()) return;
+    prepareOfflineCopy(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id, Object.keys(sheets).filter(l => sheets[l]));
+  }, [currentPlan && currentPlan.plan_date, currentPlan && currentPlan.domain_id, sheetsKey]);
 
   // After a page reload the plan is no longer in memory: load today's stored plan
   // from the backend instead of making the teacher regenerate it.

@@ -23,6 +23,7 @@ CFU_ENABLED: "true"
 # checked against the AI limit and metered). "0" switches that extra call off:
 #   gcloud run services update ankur-saathi --region=asia-south1 --update-env-vars=CFU_TOPUP=0
 CFU_TOPUP: "1"
+SEMANTIC_RETRIEVAL: "off"            # "on" = where the curated anchors have nothing for a skill, choose the anchor nearest in meaning (docs/SEMANTIC_RETRIEVAL.md). A redeploy REPLACES the variables with this file: keep the setting here.
 
 # the hackathon credit (docs/AI_BUDGET.md). Prices: USD per million tokens, from the pricing page for your model.
 AI_ENABLED: "true"

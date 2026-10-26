@@ -12,6 +12,7 @@ for _stream in (_sys.stdout, _sys.stderr):          # a pipe on Windows uses a l
 
 import argparse
 import os
+import sys
 from pathlib import Path
 
 # ── Sheet layout ─────────────────────────────────────────────────────────────
@@ -82,8 +83,8 @@ def col_index(key: str) -> int:
 # ── Database helpers (explicit parameters: URL parsing is unreliable on some Windows setups) ──
 def parse_env_file(path: str) -> dict:
     out = {}
-    p = Path(path)
-    if p.exists():
+    p = Path(path) if path else None
+    if p is not None and p.is_file():
         for line in p.read_text(encoding="utf-8").splitlines():
             line = line.strip()
             if line and not line.startswith("#") and "=" in line:
@@ -101,10 +102,28 @@ def add_db_args(parser: argparse.ArgumentParser):
         parser.add_argument(f"--db-{name}", default=None, help=f"default {default or '(empty)'}")
 
 
+def default_env_file():
+    """The .env the BACKEND reads, found when no --env-file is given: ./.env (run from backend/), then ./backend/.env (run from the repository root), then backend/.env of this repository. None if there is none."""
+    for p in (Path.cwd() / ".env", Path.cwd() / "backend" / ".env", Path(__file__).resolve().parent.parent / "backend" / ".env"):
+        if p.is_file():
+            return str(p)
+    return None
+
+
 def db_params(args) -> dict:
-    env = parse_env_file(args.env_file) if args.env_file else {}
+    """Which database to connect to. Order: a --db-* option; then, with an explicit --env-file, that file and then the environment (documented for the scripts);
+    with NO --env-file, the SAME order as the app: the environment first, then the .env the app would read (a test helper that builds its arguments from an empty list used to
+    ignore .env and talk to a different database than the app under test)."""
+    explicit = bool(args.env_file)
+    if explicit and not Path(args.env_file).is_file():
+        print(f"WARNING: --env-file {args.env_file} was not found (looked in {Path.cwd()}): using the environment variables and the defaults instead, "
+              f"which may be a DIFFERENT database from the one you meant.", file=sys.stderr)
+    env = parse_env_file(args.env_file or default_env_file() or "")
     def pick(opt, key, default):
-        return getattr(args, f"db_{opt}") or env.get(key) or os.environ.get(key) or default
+        cli = getattr(args, f"db_{opt}")
+        if cli:
+            return cli
+        return (env.get(key) or os.environ.get(key) or default) if explicit else (os.environ.get(key) or env.get(key) or default)
     return dict(host=pick("host", "DB_HOST", "127.0.0.1"), port=int(pick("port", "DB_PORT", "5432")),
                 user=pick("user", "DB_USER", "postgres"), password=pick("password", "DB_PASSWORD", ""),
                 database=pick("name", "DB_NAME", "ankur_saathi"), ssl=False)

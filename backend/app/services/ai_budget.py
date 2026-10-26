@@ -197,13 +197,43 @@ def sample_dir() -> Path:
     return Path(custom) if custom else Path(__file__).resolve().parents[3] / "db" / "seeds" / "sample_plans"
 
 
+def should_keep_sample(*, save_samples: bool, stub: bool, served_from: str, warnings: list, accept_warnings: bool) -> bool:
+    """The batch tool's rule for keeping a generated plan as a recorded sample: only a plan from the REAL model, and only a clean one unless a person has chosen to keep plans with warnings."""
+    return bool(save_samples and not stub and served_from == "ai" and (not warnings or accept_warnings))
+
+
+def raw_plan_record(plan: dict, warnings: list, stub: bool = False) -> dict:
+    """What the batch tool writes for EVERY plan it generates (docs/batch/plans/<skill>.json), kept or not as a recorded sample: the plan, its warnings, and no reviewer yet. A plan paid for is never lost.
+    A plan made by the fake model is marked `_stub`, so it can never be mistaken for a real one."""
+    out = mark_for_review(plan, warnings or [])
+    out.setdefault("_reviewed_by", None)
+    if stub:
+        out["_stub"] = True
+    return out
+
+
+def strip_private(plan):
+    """Keys that begin with an underscore are notes for the people who review a recorded plan (_recorded_warnings, _reviewed_by). They never reach a teacher."""
+    return {k: v for k, v in plan.items() if not str(k).startswith("_")} if isinstance(plan, dict) else plan
+
+
+def mark_for_review(plan: dict, warnings: list) -> dict:
+    """A recorded plan that still carries warnings (a worksheet question that echoes the lesson, say) is kept only with those warnings written inside the file and nobody's name against them yet:
+    `_reviewed_by` is filled in by the person who read it (the gate refuses to pass until it is). A plan with no warnings is saved as it is."""
+    out = dict(plan)
+    if warnings:
+        out["_recorded_warnings"] = [str(w) for w in warnings]
+        out["_reviewed_by"] = None
+    return out
+
+
 def sample_plan_for(competency_id: str):
     """A recorded plan for this skill (a real earlier output), or None. It is replayed through the same checks and repairs."""
     path = sample_dir() / f"{competency_id}.json"
     if not path.is_file():
         return None
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return strip_private(json.loads(path.read_text(encoding="utf-8")))
     except (OSError, json.JSONDecodeError):
         return None
 

@@ -1,0 +1,10 @@
+﻿skill,A_is,B_is,current_id,current_tier,semantic_id,similarity
+L2.4.2,semantic,current,ANC-L-003,topic_area,ANC-L-006,0.514
+L3.3.1,current,semantic,ANC-L-001,loose,ANC-L-006,0.549
+L3.4.1,semantic,current,ANC-L-001,loose,ANC-L-004,0.583
+N1.1.1,current,semantic,ANC-N-001,loose,ANC-N-006,0.567
+N1.2.6,semantic,current,ANC-N-004,topic_area,ANC-N-003,0.603
+N2.6.1,current,semantic,ANC-N-001,loose,ANC-N-006,0.521
+N3.5.1,current,semantic,ANC-N-001,loose,ANC-N-008,0.537
+N3.6.1,semantic,current,ANC-N-001,loose,ANC-N-008,0.485
+N3.6.2,current,semantic,ANC-N-001,loose,ANC-N-005,0.568

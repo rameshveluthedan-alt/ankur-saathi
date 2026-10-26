@@ -138,4 +138,16 @@ await click(generateBtn()); await flush();
 const lastGen = generateCalls[generateCalls.length - 1];
 check('Generate sends both groups for re-teach and NO group skill (N2.3.1 is what the plan derives for the Beginners)', JSON.stringify(lastGen[4]) === '{"reteachGroups":["beginner","progressor"]}', JSON.stringify(lastGen[4]));
 
+console.log('no network (found on the first cloud test: Generate showed the browser\'s "Failed to fetch" and nothing said why)');
+await click(card('N2.3.2')); await release('N2.3.2', LADDER['N2.3.2']);
+check('(online, a skill is chosen: Generate is enabled and no offline reason is shown)', generateBtn() && !generateBtn().disabled && !q('[data-testid="generate-offline"]'));
+globalThis.fetch = async () => ({ ok: true, status: 200 });          // the server answers the app's tiny /health probe, so "back online" can be confirmed
+const setOnLine = async (on) => act(async () => { Object.defineProperty(dom.window.navigator, 'onLine', { value: on, configurable: true }); dom.window.dispatchEvent(new dom.window.Event(on ? 'online' : 'offline')); });
+await setOnLine(false);
+check('offline: Generate is DISABLED and the screen says why, in Hindi and English (making a plan needs the internet)', generateBtn().disabled && !!q('[data-testid="generate-offline"]') && /इंटरनेट/.test(q('[data-testid="generate-offline"]').textContent) && /needs the internet/.test(q('[data-testid="generate-offline"]').textContent));
+const callsBefore = generateCalls.length; await click(generateBtn());
+check('...and tapping it does nothing (no request is made)', generateCalls.length === callsBefore);
+await setOnLine(true); await flush(); await flush();                  // the browser's "online" starts a probe; the app is believed online only when it answers
+check('back online: the reason disappears and Generate is enabled again', !q('[data-testid="generate-offline"]') && !generateBtn().disabled, `reason shown: ${!!q('[data-testid="generate-offline"]')}, Generate disabled: ${generateBtn() && generateBtn().disabled}, navigator.onLine: ${dom.window.navigator.onLine}`);
+
 console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks on the real Plan screen: the group panel is a drawer that opens in place, and the previous skill\'s groups never outlive a new choice'}`);

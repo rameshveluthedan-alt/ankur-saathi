@@ -180,9 +180,9 @@ The last command should show the newest execution as succeeded. (The one-off `an
 
 ### The curated skill bridges (new table `skill_bridges`: no manual database step)
 The nightly job's first step loads the reviewer's approved bridges from `db/seeds/content/07_skill_bridges.csv` (in the image) and **creates the table if it is missing**; a failure there never stops the demo reset. To change the bridges: edit the working file (or `python scripts\load_bridges.py --from-review ...`), check it with `python scripts\load_bridges.py --check --env-file backend\.env`, commit, deploy, then the four commands above (the job picks the file up from the new image). The execution's log shows the step ("the curated skill bridges are loaded"). **If a wrong bridge ever got approved**, switch them off at once, without a deploy: `gcloud run services update $SERVICE --region $REGION --update-env-vars SKILL_BRIDGES=off`. The app works the same without the table. Details: `docs/BRIDGES.md`.
-**See the AI budget** (run it daily, and before a demo). It uses a one-off job:
+**See the AI budget** (run it daily, and before a demo). It uses a one-off job, **created once** (`jobs create`), then only executed. The two arguments are separated with `^@^` (an `@`) on purpose: written with a comma, the job started and failed with exit code 2 and an empty log when created from PowerShell on 25 Oct. After a new deploy: `gcloud run jobs update ankur-usage --image=$IMAGE --region=$REGION`.
 ```powershell
-gcloud run jobs create ankur-usage --image=$IMAGE --region=$REGION --set-cloudsql-instances=$CONN --env-vars-file=deploy\cloudrun-env.generated.yaml --set-secrets="DB_PASSWORD=ankur-db-password:latest" --command=python --args=/srv/scripts/ai_usage.py,status --task-timeout=300s --max-retries=0
+gcloud run jobs create ankur-usage --image=$IMAGE --region=$REGION --set-cloudsql-instances=$CONN --env-vars-file=deploy\cloudrun-env.generated.yaml --set-secrets="DB_PASSWORD=ankur-db-password:latest" --command=python --args="^@^/srv/scripts/ai_usage.py@status" --task-timeout=300s --max-retries=0
 gcloud run jobs execute ankur-usage --region=$REGION --wait
 gcloud logging read 'resource.type="cloud_run_job" AND resource.labels.job_name="ankur-usage"' --limit=40 --format="value(textPayload)" --freshness=15m
 ```

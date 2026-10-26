@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../App';
 import { recordDecisions, recordObserved, recordORF, analysePhotos, getSavedAnalyses, getReviewCoverage, getReviewChannels } from '../services/api';
 import { compressImage } from '../utils/imageCompress';
+import { useOnline } from '../components/OfflineBanner';
 
 const GROUP_LABELS = {
   beginner: { hi: 'शुरुआती', en: 'Beginner' },
@@ -18,6 +19,7 @@ export default function ReviewScreen() {
   const [analysisResult, setAnalysisResult] = useState(null);
   const [sheetLevel, setSheetLevel] = useState('progressor');   // which group's worksheet the photos are of
   const [loading, setLoading] = useState(false);
+  const online = useOnline();            // sending photos for analysis needs the internet (they go to the AI); the chosen photos stay on the screen
   const [observedItems, setObservedItems] = useState([]);
   const [orfEntry, setOrfEntry] = useState({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });
   const fileInput = useRef(null);
@@ -237,7 +239,7 @@ export default function ReviewScreen() {
             {[
               { id: 'observed', icon: '✓', hi: 'अवलोकन', en: 'Observed' },
               { id: 'photo', icon: '📸', hi: 'फ़ोटो', en: 'Photo' },
-              { id: 'orf', icon: '🎤', hi: 'पठन प्रवाह', en: 'ORF' },
+              { id: 'orf', icon: '⏱️', hi: 'पठन प्रवाह', en: 'Reading aloud' },
             ].filter(ch => visibleChannels.includes(ch.id)).map(ch => (
               <button key={ch.id} className={`domain-tab ${channel === ch.id ? 'active' : ''}`} data-testid={`channel-${ch.id}`}
                 onClick={() => setChannel(ch.id)}>
@@ -407,7 +409,8 @@ export default function ReviewScreen() {
                       <div key={i} style={{ width: 60, height: 60, borderRadius: 8, background: 'var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem' }}>📄 {i + 1}</div>
                     ))}
                   </div>
-                  <button className="btn btn-primary" onClick={() => submitPhotos()} disabled={loading} style={{ marginTop: 8 }}>
+                  {!online && <div data-testid="photos-offline" style={{ fontSize: '0.75rem', color: '#26405A', background: '#E8EEF4', borderRadius: 8, padding: '6px 10px', marginTop: 8 }}>फ़ोटो भेजने के लिए इंटरनेट चाहिए; चुनी हुई फ़ोटो यहीं रहेंगी। (Sending photos needs the internet; the photos you chose stay here.)</div>}
+          <button className="btn btn-primary" onClick={() => submitPhotos()} disabled={loading || !online} style={{ marginTop: 8 }}>
                     {loading ? (
                       <><div className="spinner" style={{ width: 18, height: 18, borderWidth: 2 }} /> विश्लेषण हो रहा (Analysing)...</>
                     ) : `🔍 ${photos.length} फ़ोटो का विश्लेषण करें (Analyse)`}
@@ -420,9 +423,10 @@ export default function ReviewScreen() {
           {/* ORF */}
           {channel === 'orf' && (
             <div className="card">
-              <h3 style={{ marginBottom: 4 }}>🎤 पठन प्रवाह (Reading Fluency / ORF)</h3>
+              <h3 style={{ marginBottom: 4 }}>⏱️ पठन प्रवाह (Reading Fluency / ORF)</h3>
               <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
-                Stopwatch: count correct words read in 1 minute
+                एक बच्चे को एक मिनट पढ़ते सुनें, फिर सही शब्द और गलतियाँ दर्ज करें। कोई आवाज़ रिकॉर्ड नहीं होती।
+                <br /><span style={{ fontSize: '0.7rem' }}>Listen to one child read for a minute, then enter the correct words and the errors. No audio is recorded.</span>
               </p>
               {orfLevel && (
                 <div style={{ marginBottom: 8, fontSize: '0.75rem' }} data-testid="orf-chips">
@@ -452,7 +456,7 @@ export default function ReviewScreen() {
               </div>
               <button className="btn btn-primary" onClick={submitORF}
                 disabled={loading || !orfEntry.roll_number || !orfEntry.cwpm} style={{ marginTop: 10 }}>
-                {loading ? 'दर्ज हो रहा...' : '🎤 ORF दर्ज करें (Record ORF)'}
+                {loading ? 'दर्ज हो रहा...' : '⏱️ पठन दर्ज करें (Save reading score)'}
               </button>
             </div>
           )}
@@ -505,7 +509,7 @@ export default function ReviewScreen() {
                   {analysisResult.skipped_duplicates.map(d => (
                     <div key={d.roll_number} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 0', fontSize: '0.8125rem' }}>
                       <span>Roll {d.roll_number} · {d.earlier_accuracy == null ? '—' : Math.round(d.earlier_accuracy * 100) + '%'} · {new Date(d.earlier_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })}</span>
-                      {photos.length > 0 && <button type="button" className="btn btn-secondary" style={{ padding: '2px 8px', fontSize: '0.75rem' }} disabled={loading}
+                      {photos.length > 0 && <button type="button" className="btn btn-secondary" style={{ padding: '2px 8px', fontSize: '0.75rem' }} disabled={loading || !online}
                         onClick={() => submitPhotos({ replaceRolls: [d.roll_number] })}>नई फ़ोटो से बदलें (Replace)</button>}
                     </div>
                   ))}

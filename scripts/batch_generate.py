@@ -200,8 +200,16 @@ async def run_one(database, plan_service, worksheet_service, fetch_anchor_activi
                                            teacher_id, plan_date, domain)
                 plan_data = stored["plan_content"] if isinstance(stored["plan_content"], dict) else json.loads(stored["plan_content"])
                 snap = stored["groups_snapshot"]; snap = json.loads(snap) if isinstance(snap, str) else (snap or {})
-                if getattr(args, "save_samples", False) and not args.stub and plan_data.get("served_from") == "ai" and not warns:
-                    sample = {k: v for k, v in plan_data.items() if k != "served_from"}          # only CLEAN plans from the real model are kept as samples
+                from app.services import ai_budget as _recorded          # imported here: this function can run before main() has imported anything
+                # EVERY plan is written out as it is, with its warnings, before anything else: a plan that was paid for must never be lost because it was not kept as a sample (found 25 Oct: two runs, $0.87, nothing left)
+                raw_dir = ROOT / "docs" / "batch" / "plans"; raw_dir.mkdir(parents=True, exist_ok=True)
+                (raw_dir / ".gitignore").write_text("*\n", encoding="utf-8")                       # scratch: never committed
+                (raw_dir / f"{cid}.json").write_text(json.dumps(_recorded.raw_plan_record({k: v for k, v in plan_data.items() if k != "served_from"}, warns, stub=args.stub), ensure_ascii=False, indent=1), encoding="utf-8")
+                # only plans from the real model are kept as samples, and by default only CLEAN ones; --accept-warnings keeps a plan WITH its warnings written inside, to be reviewed by a person
+                if _recorded.should_keep_sample(save_samples=getattr(args, "save_samples", False), stub=args.stub, served_from=plan_data.get("served_from"), warnings=warns, accept_warnings=getattr(args, "accept_warnings", False)):
+                    sample = _recorded.mark_for_review({k: v for k, v in plan_data.items() if k != "served_from"}, warns)
+                    if warns:
+                        print(f"     {cid}: saved WITH {len(warns)} warning(s): have it read (python scripts\\review_sample_plans.py sheet {cid}), then sign it (... sign {cid} --by \"Name\")")
                     out = ROOT / "db" / "seeds" / "sample_plans"; out.mkdir(parents=True, exist_ok=True)
                     (out / f"{cid}.json").write_text(json.dumps(sample, ensure_ascii=False, indent=1), encoding="utf-8")
                     row["error"] = row["error"] or ""
@@ -230,6 +238,7 @@ async def main():
     ap.add_argument("--price-in", type=float, default=None, help="USD per million input tokens (default: AI_PRICE_INPUT_PER_MTOK from the settings)")
     ap.add_argument("--price-out", type=float, default=None, help="USD per million output tokens (default: AI_PRICE_OUTPUT_PER_MTOK from the settings)")
     ap.add_argument("--save-samples", action="store_true", help="save each clean plan to db/seeds/sample_plans/ (the recorded plans served when the AI limit is reached)")
+    ap.add_argument("--accept-warnings", action="store_true", help="with --save-samples: also keep a plan that has warnings, with the warnings written inside the file and _reviewed_by empty until a person has read it (the gate refuses to pass until it is filled)")
     ap.add_argument("--out", default=str(ROOT / "docs" / "batch" / "batch_results.csv"))
     ap.add_argument("--teacher-id", default=DEMO_TEACHER)
     ap.add_argument("--start-date", default="2031-01-01", help="first scratch plan date (far in the future, so real plans are never touched)")
@@ -287,6 +296,9 @@ async def main():
         return
     est = len(todo) * 0.13
     print(f"{len(todo)} skill(s) to run ({len(comps) - len(todo)} skipped). Model: {'FAKE (stub)' if args.stub else get_settings().claude_model}.")
+    print(f"Every plan is also written, as it is, to {ROOT / 'docs' / 'batch' / 'plans'} (git ignores that folder).")
+    if args.save_samples and not args.accept_warnings:
+        print("Note: --save-samples keeps a plan as a recorded sample only if it has NO warnings. Add --accept-warnings to keep plans with warnings for a person to review.")
     print(f"Estimated cost {'$0 (stub)' if args.stub else f'about ${est:.0f} (12 to 14 cents each)'}; about {len(todo) * (0 if args.stub else 70) / 3600:.1f} hours; results go to {out_path}")
     if not args.yes and not args.stub:
         if input("This spends your Anthropic credits. Type yes to start: ").strip().lower() != "yes":
@@ -315,6 +327,7 @@ async def main():
             n = await db.fetchval("WITH d AS (DELETE FROM daily_plans WHERE teacher_id=$1 AND plan_date >= $2 AND plan_date < $3 RETURNING 1) SELECT count(*) FROM d",
                                   args.teacher_id, start, start + timedelta(days=len(todo) + 1))
         print(f"Removed {n} scratch plans from the database.")
+    print(f"The plans themselves are in {ROOT / 'docs' / 'batch' / 'plans'}. To keep one as a recorded sample: copy <skill>.json to db/seeds/sample_plans/, have it read (python scripts/review_sample_plans.py sheet <skill>) and sign it (python scripts/review_sample_plans.py sign <skill> --by \"Name\").")
     await database.close_pool()
     clean = sum(1 for r in rows if r["status"] == "ok" and not r["warnings_after"] and r["render_ok"] == "yes")
     print(f"\nDone: {len(rows)} run, {ok_n} generated, {clean} fully clean (no warnings, worksheets render), estimated spend ${spent:.2f}.")

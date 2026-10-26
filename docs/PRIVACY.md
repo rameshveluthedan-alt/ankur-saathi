@@ -23,6 +23,9 @@ enforced, and what is NOT yet done.
    same way against a real plan: 1 request, about 16,000 characters, class numbers present, no name or surname.
 4. **The officer report cannot carry names.** The teacher's class report (with names) is a separate download.
 
+## Audio
+The app **records no audio** and never asks the browser for the microphone (`pwa/tests/no_audio.test.mjs` checks the code and the screens). Reading aloud is timed by the teacher, who types the result. If voice assessment is added for the periodic assessments (`docs/ROADMAP.md`, section 6), it will need the school's consent on record and audio that is scored in memory and not kept, as photos are; none of that is built.
+
 ## Names the AI might read off a photo
 The AI is told never to use names. But a child may write their name in a notebook, and a **photo goes to the AI** whatever
 we do in the database. So:
@@ -44,6 +47,12 @@ we do in the database. So:
 5. **Editing and deleting names.** A name can be added or corrected by uploading a register again. There is no screen yet to
    delete one name or one child; deleting a child removes their name with it (`ON DELETE CASCADE`).
 6. **Access logging:** sign-in events and every export of a class report (the one with names) are recorded in `auth_events`; there is no screen to read them yet.
+
+## Teachers' phone numbers and PINs
+- **A teacher's phone number is her sign-in.** The app sends and the database stores it as the text `hash_` followed by the number. The column is called `phone_hash` for historical reasons: **it is not a cryptographic hash**, so the number is effectively stored in clear on the server (an Indian region: Cloud SQL, Mumbai).
+- **The PIN is hashed properly:** PBKDF2-SHA256 with a random salt; the iteration count is stored with each hash so it can be raised later (`docs/AUTH.md`). A wrong PIN and an unknown number get the same answer, so the sign-in does not reveal which numbers exist.
+- **Who sees a number:** the school admin's list shows only the last four digits ("••••1234"); a number is never sent to the AI, never put in a log line by the app, and never shown to another teacher.
+- **Not done yet:** storing a salted hash of the number instead of the number (it needs the server to hash at sign-in, and a way for the admin to still tell two accounts apart), and a one-time code by SMS or WhatsApp instead of a fixed PIN. Both are on the roadmap in `docs/STATUS.md`.
 
 ## Demo and test data
 The repository contains **fictional first names only** (`db/seeds/classroom/02_child_names.sql`, and the list in

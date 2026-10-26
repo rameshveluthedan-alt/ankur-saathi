@@ -55,6 +55,70 @@ CHECKS = [
     ("v28t", "the Plan screen goes back to choosing a skill", "pwa/src/screens/PlanScreen.jsx", "TAB_RESELECT_EVENT"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/services/groupSkills.js", "export function toggleReteach"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/components/GroupSkillsPanel.jsx", "toggleReteach"),
+    ("v29v", "the Hindi style check flags the old Tens | Ones box word only in a place-value sentence (खाना = food, खाने = to eat)", "backend/tests/test_hindi_style.py", "def frame_left"),
+    ("v29u", "EVERY recorded plan must be read and signed, with warnings or without (the tool and the gate)", "scripts/review_sample_plans.py", "not yet read"),
+    ("v29t", "the review page carries a checklist for the reader (Hindi, answers, the skill, the story, no names, the warnings)", "scripts/review_sample_plans.py", "What to check"),
+    ("v29s", "a recorded plan is read as a page (as a teacher will see it) and signed by a tool, not by hand", "scripts/review_sample_plans.py", "def as_teacher_sees"),
+    ("v29s", "the reading and signing of recorded plans is tested (nothing left out of the page)", "backend/tests/test_review_sample_plans.py", None),
+    ("v29r", "every generated plan is also written to docs/batch/plans (a paid-for plan is never lost)", "scripts/batch_generate.py", "raw_plan_record"),
+    ("v29r", "the raw record of a plan, and a fake-model plan is refused by the gate", "backend/app/services/ai_budget.py", "def raw_plan_record"),
+    ("v29q", "a recorded plan can be kept WITH its warnings (--accept-warnings); the notes never reach a teacher", "backend/app/services/ai_budget.py", "def mark_for_review"),
+    ("v29q", "the batch tool has --accept-warnings", "scripts/batch_generate.py", "--accept-warnings"),
+    ("v29q", "a recorded plan kept with warnings must be signed by its reader (the gate)", "scripts/submission_check.py", "sample_plans_review"),
+    ("v29q", "the recorded-plan rules are tested", "backend/tests/test_sample_plans.py", None),
+    ("v29p", "recording a sample plan: one skill per run, the value attached with '=', and a PowerShell loop", "db/seeds/sample_plans/README.md", "foreach ($s in"),
+    ("v29o", "reading aloud is a stopwatch, not a microphone: the screens say no audio is recorded", "pwa/src/screens/ReviewScreen.jsx", "कोई आवाज़ रिकॉर्ड नहीं होती"),
+    ("v29o", "the app cannot record sound (a code check)", "pwa/tests/no_audio.test.mjs", None),
+    ("v29o", "daily review by observation, voice only for the periodic assessments (a design decision)", "docs/ROADMAP.md", "Assessment modes: daily and periodic"),
+    ("v29o", "the gate compares the recorded plans in the folder with the ones the guide names", "scripts/submission_check.py", "sample_plans_extra"),
+    ("v29o", "the evaluator guide: observation, reading aloud and Hindi plans among the five sample inputs", "docs/EVALUATOR_GUIDE.md", "No audio is recorded"),
+    ("v29n", "the Hindi style check flags 'को दो' only at the end of a clause: दो before a noun is the number two", "backend/tests/test_hindi_style.py", "GIVE_LEFT"),
+    ("v29n", "the batch tool is shown with the right options and the recorded-sample choice is explained", "db/seeds/sample_plans/README.md", "there is no --env-file option"),
+    ("v29m", "the production test writes its fake files byte for byte (Windows would add carriage returns)", "backend/tests/test_production_app.py", 'newline=""'),
+    ("v29m", "the link case of the runner test skips where links are not allowed (Windows without Developer Mode)", "backend/tests/test_run_tests.py", "can_link"),
+    ("v29l", "the test runner checks its Python, switches to backend/venv by itself, and explains failures grouped by reason", "scripts/run_tests.py", "def choose_interpreter"),
+    ("v29l", "the runner's choice of Python is tested (incl. a virtual environment that is a link)", "backend/tests/test_run_tests.py", "LINK to the system one"),
+    ("v29k", "the app knows when it is offline: a probe no cache answers, the browser's flag, a failed request", "pwa/src/services/network.js", "export async function probe"),
+    ("v29k", "a missing network becomes one clear sentence; the offline copies are prepared and removed at sign-in and sign-out", "pwa/src/services/api.js", "prepareOfflineCopy"),
+    ("v29k", "the private offline copies never outlive the signed-in person", "pwa/src/services/offlineCache.js", "PRIVATE_CACHES"),
+    ("v29k", "the offline notice", "pwa/src/components/OfflineBanner.jsx", "data-testid=\"offline-banner\""),
+    ("v29k", "the service worker keeps worksheets, answers from its copy after 6 s, and the skill-list rule comes first", "pwa/vite.config.js", "worksheet-cache"),
+    ("v29k", "a smaller photo on a phone with 2 GB of memory or less", "pwa/src/utils/imageCompress.js", "export function compressionSettings"),
+    ("v29k", "the server compresses what it sends", "backend/app/production.py", "GZipMiddleware, minimum_size"),
+    ("v29k", "the offline behaviour is tested (no browser)", "pwa/tests/offline.test.mjs", None),
+    ("v29k", "the offline behaviour is documented", "docs/OFFLINE.md", "How the app knows it is offline"),
+    ("v29j", "the evaluator guide: sign-ins, five sample inputs, the frozen version (freeze-day markers)", "docs/EVALUATOR_GUIDE.md", "FILL ON FREEZE"),
+    ("v29j", "the roadmap: roles above the school, onboarding, data rules (a design sketch)", "docs/ROADMAP.md", "closer to the child"),
+    ("v29j", "the gate checks the evaluator guide and refuses --final while freeze-day markers remain", "scripts/submission_check.py", "guide_placeholders"),
+    ("v29i", "the test accounts: ONE test school, its admin and plain teachers (`normalise` converts the old layout)", "scripts/create_test_teachers.py", "def cmd_normalise"),
+    ("v29i", "the nightly job puts the test accounts in order (a step that cannot stop the reset)", "scripts/nightly_reset.py", "create_test_teachers.py"),
+    ("v29i", "the test accounts are tested (old layout converted, nothing else touched)", "backend/tests/test_test_teachers.py", None),
+    ("v29i", "the access guide: the test school admin and what an admin can do today", "docs/DEMO_ACCESS.md", "Test school admin"),
+    ("v29i", "the usage job is created with arguments that survive PowerShell", "deploy/DEPLOY.md", "^@^/srv/scripts/ai_usage.py@status"),
+    ("v29h", "the README is the real one: run it locally, every AI service, tests, deploy", "README.md", "How AI is used"),
+    ("v29h", "the status document: what is built, against the proposal", "docs/STATUS.md", None),
+    ("v29h", "the sample environment file lists every setting the code reads", "backend/.env.example", "SEMANTIC_RETRIEVAL"),
+    ("v29h", "the model defaults match the demo (claude-sonnet-5-5, 24000 tokens)", "backend/app/core/config.py", 'claude_model: str = "claude-sonnet-5-5"'),
+    ("v29h", "a key that is only in .env is not reported missing at startup", "backend/app/production.py", "_s.anthropic_api_key"),
+    ("v29h", "the database setup creates the database through the connection you give, and fails loudly", "db/setup.sh", "ADMIN_URL"),
+    ("v29h", "scripts and test helpers find the .env the app reads", "scripts/anchor_common.py", "def default_env_file"),
+    ("v29h", "the test runner (return code, tracebacks, skips)", "scripts/run_tests.py", "def resolve_env_file"),
+    ("v29h", "the submission gate for the source-code deliverable", "scripts/submission_check.py", "def run_checks"),
+    ("v29h", "the gate is tested", "backend/tests/test_submission_check.py", None),
+    ("v29h", "the database helper is tested", "backend/tests/test_db_params.py", None),
+    ("v29h", "the runner is tested", "backend/tests/test_run_tests.py", None),
+    ("v29h", "the privacy notes cover teachers' phone numbers and PINs", "docs/PRIVACY.md", "Teachers' phone numbers and PINs"),
+    ("v29g", "semantic retrieval: the migration (vector 1024, the skills column)", "db/schema/12_embeddings_1024.sql", None),
+    ("v29g", "semantic retrieval: the tier, the switch and the fallbacks", "prompts/orchestrate.py", "def semantic_enabled"),
+    ("v29g", "the embeddings are computed OFFLINE with an open-weights model (BAAI/bge-m3), into one file", "scripts/embed_content.py", "BAAI/bge-m3"),
+    ("v29g", "the loader: no model, only fresh vectors, safe without pgvector", "scripts/load_embeddings.py", "def apply"),
+    ("v29g", "the texts and fingerprints (an anchor is embedded from its own content only)", "scripts/embedding_texts.py", "def anchor_text(row: dict)"),
+    ("v29g", "the evidence script (recovery test against a random baseline, blind A/B, from the file)", "scripts/eval_semantic.py", "def vectors_from_file"),
+    ("v29g", "the nightly job loads the embeddings", "scripts/nightly_reset.py", "load_embeddings.py"),
+    ("v29g", "the semantic retrieval is tested", "backend/tests/test_semantic_retrieval.py", None),
+    ("v29g", "semantic retrieval is documented", "docs/SEMANTIC_RETRIEVAL.md", None),
+    ("v29g", "the old OpenAI embeddings script is a pointer only", "scripts/populate_embeddings.py", "REPLACED"),
+    ("v29g", "how many Generates needed a second call", "scripts/plan_retries.py", "def find_retries"),
     ("v29f", "one closing bracket too many is removed instead of asking the model again", "backend/app/services/model_json.py", "def repair_stray_closers"),
     ("v29f", "the stray-bracket repair is tested (it never turns a reply into a different plan)", "backend/tests/test_model_json_closers.py", None),
     ("v29e", "a show-me cannot be two wrong right-or-wrong lines (a child guesses)", "backend/app/services/cfu.py", "def _is_wrong_line"),
@@ -96,7 +160,7 @@ def kind_of(bundle, rel):
     return "older" if bundle.startswith("v27") else "current"
 
 
-VERSION = "v29f, 24 Oct: lists the bundles v27l to v29f; the package v29f-current replaces v28m to v29e"
+VERSION = "v29v, 25 Oct: lists the bundles v27l to v29v; the package v29v-current replaces v28m to v29u"
 
 
 def main():
@@ -123,15 +187,15 @@ def main():
     # the packages: v28p-current holds the current version of every file of the v28 series, so it is 'in' when every v28 row is OK
     series = [b for b in status if b.startswith("v28")]
     package_ok = all(status[b] for b in series)
-    print(f"\n  PACKAGE v29f-current (every file of v28a to v29f, current):  {'OK' if package_ok else 'BEHIND'}")
+    print(f"\n  PACKAGE v29v-current (every file of v28a to v29v, current):  {'OK' if package_ok else 'BEHIND'}")
     print()
     if not kinds:
         print("Everything listed is in this working copy.")
         return 0
     if "current" in kinds:
-        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29f-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
-        print("    tar -xzf <downloads>\\v29f-current.tar.gz -C <this folder>")
-        print("  and do NOT extract v28a to v29e afterwards: each holds older copies of some of the same files and would put them back.")
+        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29v-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
+        print("    tar -xzf <downloads>\\v29v-current.tar.gz -C <this folder>")
+        print("  and do NOT extract v28a to v29u afterwards: each holds older copies of some of the same files and would put them back.")
     if "older" in kinds:
         print(f"Older bundles missing: {', '.join(sorted(kinds['older']))}. Apply each, oldest first, with  tar -xzf <downloads>\\<bundle>.tar.gz -C <this folder>")
     print("Run this check again afterwards: python scripts\\check_applied.py")

@@ -31,6 +31,7 @@ _prepare_database_environment()
 
 from app.main import app                                       # noqa: E402  (after the environment is prepared: the settings are read on import)
 from app.rate_limit import RateLimitMiddleware, SecurityHeadersMiddleware   # noqa: E402
+from starlette.middleware.gzip import GZipMiddleware                         # noqa: E402
 from app.static_site import mount_pwa                          # noqa: E402
 
 # A settings mistake that only shows up in the cloud: say so at startup, in the log, where it is easy to see
@@ -39,8 +40,8 @@ _s = get_settings()
 if _s.claude_max_tokens < 16000:
     print(f"   WARNING: CLAUDE_MAX_TOKENS is {_s.claude_max_tokens}. A plan needs about 13,000 output tokens, so plans will be CUT OFF and fail. "
           f"Set CLAUDE_MAX_TOKENS (your backend/.env has it) in deploy/cloudrun-env.generated.yaml.")
-if not os.environ.get("ANTHROPIC_API_KEY"):
-    print("   WARNING: ANTHROPIC_API_KEY is not set: plan generation and photo analysis will fail.")
+if not (os.environ.get("ANTHROPIC_API_KEY") or _s.anthropic_api_key):         # the key may come from the environment (the cloud) or from backend/.env (a local run)
+    print("   WARNING: ANTHROPIC_API_KEY is not set (neither in the environment nor in .env): plan generation and photo analysis will fail.")
 if not _s.debug and not os.environ.get("SESSION_SECRET"):
     print("   WARNING: SESSION_SECRET is not set.")
 
@@ -49,4 +50,5 @@ app.router.routes[:] = [r for r in app.router.routes if getattr(r, "path", None)
 
 app.add_middleware(SecurityHeadersMiddleware)
 app.add_middleware(RateLimitMiddleware)                         # added last, so it runs first
+app.add_middleware(GZipMiddleware, minimum_size=1000)           # outermost: everything above is compressed for a browser that asks for it (a phone on a slow connection sends a third of the bytes)
 mount_pwa(app)                                                  # after every API route: the first matching route wins

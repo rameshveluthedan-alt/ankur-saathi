@@ -63,7 +63,7 @@ CREATE TABLE anchor_activities (
     
     -- Semantic search
     -- Embedding of: title + description + template_body + competency names
-    embedding       vector(1536),               -- text-embedding-3-small dimension
+    embedding       vector(1024),               -- BAAI/bge-m3 dimension (migration 12)
     search_text     tsvector,                   -- For hybrid keyword search
     
     -- Metadata
@@ -132,7 +132,7 @@ CREATE TABLE reading_passages (
         CHECK (genre IN ('narrative', 'informational', 'poem', 'dialogue')),
     
     -- Semantic search
-    embedding       vector(1536),
+    embedding       vector(1024),
     search_text     tsvector,
     
     source          TEXT,
@@ -196,7 +196,7 @@ CREATE TABLE intervention_templates (
     effectiveness_score NUMERIC(3,2),           -- 0.00-1.00, updated from outcomes
     
     -- Semantic search
-    embedding       vector(1536),
+    embedding       vector(1024),
     search_text     tsvector,
     
     source          TEXT,
@@ -239,7 +239,7 @@ CREATE TABLE tlm_references (
     diy_instructions TEXT,                     -- How to make it if not available
     
     -- Semantic search
-    embedding       vector(1536),
+    embedding       vector(1024),
     search_text     tsvector,
     
     is_active       BOOLEAN DEFAULT TRUE,

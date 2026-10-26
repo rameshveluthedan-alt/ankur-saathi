@@ -32,14 +32,12 @@ class Settings(BaseSettings):
     
     # Claude API
     anthropic_api_key: str = ""
-    claude_model: str = "claude-sonnet-4-6"
-    claude_vision_model: str = "claude-sonnet-4-6"
-    claude_max_tokens: int = 8000
+    claude_model: str = "claude-sonnet-5-5"          # the model the demo runs on (deploy/cloudrun-env.yaml says the same: scripts/submission_check.py compares them)
+    claude_vision_model: str = "claude-sonnet-5-5"
+    claude_max_tokens: int = 24000                   # a plan is about 11,000 to 13,000 output tokens: below 16,000 plans are CUT OFF (production.py warns at startup)
     
-    # Embedding API (for L2 semantic search)
-    embedding_api_key: str = ""
-    embedding_api_url: str = "https://api.openai.com/v1/embeddings"
-    embedding_model: str = "text-embedding-3-small"
+    # (No embedding service is configured here: the L2 embeddings are computed OFFLINE with an open-weights model,
+    #  scripts/embed_content.py, and loaded from db/seeds/content/embeddings.json. The running app calls no embedding API.)
     
     # AI budget (docs/AI_BUDGET.md). The hackathon credits are a fixed pool that must last through evaluation, so every call is metered and capped
     ai_enabled: bool = True                     # false = no calls at all (recorded sample plans are still served)

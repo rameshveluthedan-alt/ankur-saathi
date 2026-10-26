@@ -50,7 +50,7 @@ If the extra $500 is granted: set `AI_ALLOCATION_USD=1000` (and `AI_RESERVE_USD`
 python scripts/ai_usage.py status    --env-file backend/.env      # spent, remaining, usable now, today by account, warnings at 50/70/80%
 python scripts/ai_usage.py schedule  --env-file backend/.env      # the phases and the daily budget each affords
 python scripts/ai_usage.py calibrate --env-file backend/.env --actual-usd 12.40
-python scripts/batch_generate.py --save-samples --env-file backend/.env   # the 101-skill run, saving each clean plan as a recorded sample
+python scripts/batch_generate.py --save-samples                          # the 101-skill run, saving each clean plan as a recorded sample (it reads backend/.env itself: there is no --env-file option)
 ```
 Run `status` daily, and every time before a demo. After 70%, check `schedule` and lower the caps if the evaluation budget is at risk.
 
@@ -63,4 +63,4 @@ metered, or if the old unmetered call becomes reachable).
 - Plan generation in the background (so a dropped connection during the 60 to 80 seconds does not waste a paid plan).
 - An automatic comparison of a cheaper model on photo reading, which should be judged with the scored photo test.
 - A limit per network address, and an email or message when 50/70/80% is crossed (today you run `status`).
-- Recorded plans for all 101 skills: only N2.2.1 and N2.3.2 exist until the batch run is done with the real model.
+- Recorded plans for all 101 skills: only six are kept on purpose (N0.1.1, N2.2.1, N2.3.2, L2.3.1, L2.5.1 and L2.7.2): the demo skill for each way of recording a review (photo, observation, reading aloud) and two Hindi plans. `scripts/submission_check.py` compares this list with the folder `db/seeds/sample_plans`.

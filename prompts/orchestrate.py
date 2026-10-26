@@ -6,6 +6,7 @@ This is the core function the FastAPI endpoint calls.
 """
 
 import json
+import os
 from dataclasses import dataclass, field, asdict
 from datetime import date
 from typing import Optional
@@ -74,6 +75,7 @@ class AnchorTemplate:
     match_quality: str = "exact"                  # exact | related | topic_area | loose | semantic
     designed_for: Optional[list] = None           # competencies this template was written for
     linked_to: Optional[list] = None              # related / topic_area: the competencies that created the match
+    similarity: Optional[float] = None            # semantic: cosine similarity between the skill's vector and the anchor's (1.0 = identical meaning)
 
 @dataclass
 class InterventionTemplate:
@@ -232,6 +234,7 @@ def _anchor_from_row(row, quality: str) -> AnchorTemplate:
         theme=row['theme'], template_body=row['template_body'],
         match_quality=quality, designed_for=list(row['primary_competency_ids'] or []),
         linked_to=list(row.get('linked_ids') or []) or None,
+        similarity=(float(row.get('similarity')) if row.get('similarity') is not None else None),
     )
 
 
@@ -240,9 +243,50 @@ _ANCHOR_SPAN = ("COALESCE(array_length(a.primary_competency_ids, 1), 0) "
                 "+ COALESCE(array_length(a.secondary_competency_ids, 1), 0)")
 
 
+# ---- SEMANTIC TIER (24-25 Oct): where the curated ladder has nothing for the skill, choose the anchor NEAREST IN MEANING instead of "the most broadly applicable first".
+# The query is the SKILL'S OWN STORED VECTOR (competencies.embedding, loaded by scripts/load_embeddings.py): the running app calls NO embedding service and needs no key.
+# A switch, OFF by default: SEMANTIC_RETRIEVAL=on. Any problem (no pgvector, no vectors, an error) falls back to the SQL ladder; it can never raise or poison a transaction.
+_SEMANTIC_SQL = f"""
+    SELECT {_ANCHOR_COLS}, 1 - (a.embedding <=> c.embedding) AS similarity
+    FROM anchor_activities a, competencies c
+    WHERE c.id = $3 AND c.embedding IS NOT NULL AND a.embedding IS NOT NULL
+      AND a.domain_id = $1 AND $2 = ANY(a.grade_range) AND a.is_active = TRUE
+    ORDER BY a.embedding <=> c.embedding ASC, a.id
+    LIMIT 1
+"""
+
+
+def semantic_enabled() -> bool:
+    return os.environ.get("SEMANTIC_RETRIEVAL", "off").strip().lower() in ("on", "1", "true", "yes")
+
+
+async def _vectors_ready(db) -> bool:
+    """True when the skills and the anchors both have a vector column. Uses catalog lookups that do not raise (a failed query inside a transaction would poison it)."""
+    return bool(await db.fetchval("""
+        SELECT to_regtype('vector') IS NOT NULL AND (
+            SELECT count(*) FROM pg_attribute a JOIN pg_class c ON c.oid = a.attrelid
+            WHERE c.relname IN ('competencies', 'anchor_activities') AND c.relkind = 'r' AND a.attname = 'embedding'
+              AND NOT a.attisdropped AND a.atttypid = to_regtype('vector')::oid) = 2"""))
+
+
+async def _semantic_anchor(db, domain_id: str, grade_level: str, competency_id: str) -> Optional[AnchorTemplate]:
+    """The anchor valid for this domain and grade whose vector is nearest to the skill's. None if the switch is off, the vectors are not there, or anything goes wrong. Deterministic: ties go to the lower id."""
+    if not semantic_enabled():
+        return None
+    try:
+        if not await _vectors_ready(db):
+            return None
+        async with db.transaction():                    # a SAVEPOINT when already inside a transaction: a failure here cannot poison it
+            row = await db.fetchrow(_SEMANTIC_SQL, domain_id, grade_level, competency_id)
+    except Exception as e:
+        print(f"   Semantic retrieval skipped ({type(e).__name__}): the ladder continues")
+        return None
+    return _anchor_from_row(row, "semantic") if row else None
+
+
 async def fetch_anchor_activity(
     db, domain_id: str, grade_level: str,
-    competency_id: str, query_embedding=None
+    competency_id: str
 ) -> Optional[AnchorTemplate]:
     """
     L2 retrieval: find the best anchor activity. Fully DETERMINISTIC: the same inputs
@@ -254,24 +298,15 @@ async def fetch_anchor_activity(
                        then the more specific template, then id)
       2. related     - written for a direct prerequisite or dependent of today's competency
                        (prerequisite graph; hard links weigh double)
+      2b. semantic   - ONLY when SEMANTIC_RETRIEVAL=on and the vectors are loaded: the anchor valid for this
+                       grade whose meaning is NEAREST to today's skill (cosine similarity of stored vectors).
+                       Replaces tiers 3 and 4, the weak ones; tiers 1 and 2 (curated) always come first.
       3. topic_area  - the anchor is written for other competencies in the same topic area
                        (subdomain); prefers the same grade, then the NEAREST competency in
                        the learning sequence (sort_order), then more overlap, then id
       4. loose       - any anchor valid for this grade; the most broadly applicable first
       5. none        - nothing is valid for this grade: returns None
     """
-    if query_embedding is not None:
-        # Semantic retrieval (when embeddings are populated)
-        row = await db.fetchrow("""
-            SELECT id, title_en, title_hi, theme, template_body, primary_competency_ids,
-                   1 - (embedding <=> $3) AS similarity
-            FROM anchor_activities
-            WHERE domain_id = $1 AND $2 = ANY(grade_range) AND is_active = TRUE
-            ORDER BY similarity DESC, id
-            LIMIT 1
-        """, domain_id, grade_level, query_embedding)
-        return _anchor_from_row(row, "semantic") if row else None
-
     # Tier 1: exact
     row = await db.fetchrow(f"""
         SELECT {_ANCHOR_COLS}
@@ -309,6 +344,11 @@ async def fetch_anchor_activity(
     """, domain_id, grade_level, competency_id)
     if row:
         return _anchor_from_row(row, "related")
+
+    # Tier 2b: semantic (a switch, off by default): nearest in meaning, instead of the two weak tiers below
+    sem = await _semantic_anchor(db, domain_id, grade_level, competency_id)
+    if sem:
+        return sem
 
     # Tier 3: same topic area (subdomain)
     row = await db.fetchrow(f"""
@@ -558,6 +598,12 @@ def _anchor_prompt_section(ctx: OrchestrationContext) -> str:
                 f"in the bank matches {today}. Keep only its story setting and format; rewrite every group's task "
                 f"so it practises that group's competency today. In explainability, state clearly that no anchor "
                 f"matched today's competency and this one was adapted loosely.\n")
+    elif a.match_quality == "semantic":
+        note = (f"**Match quality: SEMANTIC.** No template in the bank was written for today's competency {today} or for one linked to it in "
+                f"the prerequisite graph. This one (written for {designed}) was chosen because its everyday setting is the NEAREST IN MEANING to {today}. "
+                f"Keep its story setting and format, but rewrite each group's task so it practises that group's own competency today, and change any "
+                f"numbers or objects that do not fit. In explainability, say the anchor was chosen by closeness of meaning (a semantic match), "
+                f"not written for this skill.\n")
     elif a.match_quality == "exact":
         note = ("**Match quality: EXACT.** This template was written for today's competency " + today +
                 ". Adapt it for today's number range and fill all {{placeholders}}. In explainability, "

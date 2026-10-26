@@ -6,11 +6,13 @@ tapping one fills in the phone number and PIN.
 | Phone | PIN | What it is |
 | --- | --- | --- |
 | 9876543210 | 4826 | **Demo teacher**: a 30-child multi-grade class (Grades 1 to 3), fictional names, a few days of data |
-| 9876500000 | 7351 | **Demo school admin**: lists the school's accounts, shows the join code, resets the "Change PIN" account's PIN |
+| 9876500000 | 7351 | **Demo school admin** (the demo school: the demo teacher and the "Change PIN" account): lists the school's accounts, shows the join code, resets the "Change PIN" account's PIN |
+| 9000000100 | 7351 | **Test school admin** (the test school: the five test teachers below): lists their accounts and shows the school's join code. The test teachers' PINs are fixed, so it cannot reset them |
 | 9000000199 | 3917 | **"Change PIN" account (पिन बदलना)**: change its PIN, reset it as the admin, lock it out. Nothing else is affected |
-| 9000000101 to 9000000105 | 4826 | **Test teachers**, each with their own multi-grade class (class numbers 101-110, 201-208, 301-306). Use one each, so you do not overwrite each other's photos or registers |
+| 9000000101 to 9000000105 | 4826 | **Test teachers** (the role is plain *teacher*: no admin screens), all in the test school, each with their own multi-grade class (class numbers 101-110, 201-208, 301-306). Use one each, so you do not overwrite each other's photos or registers |
 
 ## Suggested path
+0. **What the admin can do today:** see the school's code and join code and make a new join code; list the school's accounts (only the last four digits of each phone number); reset a teacher's PIN to a temporary one (shown once); unlock a locked account. **Teachers register themselves** with the join code, **each teacher enrols her own class** by uploading a register, and a teacher picks her own grades. There are no admin screens yet for enrolling teachers or children, assigning classes or viewing reports (`docs/STATUS.md`).
 1. **Teacher:** sign in as 9876543210 or one of the test teachers. Look at Plan, Progress (the "consider re-assessing" flags, the
    child list with names) and Review (the observation checklist, the suggested sample).
 2. **PIN reset:** sign in as the admin (9876500000), open Profile (the last tab), reset the "Change PIN" account's PIN. A temporary PIN appears once.
@@ -20,7 +22,7 @@ tapping one fills in the phone number and PIN.
 
 ## If the AI limit is reached
 The demo's AI use is capped so the credits last through evaluation (`docs/AI_BUDGET.md`). When a limit is reached, a plan for a skill with a
-recorded sample is still shown, labelled "sample plan" (try **N2.2.1** or **N2.3.2**); other skills and photo analysis say the limit was reached
+recorded sample is still shown, labelled "sample plan" (the recorded sample plans are N0.1.1, N2.2.1, N2.3.2, L2.3.1, L2.5.1 and L2.7.2); other skills and photo analysis say the limit was reached
 and that it resets the next day.
 
 ## Why some accounts cannot change their PIN
@@ -29,7 +31,8 @@ practice account exists so the change and reset flows can still be tried.
 
 ## For the operator
 ```
-python scripts/create_test_teachers.py create --count 5 --env-file backend/.env
+python scripts/create_test_teachers.py create --count 5 --env-file backend/.env     # the test school, its admin 9000000100, and the five teachers
+python scripts/create_test_teachers.py normalise --env-file backend/.env            # converts accounts made by an older version (each teacher alone in a school, so each an admin); the nightly job runs it
 python scripts/auth_admin.py demo-setup       --env-file backend/.env     # PINs, flags and the join code; prints this table
 python scripts/demo_progress.py seed --end-date YESTERDAY --env-file backend/.env
 python scripts/ai_usage.py status --env-file backend/.env                 # before every demo: how much AI budget is left

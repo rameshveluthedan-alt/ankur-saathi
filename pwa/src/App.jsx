@@ -5,6 +5,8 @@ import YojanaScreen from './screens/YojanaScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import ProgressScreen from './screens/ProgressScreen';
 import LoginScreen from './screens/LoginScreen';
+import OfflineBanner from './components/OfflineBanner';
+import { probe } from './services/network';
 import { TAB_RESELECT_EVENT, tabTap } from './services/tabs';
 import RegisterScreen from './screens/RegisterScreen';
 import AccountScreen from './screens/AccountScreen';
@@ -48,15 +50,18 @@ function BottomNav() {
 
 function AppShell() {
   const { teacher } = useAuth();
-  if (!teacher || !getToken()) return <LoginScreen />;
+  if (!teacher || !getToken()) return <><OfflineBanner /><LoginScreen /></>;
   if (teacher.must_change_pin) return <ChangePinScreen forced />;       // an admin reset the PIN: choose a new one first
   return (
     <>
-      {teacher.is_demo && (
-        <div data-testid="demo-banner" style={{ background: '#FFF4D6', color: '#6B4A00', fontSize: '0.7rem', padding: '4px 10px', textAlign: 'center', position: 'sticky', top: 0, zIndex: 30 }}>
-          डेमो अकाउंट: सिर्फ़ काल्पनिक डेटा, असली बच्चों के नाम न डालें। (Demo account: fictional data only. Do not enter real children's names.)
-        </div>
-      )}
+      <div style={{ position: 'sticky', top: 0, zIndex: 30 }}>
+        <OfflineBanner />
+        {teacher.is_demo && (
+          <div data-testid="demo-banner" style={{ background: '#FFF4D6', color: '#6B4A00', fontSize: '0.7rem', padding: '4px 10px', textAlign: 'center' }}>
+            डेमो अकाउंट: सिर्फ़ काल्पनिक डेटा, असली बच्चों के नाम न डालें। (Demo account: fictional data only. Do not enter real children's names.)
+          </div>
+        )}
+      </div>
       <Routes>
         <Route path="/" element={<PlanScreen />} />
         <Route path="/yojana" element={<YojanaScreen />} />
@@ -76,6 +81,7 @@ export default function App() {
     try { return getToken() ? JSON.parse(localStorage.getItem('ankur_teacher')) : null; } catch { return null; }
   });
   const [currentPlan, setCurrentPlan] = useState(null);
+  useEffect(() => { probe(); }, []);            // on opening: can the server be reached? (a service worker can open the app with no network at all)
   const [selectedDomain, setSelectedDomain] = useState('numeracy');
   const [names, setNames] = useState({});        // {class number: name}: the teacher's own screens only, never sent to the AI
   const refreshNames = () => { if (teacher && teacher.teacher_id && getToken()) getNames(teacher.teacher_id).then(setNames).catch(() => setNames({})); };

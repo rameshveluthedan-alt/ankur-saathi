@@ -1,6 +1,14 @@
 // Shrink a phone photo before upload: a 5 to 10 MB photo becomes a few hundred KB, which saves mobile data and
 // keeps handwriting legible. Falls back to the original file if the browser cannot do it.
-export async function compressImage(file, maxSide = 1600, quality = 0.8) {
+// A phone with 2 GB of RAM or less (the browser reports it as deviceMemory, in GB) gets a smaller photo: less memory to decode it, less data to send. Handwriting stays legible at 1200 px.
+export function compressionSettings(deviceMemory = (typeof navigator !== 'undefined' ? navigator.deviceMemory : undefined)) {
+  return deviceMemory && deviceMemory <= 2 ? { maxSide: 1200, quality: 0.7 } : { maxSide: 1600, quality: 0.8 };
+}
+
+export async function compressImage(file, maxSide, quality) {
+  const chosen = compressionSettings();
+  maxSide = maxSide || chosen.maxSide;
+  quality = quality || chosen.quality;
   try {
     if (!file.type.startsWith('image/')) return file;
     const bitmap = await createImageBitmap(file, { imageOrientation: 'from-image' });   // respects the phone's rotation flag

@@ -81,6 +81,41 @@ for s in ["दो अंकों के जोड़ के 8 सवाल ह�
     check(f"unchanged: {s[:44]}", t(s) == s)
 check("idempotent: a second pass changes nothing", all(t(t(s)) == t(s) for s in ["अपना काम बंद करो और छड़ियाँ मॉनिटर को दो।", "दहाई | इकाई का खाना", "फालतू चुपचाप आओ।"]))
 
+# "को दो" is the informal command "give to" ONLY at the end of a clause ("छड़ियाँ मॉनिटर को दो।"). Before a noun it is the NUMBER two ("चीज़ों को दो अलग तरीकों से" = "in two different ways";
+# "हर बच्चे को दो पेंसिल दें" = "give each child two pencils"): rewriting that would make nonsense. The first version of this check flagged any "को दो" followed by a space, and condemned a correct
+# sentence on a real recorded plan (found on the first run on the team's own copy of the repository, 25 Oct).
+GIVE_LEFT = re.compile(r"को दो(?=\s*(?:[।,?!.;:]|$))")
+print("'दो' as a NUMBER is not a command")
+for text in ("बच्चे एक ही चीज़ों को दो अलग तरीकों से छाँटकर दिखाएँ (पहले रंग से, फिर आकार से) और बताएँ कि नियम बदलने पर ढेर कैसे बदले।", "हर बच्चे को दो पेंसिल दें।", "बच्चों को दो-दो पेंसिल दें।"):
+    check(f"the number two is left alone and is not flagged: {text[:36]}...", hs.soften_text(text)[0] == text and not GIVE_LEFT.search(text), hs.soften_text(text)[0])
+for text, want in (("छड़ियाँ मॉनिटर को दो।", "छड़ियाँ मॉनिटर को दें।"), ("कॉपी शिक्षक को दो", "कॉपी शिक्षक को दें"), ("पेंसिल मॉनिटर को दो, फिर बैठ जाओ", "पेंसिल मॉनिटर को दें, फिर बैठ जाएँ")):
+    check(f"the command 'give to' IS softened: {text}", hs.soften_text(text)[0] == want and GIVE_LEFT.search(text) is not None, hs.soften_text(text)[0])
+check("and the check itself would catch a leftover command (so a real miss cannot hide behind the numbers)", GIVE_LEFT.search("छड़ियाँ मॉनिटर को दो।") is not None and GIVE_LEFT.search("चीज़ों को दो अलग तरीकों से") is None)
+fake = {"anchor": {"proficient_participation_hi": "बच्चे एक ही चीज़ों को दो अलग तरीकों से छाँटकर दिखाएँ और बताएँ कि नियम बदलने पर ढेर कैसे बदले।", "title_hi": "x"}}
+hs.soften_plan(fake)
+check("through the WHOLE plan pass: that exact field (anchor.proficient_participation_hi) comes out unchanged and unflagged", fake["anchor"]["proficient_participation_hi"].startswith("बच्चे एक ही चीज़ों को दो अलग तरीकों से") and not GIVE_LEFT.search(fake["anchor"]["proficient_participation_hi"]))
+
+# "खाना" and "खाने" are the OLD name for the Tens | Ones box, and they also just mean "food" and "to eat". The softener replaces them only in a sentence about place value (it needs a cue word such as
+# दहाई, इकाई, हासिल: hs._PLACE_CUES), so the check must look at the same thing: a reading plan about a monkey who wants food is not wrong. The first version flagged ANY खाना/खाने in printed text,
+# and failed the recorded plan for L2.5.1 (a reading skill with a story) on the team's own copy (25 Oct).
+def frame_left(text):
+    """The first sentence in which the old box word is still there although the sentence is about place value (so the softener should have replaced it), or None."""
+    for part in hs._SENTENCE.findall(text):
+        if part and any(c in part for c in hs._PLACE_CUES) and hs._FRAME_WORD.search(part):
+            return part.strip()
+    return None
+
+
+print("the old box word is only a problem in a place-value sentence")
+for food in ("बंदर पेड़ पर केले का खाना ढूँढ रहे थे।", "बंदर खाने के लिए नीचे उतरे।", "माँ ने बच्चों के लिए खाना बनाया। फिर सबने मिलकर खाना खाया।"):
+    check(f"food and eating are left alone and not flagged: {food[:30]}...", hs.soften_text(food)[0] == food and frame_left(food) is None, hs.soften_text(food)[0])
+box = "दहाई-इकाई का खाना बनाइए।"
+check("the box in a place-value sentence IS replaced by बॉक्स", "बॉक्स" in hs.soften_text(box)[0] and "खाना" not in hs.soften_text(box)[0] and frame_left(hs.soften_text(box)[0]) is None, hs.soften_text(box)[0])
+check("...and the check would catch it if it were not (so a real miss cannot hide behind the food sentences)", frame_left(box) is not None and "खाना" in frame_left(box))
+reading = {"worksheets": {"progressor": {"instructions_hi": "बंदर के खाना खाने की कहानी पढ़ो और जवाब लिखो।", "problems": [{"number": 1, "problem_hi": "बंदर क्या खाना चाहते थे?"}]}}}
+hs.soften_plan(reading)
+check("through the WHOLE plan pass: a reading worksheet that talks about food comes out with its food words intact and nothing flagged", all(frame_left(s) is None for _, s in fields(reading, hs._PRINTED_RE)) and any("खाना" in s for _, s in fields(reading, hs._PRINTED_RE)), fields(reading, hs._PRINTED_RE))
+
 print("on the real recorded plans")
 plans = {os.path.basename(f): json.load(open(f, encoding="utf-8")) for f in sorted(glob.glob(os.path.join(ROOT, "db", "seeds", "sample_plans", "*.json")))}
 check("there are recorded plans to test on", len(plans) >= 2)
@@ -90,9 +125,10 @@ for name, original in plans.items():
     teacher = fields(plan, hs._SPEECH_RE + hs._NOTES_RE)
     printed = fields(plan, hs._PRINTED_RE)
     bad = [(p, w) for p, s in teacher for w in ("फालतू", "चुपचाप", "आओ", "जाओ", "सुनो", "खाना", "खाने") if has(w, s)]
-    bad += [(p, "बंद करो/को दो") for p, s in teacher if "बंद करो" in s or re.search(r"को दो(?=[।\s]|$)", s)]
+    bad += [(p, "बंद करो/को दो") for p, s in teacher if "बंद करो" in s or GIVE_LEFT.search(s)]
     check(f"{name}: no flagged word is left in what the teacher says or reads  ({counts})", not bad, bad[:3])
-    check(f"{name}: the printed worksheet instructions lost the frame word", not any(has("खाना", s) or has("खाने", s) for _, s in printed))
+    left = [(p, frame_left(s)) for p, s in printed if frame_left(s)]
+    check(f"{name}: in every place-value sentence of the printed worksheet the old word for the Tens | Ones box (खाना / खाने / ग्रिड) has become बॉक्स", not left, left[:2])
     check(f"{name}: the printed worksheet instructions and problem lines are respectful too (no जोड़ो / बनाओ / लिखो / भरो left)",
           not any(re.search(r"जोड़ो|बनाओ|लिखो|भरो|करो", s) for _, s in printed))
     check(f"{name}: no printed line still says कार्यपत्रक (the word is वर्कशीट)", not any("कार्यपत्र" in s for _, s in printed + teacher))

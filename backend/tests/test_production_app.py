@@ -18,9 +18,10 @@ import tempfile
 # a build folder like the real one, and the environment of a Cloud Run container
 DIST = tempfile.mkdtemp()
 os.makedirs(os.path.join(DIST, "assets"))
-for rel, text in {"index.html": "<html><body><div id=root></div>APP</body></html>", "assets/app.abc123.js": "console.log(1)", "sw.js": "// service worker",
+BIG_JS = "function ankur(){return 'a file as big as a real bundle, with a lot of repeated text';}\n" * 200         # about 13 KB: big enough to be compressed
+for rel, text in {"assets/big.def456.js": BIG_JS, "index.html": "<html><body><div id=root></div>APP</body></html>", "assets/app.abc123.js": "console.log(1)", "sw.js": "// service worker",
                   "registerSW.js": "// register", "manifest.webmanifest": "{}", "ankur-saathi-icon.svg": "<svg/>", "workbox-1a2b.js": "// workbox"}.items():
-    open(os.path.join(DIST, rel), "w", encoding="utf-8").write(text)
+    open(os.path.join(DIST, rel), "w", encoding="utf-8", newline="").write(text)        # byte for byte: in text mode Windows would turn each \n into \r\n and the sizes and contents below would no longer match
 SECRET_FILE = os.path.join(os.path.dirname(DIST), "outside_secret.txt")
 open(SECRET_FILE, "w").write("TOP SECRET OUTSIDE THE BUILD")
 os.environ["AUTH_MODE"] = "enforce"          # this test is about sign-in being required: it must not inherit AUTH_MODE=off from the shell
@@ -56,6 +57,17 @@ check("a MISSING file is a real 404, not the app's page (a missing icon must not
       all(c.get(p).status_code == 404 and "APP" not in c.get(p).text for p in ("/ankur-saathi-icon-192.png", "/assets/nope.js", "/missing.map", "/a/b/c.css")))
 check("...while a path without an extension is still an app screen", all(c.get(p).status_code == 200 and "APP" in c.get(p).text for p in ("/yojana", "/account", "/review/today", "/plan/2026-10-20")))
 check("other files (the icon) are cached for a day", c.get("/ankur-saathi-icon.svg").headers["cache-control"] == "public, max-age=86400")
+
+print("compression: the first load on a slow connection (the app was 336 KB raw; the server did not compress at all)")
+plain = c.get("/assets/big.def456.js", headers={"Accept-Encoding": "identity"})
+zipped = c.get("/assets/big.def456.js", headers={"Accept-Encoding": "gzip"})
+check("a browser that asks for gzip gets it: Content-Encoding gzip, Vary: Accept-Encoding, a third of the bytes or less, and the SAME text once decoded",
+      zipped.headers.get("content-encoding") == "gzip" and "accept-encoding" in zipped.headers.get("vary", "").lower() and int(zipped.headers["content-length"]) < int(plain.headers["content-length"]) / 3 and zipped.text == BIG_JS == plain.text,
+      (zipped.headers.get("content-encoding"), zipped.headers.get("content-length"), plain.headers.get("content-length")))
+check("a request that does not ask for it is answered plain", "content-encoding" not in plain.headers and int(plain.headers["content-length"]) == len(BIG_JS.encode()))
+check("the security headers and the year-long cache are still on the compressed answer (compression is outermost, so it must not drop them)", zipped.headers.get("x-content-type-options") == "nosniff" and zipped.headers.get("x-frame-options") == "DENY" and "immutable" in zipped.headers["cache-control"])
+check("small answers (under 1000 bytes: the health check, the page, the service worker) are not compressed: it would cost more than it saves", all("content-encoding" not in c.get(p, headers={"Accept-Encoding": "gzip"}).headers for p in ("/health", "/", "/sw.js")))
+check("a HEAD request for the big file still works", c.head("/assets/big.def456.js", headers={"Accept-Encoding": "gzip"}).status_code == 200)
 
 r = c.head("/sw.js")
 check("a HEAD request (uptime monitors, some browsers) is answered with the same headers, not 405", r.status_code == 200 and r.headers["cache-control"] == "no-cache" and r.text == "")
@@ -122,14 +134,20 @@ check("the address comes from the LAST entry (two proxies: the second from the r
 print("a settings mistake that only shows up in the cloud is named in the log (each case starts the app fresh, in its own process)")
 import subprocess
 HERE = os.path.dirname(os.path.abspath(__file__))
-def start_log(**env):
+import tempfile
+def start_log(dotenv=None, **env):
+    """Start the app fresh in an EMPTY folder (so a real backend/.env on this machine cannot change the result); `dotenv` is the text of a .env file to put there."""
     e = dict(os.environ); e.pop("CLAUDE_MAX_TOKENS", None); e.pop("ANTHROPIC_API_KEY", None); e.pop("SESSION_SECRET", None); e.update(env)
     code = f"import sys; sys.path[:0] = [{os.path.join(HERE, '..')!r}, {os.path.join(HERE, '..', '..', 'prompts')!r}]; import app.production"
-    return subprocess.run([sys.executable, "-c", code], env=e, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
+    cwd = tempfile.mkdtemp(prefix="startlog_")
+    if dotenv:
+        open(os.path.join(cwd, ".env"), "w", encoding="utf-8").write(dotenv)
+    return subprocess.run([sys.executable, "-c", code], env=e, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
 log = start_log(CLAUDE_MAX_TOKENS="8000", ANTHROPIC_API_KEY="k")
 check("with the default 8000, the startup log says plans will be cut off", "CLAUDE_MAX_TOKENS is 8000" in log and "CUT OFF" in log, log[-200:])
 check("with 24000 and a key, there is no such warning", "WARNING: CLAUDE_MAX_TOKENS" not in start_log(CLAUDE_MAX_TOKENS="24000", ANTHROPIC_API_KEY="k"))
 check("a missing AI key is named", "ANTHROPIC_API_KEY is not set" in start_log(CLAUDE_MAX_TOKENS="24000") and "ANTHROPIC_API_KEY is not set" not in start_log(CLAUDE_MAX_TOKENS="24000", ANTHROPIC_API_KEY="k"))
+check("a key that is only in a .env file (a local run) is NOT reported as missing", "ANTHROPIC_API_KEY is not set" not in start_log(dotenv="ANTHROPIC_API_KEY=dummy-key\n", CLAUDE_MAX_TOKENS="24000"))
 check("a missing session secret is named when not in debug mode", "SESSION_SECRET is not set" in start_log(CLAUDE_MAX_TOKENS="24000", ANTHROPIC_API_KEY="k", DEBUG="false", SESSION_SECRET=""))
 check("the cloud template sets all three model settings", all(f'{k}: "' in open(os.path.join(HERE, "..", "..", "deploy", "cloudrun-env.yaml"), encoding="utf-8").read() for k in ("CLAUDE_MAX_TOKENS", "CLAUDE_MODEL", "CLAUDE_VISION_MODEL")))
 

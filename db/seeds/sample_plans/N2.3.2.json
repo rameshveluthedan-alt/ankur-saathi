@@ -1,470 +1,471 @@
 {
-    "anchor": {
-        "title_hi": "गाँव का बाज़ार",
-        "narration_hi": "आज हम बाज़ार जाएँगे। रानी को अपनी माँ के लिए सामान खरीदना है। बोर्ड पर बाज़ार की सूची है: आलू 24 रुपये, टमाटर 18 रुपये, प्याज 15 रुपये, दाल 37 रुपये, चावल 45 रुपये।",
-        "closing_question_hi": "सबसे महँगी चीज़ कौन सी थी? सबसे सस्ती कौन सी? किसने कौन-सा सवाल हल किया, एक-दो बच्चे बताएँ।",
-        "opening_question_hi": "बाज़ार में कौन-कौन सी चीज़ें हैं? सबसे सस्ती चीज़ कौन सी लगती है?",
-        "beginner_participation_hi": "बोर्ड पर 5 चीज़ों के नाम गिनो। फिर बताओ आलू के दाम 24 में कितने दहाई और कितने इकाई हैं? 37 में कितने दहाई और इकाई हैं?",
-        "proficient_participation_hi": "रानी ने दाल (37 रुपये), चावल (45 रुपये) और प्याज (15 रुपये) खरीदे। कुल कितने पैसे लगे? 37 + 45 + 15 को कॉपी में हल करो।",
-        "progressor_participation_hi": "रानी ने आलू (24 रुपये) और टमाटर (18 रुपये) खरीदे। कुल कितने पैसे लगे? कॉपी में 24 + 18 लिखकर जोड़ो।"
+ "anchor": {
+  "title_hi": "गाँव का बाज़ार",
+  "narration_hi": "आज हम बाज़ार जाएँगे। रानी को अपनी माँ के लिए सामान खरीदना है। बोर्ड पर बाज़ार की सूची है: आलू 24 रुपये, टमाटर 18 रुपये, प्याज 15 रुपये, दाल 37 रुपये, चावल 45 रुपये।",
+  "closing_question_hi": "सबसे महँगी चीज़ कौन सी थी? सबसे सस्ती कौन सी? किसने कौन-सा सवाल हल किया, एक-दो बच्चे बताएँ।",
+  "opening_question_hi": "बाज़ार में कौन-कौन सी चीज़ें हैं? सबसे सस्ती चीज़ कौन सी लगती है?",
+  "beginner_participation_hi": "बोर्ड पर 5 चीज़ों के नाम गिनो। फिर बताओ आलू के दाम 24 में कितने दहाई और कितने इकाई हैं? 37 में कितने दहाई और इकाई हैं?",
+  "proficient_participation_hi": "रानी ने दाल (37 रुपये), चावल (45 रुपये) और प्याज (15 रुपये) खरीदे। कुल कितने पैसे लगे? 37 + 45 + 15 को कॉपी में हल करो।",
+  "progressor_participation_hi": "रानी ने आलू (24 रुपये) और टमाटर (18 रुपये) खरीदे। कुल कितने पैसे लगे? कॉपी में 24 + 18 लिखकर जोड़ो।"
+ },
+ "prep_hi": [
+  "शिक्षक डेमो किट: 9 बंडल (हर बंडल में 10 छड़ियाँ, रबर बैंड से पहले से बँधा) + 9 खुली छड़ियाँ = 99 छड़ियाँ। इसमें कुछ फालतू बंडल भी रखें ताकि 10 खुली छड़ियों के बदले बंडल दिया जा सके।",
+  "शुरुआती बच्चों के लिए 4 जोड़ी-किट: हर किट में 4 बंडल + 9 खुली छड़ियाँ = 49 छड़ियाँ। कुल 16 बंडल + 36 खुली छड़ियाँ, थैली या डिब्बे में। (कुल छड़ियाँ: 99 + 4 x 49 = 295)",
+  "हर जोड़ी के लिए शीट या कॉपी के कवर पर दहाई | इकाई का खाना (Tens | Ones frame) रूल से बना लें। बंडल कक्षा में न बनाएँ, पहले से बनाकर लाएँ।",
+  "बोर्ड पर बाज़ार की सूची की जगह तैयार रखें (सामान और दाम नीचे बताए अनुसार)। प्रिंटर नहीं है, इसलिए तीनों वर्कशीट बोर्ड से कॉपी करवाई जाएँगी। पहले से बोर्ड के तीन हिस्से बना लें।",
+  "बच्चे कॉपी में दहाई | इकाई का खाना खुद रूल से बनाएँगे (प्रगतिशील समूह)। कक्षा के अंत में सभी छड़ियाँ गिनकर वापस रखें।"
+ ],
+ "worksheets": {
+  "beginner": {
+   "problems": [
+    {
+     "answer": "37",
+     "number": 1,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "11 + 26",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
     },
-    "prep_hi": [
-        "शिक्षक डेमो किट: 9 बंडल (हर बंडल में 10 छड़ियाँ, रबर बैंड से पहले से बँधा) + 9 खुली छड़ियाँ = 99 छड़ियाँ। इसमें कुछ फालतू बंडल भी रखें ताकि 10 खुली छड़ियों के बदले बंडल दिया जा सके।",
-        "शुरुआती बच्चों के लिए 4 जोड़ी-किट: हर किट में 4 बंडल + 9 खुली छड़ियाँ = 49 छड़ियाँ। कुल 16 बंडल + 36 खुली छड़ियाँ, थैली या डिब्बे में। (कुल छड़ियाँ: 99 + 4 x 49 = 295)",
-        "हर जोड़ी के लिए शीट या कॉपी के कवर पर दहाई | इकाई का खाना (Tens | Ones frame) रूल से बना लें। बंडल कक्षा में न बनाएँ, पहले से बनाकर लाएँ।",
-        "बोर्ड पर बाज़ार की सूची की जगह तैयार रखें (सामान और दाम नीचे बताए अनुसार)। प्रिंटर नहीं है, इसलिए तीनों वर्कशीट बोर्ड से कॉपी करवाई जाएँगी। पहले से बोर्ड के तीन हिस्से बना लें।",
-        "बच्चे कॉपी में दहाई | इकाई का खाना खुद रूल से बनाएँगे (प्रगतिशील समूह)। कक्षा के अंत में सभी छड़ियाँ गिनकर वापस रखें।"
-    ],
-    "worksheets": {
-        "beginner": {
-            "problems": [
-                {
-                    "answer": "37",
-                    "number": 1,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "11 + 26",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "29",
-                    "number": 2,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "12 + 17",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "58",
-                    "number": 3,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "42 + 16",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "77",
-                    "number": 4,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "54 + 23",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "47",
-                    "number": 5,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "35 + 12",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "89",
-                    "number": 6,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "61 + 28",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "89",
-                    "number": 7,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "72 + 17",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "79",
-                    "number": 8,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "46 + 33",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": null
-                }
-            ],
-            "example_block": {
-                "answer": "36",
-                "row1_o": "1",
-                "row1_t": "2",
-                "row2_o": "5",
-                "row2_t": "1",
-                "answer_o": "6",
-                "answer_t": "3",
-                "problem_hi": "21 + 15 = ___",
-                "pv_columns": 2,
-                "show_pv_grid": true
-            },
-            "required_count": 5,
-            "instructions_en": "Build with sticks or draw lines and dots, then add ones first and tens next in the grid.",
-            "instructions_hi": "छड़ियों या रेखा-बिंदु से बनाओ, फिर खाने में पहले इकाई, फिर दहाई जोड़ो।"
-        },
-        "proficient": {
-            "problems": [
-                {
-                    "answer": "833",
-                    "number": 1,
-                    "pv_row2": false,
-                    "row_type": "plain",
-                    "problem_hi": "192 + 641 = ___",
-                    "pv_columns": 3,
-                    "show_pv_grid": false,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "643",
-                    "number": 2,
-                    "pv_row2": false,
-                    "row_type": "plain",
-                    "problem_hi": "356 + 287 = ___",
-                    "pv_columns": 3,
-                    "show_pv_grid": false,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "592",
-                    "number": 3,
-                    "pv_row2": false,
-                    "row_type": "plain",
-                    "problem_hi": "129 + 463 = ___",
-                    "pv_columns": 3,
-                    "show_pv_grid": false,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "713",
-                    "number": 4,
-                    "pv_row2": false,
-                    "row_type": "plain",
-                    "problem_hi": "475 + 238 = ___",
-                    "pv_columns": 3,
-                    "show_pv_grid": false,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "523",
-                    "number": 5,
-                    "pv_row2": false,
-                    "row_type": "plain",
-                    "problem_hi": "367 + 156 = ___",
-                    "pv_columns": 3,
-                    "show_pv_grid": false,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "703",
-                    "number": 6,
-                    "pv_row2": false,
-                    "row_type": "plain",
-                    "problem_hi": "284 + 419 = ___",
-                    "pv_columns": 3,
-                    "show_pv_grid": false,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "625 केले",
-                    "number": 7,
-                    "row_type": null,
-                    "problem_hi": "बाज़ार में एक दुकान में 258 केले और दूसरी में 367 केले हैं। कुल कितने केले हैं?",
-                    "answer_type": "wide",
-                    "word_problem_text": "बाज़ार में एक दुकान में 258 केले और दूसरी में 367 केले हैं। कुल कितने केले हैं?",
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "724 बच्चे",
-                    "number": 8,
-                    "row_type": null,
-                    "problem_hi": "गाँव के स्कूल में पिछले साल 435 और इस साल 289 बच्चों ने दाखिला लिया। कुल कितने बच्चों ने दाखिला लिया?",
-                    "answer_type": "wide",
-                    "word_problem_text": "गाँव के स्कूल में पिछले साल 435 और इस साल 289 बच्चों ने दाखिला लिया। कुल कितने बच्चों ने दाखिला लिया?",
-                    "diagnostic_for_misconception": null
-                }
-            ],
-            "example_block": null,
-            "required_count": 8,
-            "instructions_en": "Add each column starting from ones, writing each carry separately. Write word problem answers in full sentences.",
-            "instructions_hi": "हर कॉलम में हासिल अलग लिखकर जोड़ो। इकाई से शुरू करो। शब्द-सवाल का उत्तर पूरे वाक्य में लिखो।"
-        },
-        "progressor": {
-            "problems": [
-                {
-                    "answer": "63",
-                    "number": 1,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "36 + 27",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": "N2.3.2-M1"
-                },
-                {
-                    "answer": "83",
-                    "number": 2,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "48 + 35",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": "N2.3.2-M2"
-                },
-                {
-                    "answer": "80",
-                    "number": 3,
-                    "pv_row2": true,
-                    "row_type": "grid",
-                    "problem_hi": "54 + 26",
-                    "pv_columns": 2,
-                    "show_pv_grid": true,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "62",
-                    "number": 4,
-                    "pv_row2": false,
-                    "row_type": "plain",
-                    "problem_hi": "19 + 43 = ___",
-                    "pv_columns": 2,
-                    "show_pv_grid": false,
-                    "diagnostic_for_misconception": "N2.3.2-M3"
-                },
-                {
-                    "answer": "95",
-                    "number": 5,
-                    "pv_row2": false,
-                    "row_type": "plain",
-                    "problem_hi": "67 + 28 = ___",
-                    "pv_columns": 2,
-                    "show_pv_grid": false,
-                    "diagnostic_for_misconception": "N2.3.2-M1"
-                },
-                {
-                    "answer": "46",
-                    "number": 6,
-                    "pv_row2": false,
-                    "row_type": "plain",
-                    "problem_hi": "29 + 17 = ___",
-                    "pv_columns": 2,
-                    "show_pv_grid": false,
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "63 रुपये",
-                    "number": 7,
-                    "row_type": null,
-                    "problem_hi": "रानी ने 29 रुपये के टमाटर और 34 रुपये की दाल खरीदी। कुल कितने रुपये लगे?",
-                    "answer_type": "wide",
-                    "word_problem_text": "रानी ने 29 रुपये के टमाटर और 34 रुपये की दाल खरीदी। कुल कितने रुपये लगे?",
-                    "diagnostic_for_misconception": null
-                },
-                {
-                    "answer": "83 बच्चे",
-                    "number": 8,
-                    "row_type": null,
-                    "problem_hi": "कक्षा में 46 लड़कियाँ और 37 लड़के हैं। कुल कितने बच्चे हैं?",
-                    "answer_type": "wide",
-                    "word_problem_text": "कक्षा में 46 लड़कियाँ और 37 लड़के हैं। कुल कितने बच्चे हैं?",
-                    "diagnostic_for_misconception": null
-                }
-            ],
-            "example_block": {
-                "answer": "42",
-                "row1_o": "7",
-                "row1_t": "2",
-                "row2_o": "5",
-                "row2_t": "1",
-                "answer_o": "2",
-                "answer_t": "4",
-                "problem_hi": "27 + 15 = ___",
-                "pv_columns": 2,
-                "show_pv_grid": true
-            },
-            "required_count": 6,
-            "instructions_en": "Add ones first. If the sum is 10 or more, write only the ones digit and carry the tens digit. Then add tens.",
-            "instructions_hi": "पहले इकाई जोड़ो। अगर 10 या ज़्यादा हो तो इकाई में एक ही अंक लिखो और दहाई का अंक हासिल में रखो। फिर दहाई जोड़ो।"
-        }
+    {
+     "answer": "29",
+     "number": 2,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "12 + 17",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
     },
-    "explainability": {
-        "items": [
-            {
-                "body_en": "Beginners (7) are still learning no-carry addition, the prerequisite for today's competency. Progressors (14) work on N2.3.2 with scaffolding. Proficients (9) are secure in carrying, so they extend to 3-digit addition.",
-                "body_hi": "शुरुआती (7 बच्चे) अभी बिना हासिल वाला जोड़ सीख रहे हैं, जो आज की दक्षता की पूर्व-शर्त है। प्रगतिशील (14) आज की दक्षता N2.3.2 पर सहारे के साथ काम करते हैं। दक्ष (9) हासिल में पक्के हैं, इसलिए 3 अंकों के जोड़ पर जाते हैं।",
-                "title_en": "Why these three groups",
-                "title_hi": "तीन समूह क्यों"
-            },
-            {
-                "body_en": "Beginners go first with the longest block (29 min) as they need the most hands-on stick work. No group works on its new skill independently before the teacher has taught it.",
-                "body_hi": "शुरुआती समूह को पहला और सबसे लंबा (29 मिनट) समय दिया गया क्योंकि उन्हें छड़ियों के साथ ज़्यादा हाथ से सिखाना है। हर समूह तब तक अपनी नई दक्षता पर अकेले काम नहीं करता जब तक शिक्षक उसे सिखा न दे।",
-                "title_en": "Why this rotation order",
-                "title_hi": "घुमाव का क्रम क्यों"
-            },
-            {
-                "body_en": "On Progressor problems 1-6 watch for forgetting the carry (M1, answer 10 short), writing the full ones sum (M2, 3-digit answer), and carrying the wrong digit (M3). Also check for left-to-right adding (M4). These are the most common and critical errors for this competency.",
-                "body_hi": "प्रगतिशील सवाल 1-6 में हासिल छोड़ना (M1, उत्तर 10 कम), इकाई का पूरा योग लिखना (M2, 3 अंकों का उत्तर), और गलत अंक हासिल रखना (M3) देखें। बाएँ से जोड़ने की गलती (M4) भी जाँचें। यह इस दक्षता की सबसे आम और गंभीर गलतियाँ हैं।",
-                "title_en": "Misconceptions to watch for",
-                "title_hi": "किन गलतियों पर नज़र रखें"
-            },
-            {
-                "body_en": "Anchor ANC-N-001 was an exact match, adapted to today's numbers. Intervention INT-OP-005 steps (demonstrate with sticks, guided practice, check without sticks) were used proactively in the Progressor I Do/We Do to prevent errors. TLM-001 sticks follow the policy: teacher demo kit and 4 Beginner pair kits. The curriculum note (bundling demo essential) was followed.",
-                "body_hi": "एंकर ANC-N-001 'गाँव का बाज़ार' सटीक मेल था, इसे आज की संख्याओं के लिए ढाला गया। हस्तक्षेप INT-OP-005 के कदमों (छड़ी से दिखाना, निर्देशित अभ्यास, बिना छड़ी जाँच) को प्रगतिशील समूह के I Do/We Do में पहले से ही गलतियाँ रोकने के लिए इस्तेमाल किया। TLM-001 बंडल की छड़ियाँ नीति के अनुसार: शिक्षक डेमो किट, शुरुआती की 4 जोड़ी-किट। पाठ्यक्रम नोट (बंडल प्रदर्शन ज़रूरी) माना गया।",
-                "title_en": "Retrieved content used",
-                "title_hi": "इस्तेमाल की गई सामग्री"
-            },
-            {
-                "body_en": "Each group works independently only on previously mastered skills at its own level. Fast finishers do more of the same skill or check a partner's work. New skills are practised only after teacher instruction.",
-                "body_hi": "हर समूह स्वतंत्र समय में सिर्फ़ पहले से सीखी दक्षता पर काम करता है, अपने ही स्तर पर, और जल्दी खत्म करने वाले उसी दक्षता के और सवाल या साथी की जाँच करते हैं। शिक्षक पढ़ाने के बाद ही नई दक्षता पर अभ्यास होता है।",
-                "title_en": "Independent work rule",
-                "title_hi": "स्वतंत्र काम का नियम"
-            },
-            {
-                "body_en": "The curriculum plan is a representative plan, not the state's official weekly plan. Groups are assumed from prior assessment. With no printer, worksheets are copied from the board, so problems are capped at 8. The 90-minute window leaves little time for a final whole-class review.",
-                "body_hi": "पाठ्यक्रम योजना एक प्रतिनिधि योजना है, राज्य की आधिकारिक साप्ताहिक योजना नहीं। समूह पिछले आकलन के आधार पर माने गए हैं। प्रिंटर न होने से वर्कशीट बोर्ड से कॉपी की जाएँगी, इसलिए सवाल 8 से ज़्यादा नहीं रखे। 90 मिनट में अंतिम छोटा पुनर्विचार समय सीमित है।",
-                "title_en": "Assumptions and limitations",
-                "title_hi": "मान्यताएँ और सीमाएँ"
-            }
-        ]
+    {
+     "answer": "58",
+     "number": 3,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "42 + 16",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
     },
-    "review_prompts": {
-        "photo_sample_rolls": {
-            "beginner": [
-                1,
-                2,
-                3,
-                11,
-                12,
-                13,
-                23
-            ],
-            "proficient": [
-                8,
-                20,
-                28
-            ],
-            "progressor": [
-                4,
-                14,
-                18,
-                25
-            ]
-        },
-        "observation_reminders_hi": [
-            "आज कोई अवलोकन वाली दक्षता नहीं है। सभी आकलन लिखित हैं।"
-        ]
+    {
+     "answer": "77",
+     "number": 4,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "54 + 23",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
     },
-    "rotation_schedule": {
-        "blocks": [
-            {
-                "type": "anchor",
-                "script_hi": null,
-                "time_start": "0:00",
-                "teach_group": null,
-                "talking_points": null,
-                "other_groups_hi": null,
-                "duration_minutes": 10
-            },
-            {
-                "type": "setup",
-                "script_hi": "अब तीनों समूह अपनी जगह पर बैठेंगे। शुरुआती समूह मेरे पास आओ। प्रगतिशील और दक्ष समूह बोर्ड से अपना काम कॉपी में उतारें और चुपचाप शुरू करें। अपने मॉनिटर की बात सुनो।",
-                "time_start": "0:10",
-                "teach_group": null,
-                "talking_points": null,
-                "other_groups_hi": null,
-                "duration_minutes": 2
-            },
-            {
-                "type": "teach",
-                "script_hi": null,
-                "time_start": "0:12",
-                "teach_group": "beginner",
-                "talking_points": {
-                    "i_do_hi": "मैं अपने किट से 23 + 14 बनाता/बनाती हूँ। बोर्ड पर दहाई की खड़ी रेखाएँ और इकाई के बिंदु बनाते हुए बोलें: 'पहले इकाई जोड़ते हैं: 3 + 4 = 7। फिर दहाई: 2 + 1 = 3। उत्तर 37।' हर कदम बोलकर बोर्ड पर भी बनाएँ।",
-                    "we_do_hi": "जोड़ियों को 49 छड़ियों वाली किट दें। साथ मिलकर 32 + 15 बनाएँ और हल करें, फिर 25 + 14 बनाएँ। हर बार पूछें: 'इकाई कितनी हुई? दहाई कितनी?' दोनों सवाल में इकाई का योग 9 से कम है, इसलिए हासिल नहीं है।",
-                    "you_do_hi": "बोर्ड से सवाल 1 से 5 पहले कॉपी में उतारकर हल करें, बाकी जल्दी खत्म करने वालों के लिए हैं। पहले दो सवाल छड़ियों से, फिर रेखा-बिंदु बनाकर, फिर खाने में हल करें। अंत में छड़ियाँ गिनकर मॉनिटर को सौंपें।"
-                },
-                "other_groups_hi": "प्रगतिशील: पहले से सीखे बिना हासिल वाले दो अंकों के जोड़ (जैसे 32 + 45) के 8 सवाल बोर्ड से कॉपी में हल करें, जल्दी खत्म हों तो साथी की कॉपी जाँचें। दक्ष: पहले से सीखे हासिल वाले दो अंकों के जोड़ (जैसे 27 + 36) के 8 सवाल कॉपी में हल करें, जल्दी खत्म हों तो और सवाल बनाकर हल करें या साथी की कॉपी जाँचें।",
-                "duration_minutes": 29
-            },
-            {
-                "type": "transition",
-                "script_hi": "शुरुआती समूह, अपना काम बंद करो और छड़ियाँ मॉनिटर को दो। अब प्रगतिशील समूह मेरे पास आए। शुरुआती समूह बिना हासिल वाले जोड़ के 6 सवाल कॉपी में दोबारा करे और आपस में जाँचे।",
-                "time_start": "0:41",
-                "teach_group": null,
-                "talking_points": null,
-                "other_groups_hi": null,
-                "duration_minutes": 2
-            },
-            {
-                "type": "teach",
-                "script_hi": null,
-                "time_start": "0:43",
-                "teach_group": "progressor",
-                "talking_points": {
-                    "i_do_hi": "बोर्ड पर 34 + 28 लिखें। छड़ियों से दिखाएँ: 3 बंडल + 4 खुली और 2 बंडल + 8 खुली। 'पहले इकाई जोड़ो: 4 + 8 = 12। 10 से ज़्यादा हैं, तो 10 खुली छड़ियाँ देकर एक बंडल लेते हैं।' इकाई में 2 लिखें, दहाई में 1 हासिल ऊपर लिखें, फिर 3 + 2 + 1 = 6, उत्तर 62।",
-                    "we_do_hi": "सब कॉपी में दहाई | इकाई का खाना बनाकर 47 + 25 रेखा-बिंदु से बनाएँ: 10 बिंदु घेरकर नई रेखा बनाएँ। एक बच्चा मेरी किट पर 10 खुली छड़ियों के बदले बंडल लेने का कदम करे। हर सवाल में पूछें: 'इकाई में एक ही अंक है? हासिल दहाई में जुड़ा?'",
-                    "you_do_hi": "बोर्ड से सवाल 1 से 6 पहले कॉपी में उतारकर हल करें, बाकी जल्दी खत्म करने वालों के लिए हैं। पहले तीन सवाल खाने में हासिल लिखकर हल करें, बाकी बिना खाने के। गलती दिखे तो मेरे पास आकर छड़ियों से दिखाओ।"
-                },
-                "other_groups_hi": "शुरुआती: एक अंक के जोड़ (योग 18 तक) के 8 सवाल और 99 तक दहाई-इकाई पहचान के 5 सवाल कॉपी में करें। दक्ष: हासिल वाले दो अंकों के जोड़ के बोर्ड के बाकी सवाल हल करें, जल्दी खत्म हों तो साथी की कॉपी जाँचें।",
-                "duration_minutes": 22
-            },
-            {
-                "type": "transition",
-                "script_hi": "प्रगतिशील समूह, कॉपी बंद करो और अपनी जगह जाओ। अब दक्ष समूह मेरे पास आए। प्रगतिशील समूह, आज सीखे हासिल वाले जोड़ के 5 और सवाल बोर्ड से लेकर हल करो।",
-                "time_start": "1:05",
-                "teach_group": null,
-                "talking_points": null,
-                "other_groups_hi": null,
-                "duration_minutes": 2
-            },
-            {
-                "type": "teach",
-                "script_hi": null,
-                "time_start": "1:07",
-                "teach_group": "proficient",
-                "talking_points": {
-                    "i_do_hi": "बोर्ड पर 248 + 175 लिखें। हर कॉलम के ऊपर हासिल का खाना बनाएँ। 'इकाई: 8 + 5 = 13, 3 लिखो, 1 हासिल। दहाई: 4 + 7 + 1 = 12, 2 लिखो, 1 हासिल। सैकड़ा: 2 + 1 + 1 = 4। उत्तर 423।' हर कदम बोलते हुए लिखें।",
-                    "we_do_hi": "सब साथ मिलकर 156 + 287 हल करें: हर कॉलम का योग बच्चे बोलें, मैं बोर्ड पर लिखूँ। पूछें: 'कहाँ हासिल बना? कितना?' फिर 369 + 254 बच्चे खुद हल करें और मैं जाँचूँ।",
-                    "you_do_hi": "बोर्ड से सभी सवाल कॉपी में उतारकर हल करें। हर कॉलम में हासिल अलग से लिखो। अंत में शब्द-सवाल हल करके उत्तर वाक्य में लिखो।"
-                },
-                "other_groups_hi": "शुरुआती: बोर्ड पर दिए एक अंक के जोड़ और दहाई-इकाई पहचान के सवाल पूरे करें और साथी की कॉपी जाँचें। प्रगतिशील: आज सीखे हासिल वाले जोड़ के 5 अभ्यास सवाल कॉपी में हल करें, साथी से जाँचें।",
-                "duration_minutes": 22
-            },
-            {
-                "type": "transition",
-                "script_hi": "सब अपनी कॉपी बंद करें और अपने मॉनिटर को दें। आज बहुत अच्छा काम हुआ। कल मिलते हैं।",
-                "time_start": "1:29",
-                "teach_group": null,
-                "talking_points": null,
-                "other_groups_hi": null,
-                "duration_minutes": 1
-            }
-        ],
-        "total_minutes": 90
+    {
+     "answer": "47",
+     "number": 5,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "35 + 12",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
     },
-    "classroom_management": {
-        "peer_monitors": {
-            "beginner": "Roll 1",
-            "proficient": "Roll 8",
-            "progressor": "Roll 4"
-        },
-        "independent_activities_hi": {
-            "beginner": "एक अंक के जोड़ (योग 18 तक) के 8 सवाल बोर्ड से कॉपी में हल करें, फिर 99 तक की 5 संख्याओं में दहाई और इकाई पहचानकर लिखें। यह काम लगभग 25 मिनट का है। जल्दी खत्म हों तो साथी की कॉपी जाँचें या इसी तरह के और सवाल हल करें।",
-            "proficient": "हासिल वाले दो अंकों के जोड़ के 8 सवाल कॉपी में हल करें (जैसे 27 + 36, 48 + 35), फिर 2 शब्द-सवाल। जल्दी खत्म हों तो इसी तरह के और सवाल हल करें या साथी की कॉपी जाँचें।",
-            "progressor": "बिना हासिल वाले दो अंकों के जोड़ के 8 सवाल बोर्ड से कॉपी में हल करें (जैसे 32 + 45, 51 + 26)। जल्दी खत्म हों तो इसी तरह के और सवाल हल करें या साथी की कॉपी जाँचें।"
-        }
+    {
+     "answer": "89",
+     "number": 6,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "61 + 28",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "89",
+     "number": 7,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "72 + 17",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "79",
+     "number": 8,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "46 + 33",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
     }
+   ],
+   "example_block": {
+    "answer": "36",
+    "row1_o": "1",
+    "row1_t": "2",
+    "row2_o": "5",
+    "row2_t": "1",
+    "answer_o": "6",
+    "answer_t": "3",
+    "problem_hi": "21 + 15 = ___",
+    "pv_columns": 2,
+    "show_pv_grid": true
+   },
+   "required_count": 5,
+   "instructions_en": "Build with sticks or draw lines and dots, then add ones first and tens next in the grid.",
+   "instructions_hi": "छड़ियों या रेखा-बिंदु से बनाओ, फिर खाने में पहले इकाई, फिर दहाई जोड़ो।"
+  },
+  "proficient": {
+   "problems": [
+    {
+     "answer": "833",
+     "number": 1,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "192 + 641 = ___",
+     "pv_columns": 3,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "643",
+     "number": 2,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "356 + 287 = ___",
+     "pv_columns": 3,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "592",
+     "number": 3,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "129 + 463 = ___",
+     "pv_columns": 3,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "713",
+     "number": 4,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "475 + 238 = ___",
+     "pv_columns": 3,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "523",
+     "number": 5,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "367 + 156 = ___",
+     "pv_columns": 3,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "703",
+     "number": 6,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "284 + 419 = ___",
+     "pv_columns": 3,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "625 केले",
+     "number": 7,
+     "row_type": null,
+     "problem_hi": "बाज़ार में एक दुकान में 258 केले और दूसरी में 367 केले हैं। कुल कितने केले हैं?",
+     "answer_type": "wide",
+     "word_problem_text": "बाज़ार में एक दुकान में 258 केले और दूसरी में 367 केले हैं। कुल कितने केले हैं?",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "724 बच्चे",
+     "number": 8,
+     "row_type": null,
+     "problem_hi": "गाँव के स्कूल में पिछले साल 435 और इस साल 289 बच्चों ने दाखिला लिया। कुल कितने बच्चों ने दाखिला लिया?",
+     "answer_type": "wide",
+     "word_problem_text": "गाँव के स्कूल में पिछले साल 435 और इस साल 289 बच्चों ने दाखिला लिया। कुल कितने बच्चों ने दाखिला लिया?",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": null,
+   "required_count": 8,
+   "instructions_en": "Add each column starting from ones, writing each carry separately. Write word problem answers in full sentences.",
+   "instructions_hi": "हर कॉलम में हासिल अलग लिखकर जोड़ो। इकाई से शुरू करो। शब्द-सवाल का उत्तर पूरे वाक्य में लिखो।"
+  },
+  "progressor": {
+   "problems": [
+    {
+     "answer": "63",
+     "number": 1,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "36 + 27",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": "N2.3.2-M1"
+    },
+    {
+     "answer": "83",
+     "number": 2,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "48 + 35",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": "N2.3.2-M2"
+    },
+    {
+     "answer": "80",
+     "number": 3,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "54 + 26",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "62",
+     "number": 4,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "19 + 43 = ___",
+     "pv_columns": 2,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N2.3.2-M3"
+    },
+    {
+     "answer": "95",
+     "number": 5,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "67 + 28 = ___",
+     "pv_columns": 2,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N2.3.2-M1"
+    },
+    {
+     "answer": "46",
+     "number": 6,
+     "pv_row2": false,
+     "row_type": "plain",
+     "problem_hi": "29 + 17 = ___",
+     "pv_columns": 2,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "63 रुपये",
+     "number": 7,
+     "row_type": null,
+     "problem_hi": "रानी ने 29 रुपये के टमाटर और 34 रुपये की दाल खरीदी। कुल कितने रुपये लगे?",
+     "answer_type": "wide",
+     "word_problem_text": "रानी ने 29 रुपये के टमाटर और 34 रुपये की दाल खरीदी। कुल कितने रुपये लगे?",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "83 बच्चे",
+     "number": 8,
+     "row_type": null,
+     "problem_hi": "कक्षा में 46 लड़कियाँ और 37 लड़के हैं। कुल कितने बच्चे हैं?",
+     "answer_type": "wide",
+     "word_problem_text": "कक्षा में 46 लड़कियाँ और 37 लड़के हैं। कुल कितने बच्चे हैं?",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": {
+    "answer": "42",
+    "row1_o": "7",
+    "row1_t": "2",
+    "row2_o": "5",
+    "row2_t": "1",
+    "answer_o": "2",
+    "answer_t": "4",
+    "problem_hi": "27 + 15 = ___",
+    "pv_columns": 2,
+    "show_pv_grid": true
+   },
+   "required_count": 6,
+   "instructions_en": "Add ones first. If the sum is 10 or more, write only the ones digit and carry the tens digit. Then add tens.",
+   "instructions_hi": "पहले इकाई जोड़ो। अगर 10 या ज़्यादा हो तो इकाई में एक ही अंक लिखो और दहाई का अंक हासिल में रखो। फिर दहाई जोड़ो।"
+  }
+ },
+ "explainability": {
+  "items": [
+   {
+    "body_en": "Beginners (7) are still learning no-carry addition, the prerequisite for today's competency. Progressors (14) work on N2.3.2 with scaffolding. Proficients (9) are secure in carrying, so they extend to 3-digit addition.",
+    "body_hi": "शुरुआती (7 बच्चे) अभी बिना हासिल वाला जोड़ सीख रहे हैं, जो आज की दक्षता की पूर्व-शर्त है। प्रगतिशील (14) आज की दक्षता N2.3.2 पर सहारे के साथ काम करते हैं। दक्ष (9) हासिल में पक्के हैं, इसलिए 3 अंकों के जोड़ पर जाते हैं।",
+    "title_en": "Why these three groups",
+    "title_hi": "तीन समूह क्यों"
+   },
+   {
+    "body_en": "Beginners go first with the longest block (29 min) as they need the most hands-on stick work. No group works on its new skill independently before the teacher has taught it.",
+    "body_hi": "शुरुआती समूह को पहला और सबसे लंबा (29 मिनट) समय दिया गया क्योंकि उन्हें छड़ियों के साथ ज़्यादा हाथ से सिखाना है। हर समूह तब तक अपनी नई दक्षता पर अकेले काम नहीं करता जब तक शिक्षक उसे सिखा न दे।",
+    "title_en": "Why this rotation order",
+    "title_hi": "घुमाव का क्रम क्यों"
+   },
+   {
+    "body_en": "On Progressor problems 1-6 watch for forgetting the carry (M1, answer 10 short), writing the full ones sum (M2, 3-digit answer), and carrying the wrong digit (M3). Also check for left-to-right adding (M4). These are the most common and critical errors for this competency.",
+    "body_hi": "प्रगतिशील सवाल 1-6 में हासिल छोड़ना (M1, उत्तर 10 कम), इकाई का पूरा योग लिखना (M2, 3 अंकों का उत्तर), और गलत अंक हासिल रखना (M3) देखें। बाएँ से जोड़ने की गलती (M4) भी जाँचें। यह इस दक्षता की सबसे आम और गंभीर गलतियाँ हैं।",
+    "title_en": "Misconceptions to watch for",
+    "title_hi": "किन गलतियों पर नज़र रखें"
+   },
+   {
+    "body_en": "Anchor ANC-N-001 was an exact match, adapted to today's numbers. Intervention INT-OP-005 steps (demonstrate with sticks, guided practice, check without sticks) were used proactively in the Progressor I Do/We Do to prevent errors. TLM-001 sticks follow the policy: teacher demo kit and 4 Beginner pair kits. The curriculum note (bundling demo essential) was followed.",
+    "body_hi": "एंकर ANC-N-001 'गाँव का बाज़ार' सटीक मेल था, इसे आज की संख्याओं के लिए ढाला गया। हस्तक्षेप INT-OP-005 के कदमों (छड़ी से दिखाना, निर्देशित अभ्यास, बिना छड़ी जाँच) को प्रगतिशील समूह के I Do/We Do में पहले से ही गलतियाँ रोकने के लिए इस्तेमाल किया। TLM-001 बंडल की छड़ियाँ नीति के अनुसार: शिक्षक डेमो किट, शुरुआती की 4 जोड़ी-किट। पाठ्यक्रम नोट (बंडल प्रदर्शन ज़रूरी) माना गया।",
+    "title_en": "Retrieved content used",
+    "title_hi": "इस्तेमाल की गई सामग्री"
+   },
+   {
+    "body_en": "Each group works independently only on previously mastered skills at its own level. Fast finishers do more of the same skill or check a partner's work. New skills are practised only after teacher instruction.",
+    "body_hi": "हर समूह स्वतंत्र समय में सिर्फ़ पहले से सीखी दक्षता पर काम करता है, अपने ही स्तर पर, और जल्दी खत्म करने वाले उसी दक्षता के और सवाल या साथी की जाँच करते हैं। शिक्षक पढ़ाने के बाद ही नई दक्षता पर अभ्यास होता है।",
+    "title_en": "Independent work rule",
+    "title_hi": "स्वतंत्र काम का नियम"
+   },
+   {
+    "body_en": "The curriculum plan is a representative plan, not the state's official weekly plan. Groups are assumed from prior assessment. With no printer, worksheets are copied from the board, so problems are capped at 8. The 90-minute window leaves little time for a final whole-class review.",
+    "body_hi": "पाठ्यक्रम योजना एक प्रतिनिधि योजना है, राज्य की आधिकारिक साप्ताहिक योजना नहीं। समूह पिछले आकलन के आधार पर माने गए हैं। प्रिंटर न होने से वर्कशीट बोर्ड से कॉपी की जाएँगी, इसलिए सवाल 8 से ज़्यादा नहीं रखे। 90 मिनट में अंतिम छोटा पुनर्विचार समय सीमित है।",
+    "title_en": "Assumptions and limitations",
+    "title_hi": "मान्यताएँ और सीमाएँ"
+   }
+  ]
+ },
+ "review_prompts": {
+  "photo_sample_rolls": {
+   "beginner": [
+    1,
+    2,
+    3,
+    11,
+    12,
+    13,
+    23
+   ],
+   "proficient": [
+    8,
+    20,
+    28
+   ],
+   "progressor": [
+    4,
+    14,
+    18,
+    25
+   ]
+  },
+  "observation_reminders_hi": [
+   "आज कोई अवलोकन वाली दक्षता नहीं है। सभी आकलन लिखित हैं।"
+  ]
+ },
+ "rotation_schedule": {
+  "blocks": [
+   {
+    "type": "anchor",
+    "script_hi": null,
+    "time_start": "0:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 10
+   },
+   {
+    "type": "setup",
+    "script_hi": "अब तीनों समूह अपनी जगह पर बैठेंगे। शुरुआती समूह मेरे पास आओ। प्रगतिशील और दक्ष समूह बोर्ड से अपना काम कॉपी में उतारें और चुपचाप शुरू करें। अपने मॉनिटर की बात सुनो।",
+    "time_start": "0:10",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:12",
+    "teach_group": "beginner",
+    "talking_points": {
+     "i_do_hi": "मैं अपने किट से 23 + 14 बनाता/बनाती हूँ। बोर्ड पर दहाई की खड़ी रेखाएँ और इकाई के बिंदु बनाते हुए बोलें: 'पहले इकाई जोड़ते हैं: 3 + 4 = 7। फिर दहाई: 2 + 1 = 3। उत्तर 37।' हर कदम बोलकर बोर्ड पर भी बनाएँ।",
+     "we_do_hi": "जोड़ियों को 49 छड़ियों वाली किट दें। साथ मिलकर 32 + 15 बनाएँ और हल करें, फिर 25 + 14 बनाएँ। हर बार पूछें: 'इकाई कितनी हुई? दहाई कितनी?' दोनों सवाल में इकाई का योग 9 से कम है, इसलिए हासिल नहीं है।",
+     "you_do_hi": "बोर्ड से सवाल 1 से 5 पहले कॉपी में उतारकर हल करें, बाकी जल्दी खत्म करने वालों के लिए हैं। पहले दो सवाल छड़ियों से, फिर रेखा-बिंदु बनाकर, फिर खाने में हल करें। अंत में छड़ियाँ गिनकर मॉनिटर को सौंपें।"
+    },
+    "other_groups_hi": "प्रगतिशील: पहले से सीखे बिना हासिल वाले दो अंकों के जोड़ (जैसे 32 + 45) के 8 सवाल बोर्ड से कॉपी में हल करें, जल्दी खत्म हों तो साथी की कॉपी जाँचें। दक्ष: पहले से सीखे हासिल वाले दो अंकों के जोड़ (जैसे 27 + 36) के 8 सवाल कॉपी में हल करें, जल्दी खत्म हों तो और सवाल बनाकर हल करें या साथी की कॉपी जाँचें।",
+    "duration_minutes": 29
+   },
+   {
+    "type": "transition",
+    "script_hi": "शुरुआती समूह, अपना काम बंद करो और छड़ियाँ मॉनिटर को दो। अब प्रगतिशील समूह मेरे पास आए। शुरुआती समूह बिना हासिल वाले जोड़ के 6 सवाल कॉपी में दोबारा करे और आपस में जाँचे।",
+    "time_start": "0:41",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:43",
+    "teach_group": "progressor",
+    "talking_points": {
+     "i_do_hi": "बोर्ड पर 34 + 28 लिखें। छड़ियों से दिखाएँ: 3 बंडल + 4 खुली और 2 बंडल + 8 खुली। 'पहले इकाई जोड़ो: 4 + 8 = 12। 10 से ज़्यादा हैं, तो 10 खुली छड़ियाँ देकर एक बंडल लेते हैं।' इकाई में 2 लिखें, दहाई में 1 हासिल ऊपर लिखें, फिर 3 + 2 + 1 = 6, उत्तर 62।",
+     "we_do_hi": "सब कॉपी में दहाई | इकाई का खाना बनाकर 47 + 25 रेखा-बिंदु से बनाएँ: 10 बिंदु घेरकर नई रेखा बनाएँ। एक बच्चा मेरी किट पर 10 खुली छड़ियों के बदले बंडल लेने का कदम करे। हर सवाल में पूछें: 'इकाई में एक ही अंक है? हासिल दहाई में जुड़ा?'",
+     "you_do_hi": "बोर्ड से सवाल 1 से 6 पहले कॉपी में उतारकर हल करें, बाकी जल्दी खत्म करने वालों के लिए हैं। पहले तीन सवाल खाने में हासिल लिखकर हल करें, बाकी बिना खाने के। गलती दिखे तो मेरे पास आकर छड़ियों से दिखाओ।"
+    },
+    "other_groups_hi": "शुरुआती: एक अंक के जोड़ (योग 18 तक) के 8 सवाल और 99 तक दहाई-इकाई पहचान के 5 सवाल कॉपी में करें। दक्ष: हासिल वाले दो अंकों के जोड़ के बोर्ड के बाकी सवाल हल करें, जल्दी खत्म हों तो साथी की कॉपी जाँचें।",
+    "duration_minutes": 22
+   },
+   {
+    "type": "transition",
+    "script_hi": "प्रगतिशील समूह, कॉपी बंद करो और अपनी जगह जाओ। अब दक्ष समूह मेरे पास आए। प्रगतिशील समूह, आज सीखे हासिल वाले जोड़ के 5 और सवाल बोर्ड से लेकर हल करो।",
+    "time_start": "1:05",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "1:07",
+    "teach_group": "proficient",
+    "talking_points": {
+     "i_do_hi": "बोर्ड पर 248 + 175 लिखें। हर कॉलम के ऊपर हासिल का खाना बनाएँ। 'इकाई: 8 + 5 = 13, 3 लिखो, 1 हासिल। दहाई: 4 + 7 + 1 = 12, 2 लिखो, 1 हासिल। सैकड़ा: 2 + 1 + 1 = 4। उत्तर 423।' हर कदम बोलते हुए लिखें।",
+     "we_do_hi": "सब साथ मिलकर 156 + 287 हल करें: हर कॉलम का योग बच्चे बोलें, मैं बोर्ड पर लिखूँ। पूछें: 'कहाँ हासिल बना? कितना?' फिर 369 + 254 बच्चे खुद हल करें और मैं जाँचूँ।",
+     "you_do_hi": "बोर्ड से सभी सवाल कॉपी में उतारकर हल करें। हर कॉलम में हासिल अलग से लिखो। अंत में शब्द-सवाल हल करके उत्तर वाक्य में लिखो।"
+    },
+    "other_groups_hi": "शुरुआती: बोर्ड पर दिए एक अंक के जोड़ और दहाई-इकाई पहचान के सवाल पूरे करें और साथी की कॉपी जाँचें। प्रगतिशील: आज सीखे हासिल वाले जोड़ के 5 अभ्यास सवाल कॉपी में हल करें, साथी से जाँचें।",
+    "duration_minutes": 22
+   },
+   {
+    "type": "transition",
+    "script_hi": "सब अपनी कॉपी बंद करें और अपने मॉनिटर को दें। आज बहुत अच्छा काम हुआ। कल मिलते हैं।",
+    "time_start": "1:29",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 1
+   }
+  ],
+  "total_minutes": 90
+ },
+ "classroom_management": {
+  "peer_monitors": {
+   "beginner": "Roll 1",
+   "proficient": "Roll 8",
+   "progressor": "Roll 4"
+  },
+  "independent_activities_hi": {
+   "beginner": "एक अंक के जोड़ (योग 18 तक) के 8 सवाल बोर्ड से कॉपी में हल करें, फिर 99 तक की 5 संख्याओं में दहाई और इकाई पहचानकर लिखें। यह काम लगभग 25 मिनट का है। जल्दी खत्म हों तो साथी की कॉपी जाँचें या इसी तरह के और सवाल हल करें।",
+   "proficient": "हासिल वाले दो अंकों के जोड़ के 8 सवाल कॉपी में हल करें (जैसे 27 + 36, 48 + 35), फिर 2 शब्द-सवाल। जल्दी खत्म हों तो इसी तरह के और सवाल हल करें या साथी की कॉपी जाँचें।",
+   "progressor": "बिना हासिल वाले दो अंकों के जोड़ के 8 सवाल बोर्ड से कॉपी में हल करें (जैसे 32 + 45, 51 + 26)। जल्दी खत्म हों तो इसी तरह के और सवाल हल करें या साथी की कॉपी जाँचें।"
+  }
+ },
+ "_reviewed_by": "Vaishnavi, 2026-10-26"
 }
