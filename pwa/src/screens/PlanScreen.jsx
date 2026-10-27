@@ -10,6 +10,7 @@ import { useOnline } from '../components/OfflineBanner';
 import { GROUP_LABELS } from '../tiers';
 import Bi from '../components/Bi';
 import { bi } from '../services/language';
+import { notify } from '../services/notify';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -120,9 +121,9 @@ export default function PlanScreen() {
     } catch (e) {
       if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
         const samples = (e.detail && e.detail.sample_skills) || [];
-        alert(e.message + (samples.length ? `\n\n${bi('इन कौशलों की नमूना योजना उपलब्ध है', 'Sample plans are available for')}: ${samples.join(', ')}` : ''));
+        notify(e.message + (samples.length ? `\n\n${bi('इन कौशलों की नमूना योजना उपलब्ध है', 'Sample plans are available for')}: ${samples.join(', ')}` : ''), 'error');
       } else {
-        alert(bi('योजना बनाने में समस्या', 'Plan generation error') + ': ' + e.message);
+        notify(bi('योजना बनाने में समस्या', 'Plan generation error') + ': ' + e.message, 'error');
       }
     }
     setGenerating(false);
@@ -141,10 +142,8 @@ export default function PlanScreen() {
     <div className="screen">
       <div className="screen-header">
         <h1>🎯 <Bi hi="योजना बनाएँ" en="Select Lakshya" inline /></h1>
-        <div style={{ display: 'flex', gap: 6 }}>
-          <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/register')} data-testid="open-register">👥 कक्षा रजिस्टर</button>
-          <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/account')} data-testid="open-account" aria-label="प्रोफ़ाइल (Profile)">👤</button>
-        </div>
+        {/* Profile is the 👤 tab in the bottom bar, so there is no second Profile button here */}
+        <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/register')} data-testid="open-register">👥 कक्षा रजिस्टर</button>
       </div>
 
       {!teacher.total_children && (
@@ -181,9 +180,15 @@ export default function PlanScreen() {
       )}
 
       {!loading && competencies.length > 0 && (
-        <div className="card" style={{ padding: 12 }}>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}>
-            ज्ञान-आधार कवरेज<span className="en en-inline" lang="en">Knowledge-base coverage</span>: हर कौशल के लिए योजना बनती है; लेबल बताता है कि उसके पीछे कितनी जाँची हुई सामग्री है।
+        // one line with the counts; the explanation and the labels' meaning open on tap (the skill list starts higher up)
+        <details className="card fold" style={{ padding: '4px 12px' }} data-testid="coverage-card">
+          <summary style={{ fontWeight: 400, color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
+            <span style={{ fontWeight: 600 }}>ज्ञान-आधार कवरेज<span className="en en-inline" lang="en">Knowledge-base coverage</span>:</span>
+            <span style={{ marginLeft: 4 }}>{TIER_ORDER.filter(t => tierCounts[t]).map(t => <span key={t} title={TIERS[t].hi} style={{ color: TIERS[t].color, fontWeight: 600, marginRight: 8 }}>{TIERS[t].icon} {tierCounts[t]}</span>)}</span>
+          </summary>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 6px' }}>
+            हर कौशल के लिए योजना बनती है; लेबल बताता है कि उसके पीछे कितनी जाँची हुई सामग्री है।
+            <span className="en" lang="en">Every skill gets a plan; the label says how much checked material stands behind it.</span>
           </div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
             {TIER_ORDER.filter(t => tierCounts[t]).map(t => (
@@ -200,7 +205,7 @@ export default function PlanScreen() {
               </div>
             ))}
           </details>
-        </div>
+        </details>
       )}
 
       <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>

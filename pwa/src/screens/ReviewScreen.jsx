@@ -6,6 +6,7 @@ import { useOnline } from '../components/OfflineBanner';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import Bi from '../components/Bi';
 import { bi } from '../services/language';
+import { notify } from '../services/notify';
 
 // an English translation on the same line, after its Hindi (hidden by the "Hindi only" setting)
 const En = ({ children }) => <span className="en en-inline" lang="en">{children}</span>;
@@ -76,7 +77,7 @@ export default function ReviewScreen() {
     try {
       await recordDecisions(teacher.teacher_id, today, selectedDomain, decisions);
       setStep(2);
-    } catch (e) { alert(bi('समस्या', 'Error') + ': ' + e.message); }
+    } catch (e) { notify(bi('समस्या', 'Error') + ': ' + e.message, 'error'); }
     setLoading(false);
   };
 
@@ -128,7 +129,7 @@ export default function ReviewScreen() {
       setStep(3);
       refreshSaved();
       refreshCoverage();
-    } catch (e) { alert(bi('विश्लेषण में समस्या', 'Analysis error') + ': ' + e.message); }
+    } catch (e) { notify(bi('विश्लेषण में समस्या', 'Analysis error') + ': ' + e.message, 'error'); }
     setLoading(false);
   };
 
@@ -143,10 +144,10 @@ export default function ReviewScreen() {
     setLoading(true);
     try {
       await recordObserved(teacher.teacher_id, today, observedItems);
-      alert(`✅ ${observedItems.length} ` + bi('अवलोकन दर्ज हुए', 'observations recorded'));
+      notify(`✅ ${observedItems.length} ` + bi('अवलोकन दर्ज हुए', 'observations recorded'), 'success');
       setObservedItems([]);
       refreshCoverage();
-    } catch (e) { alert(bi('समस्या', 'Error') + ': ' + e.message); }
+    } catch (e) { notify(bi('समस्या', 'Error') + ': ' + e.message, 'error'); }
     setLoading(false);
   };
 
@@ -159,10 +160,10 @@ export default function ReviewScreen() {
         passage_id: orfEntry.passage_id, cwpm: parseInt(orfEntry.cwpm),
         error_count: parseInt(orfEntry.error_count || 0),
       });
-      alert(`✅ ${bi('रोल', 'Roll')} ${orfEntry.roll_number}: ${orfEntry.cwpm} ${bi('सही शब्द/मिनट', 'CWPM')} → ${result.classification}`);
+      notify(`✅ ${bi('रोल', 'Roll')} ${orfEntry.roll_number}: ${orfEntry.cwpm} ${bi('सही शब्द/मिनट', 'CWPM')} → ${result.classification}`, 'success');
       setOrfEntry({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });
       refreshCoverage();
-    } catch (e) { alert(bi('समस्या', 'Error') + ': ' + e.message); }
+    } catch (e) { notify(bi('समस्या', 'Error') + ': ' + e.message, 'error'); }
     setLoading(false);
   };
 

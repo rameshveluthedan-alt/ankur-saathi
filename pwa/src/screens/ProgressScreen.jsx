@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../App';
 import { getProgressDashboard, downloadClassReport, downloadOfficerReport } from '../services/api';
 import Bi from '../components/Bi';
+import { notify } from '../services/notify';
 
 const BPP = {
   beginner: { hi: 'शुरुआती', en: 'Beginner', color: 'var(--beginner-ink)' },
@@ -41,11 +42,11 @@ export default function ProgressScreen() {
       <div className="screen-header">
         <h1>📊 <Bi hi="प्रगति" en="Progress" inline /></h1>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
-          <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => alert(e.message))}
+          <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => notify(e.message, 'error'))}
             style={{ background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'right' }}>
             📥 कक्षा रिपोर्ट, नामों के साथ<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>Class report</span>
           </button>
-          <button type="button" data-testid="mlo-report" onClick={() => downloadOfficerReport(teacher.teacher_id).catch(e => alert(e.message))}
+          <button type="button" data-testid="mlo-report" onClick={() => downloadOfficerReport(teacher.teacher_id).catch(e => notify(e.message, 'error'))}
             style={{ background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--text-secondary)', fontFamily: 'inherit', textAlign: 'right' }}>
             📥 अधिकारी रिपोर्ट, सिर्फ़ रोल नंबर<span className="en en-inline" lang="en">Officer report</span>
           </button>

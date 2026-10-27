@@ -6,6 +6,7 @@ import ReviewScreen from './screens/ReviewScreen';
 import ProgressScreen from './screens/ProgressScreen';
 import LoginScreen from './screens/LoginScreen';
 import OfflineBanner from './components/OfflineBanner';
+import Notices from './components/Notices';
 import { probe } from './services/network';
 import { TAB_RESELECT_EVENT, tabTap } from './services/tabs';
 import RegisterScreen from './screens/RegisterScreen';
@@ -73,6 +74,7 @@ function AppShell() {
         <Route path="/account" element={<AccountScreen />} />
       </Routes>
       <BottomNav />
+      <Notices />
     </>
   );
 }

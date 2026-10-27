@@ -9,6 +9,7 @@ import BoardWork from '../components/BoardWork';
 import { reteachTitleParts } from '../services/reteachInfo';
 import { GROUP_LABELS } from '../tiers';
 import Bi from '../components/Bi';
+import { notify } from '../services/notify';
 
 // Generated text may contain line breaks (lists) and stray markdown markers.
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
@@ -283,7 +284,7 @@ export default function YojanaScreen() {
           );
           return available ? (
             <button key={level} type="button" className="btn btn-secondary" style={style} data-testid={`worksheet-${level}`}
-              onClick={() => openAuthedPage(worksheetPath(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id, level)).catch(e => alert(e.message))}>{inner}</button>
+              onClick={() => openAuthedPage(worksheetPath(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id, level)).catch(e => notify(e.message, 'error'))}>{inner}</button>
           ) : (
             <span key={level} className="btn" style={{ ...style, opacity: 0.45, border: '2px dashed var(--border)', color: 'var(--text-secondary)' }}>
               {inner}<span style={{ fontSize: '0.6875rem' }}><Bi hi="उपलब्ध नहीं" en="not available" /></span>
