@@ -2,6 +2,7 @@ import React from 'react';
 import { GROUPS, DECISION_LABELS, staysOnYesterdaysSkill, withSkill, acceptReteach, skillChoices, canReturnToYesterday, toggleReteach, reteachChoice, selectValue, chooseOption, visibleChoices } from '../services/groupSkills';
 import { GROUP_LABELS } from '../tiers';
 import Bi from './Bi';
+import { bi } from '../services/language';
 const SOURCE_TAGS = {
   selected: { hi: 'आपका चुना कौशल', en: 'The skill you chose' },
   review: { hi: 'पिछली समीक्षा में आपके निर्णय से', en: 'From your decision at the review' },
@@ -145,7 +146,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                     const groupsOfSkills = visibleChoices({ label, ladder, row, selectedId, reteachOn: !!reteach[label] });
                     const reteachOption = canReteach ? reteachChoice({ label, row, ladder }) : null;
                     const plain = (grp) => (
-                      <optgroup key={grp.key} label={`${grp.hi} (${grp.en})`}>
+                      <optgroup key={grp.key} label={bi(grp.hi, grp.en)}>
                         {grp.ids.map((id) => (
                           <option key={id} value={id}>{id} · {name(id)}{reteachOption && id === row.previous.id ? ' — नया पाठ (दोहराव नहीं)' : ''}</option>
                         ))}
@@ -154,7 +155,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                     return [
                       ...groupsOfSkills.slice(0, 1).map(plain),
                       reteachOption && (
-                        <optgroup key="reteach" label="🔄 पिछली योजना का कौशल दोहराएँ (Re-teach the last plan's skill)">
+                        <optgroup key="reteach" label={bi('🔄 पिछली योजना का कौशल दोहराएँ', "Re-teach the last plan's skill")}>
                           <option value={reteachOption.value}>🔄 दोहराएँ: {reteachOption.id} · {name(reteachOption.id)}</option>
                         </optgroup>
                       ),

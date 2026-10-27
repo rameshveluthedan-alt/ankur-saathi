@@ -6,7 +6,7 @@ import PlanGroupSkills from '../components/PlanGroupSkills';
 import { reteachGroupsOf } from '../services/planSummary';
 import ReteachNote from '../components/ReteachNote';
 import BoardWork from '../components/BoardWork';
-import { reteachTitle } from '../services/reteachInfo';
+import { reteachTitleParts } from '../services/reteachInfo';
 import { GROUP_LABELS } from '../tiers';
 import Bi from '../components/Bi';
 
@@ -47,7 +47,7 @@ export default function YojanaScreen() {
   if (!currentPlan && loadingStored) {
     return (
       <div className="screen">
-        <div className="loading"><div className="spinner" /><span>योजना लोड हो रही है (Loading plan)...</span></div>
+        <div className="loading"><div className="spinner" /><span><Bi hi="योजना लोड हो रही है..." en="Loading plan" inline /></span></div>
       </div>
     );
   }
@@ -57,7 +57,7 @@ export default function YojanaScreen() {
       <div className="screen">
         <div className="empty-state">
           <div className="empty-icon">📋</div>
-          <h2>कोई योजना नहीं (No plan yet)</h2>
+          <h2><Bi hi="कोई योजना नहीं" en="No plan yet" inline /></h2>
           <p style={{ marginTop: 8, color: 'var(--text-secondary)' }}>
             पहले "योजना" टैब से लक्ष्य चुनें और दैनिक योजना बनाएँ।
           </p>
@@ -163,24 +163,27 @@ export default function YojanaScreen() {
             )}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <strong style={{ fontSize: '0.875rem' }}>
-                {block.type === 'teach' && (block.reteach ? reteachTitle(block, GROUP_LABELS) : `👩‍🏫 ${GROUP_LABELS[block.teach_group]?.hi || block.teach_group} पढ़ाएँ (Teach ${GROUP_LABELS[block.teach_group]?.en || ''})`)}
-                {block.type === 'anchor' && '🎯 एंकर (Anchor)'}
-                {block.type === 'setup' && '📢 सेटअप (Setup)'}
-                {block.type === 'reteach' && `🔄 पुनः शिक्षण${block.teach_group && GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].hi}` : ''} (Re-teach${block.teach_group && GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].en}` : ''})`}
-                {block.type === 'transition' && '↔️ संक्रमण (Transition)'}
+                {block.type === 'teach' && (block.reteach
+                  ? <Bi {...reteachTitleParts(block, GROUP_LABELS)} inline />
+                  : <Bi hi={`👩‍🏫 ${GROUP_LABELS[block.teach_group]?.hi || block.teach_group} पढ़ाएँ`} en={`Teach ${GROUP_LABELS[block.teach_group]?.en || ''}`.trim()} inline />)}
+                {block.type === 'anchor' && <Bi hi="🎯 एंकर" en="Anchor" inline />}
+                {block.type === 'setup' && <Bi hi="📢 सेटअप" en="Setup" inline />}
+                {block.type === 'reteach' && <Bi hi={`🔄 पुनः शिक्षण${GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].hi}` : ''}`}
+                  en={`Re-teach${GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].en}` : ''}`} inline />}
+                {block.type === 'transition' && <Bi hi="↔️ संक्रमण" en="Transition" inline />}
               </strong>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 8 }}>{block.duration_minutes} मि.</span>
             </div>
 
             {block.type === 'reteach' && block.affected_rolls && block.affected_rolls.length > 0 && (
               <div data-testid="reteach-rolls" style={{ fontSize: '0.75rem', marginTop: 4, ...ML }}>
-                👥 जिन बच्चों के लिए (For): रोल {block.affected_rolls.join(', ')}
+                👥 जिन बच्चों के लिए<span className="en en-inline" lang="en">For</span>: रोल {block.affected_rolls.join(', ')}
               </div>
             )}
             <ReteachNote block={block} expanded={expandedBlock === i} />
             {(block.type === 'teach' || block.type === 'reteach') && block.other_groups_hi && (
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4, ...ML }}>
-                बाकी समूह (Other groups): {fmt(block.other_groups_hi)}
+                बाकी समूह<span className="en en-inline" lang="en">Other groups</span>: {fmt(block.other_groups_hi)}
               </div>
             )}
             {block.script_hi && (
@@ -231,7 +234,7 @@ export default function YojanaScreen() {
                     ))}
                     {block.cfu_note_hi && (
                       <div style={{ fontSize: '0.75rem', fontStyle: 'italic', marginTop: 6 }} data-testid="cfu-note">
-                        {fmt(block.cfu_note_hi)} <span className="en en-inline" lang="en">({fmt(block.cfu_note_en)})</span>
+                        {fmt(block.cfu_note_hi)} <span className="en en-inline" lang="en">{fmt(block.cfu_note_en)}</span>
                       </div>
                     )}
                   </div>
@@ -296,7 +299,7 @@ export default function YojanaScreen() {
           <div className="card" style={{ marginTop: 8, fontSize: '0.8125rem', background: 'var(--green-bg)' }}>
             {Array.isArray(explainability.items) ? explainability.items.map((item, i) => (
               <div key={i} style={{ marginBottom: 10 }}>
-                <strong>{fmt(item.title_hi)} <span className="en en-inline" lang="en">({fmt(item.title_en)})</span></strong>
+                <strong>{fmt(item.title_hi)} <span className="en en-inline" lang="en">{fmt(item.title_en)}</span></strong>
                 <div style={ML}>{fmt(item.body_hi)}</div>
                 <div className="en" lang="en" style={{ fontSize: '0.75rem', ...ML }}>{fmt(item.body_en)}</div>
               </div>
@@ -306,7 +309,7 @@ export default function YojanaScreen() {
               </div>
             ))}
             {Object.keys(explainability).length === 0 && (
-              <p style={{ color: 'var(--text-secondary)' }}>व्याख्या डेटा उपलब्ध नहीं (Explainability data not available).</p>
+              <p style={{ color: 'var(--text-secondary)' }}><Bi hi="व्याख्या डेटा उपलब्ध नहीं।" en="Explainability data not available." inline /></p>
             )}
           </div>
         )}

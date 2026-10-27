@@ -9,6 +9,7 @@ import { TAB_RESELECT_EVENT } from '../services/tabs';
 import { useOnline } from '../components/OfflineBanner';
 import { GROUP_LABELS } from '../tiers';
 import Bi from '../components/Bi';
+import { bi } from '../services/language';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -119,9 +120,9 @@ export default function PlanScreen() {
     } catch (e) {
       if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
         const samples = (e.detail && e.detail.sample_skills) || [];
-        alert(e.message + (samples.length ? `\n\nइन कौशलों की नमूना योजना उपलब्ध है (Sample plans are available for): ${samples.join(', ')}` : ''));
+        alert(e.message + (samples.length ? `\n\n${bi('इन कौशलों की नमूना योजना उपलब्ध है', 'Sample plans are available for')}: ${samples.join(', ')}` : ''));
       } else {
-        alert('योजना बनाने में समस्या (Plan generation error): ' + e.message);
+        alert(bi('योजना बनाने में समस्या', 'Plan generation error') + ': ' + e.message);
       }
     }
     setGenerating(false);
@@ -182,20 +183,20 @@ export default function PlanScreen() {
       {!loading && competencies.length > 0 && (
         <div className="card" style={{ padding: 12 }}>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}>
-            ज्ञान-आधार कवरेज (Knowledge-base coverage): हर कौशल के लिए योजना बनती है; लेबल बताता है कि उसके पीछे कितनी जाँची हुई सामग्री है।
+            ज्ञान-आधार कवरेज<span className="en en-inline" lang="en">Knowledge-base coverage</span>: हर कौशल के लिए योजना बनती है; लेबल बताता है कि उसके पीछे कितनी जाँची हुई सामग्री है।
           </div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
             {TIER_ORDER.filter(t => tierCounts[t]).map(t => (
               <span key={t} style={{ background: TIERS[t].bg, color: TIERS[t].color, borderRadius: 10, padding: '2px 8px', fontSize: '0.7rem', fontWeight: 600 }}>
-                {TIERS[t].icon} {TIERS[t].hi} ({TIERS[t].en}) · {tierCounts[t]}
+                {TIERS[t].icon} {TIERS[t].hi}<span className="en en-inline" lang="en" style={{ color: 'inherit', fontWeight: 400 }}>{TIERS[t].en}</span> · {tierCounts[t]}
               </span>
             ))}
           </div>
           <details style={{ marginTop: 6 }}>
-            <summary style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', cursor: 'pointer' }}>इन लेबलों का मतलब (What the labels mean)</summary>
+            <summary style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', cursor: 'pointer', minHeight: 32 }}><Bi hi="इन लेबलों का मतलब" en="What the labels mean" inline /></summary>
             {TIER_ORDER.map(t => (
               <div key={t} style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 4 }}>
-                <b style={{ color: TIERS[t].color }}>{TIERS[t].icon} {TIERS[t].en}</b>: {TIERS[t].what}
+                <b style={{ color: TIERS[t].color }}>{TIERS[t].icon} {TIERS[t].hi}<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>{TIERS[t].en}</span></b>: <span lang="en">{TIERS[t].what}</span>
               </div>
             ))}
           </details>
@@ -204,7 +205,7 @@ export default function PlanScreen() {
 
       <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
         <button style={{ minHeight: 40, minWidth: 48, padding: '4px 12px', fontSize: '0.8125rem', borderRadius: 6, border: '1px solid var(--border)', background: !gradeFilter ? 'var(--green-dark)' : 'var(--surface)', color: !gradeFilter ? 'white' : 'var(--text)', cursor: 'pointer', fontFamily: 'inherit' }}
-          onClick={() => setGradeFilter(null)}>सभी (All)</button>
+          onClick={() => setGradeFilter(null)}><Bi hi="सभी" en="All" inline /></button>
         {GRADE_ORDER.map(g => (
           <button key={g} style={{ minHeight: 40, minWidth: 48, padding: '4px 12px', fontSize: '0.8125rem', borderRadius: 6, border: '1px solid var(--border)', background: gradeFilter === g ? 'var(--green-dark)' : 'var(--surface)', color: gradeFilter === g ? 'white' : 'var(--text)', cursor: 'pointer', fontFamily: 'inherit' }}
             onClick={() => setGradeFilter(g)}>{GRADE_LABELS[g]}</button>
@@ -212,7 +213,7 @@ export default function PlanScreen() {
       </div>
 
       {loading ? (
-        <div className="loading"><div className="spinner" /><span>लक्ष्य लोड हो रहे हैं (Loading competencies)...</span></div>
+        <div className="loading"><div className="spinner" /><span><Bi hi="लक्ष्य लोड हो रहे हैं..." en="Loading competencies" inline /></span></div>
       ) : (
         <div>
           {GRADE_ORDER.filter(g => grouped[g]).map(grade => (
@@ -226,7 +227,7 @@ export default function PlanScreen() {
                   <span className="competency-id">{c.id}</span>
                   <span className="competency-name">
                     {c.name_hi || c.name_en}
-                    {c.name_hi && <span style={{display:'block',fontSize:'0.7rem',color:'var(--text-light)'}}>{c.name_en}</span>}
+                    {c.name_hi && <span className="en" lang="en">{c.name_en}</span>}
                     {(() => { const T = TIERS[c.coverage_tier || 'untested']; return (
                       <span title={c.coverage_note || T.what} style={{ display: 'inline-block', marginTop: 3, background: T.bg, color: T.color, borderRadius: 8, padding: '1px 7px', fontSize: '0.62rem', fontWeight: 600 }}>
                         {T.icon} {T.hi}
@@ -265,21 +266,21 @@ export default function PlanScreen() {
           {generating && (
             <div style={{ fontSize: '0.75rem', textAlign: 'center', background: 'var(--green-bg)', borderRadius: 8, padding: '6px 10px', marginBottom: 6, color: 'var(--text-secondary)' }}>
               {elapsed < SLOW_AFTER_S
-                ? 'लगभग 1–1.5 मिनट लगते हैं। कृपया इस पेज को खुला रखें। (Takes about 1–1.5 minutes. Please keep this page open.)'
-                : 'थोड़ा और समय लग रहा है, कृपया प्रतीक्षा करें। (Taking a little longer. Please keep waiting.)'}
+                ? <Bi hi="लगभग 1–1.5 मिनट लगते हैं। कृपया इस पेज को खुला रखें।" en="Takes about 1–1.5 minutes. Please keep this page open." />
+                : <Bi hi="थोड़ा और समय लग रहा है, कृपया प्रतीक्षा करें।" en="Taking a little longer. Please keep waiting." />}
             </div>
           )}
           {!online && !generating && (
             <div data-testid="generate-offline" style={{ fontSize: '0.75rem', textAlign: 'center', background: '#E8EEF4', color: '#26405A', borderRadius: 8, padding: '6px 10px', marginBottom: 6 }}>
-              योजना बनाने के लिए इंटरनेट चाहिए। (Making a plan needs the internet.)
+              <Bi hi="योजना बनाने के लिए इंटरनेट चाहिए।" en="Making a plan needs the internet." />
             </div>
           )}
           <button className="btn btn-primary" onClick={handleGenerate} disabled={generating || loadingPanel || !online}
             style={generating ? { opacity: 1, cursor: 'wait' } : undefined}>
             {generating ? (
-              <><div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }} /> योजना बन रही है (Generating)... {fmtClock(elapsed)}</>
+              <><div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }} /> योजना बन रही है...<span className="en en-inline" lang="en">Generating</span> {fmtClock(elapsed)}</>
             ) : loadingPanel ? (
-              <>समूहों के कौशल लोड हो रहे हैं… (Loading the groups)</>
+              <>समूहों के कौशल लोड हो रहे हैं…<span className="en en-inline" lang="en">Loading the groups</span></>
             ) : (
               <>📋 दैनिक योजना बनाएँ<span className="en en-inline" lang="en">Generate Plan</span> → {selectedId}</>
             )}

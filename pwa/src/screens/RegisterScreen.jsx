@@ -78,11 +78,11 @@ export default function RegisterScreen() {
             ↺ <b>{preview.counts.exists}</b> पहले से हैं, छोड़े जाएँगे<span className="en en-inline" lang="en">already enrolled, skipped</span><br />
             {preview.counts.error > 0 && <span>⚠️ <b>{preview.counts.error}</b> पंक्तियों में गलती है, जुड़ेंगी नहीं<span className="en en-inline" lang="en">lines with problems, not added</span></span>}
           </div>
-          {preview.names_to_save > 0 && preview.names_available && <p style={{ fontSize: '0.75rem', color: 'var(--proficient)', marginTop: 8 }} data-testid="names-note">🔒 {preview.names_to_save} नाम सहेजे जाएँगे: सिर्फ़ आपको दिखेंगे, AI को कभी नहीं भेजे जाएँगे (names kept private, never sent to the AI)</p>}
+          {preview.names_to_save > 0 && preview.names_available && <p style={{ fontSize: '0.75rem', color: 'var(--proficient)', marginTop: 8 }} data-testid="names-note">🔒 {preview.names_to_save} नाम सहेजे जाएँगे: सिर्फ़ आपको दिखेंगे, AI को कभी नहीं भेजे जाएँगे<span className="en en-inline" lang="en">names kept private, never sent to the AI</span></p>}
           {preview.warnings.map((w, i) => <p key={i} style={{ fontSize: '0.75rem', color: '#8A5A00', background: '#FFF4D6', borderRadius: 8, padding: '6px 10px', marginTop: 8 }}>{w}</p>)}
           {bad.length > 0 && (
             <div style={{ marginTop: 8, fontSize: '0.8125rem' }} data-testid="register-problems">
-              {bad.map(r => <div key={r.row} style={{ padding: '3px 0', borderBottom: '1px solid var(--border)' }}>पंक्ति (line) {r.row}: {r.errors.join('; ')}</div>)}
+              {bad.map(r => <div key={r.row} style={{ padding: '3px 0', borderBottom: '1px solid var(--border)' }}>पंक्ति<span className="en en-inline" lang="en">line</span> {r.row}: {r.errors.join('; ')}</div>)}
             </div>
           )}
           <div style={{ marginTop: 10, maxHeight: 190, overflow: 'auto', fontSize: '0.75rem' }}>
@@ -107,8 +107,8 @@ export default function RegisterScreen() {
         <div className="card" style={{ borderLeft: '4px solid var(--proficient)' }} data-testid="register-done">
           <h3>✅ {done.added} बच्चे जुड़ गए<span className="en en-inline" lang="en">children enrolled</span></h3>
           <p style={{ fontSize: '0.8125rem', margin: '6px 0' }}>कक्षा में कुल<span className="en en-inline" lang="en">Total in class</span>: <b>{done.total_children}</b></p>
-          {done.names_saved > 0 && <p style={{ fontSize: '0.8125rem' }}>🔒 {done.names_saved} नाम सहेजे गए (names saved, private)</p>}
-          {done.numbering === 'composite' && <p style={{ fontSize: '0.8125rem', color: '#8A5A00' }}>कक्षा नंबर में कक्षा शामिल है: कक्षा 3 रोल 5 = 305। बच्चे वर्कशीट पर यही नंबर लिखेंगे। (Class numbers carry the grade; children write this number on worksheets.)</p>}
+          {done.names_saved > 0 && <p style={{ fontSize: '0.8125rem' }}>🔒 {done.names_saved} नाम सहेजे गए<span className="en en-inline" lang="en">names saved, private</span></p>}
+          {done.numbering === 'composite' && <p style={{ fontSize: '0.8125rem', color: '#8A5A00' }}><Bi hi="कक्षा नंबर में कक्षा शामिल है: कक्षा 3 रोल 5 = 305। बच्चे वर्कशीट पर यही नंबर लिखेंगे।" en="Class numbers carry the grade; children write this number on worksheets." /></p>}
           <button type="button" className="btn btn-primary" onClick={() => navigate('/')} style={{ marginTop: 8 }}><Bi hi="योजना पर जाएँ" en="Go to Plan" inline /></button>
         </div>
       )}

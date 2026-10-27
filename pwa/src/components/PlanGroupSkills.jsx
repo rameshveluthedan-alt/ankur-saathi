@@ -15,13 +15,13 @@ export default function PlanGroupSkills({ planDate, selectedId, groups, blocks }
         <div key={l.label} data-testid={`plan-skill-${l.label}`} title={l.name_hi}>
           <span aria-hidden="true">{l.emoji}</span> <b>{l.short}</b> {l.skillId}
           {l.reteach && (
-            <span style={tag} data-testid={`plan-reteach-${l.label}`}>🔄 पुनः शिक्षण <span style={{ fontSize: '0.55rem', fontWeight: 400 }}>Re-teach</span></span>
+            <span style={tag} data-testid={`plan-reteach-${l.label}`}>🔄 पुनः शिक्षण<span className="en en-inline" lang="en" style={{ color: 'inherit', fontSize: '0.625rem' }}>Re-teach</span></span>
           )}
         </div>
       ))}
       {!s.differ && s.reteachLabels.length > 0 && (
         <div style={tag} data-testid="plan-reteach-all">
-          🔄 पुनः शिक्षण: {s.reteachLabels.map((l) => GROUP_HI[l]).join(', ')} <span style={{ fontSize: '0.55rem', fontWeight: 400 }}>Re-teach</span>
+          🔄 पुनः शिक्षण: {s.reteachLabels.map((l) => GROUP_HI[l]).join(', ')}<span className="en en-inline" lang="en" style={{ color: 'inherit', fontSize: '0.625rem' }}>Re-teach</span>
         </div>
       )}
     </div>

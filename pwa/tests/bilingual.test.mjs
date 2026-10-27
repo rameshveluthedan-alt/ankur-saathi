@@ -26,7 +26,7 @@ const classes = new Set();
 globalThis.document = { body: { classList: { toggle: (c, on) => { if (on) classes.add(c); else classes.delete(c); return on; }, contains: (c) => classes.has(c) } } };
 
 const { default: Bi } = await import(pathToFileURL(path.join(out, 'bi.mjs')).href);
-const { getHindiOnly, setHindiOnly, applyLanguage } = await import(pathToFileURL(path.join(out, 'language.mjs')).href);
+const { getHindiOnly, setHindiOnly, applyLanguage, bi } = await import(pathToFileURL(path.join(out, 'language.mjs')).href);
 
 let n = 0;
 const check = (label, fn) => { fn(); n += 1; console.log(`  OK  ${label}`); };
@@ -62,6 +62,13 @@ check('off again: the English comes back and nothing is left stored', () => {
   setHindiOnly(false);
   assert.ok(!classes.has('hide-en') && !getHindiOnly() && store.size === 0);
 });
+check('pop-ups and messages (plain text): "हिंदी (English)" normally, only the Hindi with the setting on', () => {
+  assert.equal(bi('समस्या', 'Error'), 'समस्या (Error)');
+  setHindiOnly(true);
+  assert.equal(bi('समस्या', 'Error'), 'समस्या');
+  setHindiOnly(false);
+  assert.equal(bi('समस्या'), 'समस्या');
+});
 check('a browser that refuses storage (private mode) still switches the screen, and nothing breaks', () => {
   const saved = globalThis.localStorage;
   globalThis.localStorage = { getItem: () => { throw new Error('denied'); }, setItem: () => { throw new Error('denied'); }, removeItem: () => { throw new Error('denied'); } };
@@ -85,6 +92,16 @@ check('the screen headings use Bi, so "Hindi only" hides their English', () => {
   for (const [f, hi] of [['screens/PlanScreen.jsx', 'योजना बनाएँ'], ['screens/YojanaScreen.jsx', 'दैनिक योजना'], ['screens/ReviewScreen.jsx', 'समीक्षा'], ['screens/ProgressScreen.jsx', 'प्रगति'], ['screens/AccountScreen.jsx', 'प्रोफ़ाइल']]) {
     assert.ok(read(f).includes(`<Bi hi="${hi}"`), f);
   }
+});
+
+check('no screen writes an English translation in brackets after Hindi any more (it would stay visible with "Hindi only")', () => {
+  const files = [];
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => (e.isDirectory() ? walk(path.join(d, e.name)) : /\.jsx$/.test(e.name) && files.push(path.join(d, e.name))));
+  walk(src);
+  // Hindi, a space, then "(English words)" in the JSX itself. Kept on purpose: aria-labels (read aloud, never shown) and the consent confirm box (the leader sees the whole statement in both languages).
+  const bad = files.flatMap((f) => fs.readFileSync(f, 'utf8').split('\n').map((l, i) => [f, i + 1, l]))
+    .filter(([, , l]) => /[ऀ-ॿ][^`'"<>{}]{0,80} \([A-Z][A-Za-z' ,./:;!?-]{2,}\)/.test(l) && !/aria-label=|^\s*(\/\/|\*)|CONSENT\.en/.test(l));
+  assert.deepEqual(bad.map(([f, i]) => `${path.relative(src, f)}:${i}`), []);
 });
 
 console.log(`\nOK: ${n} checks: Hindi comes first with its English after it, and "Hindi only" hides the English and nothing else`);

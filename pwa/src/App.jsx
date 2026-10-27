@@ -60,7 +60,7 @@ function AppShell() {
         <OfflineBanner />
         {teacher.is_demo && (
           <div data-testid="demo-banner" style={{ background: '#FFF4D6', color: '#6B4A00', fontSize: '0.7rem', padding: '4px 10px', textAlign: 'center' }}>
-            डेमो अकाउंट: सिर्फ़ काल्पनिक डेटा, असली बच्चों के नाम न डालें। (Demo account: fictional data only. Do not enter real children's names.)
+            डेमो अकाउंट: सिर्फ़ काल्पनिक डेटा, असली बच्चों के नाम न डालें।<span className="en en-inline" lang="en" style={{ color: 'inherit', fontSize: '0.7rem' }}>Demo account: fictional data only. Do not enter real children's names.</span>
           </div>
         )}
       </div>

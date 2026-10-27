@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../App';
 import { changePin, setToken } from '../services/api';
 import Bi from '../components/Bi';
+import { bi } from '../services/language';
 
 // (The file and the API keep their old name, "pin": the secret is now called a PASSWORD: 6 to 12 letters or digits, and a 6-digit number is fine.)
 const clean = (v) => v.replace(/[^A-Za-z0-9]/g, '').slice(0, 12);
@@ -20,7 +21,7 @@ export function PinChangeForm({ forced = false, onDone }) {
   const type = show ? 'text' : 'password';
 
   const submit = async () => {
-    if (next !== again) { setError('नए पासवर्ड एक जैसे नहीं हैं (The new passwords do not match).'); return; }
+    if (next !== again) { setError(bi('नए पासवर्ड एक जैसे नहीं हैं।', 'The new passwords do not match.')); return; }
     setLoading(true); setError('');
     try {
       const res = await changePin(current, next);
@@ -29,7 +30,7 @@ export function PinChangeForm({ forced = false, onDone }) {
       setTeacher({ ...teacher, ...profile });
       setCurrent(''); setNext(''); setAgain('');
       if (onDone) onDone();
-    } catch (e) { setError(e.message || 'पासवर्ड नहीं बदला जा सका (Could not change the password)'); }
+    } catch (e) { setError(e.message || bi('पासवर्ड नहीं बदला जा सका', 'Could not change the password')); }
     setLoading(false);
   };
 

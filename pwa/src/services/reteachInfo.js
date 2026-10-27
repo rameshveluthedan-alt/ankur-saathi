@@ -29,10 +29,16 @@ export function pacePlan(duration) {
 /** Is this a re-teach block of the new kind (a teach block marked by the plan)? The old separate block (type 'reteach') has its own display. */
 export const isReteachMain = (block) => !!(block && block.type === 'teach' && block.reteach === true);
 
-/** The title of a re-teach block, in the style of the other blocks' titles. */
-export function reteachTitle(block, labels) {
+/** The title of a re-teach block, in the style of the other blocks' titles: its Hindi and its English (the screen shows the English as a translation the "Hindi only" setting hides). */
+export function reteachTitleParts(block, labels) {
   const l = (labels && labels[block.teach_group]) || {};
-  return `🔄 पुनः शिक्षण: ${l.hi || block.teach_group} पढ़ाएँ (Re-teach ${l.en || ''})`;
+  return { hi: `🔄 पुनः शिक्षण: ${l.hi || block.teach_group} पढ़ाएँ`, en: `Re-teach ${l.en || ''}`.trim() };
+}
+
+/** The same title as one line of text. */
+export function reteachTitle(block, labels) {
+  const t = reteachTitleParts(block, labels);
+  return `${t.hi} (${t.en})`;
 }
 
 /** What to show: the children (roll numbers: the teacher's own screen), the mistakes with how many children made each, and the pace. */

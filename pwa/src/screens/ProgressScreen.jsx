@@ -23,8 +23,8 @@ export default function ProgressScreen() {
       .catch(() => setLoading(false));
   }, [teacher.teacher_id]);
 
-  if (loading) return <div className="screen"><div className="loading"><div className="spinner" /><span>प्रगति लोड हो रही (Loading progress)...</span></div></div>;
-  if (!data) return <div className="screen"><div className="empty-state"><div className="empty-icon">📊</div><p>डेटा उपलब्ध नहीं (No data available)</p></div></div>;
+  if (loading) return <div className="screen"><div className="loading"><div className="spinner" /><span><Bi hi="प्रगति लोड हो रही..." en="Loading progress" inline /></span></div></div>;
+  if (!data) return <div className="screen"><div className="empty-state"><div className="empty-icon">📊</div><p><Bi hi="डेटा उपलब्ध नहीं" en="No data available" inline /></p></div></div>;
 
   const { bpp_summary, children, reassessment_flags } = data;
   const ds = bpp_summary.find(s => s.domain_id === selectedDomain) || { beginner_count: 0, progressor_count: 0, proficient_count: 0 };
@@ -42,12 +42,12 @@ export default function ProgressScreen() {
         <h1>📊 <Bi hi="प्रगति" en="Progress" inline /></h1>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
           <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => alert(e.message))}
-            style={{ background: 'none', border: 'none', padding: 0, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit' }}>
-            📥 कक्षा रिपोर्ट, नामों के साथ (Class report)
+            style={{ background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'right' }}>
+            📥 कक्षा रिपोर्ट, नामों के साथ<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>Class report</span>
           </button>
           <button type="button" data-testid="mlo-report" onClick={() => downloadOfficerReport(teacher.teacher_id).catch(e => alert(e.message))}
-            style={{ background: 'none', border: 'none', padding: 0, fontSize: '0.65rem', color: 'var(--text-secondary)', fontFamily: 'inherit' }}>
-            📥 अधिकारी रिपोर्ट, सिर्फ़ रोल नंबर (Officer report)
+            style={{ background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--text-secondary)', fontFamily: 'inherit', textAlign: 'right' }}>
+            📥 अधिकारी रिपोर्ट, सिर्फ़ रोल नंबर<span className="en en-inline" lang="en">Officer report</span>
           </button>
         </div>
       </div>
@@ -82,17 +82,17 @@ export default function ProgressScreen() {
       {/* Daily work that no longer matches a child's level. A flag changes NOTHING: a level changes only through an assessment. */}
       {domainFlags.length > 0 && (
         <>
-          <h2 style={{ margin: '12px 0 4px' }}>🔎 दोबारा आकलन पर विचार करें (Consider re-assessing)</h2>
+          <h2 style={{ margin: '12px 0 4px' }}>🔎 <Bi hi="दोबारा आकलन पर विचार करें" en="Consider re-assessing" inline /></h2>
           <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '0 0 8px' }}>
-            स्तर सिर्फ़ आकलन से बदलता है। इन बच्चों का आकलन पहले करना ठीक रहेगा। (Levels change only through an assessment. These children are worth assessing first.)
+            <Bi hi="स्तर सिर्फ़ आकलन से बदलता है। इन बच्चों का आकलन पहले करना ठीक रहेगा।" en="Levels change only through an assessment. These children are worth assessing first." />
           </p>
           {domainFlags.map(f => (
             <div key={f.child_id} className="card" data-testid={`flag-${f.direction}`}
               style={{ borderLeft: `4px solid ${f.direction === 'higher' ? 'var(--proficient)' : '#C9A227'}` }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <strong>Roll {f.roll_number}{nameOf(f.roll_number)}</strong>
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: f.direction === 'higher' ? 'var(--proficient)' : '#8A5A00' }}>
-                  {f.direction === 'higher' ? '⬆ अच्छा प्रदर्शन (Doing well)' : '⬇ कठिनाई (Struggling)'}
+                <strong>रोल {f.roll_number}{nameOf(f.roll_number)}</strong>
+                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: f.direction === 'higher' ? 'var(--proficient-ink)' : '#8A5A00' }}>
+                  {f.direction === 'higher' ? <Bi hi="⬆ अच्छा प्रदर्शन" en="Doing well" inline /> : <Bi hi="⬇ कठिनाई" en="Struggling" inline />}
                 </span>
               </div>
               <p style={{ fontSize: '0.8125rem', margin: '6px 0 0', color: 'var(--text-secondary)' }}>{f.evidence_hi}</p>
@@ -102,7 +102,7 @@ export default function ProgressScreen() {
       )}
 
       {/* Children list */}
-      <h2 style={{ margin: '12px 0 8px' }}>👥 बच्चों की प्रगति (Children Progress) — {children.length}</h2>
+      <h2 style={{ margin: '12px 0 8px' }}>👥 बच्चों की प्रगति<span className="en en-inline" lang="en">Children Progress</span> — {children.length}</h2>
       {children.map(c => {
         const bpp = selectedDomain === 'numeracy' ? c.numeracy_bpp : c.literacy_bpp;
         const compId = selectedDomain === 'numeracy' ? c.numeracy_competency_id : c.literacy_competency_id;
@@ -112,11 +112,11 @@ export default function ProgressScreen() {
             onClick={() => setSelectedChild(selectedChild === c.roll_number ? null : c.roll_number)}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <strong style={{ fontSize: '1rem' }}>Roll {c.roll_number}{nameOf(c.roll_number)}</strong>
-                <span style={{ fontSize: '0.6875rem', color: 'var(--text-light)', marginLeft: 6 }}>
-                  {c.enrolled_grade === 'grade_1' ? 'कक्षा 1 (Gr1)' : c.enrolled_grade === 'grade_2' ? 'कक्षा 2 (Gr2)' : 'कक्षा 3 (Gr3)'}
+                <strong style={{ fontSize: '1rem' }}>रोल {c.roll_number}{nameOf(c.roll_number)}</strong>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 6 }}>
+                  {c.enrolled_grade === 'grade_1' ? 'कक्षा 1' : c.enrolled_grade === 'grade_2' ? 'कक्षा 2' : 'कक्षा 3'}
                 </span>
-                {asOf(c) && <span style={{ fontSize: '0.625rem', color: 'var(--text-light)', marginLeft: 6 }} data-testid={`as-of-${c.roll_number}`} title="level as of">· स्तर: {asOf(c)}</span>}
+                {asOf(c) && <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 6 }} data-testid={`as-of-${c.roll_number}`} title="level as of">· स्तर: {asOf(c)}</span>}
               </div>
               <span className={`badge badge-${bpp || 'beginner'}`}>
                 {BPP[bpp]?.hi || '—'}{BPP[bpp] && <span className="en en-inline" lang="en" style={{ fontSize: '0.625rem' }}>{BPP[bpp].en}</span>}
@@ -124,12 +124,12 @@ export default function ProgressScreen() {
             </div>
             {selectedChild === c.roll_number && (
               <div style={{ marginTop: 8, fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
-                <div>लक्ष्य (Lakshya): <strong>{compId}</strong></div>
+                <div>लक्ष्य<span className="en en-inline" lang="en">Lakshya</span>: <strong>{compId}</strong></div>
                 <div>{compName}</div>
                 <div style={{ marginTop: 4 }}>
-                  गणित (Num): <span className={`badge badge-${c.numeracy_bpp || 'beginner'}`} style={{ fontSize: '0.55rem' }}>{BPP[c.numeracy_bpp]?.en || '—'}</span>
+                  गणित<span className="en en-inline" lang="en">Num</span>: <span className={`badge badge-${c.numeracy_bpp || 'beginner'}`}>{BPP[c.numeracy_bpp]?.hi || '—'}</span>
                   {' · '}
-                  हिंदी (Lit): <span className={`badge badge-${c.literacy_bpp || 'beginner'}`} style={{ fontSize: '0.55rem' }}>{BPP[c.literacy_bpp]?.en || '—'}</span>
+                  हिंदी<span className="en en-inline" lang="en">Lit</span>: <span className={`badge badge-${c.literacy_bpp || 'beginner'}`}>{BPP[c.literacy_bpp]?.hi || '—'}</span>
                 </div>
               </div>
             )}

@@ -16,8 +16,8 @@ export default function GroupSkillsDrawer({ open, onToggle, summary, disabled, c
         </div>
       )}
       <button type="button" className="btn btn-secondary btn-small" data-testid="edit-group-skills" aria-expanded={open ? 'true' : 'false'}
-        onClick={onToggle} disabled={disabled} style={{ width: '100%', marginBottom: 6, fontSize: '0.7rem' }}>
-        {open ? '▼ बंद करें: कौशल सूची पर लौटें (Close: back to the skill list)' : `समूहों के कौशल: ${summary} — देखें/बदलें ▲`}
+        onClick={onToggle} disabled={disabled} style={{ width: '100%', marginBottom: 6, fontSize: '0.8125rem' }}>
+        {open ? <>▼ बंद करें: कौशल सूची पर लौटें<span className="en en-inline" lang="en">Close: back to the skill list</span></> : `समूहों के कौशल: ${summary} — देखें/बदलें ▲`}
       </button>
     </div>
   );

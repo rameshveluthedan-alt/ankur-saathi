@@ -32,7 +32,7 @@ check('no screen uses a microphone symbol (it used to mark the reading-aloud for
 const review = all.find(([f]) => f.endsWith('screens/ReviewScreen.jsx'))[1];
 check('the reading-aloud form says, in Hindi and in English, that no audio is recorded', review.includes('कोई आवाज़ रिकॉर्ड नहीं होती') && review.includes('No audio is recorded'));
 check('...and says what the teacher does: listen to one child for a minute, then enter the words and the errors', review.includes('एक बच्चे को एक मिनट पढ़ते सुनें') && /Listen to one child read for a minute/.test(review));
-check('the button says it saves a reading score, not that it records', review.includes('पठन दर्ज करें (Save reading score)') && !/Record ORF/.test(review));
+check('the button says it saves a reading score, not that it records', review.includes('पठन दर्ज करें') && review.includes('Save reading score') && !/Record ORF/.test(review));
 const plan = all.find(([f]) => f.endsWith('screens/PlanScreen.jsx'))[1];
 check('the skill list marks a reading-aloud skill with a stopwatch', plan.includes("'oral_reading' ? '⏱️'"));
 

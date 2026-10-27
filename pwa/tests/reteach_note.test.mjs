@@ -76,7 +76,7 @@ check('a re-teach block with nothing recorded gets empty lists, not an error', (
 console.log('what the note shows');
 const closed = render(rt, false);
 check('collapsed: that it is a re-teach, which children (their roll numbers) and which mistake, with how many children', () => {
-  assert.ok(closed.includes('data-testid="reteach-note"') && closed.includes('पुनः शिक्षण (Re-teach)'));
+  assert.ok(closed.includes('data-testid="reteach-note"') && closed.includes('पुनः शिक्षण<span class="en en-inline" lang="en">Re-teach</span>'));
   assert.ok(closed.includes('data-testid="reteach-children"') && closed.includes('रोल 4, 5'));
   assert.ok(closed.includes('data-testid="reteach-mistakes"') && closed.includes('हासिल भूलना: हासिल छोड़ देता है (2 बच्चे)'));
 });

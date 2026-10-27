@@ -5,6 +5,10 @@ import { compressImage } from '../utils/imageCompress';
 import { useOnline } from '../components/OfflineBanner';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import Bi from '../components/Bi';
+import { bi } from '../services/language';
+
+// an English translation on the same line, after its Hindi (hidden by the "Hindi only" setting)
+const En = ({ children }) => <span className="en en-inline" lang="en">{children}</span>;
 
 export default function ReviewScreen() {
   const { teacher, currentPlan, selectedDomain, names } = useAuth();
@@ -72,7 +76,7 @@ export default function ReviewScreen() {
     try {
       await recordDecisions(teacher.teacher_id, today, selectedDomain, decisions);
       setStep(2);
-    } catch (e) { alert('Error: ' + e.message); }
+    } catch (e) { alert(bi('समस्या', 'Error') + ': ' + e.message); }
     setLoading(false);
   };
 
@@ -101,7 +105,7 @@ export default function ReviewScreen() {
       small.__key = key;
       fresh.push(small);
     }
-    setDupNotice(duplicates ? 'यह फ़ोटो पहले ही जोड़ी जा चुकी है (This photo was already added)' : '');
+    setDupNotice(duplicates ? bi('यह फ़ोटो पहले ही जोड़ी जा चुकी है', 'This photo was already added') : '');
     setPhotos(prev => [...prev, ...fresh].slice(0, 6));
   };
 
@@ -124,7 +128,7 @@ export default function ReviewScreen() {
       setStep(3);
       refreshSaved();
       refreshCoverage();
-    } catch (e) { alert('विश्लेषण में समस्या (Analysis error): ' + e.message); }
+    } catch (e) { alert(bi('विश्लेषण में समस्या', 'Analysis error') + ': ' + e.message); }
     setLoading(false);
   };
 
@@ -139,10 +143,10 @@ export default function ReviewScreen() {
     setLoading(true);
     try {
       await recordObserved(teacher.teacher_id, today, observedItems);
-      alert(`✅ ${observedItems.length} अवलोकन दर्ज हुए (observations recorded)`);
+      alert(`✅ ${observedItems.length} ` + bi('अवलोकन दर्ज हुए', 'observations recorded'));
       setObservedItems([]);
       refreshCoverage();
-    } catch (e) { alert('Error: ' + e.message); }
+    } catch (e) { alert(bi('समस्या', 'Error') + ': ' + e.message); }
     setLoading(false);
   };
 
@@ -155,10 +159,10 @@ export default function ReviewScreen() {
         passage_id: orfEntry.passage_id, cwpm: parseInt(orfEntry.cwpm),
         error_count: parseInt(orfEntry.error_count || 0),
       });
-      alert(`✅ Roll ${orfEntry.roll_number}: ${orfEntry.cwpm} CWPM → ${result.classification}`);
+      alert(`✅ ${bi('रोल', 'Roll')} ${orfEntry.roll_number}: ${orfEntry.cwpm} ${bi('सही शब्द/मिनट', 'CWPM')} → ${result.classification}`);
       setOrfEntry({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });
       refreshCoverage();
-    } catch (e) { alert('Error: ' + e.message); }
+    } catch (e) { alert(bi('समस्या', 'Error') + ': ' + e.message); }
     setLoading(false);
   };
 
@@ -277,13 +281,13 @@ export default function ReviewScreen() {
                 <p style={{ fontSize: '0.8125rem', margin: '4px 0 8px' }}>कौशल<span className="en en-inline" lang="en">Skill</span>: <b>{observedLevel.competency_id}</b> · {observedLevel.name_hi}</p>
                 {big && (
                   <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
-                    <button type="button" data-testid="obs-mode-sample" style={mode(useSample)} onClick={() => setSampleMode('sample')}>नमूना (Sample) {sample.size}/{sample.group_size}</button>
-                    <button type="button" style={mode(!useSample)} onClick={() => setSampleMode('all')}>सभी (Everyone) {coverage.group_rolls.length}</button>
+                    <button type="button" data-testid="obs-mode-sample" style={mode(useSample)} onClick={() => setSampleMode('sample')}>नमूना<En>Sample</En> {sample.size}/{sample.group_size}</button>
+                    <button type="button" style={mode(!useSample)} onClick={() => setSampleMode('all')}>सभी<En>Everyone</En> {coverage.group_rolls.length}</button>
                   </div>
                 )}
                 {rolls.map(r => (
                   <div key={r} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
-                    <b style={{ width: 78, fontSize: '0.8125rem' }}>Roll {r}{names && names[r] && <div style={{ fontSize: '0.7rem', fontWeight: 500 }} data-testid={`name-${r}`}>{names[r]}</div>}{coverage?.labels?.[r] && <div style={{ fontSize: '0.55rem', fontWeight: 400, color: 'var(--text-secondary)' }}>{coverage.labels[r]}</div>}</b>
+                    <b style={{ width: 78, fontSize: '0.8125rem' }}>रोल {r}{names && names[r] && <div style={{ fontSize: '0.7rem', fontWeight: 500 }} data-testid={`name-${r}`}>{names[r]}</div>}{coverage?.labels?.[r] && <div style={{ fontSize: '0.55rem', fontWeight: 400, color: 'var(--text-secondary)' }}>{coverage.labels[r]}</div>}</b>
                     <button type="button" data-testid={`obs-${r}-achieved`} style={btn(statusOf(r) === 'achieved', 'var(--proficient-ink)')} onClick={() => tap(r, 'achieved')}>A</button>
                     <button type="button" data-testid={`obs-${r}-partially_achieved`} style={btn(statusOf(r) === 'partially_achieved', 'var(--progressor-ink)')} onClick={() => tap(r, 'partially_achieved')}>PA</button>
                     <button type="button" data-testid={`obs-${r}-not_achieved`} style={btn(statusOf(r) === 'not_achieved', 'var(--beginner-ink)')} onClick={() => tap(r, 'not_achieved')}>NA</button>
@@ -294,7 +298,7 @@ export default function ReviewScreen() {
                 ))}
                 {useSample && <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }} data-testid="sample-note-obs">नमूना मोटी तस्वीर देता है (लगभग ±{sample.margin_points} अंक)।<span className="en" lang="en">A sample gives a rough picture of the group.</span></p>}
                 <button className="btn btn-primary" onClick={submitObserved} disabled={loading || !observedItems.length} style={{ marginTop: 8 }} data-testid="obs-submit">
-                  {loading ? 'दर्ज हो रहा...' : `✓ ${observedItems.length} अवलोकन जमा करें (Submit)`}
+                  {loading ? 'दर्ज हो रहा...' : <>✓ {observedItems.length} अवलोकन जमा करें<En>Submit</En></>}
                 </button>
               </div>
             );
@@ -307,13 +311,13 @@ export default function ReviewScreen() {
                 <Bi hi="हर बच्चे के लिए A / PA / NA दबाएँ" en="Tap A / PA / NA for each child" />
               </p>
               <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-                <input type="number" inputMode="numeric" placeholder="Roll No." min="1"
+                <input type="number" inputMode="numeric" placeholder="रोल नं." aria-label="रोल नंबर (Roll number)" min="1"
                   style={{ flex: 1, padding: 8, borderRadius: 6, border: '1px solid var(--border)', fontFamily: 'inherit' }} id="obs-roll" />
-                <input type="text" placeholder="Comp ID (N1.2.4)"
+                <input type="text" placeholder="कौशल कोड (N1.2.4)" aria-label="कौशल कोड (Skill code)"
                   style={{ flex: 1, padding: 8, borderRadius: 6, border: '1px solid var(--border)', fontFamily: 'inherit' }} id="obs-comp" />
               </div>
               <div className="decision-row">
-                {[['achieved','✓ A (Achieved)'],['partially_achieved','~ PA (Partial)'],['not_achieved','✗ NA (Not Achieved)']].map(([s,label]) => (
+                {[['achieved', <Bi hi="✓ A प्राप्त" en="Achieved" />], ['partially_achieved', <Bi hi="~ PA आंशिक" en="Partial" />], ['not_achieved', <Bi hi="✗ NA प्राप्त नहीं" en="Not Achieved" />]].map(([s, label]) => (
                   <button key={s} className="decision-btn" onClick={() => {
                     const roll = document.getElementById('obs-roll').value;
                     const comp = document.getElementById('obs-comp').value;
@@ -323,12 +327,12 @@ export default function ReviewScreen() {
               </div>
               {observedItems.length > 0 && (
                 <div style={{ marginTop: 8, fontSize: '0.8125rem' }}>
-                  <strong>{observedItems.length} दर्ज (recorded):</strong>{' '}
+                  <strong>{observedItems.length} दर्ज<En>recorded</En>:</strong>{' '}
                   {observedItems.map(i => `R${i.roll_number}:${i.status[0].toUpperCase()}`).join(', ')}
                 </div>
               )}
               <button className="btn btn-primary" onClick={submitObserved} disabled={loading || !observedItems.length} style={{ marginTop: 8 }}>
-                {loading ? 'दर्ज हो रहा...' : `✓ ${observedItems.length} अवलोकन जमा करें (Submit)`}
+                {loading ? 'दर्ज हो रहा...' : <>✓ {observedItems.length} अवलोकन जमा करें<En>Submit</En></>}
               </button>
             </div>
           )}
@@ -359,20 +363,20 @@ export default function ReviewScreen() {
                   <div data-testid="coverage" style={{ fontSize: '0.75rem', background: '#F3F8F4', border: '1px solid #D5E6DA', borderRadius: 8, padding: '6px 10px', marginBottom: 8 }}>
                     {big && (
                       <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
-                        <button type="button" data-testid="mode-sample" style={mode(useSample)} onClick={() => setSampleMode('sample')}>नमूना (Sample) {sample.size}/{sample.group_size}</button>
-                        <button type="button" data-testid="mode-all" style={mode(!useSample)} onClick={() => setSampleMode('all')}>सभी (Everyone) {coverage.group_rolls.length}</button>
+                        <button type="button" data-testid="mode-sample" style={mode(useSample)} onClick={() => setSampleMode('sample')}>नमूना<En>Sample</En> {sample.size}/{sample.group_size}</button>
+                        <button type="button" data-testid="mode-all" style={mode(!useSample)} onClick={() => setSampleMode('all')}>सभी<En>Everyone</En> {coverage.group_rolls.length}</button>
                       </div>
                     )}
-                    <div><b>✓ हो चुके (Done): {done.length}/{total}</b>{done.length > 0 && ` · रोल ${done.join(', ')}`}</div>
+                    <div><b>✓ हो चुके<En>Done</En>: {done.length}/{total}</b>{done.length > 0 && ` · रोल ${done.join(', ')}`}</div>
                     <div style={{ marginTop: 2 }}>
-                      ⏳ {useSample ? 'इन बच्चों की फ़ोटो लें (Photograph these)' : 'बाकी (Left)'}:{' '}
-                      {left.length === 0 ? 'कोई नहीं (none)' : useSample
+                      ⏳ {useSample ? <>इन बच्चों की फ़ोटो लें<En>Photograph these</En></> : <>बाकी<En>Left</En></>}:{' '}
+                      {left.length === 0 ? <>कोई नहीं<En>none</En></> : useSample
                         ? left.map(r => <button key={r} type="button" data-testid={`chip-${r}`} title={[names && names[r], coverage.labels?.[r]].filter(Boolean).join(' · ')} className="chip" onClick={() => toggleAbsent(r)}>{r}{coverage.labels?.[r] ? <span style={{ fontSize: '0.55rem', color: 'var(--text-secondary)' }}> {coverage.labels[r]}</span> : null}</button>)
                         : left.join(', ')}
                     </div>
                     {useSample && left.length > 0 && <div style={{ color: 'var(--text-secondary)' }}><Bi hi="कोई बच्चा अनुपस्थित है? उसके रोल पर दबाएँ, उसकी जगह दूसरा बच्चा सुझाया जाएगा।" en="Absent? Tap the roll and another child is suggested." /></div>}
                     {useSample && sample.absent.length > 0 && (
-                      <div style={{ marginTop: 4 }}>अनुपस्थित (Absent): {sample.absent.map(r => <button key={r} type="button" data-testid={`absent-${r}`} className="chip" onClick={() => toggleAbsent(r)}>{r} ✕</button>)}</div>
+                      <div style={{ marginTop: 4 }}>अनुपस्थित<En>Absent</En>: {sample.absent.map(r => <button key={r} type="button" data-testid={`absent-${r}`} className="chip" onClick={() => toggleAbsent(r)}>{r} ✕</button>)}</div>
                     )}
                     {useSample && (
                       <div data-testid="sample-note" style={{ color: 'var(--text-secondary)', marginTop: 4 }}>
@@ -436,19 +440,19 @@ export default function ReviewScreen() {
                 </div>
               )}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <input type="number" inputMode="numeric" placeholder="Roll No." value={orfEntry.roll_number}
+                <input type="number" inputMode="numeric" placeholder="रोल नं." aria-label="रोल नंबर (Roll number)" value={orfEntry.roll_number}
                   onChange={e => setOrfEntry(o => ({ ...o, roll_number: e.target.value }))}
                   style={{ padding: 10, borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', fontFamily: 'inherit' }} />
-                <input type="number" inputMode="numeric" placeholder="CWPM (सही शब्द/मिनट — Correct Words Per Minute)" value={orfEntry.cwpm}
+                <input type="number" inputMode="numeric" placeholder={bi('सही शब्द/मिनट', 'CWPM')} aria-label="सही शब्द प्रति मिनट (Correct Words Per Minute)" value={orfEntry.cwpm}
                   onChange={e => setOrfEntry(o => ({ ...o, cwpm: e.target.value }))}
                   style={{ padding: 10, borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', fontFamily: 'inherit' }} />
-                <input type="number" inputMode="numeric" placeholder="गलतियाँ (Errors)" value={orfEntry.error_count}
+                <input type="number" inputMode="numeric" placeholder={bi('गलतियाँ', 'Errors')} aria-label="गलतियाँ (Errors)" value={orfEntry.error_count}
                   onChange={e => setOrfEntry(o => ({ ...o, error_count: e.target.value }))}
                   style={{ padding: 10, borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', fontFamily: 'inherit' }} />
               </div>
               <button className="btn btn-primary" onClick={submitORF}
                 disabled={loading || !orfEntry.roll_number || !orfEntry.cwpm} style={{ marginTop: 10 }}>
-                {loading ? 'दर्ज हो रहा...' : '⏱️ पठन दर्ज करें (Save reading score)'}
+                {loading ? 'दर्ज हो रहा...' : <>⏱️ पठन दर्ज करें<En>Save reading score</En></>}
               </button>
             </div>
           )}
@@ -483,7 +487,7 @@ export default function ReviewScreen() {
                 </div>
                 {analysisResult.copy_errors_excluded > 0 && (
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}>
-                    ✏️ {analysisResult.copy_errors_excluded} सवाल गिने नहीं गए: बच्चों ने उन्हें अलग उतारा (problems not scored: copied differently)
+                    ✏️ {analysisResult.copy_errors_excluded} सवाल गिने नहीं गए: बच्चों ने उन्हें अलग उतारा<En>problems not scored: copied differently</En>
                   </div>
                 )}
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -500,9 +504,9 @@ export default function ReviewScreen() {
                   <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi="इनका पहले का परिणाम रखा गया" en="the earlier result was kept" inline /></p>
                   {analysisResult.skipped_duplicates.map(d => (
                     <div key={d.roll_number} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 0', fontSize: '0.8125rem' }}>
-                      <span>Roll {d.roll_number} · {d.earlier_accuracy == null ? '—' : Math.round(d.earlier_accuracy * 100) + '%'} · {new Date(d.earlier_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })}</span>
-                      {photos.length > 0 && <button type="button" className="btn btn-secondary" style={{ padding: '2px 8px', fontSize: '0.75rem' }} disabled={loading || !online}
-                        onClick={() => submitPhotos({ replaceRolls: [d.roll_number] })}>नई फ़ोटो से बदलें (Replace)</button>}
+                      <span>रोल {d.roll_number} ·{d.earlier_accuracy == null ? '—' : Math.round(d.earlier_accuracy * 100) + '%'} · {new Date(d.earlier_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })}</span>
+                      {photos.length > 0 && <button type="button" className="btn btn-secondary btn-small" style={{ fontSize: '0.8125rem' }} disabled={loading || !online}
+                        onClick={() => submitPhotos({ replaceRolls: [d.roll_number] })}>नई फ़ोटो से बदलें<En>Replace</En></button>}
                     </div>
                   ))}
                 </div>
@@ -510,11 +514,11 @@ export default function ReviewScreen() {
               {(analysisResult.duplicates_in_batch?.length > 0 || analysisResult.unknown_rolls?.length > 0 || analysisResult.outside_group_rolls?.length > 0 ||
                 analysisResult.unreadable_sheets > 0 || analysisResult.not_assessed?.length > 0) && (
                 <div className="card" style={{ background: '#FFF8E1', fontSize: '0.8125rem' }} data-testid="roll-notices">
-                  {analysisResult.duplicates_in_batch?.length > 0 && <div>🔁 एक ही बच्चे की दो फ़ोटो, साफ़ वाली इस्तेमाल हुई (Two photos of the same child, the clearer one was used): रोल {analysisResult.duplicates_in_batch.join(', ')}</div>}
-                  {analysisResult.unknown_rolls?.length > 0 && <div>❓ ये रोल नंबर इस कक्षा में नहीं हैं, गिने नहीं गए (Not in this class, not counted): {analysisResult.unknown_rolls.join(', ')}</div>}
-                  {analysisResult.outside_group_rolls?.length > 0 && <div>↔️ दूसरे समूह की शीट (A sheet from another group): रोल {analysisResult.outside_group_rolls.join(', ')}</div>}
-                  {analysisResult.unreadable_sheets > 0 && <div>🔍 {analysisResult.unreadable_sheets} शीट का रोल नंबर पढ़ा नहीं गया, दोबारा फ़ोटो लें (Roll number unreadable, please retake)</div>}
-                  {analysisResult.not_assessed?.length > 0 && <div>📝 कुछ आँका नहीं जा सका (Nothing could be scored): रोल {analysisResult.not_assessed.join(', ')}</div>}
+                  {analysisResult.duplicates_in_batch?.length > 0 && <div>🔁 एक ही बच्चे की दो फ़ोटो, साफ़ वाली इस्तेमाल हुई<En>Two photos of the same child, the clearer one was used</En>: रोल {analysisResult.duplicates_in_batch.join(', ')}</div>}
+                  {analysisResult.unknown_rolls?.length > 0 && <div>❓ ये रोल नंबर इस कक्षा में नहीं हैं, गिने नहीं गए<En>Not in this class, not counted</En>: {analysisResult.unknown_rolls.join(', ')}</div>}
+                  {analysisResult.outside_group_rolls?.length > 0 && <div>↔️ दूसरे समूह की शीट<En>A sheet from another group</En>: रोल {analysisResult.outside_group_rolls.join(', ')}</div>}
+                  {analysisResult.unreadable_sheets > 0 && <div>🔍 {analysisResult.unreadable_sheets} शीट का रोल नंबर पढ़ा नहीं गया, दोबारा फ़ोटो लें<En>Roll number unreadable, please retake</En></div>}
+                  {analysisResult.not_assessed?.length > 0 && <div>📝 कुछ आँका नहीं जा सका<En>Nothing could be scored</En>: रोल {analysisResult.not_assessed.join(', ')}</div>}
                 </div>
               )}
 
@@ -530,7 +534,7 @@ export default function ReviewScreen() {
                   <h3 style={{ marginBottom: 8 }}><Bi hi="पाई गई गलतियाँ" en="Misconceptions Detected" inline /></h3>
                   {analysisResult.misconceptions_detected.map(m => (
                     <div key={m.id} style={{ padding: '6px 0', borderBottom: '1px solid var(--border)', fontSize: '0.875rem' }}>
-                      <strong>{m.id}</strong> — {m.total_occurrences} बार (occurrences)
+                      <strong>{m.id}</strong> — {m.total_occurrences} बार<En>occurrences</En>
                     </div>
                   ))}
                 </div>
@@ -539,7 +543,7 @@ export default function ReviewScreen() {
               {analysisResult.per_child?.map(c => (
                 <div key={c.roll_number} className="card" style={{ padding: 10 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <strong>Roll {c.roll_number}</strong>
+                    <strong>रोल {c.roll_number}</strong>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                       {/* the result of THIS check, in words: one day on a sample says nothing about mastery of the skill */}
                       <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }} data-testid="today-result">
@@ -552,18 +556,20 @@ export default function ReviewScreen() {
                     </span>
                   </div>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                    {c.accuracy == null ? 'आँका नहीं गया (Not assessed)' : `शुद्धता (Accuracy): ${Math.round(c.accuracy * 100)}%${c.assessed_problems ? ` · ${c.assessed_problems} सवालों में से (of ${c.assessed_problems})` : ''}`}
-                    {c.misconceptions?.length > 0 && ` · गलती (Error): ${c.misconceptions.join(', ')}`}
+                    {c.accuracy == null
+                      ? <>आँका नहीं गया<En>Not assessed</En></>
+                      : <>शुद्धता<En>Accuracy</En>: {Math.round(c.accuracy * 100)}%{c.assessed_problems ? <> · {c.assessed_problems} सवालों में से<En>of {c.assessed_problems}</En></> : null}</>}
+                    {c.misconceptions?.length > 0 && <> · गलती<En>Error</En>: {c.misconceptions.join(', ')}</>}
                   </div>
                   {c.copy_errors?.length > 0 && (
                     <div style={{ fontSize: '0.75rem', color: '#8A5A00', marginTop: 4 }} data-testid="copy-errors">
-                      ✏️ अलग उतारा, गिना नहीं गया (Copied differently, not scored):{' '}
+                      ✏️ अलग उतारा, गिना नहीं गया<En>Copied differently, not scored</En>:{' '}
                       {c.copy_errors.map(e => `#${e.problem}${e.written ? ` लिखा ${e.written}` : ''} → ${e.answer}${e.correct_for_written === true ? ' ✓ (उस सवाल के लिए सही)' : e.correct_for_written === false ? ' ✗' : ''}`).join(' · ')}
                     </div>
                   )}
                   {c.needs_check?.length > 0 && (
                     <div style={{ fontSize: '0.75rem', color: '#555', marginTop: 4 }} data-testid="needs-check">
-                      👀 नोटबुक में जाँचें (Check in the notebook): सवाल {c.needs_check.join(', ')}
+                      👀 नोटबुक में जाँचें<En>Check in the notebook</En>: सवाल {c.needs_check.join(', ')}
                     </div>
                   )}
                 </div>

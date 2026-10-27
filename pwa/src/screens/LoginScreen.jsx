@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../App';
 import { login, setToken } from '../services/api';
 import Bi from '../components/Bi';
+import { bi } from '../services/language';
 
 // Published demo accounts (fictional data only). Shown for reviewers; set VITE_DEMO_HINT=false for a real school.
 // If you change the demo passwords with scripts/auth_admin.py, change them here too: pwa/tests/demo_accounts.test.mjs checks that this list and the access guide agree.
@@ -24,14 +25,14 @@ export default function LoginScreen() {
   const [error, setError] = useState('');
 
   const handleLogin = async () => {
-    if (code.length !== 6 || !password) { setError('कर्मचारी कोड (6 अक्षर या अंक) और पासवर्ड डालें (Enter your 6-character employee code and your password).'); return; }
+    if (code.length !== 6 || !password) { setError(bi('कर्मचारी कोड (6 अक्षर या अंक) और पासवर्ड डालें।', 'Enter your 6-character employee code and your password.')); return; }
     setLoading(true); setError('');
     try {
       const data = await login(code, password);
       setToken(data.token);
       const { token, join_code, ...profile } = data;
       setTeacher(profile);
-    } catch (e) { setError(e.message || 'लॉगिन नहीं हो सका (Could not sign in)'); }
+    } catch (e) { setError(e.message || bi('लॉगिन नहीं हो सका', 'Could not sign in')); }
     setLoading(false);
   };
   const fill = (c, p) => { setCode(c); setPassword(p); setError(''); };
