@@ -122,7 +122,7 @@ check('the Beginners\' choice is on the suggested skill, N2.3.2, and the Profici
 });
 check('the last plan\'s skill and the teacher\'s decision are shown in the review screen\'s own words', () => {
   assert.ok(html.includes('पिछली योजना: N2.3.1') && html.includes('पिछली योजना: N2.3.2') && html.includes('पिछली योजना: N3.3.1'));
-  assert.ok(!html.includes('कल: N2'), 'never "yesterday": the last plan can be days ago');
+  assert.ok(!/(^|[\s>(])कल[\s:]/.test(html), 'never "yesterday" (कल): the last plan can be days ago');
   assert.ok(html.includes('▲ आगे बढ़ें') && html.includes('🔄 दोहराएँ'));
 });
 check('the last plan is named by its date, which is often not yesterday', () => {
@@ -134,10 +134,10 @@ check('the Progressors keep a re-teach BOX (ticked, with what it means); the Beg
   assert.match(html, /data-testid="reteach-toggle-progressor"[^>]*checked=""|checked=""[^>]*data-testid="reteach-toggle-progressor"/);
   assert.ok(!html.includes('reteach-toggle-beginner') && !html.includes('reteach-toggle-proficient'));
   assert.match(selectOf(html, 'beginner'), /<option value="N2\.3\.2" selected="">/);       // the Beginners are on the Advance suggestion, not re-teaching
-  assert.ok(html.includes('मुख्य ब्लॉक कल की गलतियों को दोबारा समझाएगा'));
+  assert.ok(html.includes('मुख्य ब्लॉक पिछली जाँच की गलतियों को दोबारा समझाएगा'));
 });
 check('the sources are named: from the review, from the chosen skill, the teacher\'s own', () => {
-  assert.ok(html.includes('आपके कल के निर्णय से') && html.includes('आपका चुना कौशल'));
+  assert.ok(html.includes('पिछली समीक्षा में आपके निर्णय से') && html.includes('आपका चुना कौशल'));
   const changed = { ...ex.rows, beginner: withSkill(ex.rows.beginner, 'N2.3.1') };
   const h2 = render(changed, ex.reteach);
   assert.ok(h2.includes('आपकी पसंद') && h2.includes('सुझाव पर लौटें'));
@@ -202,14 +202,14 @@ check('what is sent when a recommended re-teach is kept: the group stays on yest
 console.log('what the panel shows of the evidence');
 const hRec = render(rec.rows, rec.reteach);
 check('what the last review found: how many of those assessed made a mistake, which children (the teacher\'s own screen) and which mistake', () => {
-  assert.ok(hRec.includes('कल की जाँच में: 6 में से <b>2</b> बच्चों ने गलती की') || /6 में से <!-- -->\s*<b>2<\/b>/.test(hRec) || hRec.includes('6 में से'), 'evidence line');
+  assert.ok(hRec.includes('पिछली जाँच में: 6 में से <b>2</b> बच्चों ने गलती की') || /6 में से <!-- -->\s*<b>2<\/b>/.test(hRec) || hRec.includes('6 में से'), 'evidence line');
   assert.ok(hRec.includes('(रोल 5, 6)') && hRec.includes('हासिल भूलना (2)'));
 });
 check('the recommendation says how many are needed, and a very small group says it is too small to suggest anything', () => {
   assert.ok(hRec.includes('data-testid="recommendation-progressor"') && hRec.includes('कम से कम 2 बच्चों ने गलती की'));
   assert.ok(hRec.includes('बहुत छोटा समूह: केवल 2 बच्चे जाँचे गए'));
 });
-check('the source is named when the suggestion comes from the evidence', () => { assert.ok(hRec.includes('कल की जाँच के सुझाव से')); });
+check('the source is named when the suggestion comes from the evidence', () => { assert.ok(hRec.includes('पिछली जाँच के सुझाव से')); });
 check('"most children got it" is said when the evidence does not recommend a re-teach (and is not a very small group)', () => {
   const calm = initialRows({ ladder, proposal: { has_history: true, groups: { ...recProposal.groups, beginner: entry('N2.3.1', 'advance', 'N2.3.2', 'advance', ev(4, 1), null) } }, selectedId: 'N2.3.2' });
   assert.ok(render(calm.rows, calm.reteach).includes('अधिकतर बच्चों ने सही किया: दोहराने का सुझाव नहीं है'));
@@ -254,7 +254,7 @@ check('ONE LIST holds the decision: for the Beginners, who advanced to N2.3.2 (y
   const rows = { ...ex.rows, beginner: withSkill(ex.rows.beginner, 'N2.3.2') };      // the Beginners advanced to N2.3.2: yesterday they were on N2.3.1
   const h = render(rows, { ...ex.reteach, beginner: false });
   const sel = selectOf(h, 'beginner');
-  assert.ok(sel.includes('value="reteach:N2.3.1"') && sel.includes('🔄 दोहराएँ: N2.3.1') && sel.includes('कल का कौशल दोहराएँ'));
+  assert.ok(sel.includes('value="reteach:N2.3.1"') && sel.includes('🔄 दोहराएँ: N2.3.1') && sel.includes('पिछली योजना का कौशल दोहराएँ'));
   assert.ok(!/<option value="N2\.3\.1"/.test(sel), sel.slice(0, 700));
   assert.ok(!h.includes('reteach-toggle-beginner') && !h.includes('go-back-reteach-beginner') && !h.includes('reteach-not-today-beginner') && !h.includes('reteach-goes-back'));
   const pbox = html2.match(/<input[^>]*data-testid="reteach-toggle-progressor"[^>]*>/)[0];      // the Progressors ARE on yesterday's skill: just a box
@@ -343,7 +343,7 @@ const hr = render(rr.rows, rr.reteach, true, { previousDate: '2026-10-23' });
 check('the group that re-taught yesterday says so on its "yesterday" line, and only that group', () => {
   assert.equal(rr.rows.progressor.previousReteach, true);
   assert.equal(rr.rows.beginner.previousReteach, false);
-  assert.ok(hr.includes('data-testid="previous-reteach-progressor"') && hr.includes('कल पुनः शिक्षण हुआ') && hr.includes('Re-taught yesterday'));
+  assert.ok(hr.includes('data-testid="previous-reteach-progressor"') && hr.includes('पिछली योजना में पुनः शिक्षण हुआ') && hr.includes('Re-taught in the last plan'));
   assert.ok(!hr.includes('previous-reteach-beginner') && !hr.includes('previous-reteach-proficient'));
 });
 check('it says WHICH plan the suggestions come from (the date), in Hindi and English', () => {
@@ -421,13 +421,13 @@ check('after choosing "re-teach N2.3.1" for the Beginners, the list shows it, a 
   const rows = { ...adv, beginner: t.row }; const re = { ...ex.reteach, beginner: t.reteach };
   const h = render(rows, re);
   assert.match(selectOf(h, 'beginner'), /<option value="reteach:N2\.3\.1" selected="">/);
-  assert.ok(h.includes('data-testid="reteach-on-beginner"') && h.includes('मुख्य ब्लॉक कल की गलतियों को दोबारा समझाएगा'));
+  assert.ok(h.includes('data-testid="reteach-on-beginner"') && h.includes('मुख्य ब्लॉक पिछली जाँच की गलतियों को दोबारा समझाएगा'));
   assert.deepEqual(summarize(rows, re).map((x) => [x.skillId, x.reteach]), [['N2.3.1', true], ['N2.3.2', true], ['N3.5.2', false]]);
   assert.deepEqual(buildGenerateOptions({ rows, reteach: re, groups, ready: true }), { groupSkills: { proficient: 'N3.5.2' }, reteachGroups: ['beginner', 'progressor'] });
 });
 check('when going back is NOT possible the box is disabled with ONE plain sentence (the redundant first sentence is gone) and no button', () => {
   const hu2 = render(u0row() && initialRows({ ladder: day0, proposal: demoProposal, selectedId: 'N0.1.1' }).rows, { beginner: false, progressor: false, proficient: false }, true, { selectedId: 'N0.1.1', ladder: day0 });
-  assert.ok(hu2.includes('कल का कौशल (N2.3.1) आज के कौशल से आगे है, इसलिए इस समूह के लिए आज दोहराना संभव नहीं'));
+  assert.ok(hu2.includes('पिछली योजना का कौशल (N2.3.1) आज के कौशल से आगे है, इसलिए इस समूह के लिए आज दोहराना संभव नहीं'));
   assert.ok(!hu2.includes('कल वाले कौशल N2.3.1 पर होना चाहिए') && !hu2.includes('go-back-reteach-beginner'));
 });
 

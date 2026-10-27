@@ -146,7 +146,7 @@ export function skillChoices({ label, ladder, row, selectedId }) {
     label === 'beginner'
       ? { key: 'foundation', hi: 'आधार कौशल', en: 'Foundations', ids: take(related) }
       : { key: 'next', hi: 'आगे के कौशल', en: 'What builds on it', ids: take(related) },
-    { key: 'kept', hi: 'कल का / सुझाया कौशल', en: "Yesterday's / suggested", ids: take([yesterdayOk && row.previous.id, row && row.initialId, row && row.skillId]) },
+    { key: 'kept', hi: 'पिछली योजना का / सुझाया कौशल', en: "Last plan's / suggested", ids: take([yesterdayOk && row.previous.id, row && row.initialId, row && row.skillId]) },
   ];
   return groups.filter((g) => g.ids.length);
 }

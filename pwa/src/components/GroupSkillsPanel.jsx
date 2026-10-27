@@ -3,8 +3,8 @@ import { GROUPS, DECISION_LABELS, staysOnYesterdaysSkill, withSkill, acceptRetea
 import { GROUP_LABELS } from '../tiers';
 const SOURCE_TAGS = {
   selected: { hi: 'आपका चुना कौशल', en: 'The skill you chose' },
-  review: { hi: 'आपके कल के निर्णय से', en: 'From your decision at the review' },
-  recommendation: { hi: 'कल की जाँच के सुझाव से', en: 'From the evidence of the last review' },
+  review: { hi: 'पिछली समीक्षा में आपके निर्णय से', en: 'From your decision at the review' },
+  recommendation: { hi: 'पिछली जाँच के सुझाव से', en: 'From the evidence of the last review' },
   derived: { hi: 'चुने कौशल से तय', en: 'Follows the skill you chose' },
   teacher: { hi: 'आपकी पसंद', en: 'Your choice' },
 };
@@ -85,13 +85,13 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
               <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 4 }}>
                 पिछली योजना{previousLabel ? ` (${previousLabel})` : ''}: {row.previous.id} · {name(row.previous.id)}
                 {dec && <span> · आपका निर्णय: <b>{dec.hi}</b></span>}
-                {row.previousReteach && <span data-testid={`previous-reteach-${label}`}> · 🔄 <b>कल पुनः शिक्षण हुआ</b> (Re-taught yesterday)</span>}
+                {row.previousReteach && <span data-testid={`previous-reteach-${label}`}> · 🔄 <b>पिछली योजना में पुनः शिक्षण हुआ</b> (Re-taught in the last plan)</span>}
               </div>
             )}
             {row.evidence && row.evidence.assessed > 0 && (
               <div style={{ marginTop: 4, fontSize: '0.7rem' }} data-testid={`evidence-${label}`}>
                 <div>
-                  कल की जाँच में: {row.evidence.assessed} में से <b>{row.evidence.with_mistakes}</b> बच्चों ने गलती की
+                  पिछली जाँच में: {row.evidence.assessed} में से <b>{row.evidence.with_mistakes}</b> बच्चों ने गलती की
                   {row.evidence.rolls.length > 0 && <span> (रोल {row.evidence.rolls.join(', ')})</span>}
                 </div>
                 {row.evidence.mistakes.length > 0 && (
@@ -149,7 +149,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                     return [
                       ...groupsOfSkills.slice(0, 1).map(plain),
                       reteachOption && (
-                        <optgroup key="reteach" label="🔄 कल का कौशल दोहराएँ (Re-teach yesterday's)">
+                        <optgroup key="reteach" label="🔄 पिछली योजना का कौशल दोहराएँ (Re-teach the last plan's skill)">
                           <option value={reteachOption.value}>🔄 दोहराएँ: {reteachOption.id} · {name(reteachOption.id)}</option>
                         </optgroup>
                       ),
@@ -162,8 +162,8 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                 {tag.hi} ({tag.en})
                 {row.ignored && (
                   <div style={{ marginTop: 2 }} data-testid={`ignored-${label}`}>
-                    ℹ कल के निर्णय से सुझाया कौशल {row.ignored.id} आज के कौशल से मेल नहीं खाता ({label === 'beginner' ? 'शुरुआती समूह आज के कौशल से आगे नहीं जा सकता' : 'दक्ष समूह आज के कौशल से पीछे नहीं जा सकता'}), इसलिए कौशल चुने कौशल से तय हुआ।
-                    (Yesterday's suggestion, {row.ignored.id}, does not fit today's skill, so this group follows the skill you chose.)
+                    ℹ पिछली समीक्षा के निर्णय से सुझाया कौशल {row.ignored.id} आज के कौशल से मेल नहीं खाता ({label === 'beginner' ? 'शुरुआती समूह आज के कौशल से आगे नहीं जा सकता' : 'दक्ष समूह आज के कौशल से पीछे नहीं जा सकता'}), इसलिए कौशल चुने कौशल से तय हुआ।
+                    (The suggestion from the last review, {row.ignored.id}, does not fit today's skill, so this group follows the skill you chose.)
                   </div>
                 )}
                 {label !== 'progressor' && (row.skillId !== row.initialId || !!reteach[label] !== !!row.initialReteach) && (
@@ -174,12 +174,12 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
             </div>
             {label !== 'progressor' && canReteach && reteach[label] && (
               <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginTop: 4 }} data-testid={`reteach-on-${label}`}>
-                🔄 इस समूह का मुख्य ब्लॉक कल की गलतियों को दोबारा समझाएगा। (This group's main block re-teaches yesterday's mistakes.)
+                🔄 इस समूह का मुख्य ब्लॉक पिछली जाँच की गलतियों को दोबारा समझाएगा। (This group's main block re-teaches the mistakes from the last review.)
               </div>
             )}
             {label !== 'progressor' && canReteach && !canReturn && (
               <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginTop: 4 }} data-testid={`reteach-not-today-${label}`}>
-                कल का कौशल ({row.previous.id}) आज के कौशल से {label === 'beginner' ? 'आगे' : 'पीछे'} है, इसलिए इस समूह के लिए आज दोहराना संभव नहीं। (Yesterday's skill, {row.previous.id}, is {label === 'beginner' ? 'ahead of' : 'behind'} today's, so a re-teach is not possible for this group today.)
+                पिछली योजना का कौशल ({row.previous.id}) आज के कौशल से {label === 'beginner' ? 'आगे' : 'पीछे'} है, इसलिए इस समूह के लिए आज दोहराना संभव नहीं। (The last plan's skill, {row.previous.id}, is {label === 'beginner' ? 'ahead of' : 'behind'} today's, so a re-teach is not possible for this group today.)
               </div>
             )}
             {label === 'progressor' && canReteach && (
@@ -191,12 +191,12 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                 </label>
                 {reteach[label] && (
                   <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginLeft: 22 }}>
-                    इस समूह का मुख्य ब्लॉक कल की गलतियों को दोबारा समझाएगा। (This group's main block will re-teach yesterday's mistakes.)
+                    इस समूह का मुख्य ब्लॉक पिछली जाँच की गलतियों को दोबारा समझाएगा। (This group's main block will re-teach the mistakes from the last review.)
                   </div>
                 )}
                 {!canTick && (
                   <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginLeft: 22 }} data-testid="reteach-needs-yesterday-progressor">
-                    दोहराने के लिए आज का कौशल कल वाला {row.previous.id} होना चाहिए। (To re-teach, today's skill must be yesterday's, {row.previous.id}.)
+                    दोहराने के लिए आज का कौशल पिछली योजना वाला {row.previous.id} होना चाहिए। (To re-teach, today's skill must be the last plan's, {row.previous.id}.)
                     <button type="button" className="btn btn-secondary btn-small" style={{ margin: '4px 0 4px 6px', fontSize: '0.8125rem' }}
                       onClick={() => accept(label)} disabled={disabled} data-testid="go-back-reteach-progressor">🔄 {row.previous.id} चुनकर दोहराएँ</button>
                     <div>यह आज का कौशल बदलता है, इसलिए दूसरे समूहों के कौशल भी बदल सकते हैं। (This changes today's skill, so the other groups' skills can change too.)</div>
