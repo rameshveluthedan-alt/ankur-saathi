@@ -12,9 +12,9 @@ export default function ReteachNote({ block, expanded }) {
   const small = { fontSize: '0.7rem', color: 'var(--text-secondary)' };
   return (
     <div data-testid="reteach-note" style={{ marginTop: 6, background: 'var(--green-bg)', borderRadius: 8, padding: '6px 8px', fontSize: '0.75rem' }}>
-      <div><b>🔄 पुनः शिक्षण (Re-teach)</b>: कल की गलतियों पर, कौशल दोबारा समझाना</div>
+      <div><b>🔄 पुनः शिक्षण (Re-teach)</b>: पिछली जाँच की गलतियों पर, कौशल दोबारा समझाना</div>
       {s.rolls.length > 0 && (
-        <div data-testid="reteach-children">👥 कल गलती करने वाले बच्चे (Children who made the mistake): रोल {s.rolls.join(', ')}</div>
+        <div data-testid="reteach-children">👥 पिछली जाँच में गलती करने वाले बच्चे (Children who made the mistake at the last review): रोल {s.rolls.join(', ')}</div>
       )}
       {s.mistakes.length > 0 ? (
         <div data-testid="reteach-mistakes">गलतियाँ (Mistakes): {s.mistakes.map((m) => `${m.name_hi || m.misconception_id} (${m.children} बच्चे)`).join('; ')}</div>

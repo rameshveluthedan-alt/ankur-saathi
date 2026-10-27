@@ -80,6 +80,10 @@ check('collapsed: that it is a re-teach, which children (their roll numbers) and
   assert.ok(closed.includes('data-testid="reteach-children"') && closed.includes('रोल 4, 5'));
   assert.ok(closed.includes('data-testid="reteach-mistakes"') && closed.includes('हासिल भूलना: हासिल छोड़ देता है (2 बच्चे)'));
 });
+check('the mistakes and the children are from the LAST REVIEW, never "yesterday" (कल): the last plan can be days ago', () => {
+  assert.ok(closed.includes('पिछली जाँच की गलतियों पर') && closed.includes('पिछली जाँच में गलती करने वाले बच्चे'));
+  assert.ok(!/(^|[\s>(])कल[\s:]/.test(closed));
+});
 check('collapsed: the pace and the tips are NOT shown yet (they come when the block is opened)', () => {
   assert.ok(!closed.includes('reteach-pace') && !closed.includes('reteach-tips'));
 });
