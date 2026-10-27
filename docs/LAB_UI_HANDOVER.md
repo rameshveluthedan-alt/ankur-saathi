@@ -49,6 +49,11 @@ A UI review of the PWA for teachers in multi-grade classrooms (Beginner / Progre
   - the coverage card folds to one line
   - the duplicate 👤 button is gone (Profile is in the bottom bar)
   - there's space under the skill list for the fixed Generate bar, which used to cover the last skills
+- **Login screen: the demo accounts are arranged by the reviewer's time,** following the rule of thumb in `docs/DEMO_ACCESS.md`. Before, the screen listed accounts but never said which one to pick. Top to bottom:
+  1. **"⏱ 5 मिनट: तैयार कहानी देखें"** (5 minutes: see the recorded story): MPT101. It's first and biggest, and it says the class is shared and reset every night.
+  2. **"🧪 30 मिनट: खुद आज़माएँ"** (30 minutes: try it yourself): the test teachers MPT102–MPT106 as five chips in one card, with "हर समीक्षक अलग कोड चुनें" (each reviewer picks a different code). Each has their own class of 24, never reset.
+  3. **"🏫 स्कूल लीडर: खाते सँभालें"** (School leader: manage the accounts): MPA101.
+  4. **"🔑 पासवर्ड बदलकर देखें"** (Try changing a password): MPT199, a small link.
 
 ## How to see it
 
@@ -71,7 +76,7 @@ Check at phone width (F12, then Ctrl+Shift+M, 360 px).
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
 - **38 backend suites:** all OK
-- **14 front-end suites:** all OK, 287 checks
+- **14 front-end suites:** all OK, 297 checks
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
@@ -80,12 +85,14 @@ New suites:
 
 Updated to the new wording or format:
 - `consent.dom`, `login.dom`, `group_skills`, `reteach_note`, `no_audio`. These now check that both the Hindi and the English are present, instead of requiring "Hindi (English)" in brackets.
+- `login.dom` also checks the new login layout: the card order, the five test-teacher chips and their tap targets.
+- `demo_accounts` now reads the guide's range row ("MPT102 to MPT106") and checks each of those codes is on the login screen with its password.
 
 Not checked yet: by eye on a real phone.
 
 ## The commits
 
-The UI work is the 12 commits after `dce44f3`:
+The UI work is the commits after `dce44f3`:
 
 ```
 95b34bb group colours, readable badges, larger tap targets
@@ -100,9 +107,12 @@ bbad4e0 Hindi/English pattern on login, password, register, review, group panel
 c278c22 on-screen messages, coverage card folds, one Profile button
 66f5fd9 check for understanding: title "समझ की जाँच", fold "कैसे करें?"
 d1da622 login demo cards look tappable
+8dcea26 this handover note
+49aef27 handover note: the lab rules and how they were followed
+9c2361e login demo accounts arranged by the reviewer's time
 ```
 
-Files: 35. They're `pwa/src` (27), `pwa/tests` (6) and `docs/GROUP_SKILLS.md` / `docs/DEMO_ACCESS.md`. **There are no backend, database or prompt changes.**
+Files: 37. They're `pwa/src` (25), `pwa/tests` (9) and `docs/` (3: `GROUP_SKILLS.md`, `DEMO_ACCESS.md` and this note). **There are no backend, database or prompt changes.**
 
 ### ⚠ Depends on lab-only work
 
