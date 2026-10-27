@@ -308,6 +308,22 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
   /* no letter-spacing or uppercase: spacing splits the Devanagari headline bar (शिरोरेखा) between letters */
 }
 
+/* ── A fold: one tappable line that opens the detail under it (<details class="fold">) ── */
+.fold > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--green-dark);
+}
+.fold > summary::-webkit-details-marker { display: none; }
+.fold > summary::before { content: '▸'; }
+.fold[open] > summary::before { content: '▾'; }
+
 /* ── Photo capture ── */
 .capture-area {
   border: 2px dashed var(--border);
