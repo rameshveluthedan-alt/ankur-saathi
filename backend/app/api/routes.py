@@ -267,6 +267,8 @@ async def record_orf(req: ORFEntryRequest, teacher_id: str):
         result = await review_service.record_orf_assessment(
             db, teacher_id, req.session_date, req.model_dump()
         )
+        if result.get("status") == "error":      # an unknown roll number is a failed save, not a success with a message in it
+            raise HTTPException(404, result.get("message") or "Roll number not found")
         return result
 
 
@@ -357,17 +359,23 @@ async def get_saved_analyses(teacher_id: str, session_date: date, domain_id: str
 # ============================================================================
 
 @router.get("/progress/dashboard/{teacher_id}", tags=["Progress"])
-async def get_progress_dashboard(teacher_id: str):
-    """Full progress dashboard: B/P/P summary, the per-child tracker, and 're-assess' flags. Levels change only through an assessment."""
+async def get_progress_dashboard(teacher_id: str, on: Optional[date] = None):
+    """Full progress dashboard: B/P/P summary, the per-child tracker, 're-assess' flags, and what was recorded TODAY.
+    `on` is the phone's own date (the same date Review saved under); without it, the server's date. Levels change only through an assessment."""
     async with get_db() as db:
         bpp = await progress_service.get_bpp_summary(db, teacher_id)
         children = await progress_service.get_children_progress(db, teacher_id)
         flags = await progress_service.get_reassessment_flags(db, teacher_id)
-        
+        today = await progress_service.get_today(db, teacher_id, on or date.today())
+        for c in children:                       # each child's result today, per subject (None: nothing recorded today)
+            t = today["children"].get(str(c["roll_number"]), {})
+            c["numeracy_today"], c["literacy_today"] = t.get("numeracy"), t.get("r1_literacy")
+
         return {
             "bpp_summary": bpp,
             "children": children,
             "reassessment_flags": flags,
+            "today": {"date": today["date"], **today["subjects"]},
         }
 
 

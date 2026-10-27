@@ -141,11 +141,9 @@ async def record_orf_assessment(db, teacher_id: str, session_date: date, entry: 
     if not child:
         return {"status": "error", "message": f"Roll {entry['roll_number']} not found"}
     
-    # Determine A/PA/NA from CWPM using the competency's criteria
-    comp = await db.fetchrow(
-        "SELECT apna_criteria FROM competencies WHERE id = $1",
-        entry.get('competency_id', 'L2.5.1')  # Default to Grade 2 ORF
-    )
+    # Determine A/PA/NA from CWPM using the competency's criteria (the skill on today's plan; Grade 2 ORF only when none is given)
+    skill = entry.get('competency_id') or 'L2.5.1'
+    comp = await db.fetchrow("SELECT apna_criteria FROM competencies WHERE id = $1", skill)
     
     status = 'not_achieved'
     if comp:
@@ -171,7 +169,7 @@ async def record_orf_assessment(db, teacher_id: str, session_date: date, entry: 
              evidence_data, confidence, session_date, assessment_tier)
         VALUES ($1, $2, $3, 'oral_reading', $4, $5, 'medium', $6, 'daily')
     """,
-        child['id'], entry.get('competency_id', 'L2.5.1'), teacher_id, status,
+        child['id'], skill, teacher_id, status,
         json.dumps(evidence_data, ensure_ascii=False), session_date,
     )
     

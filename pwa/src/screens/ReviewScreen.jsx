@@ -160,6 +160,7 @@ export default function ReviewScreen() {
         session_date: today, roll_number: parseInt(orfEntry.roll_number),
         passage_id: orfEntry.passage_id, cwpm: parseInt(orfEntry.cwpm),
         error_count: parseInt(orfEntry.error_count || 0),
+        competency_id: orfLevel?.competency_id,        // the skill on today's plan (before, the server always read the score against L2.5.1)
       });
       notify(`✅ ${bi('रोल', 'Roll')} ${orfEntry.roll_number}: ${orfEntry.cwpm} ${bi('सही शब्द/मिनट', 'CWPM')} → ${result.classification}`, 'success');
       setOrfEntry({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });

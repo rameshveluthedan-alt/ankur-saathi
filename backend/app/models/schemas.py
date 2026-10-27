@@ -138,6 +138,7 @@ class ORFEntryRequest(BaseModel):
     cwpm: int = Field(..., ge=0, le=200)
     error_count: int = Field(..., ge=0)
     error_types: Optional[list[str]] = None
+    competency_id: Optional[str] = None       # the skill on today's plan; without it the score was read against L2.5.1 whatever the skill
 
 class PhotoAnalysisRequest(BaseModel):
     session_date: date

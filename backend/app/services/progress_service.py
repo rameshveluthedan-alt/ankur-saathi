@@ -77,6 +77,83 @@ async def get_children_progress(db, teacher_id: str) -> list[dict]:
     ]
 
 
+SUBJECTS = ("numeracy", "r1_literacy")
+STATUS_KEY = {"achieved": "a", "partially_achieved": "pa", "not_achieved": "na"}
+
+
+def _obj(v):
+    return json.loads(v) if isinstance(v, str) else (v or {})
+
+
+async def get_today(db, teacher_id: str, on: date) -> dict:
+    """What the teacher recorded ON THIS DAY (`on`, the phone's own date), per subject, for the Progress screen:
+
+    subjects[domain] = {"has_plan": bool, "by_level": {label: {skill_id, a, pa, na, assessed, group_size, decision, conflict, advance_no_next}}}
+        from that day's plan (each group's skill and children) and that day's results only. A child counts ONCE: the newest result of the day
+        on the group's skill, whichever way it was recorded (photo, observation, reading aloud). `decision` is the one recorded at that day's
+        review; `conflict` and `advance_no_next` follow the same rules as the Plan screen's group panel (services/group_skills.py).
+    children[roll][domain] = {"skill_id", "status"} | None
+        the child's result that day on the skill of today's plan for the child's group; if none on that skill, the newest result of the day in
+        that subject. A child's LEVEL never changes on this: it is only what was recorded.
+    """
+    from app.services import group_skills as gs
+    rows = await db.fetch("""
+        SELECT c.roll_number, e.competency_id, e.status, s.domain_id
+        FROM assessment_evidence e
+        JOIN children c ON c.id = e.child_id
+        JOIN competencies k ON k.id = e.competency_id
+        JOIN subdomains s ON s.id = k.subdomain_id
+        WHERE e.teacher_id = $1 AND e.session_date = $2 AND c.is_active = TRUE
+        ORDER BY e.created_at DESC
+    """, teacher_id, on)
+    newest = {}                                   # (roll, domain, skill) -> status: the first row seen is the newest
+    newest_any = {}                               # (roll, domain) -> {skill_id, status}: the newest of the day in that subject
+    for r in rows:
+        newest.setdefault((str(r["roll_number"]), r["domain_id"], r["competency_id"]), r["status"])
+        newest_any.setdefault((str(r["roll_number"]), r["domain_id"]), {"skill_id": r["competency_id"], "status": r["status"]})
+
+    sizes = {}                                    # the current groups, for a day with no plan
+    for r in await db.fetch("""SELECT clp.domain_id, clp.bpp_level, COUNT(*) AS n FROM child_lakshya_positions clp JOIN children c ON c.id = clp.child_id
+                               WHERE c.teacher_id = $1 AND c.is_active = TRUE GROUP BY 1, 2""", teacher_id):
+        sizes[(r["domain_id"], r["bpp_level"])] = r["n"]
+
+    subjects, children = {}, {}
+    for domain in SUBJECTS:
+        plan = await db.fetchrow("SELECT groups_snapshot, explainability FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3",
+                                 teacher_id, on, domain)
+        snap, expl = (_obj(plan["groups_snapshot"]), _obj(plan["explainability"])) if plan else ({}, {})
+        groups = {l: {"target": (snap.get(l) or {}).get("target"), "rolls": [str(x) for x in ((snap.get(l) or {}).get("rolls") or [])]} for l in gs.LABELS}
+        evidence = await gs.review_evidence(db, teacher_id, on, {l: g for l, g in groups.items() if g["target"]}) if plan else {}
+        by_level = {}
+        for label in gs.LABELS:
+            g = groups[label]
+            counts = {"a": 0, "pa": 0, "na": 0}
+            for roll in g["rolls"]:
+                st = newest.get((roll, domain, g["target"]))
+                if st:
+                    counts[STATUS_KEY[st]] += 1
+            d = expl.get(f"teacher_decision_{label}")
+            decision = d if d in gs.DECISIONS else None
+            ev = evidence.get(label) or {}
+            by_level[label] = {
+                "skill_id": g["target"], **counts, "assessed": sum(counts.values()),
+                "group_size": len(g["rolls"]) or ((snap.get(label) or {}).get("count") if plan else sizes.get((domain, label), 0)) or 0,
+                "decision": decision,
+                "conflict": decision == "advance" and bool(ev.get("recommend")),          # chose to move on although the evidence recommends a re-teach
+                "advance_no_next": decision == "advance" and bool(g["target"]) and not await gs.next_options(db, g["target"]),
+            }
+        subjects[domain] = {"has_plan": bool(plan), "by_level": by_level}
+        for label, g in groups.items():
+            for roll in g["rolls"]:
+                st = newest.get((roll, domain, g["target"]))
+                if st:
+                    children.setdefault(roll, {})[domain] = {"skill_id": g["target"], "status": st}
+        for (roll, dom), v in newest_any.items():
+            if dom == domain and domain not in children.get(roll, {}):
+                children.setdefault(roll, {})[domain] = v
+    return {"date": on.isoformat(), "subjects": subjects, "children": children}
+
+
 async def get_reassessment_flags(db, teacher_id: str) -> dict:
     """Children whose daily work no longer matches their level, per subject. A flag changes nothing: levels change only through an assessment."""
     return {
