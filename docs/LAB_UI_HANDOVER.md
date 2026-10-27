@@ -3,6 +3,18 @@
 **Branch:** `lab/experiments` (lab worktree, not pushed) · **Base:** `main` at `4e17b06` (Release candidate 3)
 **Status:** done in the lab and tested; **not** in `main`. To be reviewed, then packaged for `main` by the release owner.
 
+## How this was done (lab rules)
+
+The work was done under the lab rules for this release, and they were followed throughout:
+
+- **A separate lab.** Its own worktree (`C:\dev\Ankur-Saathi-lab`), branch (`lab/experiments`), database (`ankur_lab`) and port (8001). Main was only looked at, never changed: the `ankur_saathi` database was read once, read-only, to compare the group suggestions, and main ran on port 8000 for side-by-side comparison.
+- **`main` untouched.** It is still at `4e17b06` (Release candidate 3). Nothing was merged, cherry-picked or committed to it.
+- **Nothing pushed.** `lab/experiments` has no upstream and no copy on GitHub.
+- **No deploys and no `gcloud` commands** from the lab folder. Deploying, the gate and applying packages happen only in `C:\dev\Ankur-Saathi`, on `main`, with the two guard lines before every deploy.
+- **The Friday cut-off.** Nothing from the lab goes into `main` after Friday's last deploy. If this work is wanted, the release owner packages it properly; this note is the hand-off for that.
+- **Every lab commit followed the same steps:** check `git branch --show-current` prints `lab/experiments`, then `git add -A`, then `python scripts\precommit_check.py` (no secret staged, every time), then a `lab: …` message. The first commits (`dce44f3`, `95b34bb`, `fc21d28`) were made on the go-ahead for the work; from then on each commit was approved before it was made.
+- **The demo data was reseeded in the lab only.** `python scripts\demo_progress.py seed --yes --env-file backend\.env` ran on `ankur_lab` to match the deployed demo.
+
 ## What and why
 
 A UI review of the PWA for teachers in multi-grade classrooms (Beginner / Progressor / Proficient), on budget phones, often in a hurry during a 90-minute session. Four goals: easy to scan, clean Hindi with English, comfortable tap targets, and groups that can never be mixed up.
