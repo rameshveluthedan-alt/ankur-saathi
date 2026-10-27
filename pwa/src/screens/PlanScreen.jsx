@@ -8,6 +8,7 @@ import { initialRows, buildGenerateOptions, summarize, panelStatus } from '../se
 import { TAB_RESELECT_EVENT } from '../services/tabs';
 import { useOnline } from '../components/OfflineBanner';
 import { GROUP_LABELS } from '../tiers';
+import Bi from '../components/Bi';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -138,7 +139,7 @@ export default function PlanScreen() {
   return (
     <div className="screen">
       <div className="screen-header">
-        <h1>🎯 योजना बनाएँ <span style={{fontSize:'0.75rem',color:'var(--text-secondary)',fontWeight:400}}>Select Lakshya</span></h1>
+        <h1>🎯 <Bi hi="योजना बनाएँ" en="Select Lakshya" inline /></h1>
         <div style={{ display: 'flex', gap: 6 }}>
           <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/register')} data-testid="open-register">👥 कक्षा रजिस्टर</button>
           <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/account')} data-testid="open-account" aria-label="प्रोफ़ाइल (Profile)">👤</button>
@@ -148,26 +149,29 @@ export default function PlanScreen() {
       {!teacher.total_children && (
         <div className="card" style={{ borderLeft: '4px solid #C9A227', background: '#FFF8E1' }} data-testid="empty-class">
           <h3 style={{ marginBottom: 4 }}>आपकी कक्षा में अभी कोई बच्चा नहीं है</h3>
-          <p style={{ fontSize: '0.8125rem', marginBottom: 8 }}>No children in your class yet. Upload your class register first, then plans can be made for your groups.</p>
-          <button type="button" className="btn btn-primary" onClick={() => navigate('/register')}>कक्षा रजिस्टर अपलोड करें (Upload class register)</button>
+          <p style={{ fontSize: '0.8125rem', marginBottom: 8 }}>
+            पहले अपनी कक्षा का रजिस्टर अपलोड करें, फिर आपके समूहों के लिए योजनाएँ बन सकेंगी।
+            <span className="en" lang="en">No children in your class yet. Upload your class register first, then plans can be made for your groups.</span>
+          </p>
+          <button type="button" className="btn btn-primary" onClick={() => navigate('/register')} style={{ flexDirection: 'column', gap: 0 }}><Bi hi="कक्षा रजिस्टर अपलोड करें" en="Upload class register" /></button>
         </div>
       )}
 
       <div className="domain-tabs">
         <button className={`domain-tab ${selectedDomain === 'numeracy' ? 'active' : ''}`}
-          onClick={() => setSelectedDomain('numeracy')}>गणित (Numeracy)</button>
+          onClick={() => setSelectedDomain('numeracy')}><Bi hi="गणित" en="Numeracy" inline /></button>
         <button className={`domain-tab ${selectedDomain === 'r1_literacy' ? 'active' : ''}`}
-          onClick={() => setSelectedDomain('r1_literacy')}>हिंदी (Literacy)</button>
+          onClick={() => setSelectedDomain('r1_literacy')}><Bi hi="हिंदी" en="Literacy" inline /></button>
       </div>
 
       {groups.length > 0 && (
         <div className="card" style={{ padding: 12 }}>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}>वर्तमान समूह (Current Groups)</div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi="वर्तमान समूह" en="Current Groups" inline /></div>
           <div style={{ display: 'flex', gap: 8 }}>
             {groups.map(g => (
               <div key={g.label} style={{ flex: 1, textAlign: 'center' }}>
                 <span className={`badge badge-${g.label}`}>{GROUP_LABELS[g.label]?.hi}</span>
-                <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)' }}>{GROUP_LABELS[g.label]?.en}</div>
+                <div className="en" lang="en">{GROUP_LABELS[g.label]?.en}</div>
                 <div style={{ fontSize: '1.25rem', fontWeight: 700, marginTop: 4 }}>{g.count}</div>
               </div>
             ))}
@@ -277,7 +281,7 @@ export default function PlanScreen() {
             ) : loadingPanel ? (
               <>समूहों के कौशल लोड हो रहे हैं… (Loading the groups)</>
             ) : (
-              <>📋 दैनिक योजना बनाएँ (Generate Plan) → {selectedId}</>
+              <>📋 दैनिक योजना बनाएँ<span className="en en-inline" lang="en">Generate Plan</span> → {selectedId}</>
             )}
           </button>
         </div>

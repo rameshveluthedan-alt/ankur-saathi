@@ -8,6 +8,7 @@ import ReteachNote from '../components/ReteachNote';
 import BoardWork from '../components/BoardWork';
 import { reteachTitle } from '../services/reteachInfo';
 import { GROUP_LABELS } from '../tiers';
+import Bi from '../components/Bi';
 
 // Generated text may contain line breaks (lists) and stray markdown markers.
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
@@ -60,7 +61,7 @@ export default function YojanaScreen() {
           <p style={{ marginTop: 8, color: 'var(--text-secondary)' }}>
             पहले "योजना" टैब से लक्ष्य चुनें और दैनिक योजना बनाएँ।
           </p>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-light)', marginTop: 4 }}>
+          <p className="en" lang="en" style={{ fontSize: '0.8rem', marginTop: 4 }}>
             Select a Lakshya from the Plan tab first, then generate the daily plan.
           </p>
         </div>
@@ -81,11 +82,11 @@ export default function YojanaScreen() {
       {currentPlan.served_from === 'sample' && (
         <div data-testid="sample-banner" style={{ background: '#FFF4D6', border: '1px solid #E8D28A', borderRadius: 10, padding: '8px 12px', margin: '0 0 10px', fontSize: '0.8125rem' }}>
           📄 <b>नमूना योजना</b>: AI की सीमा पूरी होने से यह इसी कौशल की पहले से बनी योजना है। समूह और वर्कशीट आपकी कक्षा के हिसाब से जाँचे गए हैं।
-          <div style={{ fontSize: '0.7rem', color: '#6B4A00', marginTop: 2 }}>Sample plan: the AI limit was reached, so this is a recorded plan for the same skill. The groups and worksheets are checked for your class.</div>
+          <div className="en" lang="en" style={{ fontSize: '0.7rem', color: '#6B4A00', marginTop: 2 }}>Sample plan: the AI limit was reached, so this is a recorded plan for the same skill. The groups and worksheets are checked for your class.</div>
         </div>
       )}
       <div className="screen-header">
-        <h1>📋 दैनिक योजना <span style={{fontSize:'0.75rem',color:'var(--text-secondary)',fontWeight:400}}>Daily Plan</span></h1>
+        <h1>📋 <Bi hi="दैनिक योजना" en="Daily Plan" inline /></h1>
         <div style={{ textAlign: 'right' }}>
           <PlanGroupSkills planDate={currentPlan.plan_date} selectedId={currentPlan.selected_competency_id} groups={groups} blocks={blocks} />
           {plan.coverage && plan.coverage.tier && plan.coverage.tier !== 'tested' && (
@@ -101,7 +102,7 @@ export default function YojanaScreen() {
         {groups.map(g => (
           <div key={g.label} className={`card tier-card tier-${g.label}`} style={{ flex: 1, padding: 10, textAlign: 'center' }}>
             <span className={`badge badge-${g.label}`}>{GROUP_LABELS[g.label]?.hi}</span>
-            <div style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)' }}>{GROUP_LABELS[g.label]?.en}</div>
+            <div className="en" lang="en">{GROUP_LABELS[g.label]?.en}</div>
             <div style={{ fontWeight: 700, fontSize: '1.125rem', margin: '4px 0' }}>{g.count}</div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{g.target_competency_name_hi}</div>
             {reteachSet.has(g.label) && <div style={{ fontSize: '0.75rem', color: 'var(--reteach)', fontWeight: 600, marginTop: 2 }}>🔄 पुनः शिक्षण</div>}
@@ -112,7 +113,7 @@ export default function YojanaScreen() {
       {/* Preparation before class (DIY TLMs etc.) */}
       {Array.isArray(plan.prep_hi) && plan.prep_hi.length > 0 && (
         <div className="card" style={{ borderLeft: '4px solid var(--progressor)' }}>
-          <h3>🧰 कक्षा से पहले तैयारी (Before class)</h3>
+          <h3>🧰 <Bi hi="कक्षा से पहले तैयारी" en="Before class" inline /></h3>
           <ul style={{ paddingLeft: 18, marginTop: 6, fontSize: '0.875rem' }}>
             {plan.prep_hi.map((t, i) => <li key={i} style={{ marginBottom: 4, ...ML }}>{fmt(t)}</li>)}
           </ul>
@@ -123,13 +124,13 @@ export default function YojanaScreen() {
       {anchor.narration_hi && (
         <div className="card" style={{ borderLeft: '4px solid var(--channel-written)' }}>
           <div className="card-header">
-            <h3>🎯 एंकर गतिविधि (Anchor Activity)</h3>
+            <h3>🎯 <Bi hi="एंकर गतिविधि" en="Anchor Activity" inline /></h3>
             <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>10 मि.</span>
           </div>
           <p style={{ fontSize: '0.9375rem', marginBottom: 8, ...ML }}>{fmt(anchor.narration_hi)}</p>
           {anchor.opening_question_hi && (
             <div className="talking-point" style={ML}>
-              <div className="talking-point-label">शुरुआती सवाल (Opening Question)</div>
+              <div className="talking-point-label"><Bi hi="शुरुआती सवाल" en="Opening Question" inline /></div>
               {fmt(anchor.opening_question_hi)}
             </div>
           )}
@@ -138,7 +139,7 @@ export default function YojanaScreen() {
             if (!anchor[key]) return null;
             return (
               <div key={level} style={{ fontSize: '0.8125rem', margin: '4px 0', padding: '4px 8px', borderRadius: 4, background: `var(--${level}-bg)`, ...ML }}>
-                <strong>{GROUP_LABELS[level]?.emoji} {GROUP_LABELS[level]?.hi} ({GROUP_LABELS[level]?.en}):</strong> {stripGroup(anchor[key])}
+                <strong>{GROUP_LABELS[level]?.emoji} {GROUP_LABELS[level]?.hi}<span className="en en-inline" lang="en">{GROUP_LABELS[level]?.en}</span>:</strong> {stripGroup(anchor[key])}
               </div>
             );
           })}
@@ -146,7 +147,7 @@ export default function YojanaScreen() {
       )}
 
       {/* Rotation Timeline */}
-      <h2 style={{ margin: '16px 0 8px' }}>⏱️ रोटेशन शेड्यूल (Rotation Schedule)</h2>
+      <h2 style={{ margin: '16px 0 8px' }}>⏱️ <Bi hi="रोटेशन शेड्यूल" en="Rotation Schedule" inline /></h2>
       {blocks.length > 0 ? (
         blocks.map((block, i) => (
           <div key={i}
@@ -190,29 +191,29 @@ export default function YojanaScreen() {
               <div style={{ marginTop: 8 }}>
                 {block.talking_points.i_do_hi && (
                   <div className="talking-point" style={ML}>
-                    <div className="talking-point-label">मैं करूँगा (I Do)</div>
+                    <div className="talking-point-label"><Bi hi="मैं करूँगा" en="I Do" inline /></div>
                     {fmt(block.talking_points.i_do_hi)}
                   </div>
                 )}
                 {block.talking_points.we_do_hi && (
                   <div className="talking-point" style={ML}>
-                    <div className="talking-point-label">हम करेंगे (We Do)</div>
+                    <div className="talking-point-label"><Bi hi="हम करेंगे" en="We Do" inline /></div>
                     {fmt(block.talking_points.we_do_hi)}
                   </div>
                 )}
                 {block.talking_points.you_do_hi && (
                   <div className="talking-point" style={ML}>
-                    <div className="talking-point-label">तुम करोगे (You Do)</div>
+                    <div className="talking-point-label"><Bi hi="तुम करोगे" en="You Do" inline /></div>
                     {fmt(block.talking_points.you_do_hi)}
                     <BoardWork plan={plan} group={block.teach_group} domain={currentPlan.domain_id} />
                   </div>
                 )}
                 {Array.isArray(block.cfu) && block.cfu.length > 0 && (
                   <div className="talking-point" style={ML} data-testid="cfu">
-                    <div className="talking-point-label">समझ की जाँच: शो-मी (Check for understanding)</div>
+                    <div className="talking-point-label"><Bi hi="समझ की जाँच: शो-मी" en="Check for understanding" inline /></div>
                     <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 6 }}>
                        हर बच्चा उत्तर स्लेट या कॉपी पर लिखकर, बनाकर या उँगलियों से तैयार करे और छिपाए। लगभग 20 सेकंड रुकें, फिर 'तीन, दो, एक — दिखाएँ!' कहें और सब एक साथ दिखाएँ। फिर दो बच्चों से समझाने को कहें: एक जिसने पहले गलती की थी (चुपचाप चुनें, नाम न बुलाएँ) और एक किसी भी बच्चे से, सिर्फ़ हाथ उठाने वालों से नहीं। अगर समूह के एक-चौथाई से ज़्यादा बच्चों के उत्तर गलत हों, तो आगे बढ़ने से पहले वही कदम अभी दोबारा समझाएँ (छड़ियों से)।
-                       <span style={{ display: 'block' }}>(Everyone prepares the answer on a slate or notebook page, written, drawn or on fingers, and hides it. Wait about 20 seconds, say 'three, two, one, show!' and everyone shows together. Then ask two children to explain: one who made the mistake before (chosen quietly, never named) and one at random, not only those with a hand up. If more than a quarter of the group is wrong, re-teach that step at once, with sticks, before moving on.)</span>
+                       <span className="en" lang="en" style={{ fontSize: '0.75rem', marginTop: 2 }}>(Everyone prepares the answer on a slate or notebook page, written, drawn or on fingers, and hides it. Wait about 20 seconds, say 'three, two, one, show!' and everyone shows together. Then ask two children to explain: one who made the mistake before (chosen quietly, never named) and one at random, not only those with a hand up. If more than a quarter of the group is wrong, re-teach that step at once, with sticks, before moving on.)</span>
                     </div>
                     {block.cfu.map((q, k) => (
                       <div key={k} data-testid="cfu-item" style={{ marginTop: 6, paddingTop: 6, borderTop: k ? '1px dashed var(--border)' : 'none' }}>
@@ -230,7 +231,7 @@ export default function YojanaScreen() {
                     ))}
                     {block.cfu_note_hi && (
                       <div style={{ fontSize: '0.75rem', fontStyle: 'italic', marginTop: 6 }} data-testid="cfu-note">
-                        {fmt(block.cfu_note_hi)} <span>({fmt(block.cfu_note_en)})</span>
+                        {fmt(block.cfu_note_hi)} <span className="en en-inline" lang="en">({fmt(block.cfu_note_en)})</span>
                       </div>
                     )}
                   </div>
@@ -239,7 +240,7 @@ export default function YojanaScreen() {
             )}
             {expandedBlock !== i && block.talking_points && (
               <div style={{ fontSize: '0.75rem', color: 'var(--text-light)', marginTop: 4 }}>
-                ▸ बात के मुद्दे{Array.isArray(block.cfu) && block.cfu.length > 0 ? ' और समझ की जाँच' : ''} देखें (Tap for talking points)
+                ▸ बात के मुद्दे{Array.isArray(block.cfu) && block.cfu.length > 0 ? ' और समझ की जाँच' : ''} देखें<span className="en en-inline" lang="en">Tap for talking points</span>
               </div>
             )}
           </div>
@@ -247,14 +248,14 @@ export default function YojanaScreen() {
       ) : (
         <div className="card" style={{ textAlign: 'center', color: 'var(--text-secondary)' }}>
           <p>रोटेशन शेड्यूल योजना बनने के बाद यहाँ दिखेगा।</p>
-          <p style={{ fontSize: '0.8rem', color: 'var(--text-light)', marginTop: 4 }}>
+          <p className="en" lang="en" style={{ fontSize: '0.8rem', marginTop: 4 }}>
             Rotation schedule will appear after plan generation.
           </p>
         </div>
       )}
 
       {/* Worksheets: each opens the printable A4 sheet for this plan and level */}
-      <h2 style={{ margin: '16px 0 8px' }}>📝 वर्कशीट (Worksheets)</h2>
+      <h2 style={{ margin: '16px 0 8px' }}>📝 <Bi hi="वर्कशीट" en="Worksheets" inline /></h2>
       <div style={{ display: 'flex', gap: 8 }}>
         {['beginner', 'progressor', 'proficient'].map(level => {
           const label = GROUP_LABELS[level];
@@ -265,7 +266,7 @@ export default function YojanaScreen() {
             <>
               <span style={{ fontSize: '1.25rem' }}>{label?.emoji}</span>
               <strong>{label?.hi}</strong>
-              <span style={{ fontSize: '0.6rem', opacity: 0.7 }}>{label?.en}</span>
+              <span className="en" lang="en">{label?.en}</span>
               {available && sheet.required_count && sheet.required_count < sheet.problems.length && (
                 <span style={{ fontSize: '0.6rem', opacity: 0.8 }}>पहले {sheet.required_count} सवाल</span>
               )}
@@ -276,28 +277,28 @@ export default function YojanaScreen() {
               onClick={() => openAuthedPage(worksheetPath(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id, level)).catch(e => alert(e.message))}>{inner}</button>
           ) : (
             <span key={level} className="btn" style={{ ...style, opacity: 0.45, border: '2px dashed var(--border)', color: 'var(--text-secondary)' }}>
-              {inner}<span style={{ fontSize: '0.6rem' }}>उपलब्ध नहीं (not available)</span>
+              {inner}<span style={{ fontSize: '0.6875rem' }}><Bi hi="उपलब्ध नहीं" en="not available" /></span>
             </span>
           );
         })}
       </div>
       <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }}>
-        खुलने पर प्रिंट करें, या बोर्ड पर उतारें। (Opens the sheet: print it, or copy it to the board.)
+        <Bi hi="खुलने पर प्रिंट करें, या बोर्ड पर उतारें।" en="Opens the sheet: print it, or copy it to the board." inline />
       </p>
 
       {/* Why this plan? */}
       <div style={{ marginTop: 16, marginBottom: 80 }}>
         <button onClick={() => setShowWhyPanel(!showWhyPanel)}
           style={{ background: 'none', border: 'none', color: 'var(--green-dark)', fontSize: '0.875rem', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600, minHeight: 44, padding: '0 4px' }}>
-          {showWhyPanel ? '▾' : '▸'} यह योजना क्यों? (Why this plan?)
+          {showWhyPanel ? '▾' : '▸'} <Bi hi="यह योजना क्यों?" en="Why this plan?" inline />
         </button>
         {showWhyPanel && (
           <div className="card" style={{ marginTop: 8, fontSize: '0.8125rem', background: 'var(--green-bg)' }}>
             {Array.isArray(explainability.items) ? explainability.items.map((item, i) => (
               <div key={i} style={{ marginBottom: 10 }}>
-                <strong>{fmt(item.title_hi)} <span style={{ fontWeight: 400, color: 'var(--text-light)' }}>({fmt(item.title_en)})</span></strong>
+                <strong>{fmt(item.title_hi)} <span className="en en-inline" lang="en">({fmt(item.title_en)})</span></strong>
                 <div style={ML}>{fmt(item.body_hi)}</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', ...ML }}>{fmt(item.body_en)}</div>
+                <div className="en" lang="en" style={{ fontSize: '0.75rem', ...ML }}>{fmt(item.body_en)}</div>
               </div>
             )) : Object.entries(explainability).filter(([key]) => !key.startsWith('teacher_decision_')).map(([key, val]) => (
               <div key={key} style={{ marginBottom: 6 }}>

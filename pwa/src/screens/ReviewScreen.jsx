@@ -4,6 +4,7 @@ import { recordDecisions, recordObserved, recordORF, analysePhotos, getSavedAnal
 import { compressImage } from '../utils/imageCompress';
 import { useOnline } from '../components/OfflineBanner';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
+import Bi from '../components/Bi';
 
 export default function ReviewScreen() {
   const { teacher, currentPlan, selectedDomain, names } = useAuth();
@@ -164,9 +165,9 @@ export default function ReviewScreen() {
   return (
     <div className="screen">
       <div className="screen-header">
-        <h1>📷 समीक्षा <span style={{fontSize:'0.75rem',color:'var(--text-secondary)',fontWeight:400}}>Review</span></h1>
-        <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-          चरण (Step) {step}/3
+        <h1>📷 <Bi hi="समीक्षा" en="Review" inline /></h1>
+        <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
+          चरण<span className="en en-inline" lang="en">Step</span> {step}/3
         </span>
       </div>
 
@@ -189,7 +190,8 @@ export default function ReviewScreen() {
         <>
           <h2 style={{ marginBottom: 4 }}>आज हर समूह कैसा रहा?</h2>
           <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 16 }}>
-            How did each group do today? Record your judgment before AI analysis.
+            AI विश्लेषण से पहले अपना आकलन दर्ज करें।
+            <span className="en" lang="en">How did each group do today? Record your judgment before AI analysis.</span>
           </p>
 
           {groups.map(g => (
@@ -197,29 +199,29 @@ export default function ReviewScreen() {
               <div className="card-header">
                 <div>
                   <span className={`badge badge-${g.label}`}>{GROUP_LABELS[g.label]?.hi}</span>
-                  <span style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)', marginLeft: 4 }}>{GROUP_LABELS[g.label]?.en}</span>
+                  <span className="en en-inline" lang="en">{GROUP_LABELS[g.label]?.en}</span>
                 </div>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{g.count} बच्चे</span>
               </div>
               <div className="decision-row">
                 <button className={`decision-btn advance ${decisions[g.label] === 'advance' ? 'selected' : ''}`}
                   onClick={() => handleDecision(g.label, 'advance')}>
-                  ▲ आगे बढ़ें<br/><span style={{fontSize:'0.6875rem'}}>Advance</span>
+                  <Bi hi="▲ आगे बढ़ें" en="Advance" />
                 </button>
                 <button className={`decision-btn reteach ${decisions[g.label] === 'reteach' ? 'selected' : ''}`}
                   onClick={() => handleDecision(g.label, 'reteach')}>
-                  🔄 दोहराएँ<br/><span style={{fontSize:'0.6875rem'}}>Re-teach</span>
+                  <Bi hi="🔄 दोहराएँ" en="Re-teach" />
                 </button>
                 <button className={`decision-btn ${decisions[g.label] === 'not_sure' ? 'selected' : ''}`}
                   onClick={() => handleDecision(g.label, 'not_sure')}>
-                  ❓ पक्का नहीं<br/><span style={{fontSize:'0.6875rem'}}>Not sure</span>
+                  <Bi hi="❓ पक्का नहीं" en="Not sure" />
                 </button>
               </div>
             </div>
           ))}
 
-          <button className="btn btn-primary" onClick={submitDecisions} disabled={loading} style={{ marginTop: 8 }}>
-            {loading ? 'दर्ज हो रहा (Recording)...' : 'दर्ज करें → साक्ष्य कैप्चर (Record → Capture Evidence)'}
+          <button className="btn btn-primary" onClick={submitDecisions} disabled={loading} style={{ marginTop: 8, flexDirection: 'column', gap: 0 }}>
+            {loading ? <Bi hi="दर्ज हो रहा..." en="Recording" /> : <Bi hi="दर्ज करें → साक्ष्य कैप्चर" en="Record → Capture Evidence" />}
           </button>
         </>
       )}
@@ -227,8 +229,7 @@ export default function ReviewScreen() {
       {/* STEP 2: Evidence capture */}
       {step === 2 && (
         <>
-          <h2 style={{ marginBottom: 4 }}>साक्ष्य कैप्चर करें</h2>
-          <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 12 }}>Capture Evidence</p>
+          <h2 style={{ marginBottom: 12 }}><Bi hi="साक्ष्य कैप्चर करें" en="Capture Evidence" /></h2>
 
           <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
             {[
@@ -238,7 +239,7 @@ export default function ReviewScreen() {
             ].filter(ch => visibleChannels.includes(ch.id)).map(ch => (
               <button key={ch.id} className={`domain-tab ${channel === ch.id ? 'active' : ''}`} data-testid={`channel-${ch.id}`}
                 onClick={() => setChannel(ch.id)}>
-                {ch.icon} {ch.hi}<br/><span style={{fontSize:'0.6rem'}}>{ch.en}</span>
+                {ch.icon} <Bi hi={ch.hi} en={ch.en} />
                 {channelsInfo?.has_plan && channelsInfo.channels[ch.id] && <div style={{ fontSize: '0.55rem', fontWeight: 400 }}>{channelsInfo.channels[ch.id].map(l => LEVEL_HI[l]).join(', ')}</div>}
               </button>
             ))}
@@ -340,7 +341,7 @@ export default function ReviewScreen() {
               <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
                 {GROUP_ORDER.filter((id) => levelsFor('photo').includes(id)).map((id) => (
                   <button key={id} type="button" onClick={() => setSheetLevel(id)} className={`tier-option tier-${id} ${sheetLevel === id ? 'selected' : ''}`}>
-                    {GROUP_LABELS[id].mark} {GROUP_LABELS[id].hi}<div style={{ fontSize: '0.6875rem', fontWeight: 400 }}>{GROUP_LABELS[id].en}</div>
+                    {GROUP_LABELS[id].mark} <Bi hi={GROUP_LABELS[id].hi} en={GROUP_LABELS[id].en} />
                   </button>
                 ))}
               </div>
@@ -468,7 +469,7 @@ export default function ReviewScreen() {
       {/* STEP 3: AI Analysis */}
       {step === 3 && (
         <>
-          <h2 style={{ marginBottom: 12 }}>🔍 AI विश्लेषण (AI Analysis)</h2>
+          <h2 style={{ marginBottom: 12 }}>🔍 <Bi hi="AI विश्लेषण" en="AI Analysis" inline /></h2>
 
           {analysisResult ? (
             <>

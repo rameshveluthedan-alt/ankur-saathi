@@ -4,6 +4,8 @@ import { useAuth } from '../App';
 import { adminSchool, adminTeachers, adminResetPin, adminUnlock, adminRecordConsent } from '../services/api';
 import { CONSENT } from '../services/consent';
 import { PinChangeForm } from './ChangePinScreen';
+import { getHindiOnly, setHindiOnly } from '../services/language';
+import Bi from '../components/Bi';
 
 const GRADE_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
 
@@ -17,6 +19,8 @@ export default function AccountScreen() {
   const [teachers, setTeachers] = useState([]);
   const [temp, setTemp] = useState(null);            // a temporary password, shown once
   const [error, setError] = useState('');
+  const [hindiOnly, setHindiOnlyState] = useState(getHindiOnly);
+  const toggleHindiOnly = (on) => { setHindiOnly(on); setHindiOnlyState(on); };
 
   const load = () => {
     if (!isAdmin) return;
@@ -41,7 +45,7 @@ export default function AccountScreen() {
   return (
     <div className="screen">
       <div className="screen-header">
-        <h1>👤 प्रोफ़ाइल <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 400 }}>Profile</span></h1>
+        <h1>👤 <Bi hi="प्रोफ़ाइल" en="Profile" inline /></h1>
         <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/')}>← वापस (Back)</button>
       </div>
 
@@ -51,6 +55,18 @@ export default function AccountScreen() {
         <div style={{ fontSize: '0.875rem', marginTop: 4 }}>भूमिका (Role): <b>{isAdmin ? 'स्कूल लीडर (School leader)' : 'शिक्षक (Teacher)'}</b></div>
         <div style={{ fontSize: '0.875rem', marginTop: 4 }}>कक्षाएँ (Grades): {(teacher.enrolled_grades || []).map(g => GRADE_HI[g] || g).join(', ')}</div>
         {teacher.is_demo && <div style={{ fontSize: '0.75rem', color: '#8A5A00', marginTop: 6 }}>डेमो अकाउंट: काल्पनिक डेटा (Demo account: fictional data)</div>}
+      </div>
+
+      <div className="card" data-testid="language-card">
+        <h3 style={{ marginBottom: 6 }}>🔤 <Bi hi="भाषा" en="Language" inline /></h3>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 44, fontSize: '0.9375rem', cursor: 'pointer' }}>
+          <input type="checkbox" checked={hindiOnly} onChange={(e) => toggleHindiOnly(e.target.checked)} data-testid="hindi-only" />
+          <span>सिर्फ़ हिंदी दिखाएँ <span className="en en-inline" lang="en">Hindi only</span></span>
+        </label>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>
+          अंग्रेज़ी अनुवाद छिप जाएँगे; कौशल कोड और रोल नंबर दिखते रहेंगे। यह सेटिंग इसी फ़ोन पर रहती है।
+          <span className="en" lang="en">Hides the English translations; skill codes and roll numbers stay. This setting stays on this phone.</span>
+        </p>
       </div>
 
       <div className="card">

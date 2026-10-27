@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../App';
 import { getProgressDashboard, downloadClassReport, downloadOfficerReport } from '../services/api';
+import Bi from '../components/Bi';
 
 const BPP = {
   beginner: { hi: 'शुरुआती', en: 'Beginner', color: 'var(--beginner-ink)' },
@@ -38,7 +39,7 @@ export default function ProgressScreen() {
   return (
     <div className="screen">
       <div className="screen-header">
-        <h1>📊 प्रगति <span style={{fontSize:'0.75rem',color:'var(--text-secondary)',fontWeight:400}}>Progress</span></h1>
+        <h1>📊 <Bi hi="प्रगति" en="Progress" inline /></h1>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
           <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => alert(e.message))}
             style={{ background: 'none', border: 'none', padding: 0, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit' }}>
@@ -53,9 +54,9 @@ export default function ProgressScreen() {
 
       <div className="domain-tabs">
         <button className={`domain-tab ${selectedDomain === 'numeracy' ? 'active' : ''}`}
-          onClick={() => setSelectedDomain('numeracy')}>गणित (Numeracy)</button>
+          onClick={() => setSelectedDomain('numeracy')}><Bi hi="गणित" en="Numeracy" inline /></button>
         <button className={`domain-tab ${selectedDomain === 'r1_literacy' ? 'active' : ''}`}
-          onClick={() => setSelectedDomain('r1_literacy')}>हिंदी (Literacy)</button>
+          onClick={() => setSelectedDomain('r1_literacy')}><Bi hi="हिंदी" en="Literacy" inline /></button>
       </div>
 
       {/* B/P/P bar */}
@@ -72,7 +73,7 @@ export default function ProgressScreen() {
             <div key={level}>
               <div style={{ fontSize: '1.5rem', fontWeight: 700, color: BPP[level].color }}>{ds[`${level}_count`]}</div>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{BPP[level].hi}</div>
-              <div style={{ fontSize: '0.6rem', color: 'var(--text-light)' }}>{BPP[level].en}</div>
+              <div className="en" lang="en">{BPP[level].en}</div>
             </div>
           ))}
         </div>
@@ -118,7 +119,7 @@ export default function ProgressScreen() {
                 {asOf(c) && <span style={{ fontSize: '0.625rem', color: 'var(--text-light)', marginLeft: 6 }} data-testid={`as-of-${c.roll_number}`} title="level as of">· स्तर: {asOf(c)}</span>}
               </div>
               <span className={`badge badge-${bpp || 'beginner'}`}>
-                {BPP[bpp]?.hi || '—'} <span style={{fontSize:'0.55rem'}}>({BPP[bpp]?.en || '—'})</span>
+                {BPP[bpp]?.hi || '—'}{BPP[bpp] && <span className="en en-inline" lang="en" style={{ fontSize: '0.625rem' }}>{BPP[bpp].en}</span>}
               </span>
             </div>
             {selectedChild === c.roll_number && (

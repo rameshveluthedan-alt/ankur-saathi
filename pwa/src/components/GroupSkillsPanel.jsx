@@ -79,7 +79,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
           <div key={label} className={`tier-${label}`} style={{ borderTop: '1px solid var(--border)', borderLeft: '4px solid var(--tier)', padding: '8px 0 8px 8px' }} data-testid={`group-row-${label}`}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span className={`badge badge-${label}`}>{GROUP_LABELS[label].hi}</span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{GROUP_LABELS[label].en} · {count} बच्चे</span>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><span className="en en-inline" lang="en" style={{ marginLeft: 0, marginRight: 4 }}>{GROUP_LABELS[label].en} ·</span>{count} बच्चे</span>
             </div>
             {row.previous && (
               <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 4 }}>
