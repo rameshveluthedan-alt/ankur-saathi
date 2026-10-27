@@ -69,12 +69,14 @@ Five small changes from a conversation about the Progress and Review screens, on
 2. **Progress: each child's result today:** one line under the child, "आज N2.3.1 पर: ✓ A", and nothing when nothing was recorded. The level pill doesn't change.
 3. **Progress: "🔎 इन बच्चों पर एक नज़र" (Children to look at)** replaces "Consider re-assessing", which promised a re-assessment screen that doesn't exist. It has one honest line, then two short lists: "⬆ अच्छा प्रदर्शन कर रहे हैं — एक छोटा दोबारा आकलन?" and "⬇ कठिनाई में हैं — थोड़ी मदद की ज़रूरत?". The flag logic is unchanged.
 4. **Review, Observed:** after Submit, a block above the children list shows "✓ N अवलोकन दर्ज हुए", A/PA/NA, the NA rolls, and a pointer to the Progress tab.
-5. **Review, Reading aloud:** after Save, a block above the empty form shows "✓ रोल 12: 45 CWPM · ~ PA आंशिक" (the server's result), "इस समूह में N और बच्चे बाकी" (from the server's coverage), and the same pointer.
+5. **Review, Reading aloud:** after Save, a block above the empty form shows "✓ रोल 12: 42 सही · 3 गलतियाँ · रफ़्तार कक्षा-स्तर पर" (the two numbers as entered; many errors turn the errors amber with ⚠), "इस समूह में N और बच्चे बाकी" (from the server's coverage), and the same pointer.
+6. **Reading aloud says pace, not "reader".** The daily label is **रफ़्तार कक्षा-स्तर पर / विकसित हो रही / धीमी** (Pace at grade level / developing / slow). One mapping (`services/pace.js`) turns the server's code into these words, and the same line (`components/FluencyLine.jsx`) is used on the Review block and on the Progress child row. For a speed skill (L1.5.1, L2.5.1, L3.5.1) the Progress row reads "आज L2.5.1 पर: 42 सही · 3 गलतियाँ · रफ़्तार …", with no amber there; other skills keep the A/PA/NA badge. The "reader" words are kept for the periodic round (Phase 3) and are shown nowhere.
+   - **About the codes:** the spec says the server returns `grade_level / developing / early_reader`. It actually returns `achieved / partially_achieved / not_achieved` (the same three bands, from the skill's CWPM thresholds). The mapping accepts both forms, so nothing changes on screen if the server's codes are renamed later. The server's thresholds are unchanged.
 
 For both Review blocks, a failed save shows its error in place and no block.
 
 **Backend (no new route, no database change):**
-- `/progress/dashboard/{id}?on=YYYY-MM-DD` now also returns `today.numeracy` / `today.r1_literacy` (`has_plan`, and per group `skill_id, a, pa, na, assessed, group_size, decision, conflict, advance_no_next`) and `numeracy_today` / `literacy_today` on each child (`progress_service.get_today`).
+- `/progress/dashboard/{id}?on=YYYY-MM-DD` now also returns `today.numeracy` / `today.r1_literacy` (`has_plan`, and per group `skill_id, a, pa, na, assessed, group_size, decision, conflict, advance_no_next`) and `numeracy_today` / `literacy_today` on each child (`progress_service.get_today`); a reading-aloud result also carries `cwpm` and `errors`.
 - **Only that day counts.** A child counts once, by the newest result of the day on the group's skill. "Conflict" and "no next skill" use the Plan panel's own rules.
 - **Per subject.** The spec had no subject, but the screen has subject tabs.
 
@@ -106,16 +108,16 @@ Check at phone width (F12, then Ctrl+Shift+M, 360 px).
 ## Tests
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
-- **39 backend suites:** all OK (new: `test_progress_today.py`, 27 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
-- **17 front-end suites:** all OK, 337 checks
+- **39 backend suites:** all OK (new: `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
+- **17 front-end suites:** all OK, 344 checks
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
 - `cfu_fold.test.mjs` (6)
 - `notices.test.mjs` (6)
 - `today.test.mjs` (5)
-- `progress_cards.test.mjs` (19)
-- `review_confirmation.test.mjs` (16)
+- `progress_cards.test.mjs` (21)
+- `review_confirmation.test.mjs` (21)
 
 Updated to the new wording or format:
 - `consent.dom`, `login.dom`, `group_skills`, `reteach_note`, `no_audio`. These now check that both the Hindi and the English are present, instead of requiring "Hindi (English)" in brackets.
@@ -149,9 +151,11 @@ d1da622 login demo cards look tappable
 98b9c24 dashboard carries today per subject; reading aloud on its own skill, unknown roll 404
 6974eb8 Progress: Today card, each child's result, "इन बच्चों पर एक नज़र"; ⬆ everywhere
 1d8ad37 Review: Observed and Reading-aloud blocks after a save
+0c3fe08 handover note: the additions
+98c72e6 reading aloud shows pace, not "reader" (Review block and Progress row)
 ```
 
-Files: 49. They're `pwa/src` (29), `pwa/tests` (12), `docs/` (3: `GROUP_SKILLS.md`, `DEMO_ACCESS.md` and this note) and the backend (5: `progress_service.py`, `review_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`). **No database, migration or prompt changes**, and no new route.
+Files: 51. They're `pwa/src` (31), `pwa/tests` (12), `docs/` (3: `GROUP_SKILLS.md`, `DEMO_ACCESS.md` and this note) and the backend (5: `progress_service.py`, `review_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`). **No database, migration or prompt changes**, and no new route.
 
 ### ⚠ Depends on lab-only work
 
@@ -175,6 +179,8 @@ So the UI commits **cannot be applied to `main` on their own as they are.** The 
 2. **The Devanagari font is never loaded.** `index.css` names Noto Sans Devanagari, but nothing loads it. Android usually has it built in; Windows and older devices fall back to other fonts. Self-host a small `.woff2`, or drop the name.
 3. **The re-teach block** still says "Show-me" in two English places: the pace line and one tip. These are deliberately unchanged.
 4. **Not converted:** the printable worksheet template (`backend/app/templates/worksheet.html`) was not reviewed.
-5. **Reading-aloud bands** (early / developing / grade-level reader) are **waiting for a decision**. The server returns only A/PA/NA, from CWPM alone; accuracy isn't used; and two of the five reading skills (L2.5.2, L3.5.2) have no CWPM rule at all. There are three options: bands from A/PA/NA, no bands, or bands that also use accuracy. Until then the block shows A/PA/NA.
+5. **Reading aloud, decided:** the daily label is pace (see addition 6). Two points remain for later:
+   - **Speed only.** The bands come from words per minute alone; the skills' accuracy rule (90–95%) isn't used, and the error count is shown but not scored.
+   - **Two reading skills aren't about speed** (L2.5.2 pauses, L3.5.2 expression). They keep the A/PA/NA line, but the reading-aloud form still scores them against a default speed. They would be better recorded the Observed way.
 6. **The Hindi of the additions** is with an expert for review.
 7. `docs/LEVELS.md` and `docs/STATUS.md` still call the underlying flag the "consider re-assessing" flag. That's the design concept's name, not screen text; rename it if the team wants it to match.
