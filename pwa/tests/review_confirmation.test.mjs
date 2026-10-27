@@ -57,7 +57,11 @@ check('nothing saved (or an empty save): no block at all', () => {
 });
 
 console.log('\nReading aloud: the block after Save');
-const read = (result, left = 0) => html(React.createElement(ReadingSaved, { saved: { level: 'progressor', result }, left }));
+// a reading skill that is not about speed (pauses at punctuation): it keeps the A/PA/NA line
+const read = (result, left = 0) => html(React.createElement(ReadingSaved, { saved: { level: 'progressor', skill: 'L2.5.2', result }, left }));
+// a speed reading skill: the two numbers the teacher entered and the pace label
+const pace = (classification, cwpm, errors, left = 0) => html(React.createElement(ReadingSaved,
+  { saved: { level: 'progressor', skill: 'L2.5.1', result: { roll_number: 12, cwpm, classification }, entry: { cwpm, errors } }, left }));
 check('the result shown is the SERVER\'s: 45 CWPM that the server called partly achieved says "~ PA · आंशिक", never "achieved" (no rule on the phone)', () => {
   const h = read({ roll_number: 12, cwpm: 45, classification: 'partially_achieved' });
   assert.ok(h.includes('data-classification="partially_achieved"') && h.includes('~ PA') && h.includes('आंशिक'));
@@ -65,7 +69,32 @@ check('the result shown is the SERVER\'s: 45 CWPM that the server called partly 
   const low = read({ roll_number: 12, cwpm: 95, classification: 'not_achieved' });
   assert.ok(low.includes('✗ NA') && low.includes('प्राप्त नहीं'), 'a high CWPM the server did not pass is shown as not achieved');
 });
-check('the line names the child and the score: "✓ रोल 12: 45 CWPM"', () => {
+check('a speed skill: the pace label comes from the mapping, never "reader" words: grade_level at 42 CWPM says "रफ़्तार कक्षा-स्तर पर", not "ग्रेड-स्तरीय पाठक"', () => {
+  const h = pace('grade_level', 42, 3);
+  assert.ok(h.includes('रफ़्तार कक्षा-स्तर पर') && h.includes('Pace at grade level'));
+  assert.ok(!/पाठक|reader/i.test(h.replace(/data-classification="[^"]*"/g, '')), 'no reader wording anywhere');
+});
+check('the three bands map to the three pace labels, from the band names and from the A/PA/NA codes the server sends today alike', () => {
+  for (const [codes, label] of [[['grade_level', 'achieved'], 'रफ़्तार कक्षा-स्तर पर'], [['developing', 'partially_achieved'], 'रफ़्तार विकसित हो रही'], [['early_reader', 'not_achieved'], 'रफ़्तार धीमी']]) {
+    for (const c of codes) assert.ok(pace(c, 30, 2).includes(label), `${c} -> ${label}`);
+  }
+});
+check('the two numbers are the ones the teacher entered, each in its place: 42 सही · 3 गलतियाँ (correct and errors never swap)', () => {
+  const h = pace('grade_level', 42, 3);
+  assert.ok(/data-testid="fluency-correct">42(<!-- -->)? सही/.test(h), 'correct = 42');
+  assert.ok(/data-testid="fluency-errors">3(<!-- -->)? गलतियाँ/.test(h), 'errors = 3');
+  assert.ok(/✓ रोल (<!-- -->)?12(<!-- -->)?: /.test(h), 'the roll just scored');
+});
+check('no errors still reads "0 गलतियाँ" (every line has the same shape, never an empty field)', () => {
+  assert.ok(/data-testid="fluency-errors">0(<!-- -->)? गलतियाँ/.test(pace('developing', 30, 0)));
+});
+check('many errors (a quarter or more of the correct words) turn only the errors part amber with ⚠; none does not', () => {
+  const many = pace('grade_level', 40, 40);
+  assert.ok(/class="many-errors">40(<!-- -->)? गलतियाँ(<!-- -->)? ⚠/.test(many), 'errors = correct: amber');
+  assert.ok(many.includes('रफ़्तार कक्षा-स्तर पर'), 'the pace label is unchanged');
+  assert.ok(!pace('grade_level', 40, 0).includes('many-errors') && !pace('grade_level', 40, 9).includes('many-errors'), 'no errors, or under a quarter: not amber');
+});
+check('a reading skill not about speed (pauses, expression) keeps the A/PA/NA line: "✓ रोल 12: 45 CWPM"', () => {
   assert.ok(/✓ रोल <!-- -->12<!-- -->: <!-- -->45<!-- --> CWPM|✓ रोल 12: 45 CWPM/.test(read({ roll_number: 12, cwpm: 45, classification: 'achieved' })));
 });
 check('"N more to go" shows the number it is given, and is hidden at 0', () => {
@@ -88,7 +117,9 @@ check('a failed Observed save shows no block, only its error in place', () => {
 });
 check('a failed Reading-aloud save shows no block, only its error in place', () => {
   assert.ok(/catch \(e\) \{ setOrfSaved\(null\); setOrfError\(/.test(review));
-  assert.ok(/setOrfSaved\(\{ level: sheetLevel, result \}\); setOrfError\(''\)/.test(review), 'the block shows the server\'s answer as it came');
+  assert.ok(/setOrfSaved\(\{ level: sheetLevel, skill: orfLevel\?\.competency_id, result,/.test(review), 'the block shows the server\'s answer as it came');
+  assert.ok(/entry: \{ cwpm: parseInt\(orfEntry\.cwpm\), errors: parseInt\(orfEntry\.error_count \|\| 0\) \}/.test(review), 'with the two numbers the teacher entered');
+  assert.ok(/setOrfError\(''\)/.test(review), 'a success clears an old error');
 });
 check('the error is shown in place, read out by a screen reader', () => {
   const h = html(React.createElement(SaveError, { message: 'सहेजा नहीं जा सका: Roll 999 not found', testid: 'orf-error' }));

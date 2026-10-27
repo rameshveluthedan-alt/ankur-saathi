@@ -1,6 +1,8 @@
 import React from 'react';
 import Bi from './Bi';
 import { RESULT_MARK } from './ProgressToday';
+import { isFluencySkill } from '../services/pace';
+import FluencyLine from './FluencyLine';
 
 // A child's result in words, as the Review's analysis already says it ("आज की जाँच में: प्राप्त / आंशिक / प्राप्त नहीं")
 export const RESULT_WORD = {
@@ -52,18 +54,21 @@ export function ObservedSaved({ saved, onOpenProgress }) {
 
 /**
  * After a Reading-aloud save: the child just scored, in the group's colour, above the (empty again) entry form, and how many in the group are still to score.
- * saved = { level, result }: result is the SERVER's answer (roll_number, cwpm, classification); the result is never worked out on the phone.
+ * saved = { level, skill, result, entry }: result is the SERVER's answer (roll_number, classification), entry the two numbers the teacher entered
+ * ({ cwpm, errors }). A speed skill (L1.5.1, L2.5.1, L3.5.1) shows the numbers and the pace; any other reading skill keeps the A/PA/NA line.
  * left = how many children of this group are still to score today on this skill (from the server's coverage), hidden when 0.
  */
 export function ReadingSaved({ saved, left, onOpenProgress }) {
   if (!saved || !saved.result) return null;
   const r = saved.result;
   const word = RESULT_WORD[r.classification];
+  const entry = saved.entry || { cwpm: r.cwpm, errors: 0 };
   return (
     <div className={`saved-block tier-${saved.level}`} data-testid="reading-saved" role="status">
       <div style={{ fontWeight: 600, color: 'var(--tier-ink)' }} data-testid="reading-saved-line" data-classification={r.classification}>
-        ✓ रोल {r.roll_number}: {r.cwpm} CWPM · <span className="badge badge-result">{RESULT_MARK[r.classification] || '—'}</span>{' '}
-        {word && <Bi hi={word.hi} en={word.en} inline />}
+        {isFluencySkill(saved.skill)
+          ? <FluencyLine roll={r.roll_number} correct={entry.cwpm} errors={entry.errors} classification={r.classification} amber />
+          : <>✓ रोल {r.roll_number}: {r.cwpm} CWPM · <span className="badge badge-result">{RESULT_MARK[r.classification] || '—'}</span>{' '}{word && <Bi hi={word.hi} en={word.en} inline />}</>}
       </div>
       {left > 0 && (
         <div style={{ ...grey, marginTop: 4 }} data-testid="reading-left" data-left={left}>

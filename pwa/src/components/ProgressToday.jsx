@@ -1,6 +1,8 @@
 import React from 'react';
 import Bi from './Bi';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
+import FluencyLine from './FluencyLine';
+import { isFluencySkill, paceLabel } from '../services/pace';
 
 // The decision words are the ones the teacher taps at the Review (services/groupSkills.js DECISION_LABELS), so a decision reads the same on both screens.
 export const DECISION_TEXT = {
@@ -75,12 +77,21 @@ function TodayRow({ label, g }) {
   );
 }
 
-/** One line under a child's row: what was recorded for the child TODAY, if anything. Nothing at all when nothing was recorded (not "absent", not "not yet"). */
+/**
+ * One line under a child's row: what was recorded for the child TODAY, if anything. Nothing at all when nothing was recorded (not "absent", not "not yet").
+ * A speed reading skill (L1.5.1, L2.5.1, L3.5.1) scored by reading aloud shows the two numbers and the pace label, as on the Review (no amber here:
+ * the row has less room); every other result shows the A/PA/NA badge.
+ */
 export function ChildToday({ today }) {
-  if (!today || !RESULT_MARK[today.status]) return null;
+  if (!today) return null;
+  const fluency = isFluencySkill(today.skill_id) && today.cwpm != null && !!paceLabel(today.status);
+  if (!fluency && !RESULT_MARK[today.status]) return null;
   return (
-    <div data-testid="child-today" data-status={today.status} style={{ ...grey, marginTop: 4 }}>
-      <Bi hi={`आज ${today.skill_id} पर`} en={`Today on ${today.skill_id}`} inline />: <span className="badge badge-result">{RESULT_MARK[today.status]}</span>
+    <div data-testid="child-today" data-status={today.status} data-kind={fluency ? 'fluency' : 'badge'} style={{ ...grey, marginTop: 4 }}>
+      <Bi hi={`आज ${today.skill_id} पर`} en={`Today on ${today.skill_id}`} inline />:{' '}
+      {fluency
+        ? <FluencyLine correct={today.cwpm} errors={today.errors ?? 0} classification={today.status} />
+        : <span className="badge badge-result">{RESULT_MARK[today.status]}</span>}
     </div>
   );
 }

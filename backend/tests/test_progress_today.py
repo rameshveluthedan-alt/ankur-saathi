@@ -137,6 +137,10 @@ async def main():
         await ev(1, "L2.5.1", "achieved", D, channel="oral_reading")          # another skill today: does not count
         cov = await rs.get_review_coverage(db, teacher_id, D, "numeracy", "beginner", channel="orf")
         check("scored today on this skill: that child is done; a score on another skill does not count", cov["pending_rolls"] == [r for r in group if r != 4], cov["pending_rolls"])
+        await db.execute("UPDATE assessment_evidence SET evidence_data = '{\"cwpm\": 42, \"error_count\": 3}'::jsonb WHERE teacher_id = $1 AND channel = 'oral_reading' AND session_date = $2", teacher_id, D)
+        kid4 = (await ps.get_today(db, teacher_id, D))["children"].get("4", {}).get("r1_literacy")       # L1.5.1 is a Hindi (literacy) skill
+        check("a child scored by reading aloud today carries the two numbers the teacher entered (correct words and errors) with the result", kid4 == {"skill_id": "L1.5.1", "status": "achieved", "cwpm": 42, "errors": 3}, kid4)
+        check("a result recorded another way carries no numbers", "cwpm" not in (await ps.get_today(db, teacher_id, D))["children"].get("6", {}).get("numeracy", {}))
     finally:
         await _scratch.remove_class(db, teacher_id, school)
         await db.close()

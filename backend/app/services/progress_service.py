@@ -92,13 +92,13 @@ async def get_today(db, teacher_id: str, on: date) -> dict:
         from that day's plan (each group's skill and children) and that day's results only. A child counts ONCE: the newest result of the day
         on the group's skill, whichever way it was recorded (photo, observation, reading aloud). `decision` is the one recorded at that day's
         review; `conflict` and `advance_no_next` follow the same rules as the Plan screen's group panel (services/group_skills.py).
-    children[roll][domain] = {"skill_id", "status"} | None
+    children[roll][domain] = {"skill_id", "status"} | None, plus {"cwpm", "errors"} when the result came from reading aloud
         the child's result that day on the skill of today's plan for the child's group; if none on that skill, the newest result of the day in
         that subject. A child's LEVEL never changes on this: it is only what was recorded.
     """
     from app.services import group_skills as gs
     rows = await db.fetch("""
-        SELECT c.roll_number, e.competency_id, e.status, s.domain_id
+        SELECT c.roll_number, e.competency_id, e.status, e.channel, e.evidence_data, s.domain_id
         FROM assessment_evidence e
         JOIN children c ON c.id = e.child_id
         JOIN competencies k ON k.id = e.competency_id
@@ -106,11 +106,17 @@ async def get_today(db, teacher_id: str, on: date) -> dict:
         WHERE e.teacher_id = $1 AND e.session_date = $2 AND c.is_active = TRUE
         ORDER BY e.created_at DESC
     """, teacher_id, on)
-    newest = {}                                   # (roll, domain, skill) -> status: the first row seen is the newest
-    newest_any = {}                               # (roll, domain) -> {skill_id, status}: the newest of the day in that subject
+    def result(r):                                # one child's result; a reading-aloud score also carries the two numbers the teacher entered
+        out = {"skill_id": r["competency_id"], "status": r["status"]}
+        if r["channel"] == "oral_reading":
+            d = _obj(r["evidence_data"])
+            out.update(cwpm=d.get("cwpm"), errors=d.get("error_count"))
+        return out
+    newest = {}                                   # (roll, domain, skill) -> result: the first row seen is the newest
+    newest_any = {}                               # (roll, domain) -> result: the newest of the day in that subject
     for r in rows:
-        newest.setdefault((str(r["roll_number"]), r["domain_id"], r["competency_id"]), r["status"])
-        newest_any.setdefault((str(r["roll_number"]), r["domain_id"]), {"skill_id": r["competency_id"], "status": r["status"]})
+        newest.setdefault((str(r["roll_number"]), r["domain_id"], r["competency_id"]), result(r))
+        newest_any.setdefault((str(r["roll_number"]), r["domain_id"]), result(r))
 
     sizes = {}                                    # the current groups, for a day with no plan
     for r in await db.fetch("""SELECT clp.domain_id, clp.bpp_level, COUNT(*) AS n FROM child_lakshya_positions clp JOIN children c ON c.id = clp.child_id
@@ -129,9 +135,9 @@ async def get_today(db, teacher_id: str, on: date) -> dict:
             g = groups[label]
             counts = {"a": 0, "pa": 0, "na": 0}
             for roll in g["rolls"]:
-                st = newest.get((roll, domain, g["target"]))
-                if st:
-                    counts[STATUS_KEY[st]] += 1
+                res = newest.get((roll, domain, g["target"]))
+                if res:
+                    counts[STATUS_KEY[res["status"]]] += 1
             d = expl.get(f"teacher_decision_{label}")
             decision = d if d in gs.DECISIONS else None
             ev = evidence.get(label) or {}
@@ -145,9 +151,9 @@ async def get_today(db, teacher_id: str, on: date) -> dict:
         subjects[domain] = {"has_plan": bool(plan), "by_level": by_level}
         for label, g in groups.items():
             for roll in g["rolls"]:
-                st = newest.get((roll, domain, g["target"]))
-                if st:
-                    children.setdefault(roll, {})[domain] = {"skill_id": g["target"], "status": st}
+                res = newest.get((roll, domain, g["target"]))
+                if res:
+                    children.setdefault(roll, {})[domain] = res
         for (roll, dom), v in newest_any.items():
             if dom == domain and domain not in children.get(roll, {}):
                 children.setdefault(roll, {})[domain] = v

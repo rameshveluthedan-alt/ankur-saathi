@@ -170,7 +170,9 @@ export default function ReviewScreen() {
         error_count: parseInt(orfEntry.error_count || 0),
         competency_id: orfLevel?.competency_id,        // the skill on today's plan (before, the server always read the score against L2.5.1)
       });
-      setOrfSaved({ level: sheetLevel, result }); setOrfError('');          // the server's own result, never worked out here
+      setOrfSaved({ level: sheetLevel, skill: orfLevel?.competency_id, result,                 // the server's own result, never worked out here,
+                    entry: { cwpm: parseInt(orfEntry.cwpm), errors: parseInt(orfEntry.error_count || 0) } });   // and the two numbers the teacher entered
+      setOrfError('');
       setOrfEntry({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });
       refreshCoverage();
     } catch (e) { setOrfSaved(null); setOrfError(bi('सहेजा नहीं जा सका', 'Could not save') + ': ' + e.message); }

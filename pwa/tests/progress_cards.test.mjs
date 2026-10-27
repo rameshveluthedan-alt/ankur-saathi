@@ -108,6 +108,18 @@ check('a badge shows the server\'s status for the child\'s skill today: ✓ A, ~
     assert.ok(h.includes(`data-status="${status}"`) && h.includes(mark) && h.includes('आज N0.1.1 पर') && h.includes('Today on N0.1.1'), status);
   }
 });
+check('a speed reading skill scored by reading aloud (L2.5.1, grade_level) shows the two numbers and "रफ़्तार कक्षा-स्तर पर", not a badge', () => {
+  for (const status of ['grade_level', 'achieved']) {
+    const h = html(React.createElement(ChildToday, { today: { skill_id: 'L2.5.1', status, cwpm: 42, errors: 3 } }));
+    assert.ok(h.includes('data-kind="fluency"') && h.includes('रफ़्तार कक्षा-स्तर पर') && /42(<!-- -->)? सही/.test(h) && /3(<!-- -->)? गलतियाँ/.test(h), status);
+    assert.ok(!h.includes('badge-result') && !h.includes('many-errors'), 'no A/PA/NA badge, and no amber on Progress');
+  }
+});
+check('any other skill keeps the A/PA/NA badge (and so does a reading skill recorded without numbers)', () => {
+  assert.ok(html(React.createElement(ChildToday, { today: { skill_id: 'N2.3.1', status: 'achieved' } })).includes('data-kind="badge"'));
+  assert.ok(html(React.createElement(ChildToday, { today: { skill_id: 'L2.5.2', status: 'achieved', cwpm: 40, errors: 1 } })).includes('data-kind="badge"'), 'pauses at punctuation is not a speed skill');
+  assert.ok(html(React.createElement(ChildToday, { today: { skill_id: 'L2.5.1', status: 'achieved' } })).includes('data-kind="badge"'), 'observed, no numbers');
+});
 check('nothing recorded today (None): no line at all, not even grey text', () => {
   assert.equal(html(React.createElement(ChildToday, { today: null })), '');
   assert.equal(html(React.createElement(ChildToday, { today: undefined })), '');
