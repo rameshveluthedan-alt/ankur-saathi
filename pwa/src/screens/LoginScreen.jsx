@@ -69,18 +69,27 @@ export default function LoginScreen() {
         <div className="card" data-testid="demo-hint" style={{ background: '#FFF8E1' }}>
           <div style={{ fontSize: '0.8125rem', fontWeight: 600, marginBottom: 2 }}><Bi hi="समीक्षकों के लिए: डेमो अकाउंट" en="For reviewers: demo accounts" inline /></div>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}><Bi hi="सिर्फ़ काल्पनिक डेटा। किसी कार्ड पर दबाएँ, कोड और पासवर्ड भर जाएँगे; फिर लॉगिन दबाएँ।" en="Fictional data only. Tap a card to fill in the code and password, then press Login." /></div>
-          {ROLES.map(r => (
-            <button key={r.code} type="button" data-testid={`demo-${r.code}`} onClick={() => fill(r.code, r.password)}
-              style={{ display: 'flex', gap: 10, alignItems: 'center', width: '100%', textAlign: 'left', background: 'var(--surface)', border: '1px solid #E8DDB5', borderRadius: 10, padding: '10px 12px', marginBottom: 8, minHeight: 56, fontFamily: 'inherit' }}>
-              <span aria-hidden="true" style={{ fontSize: '1.5rem' }}>{r.icon}</span>
-              <span style={{ flex: 1, fontSize: '0.8125rem' }}>
-                <b>{r.hi}</b><span className="en en-inline" lang="en" style={{ fontSize: '0.75rem' }}>{r.en}</span><br />
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi={r.whatHi} en={r.whatEn} /></span><br />
-                <span style={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>कोड {r.code} · पासवर्ड {r.password}</span>
-              </span>
-            </button>
-          ))}
-          <button type="button" data-testid={`demo-${PRACTICE.code}`} onClick={() => fill(PRACTICE.code, PRACTICE.password)}
+          {/* each card is a button and looks like one: pointer and lift on hover, a "भरें ›" (fill) cue at the end, and a tick once its code is filled in */}
+          {ROLES.map(r => {
+            const chosen = code === r.code;
+            return (
+              <button key={r.code} type="button" data-testid={`demo-${r.code}`} onClick={() => fill(r.code, r.password)} aria-pressed={chosen}
+                className={`demo-card ${chosen ? 'selected' : ''}`}
+                style={{ display: 'flex', gap: 10, alignItems: 'center', width: '100%', textAlign: 'left', borderRadius: 10, padding: '10px 12px', marginBottom: 8, minHeight: 56, fontFamily: 'inherit' }}>
+                <span aria-hidden="true" style={{ fontSize: '1.5rem' }}>{r.icon}</span>
+                <span style={{ flex: 1, fontSize: '0.8125rem' }}>
+                  <b>{r.hi}</b><span className="en en-inline" lang="en" style={{ fontSize: '0.75rem' }}>{r.en}</span><br />
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi={r.whatHi} en={r.whatEn} /></span><br />
+                  <span style={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>कोड {r.code} · पासवर्ड {r.password}</span>
+                </span>
+                <span className="demo-card-go" data-testid={`demo-go-${r.code}`}>
+                  {chosen ? <Bi hi="✓ भर गया" en="Filled" /> : <Bi hi="भरें ›" en="Tap to fill" />}
+                </span>
+              </button>
+            );
+          })}
+          <button type="button" data-testid={`demo-${PRACTICE.code}`} onClick={() => fill(PRACTICE.code, PRACTICE.password)} aria-pressed={code === PRACTICE.code}
+            className={`demo-link ${code === PRACTICE.code ? 'selected' : ''}`}
             style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '6px 2px', fontSize: '0.75rem', fontFamily: 'inherit', color: 'var(--green-dark)', minHeight: 44 }}>
             🔑 पासवर्ड बदलकर देखें<span className="en en-inline" lang="en">Try changing a password</span>: <span style={{ fontFamily: 'monospace' }}>कोड {PRACTICE.code} · पासवर्ड {PRACTICE.password}</span>
           </button>
