@@ -213,7 +213,7 @@ export default function ReviewScreen() {
               <div className="decision-row">
                 <button className={`decision-btn advance ${decisions[g.label] === 'advance' ? 'selected' : ''}`}
                   onClick={() => handleDecision(g.label, 'advance')}>
-                  <Bi hi="▲ आगे बढ़ें" en="Advance" />
+                  <Bi hi="⬆ आगे बढ़ें" en="Advance" />
                 </button>
                 <button className={`decision-btn reteach ${decisions[g.label] === 'reteach' ? 'selected' : ''}`}
                   onClick={() => handleDecision(g.label, 'reteach')}>
@@ -496,7 +496,7 @@ export default function ReviewScreen() {
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <span><Bi hi="AI सुझाव" en="AI recommendation" /></span>
                   <strong style={{ color: analysisResult.ai_recommendation === 'advance' ? 'var(--proficient-ink)' : 'var(--reteach)', textAlign: 'right' }}>
-                    {analysisResult.ai_recommendation === 'advance' ? <Bi hi="▲ आगे बढ़ें" en="Advance" /> : <Bi hi="🔄 दोहराएँ" en="Re-teach" />}
+                    {analysisResult.ai_recommendation === 'advance' ? <Bi hi="⬆ आगे बढ़ें" en="Advance" /> : <Bi hi="🔄 दोहराएँ" en="Re-teach" />}
                   </strong>
                 </div>
               </div>

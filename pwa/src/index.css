@@ -308,6 +308,9 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
   /* no letter-spacing or uppercase: spacing splits the Devanagari headline bar (शिरोरेखा) between letters */
 }
 
+/* ── Progress: one row per group in the "Today" card ── */
+.today-row { border-left: 4px solid var(--tier); padding: 6px 0 6px 10px; margin-top: 6px; }
+
 /* ── Demo-account cards on the login screen: they must LOOK tappable ── */
 .demo-card {
   background: var(--surface);

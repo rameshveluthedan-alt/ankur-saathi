@@ -215,8 +215,10 @@ export const analysePhotos = async (teacherId, formData) => {
 };
 
 // ── Progress ──
-export const getProgressDashboard = (teacherId) =>
-  request(`/progress/dashboard/${teacherId}`);
+// on: the phone's own date (services/today.js), so "today" on the Progress screen is the same day the Review saved under.
+// The answer also carries today[subject].by_level (each group's counts and decision today) and numeracy_today / literacy_today on each child.
+export const getProgressDashboard = (teacherId, on) =>
+  request(`/progress/dashboard/${teacherId}${on ? `?on=${on}` : ''}`);
 
 // ── Baseline ──
 export const generateBaseline = (domainId, gradeLevels) =>

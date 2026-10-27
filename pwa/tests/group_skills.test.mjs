@@ -123,7 +123,7 @@ check('the Beginners\' choice is on the suggested skill, N2.3.2, and the Profici
 check('the last plan\'s skill and the teacher\'s decision are shown in the review screen\'s own words', () => {
   assert.ok(html.includes('पिछली योजना: N2.3.1') && html.includes('पिछली योजना: N2.3.2') && html.includes('पिछली योजना: N3.3.1'));
   assert.ok(!/(^|[\s>(])कल[\s:]/.test(html), 'never "yesterday" (कल): the last plan can be days ago');
-  assert.ok(html.includes('▲ आगे बढ़ें') && html.includes('🔄 दोहराएँ'));
+  assert.ok(html.includes('⬆ आगे बढ़ें') && html.includes('🔄 दोहराएँ'));
 });
 check('the last plan is named by its date, which is often not yesterday', () => {
   const dated = render(ex.rows, ex.reteach, true, { previousDate: '2026-10-24' });

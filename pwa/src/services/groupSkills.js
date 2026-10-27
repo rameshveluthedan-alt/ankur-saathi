@@ -23,7 +23,7 @@ export function fitsDay(label, skillGrade, dayGrade) {
 
 // The same words the Review screen uses for the three decisions
 export const DECISION_LABELS = {
-  advance: { hi: '▲ आगे बढ़ें', en: 'Advance' },
+  advance: { hi: '⬆ आगे बढ़ें', en: 'Advance' },          // ⬆, not ▲: ▲ is the Progressors' shape
   reteach: { hi: '🔄 दोहराएँ', en: 'Re-teach' },
   not_sure: { hi: '❓ पक्का नहीं', en: 'Not sure' },
 };

@@ -11,7 +11,7 @@ The demo holds **fictional data only**, so its passwords are published. Everyone
 
 ## Suggested path
 0. **What the school leader can do today:** list the school's accounts (each by its employee code, with no child data); reset a teacher's password to a temporary one (shown once); unlock a locked account; and confirm, once, the school's consent statement (a demonstration school carries its own, so you will not be asked). **There is no join code and no registration screen.** Adding teachers from the leader's own screen, one by one or from a CSV file, and reports for the leader and for block and cluster officers, are the next step (`docs/ROADMAP.md`); today the operator makes accounts.
-1. **Teacher:** sign in as MPT101 or one of the test teachers. Look at Plan, Progress (the "consider re-assessing" flags, the child list with names) and Review (the observation checklist, the suggested sample).
+1. **Teacher:** sign in as MPT101 or one of the test teachers. Look at Plan, Progress (the "आज के नमूने में" card with today's counts and decisions, the "इन बच्चों पर एक नज़र" children to look at, the child list with names and today's result) and Review (the observation checklist, the suggested sample).
 2. **Password reset:** sign in as the school leader (MPA101), open Profile (the last tab), reset the practice account's password. A temporary password appears once. Sign out, sign in as MPT199 with it: the only screen is "choose a new password" (6 to 12 letters or digits).
 3. **A real school's first sign-in:** the school leader sees one screen, once, asking her to confirm a short statement (that the children's parents have been told and have given permission, that photos are not kept and names never go to the AI). It is kept with the date and the exact wording. The demo school carries its own statement ("every child here is fictional"), so you will not see this screen with the demo accounts.
 
@@ -37,7 +37,7 @@ If you change a demo password, change it in `pwa/src/screens/LoginScreen.jsx` to
 
 ## What the Plan screen shows on the demo (seeded every night)
 The nightly reset (01:30 IST) records three days of Progressor worksheets for N2.3.2 **and stores yesterday's plan** for the demo teacher (the three groups with their children and skills, and the decisions "recorded" at that review). So when you open **योजना** and choose **N2.3.2**, the panel *"आज हर समूह का कौशल"* shows:
-- **Beginners:** yesterday N2.3.1, decision **▲ आगे बढ़ें**: N2.3.2 is suggested ("पिछली समीक्षा में आपके निर्णय से").
+- **Beginners:** yesterday N2.3.1, decision **⬆ आगे बढ़ें**: N2.3.2 is suggested ("पिछली समीक्षा में आपके निर्णय से").
 - **Progressors:** yesterday N2.3.2, **no decision recorded**: on the last day **6 of the 14 children made a mistake** (rolls 16, 19, 24, 25, 26, 27: the dropped carry four times, the whole ones sum twice) and a third (5) is the threshold, so a **🔄 re-teach is recommended** ("पिछली जाँच के सुझाव से"), with the children's roll numbers and the mistakes named. The box is ticked. Generate the plan: the Progressors' block is the re-teach, with the pace line and the quiet-visit tips, and the top right of the plan lists the groups' skills with "🔄 पुनः शिक्षण".
 - **Proficients:** no decision and no evidence: their skill follows the one chosen.
 The seeded plan is replaced every night, so the demo tells the same story each day. A plan you generate today becomes "yesterday" at midnight, but the 01:30 reset replaces it with the seeded one.

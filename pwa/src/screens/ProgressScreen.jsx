@@ -3,6 +3,8 @@ import { useAuth } from '../App';
 import { getProgressDashboard, downloadClassReport, downloadOfficerReport } from '../services/api';
 import Bi from '../components/Bi';
 import { notify } from '../services/notify';
+import { localToday } from '../services/today';
+import { TodayCard, ChildToday, LookAtChildren } from '../components/ProgressToday';
 
 const BPP = {
   beginner: { hi: 'शुरुआती', en: 'Beginner', color: 'var(--beginner-ink)' },
@@ -19,7 +21,7 @@ export default function ProgressScreen() {
 
   useEffect(() => {
     setLoading(true);
-    getProgressDashboard(teacher.teacher_id)
+    getProgressDashboard(teacher.teacher_id, localToday())      // "today" is the phone's date, the same date the Review saved under
       .then(d => { setData(d); setLoading(false); })
       .catch(() => setLoading(false));
   }, [teacher.teacher_id]);
@@ -80,27 +82,11 @@ export default function ProgressScreen() {
         </div>
       </div>
 
+      {/* What was recorded TODAY in this subject: one card, a row per group */}
+      <TodayCard today={data.today && data.today[selectedDomain]} />
+
       {/* Daily work that no longer matches a child's level. A flag changes NOTHING: a level changes only through an assessment. */}
-      {domainFlags.length > 0 && (
-        <>
-          <h2 style={{ margin: '12px 0 4px' }}>🔎 <Bi hi="दोबारा आकलन पर विचार करें" en="Consider re-assessing" inline /></h2>
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '0 0 8px' }}>
-            <Bi hi="स्तर सिर्फ़ आकलन से बदलता है। इन बच्चों का आकलन पहले करना ठीक रहेगा।" en="Levels change only through an assessment. These children are worth assessing first." />
-          </p>
-          {domainFlags.map(f => (
-            <div key={f.child_id} className="card" data-testid={`flag-${f.direction}`}
-              style={{ borderLeft: `4px solid ${f.direction === 'higher' ? 'var(--proficient)' : '#C9A227'}` }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <strong>रोल {f.roll_number}{nameOf(f.roll_number)}</strong>
-                <span style={{ fontSize: '0.75rem', fontWeight: 600, color: f.direction === 'higher' ? 'var(--proficient-ink)' : '#8A5A00' }}>
-                  {f.direction === 'higher' ? <Bi hi="⬆ अच्छा प्रदर्शन" en="Doing well" inline /> : <Bi hi="⬇ कठिनाई" en="Struggling" inline />}
-                </span>
-              </div>
-              <p style={{ fontSize: '0.8125rem', margin: '6px 0 0', color: 'var(--text-secondary)' }}>{f.evidence_hi}</p>
-            </div>
-          ))}
-        </>
-      )}
+      <LookAtChildren flags={domainFlags} nameOf={nameOf} />
 
       {/* Children list */}
       <h2 style={{ margin: '12px 0 8px' }}>👥 बच्चों की प्रगति<span className="en en-inline" lang="en">Children Progress</span> — {children.length}</h2>
@@ -123,6 +109,8 @@ export default function ProgressScreen() {
                 {BPP[bpp]?.hi || '—'}{BPP[bpp] && <span className="en en-inline" lang="en" style={{ fontSize: '0.625rem' }}>{BPP[bpp].en}</span>}
               </span>
             </div>
+            {/* what was recorded for this child today, if anything; the level above stays what it was */}
+            <ChildToday today={selectedDomain === 'numeracy' ? c.numeracy_today : c.literacy_today} />
             {selectedChild === c.roll_number && (
               <div style={{ marginTop: 8, fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
                 <div>लक्ष्य<span className="en en-inline" lang="en">Lakshya</span>: <strong>{compId}</strong></div>
