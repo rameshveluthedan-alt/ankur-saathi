@@ -120,9 +120,15 @@ check('the Beginners\' choice is on the suggested skill, N2.3.2, and the Profici
   assert.match(html, /<option value="N2\.3\.2" selected="">/);
   assert.match(html, /<option value="N3\.5\.2" selected="">/);
 });
-check('yesterday and the teacher\'s decision are shown in the review screen\'s own words', () => {
-  assert.ok(html.includes('कल: N2.3.1') && html.includes('कल: N2.3.2') && html.includes('कल: N3.3.1'));
+check('the last plan\'s skill and the teacher\'s decision are shown in the review screen\'s own words', () => {
+  assert.ok(html.includes('पिछली योजना: N2.3.1') && html.includes('पिछली योजना: N2.3.2') && html.includes('पिछली योजना: N3.3.1'));
+  assert.ok(!html.includes('कल: N2'), 'never "yesterday": the last plan can be days ago');
   assert.ok(html.includes('▲ आगे बढ़ें') && html.includes('🔄 दोहराएँ'));
+});
+check('the last plan is named by its date, which is often not yesterday', () => {
+  const dated = render(ex.rows, ex.reteach, true, { previousDate: '2026-10-24' });
+  const shown = new Date('2026-10-24T00:00:00').toLocaleDateString('hi-IN', { day: 'numeric', month: 'short' });
+  assert.ok(dated.includes(`पिछली योजना (${shown}): N2.3.2`), shown);
 });
 check('the Progressors keep a re-teach BOX (ticked, with what it means); the Beginners and Proficients have NO box: their list holds the decision', () => {
   assert.match(html, /data-testid="reteach-toggle-progressor"[^>]*checked=""|checked=""[^>]*data-testid="reteach-toggle-progressor"/);

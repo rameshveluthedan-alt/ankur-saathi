@@ -19,6 +19,9 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
   competencies.forEach((c) => { byId[c.id] = c; });
   ['beginner', 'proficient'].forEach((l) => ((ladder && ladder.options && ladder.options[l]) || []).forEach((c) => { if (!byId[c.id]) byId[c.id] = c; }));
   const name = (id) => { const c = byId[id]; return c ? (c.name_hi || c.name_en) : id; };
+  // the last plan is often NOT yesterday (a weekend, a holiday): name its date, e.g. "24 अक्टू॰"
+  const previousLabel = previousDate && !Number.isNaN(new Date(`${previousDate}T00:00:00`).getTime())
+    ? new Date(`${previousDate}T00:00:00`).toLocaleDateString('hi-IN', { day: 'numeric', month: 'short' }) : '';
 
   // ONE LIST holds both decisions for the Beginners and the Proficients: which skill, and whether to re-teach it (see chooseOption)
   const choose = (label, value) => {
@@ -80,7 +83,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
             </div>
             {row.previous && (
               <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 4 }}>
-                कल: {row.previous.id} · {name(row.previous.id)}
+                पिछली योजना{previousLabel ? ` (${previousLabel})` : ''}: {row.previous.id} · {name(row.previous.id)}
                 {dec && <span> · आपका निर्णय: <b>{dec.hi}</b></span>}
                 {row.previousReteach && <span data-testid={`previous-reteach-${label}`}> · 🔄 <b>कल पुनः शिक्षण हुआ</b> (Re-taught yesterday)</span>}
               </div>
