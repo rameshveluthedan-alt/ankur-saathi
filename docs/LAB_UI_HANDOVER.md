@@ -2,6 +2,7 @@
 
 **Branch:** `lab/experiments` (lab worktree, not pushed) · **Base:** `main` at `4e17b06` (Release candidate 3)
 **Status:** done in the lab and tested; **not** in `main`. To be reviewed, then packaged for `main` by the release owner.
+**Updated (27 Oct, later):** five Progress and Review additions, plus two fixes found on the way. See "Additions after the first handover" below.
 
 ## How this was done (lab rules)
 
@@ -55,6 +56,36 @@ A UI review of the PWA for teachers in multi-grade classrooms (Beginner / Progre
   3. **"🏫 स्कूल लीडर: खाते सँभालें"** (School leader: manage the accounts): MPA101.
   4. **"🔑 पासवर्ड बदलकर देखें"** (Try changing a password): MPT199, a small link.
 
+## Additions after the first handover (Progress and Review)
+
+Five small changes from a conversation about the Progress and Review screens, on top of the work above. The Hindi below was revised before building and is **awaiting an expert's review**: decision words reuse the Review's own (आगे बढ़ें / दोहराएँ / पक्का नहीं), "आकलन" for assessment, "जाँच" for evidence, gender-neutral "सकते हैं", "दर्ज" for recorded, "प्रगति टैब" for the Progress tab.
+
+1. **Progress: one "आज के नमूने में" (In today's sample) card** above the child list, following the subject tab. It has a row per group, with its colour edge and shape:
+   - today's skill, then "✓ A · ~ PA · ✗ NA" and "N में से M का आकलन"
+   - "आपका निर्णय: ⬆ आगे बढ़ें / 🔄 दोहराएँ / ❓ पक्का नहीं" (violet for re-teach), or a grey "आज कोई निर्णय दर्ज नहीं" under the counts
+   - two rare lines: the amber "⚠ आपका निर्णय और आज की जाँच मेल नहीं खाते" and the grey "⬆ आगे बढ़ाया; अगला कौशल अभी नहीं है, इसलिए यही कौशल फिर सिखाया जाएगा"
+   - a group nobody was assessed in shows only "आज किसी का आकलन नहीं हुआ"
+   - The spec suggested three cards; **one card with three rows** was chosen to keep the child list near the top of a phone.
+2. **Progress: each child's result today:** one line under the child, "आज N2.3.1 पर: ✓ A", and nothing when nothing was recorded. The level pill doesn't change.
+3. **Progress: "🔎 इन बच्चों पर एक नज़र" (Children to look at)** replaces "Consider re-assessing", which promised a re-assessment screen that doesn't exist. It has one honest line, then two short lists: "⬆ अच्छा प्रदर्शन कर रहे हैं — एक छोटा दोबारा आकलन?" and "⬇ कठिनाई में हैं — थोड़ी मदद की ज़रूरत?". The flag logic is unchanged.
+4. **Review, Observed:** after Submit, a block above the children list shows "✓ N अवलोकन दर्ज हुए", A/PA/NA, the NA rolls, and a pointer to the Progress tab.
+5. **Review, Reading aloud:** after Save, a block above the empty form shows "✓ रोल 12: 45 CWPM · ~ PA आंशिक" (the server's result), "इस समूह में N और बच्चे बाकी" (from the server's coverage), and the same pointer.
+
+For both Review blocks, a failed save shows its error in place and no block.
+
+**Backend (no new route, no database change):**
+- `/progress/dashboard/{id}?on=YYYY-MM-DD` now also returns `today.numeracy` / `today.r1_literacy` (`has_plan`, and per group `skill_id, a, pa, na, assessed, group_size, decision, conflict, advance_no_next`) and `numeracy_today` / `literacy_today` on each child (`progress_service.get_today`).
+- **Only that day counts.** A child counts once, by the newest result of the day on the group's skill. "Conflict" and "no next skill" use the Plan panel's own rules.
+- **Per subject.** The spec had no subject, but the screen has subject tabs.
+
+**Two fixes found on the way:**
+- **"Today" is the phone's local date.** The screens used the UTC date, which in India is still yesterday until 05:30 (`services/today.js`).
+- **Reading aloud:**
+  - It's now scored on today's skill. The phone never sent the skill, so every score was read against L2.5.1.
+  - An unknown roll number is a failed save (HTTP 404). Before, it returned a "success" containing an error.
+
+**Also:** the advance icon is **⬆** everywhere, including the Review buttons, because ▲ is the Progressor shape.
+
 ## How to see it
 
 ```powershell
@@ -75,13 +106,16 @@ Check at phone width (F12, then Ctrl+Shift+M, 360 px).
 ## Tests
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
-- **38 backend suites:** all OK
-- **14 front-end suites:** all OK, 297 checks
+- **39 backend suites:** all OK (new: `test_progress_today.py`, 27 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
+- **17 front-end suites:** all OK, 337 checks
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
 - `cfu_fold.test.mjs` (6)
 - `notices.test.mjs` (6)
+- `today.test.mjs` (5)
+- `progress_cards.test.mjs` (19)
+- `review_confirmation.test.mjs` (16)
 
 Updated to the new wording or format:
 - `consent.dom`, `login.dom`, `group_skills`, `reteach_note`, `no_audio`. These now check that both the Hindi and the English are present, instead of requiring "Hindi (English)" in brackets.
@@ -110,9 +144,14 @@ d1da622 login demo cards look tappable
 8dcea26 this handover note
 49aef27 handover note: the lab rules and how they were followed
 9c2361e login demo accounts arranged by the reviewer's time
+64b6c4e handover note: login layout, file count
+5748c20 "today" is the phone's local date, not UTC
+98b9c24 dashboard carries today per subject; reading aloud on its own skill, unknown roll 404
+6974eb8 Progress: Today card, each child's result, "इन बच्चों पर एक नज़र"; ⬆ everywhere
+1d8ad37 Review: Observed and Reading-aloud blocks after a save
 ```
 
-Files: 37. They're `pwa/src` (25), `pwa/tests` (9) and `docs/` (3: `GROUP_SKILLS.md`, `DEMO_ACCESS.md` and this note). **There are no backend, database or prompt changes.**
+Files: 49. They're `pwa/src` (29), `pwa/tests` (12), `docs/` (3: `GROUP_SKILLS.md`, `DEMO_ACCESS.md` and this note) and the backend (5: `progress_service.py`, `review_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`). **No database, migration or prompt changes**, and no new route.
 
 ### ⚠ Depends on lab-only work
 
@@ -136,3 +175,6 @@ So the UI commits **cannot be applied to `main` on their own as they are.** The 
 2. **The Devanagari font is never loaded.** `index.css` names Noto Sans Devanagari, but nothing loads it. Android usually has it built in; Windows and older devices fall back to other fonts. Self-host a small `.woff2`, or drop the name.
 3. **The re-teach block** still says "Show-me" in two English places: the pace line and one tip. These are deliberately unchanged.
 4. **Not converted:** the printable worksheet template (`backend/app/templates/worksheet.html`) was not reviewed.
+5. **Reading-aloud bands** (early / developing / grade-level reader) are **waiting for a decision**. The server returns only A/PA/NA, from CWPM alone; accuracy isn't used; and two of the five reading skills (L2.5.2, L3.5.2) have no CWPM rule at all. There are three options: bands from A/PA/NA, no bands, or bands that also use accuracy. Until then the block shows A/PA/NA.
+6. **The Hindi of the additions** is with an expert for review.
+7. `docs/LEVELS.md` and `docs/STATUS.md` still call the underlying flag the "consider re-assessing" flag. That's the design concept's name, not screen text; rename it if the team wants it to match.
