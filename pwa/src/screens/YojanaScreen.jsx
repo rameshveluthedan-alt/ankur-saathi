@@ -214,11 +214,11 @@ export default function YojanaScreen() {
                 )}
                 {Array.isArray(block.cfu) && block.cfu.length > 0 && (
                   <div className="talking-point" style={ML} data-testid="cfu">
-                    <div className="talking-point-label"><Bi hi="समझ की जाँच: शो-मी" en="Check for understanding" inline /></div>
-                    {/* the method is the same in every block: folded under one line, so the block's own questions come first. The click stays here (it must not close the block). */}
+                    <div className="talking-point-label"><Bi hi="समझ की जाँच" en="Check for understanding" inline /></div>
+                    {/* the heading names the purpose (a check for understanding), not one technique; the text under "कैसे करें?" says how (today: the show-me). The method is the same in every block: folded under one line, so the block's own questions come first. The click stays here (it must not close the block). */}
                     <details className="fold" data-testid="cfu-how" onClick={(e) => e.stopPropagation()} style={{ margin: '2px 0 4px' }}>
                       <summary>
-                        <span><Bi hi="शो-मी कैसे करें?" en="How to run the show-me" inline /></span>
+                        <span><Bi hi="कैसे करें?" en="How to do it" inline /></span>
                       </summary>
                     <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: 6 }}>
                        हर बच्चा उत्तर स्लेट या कॉपी पर लिखकर, बनाकर या उँगलियों से तैयार करे और छिपाए। लगभग 20 सेकंड रुकें, फिर 'तीन, दो, एक — दिखाएँ!' कहें और सब एक साथ दिखाएँ। फिर दो बच्चों से समझाने को कहें: एक जिसने पहले गलती की थी (चुपचाप चुनें, नाम न बुलाएँ) और एक किसी भी बच्चे से, सिर्फ़ हाथ उठाने वालों से नहीं। अगर समूह के एक-चौथाई से ज़्यादा बच्चों के उत्तर गलत हों, तो आगे बढ़ने से पहले वही कदम अभी दोबारा समझाएँ (छड़ियों से)।

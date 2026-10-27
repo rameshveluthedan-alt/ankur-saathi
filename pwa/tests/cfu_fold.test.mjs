@@ -17,13 +17,16 @@ const check = (label, fn) => { fn(); n += 1; console.log(`  OK  ${label}`); };
 const cfu = src.slice(src.indexOf('data-testid="cfu"'), src.indexOf('data-testid="cfu-item"'));
 const fold = cfu.slice(cfu.indexOf('<details'), cfu.indexOf('</details>'));
 
-check('the heading "समझ की जाँच: शो-मी" (Check for understanding) is OUTSIDE the fold: always visible', () => {
-  const heading = cfu.indexOf('समझ की जाँच: शो-मी');
+check('the heading "समझ की जाँच" (Check for understanding) is OUTSIDE the fold: always visible', () => {
+  const heading = cfu.indexOf('hi="समझ की जाँच"');
   assert.ok(heading > -1 && heading < cfu.indexOf('<details'));
   assert.ok(cfu.includes('en="Check for understanding"'));
 });
-check('the method is inside a fold that opens on "शो-मी कैसे करें?", closed by default', () => {
-  assert.ok(fold.includes('data-testid="cfu-how"') && fold.includes('शो-मी कैसे करें?'));
+check('the heading and the fold name the PURPOSE, not one technique: no "शो-मी" (show-me is one way to check, the text says how)', () => {
+  assert.ok(!/hi="[^"]*शो-मी[^"]*"/.test(cfu) && !/en="[^"]*show-me[^"]*"/i.test(cfu));
+});
+check('the method is inside a fold that opens on "कैसे करें?" (How to do it), closed by default', () => {
+  assert.ok(fold.includes('data-testid="cfu-how"') && fold.includes('hi="कैसे करें?"') && fold.includes('en="How to do it"'));
   assert.ok(!/<details[^>]*\bopen\b/.test(fold));
   assert.ok(fold.includes('तीन, दो, एक') && fold.includes('एक-चौथाई'), 'the wording is unchanged, only folded');
 });
