@@ -8,6 +8,8 @@ import Bi from '../components/Bi';
 import { bi } from '../services/language';
 import { notify } from '../services/notify';
 import { localToday } from '../services/today';
+import { useNavigate } from 'react-router-dom';
+import { ObservedSaved, ReadingSaved, SaveError } from '../components/ReviewConfirm';
 
 // an English translation on the same line, after its Hindi (hidden by the "Hindi only" setting)
 const En = ({ children }) => <span className="en en-inline" lang="en">{children}</span>;
@@ -25,6 +27,12 @@ export default function ReviewScreen() {
   const [observedItems, setObservedItems] = useState([]);
   const [orfEntry, setOrfEntry] = useState({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });
   const fileInput = useRef(null);
+  const navigate = useNavigate();
+  // what the last save recorded, shown above the list (Observed) or the form (Reading aloud); a failed save shows its error in place instead
+  const [observedSaved, setObservedSaved] = useState(null);     // { level, items }
+  const [observedError, setObservedError] = useState('');
+  const [orfSaved, setOrfSaved] = useState(null);               // { level, result }: the server's answer
+  const [orfError, setOrfError] = useState('');
 
   const today = localToday();
   const groups = currentPlan?.groups || [];
@@ -145,10 +153,10 @@ export default function ReviewScreen() {
     setLoading(true);
     try {
       await recordObserved(teacher.teacher_id, today, observedItems);
-      notify(`✅ ${observedItems.length} ` + bi('अवलोकन दर्ज हुए', 'observations recorded'), 'success');
+      setObservedSaved({ level: sheetLevel, items: observedItems }); setObservedError('');    // exactly the children of this save
       setObservedItems([]);
       refreshCoverage();
-    } catch (e) { notify(bi('समस्या', 'Error') + ': ' + e.message, 'error'); }
+    } catch (e) { setObservedSaved(null); setObservedError(bi('सहेजा नहीं जा सका', 'Could not save') + ': ' + e.message); }
     setLoading(false);
   };
 
@@ -162,10 +170,10 @@ export default function ReviewScreen() {
         error_count: parseInt(orfEntry.error_count || 0),
         competency_id: orfLevel?.competency_id,        // the skill on today's plan (before, the server always read the score against L2.5.1)
       });
-      notify(`✅ ${bi('रोल', 'Roll')} ${orfEntry.roll_number}: ${orfEntry.cwpm} ${bi('सही शब्द/मिनट', 'CWPM')} → ${result.classification}`, 'success');
+      setOrfSaved({ level: sheetLevel, result }); setOrfError('');          // the server's own result, never worked out here
       setOrfEntry({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });
       refreshCoverage();
-    } catch (e) { notify(bi('समस्या', 'Error') + ': ' + e.message, 'error'); }
+    } catch (e) { setOrfSaved(null); setOrfError(bi('सहेजा नहीं जा सका', 'Could not save') + ': ' + e.message); }
     setLoading(false);
   };
 
@@ -288,6 +296,9 @@ export default function ReviewScreen() {
                     <button type="button" style={mode(!useSample)} onClick={() => setSampleMode('all')}>सभी<En>Everyone</En> {coverage.group_rolls.length}</button>
                   </div>
                 )}
+                {/* what the last save recorded; the list below stays usable (retap and submit again) */}
+                <ObservedSaved saved={observedSaved} onOpenProgress={() => navigate('/progress')} />
+                <SaveError message={observedError} testid="observed-error" />
                 {rolls.map(r => (
                   <div key={r} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
                     <b style={{ width: 78, fontSize: '0.8125rem' }}>रोल {r}{names && names[r] && <div style={{ fontSize: '0.7rem', fontWeight: 500 }} data-testid={`name-${r}`}>{names[r]}</div>}{coverage?.labels?.[r] && <div style={{ fontSize: '0.55rem', fontWeight: 400, color: 'var(--text-secondary)' }}>{coverage.labels[r]}</div>}</b>
@@ -313,6 +324,9 @@ export default function ReviewScreen() {
               <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
                 <Bi hi="हर बच्चे के लिए A / PA / NA दबाएँ" en="Tap A / PA / NA for each child" />
               </p>
+              {/* what the last save recorded; the list below stays usable (retap and submit again) */}
+              <ObservedSaved saved={observedSaved} onOpenProgress={() => navigate('/progress')} />
+              <SaveError message={observedError} testid="observed-error" />
               <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
                 <input type="number" inputMode="numeric" placeholder="रोल नं." aria-label="रोल नंबर (Roll number)" min="1"
                   style={{ flex: 1, padding: 8, borderRadius: 6, border: '1px solid var(--border)', fontFamily: 'inherit' }} id="obs-roll" />
@@ -442,6 +456,9 @@ export default function ReviewScreen() {
                   })}
                 </div>
               )}
+              {/* the child just scored, and how many in the group are still to score today on this skill (the server's coverage) */}
+              <ReadingSaved saved={orfSaved} left={coverage && coverage.pending_rolls ? coverage.pending_rolls.length : 0} onOpenProgress={() => navigate('/progress')} />
+              <SaveError message={orfError} testid="orf-error" />
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <input type="number" inputMode="numeric" placeholder="रोल नं." aria-label="रोल नंबर (Roll number)" value={orfEntry.roll_number}
                   onChange={e => setOrfEntry(o => ({ ...o, roll_number: e.target.value }))}

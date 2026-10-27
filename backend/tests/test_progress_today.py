@@ -122,6 +122,21 @@ async def main():
             check("reading aloud is scored on the skill it was given: 20 CWPM on L1.5.1 is PA (on the old default L2.5.1 it would be NA)", r.status_code == 200 and r.json()["classification"] == "partially_achieved" and st == "L1.5.1", r.text[:160])
             r = c.post(f"/api/review/orf?teacher_id={teacher_id}", json={"session_date": str(D), "roll_number": 2, "passage_id": "RP-004", "cwpm": 20, "error_count": 1})
             check("without a skill it still works, on Grade 2 reading (L2.5.1): 20 CWPM is NA", r.status_code == 200 and r.json()["classification"] == "not_achieved", r.text[:160])
+
+        print("\nhow many in a group are still to score (reading aloud): today, this group, this skill only")
+        from app.services import review_service as rs
+        await db.execute("DELETE FROM assessment_evidence WHERE teacher_id = $1 AND channel = 'oral_reading'", teacher_id)
+        await put_plan(Y, {"beginner": "L1.5.1"}, {})
+        await put_plan(D, {"beginner": "L1.5.1"}, {})
+        for roll in (1, 2, 3):                                   # three Beginners scored YESTERDAY
+            await ev(roll, "L1.5.1", "achieved", Y, channel="oral_reading")
+        cov = await rs.get_review_coverage(db, teacher_id, D, "numeracy", "beginner", channel="orf")
+        group = cov["group_rolls"]
+        check("children scored only yesterday are still to score today: all of the group is left", len(group) == 4 and cov["pending_rolls"] == group, cov)
+        await ev(4, "L1.5.1", "achieved", D, channel="oral_reading")
+        await ev(1, "L2.5.1", "achieved", D, channel="oral_reading")          # another skill today: does not count
+        cov = await rs.get_review_coverage(db, teacher_id, D, "numeracy", "beginner", channel="orf")
+        check("scored today on this skill: that child is done; a score on another skill does not count", cov["pending_rolls"] == [r for r in group if r != 4], cov["pending_rolls"])
     finally:
         await _scratch.remove_class(db, teacher_id, school)
         await db.close()
