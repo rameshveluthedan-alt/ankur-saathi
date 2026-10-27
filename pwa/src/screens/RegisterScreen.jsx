@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../App';
 import { previewRegister, commitRegister, REGISTER_TEMPLATE_URL } from '../services/api';
+import Bi from '../components/Bi';
 
 const GRADE_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
 const LEVEL_HI = { beginner: 'शुरुआती', progressor: 'प्रगतिशील', proficient: 'दक्ष' };
@@ -43,39 +44,39 @@ export default function RegisterScreen() {
   return (
     <div className="screen">
       <div className="screen-header">
-        <h1>👥 कक्षा रजिस्टर <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 400 }}>Class register</span></h1>
-        <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/')}>← वापस (Back)</button>
+        <h1>👥 <Bi hi="कक्षा रजिस्टर" en="Class register" inline /></h1>
+        <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/')}>← <Bi hi="वापस" en="Back" inline /></button>
       </div>
 
       <div className="card">
         <p style={{ fontSize: '0.875rem', marginBottom: 8 }}>
           अपनी कक्षा के बच्चों की सूची अपलोड करें: कक्षा और रोल नंबर, और चाहें तो हर विषय का शुरुआती स्तर। <b>नाम वैकल्पिक हैं:</b> वे सिर्फ़ आपको दिखेंगे, AI को कभी नहीं भेजे जाएँगे।
         </p>
-        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 10 }}>
+        <p className="en" lang="en" style={{ fontSize: '0.75rem', marginBottom: 10 }}>
           Upload your class list: grade and roll number, and optionally the name and each child's starting level per subject. Names stay in this app, visible only to you: they are never sent to the AI and never go into the officer report. CSV is best; Excel works too if the server has it.
         </p>
         <a href={REGISTER_TEMPLATE_URL} className="btn btn-secondary" style={{ display: 'block', textAlign: 'center', marginBottom: 8, textDecoration: 'none' }} data-testid="template-link">
-          ⬇ टेम्पलेट डाउनलोड करें (Download template)
+          ⬇ <Bi hi="टेम्पलेट डाउनलोड करें" en="Download template" inline />
         </a>
         <label className="btn btn-primary" style={{ display: 'block', textAlign: 'center' }}>
-          📂 फ़ाइल चुनें (Choose file)
+          📂 <Bi hi="फ़ाइल चुनें" en="Choose file" inline />
           <input type="file" accept=".csv,.xlsx,.txt" onChange={choose} style={{ display: 'none' }} data-testid="register-file" />
         </label>
         <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 8 }}>
-          अभी आपकी कक्षा में {teacher.total_children || 0} बच्चे हैं (Children in your class now).
+          अभी आपकी कक्षा में {teacher.total_children || 0} बच्चे हैं।<span className="en en-inline" lang="en">Children in your class now.</span>
         </p>
       </div>
 
-      {loading && <div className="card" style={{ textAlign: 'center' }}><div className="spinner" style={{ margin: '0 auto' }} /> पढ़ रहे हैं (Reading)...</div>}
+      {loading && <div className="card" style={{ textAlign: 'center' }}><div className="spinner" style={{ margin: '0 auto' }} /> <Bi hi="पढ़ रहे हैं..." en="Reading" inline /></div>}
       {error && <div className="card" style={{ borderLeft: '4px solid var(--beginner)', background: 'var(--beginner-bg)', fontSize: '0.875rem' }} data-testid="register-error">⚠️ {error}</div>}
 
       {preview && (
         <div className="card" data-testid="register-preview">
-          <h3 style={{ marginBottom: 6 }}>पूर्वावलोकन (Preview) · अभी कुछ दर्ज नहीं हुआ (nothing saved yet)</h3>
+          <h3 style={{ marginBottom: 6 }}><Bi hi="पूर्वावलोकन · अभी कुछ दर्ज नहीं हुआ" en="Preview · nothing saved yet" /></h3>
           <div style={{ fontSize: '0.875rem', lineHeight: 1.6 }}>
-            ✅ <b>{preview.counts.new}</b> नए बच्चे जुड़ेंगे (new children) {gradeSummary && <span style={{ color: 'var(--text-secondary)' }}>· {gradeSummary}</span>}<br />
-            ↺ <b>{preview.counts.exists}</b> पहले से हैं, छोड़े जाएँगे (already enrolled, skipped)<br />
-            {preview.counts.error > 0 && <span>⚠️ <b>{preview.counts.error}</b> पंक्तियों में गलती है, जुड़ेंगी नहीं (lines with problems, not added)</span>}
+            ✅ <b>{preview.counts.new}</b> नए बच्चे जुड़ेंगे<span className="en en-inline" lang="en">new children</span> {gradeSummary && <span style={{ color: 'var(--text-secondary)' }}>· {gradeSummary}</span>}<br />
+            ↺ <b>{preview.counts.exists}</b> पहले से हैं, छोड़े जाएँगे<span className="en en-inline" lang="en">already enrolled, skipped</span><br />
+            {preview.counts.error > 0 && <span>⚠️ <b>{preview.counts.error}</b> पंक्तियों में गलती है, जुड़ेंगी नहीं<span className="en en-inline" lang="en">lines with problems, not added</span></span>}
           </div>
           {preview.names_to_save > 0 && preview.names_available && <p style={{ fontSize: '0.75rem', color: 'var(--proficient)', marginTop: 8 }} data-testid="names-note">🔒 {preview.names_to_save} नाम सहेजे जाएँगे: सिर्फ़ आपको दिखेंगे, AI को कभी नहीं भेजे जाएँगे (names kept private, never sent to the AI)</p>}
           {preview.warnings.map((w, i) => <p key={i} style={{ fontSize: '0.75rem', color: '#8A5A00', background: '#FFF4D6', borderRadius: 8, padding: '6px 10px', marginTop: 8 }}>{w}</p>)}
@@ -97,18 +98,18 @@ export default function RegisterScreen() {
             </table>
           </div>
           <button type="button" className="btn btn-primary" disabled={loading || preview.counts.new === 0} onClick={confirm} style={{ marginTop: 10 }} data-testid="register-confirm">
-            ✓ {preview.counts.new} बच्चे जोड़ें (Confirm and enrol)
+            ✓ {preview.counts.new} बच्चे जोड़ें<span className="en en-inline" lang="en">Confirm and enrol</span>
           </button>
         </div>
       )}
 
       {done && (
         <div className="card" style={{ borderLeft: '4px solid var(--proficient)' }} data-testid="register-done">
-          <h3>✅ {done.added} बच्चे जुड़ गए (children enrolled)</h3>
-          <p style={{ fontSize: '0.8125rem', margin: '6px 0' }}>कक्षा में कुल (Total in class): <b>{done.total_children}</b></p>
+          <h3>✅ {done.added} बच्चे जुड़ गए<span className="en en-inline" lang="en">children enrolled</span></h3>
+          <p style={{ fontSize: '0.8125rem', margin: '6px 0' }}>कक्षा में कुल<span className="en en-inline" lang="en">Total in class</span>: <b>{done.total_children}</b></p>
           {done.names_saved > 0 && <p style={{ fontSize: '0.8125rem' }}>🔒 {done.names_saved} नाम सहेजे गए (names saved, private)</p>}
           {done.numbering === 'composite' && <p style={{ fontSize: '0.8125rem', color: '#8A5A00' }}>कक्षा नंबर में कक्षा शामिल है: कक्षा 3 रोल 5 = 305। बच्चे वर्कशीट पर यही नंबर लिखेंगे। (Class numbers carry the grade; children write this number on worksheets.)</p>}
-          <button type="button" className="btn btn-primary" onClick={() => navigate('/')} style={{ marginTop: 8 }}>योजना पर जाएँ (Go to Plan)</button>
+          <button type="button" className="btn btn-primary" onClick={() => navigate('/')} style={{ marginTop: 8 }}><Bi hi="योजना पर जाएँ" en="Go to Plan" inline /></button>
         </div>
       )}
       <div style={{ height: 80 }} />

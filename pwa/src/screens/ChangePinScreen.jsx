@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../App';
 import { changePin, setToken } from '../services/api';
+import Bi from '../components/Bi';
 
 // (The file and the API keep their old name, "pin": the secret is now called a PASSWORD: 6 to 12 letters or digits, and a 6-digit number is fine.)
 const clean = (v) => v.replace(/[^A-Za-z0-9]/g, '').slice(0, 12);
@@ -34,17 +35,17 @@ export function PinChangeForm({ forced = false, onDone }) {
 
   return (
     <div data-testid="pin-form">
-      <label style={lab}>{forced ? 'अस्थायी पासवर्ड जो स्कूल लीडर ने दिया (The temporary password from your school leader)' : 'वर्तमान पासवर्ड (Current password)'}</label>
+      <label style={lab}>{forced ? <Bi hi="अस्थायी पासवर्ड जो स्कूल लीडर ने दिया" en="The temporary password from your school leader" inline /> : <Bi hi="वर्तमान पासवर्ड" en="Current password" inline />}</label>
       <input type={type} value={current} onChange={e => setCurrent(clean(e.target.value))} data-testid="pin-current" style={field} autoComplete="current-password" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
-      <label style={lab}>नया पासवर्ड, 6 से 12 अक्षर या अंक (New password, 6 to 12 letters or digits)</label>
+      <label style={lab}><Bi hi="नया पासवर्ड, 6 से 12 अक्षर या अंक" en="New password, 6 to 12 letters or digits" inline /></label>
       <input type={type} value={next} onChange={e => setNext(clean(e.target.value))} data-testid="pin-new" style={field} autoComplete="new-password" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
-      <label style={lab}>नया पासवर्ड दोबारा (Repeat the new password)</label>
+      <label style={lab}><Bi hi="नया पासवर्ड दोबारा" en="Repeat the new password" inline /></label>
       <input type={type} value={again} onChange={e => setAgain(clean(e.target.value))} data-testid="pin-new-again" style={field} autoComplete="new-password" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
       <button type="button" onClick={() => setShow(v => !v)} data-testid="pin-toggle" aria-pressed={show}
-        style={{ background: 'none', border: 'none', color: 'var(--green-dark)', fontSize: '0.8125rem', textDecoration: 'underline', minHeight: 44, marginBottom: 4 }}>{show ? 'छिपाएँ (Hide)' : 'दिखाएँ (Show)'}</button>
+        style={{ background: 'none', border: 'none', color: 'var(--green-dark)', fontSize: '0.8125rem', textDecoration: 'underline', minHeight: 44, marginBottom: 4 }}>{show ? <Bi hi="छिपाएँ" en="Hide" inline /> : <Bi hi="दिखाएँ" en="Show" inline />}</button>
       {error && <p data-testid="pin-error" role="alert" style={{ color: 'var(--beginner)', fontSize: '0.8125rem', marginBottom: 8 }}>{error}</p>}
       <button className="btn btn-primary" onClick={submit} disabled={loading || current.length < 4 || next.length < 6} data-testid="pin-save">
-        {loading ? 'सहेज रहे हैं...' : 'नया पासवर्ड सहेजें (Save new password)'}
+        {loading ? 'सहेज रहे हैं...' : <Bi hi="नया पासवर्ड सहेजें" en="Save new password" inline />}
       </button>
     </div>
   );
@@ -55,13 +56,13 @@ export default function ChangePinScreen({ forced = false }) {
   return (
     <div className="screen" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100dvh' }}>
       <div className="card" data-testid="forced-pin-change">
-        <h2>🔑 नया पासवर्ड चुनें (Choose a new password)</h2>
+        <h2>🔑 <Bi hi="नया पासवर्ड चुनें" en="Choose a new password" /></h2>
         <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: '6px 0 12px' }}>
-          यह आपका पहला लॉगिन है, या आपके स्कूल लीडर ने पासवर्ड रीसेट किया है। जारी रखने से पहले अपना पासवर्ड चुनें। (This is your first sign-in, or your school leader reset your password. Choose your own before you continue.)
+          <Bi hi="यह आपका पहला लॉगिन है, या आपके स्कूल लीडर ने पासवर्ड रीसेट किया है। जारी रखने से पहले अपना पासवर्ड चुनें।" en="This is your first sign-in, or your school leader reset your password. Choose your own before you continue." />
         </p>
         <PinChangeForm forced={forced} />
         <button type="button" onClick={logout} style={{ display: 'block', margin: '12px auto 0', background: 'none', border: 'none', color: 'var(--text-secondary)', textDecoration: 'underline', fontSize: '0.8125rem', minHeight: 44 }}>
-          लॉग आउट (Log out)
+          <Bi hi="लॉग आउट" en="Log out" inline />
         </button>
       </div>
     </div>

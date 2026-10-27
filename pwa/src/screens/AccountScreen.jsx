@@ -46,7 +46,7 @@ export default function AccountScreen() {
     <div className="screen">
       <div className="screen-header">
         <h1>👤 <Bi hi="प्रोफ़ाइल" en="Profile" inline /></h1>
-        <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/')}>← वापस (Back)</button>
+        <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/')}>← <Bi hi="वापस" en="Back" inline /></button>
       </div>
 
       <div className="card" data-testid="account-info">
@@ -80,7 +80,7 @@ export default function AccountScreen() {
         ) : showPin ? (
           <PinChangeForm onDone={() => { setPinDone(true); setShowPin(false); }} />
         ) : (
-          <button type="button" className="btn btn-secondary" onClick={() => setShowPin(true)} data-testid="open-pin-form">पासवर्ड बदलें (Change password)</button>
+          <button type="button" className="btn btn-secondary" onClick={() => setShowPin(true)} data-testid="open-pin-form"><Bi hi="पासवर्ड बदलें" en="Change password" inline /></button>
         )}
       </div>
 
@@ -128,7 +128,7 @@ export default function AccountScreen() {
         </div>
       )}
 
-      <button type="button" className="btn btn-secondary" onClick={logout} data-testid="logout" style={{ marginTop: 8 }}>लॉग आउट (Log out)</button>
+      <button type="button" className="btn btn-secondary" onClick={logout} data-testid="logout" style={{ marginTop: 8 }}><Bi hi="लॉग आउट" en="Log out" inline /></button>
       <div style={{ height: 80 }} />
     </div>
   );

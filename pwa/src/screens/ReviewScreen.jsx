@@ -174,7 +174,7 @@ export default function ReviewScreen() {
       {/* An analysis already done today can always be reopened, even after pressing Back or reloading */}
       {step !== 3 && savedAnalyses.length > 0 && (
         <div className="card" style={{ background: '#EAF6EE', borderColor: '#BFE3CC' }} data-testid="saved-analyses">
-          <div style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: 6 }}>🔍 आज का विश्लेषण उपलब्ध है <span style={{ fontWeight: 400, fontSize: '0.75rem', color: 'var(--text-secondary)' }}>(Today's analysis, tap to open)</span></div>
+          <div style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: 6 }}>🔍 आज का विश्लेषण उपलब्ध है<span className="en en-inline" lang="en">Today's analysis, tap to open</span></div>
           {savedAnalyses.map(a => (
             <button key={a.id} type="button" className="btn btn-secondary" onClick={() => openSaved(a)}
               style={{ width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.8125rem' }}>
@@ -246,9 +246,9 @@ export default function ReviewScreen() {
           </div>
           {channelsInfo?.has_plan && relevantChannels.length < 3 && (
             <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', margin: '-8px 0 12px' }} data-testid="channel-hint">
-              आज के कौशल के लिए यही तरीका चाहिए (Today's skills need this way) ·{' '}
-              <button type="button" onClick={() => setShowAllChannels(v => !v)} style={{ background: 'none', border: 'none', color: 'var(--green-dark)', textDecoration: 'underline', fontSize: '0.7rem', padding: 0 }}>
-                {showAllChannels ? 'सिर्फ़ ज़रूरी दिखाएँ (Show only needed)' : 'दूसरे तरीके (Other ways)'}
+              आज के कौशल के लिए यही तरीका चाहिए<span className="en en-inline" lang="en">Today's skills need this way</span> ·{' '}
+              <button type="button" onClick={() => setShowAllChannels(v => !v)} style={{ background: 'none', border: 'none', color: 'var(--green-dark)', textDecoration: 'underline', fontSize: '0.75rem', padding: '0 4px', minHeight: 44, fontFamily: 'inherit' }}>
+                {showAllChannels ? <Bi hi="सिर्फ़ ज़रूरी दिखाएँ" en="Show only needed" inline /> : <Bi hi="दूसरे तरीके" en="Other ways" inline />}
               </button>
             </div>
           )}
@@ -268,13 +268,13 @@ export default function ReviewScreen() {
             const mode = (on) => ({ flex: 1, minHeight: 40, padding: '5px 4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.75rem', fontWeight: 600, background: on ? 'var(--green-dark)' : 'var(--surface)', color: on ? 'white' : 'var(--text)' });
             return (
               <div className="card" data-testid="observed-list">
-                <h3 style={{ marginBottom: 4 }}>✓ शिक्षक अवलोकन (Teacher Observation)</h3>
+                <h3 style={{ marginBottom: 4 }}>✓ <Bi hi="शिक्षक अवलोकन" en="Teacher Observation" inline /></h3>
                 {levelsFor('observed').length > 1 && (
                   <div style={{ display: 'flex', gap: 6, margin: '6px 0' }}>
                     {levelsFor('observed').map(l => <button key={l} type="button" className={`tier-option tier-${l} ${sheetLevel === l ? 'selected' : ''}`} onClick={() => setSheetLevel(l)}>{GROUP_LABELS[l].mark} {LEVEL_HI[l]}</button>)}
                   </div>
                 )}
-                <p style={{ fontSize: '0.8125rem', margin: '4px 0 8px' }}>कौशल (Skill): <b>{observedLevel.competency_id}</b> · {observedLevel.name_hi}</p>
+                <p style={{ fontSize: '0.8125rem', margin: '4px 0 8px' }}>कौशल<span className="en en-inline" lang="en">Skill</span>: <b>{observedLevel.competency_id}</b> · {observedLevel.name_hi}</p>
                 {big && (
                   <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
                     <button type="button" data-testid="obs-mode-sample" style={mode(useSample)} onClick={() => setSampleMode('sample')}>नमूना (Sample) {sample.size}/{sample.group_size}</button>
@@ -292,7 +292,7 @@ export default function ReviewScreen() {
                       onClick={() => setAbsent(prev => [...prev, r])}>अनुपस्थित</button>}
                   </div>
                 ))}
-                {useSample && <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 6 }} data-testid="sample-note-obs">नमूना मोटी तस्वीर देता है (लगभग ±{sample.margin_points} अंक)। A sample gives a rough picture of the group.</p>}
+                {useSample && <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }} data-testid="sample-note-obs">नमूना मोटी तस्वीर देता है (लगभग ±{sample.margin_points} अंक)।<span className="en" lang="en">A sample gives a rough picture of the group.</span></p>}
                 <button className="btn btn-primary" onClick={submitObserved} disabled={loading || !observedItems.length} style={{ marginTop: 8 }} data-testid="obs-submit">
                   {loading ? 'दर्ज हो रहा...' : `✓ ${observedItems.length} अवलोकन जमा करें (Submit)`}
                 </button>
@@ -302,9 +302,9 @@ export default function ReviewScreen() {
           {/* Observed: the manual form, used only when today's plan is not available */}
           {channel === 'observed' && !observedLevel && (
             <div className="card">
-              <h3 style={{ marginBottom: 4 }}>✓ शिक्षक अवलोकन (Teacher Observation)</h3>
+              <h3 style={{ marginBottom: 4 }}>✓ <Bi hi="शिक्षक अवलोकन" en="Teacher Observation" inline /></h3>
               <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
-                Tap A / PA / NA for each child
+                <Bi hi="हर बच्चे के लिए A / PA / NA दबाएँ" en="Tap A / PA / NA for each child" />
               </p>
               <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
                 <input type="number" inputMode="numeric" placeholder="Roll No." min="1"
@@ -336,8 +336,8 @@ export default function ReviewScreen() {
           {/* Photo */}
           {channel === 'photo' && (
             <div className="card">
-              <h3 style={{ marginBottom: 4 }}>📸 वर्कशीट फ़ोटो (Worksheet Photos)</h3>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0' }}>किस समूह की वर्कशीट? (Which group's sheet?)</div>
+              <h3 style={{ marginBottom: 4 }}>📸 <Bi hi="वर्कशीट फ़ोटो" en="Worksheet Photos" inline /></h3>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0' }}>किस समूह की वर्कशीट?<span className="en en-inline" lang="en">Which group's sheet?</span></div>
               <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
                 {GROUP_ORDER.filter((id) => levelsFor('photo').includes(id)).map((id) => (
                   <button key={id} type="button" onClick={() => setSheetLevel(id)} className={`tier-option tier-${id} ${sheetLevel === id ? 'selected' : ''}`}>
@@ -370,30 +370,30 @@ export default function ReviewScreen() {
                         ? left.map(r => <button key={r} type="button" data-testid={`chip-${r}`} title={[names && names[r], coverage.labels?.[r]].filter(Boolean).join(' · ')} className="chip" onClick={() => toggleAbsent(r)}>{r}{coverage.labels?.[r] ? <span style={{ fontSize: '0.55rem', color: 'var(--text-secondary)' }}> {coverage.labels[r]}</span> : null}</button>)
                         : left.join(', ')}
                     </div>
-                    {useSample && left.length > 0 && <div style={{ color: 'var(--text-secondary)' }}>कोई बच्चा अनुपस्थित है? उसके रोल पर दबाएँ, उसकी जगह दूसरा बच्चा सुझाया जाएगा (Absent? Tap the roll and another child is suggested)</div>}
+                    {useSample && left.length > 0 && <div style={{ color: 'var(--text-secondary)' }}><Bi hi="कोई बच्चा अनुपस्थित है? उसके रोल पर दबाएँ, उसकी जगह दूसरा बच्चा सुझाया जाएगा।" en="Absent? Tap the roll and another child is suggested." /></div>}
                     {useSample && sample.absent.length > 0 && (
                       <div style={{ marginTop: 4 }}>अनुपस्थित (Absent): {sample.absent.map(r => <button key={r} type="button" data-testid={`absent-${r}`} className="chip" onClick={() => toggleAbsent(r)}>{r} ✕</button>)}</div>
                     )}
                     {useSample && (
                       <div data-testid="sample-note" style={{ color: 'var(--text-secondary)', marginTop: 4 }}>
                         नमूना समूह की मोटी तस्वीर देता है (औसत लगभग ±{sample.margin_points} अंक तक अलग हो सकता है)। स्तर सिर्फ़ आकलन से बदलते हैं, दैनिक नमूने से नहीं।
-                        <br />A sample gives a rough picture of the group (the average could be off by about ±{sample.margin_points} points). Levels change only through an assessment, never from daily results.
+                        <span className="en" lang="en">A sample gives a rough picture of the group (the average could be off by about ±{sample.margin_points} points). Levels change only through an assessment, never from daily results.</span>
                       </div>
                     )}
-                    {!useSample && done.length > 0 && <div style={{ color: 'var(--text-secondary)', marginTop: 2 }}>जो हो चुके हैं उनकी दोबारा फ़ोटो न लें (No need to photograph the done ones again)</div>}
+                    {!useSample && done.length > 0 && <div style={{ color: 'var(--text-secondary)', marginTop: 2 }}><Bi hi="जो हो चुके हैं उनकी दोबारा फ़ोटो न लें।" en="No need to photograph the done ones again." /></div>}
                   </div>
                 );
               })()}
               <div className="capture-area" onClick={() => fileInput.current?.click()}>
                 <div className="capture-icon">📷</div>
-                <p>वर्कशीट की फ़ोटो लें या चुनें</p>
-                <p style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>Tap to capture or select (max 6)</p>
+                <p>वर्कशीट की फ़ोटो लें या चुनें (अधिकतम 6)</p>
+                <p className="en" lang="en" style={{ fontSize: '0.75rem' }}>Tap to capture or select (max 6)</p>
                 <input ref={fileInput} type="file" accept="image/*" capture="environment"
                   multiple onChange={handlePhotoCapture} style={{ display: 'none' }} />
               </div>
               {dupNotice && <div style={{ fontSize: '0.75rem', color: '#8A5A00', background: '#FFF4D6', borderRadius: 8, padding: '4px 10px', marginTop: 6 }} data-testid="dup-notice">⚠ {dupNotice}</div>}
               <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 6 }} data-testid="photo-name-hint">
-                फ़ोटो में बच्चे का नाम न आने दें। नाम AI को कभी नहीं भेजे जाते, पर फ़ोटो में लिखा नाम चला जाएगा। (Keep names out of the photo: names are never sent to the AI, but a name written on the page would be.)
+<Bi hi="फ़ोटो में बच्चे का नाम न आने दें। नाम AI को कभी नहीं भेजे जाते, पर फ़ोटो में लिखा नाम चला जाएगा।" en="Keep names out of the photo: names are never sent to the AI, but a name written on the page would be." />
               </p>
               {photos.length > 0 && (
                 <div style={{ marginTop: 8 }}>
@@ -402,11 +402,11 @@ export default function ReviewScreen() {
                       <div key={i} style={{ width: 60, height: 60, borderRadius: 8, background: 'var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem' }}>📄 {i + 1}</div>
                     ))}
                   </div>
-                  {!online && <div data-testid="photos-offline" style={{ fontSize: '0.75rem', color: '#26405A', background: '#E8EEF4', borderRadius: 8, padding: '6px 10px', marginTop: 8 }}>फ़ोटो भेजने के लिए इंटरनेट चाहिए; चुनी हुई फ़ोटो यहीं रहेंगी। (Sending photos needs the internet; the photos you chose stay here.)</div>}
+                  {!online && <div data-testid="photos-offline" style={{ fontSize: '0.75rem', color: '#26405A', background: '#E8EEF4', borderRadius: 8, padding: '6px 10px', marginTop: 8 }}><Bi hi="फ़ोटो भेजने के लिए इंटरनेट चाहिए; चुनी हुई फ़ोटो यहीं रहेंगी।" en="Sending photos needs the internet; the photos you chose stay here." /></div>}
           <button className="btn btn-primary" onClick={() => submitPhotos()} disabled={loading || !online} style={{ marginTop: 8 }}>
                     {loading ? (
-                      <><div className="spinner" style={{ width: 18, height: 18, borderWidth: 2 }} /> विश्लेषण हो रहा (Analysing)...</>
-                    ) : `🔍 ${photos.length} फ़ोटो का विश्लेषण करें (Analyse)`}
+                      <><div className="spinner" style={{ width: 18, height: 18, borderWidth: 2 }} /> <Bi hi="विश्लेषण हो रहा..." en="Analysing" inline /></>
+                    ) : <>🔍 {photos.length} फ़ोटो का विश्लेषण करें<span className="en en-inline" lang="en">Analyse</span></>}
                   </button>
                 </div>
               )}
@@ -416,14 +416,13 @@ export default function ReviewScreen() {
           {/* ORF */}
           {channel === 'orf' && (
             <div className="card">
-              <h3 style={{ marginBottom: 4 }}>⏱️ पठन प्रवाह (Reading Fluency / ORF)</h3>
+              <h3 style={{ marginBottom: 4 }}>⏱️ <Bi hi="पठन प्रवाह" en="Reading Fluency / ORF" inline /></h3>
               <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
-                एक बच्चे को एक मिनट पढ़ते सुनें, फिर सही शब्द और गलतियाँ दर्ज करें। कोई आवाज़ रिकॉर्ड नहीं होती।
-                <br /><span style={{ fontSize: '0.7rem' }}>Listen to one child read for a minute, then enter the correct words and the errors. No audio is recorded.</span>
+                <Bi hi="एक बच्चे को एक मिनट पढ़ते सुनें, फिर सही शब्द और गलतियाँ दर्ज करें। कोई आवाज़ रिकॉर्ड नहीं होती।" en="Listen to one child read for a minute, then enter the correct words and the errors. No audio is recorded." />
               </p>
               {orfLevel && (
                 <div style={{ marginBottom: 8, fontSize: '0.75rem' }} data-testid="orf-chips">
-                  <div style={{ marginBottom: 4 }}>कौशल (Skill): <b>{orfLevel.competency_id}</b> · {orfLevel.name_hi}</div>
+                  <div style={{ marginBottom: 4 }}>कौशल<span className="en en-inline" lang="en">Skill</span>: <b>{orfLevel.competency_id}</b> · {orfLevel.name_hi}</div>
                   {levelsFor('orf').length > 1 && (
                     <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
                       {levelsFor('orf').map(l => <button key={l} type="button" className={`tier-option tier-${l} ${sheetLevel === l ? 'selected' : ''}`} onClick={() => setSheetLevel(l)}>{GROUP_LABELS[l].mark} {LEVEL_HI[l]}</button>)}
@@ -456,12 +455,12 @@ export default function ReviewScreen() {
 
           {!channel && (
             <div className="empty-state">
-              <p>ऊपर से साक्ष्य चैनल चुनें (Select evidence channel above)</p>
+              <p><Bi hi="ऊपर से साक्ष्य का तरीका चुनें" en="Select evidence channel above" /></p>
             </div>
           )}
 
           <button className="btn btn-secondary" onClick={() => setStep(3)} style={{ marginTop: 12 }}>
-            विश्लेषण देखें (View Analysis) →
+            <Bi hi="विश्लेषण देखें" en="View Analysis" inline /> →
           </button>
         </>
       )}
@@ -475,11 +474,11 @@ export default function ReviewScreen() {
             <>
               <div className="card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span>विश्लेषित बच्चे (Children analysed)</span>
+                  <span><Bi hi="विश्लेषित बच्चे" en="Children analysed" /></span>
                   <strong>{analysisResult.children_analysed}</strong>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span>समूह शुद्धता (Group accuracy)</span>
+                  <span><Bi hi="समूह शुद्धता" en="Group accuracy" /></span>
                   <strong>{Math.round(analysisResult.group_accuracy * 100)}%</strong>
                 </div>
                 {analysisResult.copy_errors_excluded > 0 && (
@@ -488,17 +487,17 @@ export default function ReviewScreen() {
                   </div>
                 )}
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span>AI सुझाव (AI recommendation)</span>
-                  <strong style={{ color: analysisResult.ai_recommendation === 'advance' ? 'var(--proficient-ink)' : 'var(--reteach)' }}>
-                    {analysisResult.ai_recommendation === 'advance' ? '▲ आगे बढ़ें (Advance)' : '🔄 दोहराएँ (Re-teach)'}
+                  <span><Bi hi="AI सुझाव" en="AI recommendation" /></span>
+                  <strong style={{ color: analysisResult.ai_recommendation === 'advance' ? 'var(--proficient-ink)' : 'var(--reteach)', textAlign: 'right' }}>
+                    {analysisResult.ai_recommendation === 'advance' ? <Bi hi="▲ आगे बढ़ें" en="Advance" /> : <Bi hi="🔄 दोहराएँ" en="Re-teach" />}
                   </strong>
                 </div>
               </div>
 
               {analysisResult.skipped_duplicates?.length > 0 && (
                 <div className="card" style={{ borderLeft: '4px solid #D9A400', background: '#FFF8E1' }} data-testid="dup-skipped">
-                  <h3 style={{ marginBottom: 4 }}>⚠️ पहले से विश्लेषित (Already analysed today)</h3>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}>इनका पहले का परिणाम रखा गया (the earlier result was kept)</p>
+                  <h3 style={{ marginBottom: 4 }}>⚠️ <Bi hi="पहले से विश्लेषित" en="Already analysed today" inline /></h3>
+                  <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi="इनका पहले का परिणाम रखा गया" en="the earlier result was kept" inline /></p>
                   {analysisResult.skipped_duplicates.map(d => (
                     <div key={d.roll_number} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 0', fontSize: '0.8125rem' }}>
                       <span>Roll {d.roll_number} · {d.earlier_accuracy == null ? '—' : Math.round(d.earlier_accuracy * 100) + '%'} · {new Date(d.earlier_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })}</span>
@@ -521,14 +520,14 @@ export default function ReviewScreen() {
 
               {analysisResult.discrepancy && (
                 <div className="card" style={{ borderLeft: '4px solid var(--beginner)', background: 'var(--beginner-bg)' }}>
-                  <h3 style={{ color: 'var(--beginner)', marginBottom: 4 }}>⚠️ विसंगति (Discrepancy)</h3>
+                  <h3 style={{ color: 'var(--beginner-ink)', marginBottom: 4 }}>⚠️ <Bi hi="विसंगति" en="Discrepancy" inline /></h3>
                   <p style={{ fontSize: '0.875rem' }}>{analysisResult.discrepancy.reason}</p>
                 </div>
               )}
 
               {analysisResult.misconceptions_detected?.length > 0 && (
                 <div className="card">
-                  <h3 style={{ marginBottom: 8 }}>पाई गई गलतियाँ (Misconceptions Detected)</h3>
+                  <h3 style={{ marginBottom: 8 }}><Bi hi="पाई गई गलतियाँ" en="Misconceptions Detected" inline /></h3>
                   {analysisResult.misconceptions_detected.map(m => (
                     <div key={m.id} style={{ padding: '6px 0', borderBottom: '1px solid var(--border)', fontSize: '0.875rem' }}>
                       <strong>{m.id}</strong> — {m.total_occurrences} बार (occurrences)
@@ -574,13 +573,13 @@ export default function ReviewScreen() {
             <div className="empty-state">
               <div className="empty-icon">🔍</div>
               <p>फ़ोटो विश्लेषण के बाद परिणाम यहाँ दिखेंगे</p>
-              <p style={{ fontSize: '0.8rem', color: 'var(--text-light)', marginTop: 4 }}>Results will appear after photo analysis</p>
+              <p className="en" lang="en" style={{ fontSize: '0.8rem', marginTop: 4 }}>Results will appear after photo analysis</p>
             </div>
           )}
 
           <button className="btn btn-secondary" onClick={() => { setStep(1); setDecisions({}); setPhotos([]); setAnalysisResult(null); setChannel(null); }}
             style={{ marginTop: 16, marginBottom: 80 }}>
-            ← नई समीक्षा शुरू करें (Start new review)
+            ← <Bi hi="नई समीक्षा शुरू करें" en="Start new review" inline />
           </button>
         </>
       )}

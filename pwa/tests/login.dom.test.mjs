@@ -46,7 +46,7 @@ globalThis.__api = {
 
 console.log('what a person sees');
 await mount();
-check('an employee code field and a password field, labelled in Hindi and English', !!q('[data-testid="employee-code"]') && !!q('[data-testid="password"]') && /कर्मचारी कोड \(Employee code\)/.test(document.body.textContent) && /पासवर्ड \(Password\)/.test(document.body.textContent));
+check('an employee code field and a password field, labelled in Hindi and English', !!q('[data-testid="employee-code"]') && !!q('[data-testid="password"]') && /कर्मचारी कोड/.test(q('label[for="employee-code"]').textContent) && q('label[for="employee-code"] .en').textContent === 'Employee code' && /पासवर्ड/.test(q('label[for="password"]').textContent) && q('label[for="password"] .en').textContent === 'Password');
 check('no phone number field, no registration, no join code, no school code, no consent tick: the school leader makes the accounts', !['phone', 'toggle-register', 'register-submit', 'join-code', 'school-code', 'consent-block', 'consent-check', 'pin'].some((id) => q(`[data-testid="${id}"]`)) && !/Register|पंजीकरण|जॉइन|join code/i.test(document.body.textContent));
 check('it says who makes the account, and who to ask when a password is forgotten', /Your school leader makes your account/.test(document.body.textContent) && /Forgot your password\? Ask your school leader/.test(document.body.textContent));
 check('the code field helps a phone keyboard: capitals, no auto-correct, 6 characters at most', q('[data-testid="employee-code"]').getAttribute('autocapitalize') === 'characters' && q('[data-testid="employee-code"]').getAttribute('maxlength') === '6' && q('[data-testid="employee-code"]').getAttribute('autocorrect') === 'off');

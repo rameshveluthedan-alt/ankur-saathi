@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../App';
 import { login, setToken } from '../services/api';
+import Bi from '../components/Bi';
 
 // Published demo accounts (fictional data only). Shown for reviewers; set VITE_DEMO_HINT=false for a real school.
 // If you change the demo passwords with scripts/auth_admin.py, change them here too: pwa/tests/demo_accounts.test.mjs checks that this list and the access guide agree.
@@ -40,47 +41,47 @@ export default function LoginScreen() {
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         <div style={{ fontSize: '3rem', marginBottom: 8 }}>🌱</div>
         <h1 style={{ fontSize: '1.75rem', color: 'var(--green-dark)' }}>अंकुर साथी</h1>
-        <p style={{ color: 'var(--text-secondary)', marginTop: 4 }}>Ankur Saathi</p>
+        <p className="en" lang="en" style={{ fontSize: '1rem', marginTop: 4 }}>Ankur Saathi</p>
       </div>
 
       <div className="card">
-        <label htmlFor="employee-code" style={label}>कर्मचारी कोड (Employee code)</label>
+        <label htmlFor="employee-code" style={label}><Bi hi="कर्मचारी कोड" en="Employee code" inline /></label>
         <input id="employee-code" type="text" value={code} onChange={e => setCode(clean(e.target.value))} placeholder="MPT101" data-testid="employee-code"
           autoCapitalize="characters" autoCorrect="off" spellCheck={false} autoComplete="username" maxLength={6} style={{ ...field, letterSpacing: 3, textTransform: 'uppercase' }} />
-        <label htmlFor="password" style={label}>पासवर्ड (Password)</label>
+        <label htmlFor="password" style={label}><Bi hi="पासवर्ड" en="Password" inline /></label>
         <div style={{ position: 'relative' }}>
           <input id="password" type={show ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value.slice(0, 12))} placeholder="••••••" data-testid="password"
             autoComplete="current-password" autoCapitalize="none" autoCorrect="off" spellCheck={false} style={{ ...field, paddingRight: 96 }}
             onKeyDown={e => e.key === 'Enter' && handleLogin()} />
           <button type="button" onClick={() => setShow(v => !v)} data-testid="toggle-password" aria-pressed={show}
             style={{ position: 'absolute', right: 6, top: 6, height: 44, minWidth: 80, background: 'none', border: 'none', color: 'var(--green-dark)', fontSize: '0.8125rem', fontWeight: 600 }}>
-            {show ? 'छिपाएँ (Hide)' : 'दिखाएँ (Show)'}
+            {show ? <Bi hi="छिपाएँ" en="Hide" inline /> : <Bi hi="दिखाएँ" en="Show" inline />}
           </button>
         </div>
         {error && <p data-testid="login-error" role="alert" style={{ color: 'var(--beginner)', fontSize: '0.875rem', marginBottom: 8 }}>{error}</p>}
-        <button className="btn btn-primary" onClick={handleLogin} disabled={loading} data-testid="login-submit">{loading ? 'लॉगिन हो रहा है (Logging in)...' : 'लॉगिन करें (Login)'}</button>
-        <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 10 }}>पासवर्ड भूल गए? अपने स्कूल लीडर से कहें। (Forgot your password? Ask your school leader.)</p>
-        <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}>खाता आपके स्कूल लीडर बनाते हैं। (Your school leader makes your account.)</p>
+        <button className="btn btn-primary" onClick={handleLogin} disabled={loading} data-testid="login-submit">{loading ? <Bi hi="लॉगिन हो रहा है..." en="Logging in" inline /> : <Bi hi="लॉगिन करें" en="Login" inline />}</button>
+        <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 10 }}><Bi hi="पासवर्ड भूल गए? अपने स्कूल लीडर से कहें।" en="Forgot your password? Ask your school leader." /></p>
+        <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}><Bi hi="खाता आपके स्कूल लीडर बनाते हैं।" en="Your school leader makes your account." /></p>
       </div>
 
       {DEMO_HINT && (
         <div className="card" data-testid="demo-hint" style={{ background: '#FFF8E1' }}>
-          <div style={{ fontSize: '0.8125rem', fontWeight: 600, marginBottom: 2 }}>समीक्षकों के लिए: डेमो अकाउंट (For reviewers: demo accounts)</div>
-          <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: 8 }}>सिर्फ़ काल्पनिक डेटा। किसी कार्ड पर दबाएँ, कोड और पासवर्ड भर जाएँगे; फिर लॉगिन दबाएँ। (Fictional data only. Tap a card to fill in the code and password, then press Login.)</div>
+          <div style={{ fontSize: '0.8125rem', fontWeight: 600, marginBottom: 2 }}><Bi hi="समीक्षकों के लिए: डेमो अकाउंट" en="For reviewers: demo accounts" inline /></div>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}><Bi hi="सिर्फ़ काल्पनिक डेटा। किसी कार्ड पर दबाएँ, कोड और पासवर्ड भर जाएँगे; फिर लॉगिन दबाएँ।" en="Fictional data only. Tap a card to fill in the code and password, then press Login." /></div>
           {ROLES.map(r => (
             <button key={r.code} type="button" data-testid={`demo-${r.code}`} onClick={() => fill(r.code, r.password)}
               style={{ display: 'flex', gap: 10, alignItems: 'center', width: '100%', textAlign: 'left', background: 'var(--surface)', border: '1px solid #E8DDB5', borderRadius: 10, padding: '10px 12px', marginBottom: 8, minHeight: 56, fontFamily: 'inherit' }}>
               <span aria-hidden="true" style={{ fontSize: '1.5rem' }}>{r.icon}</span>
               <span style={{ flex: 1, fontSize: '0.8125rem' }}>
-                <b>{r.hi}</b> <span style={{ color: 'var(--text-secondary)' }}>{r.en}</span><br />
-                <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{r.whatHi} ({r.whatEn})</span><br />
+                <b>{r.hi}</b><span className="en en-inline" lang="en" style={{ fontSize: '0.75rem' }}>{r.en}</span><br />
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi={r.whatHi} en={r.whatEn} /></span><br />
                 <span style={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>कोड {r.code} · पासवर्ड {r.password}</span>
               </span>
             </button>
           ))}
           <button type="button" data-testid={`demo-${PRACTICE.code}`} onClick={() => fill(PRACTICE.code, PRACTICE.password)}
             style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '6px 2px', fontSize: '0.75rem', fontFamily: 'inherit', color: 'var(--green-dark)', minHeight: 44 }}>
-            🔑 पासवर्ड बदलकर देखें (Try changing a password): <span style={{ fontFamily: 'monospace' }}>कोड {PRACTICE.code} · पासवर्ड {PRACTICE.password}</span>
+            🔑 पासवर्ड बदलकर देखें<span className="en en-inline" lang="en">Try changing a password</span>: <span style={{ fontFamily: 'monospace' }}>कोड {PRACTICE.code} · पासवर्ड {PRACTICE.password}</span>
           </button>
         </div>
       )}
