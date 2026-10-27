@@ -17,7 +17,11 @@ const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' 
 
 const loginSrc = read('pwa/src/screens/LoginScreen.jsx');
 const rows = (text) => [...text.matchAll(/\|\s*`?([A-Z]{3}\d{3})`?\s*\|\s*`?(\d{4})`?\s*\|/g)].map((m) => [m[1], m[2]]);
-const guide = rows(read('docs/DEMO_ACCESS.md'));
+// a range row such as "| MPT102 to MPT106 | 4826 |" (the test teachers) stands for every code in it
+const ranges = (text) => [...text.matchAll(/\|\s*`?([A-Z]{3})(\d{3})`?\s+to\s+`?\1(\d{3})`?\s*\|\s*`?(\d{4})`?\s*\|/g)]
+  .flatMap((m) => Array.from({ length: Number(m[3]) - Number(m[2]) + 1 }, (_, i) => [`${m[1]}${String(Number(m[2]) + i).padStart(3, '0')}`, m[4]]));
+const testers = ranges(read('docs/DEMO_ACCESS.md'));
+const guide = [...rows(read('docs/DEMO_ACCESS.md')), ...testers];
 const evaluator = rows(read('docs/EVALUATOR_GUIDE.md'));
 const screen = new Map([...loginSrc.matchAll(/code:\s*'([A-Z0-9]{6})'\s*,\s*password:\s*'(\d{4})'/g)].map((m) => [m[1], m[2]]));
 const py = read('scripts/auth_admin.py');
@@ -34,6 +38,7 @@ check('the evaluator guide names at least the teacher, the school leader and the
 for (const k of ['teacher', 'leader', 'practice']) {
   check(`the ${k} is ${named[k]} in scripts/demo_accounts.py and has the same password (${defaults[k]}) as the script sets and the screen shows`, !!named[k] && screen.get(named[k]) === defaults[k], `script ${named[k]}/${defaults[k]}, screen ${screen.get(named[k])}`);
 }
+check(`the test teachers the guide publishes as a range (${testers.map(([c]) => c).join(', ') || 'none'}) are each on the login screen, one chip per reviewer`, testers.length >= 1 && testers.every(([c, p]) => screen.get(c) === p), JSON.stringify(testers));
 check('every code on the screen is three letters and three digits, as the guides say', [...screen.keys()].every((c) => /^[A-Z]{3}\d{3}$/.test(c)));
 check('no phone number is left on the login screen (accounts are named by employee code)', !/\b[6-9]\d{9}\b/.test(loginSrc));
 check('the login screen has no registration, no join code and no consent tick: the school leader makes the accounts', !/registerTeacher|join-code|toggle-register|consent-block|GRADE_CHOICES/.test(loginSrc));

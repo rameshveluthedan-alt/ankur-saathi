@@ -326,6 +326,31 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
 .demo-card.selected { border: 2px solid var(--green-dark); background: var(--green-bg); }
 .demo-card-go { font-size: 0.8125rem; font-weight: 600; color: var(--green-dark); white-space: nowrap; text-align: right; }
 .demo-card-go .en { color: var(--green-dark); opacity: 0.8; }
+.demo-card-main { border-width: 2px; border-color: var(--green-light); }   /* the recommended start: most reviewers have 5 minutes */
+.demo-group {
+  background: var(--surface);
+  border: 1px solid #E8DDB5;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+.demo-chip {
+  min-width: 76px;
+  padding: 6px 12px;
+  border-radius: 18px;
+  border: 1.5px solid var(--green-mid);
+  background: var(--surface);
+  color: var(--green-dark);
+  font-family: monospace;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+}
+.demo-chip:hover, .demo-chip:focus-visible { background: var(--green-bg); box-shadow: 0 2px 8px rgba(45,106,79,0.18); outline: none; }
+.demo-chip:active { transform: scale(0.96); }
+.demo-chip.selected { background: var(--green-dark); border-color: var(--green-dark); color: #fff; }
 .demo-link { cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px; }
 .demo-link:hover, .demo-link:focus-visible { text-decoration: underline solid; }
 .demo-link.selected { font-weight: 600; }

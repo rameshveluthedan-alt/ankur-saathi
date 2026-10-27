@@ -7,11 +7,38 @@ import { bi } from '../services/language';
 // Published demo accounts (fictional data only). Shown for reviewers; set VITE_DEMO_HINT=false for a real school.
 // If you change the demo passwords with scripts/auth_admin.py, change them here too: pwa/tests/demo_accounts.test.mjs checks that this list and the access guide agree.
 const DEMO_HINT = import.meta.env.VITE_DEMO_HINT !== 'false';
-const ROLES = [
-  { code: 'MPT101', password: '4826', icon: '👩‍🏫', hi: 'शिक्षक', en: 'Teacher', whatHi: '30 बच्चों की कक्षा: योजना, वर्कशीट, समीक्षा', whatEn: 'A 30-child class: plan, worksheets, review' },
-  { code: 'MPA101', password: '7351', icon: '🏫', hi: 'स्कूल लीडर', en: 'School leader (head teacher)', whatHi: 'पढ़ाते भी हैं, और स्कूल के खाते सँभालते हैं', whatEn: 'Teaches too, and looks after the school’s accounts' },
+// The cards follow the reviewer's rule of thumb (docs/DEMO_ACCESS.md): 5 minutes -> the shared demo teacher and its recorded story; 30 minutes -> a test teacher of one's own;
+// a leader -> the school leader; the password flows -> the practice account.
+const STORY = { code: 'MPT101', password: '4826' };          // shared by every reviewer; the nightly reset rewrites it to the story the deck tells (N2.3.2)
+const TESTERS = [                                             // one each: their own class of 24, never reset, so reviewers do not overwrite each other
+  { code: 'MPT102', password: '4826' },
+  { code: 'MPT103', password: '4826' },
+  { code: 'MPT104', password: '4826' },
+  { code: 'MPT105', password: '4826' },
+  { code: 'MPT106', password: '4826' },
 ];
+const LEADER = { code: 'MPA101', password: '7351' };         // the head teacher: teaches too, and looks after the school's accounts
 const PRACTICE = { code: 'MPT199', password: '3917' };       // the practice account: its password can be changed and reset
+// One demo account as a tappable card: what it is for (title), a line or two about it, its code and password, and a "भरें ›" / "✓ भर गया" cue.
+function DemoCard({ acct, code, fill, icon, title, lines, main }) {
+  const chosen = code === acct.code;
+  return (
+    <button type="button" data-testid={`demo-${acct.code}`} onClick={() => fill(acct.code, acct.password)} aria-pressed={chosen}
+      className={`demo-card ${main ? 'demo-card-main' : ''} ${chosen ? 'selected' : ''}`}
+      style={{ display: 'flex', gap: 10, alignItems: 'center', width: '100%', textAlign: 'left', borderRadius: 10, padding: '10px 12px', marginBottom: 8, minHeight: 56, fontFamily: 'inherit' }}>
+      <span aria-hidden="true" style={{ fontSize: '1.5rem' }}>{icon}</span>
+      <span style={{ flex: 1, fontSize: '0.8125rem' }}>
+        <b style={{ fontSize: main ? '0.9375rem' : '0.875rem' }}>{title}</b>
+        {lines.map((l, i) => <span key={i} style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>{l}</span>)}
+        <span style={{ display: 'block', fontFamily: 'monospace', fontSize: '0.75rem', marginTop: 2 }}>कोड {acct.code} · पासवर्ड {acct.password}</span>
+      </span>
+      <span className="demo-card-go" data-testid={`demo-go-${acct.code}`}>
+        {chosen ? <Bi hi="✓ भर गया" en="Filled" /> : <Bi hi="भरें ›" en="Tap to fill" />}
+      </span>
+    </button>
+  );
+}
+
 const field = { width: '100%', padding: '12px 16px', fontSize: '1.125rem', border: '2px solid var(--border)', borderRadius: 10, fontFamily: 'inherit', marginBottom: 12 };
 const label = { fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: 6, display: 'block' };
 const clean = (v) => v.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 6);
@@ -68,26 +95,47 @@ export default function LoginScreen() {
       {DEMO_HINT && (
         <div className="card" data-testid="demo-hint" style={{ background: '#FFF8E1' }}>
           <div style={{ fontSize: '0.8125rem', fontWeight: 600, marginBottom: 2 }}><Bi hi="समीक्षकों के लिए: डेमो अकाउंट" en="For reviewers: demo accounts" inline /></div>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}><Bi hi="सिर्फ़ काल्पनिक डेटा। किसी कार्ड पर दबाएँ, कोड और पासवर्ड भर जाएँगे; फिर लॉगिन दबाएँ।" en="Fictional data only. Tap a card to fill in the code and password, then press Login." /></div>
-          {/* each card is a button and looks like one: pointer and lift on hover, a "भरें ›" (fill) cue at the end, and a tick once its code is filled in */}
-          {ROLES.map(r => {
-            const chosen = code === r.code;
-            return (
-              <button key={r.code} type="button" data-testid={`demo-${r.code}`} onClick={() => fill(r.code, r.password)} aria-pressed={chosen}
-                className={`demo-card ${chosen ? 'selected' : ''}`}
-                style={{ display: 'flex', gap: 10, alignItems: 'center', width: '100%', textAlign: 'left', borderRadius: 10, padding: '10px 12px', marginBottom: 8, minHeight: 56, fontFamily: 'inherit' }}>
-                <span aria-hidden="true" style={{ fontSize: '1.5rem' }}>{r.icon}</span>
-                <span style={{ flex: 1, fontSize: '0.8125rem' }}>
-                  <b>{r.hi}</b><span className="en en-inline" lang="en" style={{ fontSize: '0.75rem' }}>{r.en}</span><br />
-                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi={r.whatHi} en={r.whatEn} /></span><br />
-                  <span style={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>कोड {r.code} · पासवर्ड {r.password}</span>
-                </span>
-                <span className="demo-card-go" data-testid={`demo-go-${r.code}`}>
-                  {chosen ? <Bi hi="✓ भर गया" en="Filled" /> : <Bi hi="भरें ›" en="Tap to fill" />}
-                </span>
-              </button>
-            );
-          })}
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}><Bi hi="सिर्फ़ काल्पनिक डेटा। अपने समय के हिसाब से एक कार्ड चुनें, कोड और पासवर्ड भर जाएँगे; फिर लॉगिन दबाएँ।" en="Fictional data only. Pick a card by the time you have; it fills in the code and password, then press Login." /></div>
+
+          {/* 1. Five minutes: the shared demo teacher and the recorded story (the biggest card, first). Each card is a button and looks like one: hover lift, a "भरें ›" cue, a tick once filled. */}
+          <DemoCard acct={STORY} code={code} fill={fill} main icon="⏱"
+            title={<Bi hi="5 मिनट: तैयार कहानी देखें" en="5 minutes: see the recorded story" />}
+            lines={[
+              <Bi key="w" hi="👩‍🏫 डेमो शिक्षक · 30 बच्चे · N2.3.2 की कहानी" en="Demo teacher · 30 children · the N2.3.2 story" />,
+              <Bi key="s" hi="सबके लिए एक साझा कक्षा, हर रात फिर से सेट होती है" en="One class shared by everyone, reset every night" />,
+            ]} />
+
+          {/* 2. Thirty minutes: a test teacher of one's own. One card, five chips: each reviewer picks a different one. */}
+          <div className="demo-group" data-testid="demo-testers">
+            <div style={{ fontSize: '0.875rem' }}>
+              <span aria-hidden="true">🧪 </span><b><Bi hi="30 मिनट: खुद आज़माएँ" en="30 minutes: try it yourself" /></b>
+            </div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>
+              <Bi hi="अपनी अलग कक्षा (24 बच्चे); आपका काम अगले दिन तक बना रहता है।" en="Your own class (24 children); your work stays until you change it." />
+            </div>
+            <div style={{ fontSize: '0.75rem', fontWeight: 600, margin: '6px 0 4px' }}>
+              <Bi hi="हर समीक्षक अलग कोड चुनें:" en="Each reviewer picks a different code:" inline />
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {TESTERS.map((t) => {
+                const chosen = code === t.code;
+                return (
+                  <button key={t.code} type="button" data-testid={`demo-${t.code}`} onClick={() => fill(t.code, t.password)} aria-pressed={chosen}
+                    className={`demo-chip ${chosen ? 'selected' : ''}`} style={{ minHeight: 44 }}>
+                    {chosen ? '✓ ' : ''}{t.code}
+                  </button>
+                );
+              })}
+            </div>
+            <div style={{ fontFamily: 'monospace', fontSize: '0.75rem', marginTop: 6 }}>
+              पासवर्ड {TESTERS[0].password} · सबका एक<span className="en en-inline" lang="en">same for all</span>
+            </div>
+          </div>
+
+          {/* 3. The school leader */}
+          <DemoCard acct={LEADER} code={code} fill={fill} icon="🏫"
+            title={<Bi hi="स्कूल लीडर: खाते सँभालें" en="School leader: manage the accounts" />}
+            lines={[<Bi key="w" hi="पढ़ाते भी हैं; शिक्षकों के खाते देखते, खोलते और पासवर्ड रीसेट करते हैं" en="Teaches too; lists, unlocks and resets the teachers' accounts" />]} />
           <button type="button" data-testid={`demo-${PRACTICE.code}`} onClick={() => fill(PRACTICE.code, PRACTICE.password)} aria-pressed={code === PRACTICE.code}
             className={`demo-link ${code === PRACTICE.code ? 'selected' : ''}`}
             style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '6px 2px', fontSize: '0.75rem', fontFamily: 'inherit', color: 'var(--green-dark)', minHeight: 44 }}>
