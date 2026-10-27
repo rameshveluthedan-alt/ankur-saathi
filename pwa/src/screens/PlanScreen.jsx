@@ -11,6 +11,7 @@ import { GROUP_LABELS } from '../tiers';
 import Bi from '../components/Bi';
 import { bi } from '../services/language';
 import { notify } from '../services/notify';
+import { localToday } from '../services/today';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -106,7 +107,7 @@ export default function PlanScreen() {
     return () => clearInterval(id);
   }, [generating]);
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = localToday();
 
   const handleGenerate = async () => {
     if (loadingPanel) return;

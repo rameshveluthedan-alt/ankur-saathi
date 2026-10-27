@@ -10,6 +10,7 @@ import { reteachTitleParts } from '../services/reteachInfo';
 import { GROUP_LABELS } from '../tiers';
 import Bi from '../components/Bi';
 import { notify } from '../services/notify';
+import { localToday } from '../services/today';
 
 // Generated text may contain line breaks (lists) and stray markdown markers.
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
@@ -37,7 +38,7 @@ export default function YojanaScreen() {
   // from the backend instead of making the teacher regenerate it.
   useEffect(() => {
     if (currentPlan) return;
-    const today = new Date().toISOString().split('T')[0];
+    const today = localToday();
     setLoadingStored(true);
     getCachedPlan(teacher.teacher_id, today, selectedDomain)
       .then(setCurrentPlan)

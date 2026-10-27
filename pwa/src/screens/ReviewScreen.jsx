@@ -7,6 +7,7 @@ import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import Bi from '../components/Bi';
 import { bi } from '../services/language';
 import { notify } from '../services/notify';
+import { localToday } from '../services/today';
 
 // an English translation on the same line, after its Hindi (hidden by the "Hindi only" setting)
 const En = ({ children }) => <span className="en en-inline" lang="en">{children}</span>;
@@ -25,7 +26,7 @@ export default function ReviewScreen() {
   const [orfEntry, setOrfEntry] = useState({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });
   const fileInput = useRef(null);
 
-  const today = new Date().toISOString().split('T')[0];
+  const today = localToday();
   const groups = currentPlan?.groups || [];
   const [savedAnalyses, setSavedAnalyses] = useState([]);
   const [coverage, setCoverage] = useState(null);       // who in this group is done today, and who is left
