@@ -92,6 +92,7 @@ class GeneratePlanRequest(BaseModel):
     domain_id: str = Field(..., description="'numeracy' or 'r1_literacy'")
     group_skills: Optional[dict[str, str]] = Field(None, description="Skills the teacher chose for the 'beginner' and 'proficient' groups; the Progressors' skill is competency_id. Without it each is derived from competency_id.")
     reteach_groups: Optional[list[str]] = Field(None, description="Groups the teacher chose to re-teach: their MAIN block is a focused re-teach and there is no separate re-teach block. An empty list means move on with every group. Omitted: the old way (a separate 5-minute block when yesterday's photos found mistakes).")
+    replace: bool = Field(False, description="The teacher confirmed replacing the plan already made for this day and subject (the Plan screen's \"हाँ, बदलें\"). Without it an existing plan is never replaced: HTTP 409 plan_exists, before any paid call.")
     session_minutes: Optional[Literal[45, 60, 90]] = Field(None, description="How long the teacher has today (the Plan screen's time picker): the plan is laid out for this many minutes. Sent with each plan, never stored as a preference. Omitted: the teacher's stored teaching time (90 unless changed), so an older app is unchanged.")
 
 class GroupSnapshot(BaseModel):

@@ -158,6 +158,10 @@ async def generate_plan(req: GeneratePlanRequest, teacher_id: str):
     stores the plan, and returns it.
     """
     async with get_db() as db:
+        # an existing plan for this day and subject is replaced only when the teacher confirmed it (any client, any device): checked first, before any paid call
+        if not req.replace and await db.fetchval(
+                "SELECT TRUE FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3", teacher_id, req.plan_date, req.domain_id):
+            raise HTTPException(409, {"message": "इस दिन की योजना पहले से बनी है। (A plan is already made for this day.)", "code": "plan_exists"})
         try:
             result = await plan_service.generate_dainik_yojana(
                 db, teacher_id, req.competency_id, req.domain_id, req.plan_date, group_skills=req.group_skills, reteach_groups=req.reteach_groups,

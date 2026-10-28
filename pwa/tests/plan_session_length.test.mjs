@@ -86,6 +86,9 @@ await api.generatePlan('T1', 'N2.3.2', 'numeracy', '2026-10-28', { sessionMinute
 check('the POST to /plan/generate carries session_minutes: 45', /\/plan\/generate/.test(bodies[0].url) && bodies[0].body.session_minutes === 45, JSON.stringify(bodies[0]));
 await api.generatePlan('T1', 'N2.3.2', 'numeracy', '2026-10-28');
 check('without a time the field is left out (the server then uses the teacher\'s stored time, 90 unless changed): an older caller is unchanged', !('session_minutes' in bodies[1].body), JSON.stringify(bodies[1].body));
+await api.generatePlan('T1', 'N2.3.2', 'numeracy', '2026-10-28', { sessionMinutes: 60, replace: true });
+check('(item 12) a confirmed replace sends replace: true; without the option the field is left out (the server then refuses to replace)', bodies[2].body.replace === true && !('replace' in bodies[0].body) && !('replace' in bodies[1].body), JSON.stringify(bodies.map((b) => b.body.replace)));
+bodies.length = 2;
 check('it is not sent as a preference anywhere else: only the plan request carries it', bodies.length === 2 && !fs.readFileSync(path.join(src, 'services', 'api.js'), 'utf8').replace(/generatePlan[\s\S]*?\}\);/, '').includes('session_minutes'));
 
 await act(async () => root.unmount());

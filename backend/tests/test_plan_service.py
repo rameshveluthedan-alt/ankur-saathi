@@ -123,7 +123,31 @@ async def main():
             for bad in (50, 0, "45 मिनट", 120):
                 r = post(7, session_minutes=bad)
                 check(f"a time the app does not offer ({bad!r}) is refused (HTTP 422), before any paid call", r.status_code == 422 and len(fake.prompts) == n, r.status_code)
+
+            print("\nan existing plan is never replaced silently (item 12): only with replace: true")
+            stored5 = lambda: c.get(f"/api/plan/{teacher_id}/{TODAY + timedelta(days=5)}/numeracy").json()["plan"]["session_minutes"]
+            n = len(fake.prompts)
+            r = post(5, session_minutes=60)
+            check("day 5 already has a plan: without replace, HTTP 409 plan_exists, with a message the app can show", r.status_code == 409 and r.json()["detail"]["code"] == "plan_exists" and r.json()["detail"]["message"], r.text[:140])
+            check("...refused before any paid call, and the stored plan is untouched (still 45 minutes)", len(fake.prompts) == n and stored5() == 45)
+            r = post(5, session_minutes=60, replace=False)
+            check("replace: false is the same refusal", r.status_code == 409 and len(fake.prompts) == n)
+            r = post(5, session_minutes=60, replace=True)
+            check("replace: true replaces it: one AI call, and the stored plan is the new one (60 minutes)", r.status_code == 200 and len(fake.prompts) == n + 1 and stored5() == 60, r.text[:140])
+            kid = await db.fetchval("SELECT id FROM children WHERE teacher_id = $1 AND roll_number = 3", teacher_id)
+            await db.execute("INSERT INTO assessment_evidence (child_id, competency_id, teacher_id, channel, status, evidence_data, session_date) VALUES ($1, 'N2.3.2', $2, 'observed', 'achieved', '{}'::jsonb, $3)",
+                             kid, teacher_id, TODAY + timedelta(days=5))
+            n = len(fake.prompts)
+            r1, r2 = post(5), post(5, replace=True)
+            check("the server does not look at evidence: with a result recorded it is still 409 without replace, and still replaced with it", r1.status_code == 409 and r2.status_code == 200 and len(fake.prompts) == n + 1, (r1.status_code, r2.status_code))
+            r = post(8, replace=True)
+            check("replace: true with no plan that day simply makes one", r.status_code == 200, r.text[:140])
+            r = post(9)
+            check("a day with no plan needs no replace", r.status_code == 200, r.text[:140])
+            r = c.post(f"/api/plan/generate?teacher_id={teacher_id}", json={"competency_id": "L2.7.2", "domain_id": "r1_literacy", "plan_date": str(TODAY + timedelta(days=5))})
+            check("per subject: a maths plan on day 5 does not block a Hindi plan that day", r.status_code != 409, r.status_code)
     finally:
+        await db.execute("DELETE FROM assessment_evidence WHERE teacher_id = $1", teacher_id)
         anthropic.AsyncAnthropic = real_client
         await db.execute("DELETE FROM daily_plans WHERE teacher_id = $1", teacher_id)
         await _scratch.remove_class(db, teacher_id, school)

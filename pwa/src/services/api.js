@@ -146,7 +146,7 @@ export const getCurriculumWeek = (gradeLevel, domainId, weekNumber) =>
 export const getGroups = (teacherId, domainId) =>
   request(`/plan/groups/${teacherId}/${domainId}`);
 
-// options: { groupSkills: {beginner, proficient}, reteachGroups: [...], sessionMinutes: 45 | 60 | 90 }. Omitted: the plan derives each group's skill from competencyId, decides about a re-teach
+// options: { groupSkills: {beginner, proficient}, reteachGroups: [...], sessionMinutes: 45 | 60 | 90, replace: true (the teacher confirmed replacing today's plan) }. Omitted: the plan derives each group's skill from competencyId, decides about a re-teach
 // itself (the old way), and uses the teacher's stored teaching time (90 unless changed).
 export const generatePlan = (teacherId, competencyId, domainId, planDate, options = {}) =>
   request(`/plan/generate?teacher_id=${teacherId}`, {
@@ -156,6 +156,7 @@ export const generatePlan = (teacherId, competencyId, domainId, planDate, option
       ...(options.groupSkills ? { group_skills: options.groupSkills } : {}),
       ...(options.reteachGroups ? { reteach_groups: options.reteachGroups } : {}),
       ...(options.sessionMinutes ? { session_minutes: options.sessionMinutes } : {}),
+      ...(options.replace ? { replace: true } : {}),       // without it the server never replaces an existing plan (HTTP 409 plan_exists)
     }),
   });
 

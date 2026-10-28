@@ -152,12 +152,19 @@ export default function PlanScreen() {
     try {
       // with the panel shown, the teacher's choices go with the request; without it (the suggestions could not be loaded) the plan decides, as before
       const options = buildGenerateOptions({ rows, reteach, groups, ready: !!(rows && ladder) });
-      const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today, { ...options, sessionMinutes });      // the plan is laid out for today's time
+      // replace: only when the teacher said so ("हाँ, बदलें", or "हाँ, बनाएँ" when the check failed); without it the server never replaces an existing plan
+      const replace = (existing.status === 'exists' && unlocked) || (existing.status === 'unknown' && (unknownOk || confirmed === true));
+      const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today, { ...options, sessionMinutes, ...(replace ? { replace: true } : {}) });      // the plan is laid out for today's time
       setCurrentPlan(plan);
       setUnlockHint(false);
       navigate('/yojana');
     } catch (e) {
-      if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
+      if (e.code === 'plan_exists') {    // a plan appeared since this screen opened (another phone, another tab): show it and ask, never a raw error
+        try {
+          const found = await getCachedPlan(teacher.teacher_id, today, selectedDomain);
+          setExisting({ status: 'exists', plan: found }); setUnlocked(false); setUnlockHint(false); setDrawerOpen(false); setDialog('plan');
+        } catch { notify(e.message, 'error'); }
+      } else if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
         const samples = (e.detail && e.detail.sample_skills) || [];
         notify(e.message + (samples.length ? `\n\n${bi('इन कौशलों की नमूना योजना उपलब्ध है', 'Sample plans are available for')}: ${samples.join(', ')}` : ''), 'error');
       } else {

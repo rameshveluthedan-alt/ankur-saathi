@@ -40,7 +40,7 @@ const PLAN = (evidence = ZERO) => ({
   has_evidence: Object.values(evidence).some((n) => n > 0), evidence_by_group: evidence,
 });
 const notFound = () => { const e = new Error('No plan found for this date'); e.status = 404; return e; };
-let cached; const cachedCalls = []; const generateCalls = []; const navigations = []; let current = null;
+let cached; let generateFails = null; const cachedCalls = []; const generateCalls = []; const navigations = []; let current = null;
 globalThis.__navigate = (to) => navigations.push(to);
 globalThis.__auth = { teacher: { teacher_id: 'T1', total_children: 30 }, selectedDomain: 'numeracy', setSelectedDomain() {}, setCurrentPlan: (p) => { current = p; }, get currentPlan() { return current; } };
 globalThis.__api = {
@@ -49,7 +49,7 @@ globalThis.__api = {
   getGroupProposal: async () => ({ has_history: false, groups: {}, previous_date: null }),
   getLadder: async () => LADDER,
   getCachedPlan: async (...a) => { cachedCalls.push(a); return cached(...a); },
-  generatePlan: async (...a) => { generateCalls.push(a); return PLAN(); },
+  generatePlan: async (...a) => { generateCalls.push(a); if (generateFails) { const e = generateFails(); generateFails = null; throw e; } return PLAN(); },
   openAuthedPage: async () => {}, worksheetPath: () => '/w', prepareOfflineCopy: () => {},
 };
 
@@ -111,6 +111,7 @@ check('...the plan that would be replaced is still named, and can still be opene
 await click(generateBtn());
 check('6. Generate then sends exactly ONE plan request, for N2.3.2 at 90 minutes, and goes to the plan', generateCalls.length === 1 && generateCalls[0][1] === 'N2.3.2' && generateCalls[0][4].sessionMinutes === 90 && navigations.at(-1) === '/yojana', JSON.stringify(generateCalls));
 check('...the phone\'s own time choice was not overwritten by unlocking', localStorage.getItem('session_minutes') === null);
+check('...and that request says replace: true (the teacher confirmed): the server replaces a plan only then', generateCalls[0][4].replace === true, JSON.stringify(generateCalls[0][4]));
 
 console.log('\nthe hint can be closed');
 reset(); cached = async () => PLAN();
@@ -133,7 +134,17 @@ await show(Plan);
 check('no plan today (404): the open picker as before, no card, no warning', !q('[data-testid="plan-status"]') && qa('.competency-item').length === 3 && !q('[data-testid="plan-check-failed"]'));
 await click(qa('.competency-item')[1]); await flush();
 await click(generateBtn());
-check('...and Generate makes the plan at once, with no question', !q('[data-testid="replace-dialog"]') && generateCalls.length === 1);
+check('...and Generate makes the plan at once, with no question, and WITHOUT replace (nothing to replace)', !q('[data-testid="replace-dialog"]') && generateCalls.length === 1 && !('replace' in generateCalls[0][4]), JSON.stringify(generateCalls[0] && generateCalls[0][4]));
+reset(); cached = async () => { throw notFound(); };
+await show(Plan);
+cached = async () => PLAN({ beginner: 0, progressor: 2, proficient: 0 });          // meanwhile a plan was made on another phone
+generateFails = () => { const e = new Error('इस दिन की योजना पहले से बनी है।'); e.status = 409; e.code = 'plan_exists'; return e; };
+await click(qa('.competency-item')[1]); await flush();
+await click(generateBtn());
+check('a plan made meanwhile (the server answers 409 plan_exists): the screen loads it, locks, and asks, naming what was recorded; no raw error and no plan replaced',
+  generateCalls.length === 1 && !generateCalls[0][4].replace && !!q('[data-testid="plan-status"]') && !!q('[data-testid="replace-dialog"]') && /▲ प्रगतिशील — 2 बच्चे/.test(q('[data-testid="replace-dialog"]').textContent));
+await click(q('[data-testid="replace-yes"]')); await click(generateBtn());
+check('...and "हाँ, बदलें" then Generate replaces it, saying replace: true', generateCalls.length === 2 && generateCalls[1][4].replace === true);
 reset(); cached = async () => { const e = new Error('Server error'); e.status = 500; throw e; };
 await show(Plan);
 check('the check failed (500): "आज की योजना की जाँच नहीं हो सकी", with the picker open', !!q('[data-testid="plan-check-failed"]') && qa('.competency-item').length === 3);
@@ -141,7 +152,7 @@ await click(qa('.competency-item')[1]); await flush();
 await click(generateBtn());
 check('...Generate asks first (it may replace a plan we could not see), and sends nothing yet', q('[data-testid="replace-dialog"]') && q('[data-testid="replace-dialog"]').dataset.kind === 'unknown' && generateCalls.length === 0);
 await click(q('[data-testid="replace-yes"]'));
-check('..."हाँ, बनाएँ" then makes ONE plan', generateCalls.length === 1);
+check('..."हाँ, बनाएँ" then makes ONE plan, with replace: true (the teacher accepted that it may replace one)', generateCalls.length === 1 && generateCalls[0][4].replace === true);
 reset(); cached = async (t, d, domain) => { if (domain === 'numeracy') return PLAN(); throw notFound(); };
 globalThis.__auth.selectedDomain = 'r1_literacy';
 await show(Plan);
