@@ -194,7 +194,7 @@ export default function PlanScreen() {
       {/* after "हाँ, बदलें": the screen is unlocked; nothing has been replaced yet */}
       {unlockHint && (
         <div data-testid="unlock-hint" style={{ display: 'flex', alignItems: 'flex-start', gap: 8, background: 'var(--green-bg)', borderRadius: 8, padding: '6px 10px', marginBottom: 10, fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
-          <span style={{ flex: 1 }}><Bi hi="✓ अब बदलाव कर सकते हैं। नयी योजना के लिए '📋 दैनिक योजना बनाएँ' दबाएँ।" en="You can now make changes. Press 'Generate Plan' for the new plan." /></span>
+          <span style={{ flex: 1 }}><Bi hi="✓ अब आप बदलाव कर सकते हैं। नई योजना बनाने के लिए '📋 दैनिक योजना बनाएँ' दबाएँ।" en="You can now make changes. Press 'Generate Plan' to make the new plan." /></span>
           <button type="button" data-testid="unlock-hint-close" aria-label="बंद करें" onClick={() => setUnlockHint(false)}
             style={{ background: 'none', border: 'none', fontSize: '1rem', minWidth: 44, minHeight: 44, margin: '-10px -8px', cursor: 'pointer', color: 'inherit' }}>✕</button>
         </div>
@@ -264,7 +264,7 @@ export default function PlanScreen() {
             </div>
             <div style={{ borderTop: '1px solid var(--border)', marginTop: 10, paddingTop: 10 }}>
               <button type="button" className="btn btn-secondary" data-testid="replace-plan" onClick={() => setDialog('plan')} style={{ flexDirection: 'column', gap: 0 }}>
-                <Bi hi="🪄 नयी योजना बनाएँ" en="Make a new plan" />
+                <Bi hi="🪄 नई योजना बनाएँ" en="Make a new plan" />
               </button>
             </div>
           </div>
@@ -274,7 +274,7 @@ export default function PlanScreen() {
       {/* unlocked: the plan that a new one would replace is still there until Generate */}
       {existing.status === 'exists' && unlocked && (
         <div data-testid="plan-current" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 10 }}>
-          <span style={{ flex: 1 }}><Bi hi={`अभी की योजना: ${existing.plan.selected_competency_id} — नयी योजना बनाने पर यह बदल जाएगी`} en="Today's current plan: a new one will replace it" /></span>
+          <span style={{ flex: 1 }}><Bi hi={`अभी की योजना: ${existing.plan.selected_competency_id} — नई योजना बनाने पर यह बदल जाएगी`} en="Today's current plan: a new one will replace it" /></span>
           <button type="button" className="btn btn-secondary btn-small" data-testid="open-plan" onClick={openPlan}><Bi hi="योजना खोलें →" en="Open the plan" inline /></button>
         </div>
       )}

@@ -1,4 +1,4 @@
-// The Plan screen when today's plan already exists (item 12): a status card instead of the picker, the skill and the time locked, "🪄 नयी योजना बनाएँ" asks first,
+// The Plan screen when today's plan already exists (item 12): a status card instead of the picker, the skill and the time locked, "🪄 नई योजना बनाएँ" asks first,
 // "हाँ, बदलें" only UNLOCKS (nothing is generated until Generate), "नहीं, वही रखें" keeps, "योजना खोलें →" opens this plan. A 404 is the open picker as before;
 // a failed check never replaces silently. The REAL Plan and plan screens in a simulated browser with a fake server. That the server counts the evidence is
 // tested in backend/tests/test_plan_routes.py.
@@ -73,12 +73,12 @@ check('1. ...and opening the screen made no plan (no POST to /plan/generate); it
 check('2. the skill and the time cannot be changed: no skill list, no time buttons, no group panel, no Generate bar; both lines say they are locked',
   !q('.competency-item') && !q('[data-testid="session-length"] input') && !q('[data-testid="edit-group-skills"]') && !generateBtn()
   && q('[data-testid="locked-skill"]').getAttribute('aria-disabled') === 'true' && q('[data-testid="locked-time"]').getAttribute('aria-disabled') === 'true');
-check('the button reads "🪄 नयी योजना बनाएँ"', /🪄 नयी योजना बनाएँ/.test(q('[data-testid="replace-plan"]').textContent));
+check('the button reads "🪄 नई योजना बनाएँ"', /🪄 नई योजना बनाएँ/.test(q('[data-testid="replace-plan"]').textContent));
 
 console.log('\n3, 7. the question, and keeping');
 await click(q('[data-testid="replace-plan"]'));
-check('3. "नयी योजना बनाएँ" opens the question, and nothing is generated', !!q('[data-testid="replace-dialog"]') && generateCalls.length === 0);
-check('...no evidence: "आज की योजना पहले से बनी है … बदलना चाहते हैं?" (gender-neutral), "नहीं, वही रखें" has the focus', /आज की योजना पहले से बनी है। नयी योजना बनाने पर पुरानी हट जाएगी। बदलना चाहते हैं\?/.test(q('[data-testid="replace-dialog"]').textContent)
+check('3. "नई योजना बनाएँ" opens the question, and nothing is generated', !!q('[data-testid="replace-dialog"]') && generateCalls.length === 0);
+check('...no evidence: "आज की योजना पहले से बनी है … क्या आप इसे बदलना चाहते हैं?" (gender-neutral), "नहीं, वही रखें" has the focus', /आज की योजना पहले से बनी है। नई योजना बनाने पर पुरानी हट जाएगी। क्या आप इसे बदलना चाहते हैं\?/.test(q('[data-testid="replace-dialog"]').textContent)
   && q('[data-testid="replace-dialog"]').dataset.evidence === 'false' && document.activeElement === q('[data-testid="replace-keep"]'));
 await click(q('[data-testid="replace-keep"]'));
 check('7. "नहीं, वही रखें" closes it: no POST, still locked', !q('[data-testid="replace-dialog"]') && generateCalls.length === 0 && !!q('[data-testid="plan-status"]') && !q('.competency-item'));
@@ -97,7 +97,8 @@ const dlg = () => q('[data-testid="replace-dialog"]').textContent;
 check('4. the question names the groups and their counts: "● शुरुआती — 4 बच्चे · ▲ प्रगतिशील — 6 बच्चे", English "Beginner — 4 … Progressor — 6"',
   /● शुरुआती — 4 बच्चे/.test(dlg()) && /▲ प्रगतिशील — 6 बच्चे/.test(dlg()) && /Beginner — 4/.test(dlg()) && /Progressor — 6/.test(dlg()), dlg());
 check('...a group with nothing recorded is not listed', !/दक्ष|Proficient/.test(q('[data-testid="replace-groups"]').textContent));
-check('...and it says the records stay: "पुराने रिकॉर्ड आपके संग्रह में रहेंगे" (gender-neutral "बना लिया है")', /आपने इस योजना के लिए इन समूहों पर कुछ बच्चों का रिकॉर्ड पहले ही बना लिया है/.test(dlg()) && /पुराने रिकॉर्ड आपके संग्रह में रहेंगे/.test(dlg()));
+check('...and it says the records stay safe: "… दर्ज कर चुके हैं" (gender-neutral), "लेकिन आपके पुराने रिकॉर्ड सुरक्षित रहेंगे", "क्या आप बदलना चाहते हैं?"', /आप इस योजना के लिए इन समूहों पर कुछ बच्चों का रिकॉर्ड पहले ही दर्ज कर चुके हैं:/.test(dlg())
+  && /नई योजना बनाने पर पुरानी हट जाएगी, लेकिन आपके पुराने रिकॉर्ड सुरक्षित रहेंगे।/.test(dlg()) && /क्या आप बदलना चाहते हैं\?/.test(dlg()) && !/प्लान/.test(dlg()));
 
 console.log('\n5-6. "हाँ, बदलें" unlocks; Generate then makes ONE plan');
 await click(q('[data-testid="replace-yes"]'));
@@ -105,8 +106,8 @@ check('5. the question closes and NOTHING is generated', !q('[data-testid="repla
 check('5. the skill list, the time buttons and the group panel are back (interactive), with the plan\'s skill and length already chosen',
   qa('.competency-item').length === 3 && qa('[data-testid="session-length"] input').every((i) => !i.disabled) && qa('[data-testid="session-length"] input').filter((i) => i.checked).map((i) => i.value).join() === '90'
   && !!q('[data-testid="edit-group-skills"]'));
-check('5. the button is the normal one again ("📋 दैनिक योजना बनाएँ → N2.3.2", no "नयी")', !!generateBtn() && /📋 दैनिक योजना बनाएँ/.test(generateBtn().textContent) && /N2\.3\.2/.test(generateBtn().textContent) && !/नयी/.test(generateBtn().textContent));
-check('5. the hint: "✓ अब बदलाव कर सकते हैं। नयी योजना के लिए \'📋 दैनिक योजना बनाएँ\' दबाएँ।"', /✓ अब बदलाव कर सकते हैं। नयी योजना के लिए '📋 दैनिक योजना बनाएँ' दबाएँ।/.test(q('[data-testid="unlock-hint"]').textContent));
+check('5. the button is the normal one again ("📋 दैनिक योजना बनाएँ → N2.3.2", no "नई")', !!generateBtn() && /📋 दैनिक योजना बनाएँ/.test(generateBtn().textContent) && /N2\.3\.2/.test(generateBtn().textContent) && !/नई/.test(generateBtn().textContent));
+check('5. the hint: "✓ अब आप बदलाव कर सकते हैं। नई योजना बनाने के लिए \'📋 दैनिक योजना बनाएँ\' दबाएँ।" (names the real button)', /✓ अब आप बदलाव कर सकते हैं। नई योजना बनाने के लिए '📋 दैनिक योजना बनाएँ' दबाएँ।/.test(q('[data-testid="unlock-hint"]').textContent));
 check('...the plan that would be replaced is still named, and can still be opened', /अभी की योजना: N2\.3\.2/.test(q('[data-testid="plan-current"]').textContent) && !!q('[data-testid="plan-current"] [data-testid="open-plan"]'));
 await click(generateBtn());
 check('6. Generate then sends exactly ONE plan request, for N2.3.2 at 90 minutes, and goes to the plan', generateCalls.length === 1 && generateCalls[0][1] === 'N2.3.2' && generateCalls[0][4].sessionMinutes === 90 && navigations.at(-1) === '/yojana', JSON.stringify(generateCalls));

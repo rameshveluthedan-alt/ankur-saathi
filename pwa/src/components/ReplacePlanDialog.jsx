@@ -24,20 +24,20 @@ export default function ReplacePlanDialog({ kind = 'plan', evidence, onKeep, onR
         data-evidence={groups.length ? 'true' : 'false'} onClick={(e) => e.stopPropagation()}>
         <div id="replace-title" style={{ fontSize: '0.9375rem', lineHeight: 1.5 }}>
           {kind === 'unknown' ? (
-            <Bi hi="आज की योजना की जाँच नहीं हो सकी। अगर योजना पहले से बनी है, तो नयी योजना बनाने पर पुरानी हट जाएगी। आगे बढ़ें?"
+            <Bi hi="आज की योजना की जाँच नहीं हो सकी। अगर योजना पहले से बनी है, तो नई योजना बनाने पर पुरानी हट जाएगी। आगे बढ़ें?"
               en="Could not check for today's plan. If one is already made, a new one will replace it. Continue?" />
           ) : groups.length ? (
             <>
-              <Bi hi="आपने इस योजना के लिए इन समूहों पर कुछ बच्चों का रिकॉर्ड पहले ही बना लिया है:" en="You've already recorded evidence against this plan for some children in these groups:" />
+              <Bi hi="आप इस योजना के लिए इन समूहों पर कुछ बच्चों का रिकॉर्ड पहले ही दर्ज कर चुके हैं:" en="You've already recorded evidence against this plan for some children in these groups:" />
               <div data-testid="replace-groups" style={{ fontWeight: 700, margin: '6px 0' }}>
                 {groups.map(({ g, n, L }, i) => <span key={g}>{i ? ' · ' : ''}<span className={`tier-${g}`} style={{ color: 'var(--tier-ink)' }}>{L.mark} {L.hi} — {n} बच्चे</span></span>)}
                 <span className="en" lang="en">{groups.map(({ n, L }) => `${L.en} — ${n} ${n === 1 ? 'child' : 'children'}`).join(' · ')}</span>
               </div>
-              <Bi hi="नया प्लान बनाने पर पुराना प्लान हट जाएगा। पुराने रिकॉर्ड आपके संग्रह में रहेंगे।" en="If you make a new plan, the old plan will go. The old records stay in your collection." />
-              <div style={{ marginTop: 6 }}><Bi hi="बदलना चाहते हैं?" en="Do you want to replace it?" /></div>
+              <Bi hi="नई योजना बनाने पर पुरानी हट जाएगी, लेकिन आपके पुराने रिकॉर्ड सुरक्षित रहेंगे।" en="If you make a new plan, the old one will go, but your old records stay safe." />
+              <div style={{ marginTop: 6 }}><Bi hi="क्या आप बदलना चाहते हैं?" en="Do you want to replace it?" /></div>
             </>
           ) : (
-            <Bi hi="आज की योजना पहले से बनी है। नयी योजना बनाने पर पुरानी हट जाएगी। बदलना चाहते हैं?" en="A plan is already made for today. Making a new one will replace it. Do you want to replace it?" />
+            <Bi hi="आज की योजना पहले से बनी है। नई योजना बनाने पर पुरानी हट जाएगी। क्या आप इसे बदलना चाहते हैं?" en="A plan is already made for today. Making a new one will replace it. Do you want to replace it?" />
           )}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 12 }}>
