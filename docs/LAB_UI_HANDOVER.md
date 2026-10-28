@@ -116,6 +116,10 @@ The second spec repeats items 1–5 above with some different Hindi wording. **T
 
 **The lab mock for the phone test (lab only).** Until the server sends `signal`, a build made with `VITE_MOCK_SIGNAL=1` fills one in for every teach block that has none, in the same contract (`services/devMockSignal.js`, used by the fetch wrapper in `api.js`): maths plans get three placeholder sums per group with `extra_count: 2`; literacy plans get a writing prompt for the Beginners and no panel for the others. A block that already has a `signal` (the server's, even `shape: null`) is never touched, so it stops mattering once the server work lands. A normal build leaves the mock out entirely (checked: built with and without the setting, the placeholder text is only in the first).
 
+**The time chip (built).** "⏱ 60 मिनट" in the plan screen's title, next to "दैनिक योजना" (`services/planMinutes.js`, shared with the printed plan's "योजना समय").
+- **The server records the plan's length** on every new plan, as `plan.session_minutes` (`plan_service.py`, one line): the time the teacher chose (or her stored time, 90, when none was sent); a recorded sample plan keeps the length it was made for (90 for the six today: `SAMPLE_PLAN_MINUTES`, unless a sample plan records its own). The AI's own `total_minutes` is never read: it is a hint the model wrote, not a fact the system recorded.
+- **A plan made before this** has no `session_minutes`: the chip adds up its blocks' minutes, and within 5 minutes of 45, 60 or 90 shows the preset ("87" shows "90"); further off, the exact sum. The printed plan says "लगभग" in that case.
+
 **The printed plan (built).** One A4 page the teacher carries, at `/plan/print` (`screens/PlanPrint.jsx`), opened by "🖨️ प्रिंट" in the plan screen's title row (on a narrow phone the groups' skill codes move to their own line). It prints the plan already on the phone, so it works offline; the browser's Print or "Save as PDF" does the rest, and "🖨️ प्रिंट करें" on the page calls it.
 - **Content:** teacher code, class, date, main skill; "योजना समय: लगभग N मिनट" (the blocks added up; the exact value once the plan records `session_minutes`); the anchor's title; for each teach block its group, skill and minutes, a one-line re-teach note (rolls and the first mistake), the script (two lines), the signal panel, the first understanding-check question and "बाकी" (the plan's own `other_groups_hi`, one line); the observation reminders, "फ़ोटो: समीक्षा स्क्रीन पर चुने जाएँगे" and, for a reading-speed skill, "पढ़कर सुनाना"; one worksheet line ("● शुरुआती 3 मुख्य + 2 · …"); the footer.
 - **Left out:** I do / We do / You do, the understanding-check method and the other questions, worksheet content, and child names (roll numbers only).
@@ -151,8 +155,8 @@ Then: दैनिक योजना → each teach block shows its panel; Prof
 ## Tests
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
-- **40 backend suites:** all OK (new: `test_plan_service.py`, 11 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
-- **22 front-end suites:** all OK, 418 checks
+- **40 backend suites:** all OK (new: `test_plan_service.py`, 18 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused, the stored plan records the chosen length (not the AI's total), a sample plan records 90; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
+- **23 front-end suites:** all OK, 428 checks
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
@@ -164,6 +168,7 @@ New suites:
 - `plan_signal_panel.test.mjs` (15): the real plan screen with fixture plans: 3 questions in order and equal to `core`, the extras count, curated and uncurated identical, the prompt larger than a question and cut at two lines, no panel (and an unchanged block) for null and later shapes, its place in the block, the skill in the title
 - `plan_familiar_mode.test.mjs` (16): the real Profile and plan screens in a simulated browser: the toggle's label and place, off by default, flipping it changes the plan screen, the folds closed, and the title, re-teach note and panel never folded
 - `plan_print.test.mjs` (21): the printed plan from fixture plans: the three blocks, the same SignalPanel (compact) as the screen, no talking points, no names although the app holds them, the one-line note, the first question only, "बाकी" from the plan, a worst case within 8 lines a block and 36 a page with no text outside an allowance, identical with "छोटी स्क्रीन" on and off
+- `plan_time_chip.test.mjs` (10): the chip reads the recorded length and never the AI's `total_minutes`; an older plan rounds to 45 / 60 / 90 within 5 minutes (both ways), otherwise the exact sum; the printed plan agrees
 - `dev_mock_signal.test.mjs` (9): the lab mock fills only plans, only with the setting, never over the server's own signal
 - `plan_session_length.test.mjs` (13): the real Plan screen in a simulated browser: 90 on first use, a stored 60 preselected, the 44 px targets, and the chosen time in the request
 

@@ -1020,6 +1020,9 @@ async def derive_groups_from_positions(db, teacher_id: str, domain_id: str) -> l
     return result
 
 
+SAMPLE_PLAN_MINUTES = 90        # the recorded sample plans (db/seeds/sample_plans) were made for 90-minute sessions; one that records its own session_minutes keeps it
+
+
 async def generate_dainik_yojana(
     db, 
     teacher_id: str, 
@@ -1397,6 +1400,8 @@ async def generate_dainik_yojana(
     }
     
     plan_json["served_from"] = served_from          # 'ai', or 'sample' when the AI limit was reached: the screen says so
+    # the plan's length, read by the plan screen's time chip: the time the teacher chose (not the AI's own total_minutes); a recorded sample plan keeps the length it was made for (90 for the six today)
+    plan_json["session_minutes"] = ctx.available_minutes if served_from == "ai" else int(plan_json.get("session_minutes") or SAMPLE_PLAN_MINUTES)
     await db.execute("""
         INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
                                  plan_content, explainability, groups_snapshot, 

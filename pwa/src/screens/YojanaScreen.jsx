@@ -14,6 +14,7 @@ import Bi from '../components/Bi';
 import { notify } from '../services/notify';
 import { localToday } from '../services/today';
 import { getFamiliarMode } from '../services/preferences';
+import { planMinutes } from '../services/planMinutes';
 
 // Generated text may contain line breaks (lists) and stray markdown markers.
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
@@ -84,6 +85,7 @@ export default function YojanaScreen() {
   const explainability = currentPlan.explainability || plan.explainability || {};
   // "छोटी स्क्रीन" (Profile): read on every render, so a change on Profile shows the next time this screen is drawn
   const familiar = getFamiliarMode();
+  const length = planMinutes(currentPlan);
   const skillOf = (label) => (groups.find((g) => g.label === label) || {}).target_competency_id;      // the skill a group is taught today, for its block's title
 
   return (
@@ -95,7 +97,15 @@ export default function YojanaScreen() {
         </div>
       )}
       <div className="screen-header plan-title">
-        <h1>📋 <Bi hi="दैनिक योजना" en="Daily Plan" inline /></h1>
+        <h1>📋 <Bi hi="दैनिक योजना" en="Daily Plan" inline />
+          {/* how long this plan is: the time the teacher chose, recorded on the plan (services/planMinutes.js) */}
+          {length && (
+            <span data-testid="time-chip" data-recorded={length.recorded ? 'true' : 'false'}
+              style={{ marginLeft: 8, verticalAlign: 'middle', whiteSpace: 'nowrap', background: 'var(--green-bg)', color: 'var(--green-dark)', border: '1px solid var(--green-light)', borderRadius: 10, padding: '1px 8px', fontSize: '0.75rem', fontWeight: 600 }}>
+              ⏱ {length.minutes} मिनट<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>min</span>
+            </span>
+          )}
+        </h1>
         {/* one printed page for the whole plan (the worksheets, one per group, are printed from their own buttons below) */}
         <button type="button" className="btn btn-secondary btn-small" data-testid="open-print" onClick={() => navigate('/plan/print')} style={{ order: 2 }}>🖨️ प्रिंट</button>
         <div className="plan-header-skills" style={{ textAlign: 'right' }}>

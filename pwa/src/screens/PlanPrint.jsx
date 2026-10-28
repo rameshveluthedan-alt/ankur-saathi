@@ -7,6 +7,7 @@ import { reteachSummary } from '../services/reteachInfo';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import { isFluencySkill } from '../services/pace';
 import { localToday } from '../services/today';
+import { planMinutes } from '../services/planMinutes';
 
 /**
  * The printed plan: ONE A4 page the teacher carries when she teaches without her phone (browser Print or "Save as PDF"). Hindi only, the same for every teacher:
@@ -102,8 +103,7 @@ export default function PlanPrint() {
   const anchorBlock = blocks.find((b) => b && b.type === 'anchor');
   const anchor = plan.anchor || {};
   const anchorTitle = fmt(anchor.title_hi) || fmt(anchor.narration_hi);
-  const recorded = Number(plan.session_minutes || currentPlan.session_minutes);        // once the plan records its own length (server work), the exact value
-  const summed = blocks.reduce((a, b) => a + (Number(b && b.duration_minutes) || 0), 0);
+  const length = planMinutes(currentPlan);        // the recorded length; for an older plan its blocks added up, so "लगभग"
   const reminders = (plan.review_prompts || {}).observation_reminders_hi;
   const obs = (Array.isArray(reminders) ? reminders : [reminders]).map(fmt).filter(Boolean).join(' · ');
   const reading = groups.some((g) => isFluencySkill(g.target_competency_id));
@@ -114,7 +114,7 @@ export default function PlanPrint() {
       {bar}
       <header>
         <Line testid="print-head" className="print-title">{[code, classLine(teacher.enrolled_grades), hiDate(currentPlan.plan_date), currentPlan.selected_competency_id].filter(Boolean).join(' · ')}</Line>
-        <Line testid="print-time">योजना समय: {recorded > 0 ? `${recorded} मिनट` : `लगभग ${summed} मिनट`}</Line>
+        {length && <Line testid="print-time">योजना समय: {length.recorded ? '' : 'लगभग '}{length.minutes} मिनट</Line>}
       </header>
       <hr />
       {anchorTitle && <Line testid="print-anchor">🎯 <b>एंकर गतिविधि:</b> {anchorTitle}{anchorBlock && anchorBlock.duration_minutes ? ` · ${anchorBlock.duration_minutes} मि.` : ''}</Line>}

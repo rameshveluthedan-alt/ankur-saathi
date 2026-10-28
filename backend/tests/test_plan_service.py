@@ -29,7 +29,7 @@ import _scratch
 import anthropic
 from fastapi.testclient import TestClient
 from app.main import app
-from app.services import plan_service
+from app.services import ai_budget, plan_service
 
 TODAY = date.today()
 failures = []
@@ -83,6 +83,30 @@ async def main():
         stated, total, _ = minutes_in(await gen(TODAY + timedelta(days=3)))
         check("no time given: the teacher's stored time, which is 90 unless changed (an older app is unchanged)", stated == 90 and total == 90, (stated, total))
 
+        print("\nthe plan records its length (the plan screen's time chip reads it)")
+        async def stored(day):
+            row = await db.fetchrow("SELECT plan_content FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = 'numeracy'", teacher_id, day)
+            pc = row["plan_content"]
+            return json.loads(pc) if isinstance(pc, str) else pc
+        check("(the AI's own total_minutes in the fixture is 90, so a 45 can only come from the teacher's choice)", SAMPLE["rotation_schedule"]["total_minutes"] == 90)
+        pc = await stored(TODAY)
+        check("45 chosen: the stored plan records session_minutes 45, not the AI's own total_minutes (90)", pc.get("session_minutes") == 45 and pc["rotation_schedule"].get("total_minutes") == 90, pc.get("session_minutes"))
+        check("60 chosen: 60 recorded", (await stored(TODAY + timedelta(days=1))).get("session_minutes") == 60)
+        check("nothing chosen: the time the plan was laid out for (the teacher's stored time, 90) is recorded", (await stored(TODAY + timedelta(days=3))).get("session_minutes") == 90)
+        real_check = ai_budget.check
+        async def cap(*a, **k):
+            raise ai_budget.AICapReached("disabled")
+        ai_budget.check = cap
+        try:
+            n_before = len(fake.prompts)
+            with contextlib.redirect_stdout(io.StringIO()):
+                res = await plan_service.generate_dainik_yojana(db, teacher_id, "N2.3.2", "numeracy", TODAY + timedelta(days=4), session_minutes=45)
+        finally:
+            ai_budget.check = real_check
+        pc = await stored(TODAY + timedelta(days=4))
+        check("the AI limit reached with 45 chosen: the recorded sample plan is served and records the length it was made for, 90 (not the 45 asked for)",
+              res["served_from"] == "sample" and len(fake.prompts) == n_before and pc.get("session_minutes") == 90 and res["plan"]["session_minutes"] == 90, (res["served_from"], pc.get("session_minutes")))
+
         print("\nthe API")
         with TestClient(app) as c:
             def post(day, **extra):
@@ -90,8 +114,11 @@ async def main():
             n = len(fake.prompts)
             r = post(5, session_minutes=45)
             check("POST /plan/generate with session_minutes 45: the plan is made for 45 minutes", r.status_code == 200 and len(fake.prompts) == n + 1 and minutes_in(fake.prompts[-1])[0] == 45, r.text[:140])
+            check("...and the reply carries it in the plan", r.status_code == 200 and r.json()["plan"]["session_minutes"] == 45)
+            r = c.get(f"/api/plan/{teacher_id}/{TODAY + timedelta(days=5)}/numeracy")
+            check("a stored plan opened again (GET /plan/...) carries it too", r.status_code == 200 and r.json()["plan"]["session_minutes"] == 45, r.text[:140])
             r = post(6)
-            check("without session_minutes: 90", r.status_code == 200 and minutes_in(fake.prompts[-1])[0] == 90, r.text[:140])
+            check("without session_minutes: 90", r.status_code == 200 and minutes_in(fake.prompts[-1])[0] == 90 and r.json()["plan"]["session_minutes"] == 90, r.text[:140])
             n = len(fake.prompts)
             for bad in (50, 0, "45 मिनट", 120):
                 r = post(7, session_minutes=bad)
