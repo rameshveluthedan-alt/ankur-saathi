@@ -1442,3 +1442,33 @@ async def generate_dainik_yojana(
         "validation_warnings": validation_warnings,
         "served_from": served_from,
     }
+
+
+async def plan_evidence(db, teacher_id: str, plan_date: date, snapshot: dict) -> dict:
+    """
+    What has already been recorded against a stored plan, for the Plan screen's "replace this plan?" warning: per group, how many of the
+    children in the plan's snapshot (who were in the group when the plan was made, not their group today) have a result on that day on the
+    group's own skill. Every channel counts (observed, reading aloud, photo: a photo result is written as soon as the AI has read the sheet).
+    An older snapshot without roll numbers counts any of the teacher's children with a result on the group's skill: a missing list must never
+    hide evidence. Returns {"has_evidence": bool, "evidence_by_group": {"beginner": n, "progressor": n, "proficient": n}} (zeros included).
+    """
+    groups = {k: v for k, v in (snapshot or {}).items() if k in ("beginner", "progressor", "proficient") and isinstance(v, dict) and v.get("target")}
+    counts = {"beginner": 0, "progressor": 0, "proficient": 0}
+    if groups:
+        rows = await db.fetch("""
+            WITH g AS (
+                SELECT key AS tier, value->>'target' AS skill,
+                       CASE WHEN jsonb_typeof(value->'rolls') = 'array'
+                            THEN ARRAY(SELECT jsonb_array_elements_text(value->'rolls')::int) END AS rolls
+                FROM jsonb_each($3::jsonb)
+            )
+            SELECT g.tier, COUNT(DISTINCT e.child_id) AS n
+            FROM g
+            JOIN assessment_evidence e ON e.teacher_id = $1::uuid AND e.session_date = $2 AND e.competency_id = g.skill
+            JOIN children c ON c.id = e.child_id AND c.teacher_id = $1::uuid
+            WHERE g.rolls IS NULL OR c.roll_number = ANY(g.rolls)
+            GROUP BY g.tier
+        """, teacher_id, plan_date, json.dumps(groups))
+        for r in rows:
+            counts[r["tier"]] = int(r["n"])
+    return {"has_evidence": any(counts.values()), "evidence_by_group": counts}

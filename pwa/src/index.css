@@ -478,3 +478,7 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
 
 /* the plan screen's title row: on a narrow phone the groups' skill codes take their own line, so the print button keeps its place */
 @media (max-width: 400px) { .screen-header.plan-title { flex-wrap: wrap; } .plan-title .plan-header-skills { order: 3; flex-basis: 100%; text-align: left !important; } }
+
+/* ── A dialog over the screen (the Plan screen's "replace today's plan?") ── */
+.dialog-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 100; }
+.dialog { max-width: 420px; width: 100%; margin: 0; }

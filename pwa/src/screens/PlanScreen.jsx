@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../App';
-import { getCompetencies, getGroups, generatePlan, getGroupProposal, getLadder } from '../services/api';
+import { getCompetencies, getGroups, generatePlan, getGroupProposal, getLadder, getCachedPlan } from '../services/api';
 import GroupSkillsPanel from '../components/GroupSkillsPanel';
 import GroupSkillsDrawer from '../components/GroupSkillsDrawer';
 import { initialRows, buildGenerateOptions, summarize, panelStatus } from '../services/groupSkills';
@@ -14,6 +14,8 @@ import { notify } from '../services/notify';
 import { localToday } from '../services/today';
 import SessionLength from '../components/SessionLength';
 import { getSessionMinutes, setSessionMinutes } from '../services/preferences';
+import ReplacePlanDialog from '../components/ReplacePlanDialog';
+import { planMinutes, PRESETS } from '../services/planMinutes';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -60,6 +62,14 @@ export default function PlanScreen() {
   const loadingPanel = panelStatus({ selectedId, rows, failed: panelFailed }) === 'loading';      // a skill was just chosen: its groups are still coming
   const pendingReteach = useRef([]);       // groups to tick once the skill the teacher just chose has loaded ("re-teach instead?")
   const selectSkill = (id, opts) => { pendingReteach.current = (opts && opts.reteach) || []; setSelectedId(id); };
+  // today's plan in this subject, if one is already made: { status: 'checking' | 'none' | 'exists' | 'unknown', plan }. While it exists the screen is LOCKED (a status card,
+  // no picker): making a new plan replaces it, so the teacher is asked first, and "हाँ, बदलें" only unlocks the picker (nothing is generated until she taps Generate).
+  const [existing, setExisting] = useState({ status: 'checking', plan: null });
+  const [unlocked, setUnlocked] = useState(false);
+  const [dialog, setDialog] = useState(null);           // null | 'plan' | 'unknown'
+  const [unlockHint, setUnlockHint] = useState(false);
+  const [unknownOk, setUnknownOk] = useState(false);     // the check failed and the teacher chose to generate anyway
+  const locked = existing.status === 'exists' && !unlocked;
 
   useEffect(() => {
     setLoading(true);
@@ -73,6 +83,26 @@ export default function PlanScreen() {
       setLoading(false);
     }).catch(() => setLoading(false));
   }, [selectedDomain, teacher.teacher_id]);
+
+  // is there already a plan for today in this subject? (a 404 means none; any other failure means we cannot tell, so Generate asks first)
+  useEffect(() => {
+    let cancelled = false;
+    setExisting({ status: 'checking', plan: null }); setUnlocked(false); setDialog(null); setUnlockHint(false); setUnknownOk(false);
+    getCachedPlan(teacher.teacher_id, localToday(), selectedDomain)
+      .then((plan) => { if (!cancelled) setExisting({ status: 'exists', plan }); })
+      .catch((e) => { if (!cancelled) setExisting({ status: e && e.status === 404 ? 'none' : 'unknown', plan: null }); });
+    return () => { cancelled = true; };
+  }, [selectedDomain, teacher.teacher_id]);
+
+  // "हाँ, बदलें": unlock, with the plan's skill (and its length, when it is one of the three) already chosen, so Generate unchanged makes the same skill again
+  const unlock = () => {
+    setDialog(null); setUnlocked(true); setUnlockHint(true); setGradeFilter(null);
+    const m = planMinutes(existing.plan);
+    if (m && PRESETS.includes(m.minutes)) setSessionMinutesState(m.minutes);        // shown, not saved as the phone's choice
+    if (existing.plan && existing.plan.selected_competency_id) selectSkill(existing.plan.selected_competency_id);
+  };
+  // "योजना खोलें →": put THIS plan in place first (the app may hold another subject's), then go to it
+  const openPlan = () => { setCurrentPlan(existing.plan); navigate('/yojana'); };
 
   // what the teacher decided at the last review: it fills in the suggestions (if it cannot be fetched, the panel simply has none)
   useEffect(() => {
@@ -113,15 +143,18 @@ export default function PlanScreen() {
 
   const today = localToday();
 
-  const handleGenerate = async () => {
+  const handleGenerate = async (confirmed) => {         // confirmed === true: the teacher answered the "could not check" question with yes
     if (loadingPanel) return;
     if (!selectedId) return;
+    if (locked) { setDialog('plan'); return; }
+    if (existing.status === 'unknown' && !unknownOk && confirmed !== true) { setDialog('unknown'); return; }       // we could not tell whether a plan exists: never replace one silently
     setGenerating(true);
     try {
       // with the panel shown, the teacher's choices go with the request; without it (the suggestions could not be loaded) the plan decides, as before
       const options = buildGenerateOptions({ rows, reteach, groups, ready: !!(rows && ladder) });
       const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today, { ...options, sessionMinutes });      // the plan is laid out for today's time
       setCurrentPlan(plan);
+      setUnlockHint(false);
       navigate('/yojana');
     } catch (e) {
       if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
@@ -150,6 +183,15 @@ export default function PlanScreen() {
         {/* Profile is the 👤 tab in the bottom bar, so there is no second Profile button here */}
         <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/register')} data-testid="open-register">👥 कक्षा रजिस्टर</button>
       </div>
+
+      {/* after "हाँ, बदलें": the screen is unlocked; nothing has been replaced yet */}
+      {unlockHint && (
+        <div data-testid="unlock-hint" style={{ display: 'flex', alignItems: 'flex-start', gap: 8, background: 'var(--green-bg)', borderRadius: 8, padding: '6px 10px', marginBottom: 10, fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
+          <span style={{ flex: 1 }}><Bi hi="✓ अब बदलाव कर सकते हैं। नयी योजना के लिए '📋 दैनिक योजना बनाएँ' दबाएँ।" en="You can now make changes. Press 'Generate Plan' for the new plan." /></span>
+          <button type="button" data-testid="unlock-hint-close" aria-label="बंद करें" onClick={() => setUnlockHint(false)}
+            style={{ background: 'none', border: 'none', fontSize: '1rem', minWidth: 44, minHeight: 44, margin: '-10px -8px', cursor: 'pointer', color: 'inherit' }}>✕</button>
+        </div>
+      )}
 
       {!teacher.total_children && (
         <div className="card" style={{ borderLeft: '4px solid #C9A227', background: '#FFF8E1' }} data-testid="empty-class">
@@ -184,6 +226,58 @@ export default function PlanScreen() {
         </div>
       )}
 
+      {existing.status === 'checking' && (
+        <div className="loading" data-testid="plan-checking"><div className="spinner" /><span><Bi hi="आज की योजना देखी जा रही है…" en="Checking for today's plan" inline /></span></div>
+      )}
+
+      {/* today's plan is already made: a status card instead of the picker (the plan itself is on दैनिक योजना) */}
+      {locked && (() => {
+        const p = existing.plan || {};
+        const skill = competencies.find((c) => c.id === p.selected_competency_id);
+        const m = planMinutes(p);
+        return (
+          <div className="card" data-testid="plan-status" style={{ padding: 12 }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+              <Bi hi="विषय" en="Subject" inline />: {selectedDomain === 'numeracy' ? <Bi hi="गणित" en="Maths" inline /> : <Bi hi="हिंदी" en="Literacy" inline />}
+            </div>
+            <div data-testid="locked-skill" data-locked="true" aria-disabled="true" style={{ marginTop: 6, fontSize: '0.9375rem' }}>
+              <Bi hi="कौशल" en="Skill" inline />: <b style={{ fontFamily: 'monospace' }}>{p.selected_competency_id}</b> <span aria-label="locked">🔒</span>
+              {skill && skill.name_hi && <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{skill.name_hi}</div>}
+            </div>
+            {m && (
+              <div data-testid="locked-time" data-locked="true" aria-disabled="true" style={{ marginTop: 4, fontSize: '0.9375rem' }}>
+                <Bi hi="समय" en="Time" inline />: <b>{m.minutes} मिनट</b> <span aria-label="locked">🔒</span>
+              </div>
+            )}
+            <div style={{ borderTop: '1px solid var(--border)', marginTop: 10, paddingTop: 10 }}>
+              <div data-testid="plan-ready" style={{ fontWeight: 600, color: 'var(--green-dark)' }}><Bi hi="✓ आज की योजना बन चुकी है" en="Today's plan is ready" /></div>
+              <button type="button" className="btn btn-primary" data-testid="open-plan" onClick={openPlan} style={{ marginTop: 8, flexDirection: 'column', gap: 0 }}>
+                <Bi hi="योजना खोलें →" en="Open the plan" />
+              </button>
+            </div>
+            <div style={{ borderTop: '1px solid var(--border)', marginTop: 10, paddingTop: 10 }}>
+              <button type="button" className="btn btn-secondary" data-testid="replace-plan" onClick={() => setDialog('plan')} style={{ flexDirection: 'column', gap: 0 }}>
+                <Bi hi="🪄 नयी योजना बनाएँ" en="Make a new plan" />
+              </button>
+            </div>
+          </div>
+        );
+      })()}
+
+      {/* unlocked: the plan that a new one would replace is still there until Generate */}
+      {existing.status === 'exists' && unlocked && (
+        <div data-testid="plan-current" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 10 }}>
+          <span style={{ flex: 1 }}><Bi hi={`अभी की योजना: ${existing.plan.selected_competency_id} — नयी योजना बनाने पर यह बदल जाएगी`} en="Today's current plan: a new one will replace it" /></span>
+          <button type="button" className="btn btn-secondary btn-small" data-testid="open-plan" onClick={openPlan}><Bi hi="योजना खोलें →" en="Open the plan" inline /></button>
+        </div>
+      )}
+      {existing.status === 'unknown' && (
+        <div data-testid="plan-check-failed" style={{ fontSize: '0.8125rem', color: '#8A5A00', background: '#FFF8E1', borderRadius: 8, padding: '6px 10px', marginBottom: 10 }}>
+          <Bi hi="आज की योजना की जाँच नहीं हो सकी" en="Could not check for today's plan" />
+        </div>
+      )}
+
+      {existing.status !== 'checking' && !locked && (<>
       {!loading && competencies.length > 0 && (
         // one line with the counts; the explanation and the labels' meaning open on tap (the skill list starts higher up)
         <details className="card fold" style={{ padding: '4px 12px' }} data-testid="coverage-card">
@@ -299,6 +393,13 @@ export default function PlanScreen() {
             )}
           </button>
         </div>
+      )}
+      </>)}
+
+      {dialog && (
+        <ReplacePlanDialog kind={dialog} evidence={existing.plan}
+          onKeep={() => setDialog(null)}
+          onReplace={() => { if (dialog === 'unknown') { setDialog(null); setUnknownOk(true); handleGenerate(true); } else unlock(); }} />
       )}
     </div>
   );

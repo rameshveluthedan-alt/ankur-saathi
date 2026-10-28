@@ -136,6 +136,28 @@ The second spec repeats items 1–5 above with some different Hindi wording. **T
 - The prompt: few-shot examples per length (45 / 60 / 90) and per shape (maths, writing), with the Hindi of the six reviewed.
 - **Already in the lab, to build on rather than redo:** `session_minutes` accepted on `/plan/generate` (`schemas.py`, `routes.py`), passed to the prompt as the teaching time and recorded on the stored plan (`plan_service.py`: `SAMPLE_PLAN_MINUTES` and the line after `plan_json["served_from"]`), and `backend/tests/test_plan_service.py`.
 
+## Item 12: today's plan is not replaced by accident
+
+Before, the Plan screen always invited a Generate: a plan already made for today was replaced silently (and another AI call spent), leaving any results recorded against it without their plan.
+
+**Now, when the Plan screen opens it asks the server for today's plan in the active subject** (`GET /plan/{teacher}/{date}/{subject}`, the call the plan screen already used):
+- **No plan (404):** the open picker and Generate, as before.
+- **A plan exists:** a status card instead of the picker: the subject, "कौशल: N2.3.2 🔒", "समय: 90 मिनट 🔒", "✓ आज की योजना बन चुकी है", "योजना खोलें →" and "🪄 नयी योजना बनाएँ". No skill list, no time buttons, no group panel, and none of the plan itself (that stays on दैनिक योजना).
+- **"🪄 नयी योजना बनाएँ" asks first** (`components/ReplacePlanDialog.jsx`). With nothing recorded: "आज की योजना पहले से बनी है। नयी योजना बनाने पर पुरानी हट जाएगी। बदलना चाहते हैं?". With results recorded it names them: "आपने इस योजना के लिए इन समूहों पर कुछ बच्चों का रिकॉर्ड पहले ही बना लिया है: ● शुरुआती — 4 बच्चे · ▲ प्रगतिशील — 6 बच्चे … पुराने रिकॉर्ड आपके संग्रह में रहेंगे।" (a group with 0 is not listed). "नहीं, वही रखें" is the default: it has the focus, and Escape or a tap outside also keeps.
+- **"हाँ, बदलें" only unlocks; it does not generate.** The picker, the time and the group panel come back with the plan's skill and length already chosen (the length is not saved as the phone's own choice), the button is the usual "📋 दैनिक योजना बनाएँ", and a hint says "✓ अब बदलाव कर सकते हैं। नयी योजना के लिए '📋 दैनिक योजना बनाएँ' दबाएँ।" (✕ closes it). The old plan stays, named in a line with its own "योजना खोलें →", until the teacher taps Generate: one AI call for a different skill, and nothing lost if she changes her mind.
+- **"योजना खोलें →"** puts this plan in place first, then goes to दैनिक योजना (the app may hold another subject's plan).
+- **The check failed** (not a 404): "आज की योजना की जाँच नहीं हो सकी", the picker open, and Generate asks "… अगर योजना पहले से बनी है, तो नयी योजना बनाने पर पुरानी हट जाएगी। आगे बढ़ें?" first. A failed check never replaces silently.
+- **Per subject:** a maths plan locks only the maths tab.
+- **Wording:** gender-neutral throughout, as in items 1–5.
+
+**Server (no new route, no database change):** the GET reply gains `has_evidence` and `evidence_by_group` (`{beginner, progressor, proficient}`, zeros included), from `plan_service.plan_evidence`: per group, the children in the plan's **snapshot** (their group when the plan was made), with a result **that day**, on **the group's own skill**, recorded by **this teacher**, any channel (observed, reading aloud, photo). Each evidence row is joined to its own child. An older snapshot without roll numbers counts any of the teacher's children on the group's skill, so a missing list never hides evidence.
+
+**Client only, this round:** the warning protects this app on this phone. An older app version or a second phone signed in as the same teacher can still replace the plan without asking. A server-side guard (refuse to replace unless the request says `replace: true`) is under consideration.
+
+**Known issues** are now listed in `docs/KNOWN_ISSUES.md`: the N0.1.1 worksheet (colour only, and the answer in the question), and photo results counting as evidence as soon as the AI has read the sheet.
+
+**Hindi for review** (Vaishnavi's note, section 7): the strings above, plus "आज की योजना देखी जा रही है…", "अभी की योजना: N2.3.2 — नयी योजना बनाने पर यह बदल जाएगी", "नहीं, रुकें" / "हाँ, बनाएँ" (the failed-check question) and the three questions in the spec (the button's wording, "आपके संग्रह में रहेंगे", the unlock hint).
+
 ## How to see it
 
 ```powershell
@@ -173,8 +195,8 @@ Then: दैनिक योजना → each teach block shows its panel; Prof
 ## Tests
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
-- **40 backend suites:** all OK (new: `test_plan_service.py`, 18 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused, the stored plan records the chosen length (not the AI's total), a sample plan records 90; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
-- **23 front-end suites:** all OK, 428 checks
+- **41 backend suites:** all OK (new: `test_plan_routes.py`, 9 checks: nothing recorded, one observation, the same child twice, results that must not count (yesterday, another skill, another teacher, a child outside the snapshot), a photo result, an older snapshot, and no plan; `test_plan_service.py`, 18 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused, the stored plan records the chosen length (not the AI's total), a sample plan records 90; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
+- **24 front-end suites:** all OK, 457 checks
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
@@ -187,11 +209,12 @@ New suites:
 - `plan_familiar_mode.test.mjs` (16): the real Profile and plan screens in a simulated browser: the toggle's label and place, off by default, flipping it changes the plan screen, the folds closed, and the title, re-teach note and panel never folded
 - `plan_print.test.mjs` (21): the printed plan from fixture plans: the three blocks, the same SignalPanel (compact) as the screen, no talking points, no names although the app holds them, the one-line note, the first question only, "बाकी" from the plan, a worst case within 8 lines a block and 36 a page with no text outside an allowance, identical with "छोटी स्क्रीन" on and off
 - `plan_time_chip.test.mjs` (10): the chip reads the recorded length and never the AI's `total_minutes`; an older plan rounds to 45 / 60 / 90 within 5 minutes (both ways), otherwise the exact sum; the printed plan agrees
+- `plan_load_existing.test.mjs` (29): the real Plan and plan screens in a simulated browser: the status card and the locks, no plan made on opening, the question and its default, the groups and counts, "हाँ, बदलें" unlocking without generating and then one plan, keeping (button, Escape, a tap outside), opening this plan, a 404, a failed check, and each subject on its own
 - `dev_mock_signal.test.mjs` (9): the lab mock fills only plans, only with the setting, never over the server's own signal
 - `plan_session_length.test.mjs` (13): the real Plan screen in a simulated browser: 90 on first use, a stored 60 preselected, the 44 px targets, and the chosen time in the request
 
 Updated to the new wording or format:
-- `plan_screen.dom`: the Generate request now also carries today's time.
+- `plan_screen.dom`: the Generate request now also carries today's time; it and `plan_session_length` answer "no plan today" for the new check.
 - `consent.dom`, `login.dom`, `group_skills`, `reteach_note`, `no_audio`. These now check that both the Hindi and the English are present, instead of requiring "Hindi (English)" in brackets.
 - `login.dom` also checks the new login layout: the card order, the five test-teacher chips and their tap targets.
 - `demo_accounts` now reads the guide's range row ("MPT102 to MPT106") and checks each of those codes is on the login screen with its password.

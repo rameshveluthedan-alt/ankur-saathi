@@ -226,6 +226,8 @@ async def get_cached_plan(teacher_id: str, plan_date: date, domain_id: str):
             "explainability": plan.get('explainability', {}),
             "generation_time_ms": row['generation_time_ms'],
             "served_from": plan.get('served_from', 'ai'),
+            # what has already been recorded against this plan: the Plan screen warns before it is replaced
+            **(await plan_service.plan_evidence(db, teacher_id, plan_date, snapshot)),
         }
 
 
