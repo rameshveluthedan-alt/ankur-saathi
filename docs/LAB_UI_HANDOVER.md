@@ -88,6 +88,21 @@ For both Review blocks, a failed save shows its error in place and no block.
 
 **Also:** the advance icon is **⬆** everywhere, including the Review buttons, because ▲ is the Progressor shape.
 
+## Follow-up spec: session length, 3 + 2 worksheet, Familiar mode
+
+The second spec repeats items 1–5 above with some different Hindi wording. **The built wording was kept** (it is with the expert). Its new items:
+
+**Item 6, today's time (built).**
+- On the Plan screen, just above the skill list: "आज का समय" with three big radio buttons (45 / 60 / 90 मिनट), each a 44 px tap target, and the grey hint "कम समय हो तो कम गतिविधियाँ और छोटी वर्कशीट". The chosen one fills with the brand green.
+- The last choice stays on the phone (`localStorage` `session_minutes`, in `services/preferences.js`) and is preselected next time; 90 on first use.
+- It is sent only with each plan request: `POST /plan/generate` takes `session_minutes` (45, 60 or 90; anything else is HTTP 422 before any paid call).
+- On the server it becomes the plan's teaching time (`available_minutes`), which the prompt already used: the request says "Available teaching time: 45 minutes" and PART C splits 45 minutes into the blocks. Without the field, the teacher's stored time is used, which is 90 unless changed, so an older app is unchanged.
+- **Not done here (prompt side):** the few-shot examples per length, and the worksheet and review shape per length (3 + 1 / 3 + 2 / 3 + 3). Two things to know for that work:
+  - Today's worksheet rules require 5 (Beginners) or 6 (Progressors) problems before the extras, with the mistake-finding problems among them. The plan checks in `plan_service.py` enforce this, and the photo analysis reads it. A 3 + N shape needs those changed too.
+  - When the AI limit is reached, the recorded sample plan is served. It was made for 90 minutes, whatever time was chosen.
+
+**Items 7 and 8 (waiting).** The spec places them on a per-group layout (activity sentence, worked example, review checklist) that the plan screen (`YojanaScreen.jsx`) doesn't have: it is an anchor card, a timeline of teach blocks, and worksheet buttons. The worksheet is a printable page, not a PDF. The mapping is being clarified.
+
 ## How to see it
 
 ```powershell
@@ -108,8 +123,8 @@ Check at phone width (F12, then Ctrl+Shift+M, 360 px).
 ## Tests
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
-- **39 backend suites:** all OK (new: `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
-- **17 front-end suites:** all OK, 344 checks
+- **40 backend suites:** all OK (new: `test_plan_service.py`, 11 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
+- **18 front-end suites:** all OK, 357 checks
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
@@ -118,8 +133,10 @@ New suites:
 - `today.test.mjs` (5)
 - `progress_cards.test.mjs` (21)
 - `review_confirmation.test.mjs` (21)
+- `plan_session_length.test.mjs` (13): the real Plan screen in a simulated browser: 90 on first use, a stored 60 preselected, the 44 px targets, and the chosen time in the request
 
 Updated to the new wording or format:
+- `plan_screen.dom`: the Generate request now also carries today's time.
 - `consent.dom`, `login.dom`, `group_skills`, `reteach_note`, `no_audio`. These now check that both the Hindi and the English are present, instead of requiring "Hindi (English)" in brackets.
 - `login.dom` also checks the new login layout: the card order, the five test-teacher chips and their tap targets.
 - `demo_accounts` now reads the guide's range row ("MPT102 to MPT106") and checks each of those codes is on the login screen with its password.

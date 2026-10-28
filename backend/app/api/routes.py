@@ -160,7 +160,8 @@ async def generate_plan(req: GeneratePlanRequest, teacher_id: str):
     async with get_db() as db:
         try:
             result = await plan_service.generate_dainik_yojana(
-                db, teacher_id, req.competency_id, req.domain_id, req.plan_date, group_skills=req.group_skills, reteach_groups=req.reteach_groups
+                db, teacher_id, req.competency_id, req.domain_id, req.plan_date, group_skills=req.group_skills, reteach_groups=req.reteach_groups,
+                session_minutes=req.session_minutes,
             )
             return result
         except group_skills.GroupSkillError as e:

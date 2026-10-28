@@ -12,6 +12,8 @@ import Bi from '../components/Bi';
 import { bi } from '../services/language';
 import { notify } from '../services/notify';
 import { localToday } from '../services/today';
+import SessionLength from '../components/SessionLength';
+import { getSessionMinutes, setSessionMinutes } from '../services/preferences';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
 const GRADE_LABELS_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -46,6 +48,8 @@ export default function PlanScreen() {
   const online = useOnline();            // Generate needs the internet: it is off, with a reason, when there is none
   const [elapsed, setElapsed] = useState(0);
   const [gradeFilter, setGradeFilter] = useState(null);
+  const [sessionMinutes, setSessionMinutesState] = useState(getSessionMinutes);      // today's time: the last choice on this device, 90 on first use
+  const chooseMinutes = (m) => { setSessionMinutes(m); setSessionMinutesState(m); };
   // each group's skill for today, and the re-teach choice (see services/groupSkills.js)
   const [proposal, setProposal] = useState(null);
   const [ladder, setLadder] = useState(null);
@@ -116,7 +120,7 @@ export default function PlanScreen() {
     try {
       // with the panel shown, the teacher's choices go with the request; without it (the suggestions could not be loaded) the plan decides, as before
       const options = buildGenerateOptions({ rows, reteach, groups, ready: !!(rows && ladder) });
-      const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today, options);
+      const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today, { ...options, sessionMinutes });      // the plan is laid out for today's time
       setCurrentPlan(plan);
       navigate('/yojana');
     } catch (e) {
@@ -208,6 +212,9 @@ export default function PlanScreen() {
           </details>
         </details>
       )}
+
+      {/* how long the teacher has today: just above the skill list, so it is set before a skill is chosen */}
+      <SessionLength value={sessionMinutes} onChange={chooseMinutes} disabled={generating} />
 
       <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
         <button style={{ minHeight: 40, minWidth: 48, padding: '4px 12px', fontSize: '0.8125rem', borderRadius: 6, border: '1px solid var(--border)', background: !gradeFilter ? 'var(--green-dark)' : 'var(--surface)', color: !gradeFilter ? 'white' : 'var(--text)', cursor: 'pointer', fontFamily: 'inherit' }}

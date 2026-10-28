@@ -449,3 +449,6 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
 /* ── Review: what a save just recorded (above the list / the form) ── */
 .saved-block { border-left: 4px solid var(--tier); background: var(--tier-bg); border-radius: 0 8px 8px 0; padding: 8px 10px; margin: 6px 0 10px; font-size: 0.8125rem; }
 .many-errors { color: #8A5A00; font-weight: 700; }   /* reading aloud: a quarter or more of the correct words were errors */
+
+/* ── Plan: today's time (the radio itself is hidden; the whole label is the 44 px target, and keyboard focus still shows) ── */
+.session-choice:focus-within { outline: 2px solid var(--green-mid); outline-offset: 2px; }

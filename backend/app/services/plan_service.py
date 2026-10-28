@@ -1028,6 +1028,7 @@ async def generate_dainik_yojana(
     plan_date: date,
     group_skills: Optional[dict] = None,
     reteach_groups: Optional[list] = None,
+    session_minutes: Optional[int] = None,
 ) -> dict:
     """
     Full Dainik Yojana generation pipeline.
@@ -1035,6 +1036,8 @@ async def generate_dainik_yojana(
     Without it each group's skill is derived from competency_id, as before.
     reteach_groups: the groups the TEACHER chose to re-teach (an empty list: move on with every group). Their main teach block is a focused re-teach and there is no separate re-teach block.
     Omitted (None): the old way, a separate 5-minute block when yesterday's photos found mistakes.
+    session_minutes: how long the teacher has today (45, 60 or 90, from the Plan screen's time picker). It is the plan's teaching time, so the rotation is laid out
+    for it and the prompt says it. None: the teacher's stored teaching time (90 unless changed), as before.
     Returns the complete plan + metadata.
     """
     settings = get_settings()
@@ -1158,7 +1161,7 @@ async def generate_dainik_yojana(
         school_code=teacher['school_code'] if teacher else 'DEMO',
         enrolled_grades=teacher['enrolled_grades'] if teacher else ['grade_1', 'grade_2', 'grade_3'],
         total_children=total_children or 30,
-        available_minutes=teacher['available_minutes'] if teacher else settings.default_teaching_minutes,
+        available_minutes=session_minutes or (teacher['available_minutes'] if teacher else settings.default_teaching_minutes),
         has_printer=teacher['has_printer'] if teacher else False,
         plan_date=str(plan_date),
         week_number=week_info['week_number'] if week_info else week_number,

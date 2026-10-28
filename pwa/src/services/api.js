@@ -138,7 +138,8 @@ export const getCurriculumWeek = (gradeLevel, domainId, weekNumber) =>
 export const getGroups = (teacherId, domainId) =>
   request(`/plan/groups/${teacherId}/${domainId}`);
 
-// options: { groupSkills: {beginner, proficient}, reteachGroups: [...] }. Omitted: the plan derives each group's skill from competencyId, and decides about a re-teach itself (the old way).
+// options: { groupSkills: {beginner, proficient}, reteachGroups: [...], sessionMinutes: 45 | 60 | 90 }. Omitted: the plan derives each group's skill from competencyId, decides about a re-teach
+// itself (the old way), and uses the teacher's stored teaching time (90 unless changed).
 export const generatePlan = (teacherId, competencyId, domainId, planDate, options = {}) =>
   request(`/plan/generate?teacher_id=${teacherId}`, {
     method: 'POST',
@@ -146,6 +147,7 @@ export const generatePlan = (teacherId, competencyId, domainId, planDate, option
       competency_id: competencyId, domain_id: domainId, plan_date: planDate,
       ...(options.groupSkills ? { group_skills: options.groupSkills } : {}),
       ...(options.reteachGroups ? { reteach_groups: options.reteachGroups } : {}),
+      ...(options.sessionMinutes ? { session_minutes: options.sessionMinutes } : {}),
     }),
   });
 

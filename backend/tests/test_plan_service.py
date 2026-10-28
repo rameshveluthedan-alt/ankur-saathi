@@ -1,0 +1,113 @@
+"""
+Today's time (the Plan screen's 45 / 60 / 90-minute picker): the plan is laid out for the minutes the teacher chose. They reach the prompt builder as the plan's
+teaching time, so the request to the AI says them and PART C splits them into blocks. Without the field the teacher's stored time is used (90 unless changed),
+so an older app is unchanged. What the AI then makes of a shorter session (fewer activities, a shorter worksheet) is the prompt's work, not tested here.
+The AI is a fake: no paid call.
+
+    cd backend && AUTH_MODE=off python tests/test_plan_service.py --env-file .env
+"""
+import sys as _sys
+for _stream in (_sys.stdout, _sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+
+import asyncio
+import contextlib
+import copy
+import io
+import json
+import os
+import re
+import sys
+from datetime import date, timedelta
+from types import SimpleNamespace
+
+os.environ.setdefault("AUTH_MODE", "off")
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, "..", "..", "prompts"))
+import _scratch
+import anthropic
+from fastapi.testclient import TestClient
+from app.main import app
+from app.services import plan_service
+
+TODAY = date.today()
+failures = []
+SAMPLE = json.load(open(os.path.join(HERE, "..", "..", "db", "seeds", "sample_plans", "N2.3.2.json"), encoding="utf-8"))
+
+
+def check(label, ok, extra=""):
+    print(f"  {'OK ' if ok else 'FAIL'} {label}{('  ' + str(extra)) if (extra and not ok) else ''}")
+    if not ok:
+        failures.append(label)
+
+
+class FakeMessages:
+    def __init__(self):
+        self.prompts = []
+
+    async def create(self, **kw):
+        self.prompts.append(kw["messages"][0]["content"])
+        return SimpleNamespace(content=[SimpleNamespace(type="text", text=json.dumps(copy.deepcopy(SAMPLE), ensure_ascii=False))], stop_reason="end_turn",
+                               usage=SimpleNamespace(input_tokens=6000, output_tokens=9000))
+
+
+def minutes_in(prompt):
+    """What the request to the AI says about the session: the stated teaching time, PART C's total, and the minutes of PART C's blocks added up."""
+    stated = re.search(r"\*\*Available teaching time:\*\* (\d+) minutes", prompt)
+    part_c = re.search(r"PART C: ROTATION SCHEDULE \((\d+) min total\)", prompt)
+    section = prompt[part_c.start():] if part_c else ""
+    blocks = [int(m) for m in re.findall(r"^- [^\n]*?\((\d+) min\)", section, re.M)]
+    return (int(stated.group(1)) if stated else None), (int(part_c.group(1)) if part_c else None), blocks
+
+
+async def main():
+    db = await _scratch.connect()
+    levels = {1: "beginner", 2: "beginner", 3: "progressor", 4: "progressor", 5: "progressor", 6: "proficient", 7: "proficient"}
+    teacher_id, school = await _scratch.make_class(db, {r: (lv, lv) for r, lv in levels.items()}, grade="grade_2")
+    real_client, fake = anthropic.AsyncAnthropic, FakeMessages()
+    anthropic.AsyncAnthropic = lambda **kw: SimpleNamespace(messages=fake)
+    try:
+        async def gen(day, **kw):
+            with contextlib.redirect_stdout(io.StringIO()):
+                await plan_service.generate_dainik_yojana(db, teacher_id, "N2.3.2", "numeracy", day, **kw)
+            return fake.prompts[-1]
+
+        print("the prompt builder gets today's time")
+        seen = {}
+        for i, m in enumerate((45, 60, 90)):
+            seen[m] = minutes_in(await gen(TODAY + timedelta(days=i), session_minutes=m))
+            stated, total, _ = seen[m]
+            check(f"{m} minutes chosen: the request to the AI says {m} minutes of teaching time, and PART C lays out {m} minutes", stated == m and total == m, seen[m][:2])
+        check("the three lengths give three different layouts (the blocks get shorter, not just a label)", len({tuple(seen[m][2]) for m in seen}) == 3 and sum(seen[45][2]) < sum(seen[60][2]) < sum(seen[90][2]), {m: seen[m][2] for m in seen})
+        stated, total, _ = minutes_in(await gen(TODAY + timedelta(days=3)))
+        check("no time given: the teacher's stored time, which is 90 unless changed (an older app is unchanged)", stated == 90 and total == 90, (stated, total))
+
+        print("\nthe API")
+        with TestClient(app) as c:
+            def post(day, **extra):
+                return c.post(f"/api/plan/generate?teacher_id={teacher_id}", json={"competency_id": "N2.3.2", "domain_id": "numeracy", "plan_date": str(TODAY + timedelta(days=day)), **extra})
+            n = len(fake.prompts)
+            r = post(5, session_minutes=45)
+            check("POST /plan/generate with session_minutes 45: the plan is made for 45 minutes", r.status_code == 200 and len(fake.prompts) == n + 1 and minutes_in(fake.prompts[-1])[0] == 45, r.text[:140])
+            r = post(6)
+            check("without session_minutes: 90", r.status_code == 200 and minutes_in(fake.prompts[-1])[0] == 90, r.text[:140])
+            n = len(fake.prompts)
+            for bad in (50, 0, "45 मिनट", 120):
+                r = post(7, session_minutes=bad)
+                check(f"a time the app does not offer ({bad!r}) is refused (HTTP 422), before any paid call", r.status_code == 422 and len(fake.prompts) == n, r.status_code)
+    finally:
+        anthropic.AsyncAnthropic = real_client
+        await db.execute("DELETE FROM daily_plans WHERE teacher_id = $1", teacher_id)
+        await _scratch.remove_class(db, teacher_id, school)
+        await db.close()
+    if failures:
+        print(f"\nFAILED ({len(failures)})")
+        for f in failures:
+            print("  -", f)
+        sys.exit(1)
+    print("\nOK: the plan is laid out for the time the teacher chose (45, 60 or 90 minutes), and for 90 when none is given")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

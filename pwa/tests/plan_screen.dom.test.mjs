@@ -72,7 +72,7 @@ await release('N1.1.1', LADDER['N1.1.1']);
 check('the new skill\'s groups arrive: Beginners N0.1.2 (the hard prerequisite), Progressors and Proficients N1.1.1', /शु N0\.1\.2 · प्र N1\.1\.1 · द N1\.1\.1/.test(q('[data-testid="edit-group-skills"]').textContent), q('[data-testid="edit-group-skills"]').textContent);
 await click(generateBtn());
 await flush();
-check('Generate sends N1.1.1 with NOTHING left over from the first skill (no group skills, no re-teach)', generateCalls.length === 1 && generateCalls[0][1] === 'N1.1.1' && JSON.stringify(generateCalls[0][4]) === '{"reteachGroups":[]}', JSON.stringify(generateCalls[0]));
+check('Generate sends N1.1.1 with NOTHING left over from the first skill (no group skills, no re-teach; today\'s time is not a group choice)', generateCalls.length === 1 && generateCalls[0][1] === 'N1.1.1' && JSON.stringify(generateCalls[0][4]) === '{"reteachGroups":[],"sessionMinutes":90}', JSON.stringify(generateCalls[0]));
 
 console.log('answers arriving out of order');
 await click(card('N2.3.2')); await click(card('N1.1.1'));
@@ -104,7 +104,7 @@ await act(async () => { pending['N2.3.2'].reject(new Error('offline')); await ne
 check('the fetch fails: no group summary, but Generate is NOT stuck: it is enabled and makes the plan the old way (the plan decides)', !q('[data-testid="edit-group-skills"]') && !generateBtn().disabled && /→ N2\.3\.2/.test(generateBtn().textContent), generateBtn().textContent);
 await click(generateBtn()); await flush();
 const lastCall = generateCalls[generateCalls.length - 1];
-check('...and it sends no group choices at all', generateCalls.length === 3 && lastCall[1] === 'N2.3.2' && JSON.stringify(lastCall[4]) === '{}', JSON.stringify(lastCall));
+check('...and it sends no group choices at all (only today\'s time, which does not depend on the groups)', generateCalls.length === 3 && lastCall[1] === 'N2.3.2' && JSON.stringify(lastCall[4]) === '{"sessionMinutes":90}', JSON.stringify(lastCall));
 console.log('the re-teach box is the decision, and the skill follows it (on the REAL screen, with the seeded demo\'s suggestions)');
 await act(async () => { root.unmount(); });
 const ZERO = { assessed: 0, with_mistakes: 0, needed: 0, very_small: false, recommend: false, rolls: [], mistakes: [] };
@@ -136,7 +136,7 @@ await click(q('[data-testid="edit-group-skills"]'));
 check('closed again, the summary line shows the re-teach for the Beginners and the Progressors', /शु N2\.3\.1🔄 · प्र N2\.3\.2🔄 · द N3\.3\.1/.test(q('[data-testid="edit-group-skills"]').textContent), q('[data-testid="edit-group-skills"]').textContent);
 await click(generateBtn()); await flush();
 const lastGen = generateCalls[generateCalls.length - 1];
-check('Generate sends both groups for re-teach and NO group skill (N2.3.1 is what the plan derives for the Beginners)', JSON.stringify(lastGen[4]) === '{"reteachGroups":["beginner","progressor"]}', JSON.stringify(lastGen[4]));
+check('Generate sends both groups for re-teach and NO group skill (N2.3.1 is what the plan derives for the Beginners), with today\'s time (90 here: nothing chosen on this device)', JSON.stringify(lastGen[4]) === '{"reteachGroups":["beginner","progressor"],"sessionMinutes":90}', JSON.stringify(lastGen[4]));
 
 console.log('no network (found on the first cloud test: Generate showed the browser\'s "Failed to fetch" and nothing said why)');
 await click(card('N2.3.2')); await release('N2.3.2', LADDER['N2.3.2']);
