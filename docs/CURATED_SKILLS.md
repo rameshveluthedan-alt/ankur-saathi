@@ -1,19 +1,19 @@
 # Curated question signals: the current list
 
-**What this is.** The product's worksheet generator and the YojanaScreen's signal panel produce content per skill (see `docs/ROADMAP.md`, section 8). For some skills the content is **chosen for a specific signal** — the three maths questions each provoke a known mistake pattern, the writing prompt elicits a known difficulty, the decoding word list spans the pattern. For the rest the AI picks reasonable content at the right level, but not for a specific mistake.
+**What this is.** The product's worksheet generator and the YojanaScreen's signal panel produce content per skill (see `docs/ROADMAP.md`, section 9). For some skills the content is **chosen for a specific signal** — the three maths questions each provoke a known mistake pattern, the writing prompt elicits a known difficulty, the decoding word list spans the pattern. For the rest the AI picks reasonable content at the right level, but not for a specific mistake.
 
-This document lists which skills have curated question signals today.
+This document is the current list.
 
 ## Why this matters
 
 - On a **curated** skill, the Review screen's photo analysis identifies the specific misconception by roll (e.g. "roll 7 missed regrouping into the tens place"), and the Progress screen's re-teach suggestion names the pattern.
 - On an **uncurated** skill, the screens show scores and counts, but the mistake pattern will often be "unclear" because the questions were not chosen to discriminate.
 
-The server returns a hidden `signal_curated: true | false` field on each worksheet. **The UI does not surface this to the teacher**: showing a "random" grey note on 90-plus skills would overstate the limitation (the lesson, activity, groups and yesterday-reading are all fine for uncurated skills too). The admission lives here instead.
+The server will return a hidden `signal_curated: true | false` field on each worksheet (part of item 7's server work, planned for Wednesday). **The UI does not surface this to the teacher**: showing a "random" grey note on 90-plus skills would overstate the limitation (the lesson, activity, groups and yesterday-reading are all fine for uncurated skills too). The admission lives here instead.
+
+**Note on how this list is maintained.** Today, the list is this document — there is no database column tracking it. A future expansion can add `signal_curated_at` to the competencies table so the review date per skill is recorded. For now, this document is the source of truth. No server code reads it yet: the server will read this list to set `signal_curated`, as part of Wednesday's server work. (The sample plans in `db/seeds/sample_plans/` are not the same list: N3.3.1 is curated but has no sample plan.)
 
 ## Curated skills (today)
-
-Approximate; the live list is in the competencies table (`competencies.signal_curated_at`).
 
 | Skill | Shape | What the curated content catches |
 |---|---|---|
@@ -29,7 +29,9 @@ Approximate; the live list is in the competencies table (`competencies.signal_cu
 
 ## After Wednesday's curation hour (28 Oct)
 
-Vaishnavi and Ramesh will add 5 more skills in a one-hour session:
+Vaishnavi and Ramesh will add 4 new skills and extend 1 existing one in a one-hour session.
+
+**New curations (4 skills):**
 
 | Skill | Shape | Status |
 |---|---|---|
@@ -37,10 +39,15 @@ Vaishnavi and Ramesh will add 5 more skills in a one-hour session:
 | N2.1.4 — place value with 2-digit numbers | maths worksheet | planned |
 | N3.3.5 — equal sharing / division | maths worksheet | planned |
 | L2.7.1 — writes a sentence from a prompt | writing | planned |
-| L2.7.2 — writes 3-5 connected sentences | writing (already curated; expanded for 45/60/90 minute lengths) | planned |
 
-**Count after Wednesday: 12 skills curated** (one skill, L2.7.2, is extended rather than newly curated).
+**Extended (1 skill):**
+
+| Skill | Shape | What's being extended |
+|---|---|---|
+| L2.7.2 — writes 3-5 connected sentences | writing | already curated; prompts added for 45-, 60- and 90-minute session lengths |
+
+**Count after Wednesday: 11 curated skills out of 101** (7 existing + 4 new; L2.7.2 is improved rather than newly added).
 
 ## Expanding this list
 
-Each additional curated skill costs about an hour of the education lead's time (sample content drafted by the AI, mistake patterns reviewed by her, three or more chosen). Writing them in batches of 5 to 10 is efficient; see `docs/ROADMAP.md`, section 8, for the sizing of the full expansion.
+Each additional curated skill costs about an hour of the education lead's time (sample content drafted by the AI, mistake patterns reviewed by her, three or more chosen). Writing them in batches of 5 to 10 is efficient; see `docs/ROADMAP.md`, section 9, for the sizing of the full expansion.

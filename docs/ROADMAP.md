@@ -54,9 +54,18 @@
 
 *Other roadmap items* (periodic assessment rounds with history, baseline screens, WhatsApp notifications, voice recording for the periodic assessments (section 6), second-language literacy, PDF export) are listed in `docs/STATUS.md`.
 
-## 7. Next, designed on 27 Oct and not built: the school leader's screens and the officers' reports
+## 8. Next, designed on 27 Oct and not built: the school leader's screens and the officers' reports
 Decided with the team after the first tests (the head teacher is the school's administrator; she also teaches and often coaches her teachers):
 - **Adding teachers:** a form (employee code, grades) that makes a temporary password, shown once; and a CSV upload with a preview before it is confirmed, the same way the class register is uploaded. There is no bulk upload of schools: a school and its leader are loaded by the department, so each leader looks after one school.
 - **Reports, for the leader and for a block or cluster officer (BAC or CRC):** counts only, never a name: teachers active this week, plans made, how many groups were re-taught and how many moved on, children by level, the skills taught most. The leader sees her own school; an officer sees the schools of her block or cluster.
 - **The officer's role** is read-only and is stored with the account and its scope (a list of schools), never read from the letters of her employee code.
 - **Demonstration data:** about three fictional schools with a few teachers each, so the reports are not empty.
+
+## 9. Content expansion
+The product's machinery is built and tested: a 101-skill ladder reviewed by the education lead, a four-corpus L2 content bank (anchors, passages, intervention templates, TLM references), semantic retrieval over pgvector, recorded sample plans as an AI-off fallback. The current corpora are small on purpose: enough to prove the mechanisms and the Hindi, not enough to serve a state at scale. **The next large increase in product quality comes from growing the content, not from new features.** Three content expansions, each sized honestly.
+
+- **Curated question signal per skill (3+2 worksheet, inline on YojanaScreen).** Three core questions per skill chosen for a specific signal (the known mistake patterns a teacher most needs to see), plus two extras for early finishers. **Today curated for about 7 of 101 skills** (listed in `docs/CURATED_SKILLS.md`); for the rest the AI picks questions at the right level but not for a specific mistake pattern. Expanding to all 101 skills is **about two months of work by the education lead**, reviewing a sample draft per skill the AI produces. Each newly curated skill produces much better teacher-facing signal on the Review and Progress screens.
+- **L2 content bank at 3× its current size.** Today: 14 anchor activities, 9 reading passages, 15 intervention templates, 12 TLM references. The semantic retrieval machinery is built but retrieves against a thin bank. Growing each corpus by about 3× (40 anchors, 30 passages across Grades 1 to 3, 50 interventions, 35 TLM references) is **about three months of content work**, reviewed sample by sample, feeding the same retrieval system without a code change.
+- **Recorded sample plans for the AI-off fallback.** Today: 6 recorded plans: observation (N0.1.1), photo (N2.2.1, N2.3.2), reading-aloud (L2.5.1), and two Hindi examples (L2.3.1, L2.7.2). When the AI budget runs out or the service is slow, the teacher sees a known-good plan for one of these six skills; for the other 95 she sees a short note and no plan. Growing to the 20 most-taught skills in Mission Ankur is **about one month of work**, reviewed by the education lead.
+
+These are content jobs, not code jobs. The code that reads them, retrieves against them and falls back on them is already in place. The sizing above assumes one full-time education lead at Vaishnavi's level with support for drafting and quality-checking.
