@@ -101,7 +101,20 @@ The second spec repeats items 1–5 above with some different Hindi wording. **T
   - Today's worksheet rules require 5 (Beginners) or 6 (Progressors) problems before the extras, with the mistake-finding problems among them. The plan checks in `plan_service.py` enforce this, and the photo analysis reads it. A 3 + N shape needs those changed too.
   - When the AI limit is reached, the recorded sample plan is served. It was made for 90 minutes, whatever time was chosen.
 
-**Items 7 and 8 (waiting).** The spec places them on a per-group layout (activity sentence, worked example, review checklist) that the plan screen (`YojanaScreen.jsx`) doesn't have: it is an anchor card, a timeline of teach blocks, and worksheet buttons. The worksheet is a printable page, not a PDF. The mapping is being clarified.
+**Item 7, the signal panel (built; the server part is separate).**
+- Inside each teach block on the plan screen (`YojanaScreen.jsx`), under the one-line script and above the closed talking points, visible without a tap: what the group's children will do. It reads the block's `signal`, as in the spec's contract (`components/SignalPanel.jsx`).
+  - `maths_questions`: "तीन मुख्य प्रश्न" and the three core questions, numbered, in the server's order. Under them, in small grey inside the panel: "→ 2 और प्रश्न (जो जल्दी ख़त्म करें उनके लिए)", from `extra_count`; hidden at 0.
+  - `writing_prompt`: "लेखन कार्य" and the prompt at 1rem (the questions are 0.875rem: the teacher reads it aloud), cut at two lines with "…".
+  - Any other shape (`passage_questions`, `word_list`: later), `null`, an empty payload, or no `signal` at all (plans made before this): no panel; the block is exactly as before.
+  - `signal_curated` is not shown: a curated and an uncurated skill look the same (`docs/CURATED_SKILLS.md`).
+- The block title now also names the group's skill today: "प्रगतिशील पढ़ाएँ — N2.3.2". The "बाकी समूह" line is unchanged. The worksheet buttons are unchanged; the panel is not a link.
+
+**Item 8, "छोटी स्क्रीन" (Shorter screen) (built).**
+- On Profile, under "सिर्फ़ हिंदी दिखाएँ", with the line "योजना की स्क्रीन छोटी हो जाती है; एक टैप पर सब कुछ खुलता है।". Off by default; kept on the phone as `familiar_mode` = `true` / `false` (`services/preferences.js`).
+- When on, the plan screen folds each teach block's one-line script under "▸ आज की गतिविधि" (tapping it does not open or close the block) and the anchor card to its title row. The block title, the re-teach note, the signal panel and the "बाकी समूह" line never fold. The talking points and the understanding check are closed as before.
+- It is read every time the plan screen is drawn, so a change on Profile shows at once.
+
+**The lab mock for the phone test (lab only).** Until the server sends `signal`, a build made with `VITE_MOCK_SIGNAL=1` fills one in for every teach block that has none, in the same contract (`services/devMockSignal.js`, used by the fetch wrapper in `api.js`): maths plans get three placeholder sums per group with `extra_count: 2`; literacy plans get a writing prompt for the Beginners and no panel for the others. A block that already has a `signal` (the server's, even `shape: null`) is never touched, so it stops mattering once the server work lands. A normal build leaves the mock out entirely (checked: built with and without the setting, the placeholder text is only in the first).
 
 ## How to see it
 
@@ -120,11 +133,19 @@ Sign in with a demo card. Try:
 
 Check at phone width (F12, then Ctrl+Shift+M, 360 px).
 
+For the phone test of the signal panel before the server sends it, build with the lab mock, and build again without it afterwards:
+
+```powershell
+cd pwa; $env:VITE_MOCK_SIGNAL='1'; npm run build; Remove-Item Env:VITE_MOCK_SIGNAL; cd ..ackend
+```
+
+Then: दैनिक योजना → each teach block shows its panel; Profile → "छोटी स्क्रीन" → the plan screen again.
+
 ## Tests
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
 - **40 backend suites:** all OK (new: `test_plan_service.py`, 11 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
-- **18 front-end suites:** all OK, 357 checks
+- **21 front-end suites:** all OK, 397 checks
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
@@ -133,6 +154,9 @@ New suites:
 - `today.test.mjs` (5)
 - `progress_cards.test.mjs` (21)
 - `review_confirmation.test.mjs` (21)
+- `plan_signal_panel.test.mjs` (15): the real plan screen with fixture plans: 3 questions in order and equal to `core`, the extras count, curated and uncurated identical, the prompt larger than a question and cut at two lines, no panel (and an unchanged block) for null and later shapes, its place in the block, the skill in the title
+- `plan_familiar_mode.test.mjs` (16): the real Profile and plan screens in a simulated browser: the toggle's label and place, off by default, flipping it changes the plan screen, the folds closed, and the title, re-teach note and panel never folded
+- `dev_mock_signal.test.mjs` (9): the lab mock fills only plans, only with the setting, never over the server's own signal
 - `plan_session_length.test.mjs` (13): the real Plan screen in a simulated browser: 90 on first use, a stored 60 preselected, the 44 px targets, and the chosen time in the request
 
 Updated to the new wording or format:

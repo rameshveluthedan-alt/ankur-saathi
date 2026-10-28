@@ -18,3 +18,15 @@ export const setSessionMinutes = (n) => {
   if (!SESSION_MINUTES.includes(n)) return;
   try { localStorage.setItem(SESSION_KEY, String(n)); } catch { /* private mode: applies until reload */ }
 };
+
+// "छोटी स्क्रीन" (Shorter screen), on the Profile screen: the plan screen folds each teach block's one-line script under "आज की गतिविधि" and the anchor card to its
+// title row. The block's title, its re-teach note and its signal panel never fold. Off by default. Stored as 'true' / 'false' under "familiar_mode" (the internal name).
+const FAMILIAR_KEY = 'familiar_mode';
+
+export const getFamiliarMode = () => {
+  try { return localStorage.getItem(FAMILIAR_KEY) === 'true'; } catch { return false; }
+};
+
+export const setFamiliarMode = (on) => {
+  try { localStorage.setItem(FAMILIAR_KEY, on ? 'true' : 'false'); } catch { /* private mode: applies until reload */ }
+};

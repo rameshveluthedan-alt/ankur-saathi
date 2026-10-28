@@ -7,6 +7,8 @@ import { NetworkError, markNetworkFailed } from './network';
 import { clearPrivateCaches } from './offlineCache';
 
 const BASE = '/api';
+// LAB PHONE TEST ONLY: the app was built or served with VITE_MOCK_SIGNAL=1 (see request() below). Outside Vite (the tests' own bundles) there is no import.meta.env: off.
+const MOCK_SIGNAL = typeof import.meta.env !== 'undefined' && import.meta.env.VITE_MOCK_SIGNAL === '1';
 const TOKEN_KEY = 'ankur_token';
 
 export const getToken = () => { try { return localStorage.getItem(TOKEN_KEY); } catch { return null; } };
@@ -54,7 +56,13 @@ async function request(path, options = {}) {
     e.detail = err && err.detail;
     throw e;
   }
-  return res.json();
+  const data = await res.json();
+  // LAB PHONE TEST ONLY (VITE_MOCK_SIGNAL=1): a mock signal panel on plans the server has not given one yet (services/devMockSignal.js). Off in a normal build.
+  if (MOCK_SIGNAL) {
+    const { isPlanPath, withMockSignal } = await import('./devMockSignal');
+    if (isPlanPath(path)) return withMockSignal(data);
+  }
+  return data;
 }
 
 // ── Auth ──

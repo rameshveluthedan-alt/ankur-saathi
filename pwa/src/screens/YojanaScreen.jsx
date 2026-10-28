@@ -5,12 +5,14 @@ import { isOnline } from '../services/network';
 import PlanGroupSkills from '../components/PlanGroupSkills';
 import { reteachGroupsOf } from '../services/planSummary';
 import ReteachNote from '../components/ReteachNote';
+import SignalPanel from '../components/SignalPanel';
 import BoardWork from '../components/BoardWork';
 import { reteachTitleParts } from '../services/reteachInfo';
 import { GROUP_LABELS } from '../tiers';
 import Bi from '../components/Bi';
 import { notify } from '../services/notify';
 import { localToday } from '../services/today';
+import { getFamiliarMode } from '../services/preferences';
 
 // Generated text may contain line breaks (lists) and stray markdown markers.
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
@@ -78,6 +80,9 @@ export default function YojanaScreen() {
   const blocks = rotation.blocks || [];
   const reteachSet = reteachGroupsOf(blocks);       // the groups that re-teach in this plan
   const explainability = currentPlan.explainability || plan.explainability || {};
+  // "छोटी स्क्रीन" (Profile): read on every render, so a change on Profile shows the next time this screen is drawn
+  const familiar = getFamiliarMode();
+  const skillOf = (label) => (groups.find((g) => g.label === label) || {}).target_competency_id;      // the skill a group is taught today, for its block's title
 
   return (
     <div className="screen">
@@ -123,12 +128,11 @@ export default function YojanaScreen() {
       )}
 
       {/* Anchor Activity */}
-      {anchor.narration_hi && (
-        <div className="card" style={{ borderLeft: '4px solid var(--channel-written)' }}>
-          <div className="card-header">
-            <h3>🎯 <Bi hi="एंकर गतिविधि" en="Anchor Activity" inline /></h3>
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>10 मि.</span>
-          </div>
+      {/* in "छोटी स्क्रीन" it starts folded to its title row (one tap opens it) */}
+      {anchor.narration_hi && (() => {
+        const title = <h3>🎯 <Bi hi="एंकर गतिविधि" en="Anchor Activity" inline /></h3>;
+        const minutes = <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>10 मि.</span>;
+        const body = (<>
           <p style={{ fontSize: '0.9375rem', marginBottom: 8, ...ML }}>{fmt(anchor.narration_hi)}</p>
           {anchor.opening_question_hi && (
             <div className="talking-point" style={ML}>
@@ -145,8 +149,19 @@ export default function YojanaScreen() {
               </div>
             );
           })}
-        </div>
-      )}
+        </>);
+        return familiar ? (
+          <details className="card fold" data-testid="anchor-fold" style={{ borderLeft: '4px solid var(--channel-written)' }}>
+            <summary style={{ display: 'flex', alignItems: 'center', gap: 6 }}><span style={{ flex: 1 }}>{title}</span>{minutes}</summary>
+            <div style={{ marginTop: 6 }}>{body}</div>
+          </details>
+        ) : (
+          <div className="card" data-testid="anchor-card" style={{ borderLeft: '4px solid var(--channel-written)' }}>
+            <div className="card-header">{title}{minutes}</div>
+            {body}
+          </div>
+        );
+      })()}
 
       {/* Rotation Timeline */}
       <h2 style={{ margin: '16px 0 8px' }}>⏱️ <Bi hi="रोटेशन शेड्यूल" en="Rotation Schedule" inline /></h2>
@@ -173,6 +188,9 @@ export default function YojanaScreen() {
                 {block.type === 'reteach' && <Bi hi={`🔄 पुनः शिक्षण${GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].hi}` : ''}`}
                   en={`Re-teach${GROUP_LABELS[block.teach_group] ? `: ${GROUP_LABELS[block.teach_group].en}` : ''}`} inline />}
                 {block.type === 'transition' && <Bi hi="↔️ संक्रमण" en="Transition" inline />}
+                {block.type === 'teach' && skillOf(block.teach_group) && (
+                  <span data-testid="block-skill" style={{ fontWeight: 400, fontFamily: 'monospace', fontSize: '0.75rem', color: 'var(--text-secondary)' }}> — {skillOf(block.teach_group)}</span>
+                )}
               </strong>
               <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap', flexShrink: 0, marginLeft: 8 }}>{block.duration_minutes} मि.</span>
             </div>
@@ -188,9 +206,17 @@ export default function YojanaScreen() {
                 बाकी समूह<span className="en en-inline" lang="en">Other groups</span>: {fmt(block.other_groups_hi)}
               </div>
             )}
-            {block.script_hi && (
-              <div style={{ fontSize: '0.8125rem', fontStyle: 'italic', marginTop: 4, ...ML }}>“{fmt(block.script_hi)}”</div>
-            )}
+            {/* the one-line script: in "छोटी स्क्रीन" it is folded under "आज की गतिविधि" (the click stays here: it must not close the block) */}
+            {block.script_hi && (familiar ? (
+              <details className="fold" data-testid="script-fold" onClick={(e) => e.stopPropagation()} style={{ margin: '2px 0 0' }}>
+                <summary><span><Bi hi="आज की गतिविधि" en="Today's activity" inline /></span></summary>
+                <div data-testid="block-script" style={{ fontSize: '0.8125rem', fontStyle: 'italic', marginTop: 2, ...ML }}>“{fmt(block.script_hi)}”</div>
+              </details>
+            ) : (
+              <div data-testid="block-script" style={{ fontSize: '0.8125rem', fontStyle: 'italic', marginTop: 4, ...ML }}>“{fmt(block.script_hi)}”</div>
+            ))}
+            {/* what the children will do (the three core questions, or the writing prompt): visible without a tap, in every mode */}
+            {block.type === 'teach' && <SignalPanel signal={block.signal} />}
 
             {expandedBlock === i && block.talking_points && (
               <div style={{ marginTop: 8 }}>

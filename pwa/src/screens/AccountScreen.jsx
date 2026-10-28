@@ -5,6 +5,7 @@ import { adminSchool, adminTeachers, adminResetPin, adminUnlock, adminRecordCons
 import { CONSENT } from '../services/consent';
 import { PinChangeForm } from './ChangePinScreen';
 import { getHindiOnly, setHindiOnly, bi } from '../services/language';
+import { getFamiliarMode, setFamiliarMode } from '../services/preferences';
 import Bi from '../components/Bi';
 
 const GRADE_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -21,6 +22,8 @@ export default function AccountScreen() {
   const [error, setError] = useState('');
   const [hindiOnly, setHindiOnlyState] = useState(getHindiOnly);
   const toggleHindiOnly = (on) => { setHindiOnly(on); setHindiOnlyState(on); };
+  const [shorter, setShorter] = useState(getFamiliarMode);        // "छोटी स्क्रीन": the plan screen folds the one-line scripts and the anchor card
+  const toggleShorter = (on) => { setFamiliarMode(on); setShorter(on); };
 
   const load = () => {
     if (!isAdmin) return;
@@ -66,6 +69,14 @@ export default function AccountScreen() {
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>
           अंग्रेज़ी अनुवाद छिप जाएँगे; कौशल कोड और रोल नंबर दिखते रहेंगे। यह सेटिंग इसी फ़ोन पर रहती है।
           <span className="en" lang="en">Hides the English translations; skill codes and roll numbers stay. This setting stays on this phone.</span>
+        </p>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 44, fontSize: '0.9375rem', cursor: 'pointer', marginTop: 6 }}>
+          <input type="checkbox" checked={shorter} onChange={(e) => toggleShorter(e.target.checked)} data-testid="shorter-screen" />
+          <span>छोटी स्क्रीन <span className="en en-inline" lang="en">Shorter screen</span></span>
+        </label>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }} data-testid="shorter-screen-hint">
+          योजना की स्क्रीन छोटी हो जाती है; एक टैप पर सब कुछ खुलता है।
+          <span className="en" lang="en">The plan screen gets shorter; one tap opens everything.</span>
         </p>
       </div>
 
