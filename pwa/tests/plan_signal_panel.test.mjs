@@ -18,12 +18,13 @@ const out = path.join(here, `.tmp-signal-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
 const stubs = {
   '../App': 'export const useAuth = () => globalThis.__auth;',
+  'react-router-dom': 'export const useNavigate = () => () => {};',
   '../services/api': 'export const getCachedPlan = async () => { throw new Error("none"); }; export const openAuthedPage = async () => {}; export const worksheetPath = (...a) => "/worksheet/" + a.join("/"); export const prepareOfflineCopy = () => {};',
 };
 await build({
   entryPoints: { screen: path.join(src, 'screens/YojanaScreen.jsx'), panel: path.join(src, 'components/SignalPanel.jsx') },
   bundle: true, format: 'esm', platform: 'node', outdir: out, outExtension: { '.js': '.mjs' }, loader: { '.js': 'jsx', '.jsx': 'jsx' }, external: ['react', 'react-dom'], logLevel: 'error',
-  plugins: [{ name: 'stubs', setup(b) { b.onResolve({ filter: /^(\.\.\/App|\.\.\/services\/api)$/ }, (a) => ({ path: a.path, namespace: 'stub' })); b.onLoad({ filter: /.*/, namespace: 'stub' }, (a) => ({ contents: stubs[a.path], loader: 'js' })); } }],
+  plugins: [{ name: 'stubs', setup(b) { b.onResolve({ filter: /^(\.\.\/App|react-router-dom|\.\.\/services\/api)$/ }, (a) => ({ path: a.path, namespace: 'stub' })); b.onLoad({ filter: /.*/, namespace: 'stub' }, (a) => ({ contents: stubs[a.path], loader: 'js' })); } }],
 });
 const Screen = (await import(pathToFileURL(path.join(out, 'screen.mjs')).href)).default;
 const { QUESTION_SIZE, PROMPT_SIZE } = await import(pathToFileURL(path.join(out, 'panel.mjs')).href);

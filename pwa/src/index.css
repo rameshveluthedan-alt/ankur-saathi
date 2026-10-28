@@ -457,3 +457,24 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
 .signal-panel { margin-top: 8px; border: 1px solid var(--tier, var(--border)); border-radius: 8px; background: var(--surface); padding: 6px 10px; }
 .signal-title { font-size: 0.75rem; font-weight: 600; color: var(--tier-ink, var(--text)); }
 .signal-prompt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
+
+/* ── The printed plan (screens/PlanPrint.jsx): one A4 page, every line held to its allowance (longer text is cut with "…") ── */
+.plan-print { font-size: 11pt; line-height: 1.45; }
+.plan-print hr { border: none; border-top: 1px solid var(--border); margin: 6px 0; }
+.print-line-1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.print-line-2 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; overflow-wrap: anywhere; }
+.print-block { border-left: 4px solid var(--tier); padding: 2px 0 2px 8px; margin: 6px 0; }
+.print-block-head, .print-title { font-weight: 700; }
+.print-block-head { color: var(--tier-ink); }
+.print-footer { font-size: 9pt; color: var(--text-secondary); }
+.plan-print .signal-panel.compact { margin-top: 2px; padding: 2px 8px; }
+@media print {
+  @page { size: A4; margin: 12mm; }
+  body.print-plan * { visibility: hidden; }
+  body.print-plan .plan-print, body.print-plan .plan-print * { visibility: visible; }
+  body.print-plan .plan-print { position: absolute; left: 0; top: 0; width: 100%; max-width: none; margin: 0; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body.print-plan .no-print { display: none !important; }
+}
+
+/* the plan screen's title row: on a narrow phone the groups' skill codes take their own line, so the print button keeps its place */
+@media (max-width: 400px) { .screen-header.plan-title { flex-wrap: wrap; } .plan-title .plan-header-skills { order: 3; flex-basis: 100%; text-align: left !important; } }

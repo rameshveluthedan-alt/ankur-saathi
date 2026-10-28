@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../App';
 import { getCachedPlan, openAuthedPage, worksheetPath, prepareOfflineCopy } from '../services/api';
 import { isOnline } from '../services/network';
@@ -23,6 +24,7 @@ const stripGroup = (t) => fmt(t).replace(/^\s*(शुरुआती|प्र�
 
 export default function YojanaScreen() {
   const { currentPlan, setCurrentPlan, teacher, selectedDomain } = useAuth();
+  const navigate = useNavigate();
   const [expandedBlock, setExpandedBlock] = useState(null);
   const [showWhyPanel, setShowWhyPanel] = useState(false);
   const [loadingStored, setLoadingStored] = useState(false);
@@ -92,9 +94,11 @@ export default function YojanaScreen() {
           <div className="en" lang="en" style={{ fontSize: '0.7rem', color: '#6B4A00', marginTop: 2 }}>Sample plan: the AI limit was reached, so this is a recorded plan for the same skill. The groups and worksheets are checked for your class.</div>
         </div>
       )}
-      <div className="screen-header">
+      <div className="screen-header plan-title">
         <h1>📋 <Bi hi="दैनिक योजना" en="Daily Plan" inline /></h1>
-        <div style={{ textAlign: 'right' }}>
+        {/* one printed page for the whole plan (the worksheets, one per group, are printed from their own buttons below) */}
+        <button type="button" className="btn btn-secondary btn-small" data-testid="open-print" onClick={() => navigate('/plan/print')} style={{ order: 2 }}>🖨️ प्रिंट</button>
+        <div className="plan-header-skills" style={{ textAlign: 'right' }}>
           <PlanGroupSkills planDate={currentPlan.plan_date} selectedId={currentPlan.selected_competency_id} groups={groups} blocks={blocks} />
           {plan.coverage && plan.coverage.tier && plan.coverage.tier !== 'tested' && (
             <span title={plan.coverage.note || ''} style={{ marginLeft: 8, background: '#FFF1CC', color: '#8A5A00', borderRadius: 8, padding: '1px 7px', fontSize: '0.65rem', fontWeight: 600 }}>

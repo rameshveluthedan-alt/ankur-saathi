@@ -116,6 +116,13 @@ The second spec repeats items 1–5 above with some different Hindi wording. **T
 
 **The lab mock for the phone test (lab only).** Until the server sends `signal`, a build made with `VITE_MOCK_SIGNAL=1` fills one in for every teach block that has none, in the same contract (`services/devMockSignal.js`, used by the fetch wrapper in `api.js`): maths plans get three placeholder sums per group with `extra_count: 2`; literacy plans get a writing prompt for the Beginners and no panel for the others. A block that already has a `signal` (the server's, even `shape: null`) is never touched, so it stops mattering once the server work lands. A normal build leaves the mock out entirely (checked: built with and without the setting, the placeholder text is only in the first).
 
+**The printed plan (built).** One A4 page the teacher carries, at `/plan/print` (`screens/PlanPrint.jsx`), opened by "🖨️ प्रिंट" in the plan screen's title row (on a narrow phone the groups' skill codes move to their own line). It prints the plan already on the phone, so it works offline; the browser's Print or "Save as PDF" does the rest, and "🖨️ प्रिंट करें" on the page calls it.
+- **Content:** teacher code, class, date, main skill; "योजना समय: लगभग N मिनट" (the blocks added up; the exact value once the plan records `session_minutes`); the anchor's title; for each teach block its group, skill and minutes, a one-line re-teach note (rolls and the first mistake), the script (two lines), the signal panel, the first understanding-check question and "बाकी" (the plan's own `other_groups_hi`, one line); the observation reminders, "फ़ोटो: समीक्षा स्क्रीन पर चुने जाएँगे" and, for a reading-speed skill, "पढ़कर सुनाना"; one worksheet line ("● शुरुआती 3 मुख्य + 2 · …"); the footer.
+- **Left out:** I do / We do / You do, the understanding-check method and the other questions, worksheet content, and child names (roll numbers only).
+- **The same page for every teacher:** Hindi only, whatever "सिर्फ़ हिंदी" says, and the same with "छोटी स्क्रीन" on or off.
+- **The signal panel is the screen's own component** in a `compact` form (title, then the questions on one line; the prompt with its title, two lines), so the server's `signal` reaches both at once.
+- **One page:** every line declares an allowance (one line, or two for the script and the panel) that CSS enforces by cutting with "…"; a block takes at most 8 lines and the page at most 36 (`PRINT_LINE_BUDGET`). The real fit on paper is a manual check.
+
 ## How to see it
 
 ```powershell
@@ -145,7 +152,7 @@ Then: दैनिक योजना → each teach block shows its panel; Prof
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
 - **40 backend suites:** all OK (new: `test_plan_service.py`, 11 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
-- **21 front-end suites:** all OK, 397 checks
+- **22 front-end suites:** all OK, 418 checks
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
@@ -156,6 +163,7 @@ New suites:
 - `review_confirmation.test.mjs` (21)
 - `plan_signal_panel.test.mjs` (15): the real plan screen with fixture plans: 3 questions in order and equal to `core`, the extras count, curated and uncurated identical, the prompt larger than a question and cut at two lines, no panel (and an unchanged block) for null and later shapes, its place in the block, the skill in the title
 - `plan_familiar_mode.test.mjs` (16): the real Profile and plan screens in a simulated browser: the toggle's label and place, off by default, flipping it changes the plan screen, the folds closed, and the title, re-teach note and panel never folded
+- `plan_print.test.mjs` (21): the printed plan from fixture plans: the three blocks, the same SignalPanel (compact) as the screen, no talking points, no names although the app holds them, the one-line note, the first question only, "बाकी" from the plan, a worst case within 8 lines a block and 36 a page with no text outside an allowance, identical with "छोटी स्क्रीन" on and off
 - `dev_mock_signal.test.mjs` (9): the lab mock fills only plans, only with the setting, never over the server's own signal
 - `plan_session_length.test.mjs` (13): the real Plan screen in a simulated browser: 90 on first use, a stored 60 preselected, the 44 px targets, and the chosen time in the request
 
