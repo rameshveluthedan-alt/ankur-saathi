@@ -1,8 +1,9 @@
-# Lab handover: teacher UI review (27 Oct)
+# Lab handover: teacher UI review (27–28 Oct)
 
 **Branch:** `lab/experiments` (lab worktree, not pushed) · **Base:** `main` at `4e17b06` (Release candidate 3)
 **Status:** done in the lab and tested; **not** in `main`. To be reviewed, then packaged for `main` by the release owner.
 **Updated (27 Oct, later):** five Progress and Review additions, plus two fixes found on the way. See "Additions after the first handover" below.
+**Updated (28 Oct):** the follow-up spec: today's time (45 / 60 / 90), the signal panel, "छोटी स्क्रीन", the printed plan and the time chip, with a lab-only mock for the phone test. See "Follow-up spec" below. Items 1–3 (Progress) were checked on a phone on 28 Oct; the rest is for the phone pass on Thursday.
 
 ## How this was done (lab rules)
 
@@ -99,7 +100,7 @@ The second spec repeats items 1–5 above with some different Hindi wording. **T
 - On the server it becomes the plan's teaching time (`available_minutes`), which the prompt already used: the request says "Available teaching time: 45 minutes" and PART C splits 45 minutes into the blocks. Without the field, the teacher's stored time is used, which is 90 unless changed, so an older app is unchanged.
 - **Not done here (prompt side):** the few-shot examples per length, and the worksheet and review shape per length (3 + 1 / 3 + 2 / 3 + 3). Two things to know for that work:
   - Today's worksheet rules require 5 (Beginners) or 6 (Progressors) problems before the extras, with the mistake-finding problems among them. The plan checks in `plan_service.py` enforce this, and the photo analysis reads it. A 3 + N shape needs those changed too.
-  - When the AI limit is reached, the recorded sample plan is served. It was made for 90 minutes, whatever time was chosen.
+  - When the AI limit is reached, the recorded sample plan is served. It was made for 90 minutes, whatever time was chosen; the time chip (below) says so honestly ("90 मिनट").
 
 **Item 7, the signal panel (built; the server part is separate).**
 - Inside each teach block on the plan screen (`YojanaScreen.jsx`), under the one-line script and above the closed talking points, visible without a tap: what the group's children will do. It reads the block's `signal`, as in the spec's contract (`components/SignalPanel.jsx`).
@@ -121,11 +122,19 @@ The second spec repeats items 1–5 above with some different Hindi wording. **T
 - **A plan made before this** has no `session_minutes`: the chip adds up its blocks' minutes, and within 5 minutes of 45, 60 or 90 shows the preset ("87" shows "90"); further off, the exact sum. The printed plan says "लगभग" in that case.
 
 **The printed plan (built).** One A4 page the teacher carries, at `/plan/print` (`screens/PlanPrint.jsx`), opened by "🖨️ प्रिंट" in the plan screen's title row (on a narrow phone the groups' skill codes move to their own line). It prints the plan already on the phone, so it works offline; the browser's Print or "Save as PDF" does the rest, and "🖨️ प्रिंट करें" on the page calls it.
-- **Content:** teacher code, class, date, main skill; "योजना समय: लगभग N मिनट" (the blocks added up; the exact value once the plan records `session_minutes`); the anchor's title; for each teach block its group, skill and minutes, a one-line re-teach note (rolls and the first mistake), the script (two lines), the signal panel, the first understanding-check question and "बाकी" (the plan's own `other_groups_hi`, one line); the observation reminders, "फ़ोटो: समीक्षा स्क्रीन पर चुने जाएँगे" and, for a reading-speed skill, "पढ़कर सुनाना"; one worksheet line ("● शुरुआती 3 मुख्य + 2 · …"); the footer.
+- **Content:** teacher code, class, date, main skill; "योजना समय: N मिनट" (the length the plan records, as on the time chip; "लगभग" and the blocks added up only for a plan made before that); the anchor's title; for each teach block its group, skill and minutes, a one-line re-teach note (rolls and the first mistake), the script (two lines), the signal panel, the first understanding-check question and "बाकी" (the plan's own `other_groups_hi`, one line); the observation reminders, "फ़ोटो: समीक्षा स्क्रीन पर चुने जाएँगे" and, for a reading-speed skill, "पढ़कर सुनाना"; one worksheet line ("● शुरुआती 3 मुख्य + 2 · …"); the footer.
 - **Left out:** I do / We do / You do, the understanding-check method and the other questions, worksheet content, and child names (roll numbers only).
 - **The same page for every teacher:** Hindi only, whatever "सिर्फ़ हिंदी" says, and the same with "छोटी स्क्रीन" on or off.
 - **The signal panel is the screen's own component** in a `compact` form (title, then the questions on one line; the prompt with its title, two lines), so the server's `signal` reaches both at once.
-- **One page:** every line declares an allowance (one line, or two for the script and the panel) that CSS enforces by cutting with "…"; a block takes at most 8 lines and the page at most 36 (`PRINT_LINE_BUDGET`). The real fit on paper is a manual check.
+- **One page:** every line declares an allowance (one line, or two for the script and the panel) that CSS enforces by cutting with "…"; a block takes at most 8 lines and the page at most 36 (`PRINT_LINE_BUDGET`; the worst-case fixture comes to 32). The real fit on paper is a manual check: 11 pt now, 10.5 pt if it is tight.
+
+**Held: item 9, the "आज क्या अलग है" line** at the top of the plan screen. Not built, as the spec recommends; decide after the phone pass.
+
+**Server work still to come (owner: Ramesh, planned for Wednesday)** — the screen side above is built against its contract and needs no change when it lands:
+- `signal` on each teach block (`maths_questions` / `writing_prompt`; `null` for the other shapes this round), with `signal_curated` read from `docs/CURATED_SKILLS.md`.
+- The worksheet as 3 core + 1 / 2 / 3 extras by session length, the plan checks in `plan_service.py` changed from "first 5 or 6 required" to "the 3 core are the signal", and the photo analysis reading the 3 core problems.
+- The prompt: few-shot examples per length (45 / 60 / 90) and per shape (maths, writing), with the Hindi of the six reviewed.
+- **Already in the lab, to build on rather than redo:** `session_minutes` accepted on `/plan/generate` (`schemas.py`, `routes.py`), passed to the prompt as the teaching time and recorded on the stored plan (`plan_service.py`: `SAMPLE_PLAN_MINUTES` and the line after `plan_json["served_from"]`), and `backend/tests/test_plan_service.py`.
 
 ## How to see it
 
@@ -136,18 +145,27 @@ cd pwa; npm run build; cd ..\backend
 uvicorn app.production:app --port 8001      # http://localhost:8001 ; main can run on 8000 at the same time
 ```
 
+- **Run it in your own terminal.** Started from a Claude Code session, the server was stopped repeatedly by the session's background-process reaper.
+- **Restart it after a backend change** (the time chip's commit changed `plan_service.py`). A new front-end build needs only a reload of the page.
+- **Making a plan needs an Anthropic key.** The lab's `backend\.env` has `ANTHROPIC_API_KEY` empty. Without one, Generate fails with "Could not resolve authentication method". To use main's key for one terminal session only, without writing it into the lab folder or printing it, run this before `uvicorn`:
+  ```powershell
+  Set-Item Env:ANTHROPIC_API_KEY ((Get-Content C:\dev\Ankur-Saathi\backend\.env | Select-String '^ANTHROPIC_API_KEY\s*=').Line -split '=', 2)[1]
+  ```
+  Each plan is a real, metered AI call (about 1–1.5 minutes). Reopening today's plan costs nothing.
+- **On a phone:** start the server with `--host 0.0.0.0`, put the phone on the same Wi-Fi, and open `http://<this PC's address>:8001` (192.168.1.10 on 28 Oct). If Windows asks, allow Python on private networks only. Over plain `http://` the offline worker does not install, so offline use and "add to home screen" are not tested this way.
+
 Sign in with a demo card. Try:
-- Profile → "सिर्फ़ हिंदी दिखाएँ"
-- योजना → choose N2.3.2 → open the group panel
-- दैनिक योजना → tap a teach block
-- समीक्षा
+- Profile → "सिर्फ़ हिंदी दिखाएँ", and "छोटी स्क्रीन"
+- योजना → "आज का समय" → choose N2.3.2 → open the group panel → Generate
+- दैनिक योजना → the time chip, the skill in each block's title, tap a teach block → "🖨️ प्रिंट" → Print or "Save as PDF" (one A4 page?)
+- समीक्षा, प्रगति
 
 Check at phone width (F12, then Ctrl+Shift+M, 360 px).
 
 For the phone test of the signal panel before the server sends it, build with the lab mock, and build again without it afterwards:
 
 ```powershell
-cd pwa; $env:VITE_MOCK_SIGNAL='1'; npm run build; Remove-Item Env:VITE_MOCK_SIGNAL; cd ..ackend
+cd pwa; $env:VITE_MOCK_SIGNAL='1'; npm run build; Remove-Item Env:VITE_MOCK_SIGNAL; cd ..\backend
 ```
 
 Then: दैनिक योजना → each teach block shows its panel; Profile → "छोटी स्क्रीन" → the plan screen again.
@@ -178,7 +196,9 @@ Updated to the new wording or format:
 - `login.dom` also checks the new login layout: the card order, the five test-teacher chips and their tap targets.
 - `demo_accounts` now reads the guide's range row ("MPT102 to MPT106") and checks each of those codes is on the login screen with its password.
 
-Not checked yet: by eye on a real phone.
+Checked on a real phone: items 1–3 (Progress), 28 Oct. Not yet: the rest, for the phone pass on Thursday (including the printed plan's fit on one A4 page).
+
+**Mutation runs:** for each new test, the code was broken on purpose in the ways the spec names (a dropped or reordered question, a wrong extras count, a "random" note, a smaller prompt, a panel for a null shape, a folded panel or note, the chip reading the AI's `total_minutes`, the rounding window off by one, the server not recording the length, a talking point or a name on the print page, a longer allowance, and more). Every one made its test fail. Two tests were strengthened on the way, when a first run let a mutation through (`plan_signal_panel`: a later shape drawn as a writing panel; `plan_print`: a three-line allowance).
 
 ## The commits
 
@@ -207,9 +227,17 @@ d1da622 login demo cards look tappable
 1d8ad37 Review: Observed and Reading-aloud blocks after a save
 0c3fe08 handover note: the additions
 98c72e6 reading aloud shows pace, not "reader" (Review block and Progress row)
+aff6006 handover note: reading aloud shows pace; the codes note and what is left for later
+15d2e0d Plan asks "आज का समय" (45/60/90); the plan is laid out for it (session_minutes on /plan/generate)
+c591682 signal panel and skill in each teach block; "छोटी स्क्रीन"; lab-only mock signal (VITE_MOCK_SIGNAL=1)
+77ad564 CURATED_SKILLS.md corrections; content expansion moved to ROADMAP section 9
+e44034d printed plan (/plan/print): one A4 page, the screen's own signal panel (compact)
+a55d3b9 time chip: the server records session_minutes on every plan; older plans add up their blocks
 ```
 
-Files: 51. They're `pwa/src` (31), `pwa/tests` (12), `docs/` (3: `GROUP_SKILLS.md`, `DEMO_ACCESS.md` and this note) and the backend (5: `progress_service.py`, `review_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`). **No database, migration or prompt changes**, and no new route.
+Files: 68. They're `pwa/src` (37), `pwa/tests` (19), `docs/` (5: `GROUP_SKILLS.md`, `DEMO_ACCESS.md`, `CURATED_SKILLS.md`, `ROADMAP.md` and this note) and the backend (7: `progress_service.py`, `review_service.py`, `plan_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`, `tests/test_plan_service.py`). **No database, migration or prompt changes**, and no new server route (`/plan/print` is a screen of the app). The one new stored field is `session_minutes` inside the plan's existing JSON.
+
+`docs/CURATED_SKILLS.md` and the new `docs/ROADMAP.md` section 9 are the team's own documents, committed in the lab with these corrections. The lab mock (`pwa/src/services/devMockSignal.js`, `pwa/tests/dev_mock_signal.test.mjs`) is for the phone test: a normal build leaves it out, but whether to package it for `main` at all is the release owner's choice.
 
 ### ⚠ Depends on lab-only work
 
@@ -222,7 +250,7 @@ Files: 51. They're `pwa/src` (31), `pwa/tests` (12), `docs/` (3: `GROUP_SKILLS.m
 
 So the UI commits **cannot be applied to `main` on their own as they are.** The packaging choices are:
 - **(a)** take the sign-in work first, then the UI
-- **(b)** take the UI without those 8 files' sign-in parts, and redo the small UI edits in them by hand. Mostly that means wrapping labels in `<Bi>` and the tappable demo cards.
+- **(b)** take the UI without those 8 files' sign-in parts, and redo the small UI edits in them by hand. Mostly that means wrapping labels in `<Bi>` and the tappable demo cards, plus, since 28 Oct, the `/plan/print` route and the hidden bottom bar there (`App.jsx`) and the "छोटी स्क्रीन" toggle (`AccountScreen.jsx`).
 
 ## Open decisions for the team
 
@@ -238,3 +266,7 @@ So the UI commits **cannot be applied to `main` on their own as they are.** The 
    - **Two reading skills aren't about speed** (L2.5.2 pauses, L3.5.2 expression). They keep the A/PA/NA line, but the reading-aloud form still scores them against a default speed. They would be better recorded the Observed way.
 6. **The Hindi of the additions** is with an expert for review.
 7. `docs/LEVELS.md` and `docs/STATUS.md` still call the underlying flag the "consider re-assessing" flag. That's the design concept's name, not screen text; rename it if the team wants it to match.
+8. **The follow-up spec's Hindi** (the new labels: "आज का समय", "तीन मुख्य प्रश्न", "लेखन कार्य", "छोटी स्क्रीन", "आज की गतिविधि", the printed plan's lines) is not yet reviewed. The spec's own wording was used.
+9. **The printed plan is Hindi only for every teacher,** whatever the "सिर्फ़ हिंदी" setting, so that a printed sheet is the same everywhere and the English cannot push it past one page. Revisit if teachers want the English on paper.
+10. **The skill's description is not in the teach block's title,** only its code. It is in the group cards at the top of the plan screen (decided 28 Oct, option 1).
+11. **Item 9 ("आज क्या अलग है")** is held until after the phone pass.
