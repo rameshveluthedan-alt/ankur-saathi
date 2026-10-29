@@ -1,4 +1,4 @@
-# Lab handover: teacher UI review (27–28 Oct)
+# Lab handover: teacher UI review (27–29 Oct)
 
 **Branch:** `lab/experiments` (lab worktree, not pushed) · **Base:** `main` at `4e17b06` (Release candidate 3)
 **Status:** done in the lab and tested; **not** in `main`. To be reviewed, then packaged for `main` by the release owner.
@@ -6,6 +6,7 @@
 **Updated (28 Oct):** the follow-up spec: today's time (45 / 60 / 90), the signal panel, "छोटी स्क्रीन", the printed plan and the time chip, with a lab-only mock for the phone test. See "Follow-up spec" below. Items 1–3 (Progress) were checked on a phone on 28 Oct; the rest is for the phone pass on Thursday.
 **Updated (29 Oct):** a UI review against the evaluation criteria (user at the centre; how the solution comes together) and a navigation review: see "UI review and navigation (29 Oct)" below.
 **Updated (29 Oct, later):** the Review reworked from the team's click-through: three steps (first judgment, the children's work, a final decision with today's evidence), recorded choices kept visible, how to do each way of checking, the text to read aloud. See "The Review, reworked (29 Oct, later)" below.
+**Updated (29 Oct, last):** recording during the lesson ("अभी दर्ज करें") and the paper tick sheet; the phone's Back button in the Review and the dialog, and "← वापस" to where you came from (navigation D, F); the bottom tabs renamed (योजना बनाएँ, आज की योजना, समीक्षा, कक्षा प्रगति); two report pages, the mentor report for an officer's visit and the class summary for the teacher, with the reports moved to a card on Class progress; "आज की योजना" shows today's plan only (a phone left open overnight); Vaishnavi's review of all the new Hindi applied, with footnotes for A/PA/NA, skill codes and group marks. Where to read about them: "UI review and navigation (29 Oct)" (D, F, the tabs, the two reports, today's plan only), "The Review, reworked" (recording during the lesson, the tick sheet) and "Open decisions", item 0 (Vaishnavi's review and the footnotes); the commits are listed up to `a246704`.
 
 ## How this was done (lab rules)
 
@@ -348,7 +349,7 @@ a0c58a1 navigation D and F; the bottom tabs renamed
 010da4f the mentor report and the class summary; the reports card on Class progress
 2ec47a4 the class summary logs each opening
 edb4cfa "आज की योजना" shows today's plan only (an older day's or another subject's plan in memory; across midnight)
-(next)  Vaishnavi's review applied (9 wording changes, the combined strength line, the evidence point's minimum of 3 groups); footnotes for A/PA/NA, skill codes and group marks
+a246704 Vaishnavi's review applied (9 wording changes, the combined strength line, the evidence point's minimum of 3 groups); footnotes for A/PA/NA, skill codes and group marks
 ```
 
 Files: 104. They're `pwa/src` (51), `pwa/tests` (34), `docs/` (8: `HINDI_REVIEW_29OCT.csv`, `HINDI_REVIEW_29OCT_REVIEWED_291026.csv`, `GROUP_SKILLS.md`, `DEMO_ACCESS.md`, `CURATED_SKILLS.md`, `ROADMAP.md`, `KNOWN_ISSUES.md` and this note) and the backend (11: `progress_service.py`, `review_service.py`, `plan_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`, `tests/test_plan_service.py`, `tests/test_plan_routes.py`, `tests/test_review_recorded.py`, `tests/test_mentor_summary.py`, `tests/test_class_summary.py`). **No database, migration or prompt changes.** Two new server routes, read-only: `GET /progress/mentor/{teacher}` and `GET /progress/class-summary/{teacher}`; `/plan/print`, `/plan/ticks`, `/progress/mentor` and `/progress/class` are screens of the app. New stored values live in existing JSON: the plan's `session_minutes`, and the day's `teacher_first_` / `teacher_final_` decisions next to `teacher_decision_`. The plan reply also carries `has_evidence`, `evidence_by_group`, `decisions`, `first_judgments`, `final_decisions` and `today_evidence`; `POST /plan/generate` takes `session_minutes` and `replace`; `POST /review/decisions` takes `stage`; the observed save, coverage and channels replies gained fields (above).
