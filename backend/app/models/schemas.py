@@ -123,6 +123,7 @@ class AdvanceReteachRequest(BaseModel):
         ..., 
         description="Per-group decisions: {'beginner': 'advance|reteach|not_sure', ...}"
     )
+    stage: Literal['first', 'final'] = Field('first', description="'first': the judgment before looking at the children's work (Review step 1); 'final': the decision after it (step 3). Either is what tomorrow's plan suggests from.")
 
 class ObservedAssessmentItem(BaseModel):
     roll_number: int
@@ -136,7 +137,7 @@ class ObservedAssessmentRequest(BaseModel):
 class ORFEntryRequest(BaseModel):
     session_date: date
     roll_number: int
-    passage_id: str
+    passage_id: Optional[str] = Field(None, description="The passage the child read: the one the Review showed (from GET /review/channels). None when no passage was shown; never a made-up id.")
     cwpm: int = Field(..., ge=0, le=200)
     error_count: int = Field(..., ge=0)
     error_types: Optional[list[str]] = None

@@ -171,10 +171,11 @@ export const getCachedPlan = (teacherId, planDate, domainId) =>
   request(`/plan/${teacherId}/${planDate}/${domainId}`);
 
 // ── Review ──
-export const recordDecisions = (teacherId, planDate, domainId, decisions) =>
+// stage: 'first' (the judgment before looking at the children's work, Review step 1) or 'final' (the decision after it, step 3)
+export const recordDecisions = (teacherId, planDate, domainId, decisions, stage = 'first') =>
   request(`/review/decisions?teacher_id=${teacherId}`, {
     method: 'POST',
-    body: JSON.stringify({ plan_date: planDate, domain_id: domainId, decisions }),
+    body: JSON.stringify({ plan_date: planDate, domain_id: domainId, decisions, stage }),
   });
 
 export const recordObserved = (teacherId, sessionDate, items) =>

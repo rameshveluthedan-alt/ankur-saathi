@@ -9,7 +9,7 @@ export const HOW_STEPS = [
   { icon: '📋', hi: 'दैनिक योजना', en: 'Daily plan', part: { hi: 'AI + जाँच', en: 'AI + checks' },
     text: { hi: 'AI जाँची हुई सामग्री (गतिविधियाँ, पाठ, आम गलतियाँ) से हर समूह का पाठ, समझ की जाँच और वर्कशीट लिखता है। ऐप हर योजना को नियमों पर जाँचता है।',
             en: "The AI writes each group's lesson, understanding check and worksheet from checked content (activities, passages, common mistakes). The app checks every plan against rules." } },
-  { icon: '📷', hi: 'समीक्षा', en: 'Review', part: { hi: 'फ़ोटो से पढ़ना, नमूना', en: 'photo reading, sampling' },
+  { icon: '☑️', hi: 'समीक्षा', en: 'Review', part: { hi: 'फ़ोटो से पढ़ना, नमूना', en: 'photo reading, sampling' },
     text: { hi: 'आप हर समूह के लिए अपना निर्णय दर्ज करते हैं, फिर कुछ बच्चों (नमूना) का काम देखते हैं: वर्कशीट की फ़ोटो (AI पढ़ता है), अवलोकन या पढ़कर सुनाना।',
             en: "You record your decision for each group, then look at a sample of children's work: a worksheet photo (read by the AI), observation, or reading aloud." } },
   { icon: '📊', hi: 'प्रगति', en: 'Progress', part: { hi: 'आज के नतीजे', en: "today's results" },

@@ -5,6 +5,7 @@
 **Updated (27 Oct, later):** five Progress and Review additions, plus two fixes found on the way. See "Additions after the first handover" below.
 **Updated (28 Oct):** the follow-up spec: today's time (45 / 60 / 90), the signal panel, "छोटी स्क्रीन", the printed plan and the time chip, with a lab-only mock for the phone test. See "Follow-up spec" below. Items 1–3 (Progress) were checked on a phone on 28 Oct; the rest is for the phone pass on Thursday.
 **Updated (29 Oct):** a UI review against the evaluation criteria (user at the centre; how the solution comes together) and a navigation review: see "UI review and navigation (29 Oct)" below.
+**Updated (29 Oct, later):** the Review reworked from the team's click-through: three steps (first judgment, the children's work, a final decision with today's evidence), recorded choices kept visible, how to do each way of checking, the text to read aloud. See "The Review, reworked (29 Oct, later)" below.
 
 ## How this was done (lab rules)
 
@@ -183,6 +184,37 @@ A review of the lab version against the Build Stage criteria: **keep the user at
 - **E. दैनिक योजना leads on:** "पढ़ाने के बाद: समीक्षा करें →" after the plan; with no plan, "योजना बनाएँ →".
 - **Not done (suggested):** the phone's Back button following the Review's steps and closing dialogs (D), and Profile's and the register's "← वापस" returning to where the teacher came from instead of always to the Plan screen (F).
 
+## The Review, reworked (29 Oct, later)
+
+From the team's click-through of the Review, one point at a time; each was reviewed in the browser before this commit.
+
+**Three steps, each heading its step:**
+- **1/3 · आज हर समूह कैसा रहा?** The teacher's **पहला अनुमान** (first judgment) per group, before looking at any evidence (so the AI's reading cannot anchor it). Saved as stage `first`.
+- **2/3 · बच्चों का काम देखें.** The children's work, three ways. A photo analysis opens **inside** this step (2/3 · 🔍 फ़ोटो विश्लेषण), not as a step. "आगे: अंतिम निर्णय →" leads on.
+- **3/3 · अंतिम निर्णय** (new). Per group with children: the first judgment, **today's evidence** ("✓ A 2 · ~ PA 1 · ✗ NA 3 (7 में से 6 का आकलन)", fetched afresh), the app's suggestion (re-teach when a third or more made a mistake, the Plan screen's rule; "बहुत कम बच्चे जाँचे गए…" under 4 checked), and the three choices **starting on the first judgment**; a change is said ("पहला अनुमान ⬆ … → अंतिम 🔄 …"). "अंतिम निर्णय दर्ज करें" saves stage `final`: the decision tomorrow's plan suggests from. If the evidence cannot be shown it says so ("अभी नहीं दिख रही"), never "nobody assessed".
+- The separate step marker is gone (the headings carry "1/3"…); the back buttons carry the step they go to ("← 1/3 पहला अनुमान बदलें", "← 2/3 बच्चों का काम"). "नई समीक्षा शुरू करें" is removed (every change has its own way). The Review's icon is **☑️** (it is not only photos; 📸 stays on the photo way).
+
+**Step 2, the ways of checking:**
+- Tabs say what the teacher does: **✓ देखकर दर्ज करें**, **📸 वर्कशीट की फ़ोटो**, **⏱️ पढ़कर सुनाना**; a line under them says who does what (the photo way: "AI हर बच्चे का काम पढ़ता है"); the repeated card titles ("शिक्षक अवलोकन", "पठन प्रवाह / ORF"…) are gone.
+- **"ⓘ यही तरीका क्यों?"** (when today's skills need only some ways) explains why each way fits the skill, names today's groups and skills, and keeps "दूसरे तरीके भी दिखाएँ".
+- **"▸ कैसे करें?"** under the way chosen: observing ("स्वतंत्र अभ्यास (तुम करोगे) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें", A / PA / NA meanings, and for a group that also has a worksheet: "इस कौशल की वर्कशीट अभ्यास के लिए है; … वर्कशीट की फ़ोटो से नहीं"); photo (roll number at the top, flat, good light, the sample, no names); reading aloud (one minute, correct words, what counts as an error). The plan's own AI-written observation prompts are **not shown** (they described a task the plan did not contain: `docs/KNOWN_ISSUES.md`).
+- **Recorded choices stay visible** (from the server): each child's recorded A / PA / NA is shown chosen with "✓ दर्ज"; a change is marked "PA → NA" until submitted; tapping the recorded choice again is no change; Submit counts "· 1 नया, 2 बदलाव". After a save the block says what happened: "✓ 2 अवलोकन बदले गए", "✓ 3 अवलोकन: 1 नया, 2 बदले गए", "कोई बदलाव नहीं", "बदले: रोल 4 PA → NA", a roll not in the class "… कक्षा में नहीं है, दर्ज नहीं हुआ" (never counted), in the singular for one. Reading aloud lists "आज पढ़ चुके: N बच्चे" with their numbers.
+- **Reading aloud shows the text to read:** one from the bank for the skill (or its grade), **not read in class today**, the same all day ("पढ़ने का पाठ: «पानी बचाओ» (72 शब्द)", "पाठ दिखाएँ" opens it large for the child). The score records **that** passage; the fixed `RP-004` is gone (none shown: none recorded).
+- The Progress pointer in the two save blocks is a small button, **"📊 प्रगति देखें →"**; step 3 has none (the review is over; the tab does it).
+- **Each group's skill** is shown the same way on every step ("● शुरुआती · N0.1.1 · …"; on steps 1 and 3 without the group, which is in the card's badge).
+
+**The plan screen:** "☑️ आज की समीक्षा: कैसे जाँचें" (a fold): each group, its skill and its way of checking, who does what, the worksheet-is-practice line for an observed group, the text to read aloud, the general observing line.
+
+**The printed plan:** its "अवलोकन:" line is the general instruction, not the plan's AI prompt.
+
+**Server:**
+- `POST /review/decisions` takes `stage` (`first` default, or `final`). Either becomes the group's current decision (`teacher_decision_<group>`, what tomorrow's plan suggests from; the latest wins, so a review stopped after step 1 still has one); the first judgment and the final decision are also kept (`teacher_first_`, `teacher_final_`), and survive a plan made again.
+- The plan reply (`GET /plan/…`) gains `first_judgments`, `final_decisions` and `today_evidence` (per group: A / PA / NA, assessed, group size, `recommend`, `very_small`, from `progress_service.get_today`, which gains `recommend` and `very_small`).
+- `POST /review/observed` replies per child: `new` / `changed` / `unchanged` (with the previous status) and `not_found` rolls; `GET /review/coverage/…` gains `recorded` (each child's newest result today; for reading aloud with the two numbers).
+- `GET /review/channels/…` gives a reading-aloud group a `passage` (not one read today); `POST /review/orf` takes `passage_id` optional (no made-up id).
+
+**Still to build (agreed, next):** "✓ अभी दर्ज करें" on the plan screen's teach block of a group checked by observation or reading aloud, opening the Review's step 2 for it during the lesson, without asking a first judgment first.
+
 ## How to see it
 
 ```powershell
@@ -220,8 +252,8 @@ Then: दैनिक योजना → each teach block shows its panel; Prof
 ## Tests
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
-- **41 backend suites:** all OK (new: `test_plan_routes.py`, 12 checks: the day's review decisions in the plan reply; nothing recorded, one observation, the same child twice, results that must not count (yesterday, another skill, another teacher, a child outside the snapshot), a photo result, an older snapshot, and no plan; `test_plan_service.py`, 26 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused, the stored plan records the chosen length (not the AI's total), a sample plan records 90, an existing plan refused with 409 without `replace` (before any paid call, evidence or not) and replaced with it, per subject; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
-- **28 front-end suites:** all OK, 524 checks
+- **42 backend suites:** all OK (new: `test_review_recorded.py`, 16 checks: new / changed / unchanged, rolls not in the class, the recorded results per child, another group's child kept out, the text to read aloud never one read today, a score with no passage; `test_plan_routes.py`, 19 checks: the two stages, which one wins, today's evidence with the suggestion and the too-few flag; the day's review decisions in the plan reply; nothing recorded, one observation, the same child twice, results that must not count (yesterday, another skill, another teacher, a child outside the snapshot), a photo result, an older snapshot, and no plan; `test_plan_service.py`, 26 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused, the stored plan records the chosen length (not the AI's total), a sample plan records 90, an existing plan refused with 409 without `replace` (before any paid call, evidence or not) and replaced with it, per subject; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
+- **31 front-end suites:** all OK
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
@@ -237,7 +269,10 @@ New suites:
 - `review_steps.test.mjs` (12): the Review's step 1 waits for every group with children, names the ones left, the step marker, the plain wording, and the two ⓘ hints
 - `ui_review.test.mjs` (15): "कैसे काम करता है" on the login screen and Profile (four steps, the loop, names never sent), logout at the top asking first, and failures in plain Hindi (offline, 5xx, a Hindi server message kept, a plainer reason, "Hindi only")
 - `plan_suggested_skill.test.mjs` (13): the suggestion card from the last review, each reason, "यही चुनें" choosing it (and clearing the grade filter), and no card in four cases or when locked
-- `review_navigation.test.mjs` (23): the Review loading today's plan and carrying on from recorded decisions, keeping its place across Progress, per subject, never overwriting the teacher's tap, the ways back, the step marker, the new-review question, "← समीक्षा पर लौटें" on Progress, and the plan screen's links on
+- `review_final.test.mjs` (22): step 3: the first judgment, today's evidence, the suggestion and the too-few line, choices starting on the first judgment, the change line, recording stage `final`, reopening at step 3, evidence that cannot be shown
+- `review_recorded.test.mjs` (18): recorded choices shown and kept after a save and on coming back, changes marked before Submit, the counting Submit, the block's new / changed / no change / not in the class, "यही तरीका क्यों?", reading aloud's list
+- `review_howto.test.mjs` (20): "कैसे करें?" for each way (the general observing line, not the plan's AI prompt; the worksheet-is-practice line only with a worksheet), the skill line, the text to read aloud and the passage recorded, the plan screen's "आज की समीक्षा"
+- `review_navigation.test.mjs` (26): the Review loading today's plan and carrying on from recorded decisions, keeping its place across Progress, per subject, never overwriting the teacher's tap, the ways back, the step marker, the new-review question, "← समीक्षा पर लौटें" on Progress, and the plan screen's links on
 - `plan_load_existing.test.mjs` (32): the real Plan and plan screens in a simulated browser: the status card and the locks, no plan made on opening, the question and its default, the groups and counts, "हाँ, बदलें" unlocking without generating and then one plan, keeping (button, Escape, a tap outside), opening this plan, a 404, a failed check, each subject on its own, `replace: true` only after a yes, and a 409 (a plan made meanwhile) turned into the locked card and the question
 - `dev_mock_signal.test.mjs` (9): the lab mock fills only plans, only with the setting, never over the server's own signal
 - `plan_session_length.test.mjs` (13): the real Plan screen in a simulated browser: 90 on first use, a stored 60 preselected, the 44 px targets, and the chosen time in the request
@@ -292,7 +327,7 @@ d49580a server never replaces a plan silently (409 plan_exists unless replace: t
 (next)  UI review (step 1 waits, how it works, logout, plain errors, ⓘ hints, suggested skill) and Review navigation (keeps its place, ways back)
 ```
 
-Files: 81. They're `pwa/src` (43), `pwa/tests` (24), `docs/` (6: `GROUP_SKILLS.md`, `DEMO_ACCESS.md`, `CURATED_SKILLS.md`, `ROADMAP.md`, `KNOWN_ISSUES.md` and this note) and the backend (8: `progress_service.py`, `review_service.py`, `plan_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`, `tests/test_plan_service.py`, `tests/test_plan_routes.py`). **No database, migration or prompt changes**, and no new server route (`/plan/print` is a screen of the app). The one new stored field is `session_minutes` inside the plan's existing JSON; the plan reply also carries `has_evidence`, `evidence_by_group` and `decisions`, and `POST /plan/generate` takes `session_minutes` and `replace`.
+Files: 87. They're `pwa/src` (45), `pwa/tests` (27), `docs/` (6: `GROUP_SKILLS.md`, `DEMO_ACCESS.md`, `CURATED_SKILLS.md`, `ROADMAP.md`, `KNOWN_ISSUES.md` and this note) and the backend (9: `progress_service.py`, `review_service.py`, `plan_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`, `tests/test_plan_service.py`, `tests/test_plan_routes.py`, `tests/test_review_recorded.py`). **No database, migration or prompt changes**, and no new server route (`/plan/print` is a screen of the app). New stored values live in existing JSON: the plan's `session_minutes`, and the day's `teacher_first_` / `teacher_final_` decisions next to `teacher_decision_`. The plan reply also carries `has_evidence`, `evidence_by_group`, `decisions`, `first_judgments`, `final_decisions` and `today_evidence`; `POST /plan/generate` takes `session_minutes` and `replace`; `POST /review/decisions` takes `stage`; the observed save, coverage and channels replies gained fields (above).
 
 `docs/CURATED_SKILLS.md` and the new `docs/ROADMAP.md` section 9 are the team's own documents, committed in the lab with these corrections. The lab mock (`pwa/src/services/devMockSignal.js`, `pwa/tests/dev_mock_signal.test.mjs`) is for the phone test: a normal build leaves it out, but whether to package it for `main` at all is the release owner's choice.
 
@@ -311,7 +346,8 @@ So the UI commits **cannot be applied to `main` on their own as they are.** The 
 
 ## Open decisions for the team
 
-0. **The UI review's Hindi** (29 Oct) is not yet reviewed: the step names "निर्णय / बच्चों का काम / विश्लेषण", "हर समूह के लिए एक विकल्प चुनें", "दर्ज करें → बच्चों का काम देखें", the "कैसे काम करता है" texts, the logout question, the error sentences, the two ⓘ hints, "सुझाया गया / यही चुनें / ✓ चुना गया" and the reasons, "निर्णय बदलें", "बच्चों का काम: अगला समूह या तरीका", the new-review question, "समीक्षा पर लौटें", "पढ़ाने के बाद: समीक्षा करें", "योजना बनाएँ →", the Review's no-plan and could-not-open lines, and "आज की योजना खोली जा रही है…".
+0a. **The Review rework's Hindi** (29 Oct, later) is not yet reviewed, and **two of its points are teaching decisions, not only wording: the meanings of A / PA / NA ("करके दिखाया, बिना मदद / मदद से, या आधा सही / अभी नहीं") and the reading-aloud error rule ("गलत शब्द, छूटा शब्द, या जो शब्द आपको बताना पड़ा")**. The rest: "पहला अनुमान", "अंतिम निर्णय", the step headings and back buttons, the three way labels and their "who does what" and "why" lines, "कैसे करें?" and its steps, "पढ़ने का पाठ", "पाठ दिखाएँ…", the recorded / changed / no-change lines, "प्रगति देखें", "आज की समीक्षा: कैसे जाँचें", the general observing line and the worksheet-is-practice line.
+0b. **The UI review's Hindi** (29 Oct) is not yet reviewed: the step names "निर्णय / बच्चों का काम / विश्लेषण", "हर समूह के लिए एक विकल्प चुनें", "दर्ज करें → बच्चों का काम देखें", the "कैसे काम करता है" texts, the logout question, the error sentences, the two ⓘ hints, "सुझाया गया / यही चुनें / ✓ चुना गया" and the reasons, "निर्णय बदलें", "बच्चों का काम: अगला समूह या तरीका", the new-review question, "समीक्षा पर लौटें", "पढ़ाने के बाद: समीक्षा करें", "योजना बनाएँ →", the Review's no-plan and could-not-open lines, and "आज की योजना खोली जा रही है…".
 
 1. **"English only":**
    - The labels alone would take about 2–3 hours: mark the Hindi, and write English for 60–100 bits that have none.

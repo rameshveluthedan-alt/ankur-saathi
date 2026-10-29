@@ -13,7 +13,7 @@ import anthropic
 from app.services import ai_budget
 
 from app.core.config import get_settings
-from app.services.plan_service import get_current_groups
+from app.services.plan_service import get_current_groups, _pick_passage
 
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
@@ -30,41 +30,46 @@ from vision_analysis import (
 CLAUDE_THINKING_BODY = {"thinking": {"type": "between_tools"}}
 
 
-async def record_teacher_decisions(db, teacher_id: str, plan_date: date, domain_id: str, decisions: dict):
+async def record_teacher_decisions(db, teacher_id: str, plan_date: date, domain_id: str, decisions: dict, stage: str = "first"):
     """
-    Store the teacher's Advance/Re-teach/Not-sure decisions per group.
-    Called BEFORE AI analysis — captures teacher's independent judgment.
+    Store the teacher's Advance/Re-teach/Not-sure decisions per group, at one of two stages of the Review:
+      'first': her judgment BEFORE looking at the children's work (independent of the AI's reading), kept as teacher_first_<group>;
+      'final': her decision AFTER looking at it (step 3, with today's evidence in front of her), kept as teacher_final_<group>.
+    Either becomes the group's current decision, teacher_decision_<group>: what tomorrow's plan suggests from. The latest statement wins,
+    so a review stopped after step 1 still has a decision.
     """
+    stage_key = 'teacher_final_' if stage == 'final' else 'teacher_first_'
     for group_label, decision in decisions.items():
         if decision not in ('advance', 'reteach', 'not_sure'):
             continue
-        
-        # Update all evidence records for this group's children on this date
-        # (Evidence may not exist yet if photos haven't been analysed)
-        # Store as a session-level record instead
-        await db.execute("""
-            INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
-                                     plan_content, explainability, groups_snapshot)
-            SELECT teacher_id, plan_date, domain_id, selected_competency_id,
-                   plan_content,
-                   jsonb_set(
-                       COALESCE(explainability, '{}'::jsonb),
-                       $4::text[],
-                       to_jsonb($5::text)
-                   ),
-                   groups_snapshot
-            FROM daily_plans
-            WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3
-            ON CONFLICT (teacher_id, plan_date, domain_id) DO UPDATE SET
-                explainability = jsonb_set(
-                    COALESCE(daily_plans.explainability, '{}'::jsonb),
-                    $4::text[],
-                    to_jsonb($5::text)
-                )
-        """, teacher_id, plan_date, domain_id, 
-            [f'teacher_decision_{group_label}'], decision)
-    
-    return {"status": "recorded", "decisions": decisions}
+        for key in (f'teacher_decision_{group_label}', f'{stage_key}{group_label}'):
+            await _store_decision(db, teacher_id, plan_date, domain_id, key, decision)
+    return {"status": "recorded", "stage": stage, "decisions": decisions}
+
+
+async def _store_decision(db, teacher_id: str, plan_date: date, domain_id: str, key: str, decision: str):
+    """Write one decision key into the day's plan (its explainability): a session-level record, so it exists before any evidence does."""
+    await db.execute("""
+        INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
+                                 plan_content, explainability, groups_snapshot)
+        SELECT teacher_id, plan_date, domain_id, selected_competency_id,
+               plan_content,
+               jsonb_set(
+                   COALESCE(explainability, '{}'::jsonb),
+                   $4::text[],
+                   to_jsonb($5::text)
+               ),
+               groups_snapshot
+        FROM daily_plans
+        WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3
+        ON CONFLICT (teacher_id, plan_date, domain_id) DO UPDATE SET
+            explainability = jsonb_set(
+                COALESCE(daily_plans.explainability, '{}'::jsonb),
+                $4::text[],
+                to_jsonb($5::text)
+            )
+    """, teacher_id, plan_date, domain_id, 
+        [key], decision)
 
 
 async def record_observed_assessments(db, teacher_id: str, session_date: date, items: list[dict]):
@@ -73,6 +78,7 @@ async def record_observed_assessments(db, teacher_id: str, session_date: date, i
     Channel: 'observed' — teacher taps judgment in real-time during teaching.
     """
     recorded = 0
+    results, not_found = [], []           # per child: what was recorded and what it replaced (new / changed / unchanged); rolls not in the class
     for item in items:
         child = await db.fetchrow("""
             SELECT id FROM children 
@@ -80,7 +86,16 @@ async def record_observed_assessments(db, teacher_id: str, session_date: date, i
         """, teacher_id, item['roll_number'])
         
         if not child:
+            not_found.append(item['roll_number'])          # never counted as saved
             continue
+
+        previous = await db.fetchval("""
+            SELECT status FROM assessment_evidence
+            WHERE child_id = $1 AND competency_id = $2 AND session_date = $3 AND channel = 'observed'
+            ORDER BY created_at DESC LIMIT 1
+        """, child['id'], item['competency_id'], session_date)
+        outcome = "new" if previous is None else ("unchanged" if previous == item['status'] else "changed")
+        results.append({"roll_number": item['roll_number'], "status": item['status'], "previous": previous, "outcome": outcome})
         
         await db.execute("""
             DELETE FROM assessment_evidence
@@ -125,7 +140,9 @@ async def record_observed_assessments(db, teacher_id: str, session_date: date, i
         
         recorded += 1
     
-    return {"status": "recorded", "items_recorded": recorded}
+    count = lambda o: sum(1 for r in results if r["outcome"] == o)
+    return {"status": "recorded", "items_recorded": recorded, "results": results,
+            "new": count("new"), "changed": count("changed"), "unchanged": count("unchanged"), "not_found": not_found}
 
 
 async def record_orf_assessment(db, teacher_id: str, session_date: date, entry: dict):
@@ -288,12 +305,17 @@ async def get_review_channels(db, teacher_id, session_date, domain_id: str) -> d
     sheet to photograph, something the teacher observes, or oral reading), so the Review screen offers only the channels
     today's groups actually use. Without a stored plan for the day it says so, and the screen offers everything.
     """
-    plan = await db.fetchrow("SELECT groups_snapshot FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3",
+    plan = await db.fetchrow("SELECT groups_snapshot, plan_content FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3",
                              teacher_id, session_date, domain_id)
     if not plan or not plan["groups_snapshot"]:
         return {"has_plan": False, "levels": [], "channels": {}}
     snap = plan["groups_snapshot"]
     snap = json.loads(snap) if isinstance(snap, str) else snap
+    # reading aloud needs a text the children have NOT read today (a text practised in class would show a faster pace than the child has):
+    # the day's own passages (worksheet and independent practice) are skipped
+    content = plan["plan_content"]
+    content = json.loads(content) if isinstance(content, str) else (content or {})
+    read_today = set((content.get("passages_used") or {}).values()) | {p.get("id") for p in (content.get("independent_passages") or {}).values() if isinstance(p, dict)}
     levels, channels = [], {}
     for level in ("beginner", "progressor", "proficient"):
         g = snap.get(level) or {}
@@ -306,6 +328,10 @@ async def get_review_channels(db, teacher_id, session_date, domain_id: str) -> d
         ch = CHANNEL_OF.get(row["assessment_modality"], "photo")
         entry = {"level": level, "competency_id": comp, "name_hi": row["name_hi"], "name_en": row["name_en"],
                  "modality": row["assessment_modality"], "channel": ch, "rolls": sorted(rolls)}
+        if ch == "orf":                   # the text to read aloud: the bank's choice for the skill (or its grade), rotating by day, never one read today
+            picked, _match = await _pick_passage(db, comp, session_date, read_today)
+            if picked:
+                entry["passage"] = {"id": picked["id"], "title": picked["title_hi"], "text": picked["passage_hi"], "word_count": picked["word_count"]}
         levels.append(entry)
         channels.setdefault(ch, []).append(level)
     return {"has_plan": True, "levels": levels, "channels": channels}
@@ -322,13 +348,22 @@ async def get_review_coverage(db, teacher_id, session_date, domain_id: str, work
         competency = (snap.get(worksheet_level) or {}).get("target")
     groups = await get_current_groups(db, teacher_id, domain_id)
     group_rolls = sorted(next((g["roll_numbers"] for g in groups if g["label"] == worksheet_level), []))
-    analysed = []
+    analysed, recorded = [], {}
     if competency:
         rows = await db.fetch(
-            """SELECT DISTINCT c.roll_number FROM assessment_evidence e JOIN children c ON c.id = e.child_id
-               WHERE e.teacher_id = $1 AND e.competency_id = $2 AND e.session_date = $3 AND e.channel = $4""",
+            """SELECT DISTINCT ON (c.roll_number) c.roll_number, e.status, e.evidence_data
+               FROM assessment_evidence e JOIN children c ON c.id = e.child_id
+               WHERE e.teacher_id = $1 AND e.competency_id = $2 AND e.session_date = $3 AND e.channel = $4
+               ORDER BY c.roll_number, e.created_at DESC""",
             teacher_id, competency, session_date, EVIDENCE_CHANNEL.get(channel, "written_photo"))
         analysed = sorted(x["roll_number"] for x in rows)
+        for x in rows:                       # what the screen shows on each child's row: the newest status, and for reading aloud the two numbers entered
+            entry = {"status": x["status"]}
+            data = x["evidence_data"]
+            data = json.loads(data) if isinstance(data, str) else (data or {})
+            if channel == "orf" and isinstance(data, dict) and data.get("cwpm") is not None:
+                entry.update({"cwpm": data.get("cwpm"), "errors": data.get("error_count", 0)})
+            recorded[x["roll_number"]] = entry
     from app.services.sampling import sample_for_group
     sug = sample_for_group(group_rolls, session_date, worksheet_level, competency or "", sample_size, absent)
     labels = {}
@@ -344,6 +379,7 @@ async def get_review_coverage(db, teacher_id, session_date, domain_id: str, work
     return {"worksheet_level": worksheet_level, "competency_id": competency, "group_rolls": group_rolls, "labels": labels,
             "analysed_rolls": [x for x in analysed if x in group_rolls], "other_analysed_rolls": [x for x in analysed if x not in group_rolls],
             "pending_rolls": [x for x in group_rolls if x not in analysed],
+            "recorded": {str(r): v for r, v in recorded.items() if r in group_rolls},
             # a large group need not be done in full: these children, spread evenly over the roll list, give a rough picture of the group
             "sample": {"mode": sug["mode"], "size": sug["size"], "group_size": sug["group_size"], "rolls": sug["rolls"],
                        "done": [x for x in sug["rolls"] if x in analysed], "left": [x for x in sug["rolls"] if x not in analysed],

@@ -19,7 +19,7 @@ process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));     
 const stubs = {
   '../App': 'export const useAuth = () => globalThis.__auth;',
   'react-router-dom': 'export const useNavigate = () => () => {};',
-  '../services/api': 'export const getCachedPlan = async () => { throw new Error("none"); }; export const openAuthedPage = async () => {}; export const worksheetPath = (...a) => "/worksheet/" + a.join("/"); export const prepareOfflineCopy = () => {};',
+  '../services/api': 'export const getReviewChannels = async () => globalThis.__channels || ({ has_plan: false, levels: [], channels: {} }); export const getCachedPlan = async () => { throw new Error("none"); }; export const openAuthedPage = async () => {}; export const worksheetPath = (...a) => "/worksheet/" + a.join("/"); export const prepareOfflineCopy = () => {};',
 };
 await build({
   entryPoints: { screen: path.join(src, 'screens/YojanaScreen.jsx'), panel: path.join(src, 'components/SignalPanel.jsx') },

@@ -235,6 +235,13 @@ async def get_cached_plan(teacher_id: str, plan_date: date, domain_id: str):
             # the decisions recorded at this day's review (Review step 1), so the Review can carry on where the teacher left it
             "decisions": {k[len("teacher_decision_"):]: v for k, v in (as_obj(row['explainability']) or {}).items()
                           if k.startswith("teacher_decision_") and v in ("advance", "reteach", "not_sure")},
+            # the Review's two stages on their own: the judgment before the evidence, and the final decision after it
+            "first_judgments": {k[len("teacher_first_"):]: v for k, v in (as_obj(row['explainability']) or {}).items()
+                                if k.startswith("teacher_first_") and v in ("advance", "reteach", "not_sure")},
+            "final_decisions": {k[len("teacher_final_"):]: v for k, v in (as_obj(row['explainability']) or {}).items()
+                                if k.startswith("teacher_final_") and v in ("advance", "reteach", "not_sure")},
+            # today's evidence per group (the Progress card's counts, and whether it suggests a re-teach): the Review's final decision shows it
+            "today_evidence": ((await progress_service.get_today(db, teacher_id, plan_date))["subjects"].get(domain_id) or {}).get("by_level", {}),
         }
 
 
@@ -250,7 +257,7 @@ async def record_decisions(req: AdvanceReteachRequest, teacher_id: str):
     """
     async with get_db() as db:
         result = await review_service.record_teacher_decisions(
-            db, teacher_id, req.plan_date, req.domain_id, req.decisions
+            db, teacher_id, req.plan_date, req.domain_id, req.decisions, stage=req.stage
         )
         return result
 

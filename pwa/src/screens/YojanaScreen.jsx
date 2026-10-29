@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../App';
-import { getCachedPlan, openAuthedPage, worksheetPath, prepareOfflineCopy } from '../services/api';
+import { getCachedPlan, openAuthedPage, worksheetPath, prepareOfflineCopy, getReviewChannels } from '../services/api';
+import { channelOf, OBSERVE, hasObservation, PRACTICE_ONLY, hasWorksheet } from '../services/reviewWays';
 import { isOnline } from '../services/network';
 import PlanGroupSkills from '../components/PlanGroupSkills';
 import { reteachGroupsOf } from '../services/planSummary';
@@ -30,6 +31,16 @@ export default function YojanaScreen() {
   const [expandedBlock, setExpandedBlock] = useState(null);
   const [showWhyPanel, setShowWhyPanel] = useState(false);
   const [loadingStored, setLoadingStored] = useState(false);
+  // how each group's skill is checked at the review (and what to look for, the text to read aloud): the "आज की समीक्षा" fold, readable before class
+  const [ways, setWays] = useState(null);
+  useEffect(() => {
+    setWays(null);
+    if (!currentPlan || !currentPlan.plan_date || !currentPlan.domain_id) return undefined;
+    let cancelled = false;
+    Promise.resolve().then(() => getReviewChannels(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id))
+      .then((w) => { if (!cancelled) setWays(w); }).catch(() => {});
+    return () => { cancelled = true; };
+  }, [currentPlan && currentPlan.plan_date, currentPlan && currentPlan.domain_id]);
 
   // With a plan on screen, make its offline copy once, quietly: the stored plan and its worksheets (see prepareOfflineCopy in api.js).
   // The key changes when a regenerated plan has different worksheets (there is no plan id), so the offline copy is never an older plan's.
@@ -340,6 +351,32 @@ export default function YojanaScreen() {
       <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }}>
         <Bi hi="खुलने पर प्रिंट करें, या बोर्ड पर उतारें।" en="Opens the sheet: print it, or copy it to the board." inline />
       </p>
+
+      {/* today's review, readable before class: how each group is checked, what to look for, the text to read aloud */}
+      <details className="card fold" data-testid="review-today" style={{ padding: '4px 12px', marginTop: 16 }}>
+        <summary><span>☑️ <Bi hi="आज की समीक्षा: कैसे जाँचें" en="Today's review: how to check" inline /></span></summary>
+        {ways && ways.has_plan && (ways.levels || []).length > 0 ? (ways.levels || []).map((l) => {
+          const way = channelOf(l.channel);
+          return (
+            <div key={l.level} data-testid={`review-way-${l.level}`} style={{ fontSize: '0.8125rem', padding: '4px 0', borderTop: '1px dashed var(--border)' }}>
+              <b>{GROUP_LABELS[l.level]?.mark} {GROUP_LABELS[l.level]?.hi}</b> <span style={{ fontFamily: 'monospace' }}>{l.competency_id}</span>: {way ? <>{way.icon} <Bi hi={way.hi} en={way.en} inline /></> : l.channel}
+              {way && <div style={{ color: 'var(--text-secondary)' }}><Bi hi={way.who.hi} en={way.who.en} inline /></div>}
+              {l.channel === 'observed' && hasWorksheet(currentPlan, l.level) && (
+                <div data-testid={`review-way-practice-${l.level}`} style={{ color: '#8A5A00' }}><Bi hi={PRACTICE_ONLY.hi} en={PRACTICE_ONLY.en} inline /></div>
+              )}
+              {l.passage && <div data-testid={`review-way-passage-${l.level}`}><Bi hi="पढ़ने का पाठ" en="Text to read" inline />: «{l.passage.title}» ({l.passage.word_count} शब्द)</div>}
+            </div>
+          );
+        }) : (
+          <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: '4px 0' }}><Bi hi="पढ़ाने के बाद समीक्षा स्क्रीन पर हर समूह का तरीका दिखेगा।" en="After teaching, the Review screen shows each group's way." inline /></p>
+        )}
+        {(ways && ways.has_plan ? (ways.levels || []).some((l) => l.channel === 'observed') : hasObservation(currentPlan)) && (
+          <div data-testid="review-observe" style={{ fontSize: '0.8125rem', paddingTop: 4, borderTop: '1px dashed var(--border)' }}>
+            <b>✓ <Bi hi="देखकर दर्ज करना" en="Observing" inline />:</b> <Bi hi={OBSERVE.hi} en={OBSERVE.en} inline />
+          </div>
+        )}
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 6px' }}><Bi hi="हर तरीके के कदम समीक्षा स्क्रीन पर “कैसे करें?” में हैं।" en="The steps for each way are under “How to do it” on the Review." inline /></p>
+      </details>
 
       {/* the next step after teaching, without having to know which tab it is */}
       <button type="button" className="btn btn-primary" data-testid="to-review" onClick={() => navigate('/review')} style={{ marginTop: 16, flexDirection: 'column', gap: 0 }}>

@@ -13,7 +13,7 @@ let JSDOM;
 try { ({ JSDOM } = await import('jsdom')); } catch (e) { console.log('SKIPPED: jsdom is not installed. To run this test: cd pwa; npm install --save-dev jsdom@24'); process.exit(0); }
 const here = path.dirname(fileURLToPath(import.meta.url)); const src = path.join(here, '..', 'src'); const out = path.join(here, `.tmp-familiar-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
-const API = ['adminSchool', 'adminTeachers', 'adminResetPin', 'adminUnlock', 'adminRecordConsent', 'getCachedPlan', 'openAuthedPage', 'worksheetPath', 'prepareOfflineCopy'];
+const API = ['adminSchool', 'adminTeachers', 'adminResetPin', 'adminUnlock', 'adminRecordConsent', 'getCachedPlan', 'openAuthedPage', 'worksheetPath', 'prepareOfflineCopy', 'getReviewChannels'];
 const stubs = {
   '../App': 'export const useAuth = () => globalThis.__auth;',
   'react-router-dom': 'export const useNavigate = () => () => {};',
@@ -59,7 +59,7 @@ const PLAN = {
   },
 };
 globalThis.__auth = { currentPlan: PLAN, setCurrentPlan() {}, teacher: { teacher_id: 'T1', role: 'teacher', school_code: 'S1', enrolled_grades: ['grade_2'] }, selectedDomain: 'numeracy', logout() {} };
-globalThis.__api = { adminSchool: async () => ({}), adminTeachers: async () => ({ teachers: [] }), getCachedPlan: async () => PLAN, openAuthedPage: async () => {}, worksheetPath: () => '/w', prepareOfflineCopy: () => {} };
+globalThis.__api = { getReviewChannels: async () => globalThis.__channels || ({ has_plan: false, levels: [], channels: {} }), adminSchool: async () => ({}), adminTeachers: async () => ({ teachers: [] }), getCachedPlan: async () => PLAN, openAuthedPage: async () => {}, worksheetPath: () => '/w', prepareOfflineCopy: () => {} };
 let root;
 const show = async (C) => { if (root) await act(async () => root.unmount()); root = createRoot(document.getElementById('root')); await act(async () => { root.render(React.createElement(C)); }); await flush(); };
 const blockOf = (g) => q(`.timeline-block.tier-${g}`) || qa('.timeline-block').find((b) => b.textContent.includes(PLAN.groups.find((x) => x.label === g).target_competency_id));

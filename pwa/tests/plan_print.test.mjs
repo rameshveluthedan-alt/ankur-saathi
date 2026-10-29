@@ -21,7 +21,7 @@ process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));     
 const stubs = {
   '../App': 'export const useAuth = () => globalThis.__auth;',
   'react-router-dom': 'export const useNavigate = () => () => {};',
-  '../services/api': 'export const getCachedPlan = async () => { throw new Error("none"); }; export const openAuthedPage = async () => {}; export const worksheetPath = (...a) => "/w/" + a.join("/"); export const prepareOfflineCopy = () => {};',
+  '../services/api': 'export const getReviewChannels = async () => globalThis.__channels || ({ has_plan: false, levels: [], channels: {} }); export const getCachedPlan = async () => { throw new Error("none"); }; export const openAuthedPage = async () => {}; export const worksheetPath = (...a) => "/w/" + a.join("/"); export const prepareOfflineCopy = () => {};',
 };
 await build({
   entryPoints: { print: path.join(src, 'screens/PlanPrint.jsx'), screen: path.join(src, 'screens/YojanaScreen.jsx') },
@@ -186,8 +186,8 @@ check('the header: teacher code, class, date in Hindi, main skill; then "लग�
 check('once the plan records its own length, the exact value without "लगभग"', () => {
   assert.equal(doc(render(Print, auth(PLAN({}, { session_minutes: 45 })))).querySelector('[data-testid="print-time"]').textContent, 'योजना समय: 45 मिनट');
 });
-check('the review rows: the plan\'s observation reminders, photos chosen on the Review screen, and reading aloud only for a reading-speed skill', () => {
-  assert.ok(/अवलोकन: शुरुआती समूह में तीली से गिनती देखें/.test(text) && /फ़ोटो: समीक्षा स्क्रीन पर चुने जाएँगे/.test(text) && !text.includes('पढ़कर सुनाना'));
+check('the review rows: observing (the general instruction, not the plan\'s AI prompt), photos chosen on the Review screen, and reading aloud only for a reading-speed skill', () => {
+  assert.ok(/अवलोकन: स्वतंत्र अभ्यास के दौरान देखकर हर बच्चे के लिए A \/ PA \/ NA/.test(text) && !text.includes('तीली से गिनती') && /फ़ोटो: समीक्षा स्क्रीन पर चुने जाएँगे/.test(text) && !text.includes('पढ़कर सुनाना'));
   const lit = PLAN(); lit.groups[1].target_competency_id = 'L2.5.1';
   assert.ok(/पढ़कर सुनाना: समीक्षा स्क्रीन पर/.test(printedText(doc(render(Print, auth(lit))))));
 });

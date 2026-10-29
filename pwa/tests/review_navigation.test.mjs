@@ -1,6 +1,6 @@
 // Navigation around the Review (the click-through of 29 Oct): leaving the Review for Progress no longer loses the teacher's place; the Review loads today's
 // plan itself (after the app is reopened it is not in memory) and carries on from the decisions already recorded; step 2 and step 3 have a way back; the
-// step marker goes back to a step already reached; a new review asks first; Progress opened from the Review has "← समीक्षा पर लौटें"; the plan screen
+// step marker only shows where the teacher is; "फ़ोटो विश्लेषण देखें →" appears only when there is a photo analysis; a new review asks first; Progress opened from the Review has "← समीक्षा पर लौटें"; the plan screen
 // leads on to the Review, and with no plan, to making one. The REAL Review, Progress and plan screens in a simulated browser with a fake server.
 //
 //     cd pwa
@@ -58,7 +58,7 @@ const flush = async () => { for (let i = 0; i < 4; i += 1) await act(async () =>
 const show = async (C) => { if (root) await act(async () => root.unmount()); root = createRoot(document.getElementById('root')); await act(async () => { root.render(React.createElement(C)); }); await flush(); };
 const q = (sel) => document.querySelector(sel); const qa = (sel) => [...document.querySelectorAll(sel)];
 const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true })); }); await flush(); };
-const stepNow = () => q('[data-testid="review-steps"]') && q('[data-testid="review-steps"]').dataset.step;
+const stepNow = () => q('[data-testid="review-title"]') && q('[data-testid="review-title"]').dataset.step;
 const chosen = (g) => (qa(`.tier-card.tier-${g} .decision-btn.selected`)[0] || { textContent: '' }).textContent;
 const fresh = () => { sessionStorage.clear(); globalThis.__auth.currentPlan = null; globalThis.__auth.selectedDomain = 'numeracy'; globalThis.__navs.length = 0; decided.length = 0; saved = []; };
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
@@ -108,23 +108,28 @@ check('the teacher tapped "दोहराएँ" before the server answered "�
 console.log('\nB. ways back inside the Review');
 fresh(); cached = async () => PLAN({ beginner: 'advance', progressor: 'reteach' });
 await show(Review);
+check('step 2\'s way back carries step 1\'s badge: "← 1/3 · पहला अनुमान बदलें" (the same "1/3" as step 1\'s heading)',
+  q('[data-testid="back-to-decisions"] .step-count') && q('[data-testid="back-to-decisions"] .step-count').textContent === '1/3' && /पहला अनुमान बदलें/.test(q('[data-testid="back-to-decisions"]').textContent));
 await click(q('[data-testid="back-to-decisions"]'));
-check('step 2 "← निर्णय बदलें": back to step 1 with the decisions kept, ready to record again', stepNow() === '1' && /आगे बढ़ें/.test(chosen('beginner')) && /दोहराएँ/.test(chosen('progressor')) && !q('[data-testid="record-decisions"]').disabled);
-check('the marker: "2/3" (reached) can be tapped, "3/3" (no analysis open) cannot', !!q('[data-testid="go-step-2"]') && !q('[data-testid="go-step-3"]'));
-await click(q('[data-testid="go-step-2"]'));
-check('...tapping "2/3" goes back to the children\'s work', stepNow() === '2');
-saved = [ANALYSIS]; await show(Review);
-const open = qa('[data-testid="saved-analyses"] button')[0];
-await click(open);
-check('an analysis opened: step 3', stepNow() === '3');
+check('step 2 "← पहला अनुमान बदलें": back to step 1 with the first judgments kept, ready to record again; step 1 names the term in bold ("पहला अनुमान")', stepNow() === '1'
+  && q('[data-testid="first-term"]') && q('[data-testid="first-term"]').tagName === 'B' && q('[data-testid="first-term"]').textContent === 'पहला अनुमान' && /आगे बढ़ें/.test(chosen('beginner')) && /दोहराएँ/.test(chosen('progressor')) && !q('[data-testid="record-decisions"]').disabled);
+check('there is no separate step marker: the heading says the step (2/3 · बच्चों का काम देखें), and nothing in it can be tapped', !q('[data-testid="review-steps"]') && !q('[data-testid="review-title"] button'));
+await click(q('[data-testid="record-decisions"]'));
+check('...recording again goes back to the children\'s work', stepNow() === '2');
+check('no photo analysis today: no "फ़ोटो विश्लेषण देखें →" (it would open an empty page)', !q('[data-testid="see-analysis"]'));
+saved = [ANALYSIS, { ...ANALYSIS, id: 0, worksheet_level: 'beginner' }]; await show(Review);
+check('with one today: the button is there', !!q('[data-testid="see-analysis"]') && /फ़ोटो विश्लेषण देखें/.test(q('[data-testid="see-analysis"]').textContent));
+await click(q('[data-testid="see-analysis"]'));
+check('...and opens today\'s newest analysis INSIDE step 2 (the marker stays on 2/3: it is a result, not a step), never the empty "results will appear" page', stepNow() === '2'
+  && !!q('[data-testid="back-to-work"]') && !q('[data-testid="see-analysis"]') && !/फ़ोटो विश्लेषण के बाद परिणाम यहाँ दिखेंगे/.test(document.getElementById('root').textContent));
 await click(q('[data-testid="back-to-work"]'));
-check('step 3 "← बच्चों का काम: अगला समूह या तरीका": back to step 2, nothing reset (decisions kept)', stepNow() === '2' && decided.length === 0);
-check('...and now "3/3" can be tapped to see the analysis again', !!q('[data-testid="go-step-3"]'));
-await click(q('[data-testid="go-step-3"]'));
-confirmAnswer = false; await click(q('[data-testid="new-review"]'));
-check('"नई समीक्षा शुरू करें" asks first: "Cancel" changes nothing', stepNow() === '3');
-confirmAnswer = true; await click(q('[data-testid="new-review"]'));
-check('..."OK" starts over at step 1 with nothing chosen, and forgets the saved place', stepNow() === '1' && !chosen('beginner') && JSON.parse(sessionStorage.getItem('ankur_review_place') || '{}').step === 1);
+check('"← बच्चों का काम: अगला समूह या तरीका": back to the ways of checking, nothing reset (judgments kept)', stepNow() === '2' && !!q('[data-testid="see-analysis"]') && decided.length === 1);
+await click(q('[data-testid="see-analysis"]'));
+check('..."फ़ोटो विश्लेषण देखें →" goes back to the analysis just left', stepNow() === '2' && !!q('[data-testid="back-to-work"]'));
+await click(q('[data-testid="to-final"]'));
+check('"आगे: अंतिम निर्णय →" (also under the analysis) leads to step 3', stepNow() === '3');
+check('step 3 has no "नई समीक्षा शुरू करें" (removed 29 Oct: every change has its own way, and it suggested the review was thrown away)',
+  !q('[data-testid="new-review"]') && !/नई समीक्षा/.test(document.getElementById('root').textContent) && !/startNewReview|नई समीक्षा/.test(reviewSrc));
 
 console.log('\nC. Progress, opened from the Review, leads back');
 check('every "see it on Progress" pointer on the Review says it came from the Review', (reviewSrc.match(/onOpenProgress=\{toProgress\}/g) || []).length === 3 && !/navigate\('\/progress'\)/.test(reviewSrc)

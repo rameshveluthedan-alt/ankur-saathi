@@ -140,6 +140,12 @@ async def main():
             n = len(fake.prompts)
             r1, r2 = post(5), post(5, replace=True)
             check("the server does not look at evidence: with a result recorded it is still 409 without replace, and still replaced with it", r1.status_code == 409 and r2.status_code == 200 and len(fake.prompts) == n + 1, (r1.status_code, r2.status_code))
+            for stage, d in (("first", "advance"), ("final", "reteach")):
+                c.post(f"/api/review/decisions?teacher_id={teacher_id}", json={"plan_date": str(TODAY + timedelta(days=5)), "domain_id": "numeracy", "decisions": {"progressor": d}, "stage": stage})
+            post(5, replace=True)
+            j = c.get(f"/api/plan/{teacher_id}/{TODAY + timedelta(days=5)}/numeracy").json()
+            check("a plan made again keeps the day's review: the first judgment, the final decision and the current decision",
+                  j.get("first_judgments") == {"progressor": "advance"} and j.get("final_decisions") == {"progressor": "reteach"} and j.get("decisions") == {"progressor": "reteach"}, (j.get("first_judgments"), j.get("final_decisions"), j.get("decisions")))
             r = post(8, replace=True)
             check("replace: true with no plan that day simply makes one", r.status_code == 200, r.text[:140])
             r = post(9)

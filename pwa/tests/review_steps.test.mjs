@@ -32,7 +32,7 @@ const d0 = new Date(); const TODAY = `${d0.getFullYear()}-${String(d0.getMonth()
 sessionStorage.clear();
 globalThis.__auth = { teacher: { teacher_id: 'T1' }, selectedDomain: 'numeracy', names: {},
   currentPlan: { plan_date: TODAY, domain_id: 'numeracy', selected_competency_id: 'N2.3.2',
-    groups: [{ label: 'beginner', count: 7, target_competency_id: 'N2.3.1' }, { label: 'progressor', count: 14, target_competency_id: 'N2.3.2' }, { label: 'proficient', count: 0, target_competency_id: 'N3.3.1' }],
+    groups: [{ label: 'beginner', count: 7, target_competency_id: 'N2.3.1', target_competency_name_hi: 'बिना हासिल के जोड़' }, { label: 'progressor', count: 14, target_competency_id: 'N2.3.2', target_competency_name_hi: 'हासिल के साथ जोड़' }, { label: 'proficient', count: 0, target_competency_id: 'N3.3.1' }],
     plan: { worksheets: {} } } };
 globalThis.__api = {
   recordDecisions: async (...a) => { decided.push(a); return {}; },
@@ -51,9 +51,17 @@ let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${o
 await act(async () => { root.render(React.createElement(Review)); }); await flush();
 
 console.log('the step marker');
-check('three steps are shown, "1/3 निर्णय" is the current one', qa('[data-testid^="review-step-"]').length === 3 && q('[data-testid="review-steps"]').dataset.step === '1'
-  && q('[data-testid="review-step-1"]').getAttribute('aria-current') === 'step' && /1\/3 निर्णय/.test(q('[data-testid="review-step-1"]').textContent)
-  && /2\/3 बच्चों का काम/.test(q('[data-testid="review-step-2"]').textContent) && /3\/3 विश्लेषण/.test(q('[data-testid="review-step-3"]').textContent));
+check('step 1\'s heading carries the step: "1/3 · आज हर समूह कैसा रहा?" (no separate marker row with other words)', !q('[data-testid="review-steps"]')
+  && q('[data-testid="review-title"]').dataset.step === '1' && /^1\/3 आज हर समूह कैसा रहा\?/.test(q('[data-testid="review-title"]').textContent.replace(/How did.*$/, '').trim())
+  && q('[data-testid="review-title"] .step-count').textContent === '1/3');
+
+console.log('\nthe Review\'s icon is ☑️, not a camera (it is not only photos)');
+check('☑️ on the bottom tab, the Review\'s heading and "कैसे काम करता है"; 📷 stays only on the photo capture area inside the Photo way', (() => {
+  const app = fs.readFileSync(path.join(src, 'App.jsx'), 'utf8'); const how = fs.readFileSync(path.join(src, 'components/HowItWorks.jsx'), 'utf8');
+  return /\{ id: '\/review', icon: '☑️'/.test(app) && /<h1>☑️ <Bi hi="समीक्षा"/.test(reviewSrc) && /icon: '☑️', hi: 'समीक्षा'/.test(how)
+    && !app.includes('📷') && !how.includes('📷') && (reviewSrc.match(/📷/g) || []).length === 1 && /className="capture-icon">📷</.test(reviewSrc)
+    && /^☑️/.test(document.querySelector('h1').textContent);
+})());
 
 console.log('\nthe ⓘ hints (a phone shows no hover tooltip)');
 const hintBtn = (id) => q(`[data-testid="${id}"] .hint-btn`);
@@ -65,6 +73,8 @@ check('...one tap opens what each choice does to the next plan, in Hindi with it
 await click(hintBtn('hint-decisions'));
 check('...and a second tap closes it', !q('[data-testid="hint-decisions"] .hint-text'));
 check('the ⓘ is a 44 px target (CSS)', /\.hint-btn\s*\{[^}]*min-width:\s*44px[^}]*min-height:\s*44px/.test(fs.readFileSync(path.join(src, 'index.css'), 'utf8')));
+
+check('step 1: each group\'s card names the skill its first judgment is about: "N2.3.1 · बिना हासिल के जोड़" (the group is in the card\'s badge)', /^N2\.3\.1 · बिना हासिल के जोड़$/.test(q('[data-testid="skill-1-beginner"]').textContent) && /^N2\.3\.2 · हासिल के साथ जोड़$/.test(q('[data-testid="skill-1-progressor"]').textContent));
 
 console.log('\n"record" waits for a decision for every group');
 check('nothing chosen: "record" is off, and the line names both groups with children (the Proficients have none, so they are not asked)',
@@ -78,11 +88,18 @@ check('every group with children chosen: "record" is on, and the line is gone', 
 check('the button says what comes next, plainly: "दर्ज करें → बच्चों का काम देखें" (not "साक्ष्य कैप्चर")', /दर्ज करें → बच्चों का काम देखें/.test(record().textContent) && !reviewSrc.includes('साक्ष्य कैप्चर'));
 await click(record());
 check('recording sends the two decisions and moves on: the marker shows "2/3", and the heading is "बच्चों का काम देखें"',
-  decided.length === 1 && JSON.stringify(decided[0][3]) === JSON.stringify({ beginner: 'advance', progressor: 'reteach' })
-  && q('[data-testid="review-steps"]').dataset.step === '2' && q('[data-testid="review-step-2"]').getAttribute('aria-current') === 'step' && !q('[data-testid="review-step-1"]').getAttribute('aria-current') && [...document.querySelectorAll('h2')].some((h) => /बच्चों का काम देखें/.test(h.textContent)), JSON.stringify(decided[0]));
+  decided.length === 1 && JSON.stringify(decided[0][3]) === JSON.stringify({ beginner: 'advance', progressor: 'reteach' }) && decided[0][4] === 'first'
+  && q('[data-testid="review-title"]').dataset.step === '2' && /^2\/3 बच्चों का काम देखें/.test(q('[data-testid="review-title"]').textContent) && [...document.querySelectorAll('h2')].some((h) => /बच्चों का काम देखें/.test(h.textContent)), JSON.stringify(decided[0]));
 
-await click(hintBtn('hint-channels'));
-check('step 2 has its own ⓘ: what Observed, Photo and Reading aloud each mean', /✓ अवलोकन: आप हर बच्चे के लिए A \/ PA \/ NA चुनते हैं। 📸 फ़ोटो: .*⏱️ पठन प्रवाह:/.test(q('[data-testid="hint-channels"] .hint-text').textContent));
+check('step 2: no ⓘ for the ways (the line under the tabs says it, always visible); the tabs say what the teacher does',
+  !q('[data-testid="hint-channels"]') && /देखकर दर्ज करें/.test(q('[data-testid="channel-observed"]').textContent) && /वर्कशीट की फ़ोटो/.test(q('[data-testid="channel-photo"]').textContent)
+  && /पढ़कर सुनाना/.test(q('[data-testid="channel-orf"]').textContent));
+const seen = [];          // what the teacher sees with each way chosen
+const who = async (id) => { await click(q(`[data-testid="channel-${id}"]`)); seen.push(document.getElementById('root').textContent); return q('[data-testid="channel-who"]').textContent; };
+check('the line under the tabs says who does what, for the way chosen; the photo way says the AI reads the work',
+  /आप हर बच्चे के लिए A \/ PA \/ NA चुनते हैं/.test(await who('observed')) && /आप वर्कशीट की फ़ोटो लेते हैं; AI हर बच्चे का काम पढ़ता है/.test(await who('photo'))
+  && /बच्चा एक मिनट पढ़ता है; आप सही शब्द और गलतियाँ लिखते हैं/.test(await who('orf')));
+check('no card title repeats the tab: with each way chosen, the screen shows no "शिक्षक अवलोकन", "वर्कशीट फ़ोटो", "पठन प्रवाह" or "ORF"', seen.length === 3 && seen.every((t) => !/शिक्षक अवलोकन|वर्कशीट फ़ोटो|पठन प्रवाह|ORF|Teacher Observation|Reading Fluency/.test(t)));
 
 await act(async () => root.unmount());
 console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks: the Review asks for a decision for every group before moving on, and shows its three steps'}`);

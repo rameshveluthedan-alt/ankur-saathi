@@ -1411,7 +1411,7 @@ async def generate_dainik_yojana(
             plan_content = EXCLUDED.plan_content,
             explainability = EXCLUDED.explainability || COALESCE((SELECT jsonb_object_agg(e.key, e.value)
                                  FROM jsonb_each(COALESCE(daily_plans.explainability, '{}'::jsonb)) e
-                                 WHERE starts_with(e.key, 'teacher_decision_')), '{}'::jsonb),
+                                 WHERE starts_with(e.key, 'teacher_decision_') OR starts_with(e.key, 'teacher_first_') OR starts_with(e.key, 'teacher_final_')), '{}'::jsonb),
             groups_snapshot = EXCLUDED.groups_snapshot,
             generation_time_ms = EXCLUDED.generation_time_ms,
             selected_competency_id = EXCLUDED.selected_competency_id,

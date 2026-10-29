@@ -14,7 +14,7 @@ let JSDOM;
 try { ({ JSDOM } = await import('jsdom')); } catch (e) { console.log('SKIPPED: jsdom is not installed. To run this test: cd pwa; npm install --save-dev jsdom@24'); process.exit(0); }
 const here = path.dirname(fileURLToPath(import.meta.url)); const src = path.join(here, '..', 'src'); const out = path.join(here, `.tmp-existing-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
-const API = ['getCompetencies', 'getGroups', 'generatePlan', 'getGroupProposal', 'getLadder', 'getCachedPlan', 'openAuthedPage', 'worksheetPath', 'prepareOfflineCopy'];
+const API = ['getCompetencies', 'getGroups', 'generatePlan', 'getGroupProposal', 'getLadder', 'getCachedPlan', 'openAuthedPage', 'worksheetPath', 'prepareOfflineCopy', 'getReviewChannels'];
 const stubs = { '../App': 'export const useAuth = () => globalThis.__auth;', 'react-router-dom': 'export const useNavigate = () => globalThis.__navigate;',
   '../services/api': API.map((n) => `export const ${n} = (...a) => globalThis.__api.${n}(...a);`).join('\n') };
 await build({ entryPoints: { plan: path.join(src, 'screens/PlanScreen.jsx'), yojana: path.join(src, 'screens/YojanaScreen.jsx') }, bundle: true, format: 'esm', platform: 'node', outdir: out,
@@ -43,7 +43,7 @@ const notFound = () => { const e = new Error('No plan found for this date'); e.s
 let cached; let generateFails = null; const cachedCalls = []; const generateCalls = []; const navigations = []; let current = null;
 globalThis.__navigate = (to) => navigations.push(to);
 globalThis.__auth = { teacher: { teacher_id: 'T1', total_children: 30 }, selectedDomain: 'numeracy', setSelectedDomain() {}, setCurrentPlan: (p) => { current = p; }, get currentPlan() { return current; } };
-globalThis.__api = {
+globalThis.__api = { getReviewChannels: async () => globalThis.__channels || ({ has_plan: false, levels: [], channels: {} }),
   getCompetencies: async () => ({ competencies: [sk('N2.3.1'), sk('N2.3.2'), sk('N3.3.1')] }),
   getGroups: async () => ({ groups: [{ label: 'beginner', count: 7 }, { label: 'progressor', count: 14 }, { label: 'proficient', count: 9 }] }),
   getGroupProposal: async () => ({ has_history: false, groups: {}, previous_date: null }),

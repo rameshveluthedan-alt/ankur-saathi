@@ -145,6 +145,8 @@ async def get_today(db, teacher_id: str, on: date) -> dict:
                 "skill_id": g["target"], **counts, "assessed": sum(counts.values()),
                 "group_size": len(g["rolls"]) or ((snap.get(label) or {}).get("count") if plan else sizes.get((domain, label), 0)) or 0,
                 "decision": decision,
+                "recommend": bool(ev.get("recommend")),                                     # the evidence suggests a re-teach (a third or more made a mistake)
+                "very_small": bool(ev.get("very_small")),                                   # too few children checked for the app to suggest anything
                 "conflict": decision == "advance" and bool(ev.get("recommend")),          # chose to move on although the evidence recommends a re-teach
                 "advance_no_next": decision == "advance" and bool(g["target"]) and not await gs.next_options(db, g["target"]),
             }

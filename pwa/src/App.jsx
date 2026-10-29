@@ -28,7 +28,7 @@ function BottomNav() {
   const tabs = [
     { id: '/', icon: '🎯', hi: 'योजना', en: 'Plan' },
     { id: '/yojana', icon: '📋', hi: 'दैनिक योजना', en: 'Yojana' },
-    { id: '/review', icon: '📷', hi: 'समीक्षा', en: 'Review' },
+    { id: '/review', icon: '☑️', hi: 'समीक्षा', en: 'Review' },          // checking what the children can do, by any of the three ways (not only photos: 📸 marks the photo way inside)
     { id: '/progress', icon: '📊', hi: 'प्रगति', en: 'Progress' },
     { id: '/account', icon: '👤', hi: 'प्रोफ़ाइल', en: 'Profile' },        // on every screen: log out, change password, and the leader's reset
   ];

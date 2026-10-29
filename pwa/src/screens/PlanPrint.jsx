@@ -8,6 +8,7 @@ import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import { isFluencySkill } from '../services/pace';
 import { localToday } from '../services/today';
 import { planMinutes } from '../services/planMinutes';
+import { hasObservation } from '../services/reviewWays';
 
 /**
  * The printed plan: ONE A4 page the teacher carries when she teaches without her phone (browser Print or "Save as PDF"). Hindi only, the same for every teacher:
@@ -104,8 +105,7 @@ export default function PlanPrint() {
   const anchor = plan.anchor || {};
   const anchorTitle = fmt(anchor.title_hi) || fmt(anchor.narration_hi);
   const length = planMinutes(currentPlan);        // the recorded length; for an older plan its blocks added up, so "लगभग"
-  const reminders = (plan.review_prompts || {}).observation_reminders_hi;
-  const obs = (Array.isArray(reminders) ? reminders : [reminders]).map(fmt).filter(Boolean).join(' · ');
+  const observing = hasObservation(currentPlan);        // the general instruction, not the plan's own AI-written prompt (see services/reviewWays.js)
   const reading = groups.some((g) => isFluencySkill(g.target_competency_id));
   const code = teacher.employee_code || teacher.school_code || '';
 
@@ -121,7 +121,7 @@ export default function PlanPrint() {
       {teachBlocks.map((b, i) => <Block key={i} block={b} groups={groups} />)}
       <hr />
       <div data-testid="print-review">
-        {obs && <Line testid="print-review-obs"><b>अवलोकन:</b> {obs}</Line>}
+        {observing && <Line testid="print-review-obs"><b>अवलोकन:</b> स्वतंत्र अभ्यास के दौरान देखकर हर बच्चे के लिए A / PA / NA</Line>}
         <Line testid="print-review-photo"><b>फ़ोटो:</b> समीक्षा स्क्रीन पर चुने जाएँगे</Line>
         {reading && <Line testid="print-review-reading"><b>पढ़कर सुनाना:</b> समीक्षा स्क्रीन पर</Line>}
       </div>

@@ -104,6 +104,34 @@ async def main():
             st, j = get(D1)
             check("after Review step 1: the two decisions, exactly as recorded", r.status_code == 200 and j.get("decisions") == {"beginner": "advance", "progressor": "reteach"}, (r.status_code, j.get("decisions")))
             check("...and only that day's: another day's plan has none", get(D3)[1].get("decisions") == {})
+            check("a save without a stage is the first judgment (an older app is unchanged)", get(D1)[1].get("first_judgments") == {"beginner": "advance", "progressor": "reteach"} and get(D1)[1].get("final_decisions") == {})
+
+            print("\nthe Review's two stages: the first judgment, then the final decision with today's evidence")
+            dec = lambda d, stage: c.post(f"/api/review/decisions?teacher_id={teacher_id}", json={"plan_date": str(D1), "domain_id": "numeracy", "decisions": d, "stage": stage})
+            r = dec({"beginner": "reteach", "progressor": "reteach"}, "final")
+            st, j = get(D1)
+            check("the final decision becomes the current decision (what tomorrow's plan suggests from): Beginners now re-teach",
+                  r.status_code == 200 and j["decisions"] == {"beginner": "reteach", "progressor": "reteach"} and j["final_decisions"] == {"beginner": "reteach", "progressor": "reteach"}, j.get("decisions"))
+            check("...and the first judgment is kept as it was (Beginners: advance), so the screen can say it changed", j["first_judgments"] == {"beginner": "advance", "progressor": "reteach"}, j.get("first_judgments"))
+            check("a stage that is neither is refused", dec({"beginner": "advance"}, "maybe").status_code == 422)
+            ev = j.get("today_evidence") or {}
+            check("today's evidence per group comes with the plan: the Progressors' child observed this morning (A 1, assessed 1 of 3), with whether a re-teach is suggested",
+                  ev.get("progressor", {}).get("a") == 1 and ev["progressor"].get("assessed") == 1 and ev["progressor"].get("group_size") == 3 and "recommend" in ev["progressor"], ev.get("progressor"))
+            for roll in (1, 2):                  # two Beginners' photos found a mistake: two of the three, so a re-teach is suggested
+                await db.execute("""INSERT INTO assessment_evidence (child_id, competency_id, teacher_id, channel, status, evidence_data, detected_misconception_ids, session_date)
+                                    VALUES ($1, 'N2.3.1', $2, 'written_photo', 'not_achieved', '{}'::jsonb, $3, $4)""",
+                                 kid[roll], teacher_id, ["N2.3.1-M1"], D1)
+            ev = get(D1)[1]["today_evidence"]
+            check("two Beginners' sheets with a mistake, but only two checked: too few to suggest anything (very_small), the counts still shown",
+                  ev["beginner"]["recommend"] is False and ev["beginner"]["very_small"] is True and ev["beginner"]["na"] == 2, ev["beginner"])
+            D6 = TODAY + timedelta(days=50)
+            await plan(D6, {"progressor": {"count": 6, "rolls": [1, 2, 3, 4, 5, 6], "target": "N2.3.2"}})
+            for roll, wrong in ((1, True), (2, True), (3, False), (4, False), (5, False), (6, False)):
+                await db.execute("""INSERT INTO assessment_evidence (child_id, competency_id, teacher_id, channel, status, evidence_data, detected_misconception_ids, session_date)
+                                    VALUES ($1, 'N2.3.2', $2, 'written_photo', $3, '{}'::jsonb, $4, $5)""",
+                                 kid[roll], teacher_id, 'not_achieved' if wrong else 'achieved', ["N2.3.2-M1"] if wrong else None, D6)
+            ev6 = get(D6)[1]["today_evidence"]["progressor"]
+            check("six checked, two with a mistake (a third): the evidence suggests a re-teach (the same rule as the Plan screen)", ev6["recommend"] is True and ev6["very_small"] is False and ev6["assessed"] == 6, ev6)
 
             print("\nan older snapshot, and no plan")
             D5 = TODAY + timedelta(days=30)

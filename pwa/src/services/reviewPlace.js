@@ -15,7 +15,3 @@ export function loadPlace(key) {
 export function savePlace(key, place) {
   try { sessionStorage.setItem(KEY, JSON.stringify({ ...place, key })); } catch { /* storage unavailable: the Review still works, it just starts at step 1 */ }
 }
-
-export function clearPlace() {
-  try { sessionStorage.removeItem(KEY); } catch { /* nothing to clear */ }
-}
