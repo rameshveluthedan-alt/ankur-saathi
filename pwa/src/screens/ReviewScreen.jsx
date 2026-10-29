@@ -10,7 +10,7 @@ import { bi } from '../services/language';
 import { notify } from '../services/notify';
 import { friendlyError } from '../services/errors';
 import { localToday } from '../services/today';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ObservedSaved, ReadingSaved, SaveError } from '../components/ReviewConfirm';
 import { DECISION_TEXT } from '../components/ProgressToday';
 import { CHANNELS, channelOf, PRACTICE_ONLY, hasWorksheet } from '../services/reviewWays';
@@ -44,16 +44,20 @@ export default function ReviewScreen() {
   // Where the teacher was (services/reviewPlace.js): leaving for Progress or another tab and coming back lands in the same place.
   const place = placeKey(teacher.teacher_id, localToday(), selectedDomain);
   const [restored] = useState(() => loadPlace(place));
-  const [step, setStep] = useState(() => (restored && restored.step) || 1);
+  // opened from the plan's "अभी दर्ज करें" during the lesson: straight to the children's work, that way and group chosen, no first judgment asked
+  // (observing and reading aloud are the teacher's own evidence: nothing to anchor her). Step 1 is still there after class.
+  const location = useLocation();
+  const [fromPlan] = useState(() => { const st = location && location.state; return st && st.from === 'plan' && st.channel ? st : null; });
+  const [step, setStep] = useState(() => (fromPlan ? 2 : (restored && restored.step) || 1));
   const [analysisOpen, setAnalysisOpen] = useState(false);       // step 2: a photo analysis on screen instead of the ways of checking
   const [planInfo, setPlanInfo] = useState(null);                 // the server's plan reply: first judgments, final decisions, today's evidence per group
   const [finals, setFinals] = useState({});                       // step 3: the final decision chosen per group
   const [finalDone, setFinalDone] = useState(false);              // step 3: the final decisions were recorded
   const [decisions, setDecisions] = useState(() => (restored && restored.decisions) || {});
-  const [channel, setChannel] = useState(() => (restored && restored.channel) || null);
+  const [channel, setChannel] = useState(() => (fromPlan ? fromPlan.channel : (restored && restored.channel) || null));
   const [photos, setPhotos] = useState([]);
   const [analysisResult, setAnalysisResult] = useState(null);
-  const [sheetLevel, setSheetLevel] = useState(() => (restored && restored.sheetLevel) || 'progressor');   // which group's worksheet the photos are of
+  const [sheetLevel, setSheetLevel] = useState(() => (fromPlan ? fromPlan.level : (restored && restored.sheetLevel) || 'progressor'));   // which group's worksheet the photos are of
   const goStep = (n) => setStep(n);
   const touched = useRef(false);                     // the teacher has changed a decision on this screen: the server's copy never overwrites it
   const [loading, setLoading] = useState(false);
@@ -88,7 +92,7 @@ export default function ReviewScreen() {
       const all = (d) => needed.length > 0 && needed.every((g) => d[g.label]);
       setFinals((prev) => ({ ...fin, ...prev }));
       if (all(fin)) setFinalDone(true);
-      if (touched.current) return;
+      if (touched.current || fromPlan) { setDecisions((prev) => ({ ...first, ...prev })); return; }        // opened from the plan: stay where the teacher asked to be
       if (!restored && all(fin)) { setDecisions(first); goStep(3); }
       else if (!restored && all(first)) { setDecisions(first); goStep(2); }
       else setDecisions((prev) => ({ ...first, ...prev }));
@@ -262,6 +266,12 @@ export default function ReviewScreen() {
       <div className="screen-header">
         <h1>☑️ <Bi hi="समीक्षा" en="Review" inline /></h1>
       </div>
+      {fromPlan && step === 2 && (
+        <div data-testid="from-plan" style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--green-bg)', borderRadius: 8, padding: '6px 10px', marginBottom: 10, fontSize: '0.8125rem' }}>
+          <span style={{ flex: 1 }}><Bi hi="पाठ के दौरान दर्ज कर रहे हैं; पहला अनुमान और अंतिम निर्णय पढ़ाने के बाद।" en="Recording during the lesson; the first judgment and the final decision come after teaching." /></span>
+          <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-plan" onClick={() => navigate('/yojana')}>← <Bi hi="योजना" en="Plan" inline /></button>
+        </div>
+      )}
 
       {/* no plan for today in this subject (or it could not be loaded): say so, and the way to make one */}
       {!plan && (planStatus === 'loading' ? (

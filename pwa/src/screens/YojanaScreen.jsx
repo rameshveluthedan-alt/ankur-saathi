@@ -266,6 +266,18 @@ export default function YojanaScreen() {
                     <div className="talking-point-label"><Bi hi="तुम करोगे" en="You Do" inline /></div>
                     {fmt(block.talking_points.you_do_hi)}
                     <BoardWork plan={plan} group={block.teach_group} domain={currentPlan.domain_id} />
+                    {/* observation and reading aloud happen DURING You Do: record them now, from here, without the Review's first judgment */}
+                    {block.type === 'teach' && (() => {
+                      const l = ways && ways.has_plan ? (ways.levels || []).find((x) => x.level === block.teach_group && (x.channel === 'observed' || x.channel === 'orf')) : null;
+                      if (!l) return null;
+                      const way = channelOf(l.channel);
+                      return (
+                        <button type="button" className="btn btn-secondary btn-small" data-testid={`record-now-${block.teach_group}`} data-channel={l.channel}
+                          onClick={(e) => { e.stopPropagation(); navigate('/review', { state: { from: 'plan', channel: l.channel, level: l.level } }); }} style={{ display: 'block', marginTop: 8 }}>
+                          {way.icon} <Bi hi="अभी दर्ज करें" en="Record now" inline /> <span style={{ fontSize: '0.75rem', fontWeight: 400 }}>· <Bi hi={way.hi} en={way.en} inline /></span>
+                        </button>
+                      );
+                    })()}
                   </div>
                 )}
                 {Array.isArray(block.cfu) && block.cfu.length > 0 && (
