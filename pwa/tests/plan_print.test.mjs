@@ -207,7 +207,7 @@ check('the plan screen has ONE "🖨️ प्रिंट" button in its title 
 });
 check('the app has the /plan/print route, with no bottom bar there; the back and print buttons are not printed', () => {
   const app = fs.readFileSync(path.join(src, 'App.jsx'), 'utf8');
-  assert.ok(/<Route path="\/plan\/print" element=\{<PlanPrint \/>\} \/>/.test(app) && /if \(path === '\/plan\/print'\) return null;/.test(app));
+  assert.ok(/<Route path="\/plan\/print" element=\{<PlanPrint \/>\} \/>/.test(app) && /if \(path === '\/plan\/print'( \|\| path === '\/plan\/ticks')?\) return null;/.test(app));
   assert.ok(d.querySelector('.no-print [data-testid="print-back"]') && d.querySelector('.no-print [data-testid="print-now"]'));
   assert.match(css, /@media print\s*\{[\s\S]*?@page\s*\{\s*size:\s*A4/);
 });

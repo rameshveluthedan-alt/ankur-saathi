@@ -387,6 +387,12 @@ export default function YojanaScreen() {
             <b>✓ <Bi hi="देखकर दर्ज करना" en="Observing" inline />:</b> <Bi hi={OBSERVE.hi} en={OBSERVE.en} inline />
           </div>
         )}
+        {/* recording on paper during You Do (no phone in hand): a sheet of boxes for the observed and read-aloud groups, entered in step 2 after class */}
+        {ways && ways.has_plan && (ways.levels || []).some((l) => l.channel === 'observed' || l.channel === 'orf') && (
+          <button type="button" className="btn btn-secondary btn-small" data-testid="open-ticks" onClick={() => navigate('/plan/ticks')} style={{ margin: '6px 0 2px' }}>
+            🖨️ <Bi hi="टिक शीट (कागज़ पर दर्ज करें)" en="Tick sheet (record on paper)" inline />
+          </button>
+        )}
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 6px' }}><Bi hi="हर तरीके के कदम समीक्षा स्क्रीन पर “कैसे करें?” में हैं।" en="The steps for each way are under “How to do it” on the Review." inline /></p>
       </details>
 

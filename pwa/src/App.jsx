@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-ro
 import PlanScreen from './screens/PlanScreen';
 import YojanaScreen from './screens/YojanaScreen';
 import PlanPrint from './screens/PlanPrint';
+import TickSheet from './screens/TickSheet';
 import ReviewScreen from './screens/ReviewScreen';
 import ProgressScreen from './screens/ProgressScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -23,7 +24,7 @@ function BottomNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname;
-  if (path === '/plan/print') return null;        // the printed plan is a page of its own: no bottom bar
+  if (path === '/plan/print' || path === '/plan/ticks') return null;        // the printed plan and the tick sheet are pages of their own: no bottom bar
 
   const tabs = [
     { id: '/', icon: '🎯', hi: 'योजना', en: 'Plan' },
@@ -71,6 +72,7 @@ function AppShell() {
         <Route path="/" element={<PlanScreen />} />
         <Route path="/yojana" element={<YojanaScreen />} />
         <Route path="/plan/print" element={<PlanPrint />} />
+        <Route path="/plan/ticks" element={<TickSheet />} />
         <Route path="/review" element={<ReviewScreen />} />
         <Route path="/progress" element={<ProgressScreen />} />
         <Route path="/register" element={<RegisterScreen />} />

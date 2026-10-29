@@ -468,6 +468,11 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
 .print-block-head { color: var(--tier-ink); }
 .print-footer { font-size: 9pt; color: var(--text-secondary); }
 .plan-print .signal-panel.compact { margin-top: 2px; padding: 2px 8px; }
+/* the paper tick sheet (screens/TickSheet.jsx): one table per group, boxes big enough to tick or write a number in; a group never splits across pages */
+.tick-group { border-left: 4px solid var(--tier); padding: 2px 0 2px 8px; margin: 8px 0; break-inside: avoid; page-break-inside: avoid; }
+.tick-table { border-collapse: collapse; margin-top: 4px; }
+.tick-table th, .tick-table td { border: 1px solid #555; min-width: 16mm; height: 8mm; padding: 0 6px; text-align: center; }
+.tick-table td:first-child { font-weight: 700; min-width: 12mm; }
 @media print {
   @page { size: A4; margin: 12mm; }
   body.print-plan * { visibility: hidden; }
