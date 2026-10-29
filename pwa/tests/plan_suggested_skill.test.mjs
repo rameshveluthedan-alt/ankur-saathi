@@ -45,7 +45,7 @@ const show = async () => { if (root) await act(async () => root.unmount()); root
 const q = (sel) => document.querySelector(sel); const qa = (sel) => [...document.querySelectorAll(sel)];
 const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true })); }); await flush(); };
 const card = () => q('[data-testid="suggested-skill"]');
-const generateBtn = () => qa('button.btn-primary').find((b) => /Generate Plan/.test(b.textContent));
+const generateBtn = () => qa('button.btn-primary').find((b) => /आज की योजना बनाएँ/.test(b.textContent));
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
 
 console.log('a suggestion from the last review');

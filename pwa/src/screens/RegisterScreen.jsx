@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { backOrHome } from '../services/backHistory';
 import { useAuth } from '../App';
 import { previewRegister, commitRegister, REGISTER_TEMPLATE_URL } from '../services/api';
 import Bi from '../components/Bi';
@@ -45,7 +46,8 @@ export default function RegisterScreen() {
     <div className="screen">
       <div className="screen-header">
         <h1>👥 <Bi hi="कक्षा रजिस्टर" en="Class register" inline /></h1>
-        <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/')}>← <Bi hi="वापस" en="Back" inline /></button>
+        {/* back to the screen the teacher came from (navigation F), the Plan screen if the app was opened here */}
+        <button type="button" className="btn btn-secondary btn-small" data-testid="register-back" onClick={() => backOrHome(navigate)}>← <Bi hi="वापस" en="Back" inline /></button>
       </div>
 
       <div className="card">

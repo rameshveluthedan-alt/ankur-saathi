@@ -10,7 +10,7 @@ import LoginScreen from './screens/LoginScreen';
 import OfflineBanner from './components/OfflineBanner';
 import Notices from './components/Notices';
 import { probe } from './services/network';
-import { TAB_RESELECT_EVENT, tabTap } from './services/tabs';
+import { TAB_RESELECT_EVENT, tabTap, TABS, activeTab } from './services/tabs';
 import RegisterScreen from './screens/RegisterScreen';
 import AccountScreen from './screens/AccountScreen';
 import ChangePinScreen from './screens/ChangePinScreen';
@@ -26,18 +26,13 @@ function BottomNav() {
   const path = location.pathname;
   if (path === '/plan/print' || path === '/plan/ticks') return null;        // the printed plan and the tick sheet are pages of their own: no bottom bar
 
-  const tabs = [
-    { id: '/', icon: '🎯', hi: 'योजना', en: 'Plan' },
-    { id: '/yojana', icon: '📋', hi: 'दैनिक योजना', en: 'Yojana' },
-    { id: '/review', icon: '☑️', hi: 'समीक्षा', en: 'Review' },          // checking what the children can do, by any of the three ways (not only photos: 📸 marks the photo way inside)
-    { id: '/progress', icon: '📊', hi: 'प्रगति', en: 'Progress' },
-    { id: '/account', icon: '👤', hi: 'प्रोफ़ाइल', en: 'Profile' },        // on every screen: log out, change password, and the leader's reset
-  ];
+  const tabs = TABS;
+  const lit = activeTab(path);
 
   return (
     <nav className="bottom-nav">
       {tabs.map(t => (
-        <button key={t.id} className={`nav-item ${path === t.id ? 'active' : ''}`} data-testid={`nav-${t.id.replace('/', '') || 'plan'}`}
+        <button key={t.id} className={`nav-item ${lit === t.id ? 'active' : ''}`} data-testid={`nav-${t.id.replace('/', '') || 'plan'}`}
           onClick={() => {
             if (tabTap(path, t.id) === 'reselect') {            // the screen we are on: scroll it to the top, and tell it (the Plan screen goes back to choosing a skill)
               window.scrollTo({ top: 0, behavior: 'smooth' });

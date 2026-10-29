@@ -41,7 +41,7 @@ globalThis.__api = {
 const root = createRoot(document.getElementById('root'));
 const flush = async () => { await act(async () => { await new Promise((r) => setTimeout(r, 0)); }); };
 const q = (sel) => document.querySelector(sel); const qa = (sel) => [...document.querySelectorAll(sel)];
-const generateBtn = () => qa('button.btn-primary').find((b) => /Generate|लोड हो रहे/.test(b.textContent));
+const generateBtn = () => qa('button.btn-primary').find((b) => /आज की योजना बनाएँ|लोड हो रहे/.test(b.textContent));
 const card = (id) => qa('.competency-item').find((e) => e.textContent.includes(id));
 const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true })); }); };
 const release = async (id, value) => { await act(async () => { pending[id].resolve(value); await new Promise((r) => setTimeout(r, 0)); }); };

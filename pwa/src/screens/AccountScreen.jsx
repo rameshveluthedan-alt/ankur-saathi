@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { backOrHome } from '../services/backHistory';
 import { useAuth } from '../App';
 import { adminSchool, adminTeachers, adminResetPin, adminUnlock, adminRecordConsent } from '../services/api';
 import { CONSENT } from '../services/consent';
@@ -53,7 +54,8 @@ export default function AccountScreen() {
     <div className="screen">
       <div className="screen-header">
         <h1>👤 <Bi hi="प्रोफ़ाइल" en="Profile" inline /></h1>
-        <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/')}>← <Bi hi="वापस" en="Back" inline /></button>
+        {/* back to the screen the teacher came from (navigation F), the Plan screen if the app was opened here */}
+        <button type="button" className="btn btn-secondary btn-small" data-testid="account-back" onClick={() => backOrHome(navigate)}>← <Bi hi="वापस" en="Back" inline /></button>
       </div>
 
       <div className="card" data-testid="account-info">

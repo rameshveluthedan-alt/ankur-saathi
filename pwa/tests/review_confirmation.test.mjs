@@ -47,8 +47,8 @@ check('no NA in the save: no NA line', () => {
   const h = html(React.createElement(ObservedSaved, { saved: { level: 'progressor', items: [{ roll_number: 5, status: 'achieved' }] } }));
   assert.ok(!h.includes('saved-na-rolls') && h.includes('✓ 1 अवलोकन दर्ज हुआ') && h.includes('1 observation recorded'), 'one: the singular, in Hindi and English');
 });
-check('in the group\'s colour, with a small button to Progress ("📊 प्रगति देखें →", a button, not a text link); nothing about levels or the group decision', () => {
-  assert.ok(obs.includes('saved-block tier-beginner') && /<button type="button" class="btn btn-secondary btn-small" data-testid="to-progress"[^>]*>📊 /.test(obs) && obs.includes('प्रगति देखें →'));
+check('in the group\'s colour, with a small button to Progress ("📊 कक्षा प्रगति देखें →", a button, not a text link); nothing about levels or the group decision', () => {
+  assert.ok(obs.includes('saved-block tier-beginner') && /<button type="button" class="btn btn-secondary btn-small" data-testid="to-progress"[^>]*>📊 /.test(obs) && obs.includes('कक्षा प्रगति देखें →'));
   assert.ok(!obs.includes('demo-link') && !obs.includes('प्रगति टैब पर आज के सभी नतीजे'));
   assert.ok(!/आपका निर्णय|Your decision|शुरुआती<\/span>|badge-beginner/.test(obs));
 });
@@ -136,7 +136,7 @@ check('the two saves no longer raise a message at the top of the screen (the blo
 console.log('\nHindi only');
 check('the new lines keep their English in hideable .en spans', () => {
   const all = obs + read({ roll_number: 12, cwpm: 45, classification: 'achieved' }, 3);
-  for (const en of ['observations recorded', 'not yet', 'more children in this group to go', 'See progress']) {
+  for (const en of ['observations recorded', 'not yet', 'more children in this group to go', 'See class progress']) {
     const i = all.indexOf(en);
     assert.ok(i > 0 && all.lastIndexOf('class="en', i) > all.lastIndexOf('</span>', i), en);
   }

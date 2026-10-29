@@ -55,7 +55,7 @@ export default function ProgressScreen() {
     <div className="screen">
       {back}
       <div className="screen-header">
-        <h1>📊 <Bi hi="प्रगति" en="Progress" inline /></h1>
+        <h1>📊 <Bi hi="कक्षा की प्रगति" en="Class progress" inline /></h1>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
           <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => notify(friendlyError(e, REPORT_FAILED), 'error'))}
             style={{ background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'right' }}>

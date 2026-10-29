@@ -3,16 +3,16 @@ import Bi from './Bi';
 
 // How the parts come together, in the order a teacher meets them. Each step names what powers it, so an evaluator sees the whole loop in one place.
 export const HOW_STEPS = [
-  { icon: '🎯', hi: 'योजना', en: 'Plan', part: { hi: 'कौशल-सीढ़ी', en: 'skill ladder' },
+  { icon: '🎯', hi: 'योजना बनाएँ', en: 'Make plan', part: { hi: 'कौशल-सीढ़ी', en: 'skill ladder' },
     text: { hi: 'आप आज का कौशल और समय चुनते हैं। ऐप तीनों समूहों (● शुरुआती, ▲ प्रगतिशील, ■ दक्ष) के कौशल सुझाता है: 101 कौशलों की सीढ़ी और पिछली समीक्षा से।',
             en: "You choose today's skill and time. The app suggests each group's skill (● Beginner, ▲ Progressor, ■ Proficient) from a ladder of 101 skills and the last review." } },
-  { icon: '📋', hi: 'दैनिक योजना', en: 'Daily plan', part: { hi: 'AI + जाँच', en: 'AI + checks' },
+  { icon: '📋', hi: 'आज की योजना', en: "Today's plan", part: { hi: 'AI + जाँच', en: 'AI + checks' },
     text: { hi: 'AI जाँची हुई सामग्री (गतिविधियाँ, पाठ, आम गलतियाँ) से हर समूह का पाठ, समझ की जाँच और वर्कशीट लिखता है। ऐप हर योजना को नियमों पर जाँचता है।',
             en: "The AI writes each group's lesson, understanding check and worksheet from checked content (activities, passages, common mistakes). The app checks every plan against rules." } },
   { icon: '☑️', hi: 'समीक्षा', en: 'Review', part: { hi: 'फ़ोटो से पढ़ना, नमूना', en: 'photo reading, sampling' },
     text: { hi: 'आप हर समूह के लिए अपना निर्णय दर्ज करते हैं, फिर कुछ बच्चों (नमूना) का काम देखते हैं: वर्कशीट की फ़ोटो (AI पढ़ता है), अवलोकन या पढ़कर सुनाना।',
             en: "You record your decision for each group, then look at a sample of children's work: a worksheet photo (read by the AI), observation, or reading aloud." } },
-  { icon: '📊', hi: 'प्रगति', en: 'Progress', part: { hi: 'आज के नतीजे', en: "today's results" },
+  { icon: '📊', hi: 'कक्षा प्रगति', en: 'Class progress', part: { hi: 'आज के नतीजे', en: "today's results" },
     text: { hi: 'आज के नतीजे, आपके निर्णय, और जिन बच्चों पर एक नज़र डालनी है।', en: "Today's results, your decisions, and the children to look at." } },
 ];
 

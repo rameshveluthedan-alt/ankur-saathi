@@ -1,25 +1,33 @@
 import React, { useEffect, useRef } from 'react';
 import Bi from './Bi';
+import { historyState, pushMarks } from '../services/backHistory';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 
 /**
  * "Replace today's plan?" on the Plan screen. "नहीं, वही रखें" (keep) is the default: it has the focus, and tapping outside or pressing Escape also keeps.
  * kind: 'plan' (a plan exists: names what was recorded against it, from the server's evidence_by_group; groups with 0 are not listed)
  *       'unknown' (whether a plan exists could not be checked: generating may replace one).
+ * The phone's Back button also keeps (navigation D): opening the dialog adds an entry to the browser's history, Back takes it away and closes the dialog;
+ * closed any other way, the dialog takes its entry away itself, so the next Back is not spent on a dialog already gone.
  */
 export default function ReplacePlanDialog({ kind = 'plan', evidence, onKeep, onReplace }) {
   const keepRef = useRef(null);
+  const closing = useRef(false);
+  const leave = (fn) => () => { closing.current = true; if (historyState().dialog === 'replace') window.history.back(); fn(); };
   useEffect(() => {
     if (keepRef.current) keepRef.current.focus();
-    const onKey = (e) => { if (e.key === 'Escape') onKeep(); };
+    if (historyState().dialog !== 'replace') pushMarks({ dialog: 'replace' });
+    const onKey = (e) => { if (e.key === 'Escape') leave(onKeep)(); };
+    const onPop = (e) => { if (!closing.current && !(e.state && e.state.dialog === 'replace')) { closing.current = true; onKeep(); } };
     window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
+    window.addEventListener('popstate', onPop);
+    return () => { window.removeEventListener('keydown', onKey); window.removeEventListener('popstate', onPop); };
   }, []);
   const groups = GROUP_ORDER.filter((g) => evidence && evidence.has_evidence && (evidence.evidence_by_group || {})[g] > 0)
     .map((g) => ({ g, n: evidence.evidence_by_group[g], L: GROUP_LABELS[g] }));
 
   return (
-    <div className="dialog-backdrop" data-testid="replace-backdrop" onClick={onKeep}>
+    <div className="dialog-backdrop" data-testid="replace-backdrop" onClick={leave(onKeep)}>
       <div className="dialog card" role="dialog" aria-modal="true" aria-labelledby="replace-title" data-testid="replace-dialog" data-kind={kind}
         data-evidence={groups.length ? 'true' : 'false'} onClick={(e) => e.stopPropagation()}>
         <div id="replace-title" style={{ fontSize: '0.9375rem', lineHeight: 1.5 }}>
@@ -41,10 +49,10 @@ export default function ReplacePlanDialog({ kind = 'plan', evidence, onKeep, onR
           )}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 12 }}>
-          <button ref={keepRef} type="button" className="btn btn-primary" data-testid="replace-keep" onClick={onKeep} style={{ flexDirection: 'column', gap: 0 }}>
+          <button ref={keepRef} type="button" className="btn btn-primary" data-testid="replace-keep" onClick={leave(onKeep)} style={{ flexDirection: 'column', gap: 0 }}>
             {kind === 'unknown' ? <Bi hi="नहीं, रुकें" en="No, wait" /> : <Bi hi="नहीं, वही रखें" en="No, keep this" />}
           </button>
-          <button type="button" className="btn btn-secondary" data-testid="replace-yes" onClick={onReplace} style={{ flexDirection: 'column', gap: 0 }}>
+          <button type="button" className="btn btn-secondary" data-testid="replace-yes" onClick={leave(onReplace)} style={{ flexDirection: 'column', gap: 0 }}>
             {kind === 'unknown' ? <Bi hi="हाँ, बनाएँ" en="Yes, make it" /> : <Bi hi="हाँ, बदलें" en="Yes, replace" />}
           </button>
         </div>

@@ -57,7 +57,7 @@ check('step 1\'s heading carries the step: "1/3 · आज हर समूह �
 
 console.log('\nthe Review\'s icon is ☑️, not a camera (it is not only photos)');
 check('☑️ on the bottom tab, the Review\'s heading and "कैसे काम करता है"; 📷 stays only on the photo capture area inside the Photo way', (() => {
-  const app = fs.readFileSync(path.join(src, 'App.jsx'), 'utf8'); const how = fs.readFileSync(path.join(src, 'components/HowItWorks.jsx'), 'utf8');
+  const app = fs.readFileSync(path.join(src, 'services/tabs.js'), 'utf8'); const how = fs.readFileSync(path.join(src, 'components/HowItWorks.jsx'), 'utf8');
   return /\{ id: '\/review', icon: '☑️'/.test(app) && /<h1>☑️ <Bi hi="समीक्षा"/.test(reviewSrc) && /icon: '☑️', hi: 'समीक्षा'/.test(how)
     && !app.includes('📷') && !how.includes('📷') && (reviewSrc.match(/📷/g) || []).length === 1 && /className="capture-icon">📷</.test(reviewSrc)
     && /^☑️/.test(document.querySelector('h1').textContent);

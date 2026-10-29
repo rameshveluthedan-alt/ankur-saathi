@@ -58,7 +58,7 @@ check('the coverage card on the Plan screen is ONE line (a fold) that opens on t
 });
 check('there is ONE Profile button: the 👤 tab in the bottom bar (the Plan header has none)', () => {
   assert.ok(!read('screens/PlanScreen.jsx').includes('data-testid="open-account"'));
-  assert.ok(/id: '\/account', icon: '👤'/.test(read('App.jsx')));
+  assert.ok(/id: '\/account', icon: '👤'/.test(read('services/tabs.js')));
 });
 
 console.log(`\nOK: ${n} checks: messages appear on the screen instead of blocking pop-ups, the coverage card is one line, and Profile has one button`);

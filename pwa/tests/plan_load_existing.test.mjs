@@ -59,7 +59,7 @@ const show = async (C) => { if (root) await act(async () => root.unmount()); roo
 const q = (sel) => document.querySelector(sel); const qa = (sel) => [...document.querySelectorAll(sel)];
 const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true })); }); await flush(); };
 const text = () => document.getElementById('root').textContent;
-const generateBtn = () => qa('button.btn-primary').find((b) => /Generate Plan/.test(b.textContent));
+const generateBtn = () => qa('button.btn-primary').find((b) => /आज की योजना बनाएँ/.test(b.textContent));
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
 const reset = () => { generateCalls.length = 0; navigations.length = 0; cachedCalls.length = 0; current = null; };
 
@@ -106,8 +106,8 @@ check('5. the question closes and NOTHING is generated', !q('[data-testid="repla
 check('5. the skill list, the time buttons and the group panel are back (interactive), with the plan\'s skill and length already chosen',
   qa('.competency-item').length === 3 && qa('[data-testid="session-length"] input').every((i) => !i.disabled) && qa('[data-testid="session-length"] input').filter((i) => i.checked).map((i) => i.value).join() === '90'
   && !!q('[data-testid="edit-group-skills"]'));
-check('5. the button is the normal one again ("📋 दैनिक योजना बनाएँ → N2.3.2", no "नई")', !!generateBtn() && /📋 दैनिक योजना बनाएँ/.test(generateBtn().textContent) && /N2\.3\.2/.test(generateBtn().textContent) && !/नई/.test(generateBtn().textContent));
-check('5. the hint: "✓ अब आप बदलाव कर सकते हैं। नई योजना बनाने के लिए \'📋 दैनिक योजना बनाएँ\' दबाएँ।" (names the real button)', /✓ अब आप बदलाव कर सकते हैं। नई योजना बनाने के लिए '📋 दैनिक योजना बनाएँ' दबाएँ।/.test(q('[data-testid="unlock-hint"]').textContent));
+check('5. the button is the normal one again ("📋 आज की योजना बनाएँ → N2.3.2", no "नई")', !!generateBtn() && /📋 आज की योजना बनाएँ/.test(generateBtn().textContent) && /N2\.3\.2/.test(generateBtn().textContent) && !/नई/.test(generateBtn().textContent));
+check('5. the hint: "✓ अब आप बदलाव कर सकते हैं। नई योजना बनाने के लिए \'📋 आज की योजना बनाएँ\' दबाएँ।" (names the real button)', /✓ अब आप बदलाव कर सकते हैं। नई योजना बनाने के लिए '📋 आज की योजना बनाएँ' दबाएँ।/.test(q('[data-testid="unlock-hint"]').textContent));
 check('...the plan that would be replaced is still named, and can still be opened', /अभी की योजना: N2\.3\.2/.test(q('[data-testid="plan-current"]').textContent) && !!q('[data-testid="plan-current"] [data-testid="open-plan"]'));
 await click(generateBtn());
 check('6. Generate then sends exactly ONE plan request, for N2.3.2 at 90 minutes, and goes to the plan', generateCalls.length === 1 && generateCalls[0][1] === 'N2.3.2' && generateCalls[0][4].sessionMinutes === 90 && navigations.at(-1) === '/yojana', JSON.stringify(generateCalls));
@@ -125,7 +125,7 @@ reset(); cached = async () => PLAN();
 current = { domain_id: 'r1_literacy', selected_competency_id: 'L2.7.2', plan: {} };          // the app holds another subject's plan
 await show(Plan);
 await click(q('[data-testid="open-plan"]'));
-check('8. it puts THIS plan in place (not the one the app held) and goes to दैनिक योजना', current && current.selected_competency_id === 'N2.3.2' && current.domain_id === 'numeracy' && navigations.at(-1) === '/yojana');
+check('8. it puts THIS plan in place (not the one the app held) and goes to आज की योजना', current && current.selected_competency_id === 'N2.3.2' && current.domain_id === 'numeracy' && navigations.at(-1) === '/yojana');
 await show(Yojana);
 check('8. ...where the plan is visible: a teach block for N2.3.2', qa('.timeline-block').some((b) => /N2\.3\.2/.test(b.textContent) && /TEACH-/.test(b.textContent)));
 

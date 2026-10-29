@@ -78,10 +78,10 @@ export default function YojanaScreen() {
           <div className="empty-icon">📋</div>
           <h2><Bi hi="कोई योजना नहीं" en="No plan yet" inline /></h2>
           <p style={{ marginTop: 8, color: 'var(--text-secondary)' }}>
-            पहले "योजना" टैब से लक्ष्य चुनें और दैनिक योजना बनाएँ।
+            पहले "योजना बनाएँ" टैब पर कौशल चुनें और आज की योजना बनाएँ।
           </p>
           <p className="en" lang="en" style={{ fontSize: '0.8rem', marginTop: 4 }}>
-            Select a Lakshya from the Plan tab first, then generate the daily plan.
+            First choose a skill on the "Make plan" tab, then make today's plan.
           </p>
           <button type="button" className="btn btn-primary" data-testid="yojana-make-plan" onClick={() => navigate('/')} style={{ marginTop: 12, flexDirection: 'column', gap: 0 }}>
             <Bi hi="योजना बनाएँ →" en="Make a plan" />
@@ -112,7 +112,7 @@ export default function YojanaScreen() {
         </div>
       )}
       <div className="screen-header plan-title">
-        <h1>📋 <Bi hi="दैनिक योजना" en="Daily Plan" inline />
+        <h1>📋 <Bi hi="आज की योजना" en="Today's plan" inline />
           {/* how long this plan is: the time the teacher chose, recorded on the plan (services/planMinutes.js) */}
           {length && (
             <span data-testid="time-chip" data-recorded={length.recorded ? 'true' : 'false'}

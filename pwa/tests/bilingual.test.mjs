@@ -89,7 +89,7 @@ check('the setting is applied before the first paint, and the Profile screen has
   assert.ok(read('screens/AccountScreen.jsx').includes('data-testid="hindi-only"'));
 });
 check('the screen headings use Bi, so "Hindi only" hides their English', () => {
-  for (const [f, hi] of [['screens/PlanScreen.jsx', 'योजना बनाएँ'], ['screens/YojanaScreen.jsx', 'दैनिक योजना'], ['screens/ReviewScreen.jsx', 'समीक्षा'], ['screens/ProgressScreen.jsx', 'प्रगति'], ['screens/AccountScreen.jsx', 'प्रोफ़ाइल']]) {
+  for (const [f, hi] of [['screens/PlanScreen.jsx', 'योजना बनाएँ'], ['screens/YojanaScreen.jsx', 'आज की योजना'], ['screens/ReviewScreen.jsx', 'समीक्षा'], ['screens/ProgressScreen.jsx', 'कक्षा की प्रगति'], ['screens/AccountScreen.jsx', 'प्रोफ़ाइल']]) {
     assert.ok(read(f).includes(`<Bi hi="${hi}"`), f);
   }
 });

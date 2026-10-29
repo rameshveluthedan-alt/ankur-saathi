@@ -84,9 +84,9 @@ check('nothing to go on (no blocks, no recorded length): no chip at all', () => 
 });
 
 console.log('\nwhere it shows');
-check('in the title, next to "दैनिक योजना", with the English "min" hideable', () => {
+check('in the title, next to "आज की योजना", with the English "min" hideable', () => {
   const h = chip(plan(90, { session_minutes: 60 })).html;
-  assert.ok(/<h1>📋 [\s\S]*?दैनिक योजना[\s\S]*?data-testid="time-chip"[\s\S]*?<\/h1>/.test(h));
+  assert.ok(/<h1>📋 [\s\S]*?आज की योजना[\s\S]*?data-testid="time-chip"[\s\S]*?<\/h1>/.test(h));
 });
 check('the printed plan reads the same length: recorded is exact, the fallback says "लगभग"', () => {
   assert.equal(printTime(plan(90, { session_minutes: 60, total_minutes: 90 })), 'योजना समय: 60 मिनट');

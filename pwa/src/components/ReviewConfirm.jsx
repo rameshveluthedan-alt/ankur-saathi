@@ -18,7 +18,7 @@ const grey = { fontSize: '0.75rem', color: 'var(--text-secondary)' };
 function ToProgress({ onOpen }) {
   return (
     <button type="button" className="btn btn-secondary btn-small" data-testid="to-progress" onClick={onOpen} style={{ marginTop: 8 }}>
-      📊 <Bi hi="प्रगति देखें →" en="See progress" inline />
+      📊 <Bi hi="कक्षा प्रगति देखें →" en="See class progress" inline />
     </button>
   );
 }

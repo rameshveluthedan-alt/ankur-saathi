@@ -44,7 +44,7 @@ const flush = async () => { await act(async () => { await new Promise((r) => set
 const q = (sel) => document.querySelector(sel); const qa = (sel) => [...document.querySelectorAll(sel)];
 const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true })); }); };
 const chosen = () => qa('[data-testid="session-length"] input[type="radio"]').filter((i) => i.checked).map((i) => Number(i.value));
-const generateBtn = () => qa('button.btn-primary').find((b) => /Generate/.test(b.textContent));
+const generateBtn = () => qa('button.btn-primary').find((b) => /आज की योजना बनाएँ/.test(b.textContent));
 let root;
 const mount = async () => { if (root) await act(async () => root.unmount()); root = createRoot(document.getElementById('root')); await act(async () => { root.render(React.createElement(Screen)); }); await flush(); };
 const generate = async () => { await click(qa('.competency-item').find((e) => e.textContent.includes('N2.3.2'))); await flush(); await click(generateBtn()); await flush(); return generateCalls[generateCalls.length - 1]; };

@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../App';
 import { recordDecisions, recordObserved, recordORF, analysePhotos, getSavedAnalyses, getReviewCoverage, getReviewChannels, getCachedPlan } from '../services/api';
 import { placeKey, loadPlace, savePlace } from '../services/reviewPlace';
+import { historyState, pushMarks, replaceMarks } from '../services/backHistory';
 import { compressImage } from '../utils/imageCompress';
 import { useOnline } from '../components/OfflineBanner';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
@@ -58,7 +59,26 @@ export default function ReviewScreen() {
   const [photos, setPhotos] = useState([]);
   const [analysisResult, setAnalysisResult] = useState(null);
   const [sheetLevel, setSheetLevel] = useState(() => (fromPlan ? fromPlan.level : (restored && restored.sheetLevel) || 'progressor'));   // which group's worksheet the photos are of
-  const goStep = (n) => setStep(n);
+  const goStep = (n) => setStep(n);                  // a step chosen by the screen itself (on opening): no history entry
+  // The phone's Back button follows the teacher's own moves in the Review (navigation D): each move to another step, or into a photo analysis, is an entry
+  // in the browser's history marked with that view ('1', '2', 'a' for the analysis, '3'), so Back returns to the view before; from the view the Review was
+  // opened at, Back leaves it as before. The screen's own "←" buttons do the same as Back when they go to the view just before.
+  const view = analysisOpen ? 'a' : String(step);
+  const viewRef = useRef(view);
+  const showView = (v) => { setAnalysisOpen(v === 'a'); setStep(v === 'a' ? 2 : Number(v)); };
+  const goView = (v) => {
+    if (v === viewRef.current) return;
+    if (historyState().reviewPrev === v) { window.history.back(); return; }        // the view just before: the same as the phone's Back (the pop shows it)
+    pushMarks({ reviewView: v, reviewPrev: viewRef.current });
+    viewRef.current = v;
+    showView(v);
+  };
+  useEffect(() => { viewRef.current = view; if (historyState().reviewView !== view) replaceMarks({ reviewView: view }); }, [view]);
+  useEffect(() => {
+    const onPop = (e) => { const v = e.state && e.state.reviewView; if (v && v !== viewRef.current) { viewRef.current = v; showView(v); } };
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
   const touched = useRef(false);                     // the teacher has changed a decision on this screen: the server's copy never overwrites it
   const [loading, setLoading] = useState(false);
   const online = useOnline();            // sending photos for analysis needs the internet (they go to the AI); the chosen photos stay on the screen
@@ -142,11 +162,11 @@ export default function ReviewScreen() {
   };
   useEffect(() => { setAbsent([]); }, [sheetLevel]);
   useEffect(refreshCoverage, [teacher?.teacher_id, selectedDomain, today, sheetLevel, savedAnalyses.length, absent.join(','), activeChannel]);
-  const openSaved = (a) => { setAnalysisResult(a.result); setSheetLevel(a.worksheet_level); goStep(2); setAnalysisOpen(true); };
+  const openSaved = (a) => { setAnalysisResult(a.result); setSheetLevel(a.worksheet_level); goView('a'); };
   // step 3: today's evidence fetched again (the children's work may have changed it), and each group's choice starts on her final decision if one
   // was recorded, else on her first judgment
   const enterFinal = async () => {
-    setAnalysisOpen(false); goStep(3);
+    goView('3');
     try {
       const reply = await getCachedPlan(teacher.teacher_id, today, selectedDomain);
       setPlanInfo(reply);
@@ -166,7 +186,7 @@ export default function ReviewScreen() {
     setLoading(true);
     try {
       await recordDecisions(teacher.teacher_id, today, selectedDomain, decisions, 'first');
-      goStep(2);
+      goView('2');
     } catch (e) { notify(friendlyError(e, { hi: 'निर्णय दर्ज नहीं हो सके', en: 'The decisions could not be recorded' }), 'error'); }
     setLoading(false);
   };
@@ -216,7 +236,7 @@ export default function ReviewScreen() {
       photos.forEach(p => fd.append('photos', p));
       const result = await analysePhotos(teacher.teacher_id, fd);
       setAnalysisResult(result);
-      setAnalysisOpen(true);
+      goView('a');
       refreshSaved();
       refreshCoverage();
     } catch (e) { notify(friendlyError(e, { hi: 'फ़ोटो का विश्लेषण नहीं हो सका', en: 'The photos could not be analysed' }, { 400: { hi: 'फ़ोटो पढ़ी नहीं जा सकी। वर्कशीट की साफ़ फ़ोटो चुनें।', en: "The photo couldn't be read. Choose a clear photo of the worksheet." } }), 'error'); }
@@ -360,7 +380,7 @@ export default function ReviewScreen() {
       {/* STEP 2: Evidence capture */}
       {step === 2 && !analysisOpen && (
         <>
-          <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-decisions" onClick={() => setStep(1)} style={{ marginBottom: 8 }}>
+          <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-decisions" onClick={() => goView('1')} style={{ marginBottom: 8 }}>
             ← <span className="step-count">1/3</span> <Bi hi="पहला अनुमान बदलें" en="Change the first judgment" inline />
           </button>
           <StepTitle n={2} hi="बच्चों का काम देखें" en="Look at the children's work" />
@@ -662,7 +682,7 @@ export default function ReviewScreen() {
           )}
 
           {(analysisResult || savedAnalyses.length > 0) && (
-            <button className="btn btn-secondary" data-testid="see-analysis" onClick={() => (analysisResult ? setAnalysisOpen(true) : openSaved(savedAnalyses[0]))} style={{ marginTop: 12 }}>
+            <button className="btn btn-secondary" data-testid="see-analysis" onClick={() => (analysisResult ? goView('a') : openSaved(savedAnalyses[0]))} style={{ marginTop: 12 }}>
               <Bi hi="फ़ोटो विश्लेषण देखें" en="See the photo analysis" inline /> →
             </button>
           )}
@@ -787,7 +807,7 @@ export default function ReviewScreen() {
             </div>
           )}
 
-          <button type="button" className="btn btn-secondary" data-testid="back-to-work" onClick={() => setAnalysisOpen(false)} style={{ marginTop: 16, flexDirection: 'column', gap: 0 }}>
+          <button type="button" className="btn btn-secondary" data-testid="back-to-work" onClick={() => goView('2')} style={{ marginTop: 16, flexDirection: 'column', gap: 0 }}>
             <Bi hi="← बच्चों का काम: अगला समूह या तरीका" en="Back to the children's work: the next group or way" />
           </button>
           <button type="button" className="btn btn-primary" data-testid="to-final" onClick={enterFinal} style={{ marginTop: 8, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
@@ -816,7 +836,7 @@ export default function ReviewScreen() {
         };
         return (
           <>
-            <button type="button" className="btn btn-secondary btn-small" data-testid="final-back" onClick={() => goStep(2)} style={{ marginBottom: 8 }}>
+            <button type="button" className="btn btn-secondary btn-small" data-testid="final-back" onClick={() => goView('2')} style={{ marginBottom: 8 }}>
               ← <span className="step-count">2/3</span> <Bi hi="बच्चों का काम" en="The children's work" inline />
             </button>
             <StepTitle n={3} hi="अंतिम निर्णय" en="Final decision" />

@@ -46,9 +46,9 @@ console.log('2. "कैसे काम करता है"');
 await show(Login);
 const how = () => q('[data-testid="how-it-works"]');
 check('on the login screen, before signing in: a fold "ℹ️ कैसे काम करता है?", closed', how() && how().tagName === 'DETAILS' && !how().open && /कैसे काम करता है\?/.test(how().querySelector('summary').textContent));
-check('four steps in the app\'s order, each naming what powers it: योजना (कौशल-सीढ़ी), दैनिक योजना (AI + जाँच), समीक्षा (फ़ोटो से पढ़ना, नमूना), प्रगति',
+check('four steps in the app\'s order, each named as its tab and naming what powers it: योजना बनाएँ (कौशल-सीढ़ी), आज की योजना (AI + जाँच), समीक्षा (फ़ोटो से पढ़ना, नमूना), कक्षा प्रगति',
   (() => { const st = qa('[data-testid="how-step"]').map((li) => li.textContent);
-    return st.length === 4 && /1\. योजना.*कौशल-सीढ़ी/.test(st[0]) && /2\. दैनिक योजना.*AI \+ जाँच/.test(st[1]) && /3\. समीक्षा.*फ़ोटो से पढ़ना, नमूना/.test(st[2]) && /4\. प्रगति/.test(st[3]); })());
+    return st.length === 4 && /1\. योजना बनाएँ.*कौशल-सीढ़ी/.test(st[0]) && /2\. आज की योजना.*AI \+ जाँच/.test(st[1]) && /3\. समीक्षा.*फ़ोटो से पढ़ना, नमूना/.test(st[2]) && /4\. कक्षा प्रगति/.test(st[3]); })());
 check('...the loop back to tomorrow\'s plan, and that names never reach the AI', /↻ आपके निर्णय और आज के नतीजे कल की योजना का सुझाव बनाते हैं/.test(q('[data-testid="how-loop"]').textContent) && /बच्चों के नाम AI को कभी नहीं भेजे जाते/.test(how().textContent));
 check('every line keeps its English in a hideable translation ("Hindi only" hides it)', qa('[data-testid="how-step"]').every((li) => li.querySelector('.en')) && !!q('[data-testid="how-loop"] .en'));
 await show(Account);
