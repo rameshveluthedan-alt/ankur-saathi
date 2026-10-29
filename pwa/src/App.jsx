@@ -4,6 +4,8 @@ import PlanScreen from './screens/PlanScreen';
 import YojanaScreen from './screens/YojanaScreen';
 import PlanPrint from './screens/PlanPrint';
 import TickSheet from './screens/TickSheet';
+import MentorReport from './screens/MentorReport';
+import ClassSummary from './screens/ClassSummary';
 import ReviewScreen from './screens/ReviewScreen';
 import ProgressScreen from './screens/ProgressScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -24,7 +26,7 @@ function BottomNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname;
-  if (path === '/plan/print' || path === '/plan/ticks') return null;        // the printed plan and the tick sheet are pages of their own: no bottom bar
+  if (path === '/plan/print' || path === '/plan/ticks' || path === '/progress/mentor' || path === '/progress/class') return null;        // the printed pages (plan, tick sheet, mentor report, class summary) stand alone: no bottom bar
 
   const tabs = TABS;
   const lit = activeTab(path);
@@ -70,6 +72,8 @@ function AppShell() {
         <Route path="/plan/ticks" element={<TickSheet />} />
         <Route path="/review" element={<ReviewScreen />} />
         <Route path="/progress" element={<ProgressScreen />} />
+        <Route path="/progress/mentor" element={<MentorReport />} />
+        <Route path="/progress/class" element={<ClassSummary />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/account" element={<AccountScreen />} />
       </Routes>

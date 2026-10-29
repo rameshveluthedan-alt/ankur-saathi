@@ -9,6 +9,7 @@ import { isFluencySkill } from '../services/pace';
 import { localToday } from '../services/today';
 import { planMinutes } from '../services/planMinutes';
 import { hasObservation } from '../services/reviewWays';
+import { hiDate, classLine } from '../services/printFormat';
 
 /**
  * The printed plan: ONE A4 page the teacher carries when she teaches without her phone (browser Print or "Save as PDF"). Hindi only, the same for every teacher:
@@ -19,14 +20,7 @@ import { hasObservation } from '../services/reviewWays';
 export const PRINT_LINE_BUDGET = 36;
 
 const fmt = (s) => String(s ?? '').replace(/\*\*|__/g, '').replace(/\s+/g, ' ').trim();
-const MONTHS = ['जन॰', 'फ़र॰', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अग॰', 'सित॰', 'अक्टू॰', 'नव॰', 'दिस॰'];
-export const hiDate = (iso) => { const [y, m, d] = String(iso || '').split('-').map(Number); return y && m && d ? `${d} ${MONTHS[m - 1]} ${y}` : String(iso || ''); };
-const GRADE = { balvatika: 'बालवाटिका', grade_1: '1', grade_2: '2', grade_3: '3' };
-export const classLine = (grades) => {
-  const g = (grades || []).filter((x) => GRADE[x]);
-  const nums = g.filter((x) => x !== 'balvatika').map((x) => GRADE[x]);
-  return [g.includes('balvatika') ? 'बालवाटिका' : null, nums.length ? `कक्षा ${nums.join(', ')}` : null].filter(Boolean).join(', ');
-};
+export { hiDate, classLine };        // shared with the tick sheet and the mentor report (services/printFormat.js)
 
 // One printed line (or two): the allowance is both declared (data-lines, counted by the test) and enforced (the class cuts longer text with "…")
 function Line({ n = 1, testid, className = '', children }) {

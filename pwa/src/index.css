@@ -477,6 +477,9 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
 .tick-table tr { break-inside: avoid; page-break-inside: avoid; }
 .tick-table th, .tick-table td { border: 1px solid #555; min-width: 16mm; height: 8mm; padding: 0 6px; text-align: center; }
 .tick-table td:first-child { font-weight: 700; min-width: 12mm; }
+/* the mentor report (screens/MentorReport.jsx): the talking points in a box at the top; each section keeps together on paper */
+.mentor-report section { margin: 8px 0; break-inside: avoid; page-break-inside: avoid; }
+.mentor-points { border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; }
 @media print {
   @page { size: A4; margin: 12mm; }
   body.print-plan * { visibility: hidden; }

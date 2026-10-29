@@ -5,7 +5,7 @@ import { getReviewChannels } from '../services/api';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import { localToday } from '../services/today';
 import { CHANNELS } from '../services/reviewWays';
-import { hiDate, classLine } from './PlanPrint';
+import { hiDate, classLine } from '../services/printFormat';
 
 /**
  * The paper tick sheet: for a teacher who records during You Do without her phone, then enters the marks in the Review's step 2 after class.

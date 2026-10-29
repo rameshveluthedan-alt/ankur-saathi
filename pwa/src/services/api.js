@@ -232,6 +232,14 @@ export const analysePhotos = async (teacherId, formData) => {
 export const getProgressDashboard = (teacherId, on) =>
   request(`/progress/dashboard/${teacherId}${on ? `?on=${on}` : ''}`);
 
+// The mentor report for an officer's visit (the last 4 weeks up to `on`, the phone's date): counts and roll numbers only, with talking points from fixed rules
+export const getMentorSummary = (teacherId, on) =>
+  request(`/progress/mentor/${teacherId}${on ? `?on=${on}` : ''}`);
+
+// The teacher's class summary (the last 4 weeks up to `on`): roll numbers only, the page adds the names this phone holds
+export const getClassSummary = (teacherId, on) =>
+  request(`/progress/class-summary/${teacherId}${on ? `?on=${on}` : ''}`);
+
 // ── Baseline ──
 export const generateBaseline = (domainId, gradeLevels) =>
   request('/baseline/generate', {

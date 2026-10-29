@@ -396,6 +396,20 @@ async def get_progress_dashboard(teacher_id: str, on: Optional[date] = None):
         }
 
 
+@router.get("/progress/mentor/{teacher_id}", tags=["Progress"])
+async def get_mentor_summary(teacher_id: str, on: Optional[date] = None):
+    """The mentor summary for an officer's visit: the last 4 weeks up to `on` (the phone's date), counts and roll numbers only, with talking points from fixed rules."""
+    async with get_db() as db:
+        return await progress_service.get_mentor_summary(db, teacher_id, on or date.today())
+
+
+@router.get("/progress/class-summary/{teacher_id}", tags=["Progress"])
+async def get_class_summary(teacher_id: str, on: Optional[date] = None):
+    """The teacher's class summary for planning next week: the last 4 weeks up to `on` (the phone's date). Roll numbers only: the phone adds the names it holds."""
+    async with get_db() as db:
+        return await progress_service.get_class_summary(db, teacher_id, on or date.today())
+
+
 @router.get("/progress/export/class/{teacher_id}", tags=["Progress"])
 async def export_class_csv(teacher_id: str):
     """The teacher's own class report WITH names. The officer (MLO) report below has roll numbers only."""

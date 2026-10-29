@@ -56,16 +56,6 @@ export default function ProgressScreen() {
       {back}
       <div className="screen-header">
         <h1>📊 <Bi hi="कक्षा की प्रगति" en="Class progress" inline /></h1>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
-          <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => notify(friendlyError(e, REPORT_FAILED), 'error'))}
-            style={{ background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'right' }}>
-            📥 कक्षा रिपोर्ट, नामों के साथ<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>Class report</span>
-          </button>
-          <button type="button" data-testid="mlo-report" onClick={() => downloadOfficerReport(teacher.teacher_id).catch(e => notify(friendlyError(e, REPORT_FAILED), 'error'))}
-            style={{ background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--text-secondary)', fontFamily: 'inherit', textAlign: 'right' }}>
-            📥 अधिकारी रिपोर्ट, सिर्फ़ रोल नंबर<span className="en en-inline" lang="en">Officer report</span>
-          </button>
-        </div>
       </div>
 
       <div className="domain-tabs">
@@ -138,6 +128,32 @@ export default function ProgressScreen() {
           </div>
         );
       })}
+
+      {/* the reports, at the foot (in the header they pushed the title onto two lines): the two pages to read first (the teacher's own, then the officer's); the CSV files are data */}
+      <div className="card" data-testid="reports" style={{ marginTop: 16 }}>
+        <div style={{ fontWeight: 700, marginBottom: 6 }}>📄 <Bi hi="रिपोर्ट" en="Reports" inline /></div>
+        <button type="button" className="btn btn-secondary" data-testid="open-class" onClick={() => navigate('/progress/class')} style={{ flexDirection: 'column', gap: 0 }}>
+          <Bi hi="📋 कक्षा सारांश (आपके लिए)" en="Class summary (for you)" />
+        </button>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0 8px' }}>
+          <Bi hi="पिछले 4 हफ़्ते: क्या पढ़ाया, किन बच्चों पर ध्यान दें, अगला कदम। नामों के साथ।" en="The last 4 weeks: what was taught, the children to look at, the next step. With names." inline />
+        </p>
+        <button type="button" className="btn btn-secondary" data-testid="open-mentor" onClick={() => navigate('/progress/mentor')} style={{ flexDirection: 'column', gap: 0 }}>
+          <Bi hi="💬 मेंटर रिपोर्ट (अधिकारी की विज़िट के लिए)" en="Mentor report (for an officer's visit)" />
+        </button>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0 8px' }}>
+          <Bi hi="पिछले 4 हफ़्ते: बातचीत के बिंदु, पढ़ाने का तरीका, बच्चों की प्रगति। सिर्फ़ रोल नंबर, कोई नाम नहीं।" en="The last 4 weeks: talking points, how you teach, the children's progress. Roll numbers only, no names." inline />
+        </p>
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi="डेटा, CSV फ़ाइल:" en="Data, CSV file:" inline /></div>
+        <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => notify(friendlyError(e, REPORT_FAILED), 'error'))}
+          style={{ display: 'block', background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'left' }}>
+          📥 कक्षा रिपोर्ट, नामों के साथ<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>Class report</span>
+        </button>
+        <button type="button" data-testid="mlo-report" onClick={() => downloadOfficerReport(teacher.teacher_id).catch(e => notify(friendlyError(e, REPORT_FAILED), 'error'))}
+          style={{ display: 'block', background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'left' }}>
+          📥 अधिकारी डेटा, सिर्फ़ रोल नंबर<span className="en en-inline" lang="en">Officer data</span>
+        </button>
+      </div>
 
       <div style={{ height: 80 }} />
     </div>
