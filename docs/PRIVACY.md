@@ -21,7 +21,7 @@ enforced, and what is NOT yet done.
 3. **`backend/tests/test_names_never_reach_ai.py`** gives every child a canary name, sends a photo through the real analysis
    code with a stand-in for the AI, and checks the real outgoing request for the canary. Plan generation was checked the
    same way against a real plan: 1 request, about 16,000 characters, class numbers present, no name or surname.
-4. **The officer report cannot carry names.** The teacher's class report (with names) is a separate download.
+4. **The officer report cannot carry names.** The teacher's class report (with names) is a separate download. The class summary works the same way: the server sends roll numbers only, and the phone adds the names it holds.
 
 ## Audio
 The app **records no audio** and never asks the browser for the microphone (`pwa/tests/no_audio.test.mjs` checks the code and the screens). Reading aloud is timed by the teacher, who types the result. If voice assessment is added for the periodic assessments (`docs/ROADMAP.md`, section 6), it will need the school's consent on record and audio that is scored in memory and not kept, as photos are; none of that is built.
@@ -51,7 +51,7 @@ we do in the database. So:
    if the school requires one. Photos are the only identifying content that reaches it.
 5. **Editing and deleting names.** A name can be added or corrected by uploading a register again. There is no screen yet to
    delete one name or one child; deleting a child removes their name with it (`ON DELETE CASCADE`).
-6. **Access logging:** sign-in events and every export of a class report (the one with names) are recorded in `auth_events`; there is no screen to read them yet.
+6. **Access logging:** sign-in events, every export of a class report (the one with names), and every opening of the class summary (Class progress → 📄 रिपोर्ट, logged as `class_summary_view`) are recorded in `auth_events`, with the teacher's ID and the time. The log records only that the page was opened, never what it showed. There is no screen to read the log yet.
 
 ## Teachers' employee codes and passwords
 - **A teacher's employee code is her sign-in.** It is an official identifier (six letters or digits, such as MPT101), stored as given in capitals. **No phone number is stored for an account made with an employee code.** (Accounts made before employee codes were named `hash_` plus a phone number, and the column is still called `phone_hash`: it never held a real hash. The demonstration accounts have been renamed, and the nightly job renames them in the cloud.)
