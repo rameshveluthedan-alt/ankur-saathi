@@ -25,7 +25,9 @@ from app.core.config import get_settings
 
 MAX_ATTEMPTS = 5
 LOCK_MINUTES = 15
-_WEAK = {"1111", "1234", "0000", "1122", "2580", "1212", "4321", "5555", "6969", "7777", "8888", "9999", "123456", "654321", "000000", "111111", "121212", "112233"}
+_WEAK = {"1111", "1234", "0000", "1122", "2580", "1212", "4321", "5555", "6969", "7777", "8888", "9999", "123456", "654321", "000000", "111111", "121212", "112233",
+         "password", "qwerty", "abcdef", "abc123", "123abc", "welcome", "school", "teacher", "letmein", "admin1", "pass12", "india1", "qwerty1", "ankur1"}
+_CODE_RE = re.compile(r"[A-Z0-9]{6}")
 _ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"          # no 0/O or 1/I/L, so a join code can be read aloud
 
 
@@ -38,22 +40,39 @@ class AuthError(Exception):
 
 # ── PINs ────────────────────────────────────────────────────────────────────
 
-def validate_pin(pin: str, phone_hash: str = None):
-    """Returns a reason the PIN is not allowed, or None."""
+def normalise_code(value):
+    """An employee code as it is stored: six letters or digits, in capitals. None if it is not one."""
+    s = str(value or "").strip().upper()
+    return s if _CODE_RE.fullmatch(s) else None
+
+
+def display_code(identifier) -> str:
+    """The code to show for an account. An account made before employee codes shows only the end of its phone number."""
+    s = str(identifier or "")
+    return s if _CODE_RE.fullmatch(s) else "••••" + re.sub(r"\D", "", s)[-4:]
+
+
+def validate_pin(pin: str, login_id: str = None):
+    """Returns a reason the PASSWORD is not allowed, or None. (The function keeps its old name; a password is 6 to 12 letters or digits, and a 6-digit number is allowed.)"""
     pin = str(pin or "")
-    if not re.fullmatch(r"\d{4,6}", pin):
-        return "The PIN must be 4 to 6 digits."
+    if not re.fullmatch(r"[A-Za-z0-9]{6,12}", pin):
+        return "The password must be 6 to 12 letters or digits."
     if len(set(pin)) == 1:
-        return "The PIN cannot be one digit repeated."
-    d = [int(c) for c in pin]
-    steps = {b - a for a, b in zip(d, d[1:])}
-    if steps <= {1} or steps <= {-1}:
-        return "The PIN cannot be a run of digits like 1234 or 4321."
-    if pin in _WEAK:
-        return "That PIN is too common. Choose another."
-    tail = re.sub(r"\D", "", phone_hash or "")[-len(pin):]
-    if tail and pin == tail:
-        return "The PIN cannot be the last digits of your phone number."
+        return "The password cannot be one character repeated."
+    if pin.isdigit():
+        d = [int(c) for c in pin]
+        steps = {b - a for a, b in zip(d, d[1:])}
+        if steps <= {1} or steps <= {-1}:
+            return "The password cannot be a run of digits like 123456 or 654321."
+    if pin.lower() in _WEAK:
+        return "That password is too common. Choose another."
+    ident = str(login_id or "")
+    if ident:
+        if pin.upper() == ident.upper():
+            return "The password cannot be your employee code."
+        tail = re.sub(r"\D", "", ident)[-len(pin):]
+        if tail and pin == tail:
+            return "The password cannot be the last digits of your phone number."
     return None
 
 
@@ -147,8 +166,12 @@ _DUMMY = None
 
 async def _profile(db, row) -> dict:
     children = await db.fetchval("SELECT count(*) FROM children WHERE teacher_id = $1 AND is_active = TRUE", row["id"])
-    return {"teacher_id": str(row["id"]), "school_code": row["school_code"], "enrolled_grades": row["enrolled_grades"], "total_children": children,
-            "role": row["role"], "must_change_pin": row["must_change_pin"], "is_demo": row["is_demo"], "pin_fixed": row["pin_fixed"]}
+    out = {"teacher_id": str(row["id"]), "school_code": row["school_code"], "enrolled_grades": row["enrolled_grades"], "total_children": children,
+           "role": row["role"], "must_change_pin": row["must_change_pin"], "is_demo": row["is_demo"], "pin_fixed": row["pin_fixed"],
+           "employee_code": row["phone_hash"] if _CODE_RE.fullmatch(str(row["phone_hash"] or "")) else None}
+    # the school leader confirms the consent statement once, at the first sign-in (a demonstration school carries its own statement)
+    out["consent_needed"] = bool(row["role"] == "school_admin" and not await latest_consent(db, row["school_id"]))
+    return out
 
 
 def _issue(row) -> str:
@@ -156,32 +179,33 @@ def _issue(row) -> str:
 
 
 _SESSION_SQL = """SELECT t.id, t.role, t.school_id, t.enrolled_grades, t.pin_hash, t.pin_version, t.must_change_pin, t.failed_pin_attempts, t.locked_until,
-                         t.is_demo, t.pin_fixed, s.school_code
+                         t.is_demo, t.pin_fixed, t.phone_hash, s.school_code
                   FROM teachers t JOIN schools s ON s.id = t.school_id"""
 
 
-async def login(db, phone_hash: str, pin: str) -> dict:
+async def login(db, identifier: str, pin: str) -> dict:
+    """identifier: an employee code (capitals), or for an account made before codes 'hash_' + a phone number."""
     global _DUMMY
-    row = await db.fetchrow(_SESSION_SQL + " WHERE t.phone_hash = $1", phone_hash)
+    row = await db.fetchrow(_SESSION_SQL + " WHERE t.phone_hash = $1", identifier) if identifier else None
     if not row:
         _DUMMY = _DUMMY or hash_pin("482916")
-        verify_pin(pin, _DUMMY)                  # the same work as a real check, so timing does not reveal which phone numbers exist
-        raise AuthError("The phone number or PIN is not right.", 401, "bad_login")
+        verify_pin(pin, _DUMMY)                  # the same work as a real check, so timing does not reveal which codes exist
+        raise AuthError("The employee code or password is not right.", 401, "bad_login")
     now = datetime.now(timezone.utc)
     if row["locked_until"] and row["locked_until"] > now:
         mins = int((row["locked_until"] - now).total_seconds() // 60) + 1
-        raise AuthError(f"Too many wrong PINs. Try again in {mins} minutes, or ask your school admin to unlock you.", 429, "locked")
+        raise AuthError(f"Too many wrong passwords. Try again in {mins} minutes, or ask your school leader to unlock you.", 429, "locked")
     if not row["pin_hash"]:
-        raise AuthError("No PIN has been set for this account. Ask your school admin.", 403, "pin_not_set")
+        raise AuthError("No password has been set for this account. Ask your school leader.", 403, "pin_not_set")
     if not verify_pin(pin, row["pin_hash"]):
         failed = row["failed_pin_attempts"] + 1
         if failed >= MAX_ATTEMPTS:
             await db.execute("UPDATE teachers SET failed_pin_attempts = 0, locked_until = $2 WHERE id = $1", row["id"], now + timedelta(minutes=LOCK_MINUTES))
-            await log_event(db, row["id"], "locked", f"{MAX_ATTEMPTS} wrong PINs")
-            raise AuthError(f"Too many wrong PINs. Try again in {LOCK_MINUTES} minutes, or ask your school admin to unlock you.", 429, "locked")
+            await log_event(db, row["id"], "locked", f"{MAX_ATTEMPTS} wrong passwords")
+            raise AuthError(f"Too many wrong passwords. Try again in {LOCK_MINUTES} minutes, or ask your school leader to unlock you.", 429, "locked")
         await db.execute("UPDATE teachers SET failed_pin_attempts = $2 WHERE id = $1", row["id"], failed)
         await log_event(db, row["id"], "login_failed")
-        raise AuthError("The phone number or PIN is not right.", 401, "bad_login")
+        raise AuthError("The employee code or password is not right.", 401, "bad_login")
     await db.execute("UPDATE teachers SET failed_pin_attempts = 0, locked_until = NULL, last_active_at = now() WHERE id = $1", row["id"])
     await log_event(db, row["id"], "login_ok")
     return {**await _profile(db, row), "token": _issue(row), "expires_in_hours": get_settings().session_hours}
@@ -203,10 +227,10 @@ async def change_pin(db, teacher_id, current_pin: str, new_pin: str) -> dict:
     if not row:
         raise AuthError("Please sign in again.", 401, "invalid_token")
     if row["pin_fixed"]:
-        raise AuthError("This is a shared demo account: its PIN cannot be changed. Use the 'Change PIN' account to try it.", 403, "pin_fixed")
+        raise AuthError("This is a shared demo account: its password cannot be changed. Use the practice account (MPT199) to try it.", 403, "pin_fixed")
     if not row["pin_hash"] or not verify_pin(current_pin, row["pin_hash"]):
-        raise AuthError("The current PIN is not right.", 401, "bad_pin")
-    reason = validate_pin(new_pin) or ("Choose a PIN different from the current one." if verify_pin(new_pin, row["pin_hash"]) else None)
+        raise AuthError("The current password is not right.", 401, "bad_pin")
+    reason = validate_pin(new_pin, row["phone_hash"]) or ("Choose a password different from the current one." if verify_pin(new_pin, row["pin_hash"]) else None)
     if reason:
         raise AuthError(reason, 400, "weak_pin")
     await db.execute("UPDATE teachers SET pin_hash = $2, pin_version = pin_version + 1, must_change_pin = FALSE, pin_changed_at = now(), failed_pin_attempts = 0, locked_until = NULL WHERE id = $1",
@@ -262,7 +286,7 @@ async def latest_consent(db, school_id):
                              WHERE c.school_id = $1 ORDER BY c.attested_at DESC LIMIT 1""", school_id)
     if not r:
         return None
-    return {"version": r["version"], "attested_at": r["attested_at"].isoformat(), "by": ("••••" + re.sub(r"\D", "", r["phone_hash"])[-4:]) if r["phone_hash"] else None, "demo": r["version"] == "demo"}
+    return {"version": r["version"], "attested_at": r["attested_at"].isoformat(), "by": display_code(r["phone_hash"]) if r["phone_hash"] else None, "demo": r["version"] == "demo"}
 
 
 async def ensure_demo_consent(db, school_code: str):
@@ -275,17 +299,17 @@ async def ensure_demo_consent(db, school_code: str):
     return True
 
 
-# ── the school admin ────────────────────────────────────────────────────────
+# ── the school leader (the head teacher: teaches too, and looks after the school's accounts) ──
 
 def _admin_only(admin):
     if not admin or admin["role"] != "school_admin":
-        raise AuthError("Only the school admin can do this.", 403, "not_admin")
+        raise AuthError("Only the school leader can do this.", 403, "not_admin")
 
 
 async def admin_school(db, admin_id) -> dict:
     admin = await session_row(db, admin_id)
     _admin_only(admin)
-    out = dict(await db.fetchrow("SELECT school_code, join_code FROM schools WHERE id = $1", admin["school_id"]))
+    out = dict(await db.fetchrow("SELECT school_code FROM schools WHERE id = $1", admin["school_id"]))
     out["consent"] = await latest_consent(db, admin["school_id"])          # None: nothing recorded yet
     out["consent_text"] = {"version": CONSENT_VERSION, **CONSENT_TEXT}
     return out
@@ -304,23 +328,15 @@ async def admin_record_consent(db, admin_id, version: str) -> dict:
     return {"consent": await latest_consent(db, admin["school_id"]), **done}
 
 
-async def admin_rotate_join_code(db, admin_id) -> dict:
-    admin = await session_row(db, admin_id)
-    _admin_only(admin)
-    code = new_join_code()
-    await db.execute("UPDATE schools SET join_code = $2 WHERE id = $1", admin["school_id"], code)
-    return {"join_code": code}
-
-
 async def admin_teachers(db, admin_id) -> list:
-    """The school's accounts, with no child data and only the end of each phone number."""
+    """The school's accounts, with no child data: each one's employee code, role and state (locked, must change its password)."""
     admin = await session_row(db, admin_id)
     _admin_only(admin)
     now = datetime.now(timezone.utc)
     rows = await db.fetch("""SELECT t.id, t.phone_hash, t.role, t.pin_hash IS NOT NULL AS has_pin, t.must_change_pin, t.locked_until, t.last_active_at, t.is_demo, t.pin_fixed,
                                     (SELECT count(*) FROM children c WHERE c.teacher_id = t.id AND c.is_active) AS children
                              FROM teachers t WHERE t.school_id = $1 ORDER BY t.created_at""", admin["school_id"])
-    return [{"teacher_id": str(r["id"]), "phone_end": "••••" + re.sub(r"\D", "", r["phone_hash"])[-4:], "role": r["role"], "children": r["children"], "has_pin": r["has_pin"],
+    return [{"teacher_id": str(r["id"]), "code": display_code(r["phone_hash"]), "role": r["role"], "children": r["children"], "has_pin": r["has_pin"],
              "must_change_pin": r["must_change_pin"], "locked": bool(r["locked_until"] and r["locked_until"] > now), "pin_fixed": r["pin_fixed"], "is_demo": r["is_demo"],
              "last_active_at": r["last_active_at"].isoformat() if r["last_active_at"] else None, "is_you": str(r["id"]) == str(admin_id)} for r in rows]
 
@@ -337,14 +353,14 @@ async def _target(db, admin_id, teacher_id):
 async def admin_reset_pin(db, admin_id, teacher_id) -> dict:
     admin, target = await _target(db, admin_id, teacher_id)
     if str(admin["id"]) == str(target["id"]):
-        raise AuthError("Change your own PIN from your account. If you have forgotten it, the operator can reset it.", 400, "self_reset")
+        raise AuthError("Change your own password from your account. If you have forgotten it, ask the operator.", 400, "self_reset")
     if target["pin_fixed"]:
-        raise AuthError("This is a shared demo account: its PIN is fixed and cannot be reset.", 403, "pin_fixed")
+        raise AuthError("This is a shared demo account: its password is fixed and cannot be reset.", 403, "pin_fixed")
     temp = temporary_pin()
     await db.execute("UPDATE teachers SET pin_hash = $2, pin_version = pin_version + 1, must_change_pin = TRUE, failed_pin_attempts = 0, locked_until = NULL WHERE id = $1",
                      target["id"], hash_pin(temp))
     await log_event(db, target["id"], "pin_reset_by_admin", f"by {admin['id']}")
-    return {"temporary_pin": temp, "note": "Shown once. Give it to the teacher: it only lets them choose a new PIN."}
+    return {"temporary_pin": temp, "note": "Shown once. Give it to the teacher: it only lets them choose a new password."}
 
 
 async def admin_unlock(db, admin_id, teacher_id) -> dict:

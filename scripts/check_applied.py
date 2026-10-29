@@ -55,16 +55,31 @@ CHECKS = [
     ("v28t", "the Plan screen goes back to choosing a skill", "pwa/src/screens/PlanScreen.jsx", "TAB_RESELECT_EVENT"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/services/groupSkills.js", "export function toggleReteach"),
     ("v28u", "the re-teach box is the decision and the skill follows it", "pwa/src/components/GroupSkillsPanel.jsx", "toggleReteach"),
+    ("v30b", "the evaluator guide: a time-based opening, Three ways to record (observed, photo, reading-aloud) and a two-day flow", "docs/EVALUATOR_GUIDE.md", "Three ways to record"),
+    ("v30a", "sign in by employee code and password: the new login screen with a card for each role", "pwa/src/screens/LoginScreen.jsx", "employee-code"),
+    ("v30a", "the school leader confirms the school's consent once, at her first sign-in", "pwa/src/screens/ConsentGate.jsx", "consent-gate"),
+    ("v30a", "the leader's Profile: accounts by employee code, no join code", "pwa/src/screens/AccountScreen.jsx", "teacher-code"),
+    ("v30a", "employee codes and the 6 to 12 character password rules", "backend/app/services/auth_service.py", "def normalise_code"),
+    ("v30a", "self-registration is closed unless a practice database turns it on", "backend/app/api/auth_routes.py", "registration_closed"),
+    ("v30a", "a registration accepts an employee code", "backend/app/services/register_service.py", "Enter an employee code"),
+    ("v30a", "the demo accounts are named in ONE place", "scripts/demo_accounts.py", "DEMO_TEACHER"),
+    ("v30a", "the migration to employee codes, scoped to the demo school and the old test schools", "scripts/migrate_to_employee_codes.py", "OLD_TEST_SCHOOL_PREFIX"),
+    ("v30a", "the nightly job converts the accounts first", "scripts/nightly_reset.py", "migrate_to_employee_codes.py"),
+    ("v30a", "7-day sessions and registration closed in the cloud settings", "deploy/cloudrun-env.yaml", 'SESSION_HOURS: "168"'),
+    ("v30a", "the demo teacher of a fresh database has its employee code", "db/seeds/classroom/01_profile.sql", "MPT101"),
+    ("v30a", "the sign-in document describes employee codes and the school leader", "docs/AUTH.md", "employee code"),
+    ("v30a", "the accounts test: both old layouts convert and no other school's account is touched", "backend/tests/test_test_teachers.py", "MPT150"),
+    ("v30a", "the login screen is tested in a simulated browser", "pwa/tests/login.dom.test.mjs", "employee-code"),
     ("v29z", "how the skills relate to NCF-FS (2022), proposed by AI and awaiting an educator", "docs/NCF_FS_COMPARISON.md", "not yet confirmed by an educator"),
     ("v29z", "the coverage document says the NIPUN alignment is AI-proposed, not confirmed", "docs/COVERAGE.md", "proposed by AI and not yet confirmed by an educator"),
-    ("v29y", "the login screen lists the test school admin, with its PIN", "pwa/src/screens/LoginScreen.jsx", "9000000100"),
+    ("v29y", "the login screen lists every demo role (the test school admin until v30a, which has no separate admin)", "pwa/src/screens/LoginScreen.jsx", "MPA101"),
     ("v29y", "every published single-number account is on the login screen (a test compares it with the access guide)", "pwa/tests/demo_accounts.test.mjs", None),
     ("v29x", "the school's consent confirmation: a table created on first use, kept with the exact wording", "db/schema/13_school_consent.sql", "CREATE TABLE IF NOT EXISTS school_consents"),
     ("v29x", "a new school is created only with the confirmation, and the record is kept in the same transaction", "backend/app/services/register_service.py", "ConsentRequired"),
     ("v29x", "the wording, the record, the admin's confirmation and the demo statement", "backend/app/services/auth_service.py", "CONSENT_VERSION"),
     ("v29x", "the admin route to confirm consent", "backend/app/api/auth_routes.py", "/admin/school/consent"),
     ("v29x", "the consent wording, the same as the server's (a test compares them)", "pwa/src/services/consent.js", "CONSENT"),
-    ("v29x", "the sign-up form asks a NEW school to confirm; joining a school asks nothing", "pwa/src/screens/LoginScreen.jsx", "consent-block"),
+    ("v29x", "the school's consent is confirmed by its leader (on the sign-up form until v30a, at her first sign-in since)", "pwa/src/screens/ConsentGate.jsx", "consent-gate"),
     ("v29x", "the admin's Profile shows the confirmation or a button to give it", "pwa/src/screens/AccountScreen.jsx", "consent-row"),
     ("v29x", "the consent rules are tested (backend, screens)", "backend/tests/test_consent.py", None),
     ("v29x", "the consent screens are tested in a simulated browser", "pwa/tests/consent.dom.test.mjs", None),
@@ -108,7 +123,7 @@ CHECKS = [
     ("v29i", "the test accounts: ONE test school, its admin and plain teachers (`normalise` converts the old layout)", "scripts/create_test_teachers.py", "def cmd_normalise"),
     ("v29i", "the nightly job puts the test accounts in order (a step that cannot stop the reset)", "scripts/nightly_reset.py", "create_test_teachers.py"),
     ("v29i", "the test accounts are tested (old layout converted, nothing else touched)", "backend/tests/test_test_teachers.py", None),
-    ("v29i", "the access guide: the test school admin and what an admin can do today", "docs/DEMO_ACCESS.md", "Test school admin"),
+    ("v29i", "the access guide: the school leader and what she can do today (it described the test school admin until v30a)", "docs/DEMO_ACCESS.md", "School leader"),
     ("v29i", "the usage job is created with arguments that survive PowerShell", "deploy/DEPLOY.md", "^@^/srv/scripts/ai_usage.py@status"),
     ("v29h", "the README is the real one: run it locally, every AI service, tests, deploy", "README.md", "How AI is used"),
     ("v29h", "the status document: what is built, against the proposal", "docs/STATUS.md", None),
@@ -122,7 +137,7 @@ CHECKS = [
     ("v29h", "the gate is tested", "backend/tests/test_submission_check.py", None),
     ("v29h", "the database helper is tested", "backend/tests/test_db_params.py", None),
     ("v29h", "the runner is tested", "backend/tests/test_run_tests.py", None),
-    ("v29h", "the privacy notes cover teachers' phone numbers and PINs", "docs/PRIVACY.md", "Teachers' phone numbers and PINs"),
+    ("v29h", "the privacy notes cover teachers' sign-in: employee codes and passwords (they covered phone numbers and PINs until v30a)", "docs/PRIVACY.md", "Teachers' employee codes and passwords"),
     ("v29g", "semantic retrieval: the migration (vector 1024, the skills column)", "db/schema/12_embeddings_1024.sql", None),
     ("v29g", "semantic retrieval: the tier, the switch and the fallbacks", "prompts/orchestrate.py", "def semantic_enabled"),
     ("v29g", "the embeddings are computed OFFLINE with an open-weights model (BAAI/bge-m3), into one file", "scripts/embed_content.py", "BAAI/bge-m3"),
@@ -175,7 +190,7 @@ def kind_of(bundle, rel):
     return "older" if bundle.startswith("v27") else "current"
 
 
-VERSION = "v29z, 26 Oct: lists the bundles v27l to v29z; the package v29z-current replaces v28m to v29y"
+VERSION = "v30b, 28 Oct: lists the bundles v27l to v30b; v30b-current = v30a-current + the guide section Three ways to record and the two-day flow"
 
 
 def main():
@@ -202,15 +217,15 @@ def main():
     # the packages: v28p-current holds the current version of every file of the v28 series, so it is 'in' when every v28 row is OK
     series = [b for b in status if b.startswith("v28")]
     package_ok = all(status[b] for b in series)
-    print(f"\n  PACKAGE v29z-current (every file of v28a to v29z, current):  {'OK' if package_ok else 'BEHIND'}")
+    print(f"\n  PACKAGE v30b-current (every file of v28a to v30b, current):  {'OK' if package_ok else 'BEHIND'}")
     print()
     if not kinds:
         print("Everything listed is in this working copy.")
         return 0
     if "current" in kinds:
-        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v29z-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
-        print("    tar -xzf <downloads>\\v29z-current.tar.gz -C <this folder>")
-        print("  and do NOT extract v28a to v29y afterwards: each holds older copies of some of the same files and would put them back.")
+        print("Something of the v28 series is behind (or was put back by an older bundle). Apply v30b-current.tar.gz ONCE: it holds the current version of every file of the series, so the order does not matter.")
+        print("    tar -xzf <downloads>\\v30b-current.tar.gz -C <this folder>")
+        print("  and do NOT extract v28a to v30a afterwards: each holds older copies of some of the same files and would put them back.")
     if "older" in kinds:
         print(f"Older bundles missing: {', '.join(sorted(kinds['older']))}. Apply each, oldest first, with  tar -xzf <downloads>\\<bundle>.tar.gz -C <this folder>")
     print("Run this check again afterwards: python scripts\\check_applied.py")

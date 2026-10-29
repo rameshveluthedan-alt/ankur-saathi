@@ -313,10 +313,13 @@ async def register_teacher(db, phone_hash: str, school_code: str, grades: list, 
     wanted = sorted({g for g in (normalise_grade(x) for x in grades or []) if g}, key=grade_number)
     if not wanted:
         raise ValueError("Choose at least one grade (0, 1, 2 or 3).")
-    if not _clean(phone_hash) or len(_clean(phone_hash)) < 8:
-        raise ValueError("Enter a phone number.")
+    ident = _clean(phone_hash)
+    as_code = auth_service.normalise_code(ident)          # an employee code (six letters or digits) is stored in capitals
+    if not (as_code or len(ident) >= 8):                   # (an account made before employee codes is named 'hash_' + a phone number)
+        raise ValueError("Enter an employee code: six letters or digits, for example MPT101.")
+    phone_hash = as_code or phone_hash
     if await db.fetchval("SELECT 1 FROM teachers WHERE phone_hash = $1", phone_hash):
-        raise FileExistsError("This phone number is already registered. Please log in.")
+        raise FileExistsError("This employee code is already registered. Please log in.")
     if require_consent:
         await auth_service.ensure_consent_table(db)            # before the transaction: a failure here cannot abort it
     async with db.transaction():

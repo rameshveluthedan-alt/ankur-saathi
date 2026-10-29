@@ -122,7 +122,7 @@ gcloud run deploy $SERVICE --source . --region $REGION --allow-unauthenticated -
 - It builds the container in Google's cloud (5 to 10 minutes) and prints `Service URL: https://...`.
 - `--timeout=300` lets a plan take up to 5 minutes (they take 60 to 80 seconds). `--max-instances=3` caps cost and protects the database. `--min-instances=0` means the first visit after
   a quiet period takes a few seconds longer; step 11 shows how to change that for the days jurors are testing.
-- The service is public, because jurors must reach it. Every API route except sign-in and a few public ones needs a signed session, and sign-in, registration and PIN change are rate limited.
+- The service is public, because jurors must reach it. Every API route except sign-in and a few public ones needs a signed session, and sign-in and password change are rate limited (registration is closed).
 
 At this point the app answers but the database is empty.
 
@@ -135,7 +135,7 @@ gcloud run jobs execute ankur-setup --region=$REGION --wait
 ```
 It creates the schema, loads the 101 skills and the content, makes the five test teachers and the demo accounts, and seeds the demo progress. **Run it once.** Running it again on a
 filled database would fail part-way. A line `extension "vector" is not available` would not be a problem: the loader then uses plain columns, as it does on your machine.
-To read the output (it prints the demo accounts and PINs):
+To read the output (it prints the demo accounts and passwords):
 ```powershell
 gcloud logging read 'resource.type="cloud_run_job" AND resource.labels.job_name="ankur-setup"' --limit=60 --format="value(textPayload)" --freshness=1h
 ```
@@ -146,7 +146,7 @@ $URL = gcloud run services describe $SERVICE --region $REGION --format="value(st
 $URL
 curl.exe -s "$URL/health"
 ```
-`/health` should answer `{"status":"ok",...}`. Open `$URL` in a browser, sign in with `9876543210` and PIN `4826`, and generate one plan for **N2.3.2**. That costs about 12 to 14 cents and
+`/health` should answer `{"status":"ok",...}`. Open `$URL` in a browser, sign in with employee code `MPT101` and password `4826`, and generate one plan for **N2.3.2**. That costs about 12 to 14 cents and
 proves the AI key, the models and the token setting all work in the cloud. Then check the log for warnings:
 ```powershell
 gcloud run services logs read $SERVICE --region=$REGION --limit=40
@@ -162,7 +162,7 @@ gcloud run jobs add-iam-policy-binding ankur-nightly --region=$REGION --member="
 gcloud scheduler jobs create http ankur-nightly-reset --location=$REGION --schedule="30 1 * * *" --time-zone="Asia/Kolkata" --uri="https://run.googleapis.com/v2/projects/$PROJECT_ID/locations/$REGION/jobs/ankur-nightly:run" --http-method=POST --oauth-service-account-email=$SA
 gcloud scheduler jobs run ankur-nightly-reset --location=$REGION
 ```
-It runs every night at 01:30 India time: it puts the "Change PIN" practice account back and re-seeds the demo teacher's progress up to yesterday. The last command runs it once now.
+It runs every night at 01:30 India time: it first converts accounts that were named by a phone number to employee codes (safe to repeat; classes and evidence stay), puts the practice account (MPT199) back and re-seeds the demo teacher's progress up to yesterday. The last command runs it once now.
 Check it with `gcloud run jobs executions list --job=ankur-nightly --region=$REGION` (the latest should say succeeded).
 
 ## 11. Day to day

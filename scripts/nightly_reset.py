@@ -50,8 +50,9 @@ def main():
     args = ap.parse_args()
     env_args = ["--env-file", args.env_file] if args.env_file else []
     day = args.end_date or yesterday_india()
+    run("the accounts use employee codes (a database made before them is converted; classes and evidence stay)", [os.path.join(HERE, "migrate_to_employee_codes.py")], env_args, fatal=False)
     run("the practice account is restored", [os.path.join(HERE, "auth_admin.py"), "restore-practice"], env_args)
-    run("the test accounts are in order (one test school, its admin, plain teachers)", [os.path.join(HERE, "create_test_teachers.py"), "normalise"], env_args, fatal=False)
+    run("the test accounts are in order (test teachers MPT102 upwards, in the demo school)", [os.path.join(HERE, "create_test_teachers.py"), "normalise"], env_args, fatal=False)
     run("the curated skill bridges are loaded (the reviewer's picks for the Beginners and the Proficients)", [os.path.join(HERE, "load_bridges.py")], env_args, fatal=False)
     run("the skill embeddings are loaded (semantic retrieval: a no-op without the file or without pgvector)", [os.path.join(HERE, "load_embeddings.py")], env_args, fatal=False)
     run("the demo progress is cleared", [os.path.join(HERE, "demo_progress.py"), "reset", "--yes"], env_args)

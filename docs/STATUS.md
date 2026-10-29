@@ -83,7 +83,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 | ✅ | Hosted in India | Cloud Run and Cloud SQL in asia-south1 (Mumbai). Worksheet photos (roll numbers and handwritten answers) are sent to the AI provider for analysis: `docs/PRIVACY.md`. |
 | 🟡 | Verifiable parental consent recorded at onboarding | The school confirms, when it is created, that parents have been told and have given permission; the exact wording, its version, the date and who confirmed are kept, and an older school's admin can confirm later. It is the SCHOOL's confirmation, not a record from each parent (`docs/PRIVACY.md`, "Consent"). |
 | ✅ | No tracking, profiling or behavioural monitoring | No analytics, ads, trackers or third-party hosts. |
-| ✅ | Sign-in, school join code, admin tools, rate limits, spend caps | Beyond the proposal: phone + PIN, lockouts, admin PIN reset and unlock, daily spend caps. |
+| ✅ | Sign-in, school leader tools, rate limits, spend caps | Beyond the proposal: employee code + password, lockouts, the school leader's password reset and unlock, daily spend caps. |
 
 ## 7. EXPLAINABILITY AND OBSERVABILITY
 
@@ -93,8 +93,8 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 | ❌ | Evidence card per child for the baseline level | Not built: there is no per-child evidence card for the baseline level. |
 | 🟡 | Evidence chain per roll number with confidence | Analyses are stored per roll number with a confidence; see the 'unclear handwriting' point above. |
 | ❌ | Level-change evidence trail the teacher approves | Not applicable as built (levels change only through an assessment). |
-| 🟡 | A school administrator sets up the school: enrols teachers and students, assigns classes, resets PINs, views reports | The admin can see the school's code and join code, make a new join code, list the school's accounts (last four digits of each phone only), reset a teacher's PIN to a temporary one and unlock an account. Teachers register themselves with the join code, each teacher enrols her own class by uploading a register and picks her own grades. There are no admin screens for enrolling teachers or children, assigning classes or viewing reports; roles above the school are designed in `docs/ROADMAP.md`. |
-| ❌ | Admin dashboard: B/P/P across schools, misconception patterns, override rate, vision confidence, latency | Not built. What exists: a school admin (join code, teacher list, PIN reset and unlock), AI spend limits, a usage job and the nightly job log. |
+| 🟡 | A school administrator sets up the school: enrols teachers and students, assigns classes, resets passwords, views reports | The school leader (the head teacher, who teaches too) can list the school's accounts by employee code, reset a teacher's password to a temporary one, unlock an account and confirm the school's consent statement. Nobody registers themselves: the operator makes the accounts today; each teacher enrols her own class by uploading a register and her leader sets her grades. There are no screens yet for adding teachers (one by one or from a CSV file), assigning classes or viewing reports; the block and cluster officers' role is designed in `docs/ROADMAP.md`. |
+| ❌ | Admin dashboard: B/P/P across schools, misconception patterns, override rate, vision confidence, latency | Not built. What exists: a school leader (teacher list, password reset and unlock), AI spend limits, a usage job and the nightly job log. |
 
 ## 8. DELIVERY AND OTHER PROMISES
 
@@ -102,7 +102,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 |---|---|---|
 | ❌ | A WhatsApp notification each morning with a link to the plan | Not built (needs a WhatsApp Business provider). A cheap stand-in is a 'send today's plan on WhatsApp' button using a deep link. |
 | ⏸ | Voice input (Bhashini) | Deferred in the proposal itself, and by design **not for the daily review** (too noisy with several groups at work). Planned for the periodic assessments, in a quiet one-to-one moment, next to observation (`docs/ROADMAP.md`, section 6). |
-| ✅ | Hindi-first, minimal text, simple phone-number login | Hindi style reviewed by the domain lead; phone + PIN. |
+| ✅ | Hindi-first, minimal text, simple login | Hindi style reviewed by the domain lead; employee code + password, with tap-to-fill role cards for reviewers. |
 | ❌ | Cost: $0.03 to $0.08 per complete daily cycle | Measured: about $0.14 for a plan (about $0.28 when the model's first reply has to be redone), plus photo analysis. The proposal estimated less. |
 | ❌ | Field test with 2 to 3 real or proxy teachers | Not yet done with real or proxy teachers; an internal test by the team is planned. |
 | 🟡 | Modular design so open-weights models can replace parts at scale | Now demonstrated for embeddings (BGE-M3 run on a laptop, MIT licence). Generation and vision still use Claude only. |

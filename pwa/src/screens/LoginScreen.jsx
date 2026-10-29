@@ -1,78 +1,39 @@
 import React, { useState } from 'react';
 import { useAuth } from '../App';
-import { login, registerTeacher, setToken } from '../services/api';
-import { CONSENT } from '../services/consent';
+import { login, setToken } from '../services/api';
 
 // Published demo accounts (fictional data only). Shown for reviewers; set VITE_DEMO_HINT=false for a real school.
-// If you change the demo PINs with scripts/auth_admin.py, change them here too.
+// If you change the demo passwords with scripts/auth_admin.py, change them here too: pwa/tests/demo_accounts.test.mjs checks that this list and the access guide agree.
 const DEMO_HINT = import.meta.env.VITE_DEMO_HINT !== 'false';
-const DEMO = [
-  ['9876543210', '4826', 'डेमो शिक्षक: 30 बच्चों की कक्षा (Demo teacher)'],
-  ['9876500000', '7351', 'डेमो स्कूल एडमिन (Demo school admin)'],
-  ['9000000100', '7351', 'टेस्ट स्कूल एडमिन: पाँच टेस्ट शिक्षकों का स्कूल (Test school admin)'],
-  ['9000000101', '4826', 'टेस्ट शिक्षक 1: अपनी कक्षा (Test teacher 1)'],
-  ['9000000199', '3917', 'पिन बदलना: पिन बदलकर और रीसेट करके देखें (Change PIN)'],
+const ROLES = [
+  { code: 'MPT101', password: '4826', icon: '👩‍🏫', hi: 'शिक्षक', en: 'Teacher', whatHi: '30 बच्चों की कक्षा: योजना, वर्कशीट, समीक्षा', whatEn: 'A 30-child class: plan, worksheets, review' },
+  { code: 'MPA101', password: '7351', icon: '🏫', hi: 'स्कूल लीडर', en: 'School leader (head teacher)', whatHi: 'पढ़ाते भी हैं, और स्कूल के खाते सँभालते हैं', whatEn: 'Teaches too, and looks after the school’s accounts' },
 ];
-const GRADE_CHOICES = [['balvatika', 'बालवाटिका'], ['grade_1', 'कक्षा 1'], ['grade_2', 'कक्षा 2'], ['grade_3', 'कक्षा 3']];
-const digits = (v) => v.replace(/\D/g, '').slice(0, 6);
+const PRACTICE = { code: 'MPT199', password: '3917' };       // the practice account: its password can be changed and reset
 const field = { width: '100%', padding: '12px 16px', fontSize: '1.125rem', border: '2px solid var(--border)', borderRadius: 10, fontFamily: 'inherit', marginBottom: 12 };
 const label = { fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: 6, display: 'block' };
+const clean = (v) => v.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 6);
 
 export default function LoginScreen() {
   const { setTeacher } = useAuth();
-  const [registering, setRegistering] = useState(false);
-  const [phone, setPhone] = useState('');
-  const [pin, setPin] = useState('');
-  const [pin2, setPin2] = useState('');
-  const [schoolCode, setSchoolCode] = useState('');
-  const [joinCode, setJoinCode] = useState('');
-  const [grades, setGrades] = useState([]);
-  const [consent, setConsent] = useState(false);       // only asked when the school is NEW (no join code): the school confirms that parents have been told
+  const [code, setCode] = useState('');
+  const [password, setPassword] = useState('');
+  const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [welcome, setWelcome] = useState(null);       // a new school's join code, shown once to its admin
-  const toggleGrade = (g) => setGrades(prev => prev.includes(g) ? prev.filter(x => x !== g) : [...prev, g]);
-
-  const finish = (data) => {
-    setToken(data.token);
-    const { token, join_code, ...profile } = data;
-    if (join_code) setWelcome({ code: join_code, profile }); else setTeacher(profile);
-  };
 
   const handleLogin = async () => {
-    if (!phone.trim() || pin.length < 4) { setError('फ़ोन नंबर और पिन डालें (Enter your phone number and PIN).'); return; }
+    if (code.length !== 6 || !password) { setError('कर्मचारी कोड (6 अक्षर या अंक) और पासवर्ड डालें (Enter your 6-character employee code and your password).'); return; }
     setLoading(true); setError('');
-    try { finish(await login('hash_' + phone.trim(), pin)); }
-    catch (e) { setError(e.message || 'लॉगिन नहीं हो सका (Could not sign in)'); }
+    try {
+      const data = await login(code, password);
+      setToken(data.token);
+      const { token, join_code, ...profile } = data;
+      setTeacher(profile);
+    } catch (e) { setError(e.message || 'लॉगिन नहीं हो सका (Could not sign in)'); }
     setLoading(false);
   };
-
-  const handleRegister = async () => {
-    if (!phone.trim() || !schoolCode.trim() || !grades.length) { setError('फ़ोन, स्कूल कोड और कम से कम एक कक्षा चुनें (Phone, school code and at least one grade).'); return; }
-    if (pin.length < 4) { setError('पिन 4 से 6 अंकों का होना चाहिए (The PIN must be 4 to 6 digits).'); return; }
-    if (pin !== pin2) { setError('दोनों पिन एक जैसे नहीं हैं (The two PINs do not match).'); return; }
-    const creating = !joinCode.trim();
-    if (creating && !consent) { setError('नया स्कूल बनाने के लिए ऊपर की बात की पुष्टि करें (To create a new school, confirm the statement above).'); return; }
-    setLoading(true); setError('');
-    try { finish(await registerTeacher('hash_' + phone.trim(), pin, schoolCode.trim(), joinCode.trim(), grades, creating ? CONSENT.version : null)); }
-    catch (e) { setError(e.message || 'पंजीकरण नहीं हो सका (Registration failed)'); }
-    setLoading(false);
-  };
-
-  if (welcome) {
-    return (
-      <div className="screen" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100dvh' }}>
-        <div className="card" data-testid="welcome">
-          <h2>✅ स्कूल पंजीकृत हुआ (School registered)</h2>
-          <p style={{ fontSize: '0.875rem', margin: '8px 0' }}>आप इस स्कूल के एडमिन हैं। दूसरे शिक्षकों को जुड़ने के लिए यह कोड दें:</p>
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>You are this school's admin. Give other teachers this join code so they can register:</p>
-          <div data-testid="join-code-shown" style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 6, textAlign: 'center', margin: '12px 0', color: 'var(--green-dark)' }}>{welcome.code}</div>
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>इसे बाद में भी "प्रोफ़ाइल" पेज पर देख सकते हैं। (You can see it again on the Profile page.)</p>
-          <button className="btn btn-primary" style={{ marginTop: 10 }} onClick={() => setTeacher(welcome.profile)}>आगे बढ़ें (Continue)</button>
-        </div>
-      </div>
-    );
-  }
+  const fill = (c, p) => { setCode(c); setPassword(p); setError(''); };
 
   return (
     <div className="screen" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100dvh' }}>
@@ -83,69 +44,44 @@ export default function LoginScreen() {
       </div>
 
       <div className="card">
-        <label style={label}>फ़ोन नंबर (Phone number)</label>
-        <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="9876543210" data-testid="phone" style={field} />
-        {registering && (
-          <div data-testid="register-fields">
-            <label style={label}>स्कूल कोड (School code)</label>
-            <input type="text" value={schoolCode} onChange={e => setSchoolCode(e.target.value)} placeholder="MP-1234" data-testid="school-code" style={field} />
-            <label style={label}>जॉइन कोड, अगर आपका स्कूल पहले से जुड़ा है (Join code, if your school is already registered)</label>
-            <input type="text" value={joinCode} onChange={e => setJoinCode(e.target.value.toUpperCase().slice(0, 8))} placeholder="ABC234" data-testid="join-code" style={{ ...field, letterSpacing: 3 }} />
-            {!joinCode.trim() && (
-              <div data-testid="consent-block" style={{ background: 'var(--green-bg)', border: '1px solid var(--green-light)', borderRadius: 8, padding: 10, margin: '4px 0 12px' }}>
-                <div style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: 4 }}>नया स्कूल जोड़ रहे हैं? पुष्टि करें (Adding a new school? Please confirm)</div>
-                <p lang="hi" data-testid="consent-hi" style={{ fontSize: '0.8125rem', margin: '0 0 4px' }}>{CONSENT.hi}</p>
-                <p lang="en" data-testid="consent-en" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '0 0 8px' }}>{CONSENT.en}</p>
-                <label style={{ display: 'flex', gap: 8, alignItems: 'center', fontSize: '0.875rem', minHeight: 44 }}>
-                  <input type="checkbox" checked={consent} onChange={e => setConsent(e.target.checked)} data-testid="consent-check" style={{ width: 24, height: 24 }} />
-                  <span>हाँ, यह सही है (Yes, this is correct)</span>
-                </label>
-              </div>
-            )}
-            <label style={label}>आप किन कक्षाओं को पढ़ाते हैं? (Grades you teach)</label>
-            <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
-              {GRADE_CHOICES.map(([g, hi]) => (
-                <button key={g} type="button" data-testid={`grade-${g}`} onClick={() => toggleGrade(g)}
-                  style={{ flex: 1, padding: '8px 2px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.75rem', fontWeight: 600,
-                           background: grades.includes(g) ? 'var(--green-dark)' : 'var(--surface)', color: grades.includes(g) ? 'white' : 'var(--text)' }}>{hi}</button>
-              ))}
-            </div>
-          </div>
-        )}
-        <label style={label}>{registering ? 'अपना पिन चुनें, 4 से 6 अंक (Choose a PIN, 4 to 6 digits)' : 'पिन (PIN)'}</label>
-        <input type="password" inputMode="numeric" pattern="[0-9]*" autoComplete={registering ? 'new-password' : 'current-password'} value={pin}
-          onChange={e => setPin(digits(e.target.value))} placeholder="••••" data-testid="pin" style={{ ...field, letterSpacing: 8 }}
-          onKeyDown={e => e.key === 'Enter' && !registering && handleLogin()} />
-        {registering && (
-          <>
-            <label style={label}>पिन दोबारा (Repeat the PIN)</label>
-            <input type="password" inputMode="numeric" pattern="[0-9]*" autoComplete="new-password" value={pin2} onChange={e => setPin2(digits(e.target.value))}
-              placeholder="••••" data-testid="pin-confirm" style={{ ...field, letterSpacing: 8 }} />
-          </>
-        )}
-        {error && <p data-testid="login-error" style={{ color: 'var(--beginner)', fontSize: '0.875rem', marginBottom: 8 }}>{error}</p>}
-        {registering ? (
-          <button className="btn btn-primary" onClick={handleRegister} disabled={loading} data-testid="register-submit">{loading ? 'पंजीकरण हो रहा है...' : 'पंजीकरण करें (Register)'}</button>
-        ) : (
-          <button className="btn btn-primary" onClick={handleLogin} disabled={loading} data-testid="login-submit">{loading ? 'लॉगिन हो रहा है (Logging in)...' : 'लॉगिन करें (Login)'}</button>
-        )}
-        <button type="button" onClick={() => { setRegistering(v => !v); setError(''); }} data-testid="toggle-register"
-          style={{ display: 'block', margin: '12px auto 0', background: 'none', border: 'none', color: 'var(--green-dark)', textDecoration: 'underline', fontSize: '0.8125rem' }}>
-          {registering ? 'पहले से पंजीकृत हैं? लॉगिन (Already registered? Log in)' : 'नए शिक्षक? पंजीकरण करें (New teacher? Register)'}
-        </button>
-        {!registering && <p style={{ textAlign: 'center', fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 8 }}>पिन भूल गए? अपने स्कूल एडमिन से कहें। (Forgot your PIN? Ask your school admin.)</p>}
+        <label htmlFor="employee-code" style={label}>कर्मचारी कोड (Employee code)</label>
+        <input id="employee-code" type="text" value={code} onChange={e => setCode(clean(e.target.value))} placeholder="MPT101" data-testid="employee-code"
+          autoCapitalize="characters" autoCorrect="off" spellCheck={false} autoComplete="username" maxLength={6} style={{ ...field, letterSpacing: 3, textTransform: 'uppercase' }} />
+        <label htmlFor="password" style={label}>पासवर्ड (Password)</label>
+        <div style={{ position: 'relative' }}>
+          <input id="password" type={show ? 'text' : 'password'} value={password} onChange={e => setPassword(e.target.value.slice(0, 12))} placeholder="••••••" data-testid="password"
+            autoComplete="current-password" autoCapitalize="none" autoCorrect="off" spellCheck={false} style={{ ...field, paddingRight: 96 }}
+            onKeyDown={e => e.key === 'Enter' && handleLogin()} />
+          <button type="button" onClick={() => setShow(v => !v)} data-testid="toggle-password" aria-pressed={show}
+            style={{ position: 'absolute', right: 6, top: 6, height: 44, minWidth: 80, background: 'none', border: 'none', color: 'var(--green-dark)', fontSize: '0.8125rem', fontWeight: 600 }}>
+            {show ? 'छिपाएँ (Hide)' : 'दिखाएँ (Show)'}
+          </button>
+        </div>
+        {error && <p data-testid="login-error" role="alert" style={{ color: 'var(--beginner)', fontSize: '0.875rem', marginBottom: 8 }}>{error}</p>}
+        <button className="btn btn-primary" onClick={handleLogin} disabled={loading} data-testid="login-submit">{loading ? 'लॉगिन हो रहा है (Logging in)...' : 'लॉगिन करें (Login)'}</button>
+        <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 10 }}>पासवर्ड भूल गए? अपने स्कूल लीडर से कहें। (Forgot your password? Ask your school leader.)</p>
+        <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}>खाता आपके स्कूल लीडर बनाते हैं। (Your school leader makes your account.)</p>
       </div>
 
-      {DEMO_HINT && !registering && (
+      {DEMO_HINT && (
         <div className="card" data-testid="demo-hint" style={{ background: '#FFF8E1' }}>
-          <div style={{ fontSize: '0.75rem', fontWeight: 600, marginBottom: 6 }}>समीक्षकों के लिए डेमो अकाउंट (Demo accounts for reviewers: fictional data only)</div>
-          {DEMO.map(([ph, pn, what]) => (
-            <button key={ph} type="button" data-testid={`demo-${ph}`} onClick={() => { setPhone(ph); setPin(pn); setError(''); }}
-              style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', borderBottom: '1px solid #E8DDB5', padding: '5px 0', fontSize: '0.75rem', fontFamily: 'inherit' }}>
-              <b>{ph}</b> · पिन {pn}<br /><span style={{ color: 'var(--text-secondary)' }}>{what}</span>
+          <div style={{ fontSize: '0.8125rem', fontWeight: 600, marginBottom: 2 }}>समीक्षकों के लिए: डेमो अकाउंट (For reviewers: demo accounts)</div>
+          <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginBottom: 8 }}>सिर्फ़ काल्पनिक डेटा। किसी कार्ड पर दबाएँ, कोड और पासवर्ड भर जाएँगे; फिर लॉगिन दबाएँ। (Fictional data only. Tap a card to fill in the code and password, then press Login.)</div>
+          {ROLES.map(r => (
+            <button key={r.code} type="button" data-testid={`demo-${r.code}`} onClick={() => fill(r.code, r.password)}
+              style={{ display: 'flex', gap: 10, alignItems: 'center', width: '100%', textAlign: 'left', background: 'var(--surface)', border: '1px solid #E8DDB5', borderRadius: 10, padding: '10px 12px', marginBottom: 8, minHeight: 56, fontFamily: 'inherit' }}>
+              <span aria-hidden="true" style={{ fontSize: '1.5rem' }}>{r.icon}</span>
+              <span style={{ flex: 1, fontSize: '0.8125rem' }}>
+                <b>{r.hi}</b> <span style={{ color: 'var(--text-secondary)' }}>{r.en}</span><br />
+                <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{r.whatHi} ({r.whatEn})</span><br />
+                <span style={{ fontFamily: 'monospace', fontSize: '0.75rem' }}>कोड {r.code} · पासवर्ड {r.password}</span>
+              </span>
             </button>
           ))}
-          <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)', marginTop: 4 }}>किसी अकाउंट पर दबाएँ, फ़ोन और पिन भर जाएँगे। (Tap an account to fill in the phone and PIN.)</div>
+          <button type="button" data-testid={`demo-${PRACTICE.code}`} onClick={() => fill(PRACTICE.code, PRACTICE.password)}
+            style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '6px 2px', fontSize: '0.75rem', fontFamily: 'inherit', color: 'var(--green-dark)', minHeight: 44 }}>
+            🔑 पासवर्ड बदलकर देखें (Try changing a password): <span style={{ fontFamily: 'monospace' }}>कोड {PRACTICE.code} · पासवर्ड {PRACTICE.password}</span>
+          </button>
         </div>
       )}
     </div>

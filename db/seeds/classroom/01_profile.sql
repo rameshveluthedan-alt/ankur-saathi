@@ -17,7 +17,7 @@ VALUES ('d0000001-aaaa-bbbb-cccc-000000000001', 'mp', 'MP-DEMO-001', 'Block A', 
 INSERT INTO teachers (id, school_id, phone_hash, enrolled_grades, is_multigrade, available_minutes, preferred_language)
 VALUES ('10000001-aaaa-bbbb-cccc-000000000001', 
         'd0000001-aaaa-bbbb-cccc-000000000001',
-        'hash_9876543210',  -- hashed phone, never plaintext
+        'MPT101',  -- the demo teacher's employee code (the login name)
         ARRAY['grade_1','grade_2','grade_3'], 
         TRUE, 90, 'hi');
 

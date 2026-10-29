@@ -3,9 +3,7 @@
 Nothing else in the app can create a teacher or a child, so every class starts here.
 
 ## A new teacher
-On the login screen choose **New teacher? Register**: phone number, school code, the grades taught (Balvatika, Grade 1, 2, 3) and a **PIN**.
-A new school code creates the school and makes this teacher its **admin** (who receives a join code). To join a school that already
-exists, give its join code (`docs/AUTH.md`).
+A teacher does not sign herself up: her **account** (employee code, school, the grades she teaches) is made by her school leader, or today by the operator (`docs/AUTH.md`). This page is about the **class register**: the children.
 
 ## Uploading the register
 Plan screen > **Class register**. Download the template, fill it in, choose the file, read the preview, confirm.
@@ -32,12 +30,12 @@ Balvatika keeps its roll). Children write that one number on worksheets, which t
 
 ## Test teachers (for testers who must not share one account)
 ```
-python scripts/create_test_teachers.py create --count 5 --env-file backend/.env     # 9000000101 ... 9000000105
+python scripts/create_test_teachers.py create --count 5 --env-file backend/.env     # MPT102 ... MPT106
 python scripts/create_test_teachers.py list   --env-file backend/.env
 python scripts/create_test_teachers.py remove --env-file backend/.env               # only these test teachers
 ```
 Each has their own multi-grade class (class numbers 101-110, 201-208, 301-306) enrolled through the same code as the
-screens, with fictional first names (`--no-names` to skip). The demo teacher (9876543210) is not touched.
+screens, with fictional first names (`--no-names` to skip). The demo teacher (MPT101) is not touched.
 
 ## Database
 `db/schema/07_register.sql` adds `children.school_roll` and an upload log; `db/schema/08_child_names.sql` adds the names table.

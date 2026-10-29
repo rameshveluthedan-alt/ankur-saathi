@@ -14,6 +14,10 @@ CLAUDE_VISION_MODEL: "claude-sonnet-5-5"
 CLAUDE_MAX_TOKENS: "24000"
 
 AUTH_MODE: "enforce"
+# how long a sign-in lasts: 7 days, so a teacher on her own phone rarely types her password (docs/AUTH.md). Accounts are made by the school leader or loaded by the department:
+# nobody registers themselves.
+SESSION_HOURS: "168"
+SELF_REGISTRATION: "false"
 DEBUG: "false"
 
 # check-for-understanding show-me questions in every lesson (docs/CFU.md). "false" = plans exactly as before, with no redeploy of code:

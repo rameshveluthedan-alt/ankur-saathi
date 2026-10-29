@@ -18,7 +18,7 @@ The hackathon credits are a fixed pool, and the product has to be usable by eval
 | Global daily cap (all users, India day) | $20 | The kill switch. 10 evaluation days x $20 = $200, inside the $240 evaluation budget |
 | School daily cap | $10 | Stops that school only |
 | Teacher daily cap | $3 | Stops that teacher only |
-| Shared demo account (fixed PIN) | $8 | Higher, because many reviewers use one account |
+| Shared demo account (fixed password) | $8 | Higher, because many reviewers use one account |
 | `AI_ENABLED=false` | on | Every live call stops (recorded plans are still served) |
 | After `AI_CREDIT_EXPIRES` | 20 Nov | No call is made |
 | Operator mode (the batch run) | | Skips the daily caps, never the total budget or the reserve |

@@ -50,10 +50,10 @@ See [deploy/DEPLOY.md](deploy/DEPLOY.md).
     "backend/app/services/plan.py": "import os\nimport anthropic\nMODE = os.environ.get('SEMANTIC_RETRIEVAL', 'off')\n",
     "deploy/cloudrun-env.yaml": "CLAUDE_MODEL: \"claude-sonnet-5-5\"\nCLAUDE_VISION_MODEL: \"claude-sonnet-5-5\"\nCLAUDE_MAX_TOKENS: \"24000\"\n",
     "deploy/DEPLOY.md": "# deploy\n",
-    "docs/DEMO_ACCESS.md": "| 9876543210 | 4826 |\n| 9876500000 | 7351 |\n| 9000000101 to 9000000105 | 4826 |\n",
+    "docs/DEMO_ACCESS.md": "| MPT101 | 4826 |\n| MPA101 | 7351 |\n| MPT102 to MPT106 | 4826 |\n",
     "docs/PRIVACY.md": "# privacy\n",
     "docs/STATUS.md": "# Status\n\n| | Promise | Where it stands |\n|---|---|---|\n" + STATUS_ROWS + "\n",
-    "docs/EVALUATOR_GUIDE.md": "# Evaluator guide\nhttps://demo-123.asia-south1.run.app\n| Teacher | 9876543210 | 4826 |\n| Admin | 9876500000 | 7351 |\n## Five sample inputs\n1. x\n- these skills still show a recorded sample plan: N2.3.2 and N0.1.1\n## Frozen version\ncommit abc\n",
+    "docs/EVALUATOR_GUIDE.md": "# Evaluator guide\nhttps://demo-123.asia-south1.run.app\n| Teacher | MPT101 | 4826 |\n| School leader | MPA101 | 7351 |\n## Five sample inputs\n1. x\n- these skills still show a recorded sample plan: N2.3.2 and N0.1.1\n## Frozen version\ncommit abc\n",
     "db/seeds/sample_plans/N2.3.2.json": '{"_reviewed_by": "Test reader, 2026-10-25"}\n', "db/seeds/sample_plans/N0.1.1.json": '{"_reviewed_by": "Test reader, 2026-10-25"}\n',
     "Dockerfile": "FROM python:3.11-slim\n",
 }
@@ -103,7 +103,7 @@ res = run({"docs/worksheet.jpg": "x"})
 check("a photo outside the icons is caught (children's work must never be committed)", has(res, "FAIL", "files_photos", "docs/worksheet.jpg"))
 check("...but an app icon is fine", not has(run({"pwa/public/icon-192.png": "x"}), "FAIL", "files_photos"))
 check("a real-looking phone number is caught", has(run({"docs/notes.md": "call 9812345670 about it"}), "FAIL", "personal_phone"))
-check("the published demo numbers, the test-teacher range and obviously fake numbers are fine", not has(run({"docs/notes.md": "9876543210 9000000104 9999999999 9123456789 9898989898"}), "FAIL", "personal_phone"))
+check("the published demo numbers, the test-teacher range and obviously fake numbers are fine", not has(run({"docs/notes.md": "9876543210 9876500000 9000000104 9999999999 9123456789 9898989898"}), "FAIL", "personal_phone"))
 check("a real-looking email address is caught; example.com and a service-account placeholder are fine", has(run({"docs/c.md": "write to a.person@gmail.com"}), "FAIL", "personal_email") and not has(run({"docs/c.md": "a@example.com PROJECT_NUMBER-compute@developer.gserviceaccount.com"}), "FAIL", "personal_email"))
 check("numbers in a lock file or the embeddings file are not scanned as phones", not has(run({"pwa/package-lock.json": "9812345670", "db/seeds/content/embeddings.json": "9812345670"}), "FAIL", "personal_phone"))
 check("the fake-number rule: realistic numbers stay flagged", [sc.looks_fake(n) for n in ("9812345670", "8004912736", "7355013298", "9456123780")] == [False] * 4 and [sc.looks_fake(n) for n in ("9999999999", "9876543210", "9123456789")] == [True] * 3)
@@ -146,7 +146,8 @@ res = run(remove=("docs/EVALUATOR_GUIDE.md",))
 check("a missing evaluator guide is PENDING, not a FAIL, during the week", has(res, "PENDING", "docs_evaluator") and sc.exit_code(res, final=False) == 0)
 check("...and with --final it makes the exit code 1", sc.exit_code(res, final=True) == 1)
 check("a FAIL makes the exit code 1 in both modes", sc.exit_code(run({"docs/c.md": "write to a.person@gmail.com"}), False) == 1 and sc.exit_code(run({"docs/c.md": "write to a.person@gmail.com"}), True) == 1)
-check("a guide that lacks the link, the sign-ins or a section is caught, naming what is missing", has(run({"docs/EVALUATOR_GUIDE.md": "# guide\n"}), "FAIL", "guide_content", "Sample inputs") and has(run({"docs/EVALUATOR_GUIDE.md": "# guide\n"}), "FAIL", "guide_content", "live link"))
+check("a guide that lacks the link, the sign-ins or a section is caught, naming what is missing", has(run({"docs/EVALUATOR_GUIDE.md": "# guide\n"}), "FAIL", "guide_content", "Sample inputs") and has(run({"docs/EVALUATOR_GUIDE.md": "# guide\n"}), "FAIL", "guide_content", "live link") and has(run({"docs/EVALUATOR_GUIDE.md": "# guide\n"}), "FAIL", "guide_content", "MPT101") and has(run({"docs/EVALUATOR_GUIDE.md": "# guide\n"}), "FAIL", "guide_content", "MPA101"))
+check("a guide that still publishes only the OLD phone sign-ins is caught: the employee codes are what a reviewer must find", has(run({"docs/EVALUATOR_GUIDE.md": "# Evaluator guide\nhttps://demo-123.asia-south1.run.app\n| Teacher | 9876543210 | 4826 |\n| Admin | 9876500000 | 7351 |\n## Five sample inputs\n1. x\n## Frozen version\ncommit abc\n"}), "FAIL", "guide_content", "MPT101"))
 res = run({"docs/EVALUATOR_GUIDE.md": GOOD["docs/EVALUATOR_GUIDE.md"] + "commit: [FILL ON FREEZE: commit hash]\n[FILL ON FREEZE: the video]\n"})
 check("unfilled FILL ON FREEZE markers are PENDING during the week (counted, exit code 0) ...", has(res, "PENDING", "guide_placeholders", "2 'FILL ON FREEZE'") and sc.exit_code(res, final=False) == 0 and not has(res, "FAIL", "guide_content"))
 check("... and make --final fail (the exit code is 1) until they are filled", sc.exit_code(res, final=True) == 1)

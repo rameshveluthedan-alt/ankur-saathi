@@ -1,44 +1,38 @@
 # How reviewers sign in to the demo
 
-The demo holds **fictional data only**, so its PINs are published. Open the app: the login screen lists these accounts, and
-tapping one fills in the phone number and PIN.
+The demo holds **fictional data only**, so its passwords are published. Everyone signs in with a **6-character employee code** (three letters and three digits, such as MPT101) and a password. Open the app: the login screen shows a card for each role; tap one to fill in the code and the password, then press Login. **Nobody registers themselves**: accounts are made by the school leader (today, by the operator: see the end of this page).
 
-| Phone | PIN | What it is |
+| Code | Password | What it is |
 | --- | --- | --- |
-| 9876543210 | 4826 | **Demo teacher**: a 30-child multi-grade class (Grades 1 to 3), fictional names, a few days of data |
-| 9876500000 | 7351 | **Demo school admin** (the demo school: the demo teacher and the "Change PIN" account): lists the school's accounts, shows the join code, resets the "Change PIN" account's PIN |
-| 9000000100 | 7351 | **Test school admin** (the test school: the five test teachers below): lists their accounts and shows the school's join code. The test teachers' PINs are fixed, so it cannot reset them |
-| 9000000199 | 3917 | **"Change PIN" account (पिन बदलना)**: change its PIN, reset it as the admin, lock it out. Nothing else is affected |
-| 9000000101 to 9000000105 | 4826 | **Test teachers** (the role is plain *teacher*: no admin screens), all in the test school, each with their own multi-grade class (class numbers 101-110, 201-208, 301-306). Use one each, so you do not overwrite each other's photos or registers |
+| MPT101 | 4826 | **Demo teacher**: a 30-child multi-grade class (Grades 1 to 3), fictional names, a few days of data |
+| MPA101 | 7351 | **School leader** (the head teacher: she teaches too). Looks after the demo school's accounts (the demo teacher, the practice account and the five test teachers): lists them by employee code, unlocks them, resets the practice account's password. Never sees a child's data |
+| MPT199 | 3917 | **Practice account**: change its password, reset it as the school leader, lock it out. Nothing else is affected |
+| MPT102 to MPT106 | 4826 | **Test teachers** (the role is plain *teacher*: no leader screens), in the same school, each with their own multi-grade class (class numbers 101-110, 201-208, 301-306). Use one each, so you do not overwrite each other's photos or registers |
 
 ## Suggested path
-0. **What the admin can do today:** see the school's code and join code and make a new join code; list the school's accounts (only the last four digits of each phone number); reset a teacher's PIN to a temporary one (shown once); unlock a locked account. **Teachers register themselves** with the join code, **each teacher enrols her own class** by uploading a register, and a teacher picks her own grades. There are no admin screens yet for enrolling teachers or children, assigning classes or viewing reports (`docs/STATUS.md`).
-1. **Teacher:** sign in as 9876543210 or one of the test teachers. Look at Plan, Progress (the "consider re-assessing" flags, the
-   child list with names) and Review (the observation checklist, the suggested sample).
-2. **PIN reset:** sign in as the admin (9876500000), open Profile (the last tab), reset the "Change PIN" account's PIN. A temporary PIN appears once.
-   Sign out, sign in as 9000000199 with it: the only screen is "choose a new PIN".
-3. **A new school:** choose "New teacher? Register" with any new phone number and school code: you become that school's admin and
-   see its join code. Creating a school asks you to **confirm a short statement** (that the children's parents have been told and have given permission, that photos are not kept and names never go to the AI): tick the box under the join code field. Joining an existing school asks for nothing, because that school confirmed it when it was created. Registering into the demo school needs its join code: **DEMO26**. The admin's Profile shows the school's confirmation, or a button to confirm it for a school created earlier.
+0. **What the school leader can do today:** list the school's accounts (each by its employee code, with no child data); reset a teacher's password to a temporary one (shown once); unlock a locked account; and confirm, once, the school's consent statement (a demonstration school carries its own, so you will not be asked). **There is no join code and no registration screen.** Adding teachers from the leader's own screen, one by one or from a CSV file, and reports for the leader and for block and cluster officers, are the next step (`docs/ROADMAP.md`); today the operator makes accounts.
+1. **Teacher:** sign in as MPT101 or one of the test teachers. Look at Plan, Progress (the "consider re-assessing" flags, the child list with names) and Review (the observation checklist, the suggested sample).
+2. **Password reset:** sign in as the school leader (MPA101), open Profile (the last tab), reset the practice account's password. A temporary password appears once. Sign out, sign in as MPT199 with it: the only screen is "choose a new password" (6 to 12 letters or digits).
+3. **A real school's first sign-in:** the school leader sees one screen, once, asking her to confirm a short statement (that the children's parents have been told and have given permission, that photos are not kept and names never go to the AI). It is kept with the date and the exact wording. The demo school carries its own statement ("every child here is fictional"), so you will not see this screen with the demo accounts.
 
 ## If the AI limit is reached
 The demo's AI use is capped so the credits last through evaluation (`docs/AI_BUDGET.md`). When a limit is reached, a plan for a skill with a
 recorded sample is still shown, labelled "sample plan" (the recorded sample plans are N0.1.1, N2.2.1, N2.3.2, L2.3.1, L2.5.1 and L2.7.2); other skills and photo analysis say the limit was reached
 and that it resets the next day.
 
-## Why some accounts cannot change their PIN
-The shared demo accounts have a fixed PIN on purpose: if one reviewer changed it, everyone else would be locked out. The PIN
-practice account exists so the change and reset flows can still be tried.
+## Why some accounts cannot change their password
+The shared demo accounts have a fixed password on purpose: if one reviewer changed it, everyone else would be locked out. The practice account (MPT199) exists so the change and reset flows can still be tried. A new password is 6 to 12 letters or digits (a 6-digit number is fine); the shared demo accounts keep their short published ones.
 
 ## For the operator
 ```
-python scripts/create_test_teachers.py create --count 5 --env-file backend/.env     # the test school, its admin 9000000100, and the five teachers
-python scripts/create_test_teachers.py normalise --env-file backend/.env            # converts accounts made by an older version (each teacher alone in a school, so each an admin); the nightly job runs it
-python scripts/auth_admin.py demo-setup       --env-file backend/.env     # PINs, flags and the join code; prints this table
+python scripts/migrate_to_employee_codes.py --env-file backend/.env                  # renames accounts made with phone numbers to employee codes and keeps their data; the nightly job runs it first
+python scripts/create_test_teachers.py create --count 5 --env-file backend/.env     # the test teachers MPT102 to MPT106, in the demo school
+python scripts/auth_admin.py demo-setup       --env-file backend/.env                # passwords and flags; prints this table
 python scripts/demo_progress.py seed --end-date YESTERDAY --env-file backend/.env
-python scripts/ai_usage.py status --env-file backend/.env                 # before every demo: how much AI budget is left
+python scripts/ai_usage.py status --env-file backend/.env                            # before every demo: how much AI budget is left
 ```
-Nightly: `auth_admin.py restore-practice` (puts the "Change PIN" account right), and re-seed the demo data (flags expire after 14 days).
-If you change a demo PIN, change it in `pwa/src/screens/LoginScreen.jsx` too. For a real school set `VITE_DEMO_HINT=false`.
+Nightly: `auth_admin.py restore-practice` (puts the practice account right), and re-seed the demo data (flags expire after 14 days). Accounts are made by employee code; `SELF_REGISTRATION` is off unless someone turns it on for a practice database.
+If you change a demo password, change it in `pwa/src/screens/LoginScreen.jsx` too: `pwa/tests/demo_accounts.test.mjs` checks that the screen, these guides and the scripts agree. For a real school set `VITE_DEMO_HINT=false`.
 
 
 ## What the Plan screen shows on the demo (seeded every night)

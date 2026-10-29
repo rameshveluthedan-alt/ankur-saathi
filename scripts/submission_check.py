@@ -219,6 +219,7 @@ def run_checks(root: Path, final: bool = False, deadline: str = DEADLINE, histor
         allowed |= set(re.findall(r"(?<!\d)\d{10}(?!\d)", t))
         for a, b in re.findall(r"(\d{10})\s*(?:to|-|–)\s*(\d{10})", t):
             allowed |= {str(x) for x in range(int(a), int(b) + 1)}
+    allowed |= {"9876543210", "9876500000"}            # the two OLD fictional demo numbers: the migration to employee codes and its test have to name them
     phones, emails = {}, {}
     mail_ok = re.compile(r"example\.(com|org|net)$|noreply|gserviceaccount\.com$|\.invalid$|localhost$", re.I)
     for p in files:
@@ -314,7 +315,7 @@ def run_checks(root: Path, final: bool = False, deadline: str = DEADLINE, histor
     guide = root / "docs" / "EVALUATOR_GUIDE.md"
     if guide.exists():
         g = guide.read_text(encoding="utf-8")
-        lacks = [what for what, rx in (("the live link (a .run.app address)", r"https://[\w.-]+\.run\.app"), ("the teacher's sign-in (9876543210)", r"9876543210"), ("the admin's sign-in (9876500000)", r"9876500000"),
+        lacks = [what for what, rx in (("the live link (a .run.app address)", r"https://[\w.-]+\.run\.app"), ("the teacher's sign-in (employee code MPT101)", r"\bMPT101\b"), ("the school leader's sign-in (employee code MPA101)", r"\bMPA101\b"),
                                        ("a 'Sample inputs' section", r"(?im)^#+\s*(\w+\s+){0,3}sample inputs"), ("a 'Frozen version' section", r"(?im)^#+\s*frozen version")) if not re.search(rx, g)]
         add("FAIL" if lacks else "PASS", "guide_content", ("docs/EVALUATOR_GUIDE.md lacks: " + ", ".join(lacks)) if lacks else "the evaluator guide has the live link, the sign-ins, a 'Sample inputs' section and a 'Frozen version' section")
         left = g.count("FILL ON FREEZE")

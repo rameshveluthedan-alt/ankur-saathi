@@ -27,7 +27,7 @@ enforced, and what is NOT yet done.
 The app **records no audio** and never asks the browser for the microphone (`pwa/tests/no_audio.test.mjs` checks the code and the screens). Reading aloud is timed by the teacher, who types the result. If voice assessment is added for the periodic assessments (`docs/ROADMAP.md`, section 6), it will need the school's consent on record and audio that is scored in memory and not kept, as photos are; none of that is built.
 
 ## Consent
-When a school is created in the app, the person creating it confirms on the sign-up screen that the children's parents or guardians have been told that the children's classwork will be read in the app and have given their permission, that photos are read by an AI and are not kept, and that children's names are never sent to the AI. The confirmation is kept with its exact wording, the version of that wording, the date and who gave it (the table `school_consents`). The school's admin sees it in her Profile; the admin of a school created before this existed can confirm there. Joining a school with its join code asks for nothing, because the school confirmed when it was created. The demonstration and test schools carry the statement that every child in them is fictional.
+A school is made by the department (or, today, the operator), not by its teachers. At the **first sign-in of its leader** (the head teacher), she confirms on one screen that the children's parents or guardians have been told that the children's classwork will be read in the app and have given their permission, that photos are read by an AI and are not kept, and that children's names are never sent to the AI. The confirmation is kept with its exact wording, the version of that wording, the date and who gave it (the table `school_consents`). The leader sees it in her Profile; the leader of a school that has none can confirm there too. **Teachers are never asked**, because the school confirmed once, through its leader. The demonstration school carries the statement that every child in it is fictional.
 
 **What this is not.** It is the school's confirmation, **not a record of consent from each parent**. The app holds no parent's name, signature or date of permission, and it cannot check that what the school says is true. Recording each parent's consent, and the lawful basis under India's Digital Personal Data Protection Act, 2023, remains to be agreed with the school and the state (see the list at the end of this document).
 
@@ -41,7 +41,7 @@ we do in the database. So:
   and it never removes a name from the photo itself.
 
 ## Before real children's names are used (not done yet)
-1. **Login.** Done: a PIN with lockout, signed sessions on every route and a school admin who can reset a PIN (`docs/AUTH.md`). What
+1. **Login.** Done: an employee code and a password with lockout, signed sessions on every route and a school leader who can reset a password (`docs/AUTH.md`). What
    remains is HTTPS and a rate limit per network address when hosting.
 2. **HTTPS everywhere, encryption at rest, and backups** that are handled as personal data.
 3. **A lawful basis and consent** for processing children's data, agreed with the school and the state. India's Digital
@@ -53,11 +53,11 @@ we do in the database. So:
    delete one name or one child; deleting a child removes their name with it (`ON DELETE CASCADE`).
 6. **Access logging:** sign-in events and every export of a class report (the one with names) are recorded in `auth_events`; there is no screen to read them yet.
 
-## Teachers' phone numbers and PINs
-- **A teacher's phone number is her sign-in.** The app sends and the database stores it as the text `hash_` followed by the number. The column is called `phone_hash` for historical reasons: **it is not a cryptographic hash**, so the number is effectively stored in clear on the server (an Indian region: Cloud SQL, Mumbai).
-- **The PIN is hashed properly:** PBKDF2-SHA256 with a random salt; the iteration count is stored with each hash so it can be raised later (`docs/AUTH.md`). A wrong PIN and an unknown number get the same answer, so the sign-in does not reveal which numbers exist.
-- **Who sees a number:** the school admin's list shows only the last four digits ("••••1234"); a number is never sent to the AI, never put in a log line by the app, and never shown to another teacher.
-- **Not done yet:** storing a salted hash of the number instead of the number (it needs the server to hash at sign-in, and a way for the admin to still tell two accounts apart), and a one-time code by SMS or WhatsApp instead of a fixed PIN. Both are on the roadmap in `docs/STATUS.md`.
+## Teachers' employee codes and passwords
+- **A teacher's employee code is her sign-in.** It is an official identifier (six letters or digits, such as MPT101), stored as given in capitals. **No phone number is stored for an account made with an employee code.** (Accounts made before employee codes were named `hash_` plus a phone number, and the column is still called `phone_hash`: it never held a real hash. The demonstration accounts have been renamed, and the nightly job renames them in the cloud.)
+- **The password is hashed properly:** PBKDF2-SHA256 with a random salt; the iteration count is stored with each hash so it can be raised later (`docs/AUTH.md`). A wrong password and an unknown code get the same answer, so the sign-in does not reveal which codes exist.
+- **Who sees a code:** the school leader's list shows the codes of her own school's accounts and nothing else; a code is never sent to the AI, never put in a log line by the app, and never shown to another school.
+- **Not done yet:** a one-time code by SMS or WhatsApp, or the state's own sign-in, instead of a fixed password; and linking the codes to the department's employee records.
 
 ## Demo and test data
 The repository contains **fictional first names only** (`db/seeds/classroom/02_child_names.sql`, and the list in

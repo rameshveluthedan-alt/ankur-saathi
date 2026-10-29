@@ -13,8 +13,9 @@ from datetime import date
 # ============================================================================
 
 class LoginRequest(BaseModel):
-    phone_hash: str = Field(..., description="'hash_' + the phone number: an identifier, not a secret. The PIN is the secret.")
-    pin: str = Field(..., description="4 to 6 digits")
+    employee_code: Optional[str] = Field(None, description="The 6-character employee code, for example MPT101 (letters and digits, capitals or small).")
+    phone_hash: Optional[str] = Field(None, description="Legacy: an account made before employee codes was named 'hash_' + a phone number. Use employee_code.")
+    pin: str = Field(..., description="The password (the field keeps its old name). New passwords are 6 to 12 letters or digits; a shared demo account has a fixed shorter one.")
 
 
 class RegisterTeacherRequest(BaseModel):
@@ -51,7 +52,9 @@ class LoginResponse(BaseModel):
     must_change_pin: bool = False
     is_demo: bool = False
     pin_fixed: bool = False
-    join_code: Optional[str] = None       # only when this registration created a new school (so its admin sees it once)
+    employee_code: Optional[str] = None   # the account's own code, for the Profile page
+    consent_needed: bool = False          # the school leader must confirm the consent statement before anything else (once)
+    join_code: Optional[str] = None       # only when a registration (a practice database) created a new school
     expires_in_hours: Optional[float] = None
 
 

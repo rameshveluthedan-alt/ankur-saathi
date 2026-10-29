@@ -95,7 +95,7 @@ cd pwa
 npm install
 npm run dev
 ```
-Open http://localhost:5173 and sign in as the demo teacher: **9876543210 / 4826**. The login screen lists every demo account.
+Open http://localhost:5173 and sign in as the demo teacher: **MPT101 / 4826** (employee code and password). The login screen shows a card for each role: tap one to fill in its code and password.
 
 **To run the built app from the backend alone** (what the cloud does): `cd pwa && npm run build`, then from `backend/` run `uvicorn app.production:app --port 8000` and open http://localhost:8000.
 
@@ -156,7 +156,7 @@ docs/             one note per design topic (below)
 
 ## Privacy and safety
 - No child's name is ever sent to the AI; photos are read in memory and never stored; there are no trackers, advertisements or third-party scripts.
-- The demo holds **fictional data only**; its PINs are public on purpose.
+- The demo holds **fictional data only**; its passwords are public on purpose.
 - Secrets live only in `backend/.env` (git-ignored) or in Secret Manager. `scripts/precommit_check.py` and `scripts/submission_check.py` fail on a key, a password or a `.env` file in the repository.
 - What is not done yet (for example consent from each parent: the app records the school's confirmation only) is listed honestly in [docs/PRIVACY.md](docs/PRIVACY.md) and [docs/STATUS.md](docs/STATUS.md).
 
@@ -169,7 +169,7 @@ docs/             one note per design topic (below)
 | [docs/ROADMAP.md](docs/ROADMAP.md) | roles (state, district, school), onboarding and integration: a design sketch |
 | [docs/OFFLINE.md](docs/OFFLINE.md) | what works with no network, how the app knows, slow networks, privacy of the copies |
 | [docs/AI_BUDGET.md](docs/AI_BUDGET.md) | the AI spending limits |
-| [docs/AUTH.md](docs/AUTH.md) | sign-in, PINs, school codes |
+| [docs/AUTH.md](docs/AUTH.md) | sign-in: employee codes, passwords, the school leader |
 | [docs/PRIVACY.md](docs/PRIVACY.md) | where each kind of data goes |
 | [docs/LEVELS.md](docs/LEVELS.md) | what changes a child's group |
 | [docs/REGISTER.md](docs/REGISTER.md) | enrolling a class |

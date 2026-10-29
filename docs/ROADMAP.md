@@ -1,6 +1,6 @@
-# Roadmap: roles, onboarding and integration (a design sketch: none of this is built)
+# Roadmap: roles, onboarding and integration (a design sketch: only the school leader's part is built)
 
-**Where the build is today.** Two roles exist: *teacher* and *school admin*. A school comes into being when its first teacher registers, and that teacher becomes its admin. The admin can see the school's code and join code, list the school's accounts, reset a PIN and unlock an account. Teachers join with the join code and each enrols her own class by uploading a register. There is nothing above the school (`docs/STATUS.md`, `docs/AUTH.md`).
+**Where the build is today.** Two roles exist: *teacher* and *school leader* (the head teacher, who teaches too; stored as `school_admin`). Everyone signs in with an employee code and a password; nobody registers themselves. The leader can list the school's accounts, reset a password, unlock an account and confirm the school's consent statement at her first sign-in. Each teacher enrols her own class by uploading a register. The operator makes the accounts. There is nothing above the school (`docs/STATUS.md`, `docs/AUTH.md`).
 
 **Why this needs design, not patching.** A state rollout is not a set of independent schools. Who enrols a school, who may see which child's data, and who answers to whom are questions about the whole hierarchy. Adding admin screens one at a time would bake in answers we have not chosen. The sketch below mirrors how school education is administered, and keeps one rule: **the closer to the child, the more detail; the higher up, the more aggregate.**
 
@@ -10,14 +10,14 @@
 | **State admin** (super admin) | Loads the state's school list (district, block, school code) in bulk; creates district admins; sets state-wide settings (the weekly curriculum plan, language, AI limits) | State totals: schools onboarded, teachers active, plans generated, level mix | Any child's name, photo or answers |
 | **District admin** | Oversees the schools of one district; creates block coordinators; invites school admins | The district's aggregates, schools that are inactive, and children flagged "consider re-assessing" as counts | Names, photos |
 | **Block / cluster coordinator** (the academic support role, often called BRC or CRC) | Supports the schools of one block or cluster; reads how each school is doing | Per-school aggregates and trends; read-only | Names, photos; no changes to a school |
-| **School admin** (head teacher) | Claims the school; invites and approves teachers; assigns teachers to grades and classes; enrols or syncs the class registers; resets PINs; records the school's consent | Her school's reports (level mix per class, plan use, flags) and, if decided (below), the names of her own school's children | Other schools; photos of children's work |
+| **School leader** (head teacher, who teaches too) | Claims the school; invites and approves teachers; assigns teachers to grades and classes; enrols or syncs the class registers; resets passwords; confirms the school's consent | Her school's reports (level mix per class, plan use, flags) and, if decided (below), the names of her own school's children | Other schools; photos of children's work |
 | **Teacher** | Plans, teaches, reviews, records decisions for her own classes | Her own children, by name, and their evidence | Other teachers' classes (unless a school admin assigns her to them) |
 | **Observer** (evaluator, auditor) | Read-only access to a defined scope | Aggregates for that scope | Everything else |
 
 ## 2. How a state rollout would start (top down)
 1. The state admin uploads the school list (the school code from the national school database, name, block, district).
-2. Each school gets an invitation (a code or link) for its head teacher, who claims the school and becomes its admin.
-3. The school admin invites teachers (the join code today; later with approval) and assigns them to grades.
+2. Each school and its leader (by employee code) come from the department's lists; the leader signs in with a temporary password, chooses her own and confirms the school's consent statement.
+3. The school leader adds teachers (one by one or from a CSV file: the next step, not built; today the operator makes accounts) and assigns them to grades.
 4. Class registers are uploaded by the teacher or by the school admin, or synced from the state's student register where one exists.
 5. A baseline places the children; daily use starts.
 
@@ -29,10 +29,10 @@
 
 ## 4. Open design questions (to settle with the state before building)
 1. May the **school admin see children's names**? (The head teacher usually knows them; the teacher is who the data was entrusted to.)
-2. Does a teacher's registration need the school admin's **approval**, or is the join code enough?
+2. Who creates a teacher's account: the school leader alone, or with a block officer's **approval**?
 3. Can **one person hold several roles** or schools (a teacher who also covers a second school)?
 4. Which **national and state systems** can supply the school list and the student register, and how do we match them without storing more than needed?
-5. How do people **sign in** at scale: a fixed PIN (today), a one-time code by SMS or WhatsApp, or the state's own identity system?
+5. How do people **sign in** at scale: an employee code with a password (today), a one-time code by SMS or WhatsApp, or the state's own identity system?
 
 ## 5. What changes in the build
 - A hierarchy table (state, district, block, cluster, school) and a **membership table** (person, unit, role) replace the single `teachers.role` column.
@@ -53,3 +53,10 @@
 | 4 | **Officer views and the second state:** trends, the block coordinator's mentoring view, another state's curriculum plan | follows 2 and 3 |
 
 *Other roadmap items* (periodic assessment rounds with history, baseline screens, WhatsApp notifications, voice recording for the periodic assessments (section 6), second-language literacy, PDF export) are listed in `docs/STATUS.md`.
+
+## 7. Next, designed on 27 Oct and not built: the school leader's screens and the officers' reports
+Decided with the team after the first tests (the head teacher is the school's administrator; she also teaches and often coaches her teachers):
+- **Adding teachers:** a form (employee code, grades) that makes a temporary password, shown once; and a CSV upload with a preview before it is confirmed, the same way the class register is uploaded. There is no bulk upload of schools: a school and its leader are loaded by the department, so each leader looks after one school.
+- **Reports, for the leader and for a block or cluster officer (BAC or CRC):** counts only, never a name: teachers active this week, plans made, how many groups were re-taught and how many moved on, children by level, the skills taught most. The leader sees her own school; an officer sees the schools of her block or cluster.
+- **The officer's role** is read-only and is stored with the account and its scope (a list of schools), never read from the letters of her employee code.
+- **Demonstration data:** about three fictional schools with a few teachers each, so the reports are not empty.

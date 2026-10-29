@@ -17,7 +17,7 @@ export const setToken = (t) => {
 };
 
 // Every call carries the session token. A 401 means the session has ended (sign in again); a 403 "pin_change_required"
-// means an admin reset the PIN and the teacher must choose a new one before anything else.
+// means the school leader reset the password (or it is a first sign-in) and the teacher must choose a new one before anything else.
 export async function authFetch(url, options = {}) {
   const headers = { ...(options.headers || {}) };
   const token = getToken();
@@ -58,26 +58,20 @@ async function request(path, options = {}) {
 }
 
 // ── Auth ──
-export const login = (phoneHash, pin) =>
-  request('/auth/login', { method: 'POST', body: JSON.stringify({ phone_hash: phoneHash, pin }) });
-
-// A new teacher registers with a school code, the grades taught and a PIN. A new school code makes them the school admin;
-// an existing school needs its join code.
-// consentVersion: needed when the school is NEW (the version of the consent statement the person confirmed: services/consent.js); joining a school with its join code needs none.
-export const registerTeacher = (phoneHash, pin, schoolCode, joinCode, grades, consentVersion) =>
-  request('/auth/register', { method: 'POST', body: JSON.stringify({ phone_hash: phoneHash, pin, school_code: schoolCode, join_code: joinCode || null, enrolled_grades: grades, consent_version: consentVersion || null }) });
+// Employee code (six letters or digits) and password. (The field of the request is still called "pin".) Accounts are made by the school leader: there is no registration call any more.
+export const login = (employeeCode, password) =>
+  request('/auth/login', { method: 'POST', body: JSON.stringify({ employee_code: employeeCode, pin: password }) });
 
 export const changePin = (currentPin, newPin) =>
   request('/auth/change-pin', { method: 'POST', body: JSON.stringify({ current_pin: currentPin, new_pin: newPin }) });
 
 export const getMe = () => request('/auth/me');
 
-// The school admin: accounts only, never a child's data
+// The school leader: accounts only, never a child's data
 export const adminSchool = () => request('/admin/school');
 export const adminTeachers = () => request('/admin/teachers');
 export const adminResetPin = (id) => request(`/admin/teachers/${id}/reset-pin`, { method: 'POST' });
 export const adminUnlock = (id) => request(`/admin/teachers/${id}/unlock`, { method: 'POST' });
-export const adminRotateJoinCode = () => request('/admin/school/join-code', { method: 'POST' });
 export const adminRecordConsent = (version) => request('/admin/school/consent', { method: 'POST', body: JSON.stringify({ version }) });
 
 // A plain link cannot carry the token, so printed pages and downloads are fetched with it and then opened.

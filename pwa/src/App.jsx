@@ -11,6 +11,7 @@ import { TAB_RESELECT_EVENT, tabTap } from './services/tabs';
 import RegisterScreen from './screens/RegisterScreen';
 import AccountScreen from './screens/AccountScreen';
 import ChangePinScreen from './screens/ChangePinScreen';
+import ConsentGate from './screens/ConsentGate';
 import { getNames, getToken, setToken } from './services/api';
 
 export const AuthContext = createContext(null);
@@ -26,7 +27,7 @@ function BottomNav() {
     { id: '/yojana', icon: '📋', hi: 'दैनिक योजना', en: 'Yojana' },
     { id: '/review', icon: '📷', hi: 'समीक्षा', en: 'Review' },
     { id: '/progress', icon: '📊', hi: 'प्रगति', en: 'Progress' },
-    { id: '/account', icon: '👤', hi: 'प्रोफ़ाइल', en: 'Profile' },        // on every screen: log out, change PIN, and the admin's reset
+    { id: '/account', icon: '👤', hi: 'प्रोफ़ाइल', en: 'Profile' },        // on every screen: log out, change password, and the leader's reset
   ];
 
   return (
@@ -51,7 +52,8 @@ function BottomNav() {
 function AppShell() {
   const { teacher } = useAuth();
   if (!teacher || !getToken()) return <><OfflineBanner /><LoginScreen /></>;
-  if (teacher.must_change_pin) return <ChangePinScreen forced />;       // an admin reset the PIN: choose a new one first
+  if (teacher.must_change_pin) return <ChangePinScreen forced />;       // a first sign-in or a reset by the school leader: choose a new password first
+  if (teacher.consent_needed) return <ConsentGate />;                   // the school leader confirms the consent statement, once, before anything else
   return (
     <>
       <div style={{ position: 'sticky', top: 0, zIndex: 30 }}>
@@ -77,7 +79,7 @@ function AppShell() {
 
 export default function App() {
   const [teacher, setTeacher] = useState(() => {
-    // a stored teacher without a sign-in token is a leftover from before PIN login: do not treat it as signed in
+    // a stored teacher without a sign-in token is a leftover from before sign-in existed: do not treat it as signed in
     try { return getToken() ? JSON.parse(localStorage.getItem('ankur_teacher')) : null; } catch { return null; }
   });
   const [currentPlan, setCurrentPlan] = useState(null);
@@ -88,7 +90,7 @@ export default function App() {
   useEffect(() => { if (teacher && teacher.teacher_id && getToken()) refreshNames(); else setNames({}); }, [teacher && teacher.teacher_id]);
 
   const logout = () => { setToken(null); setTeacher(null); setCurrentPlan(null); setNames({}); };
-  useEffect(() => {      // the session ended (expired, or the PIN was changed elsewhere), or an admin reset made a new PIN necessary
+  useEffect(() => {      // the session ended (expired, or the password was changed elsewhere), or a reset by the school leader made a new password necessary
     const ended = () => { setToken(null); setTeacher(null); };
     const mustChange = () => setTeacher(t => (t ? { ...t, must_change_pin: true } : t));
     window.addEventListener('ankur-auth-ended', ended);

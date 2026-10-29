@@ -4,6 +4,7 @@ Login and register are public; everything else here needs a session (app/core/se
 """
 from fastapi import APIRouter, HTTPException, Request
 
+from app.core.config import get_settings
 from app.core.database import get_db
 from app.core.security import ensure_owner
 from app.models.schemas import ChangePinRequest, ConsentRequest, LoginRequest, LoginResponse, RegisterTeacherRequest
@@ -18,17 +19,20 @@ def _raise(e: auth_service.AuthError):
 
 @auth_router.post("/auth/login", response_model=LoginResponse, tags=["Auth"])
 async def login(req: LoginRequest):
-    """Phone number and PIN. Returns the teacher's profile and a signed session token."""
+    """Employee code and password. Returns the teacher's profile and a signed session token."""
+    ident = auth_service.normalise_code(req.employee_code) if req.employee_code else (req.phone_hash or "")
     async with get_db() as db:
         try:
-            return await auth_service.login(db, req.phone_hash, req.pin)
+            return await auth_service.login(db, ident or "", req.pin)
         except auth_service.AuthError as e:
             _raise(e)
 
 
 @auth_router.post("/auth/register", response_model=LoginResponse, tags=["Auth"])
 async def register(req: RegisterTeacherRequest):
-    """A new teacher: phone, school code, grades and a PIN. A new school code makes this teacher its admin."""
+    """Practice databases only (SELF_REGISTRATION=true): a new teacher with a school code, grades and a password. In a real school the leader makes the accounts."""
+    if not get_settings().self_registration:
+        raise HTTPException(403, {"message": "Accounts are made by your school leader. Ask them to add you.", "code": "registration_closed"})
     reason = auth_service.validate_pin(req.pin, req.phone_hash)
     if reason:
         raise HTTPException(400, {"message": reason, "code": "weak_pin"})
@@ -47,7 +51,7 @@ async def register(req: RegisterTeacherRequest):
             raise HTTPException(400, {"message": str(e), "code": "invalid"})
         await auth_service.log_event(db, made["teacher_id"], "registered", made["role"])
         try:
-            session = await auth_service.login(db, req.phone_hash, req.pin)
+            session = await auth_service.login(db, auth_service.normalise_code(req.phone_hash) or req.phone_hash, req.pin)          # the code is stored in capitals
         except auth_service.AuthError as e:
             _raise(e)
         return {**session, "join_code": made.get("join_code")}
@@ -79,16 +83,6 @@ async def admin_school(request: Request):
     async with get_db() as db:
         try:
             return await auth_service.admin_school(db, request.state.session.teacher_id)
-        except auth_service.AuthError as e:
-            _raise(e)
-
-
-@auth_router.post("/admin/school/join-code", tags=["Admin"])
-async def admin_rotate_join_code(request: Request):
-    """A new join code (the old one stops working). Teachers already registered are not affected."""
-    async with get_db() as db:
-        try:
-            return await auth_service.admin_rotate_join_code(db, request.state.session.teacher_id)
         except auth_service.AuthError as e:
             _raise(e)
 

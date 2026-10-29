@@ -60,6 +60,7 @@ class Settings(BaseSettings):
     auth_mode: str = "enforce"          # "enforce" for everything real. "off" exists only so automated tests of other features can skip sign-in
     session_secret: str = ""            # REQUIRED when debug is false. A long random string; changing it signs everyone out
     session_hours: int = 12             # how long a sign-in lasts
+    self_registration: bool = False     # accounts are made by the school leader (or loaded by the department); true only on a practice database
     pin_hash_iterations: int = 600_000  # PBKDF2 cost; the count is stored with each hash, so it can be raised later
 
     # CORS (allow PWA origin)

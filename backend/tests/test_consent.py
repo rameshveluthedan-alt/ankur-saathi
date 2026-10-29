@@ -144,7 +144,7 @@ async def main():
     nightly_src = (ROOT / "scripts" / "auth_admin.py").read_text(encoding="utf-8")
     check("the nightly job's 'restore-practice' gives the demo school its statement (so the cloud needs no manual step)", "ensure_demo_consent(db, DEMO_SCHOOL)" in nightly_src.split("async def cmd_restore_practice")[1].split("async def ")[0])
     check("'demo-setup' does too", "ensure_demo_consent(db, DEMO_SCHOOL)" in nightly_src.split("async def cmd_demo_setup")[1].split("async def ")[0])
-    check("the test school does (scripts/create_test_teachers.py)", "ensure_demo_consent(db, TEST_SCHOOL)" in (ROOT / "scripts" / "create_test_teachers.py").read_text(encoding="utf-8"))
+    check("there is no separate test school any more: the test teachers teach in the demo school, which has the statement", "ensure_demo_consent" not in (ROOT / "scripts" / "create_test_teachers.py").read_text(encoding="utf-8") and "TEST_SCHOOL = DEMO_SCHOOL" in (ROOT / "scripts" / "create_test_teachers.py").read_text(encoding="utf-8"))
     sql = (ROOT / "db" / "schema" / "13_school_consent.sql").read_text(encoding="utf-8")
     check("the table is only CREATED, never ALTERed: no change to an existing table, so it works with the app's own database rights", "CREATE TABLE IF NOT EXISTS school_consents" in sql and not re.search(r"^\s*ALTER\s+TABLE", sql, re.I | re.M))
     check("the table cascades with the school and keeps the wording and the version", "ON DELETE CASCADE" in sql and "statement" in sql and "version" in sql)
