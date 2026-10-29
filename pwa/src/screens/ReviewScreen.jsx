@@ -16,6 +16,7 @@ import { ObservedSaved, ReadingSaved, SaveError } from '../components/ReviewConf
 import { DECISION_TEXT } from '../components/ProgressToday';
 import { CHANNELS, channelOf, PRACTICE_ONLY, hasWorksheet } from '../services/reviewWays';
 import SkillLine from '../components/SkillLine';
+import AbbrKey from '../components/AbbrKey';
 import FluencyLine from '../components/FluencyLine';
 import { RESULT_MARK } from '../components/ProgressToday';
 import { isFluencySkill } from '../services/pace';
@@ -381,7 +382,7 @@ export default function ReviewScreen() {
       {step === 2 && !analysisOpen && (
         <>
           <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-decisions" onClick={() => goView('1')} style={{ marginBottom: 8 }}>
-            ← <span className="step-count">1/3</span> <Bi hi="पहला अनुमान बदलें" en="Change the first judgment" inline />
+            ← <span className="step-count">1/3</span>: <Bi hi="पहला अनुमान बदलें" en="Change the first judgment" inline />
           </button>
           <StepTitle n={2} hi="बच्चों का काम देखें" en="Look at the children's work" />
           <div style={{ marginBottom: 8 }} />
@@ -458,6 +459,7 @@ export default function ReviewScreen() {
                   </div>
                 )}
                 <SkillLine level={observedLevel.level} skillId={observedLevel.competency_id} name={observedLevel.name_hi} testid="skill-2" />
+                <AbbrKey testid="abbr-observe" />
                 {big && (
                   <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
                     <button type="button" data-testid="obs-mode-sample" style={mode(useSample)} onClick={() => setSampleMode('sample')}>नमूना<En>Sample</En> {sample.size}/{sample.group_size}</button>
@@ -648,7 +650,7 @@ export default function ReviewScreen() {
                     <div key={roll} data-testid={`orf-recorded-${roll}`} style={{ fontSize: '0.8125rem', padding: '3px 0' }}>
                       {rec.cwpm != null && isFluencySkill(orfLevel?.competency_id)
                         ? <FluencyLine roll={Number(roll)} correct={rec.cwpm} errors={rec.errors ?? 0} classification={rec.status} />
-                        : <>✓ रोल {roll}{rec.cwpm != null ? `: ${rec.cwpm} CWPM` : ''} · <span className="badge badge-result">{RESULT_MARK[rec.status] || '—'}</span></>}
+                        : <>✓ रोल {roll}{rec.cwpm != null ? `: ${rec.cwpm} सही शब्द/मिनट` : ''} · <span className="badge badge-result">{RESULT_MARK[rec.status] || '—'}</span></>}
                     </div>
                   ))}
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}>
@@ -837,7 +839,7 @@ export default function ReviewScreen() {
         return (
           <>
             <button type="button" className="btn btn-secondary btn-small" data-testid="final-back" onClick={() => goView('2')} style={{ marginBottom: 8 }}>
-              ← <span className="step-count">2/3</span> <Bi hi="बच्चों का काम" en="The children's work" inline />
+              ← <span className="step-count">2/3</span>: <Bi hi="बच्चों का काम" en="The children's work" inline />
             </button>
             <StepTitle n={3} hi="अंतिम निर्णय" en="Final decision" />
             <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
@@ -863,12 +865,12 @@ export default function ReviewScreen() {
                     {!evidence || typeof ev.assessed !== 'number'
                       ? <span data-testid={`final-evidence-unknown-${g.label}`} style={{ color: '#8A5A00' }}><Bi hi="अभी नहीं दिख रही; पेज दोबारा खोलें" en="cannot be shown right now; reopen the page" inline /></span>
                       : ev.assessed > 0
-                        ? <>✓ A {ev.a} · ~ PA {ev.pa} · ✗ NA {ev.na} <span style={{ color: 'var(--text-secondary)' }}>({ev.group_size} में से {ev.assessed} का आकलन<span className="en en-inline" lang="en">{ev.assessed} of {ev.group_size} assessed</span>)</span></>
+                        ? <>✓ A {ev.a} · ~ PA {ev.pa} · ✗ NA {ev.na} <span style={{ color: 'var(--text-secondary)' }}>({ev.group_size} में से {ev.assessed} बच्चों का आकलन<span className="en en-inline" lang="en">{ev.assessed} of {ev.group_size} assessed</span>)</span></>
                         : <span style={{ color: 'var(--text-secondary)' }}><Bi hi="अभी किसी का आकलन नहीं" en="nobody assessed yet" inline /></span>}
                   </div>
                   {ev.recommend && (
                     <div data-testid={`final-suggest-${g.label}`} style={{ fontSize: '0.8125rem', color: '#8A5A00', fontWeight: 600, marginTop: 2 }}>
-                      <Bi hi="सुझाव: 🔄 दोहराएँ (एक-तिहाई या ज़्यादा बच्चों से गलती हुई)" en="Suggestion: re-teach (a third or more made a mistake)" inline />
+                      <Bi hi="सुझाव: 🔄 दोहराएँ (जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई; कम से कम 4 बच्चों की जाँच)" en="Suggestion: re-teach (a third or more of the children checked made a mistake; at least 4 checked)" inline />
                     </div>
                   )}
                   {!ev.recommend && ev.very_small && (
@@ -892,6 +894,7 @@ export default function ReviewScreen() {
                 </div>
               );
             })}
+            <AbbrKey testid="abbr-final" />
             {undecidedFinal.length > 0 && (
               <p data-testid="finals-left" style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: '8px 0 0' }}>
                 <Bi hi={`हर समूह के लिए अंतिम निर्णय चुनें (बाकी: ${undecidedFinal.map((g) => `${GROUP_LABELS[g.label]?.mark || ''} ${GROUP_LABELS[g.label]?.hi || g.label}`.trim()).join(', ')})`}

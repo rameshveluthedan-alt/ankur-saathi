@@ -95,8 +95,8 @@ check('many errors (a quarter or more of the correct words) turn only the errors
   assert.ok(many.includes('रफ़्तार कक्षा-स्तर पर'), 'the pace label is unchanged');
   assert.ok(!pace('grade_level', 40, 0).includes('many-errors') && !pace('grade_level', 40, 9).includes('many-errors'), 'no errors, or under a quarter: not amber');
 });
-check('a reading skill not about speed (pauses, expression) keeps the A/PA/NA line: "✓ रोल 12: 45 CWPM"', () => {
-  assert.ok(/✓ रोल <!-- -->12<!-- -->: <!-- -->45<!-- --> CWPM|✓ रोल 12: 45 CWPM/.test(read({ roll_number: 12, cwpm: 45, classification: 'achieved' })));
+check('a reading skill not about speed (pauses, expression) keeps the A/PA/NA line: "✓ रोल 12: 45 सही शब्द/मिनट" (no "CWPM")', () => {
+  assert.ok(/✓ रोल <!-- -->12<!-- -->: <!-- -->45<!-- --> सही शब्द\/मिनट|✓ रोल 12: 45 सही शब्द\/मिनट/.test(read({ roll_number: 12, cwpm: 45, classification: 'achieved' })));
 });
 check('"N more to go" shows the number it is given, and is hidden at 0', () => {
   const h = read({ roll_number: 12, cwpm: 45, classification: 'achieved' }, 9);

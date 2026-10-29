@@ -5,7 +5,7 @@ import { getMentorSummary } from '../services/api';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import { localToday } from '../services/today';
 import { backOrHome } from '../services/backHistory';
-import { hiDate, classLine } from '../services/printFormat';
+import { hiDate, classLine, CODE_NOTE, MARKS_NOTE } from '../services/printFormat';
 
 /**
  * The mentor report (29 Oct, at /progress/mentor): one printable page for a block or cluster officer's visit, over the last 4 weeks (the server's
@@ -13,7 +13,7 @@ import { hiDate, classLine } from '../services/printFormat';
  * the children moved, then the most common mistakes with an activity. How the teacher works comes BEFORE the children's levels: classes start from
  * different places, and the visit is for mentoring, not inspection. Hindi only, counts and roll numbers, never a name. The rules behind the points are
  * printed at the foot, so an officer can see where each point comes from.
- * NOTE: the wording and the rule values are the app's working ones, for Vaishnavi's review.
+ * The wording and the rule values: reviewed by Vaishnavi on 29 Oct (docs/HINDI_REVIEW_29OCT_REVIEWED_291026.csv).
  */
 const SUBJECT = { numeracy: 'गणित', r1_literacy: 'हिंदी' };
 const groupsLine = (sizes) => GROUP_ORDER.filter((g) => sizes && sizes[g] != null).map((g) => `${GROUP_LABELS[g].mark} ${sizes[g]}`).join(' · ');
@@ -100,8 +100,9 @@ export default function MentorReport() {
       <hr />
       <div className="print-footer" data-testid="mentor-rules">
         नियम: एक ही कौशल {R.stuck_days}+ दिन = बात करने लायक · {R.not_checked_days} दिन से कोई नतीजा नहीं = “नहीं जाँचे” (कक्षा के {Math.round(R.not_checked_share * 100)}% या ज़्यादा हों तो बिंदु) ·
-        जाँचकर निर्णय {Math.round(R.evidence_share * 100)}% से कम हों तो बिंदु · पहला अनुमान {Math.round(R.match_share * 100)}% से कम बार मेल खाए (कम से कम {R.match_min} तुलना) तो बिंदु
+        जाँचकर निर्णय {Math.round(R.evidence_share * 100)}% से कम हों तो बिंदु (कम से कम {R.evidence_min} समूह) · पहला अनुमान {Math.round(R.match_share * 100)}% से कम बार मेल खाए (कम से कम {R.match_min} तुलना) तो बिंदु
       </div>
+      <div className="print-footer" data-testid="mentor-key">{MARKS_NOTE} · {CODE_NOTE}</div>
       <div className="print-footer" data-testid="mentor-footer">🌱 अंकुर साथी · {m.period.end} · सिर्फ़ गिनती और रोल नंबर, कोई नाम नहीं</div>
     </div>
   );

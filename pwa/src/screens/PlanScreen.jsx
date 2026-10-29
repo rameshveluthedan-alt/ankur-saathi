@@ -297,7 +297,7 @@ export default function PlanScreen() {
             <span style={{ marginLeft: 4 }}>{TIER_ORDER.filter(t => tierCounts[t]).map(t => <span key={t} title={TIERS[t].hi} style={{ color: TIERS[t].color, fontWeight: 600, marginRight: 8 }}>{TIERS[t].icon} {tierCounts[t]}</span>)}</span>
           </summary>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 6px' }}>
-            हर कौशल के लिए योजना बनती है; लेबल बताता है कि उसके पीछे कितनी जाँची हुई सामग्री है।
+            हर कौशल के लिए योजना बनती है; लेबल बताता है कि उसके पीछे कितनी जाँची-परखी सामग्री है।
             <span className="en" lang="en">Every skill gets a plan; the label says how much checked material stands behind it.</span>
           </div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>

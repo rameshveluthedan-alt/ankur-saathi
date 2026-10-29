@@ -7,6 +7,7 @@ import { notify } from '../services/notify';
 import { friendlyError } from '../services/errors';
 import { localToday } from '../services/today';
 import { TodayCard, ChildToday, LookAtChildren } from '../components/ProgressToday';
+import AbbrKey from '../components/AbbrKey';
 
 const BPP = {
   beginner: { hi: 'शुरुआती', en: 'Beginner', color: 'var(--beginner-ink)' },
@@ -87,6 +88,7 @@ export default function ProgressScreen() {
 
       {/* What was recorded TODAY in this subject: one card, a row per group */}
       <TodayCard today={data.today && data.today[selectedDomain]} />
+      <AbbrKey testid="abbr-progress" />
 
       {/* Daily work that no longer matches a child's level. A flag changes NOTHING: a level changes only through an assessment. */}
       <LookAtChildren flags={domainFlags} nameOf={nameOf} />

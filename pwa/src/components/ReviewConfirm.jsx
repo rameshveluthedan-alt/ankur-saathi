@@ -1,5 +1,6 @@
 import React from 'react';
 import Bi from './Bi';
+import AbbrKey from './AbbrKey';
 import { RESULT_MARK } from './ProgressToday';
 import { isFluencySkill } from '../services/pace';
 import FluencyLine from './FluencyLine';
@@ -75,6 +76,7 @@ export function ObservedSaved({ saved, onOpenProgress }) {
           ✗ NA<span className="en en-inline" lang="en">not yet</span>: {naRolls.map((r) => `रोल ${r}`).join(', ')}
         </div>
       )}
+      <AbbrKey testid="abbr-saved" />
       {notFound.length > 0 && (
         <div role="alert" style={{ fontSize: '0.75rem', color: 'var(--beginner-ink)', marginTop: 4 }} data-testid="saved-not-found">
           <Bi hi={`${notFound.map((r) => `रोल ${r}`).join(', ')} कक्षा में नहीं है, दर्ज नहीं हुआ`} en={`${notFound.map((r) => `Roll ${r}`).join(', ')}: not in the class, not recorded`} inline />
@@ -101,7 +103,7 @@ export function ReadingSaved({ saved, left, onOpenProgress }) {
       <div style={{ fontWeight: 600, color: 'var(--tier-ink)' }} data-testid="reading-saved-line" data-classification={r.classification}>
         {isFluencySkill(saved.skill)
           ? <FluencyLine roll={r.roll_number} correct={entry.cwpm} errors={entry.errors} classification={r.classification} amber />
-          : <>✓ रोल {r.roll_number}: {r.cwpm} CWPM · <span className="badge badge-result">{RESULT_MARK[r.classification] || '—'}</span>{' '}{word && <Bi hi={word.hi} en={word.en} inline />}</>}
+          : <>✓ रोल {r.roll_number}: {r.cwpm} सही शब्द/मिनट · <span className="badge badge-result">{RESULT_MARK[r.classification] || '—'}</span>{' '}{word && <Bi hi={word.hi} en={word.en} inline />}</>}
       </div>
       {left > 0 && (
         <div style={{ ...grey, marginTop: 4 }} data-testid="reading-left" data-left={left}>

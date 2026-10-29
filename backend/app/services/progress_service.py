@@ -233,7 +233,8 @@ MENTOR_RULES = {
     "stuck_days": 3,              # a group taught the same skill on 3 or more days: a place where the teacher may need help
     "not_checked_days": 14,       # a child with no result for 2 weeks
     "not_checked_share": 0.25,    # ...worth a talking point when a quarter of the class or more
-    "evidence_share": 0.5,        # fewer than half of the groups taught were checked with evidence: worth a talking point
+    "evidence_share": 0.5,        # fewer than half of the groups taught were checked with evidence: worth a talking point...
+    "evidence_min": 3,            # ...out of at least 3 groups taught (Vaishnavi, 29 Oct: never on too few)
     "match_share": 0.5,           # the first judgment matched the evidence less than half the time...
     "match_min": 3,               # ...out of at least 3 groups where the evidence could suggest something
 }
@@ -404,20 +405,18 @@ GROUP_HI = {"beginner": "शुरुआती", "progressor": "प्रगत�
 
 
 def mentor_points(practice: dict, progress: dict, mistakes: list) -> dict:
-    """The talking points, from fixed rules (MENTOR_RULES): the same numbers always give the same points. One strength, always first; then up to two
+    """The talking points, from fixed rules (MENTOR_RULES): the same numbers always give the same points. The strength, always first: one line naming
+    what went well, each part only when it is not zero, in this order: days with a complete review, skills the children achieved, days with a plan (Vaishnavi,
+    29 Oct: all of it, not only the first). Then up to two
     things to work on, in this order of priority: a group stuck on a skill (with its most common mistake and an activity), the first judgment often
     differing from the evidence, groups decided without evidence, many children not checked; then one question for the teacher.
     NOTE: the wording is the app's working wording, for Vaishnavi's review (with the rule values)."""
     R = MENTOR_RULES
     p, g = practice, progress
-    if p["review_days"]:
-        strength = f"पिछले {R['window_days'] // 7} हफ़्तों में {p['plan_days']} दिन योजना बनी और {p['review_days']} दिन समीक्षा पूरी हुई।"
-    elif g["skills_achieved"]:
-        strength = f"पिछले {R['window_days'] // 7} हफ़्तों में बच्चों ने {g['skills_achieved']} कौशल हासिल किए।"
-    elif p["plan_days"]:
-        strength = f"पिछले {R['window_days'] // 7} हफ़्तों में {p['plan_days']} दिन योजना बनी।"
-    else:
-        strength = None                           # nothing in the period: the page says so instead of a point
+    parts = [x for x in (p["review_days"] and f"{p['review_days']} दिन समीक्षा पूरी हुई", g["skills_achieved"] and f"बच्चों ने {g['skills_achieved']} कौशल हासिल किए",
+                         p["plan_days"] and f"{p['plan_days']} दिन योजना बनी") if x]
+    # "A, B और C": nothing in the period gives no strength (the page says so instead of a point)
+    strength = f"पिछले {R['window_days'] // 7} हफ़्तों में {', '.join(parts[:-1]) + ' और ' + parts[-1] if len(parts) > 1 else parts[0]}।" if parts else None
     work = []
     for st in g["stuck"][:1]:
         m = next((x for x in mistakes if x["skill_id"] == st["skill_id"]), None)
@@ -427,7 +426,7 @@ def mentor_points(practice: dict, progress: dict, mistakes: list) -> dict:
         work.append({"kind": "stuck", "hi": line})
     if p["judgments_compared"] >= R["match_min"] and p["judgments_matched"] / p["judgments_compared"] < R["match_share"]:
         work.append({"kind": "judgment", "hi": f"{p['judgments_compared']} में से {p['judgments_matched']} बार ही पहला अनुमान जाँच से मेल खाया: बात करें कि बच्चों का काम देखने से पहले वे समूह को कैसे आँकते हैं।"})
-    if p["groups_taught"] and p["groups_checked"] / p["groups_taught"] < R["evidence_share"]:
+    if p["groups_taught"] >= R["evidence_min"] and p["groups_checked"] / p["groups_taught"] < R["evidence_share"]:
         work.append({"kind": "evidence", "hi": f"{p['groups_taught']} में से {p['groups_checked']} बार ही समूह के बच्चों का काम जाँचा गया: हर समूह के कुछ बच्चों का काम देखकर निर्णय लेने पर बात करें।"})
     if g["class_size"] and len(g["not_checked"]) / g["class_size"] >= R["not_checked_share"]:
         work.append({"kind": "not_checked", "hi": f"{len(g['not_checked'])} बच्चों का काम {R['not_checked_days'] // 7} हफ़्ते से नहीं जाँचा गया।"})

@@ -13,7 +13,7 @@ import { hiDate, classLine } from '../services/printFormat';
  * photo groups get none (their evidence is the worksheet itself). A long table runs on to the next page; its column row, with the group's mark, repeats there. Hindi only, roll numbers but never a name (as the printed plan).
  * The groups and their rolls are the server's review ways for today's plan; with the ways unknown there is no sheet (never a guess).
  */
-const KEY = CHANNELS.find((c) => c.id === 'observed').how[1].hi;        // "A = करके दिखाया, बिना मदद · PA = …": the Review's own meanings
+const KEY = CHANNELS.find((c) => c.id === 'observed').how[1].hi;        // "A = बिना मदद के करके दिखाया · PA = …": the Review's own meanings
 const ERRORS = 'गलती = गलत शब्द, छूटा शब्द, या जो शब्द आपको बताना पड़ा';
 // (called once the ways are known: with no stored plan the page has already said so)
 export const tickLevels = (ways) => ((ways && ways.levels) || [])
@@ -36,7 +36,7 @@ function Group({ l }) {
       )}
       <div style={{ fontSize: '9pt' }} data-testid="tick-key">{reading ? ERRORS : KEY}</div>
       <table className="tick-table">
-        <thead><tr><th>{L.mark} रोल</th>{cols.map((c) => <th key={c}>{c}</th>)}</tr></thead>
+        <thead><tr><th>{L.mark} रोल नंबर</th>{cols.map((c) => <th key={c}>{c}</th>)}</tr></thead>
         <tbody>
           {[...l.rolls].sort((a, b) => a - b).map((r) => (
             <tr key={r} data-testid={`tick-row-${l.level}-${r}`}><td>{r}</td>{cols.map((c) => <td key={c} />)}</tr>

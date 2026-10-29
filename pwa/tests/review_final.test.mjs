@@ -67,8 +67,9 @@ check('one card for each group with children (no card for the empty Proficients)
 console.log('\nwhat each card shows');
 check('each card names the skill the decision is about: "N2.3.1 · बिना हासिल के जोड़"', /^N2\.3\.1 · बिना हासिल के जोड़$/.test(q('[data-testid="skill-3-beginner"]').textContent) && /^N2\.3\.2 · हासिल के साथ जोड़$/.test(q('[data-testid="skill-3-progressor"]').textContent));
 check('the Beginners: first judgment "⬆ आगे बढ़ें"', /पहला अनुमान.*⬆ आगे बढ़ें/.test(q('[data-testid="final-first-beginner"]').textContent));
-check('...today\'s evidence "✓ A 2 · ~ PA 1 · ✗ NA 3 (7 में से 6 का आकलन)"', /✓ A 2 · ~ PA 1 · ✗ NA 3/.test(q('[data-testid="final-evidence-beginner"]').textContent) && /7 में से 6 का आकलन/.test(q('[data-testid="final-evidence-beginner"]').textContent), q('[data-testid="final-evidence-beginner"]').textContent);
-check('...the app\'s suggestion "सुझाव: 🔄 दोहराएँ (एक-तिहाई या ज़्यादा बच्चों से गलती हुई)"', /सुझाव: 🔄 दोहराएँ/.test(q('[data-testid="final-suggest-beginner"]').textContent));
+check('...today\'s evidence "✓ A 2 · ~ PA 1 · ✗ NA 3 (7 में से 6 बच्चों का आकलन)"', /✓ A 2 · ~ PA 1 · ✗ NA 3/.test(q('[data-testid="final-evidence-beginner"]').textContent) && /7 में से 6 बच्चों का आकलन/.test(q('[data-testid="final-evidence-beginner"]').textContent), q('[data-testid="final-evidence-beginner"]').textContent);
+check('...the app\'s suggestion, with its rule: "सुझाव: 🔄 दोहराएँ (जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई; कम से कम 4 बच्चों की जाँच)"',
+  /सुझाव: 🔄 दोहराएँ \(जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई; कम से कम 4 बच्चों की जाँच\)/.test(q('[data-testid="final-suggest-beginner"]').textContent));
 check('...and the choice starts on her first judgment (⬆ आगे बढ़ें chosen), not on the suggestion', pressed('beginner', 'advance') && !pressed('beginner', 'reteach'));
 check('the Progressors, nobody assessed yet: "अभी किसी का आकलन नहीं", no suggestion, the choice on their first judgment (🔄)',
   /अभी किसी का आकलन नहीं/.test(q('[data-testid="final-evidence-progressor"]').textContent) && !q('[data-testid="final-suggest-progressor"]') && pressed('progressor', 'reteach'));

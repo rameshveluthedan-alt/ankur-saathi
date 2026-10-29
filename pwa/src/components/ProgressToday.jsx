@@ -51,7 +51,7 @@ function TodayRow({ label, g }) {
             <span className="badge badge-result" data-testid="count-a">✓ A: {g.a}</span>
             <span className="badge badge-result" data-testid="count-pa">~ PA: {g.pa}</span>
             <span className="badge badge-result" data-testid="count-na">✗ NA: {g.na}</span>
-            <span style={grey} data-testid="count-of">{g.group_size} में से {g.assessed} का आकलन<span className="en en-inline" lang="en">assessed {g.assessed} of {g.group_size}</span></span>
+            <span style={grey} data-testid="count-of">{g.group_size} में से {g.assessed} बच्चों का आकलन<span className="en en-inline" lang="en">assessed {g.assessed} of {g.group_size}</span></span>
           </div>
           {decision ? (
             <div data-testid={`today-decision-${label}`} data-decision={g.decision}

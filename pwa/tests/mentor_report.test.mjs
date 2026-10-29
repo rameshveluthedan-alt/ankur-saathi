@@ -31,7 +31,7 @@ const Progress = (await import(pathToFileURL(path.join(out, 'progress.mjs')).hre
 const appSrc = fs.readFileSync(path.join(src, 'App.jsx'), 'utf8');
 
 // ── what the server answers (backend/app/services/progress_service.py get_mentor_summary) ──
-const RULES = { window_days: 28, stuck_days: 3, not_checked_days: 14, not_checked_share: 0.25, evidence_share: 0.5, match_share: 0.5, match_min: 3 };
+const RULES = { window_days: 28, stuck_days: 3, not_checked_days: 14, not_checked_share: 0.25, evidence_share: 0.5, evidence_min: 3, match_share: 0.5, match_min: 3 };
 const SUMMARY = () => ({
   period: { start: '2026-10-02', end: '2026-10-29', days: 28 },
   school: { school_code: 'S-23', block: 'सीहोर', district: 'सीहोर' },
@@ -79,7 +79,7 @@ check('a subject with no plans in the period has no line', !q('[data-testid="pro
 check('the stuck groups and the children not checked (roll numbers)', txt('[data-testid="progress-stuck"]') === '3+ दिन एक ही कौशल: ▲ प्रगतिशील N2.3.2 (4 दिन)' && txt('[data-testid="progress-not-checked"]') === '2 हफ़्ते से नहीं जाँचे: 3 बच्चे (रोल 4, 17, 22)', txt('[data-testid="progress-not-checked"]'));
 check('the mistakes, with the activity when the bank has one', txt('[data-testid="mistake-N2.3.2-M1"]') === 'N2.3.2 “हासिल भूलना”: 7 बच्चे → गतिविधि: “तीलियों के बंडल से हासिल”' && txt('[data-testid="mistake-N2.3.1-M1"]') === 'N2.3.1 “अंक उलटना”: 3 बच्चे');
 check('the rules behind the points, printed with their values', /3\+ दिन/.test(txt('[data-testid="mentor-rules"]')) && /14 दिन/.test(txt('[data-testid="mentor-rules"]')) && /25%/.test(txt('[data-testid="mentor-rules"]'))
-  && /50% से कम/.test(txt('[data-testid="mentor-rules"]')) && /कम से कम 3 तुलना/.test(txt('[data-testid="mentor-rules"]')));
+  && /50% से कम हों तो बिंदु \(कम से कम 3 समूह\)/.test(txt('[data-testid="mentor-rules"]')) && /कम से कम 3 तुलना/.test(txt('[data-testid="mentor-rules"]')));
 check('never a child\'s name, though the phone knows them', !/सीता|रामू/.test(page.textContent));
 check('printing shows this page alone (body.print-plan, the .plan-print page), a page of its own (no bottom bar)', document.body.classList.contains('print-plan') && page.classList.contains('plan-print')
   && /path="\/progress\/mentor"/.test(appSrc) && /path === '\/progress\/mentor'/.test(appSrc));
@@ -91,6 +91,8 @@ check('printing shows this page alone (body.print-plan, the .plan-print page), a
   await click(q('[data-testid="mentor-back"]'));
   check('...or, opened straight here, to Class progress', JSON.stringify(globalThis.__navs.pop()) === JSON.stringify(['/progress']));
 }
+
+check('the footnote: what the letters, marks and codes mean', txt('[data-testid="mentor-key"]') === '● शुरुआती · ▲ प्रगतिशील · ■ दक्ष · N2.3.2 जैसे कोड कौशल-सीढ़ी में दिए गए कौशलों की पहचान करते हैं।', txt('[data-testid="mentor-key"]'));
 
 console.log('\nwhen there is little to say');
 summary = { ...SUMMARY(), practice: { plan_days: 0, review_days: 0, groups_taught: 0, groups_checked: 0, judgments_compared: 0, judgments_matched: 0 }, mistakes: [],

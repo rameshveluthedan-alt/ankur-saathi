@@ -3,14 +3,17 @@
 // Observing: ONE general instruction (OBSERVE), always true of the plan. The plan's own AI-written review prompts are not shown: on 29 Oct the N0.1.1
 // prompt asked the teacher to watch for a task (sorting 10+ objects by a self-chosen rule) that the plan's You Do did not contain. They stay in the plan's
 // data, to be shown again once the prompt guarantees they match the plan's activities (see docs/KNOWN_ISSUES.md).
-// NOTE: the meanings of A / PA / NA and the reading-aloud error rule are the app's working wording, for Vaishnavi's review.
+// The meanings of A / PA / NA and the reading-aloud error rule: reviewed by Vaishnavi on 29 Oct (docs/HINDI_REVIEW_29OCT_REVIEWED_291026.csv).
+// The key to the letters A / PA / NA (Vaishnavi, 29 Oct): the observing steps below, the tick sheet and every footnote use this one line
+export const ABBR = { hi: 'A = बिना मदद के करके दिखाया · PA = मदद से या आंशिक रूप से सही · NA = अभी नहीं', en: 'A = did it without help · PA = with help, or partly correct · NA = not yet' };
+
 export const CHANNELS = [
   { id: 'observed', icon: '✓', hi: 'देखकर दर्ज करें', en: 'Observe and record',
     who: { hi: 'आप हर बच्चे के लिए A / PA / NA चुनते हैं।', en: 'You choose A / PA / NA for each child.' },
     why: { hi: 'यह कौशल बच्चे करके या बोलकर दिखाते हैं (जैसे छाँटना, गिनना, बताना); इसे देखकर आँका जाता है, लिखकर नहीं।', en: 'Children show this skill by doing or saying (sorting, counting, telling); it is judged by watching, not on paper.' },
     how: [
       { hi: 'स्वतंत्र अभ्यास (तुम करोगे) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें। ज़रूरत हो तो एक छोटा सवाल पूछें।', en: 'During independent practice (You Do), watch the children at work, then choose A / PA / NA for each child. Ask a short question if needed.' },
-      { hi: 'A = करके दिखाया, बिना मदद · PA = मदद से, या आधा सही · NA = अभी नहीं', en: 'A = did it, without help · PA = with help, or partly · NA = not yet' },
+      ABBR,
       { hi: 'जो बच्चे दिखे, उन्हीं के लिए चुनें; बाकी बाद में।', en: 'Choose only for the children you saw; the others later.' },
     ] },
   { id: 'photo', icon: '📸', hi: 'वर्कशीट की फ़ोटो', en: 'Worksheet photo',
@@ -23,10 +26,10 @@ export const CHANNELS = [
       { hi: 'फ़ोटो में बच्चे का नाम न हो।', en: "No child's name in the photo." },
     ] },
   { id: 'orf', icon: '⏱️', hi: 'पढ़कर सुनाना', en: 'Reading aloud',
-    who: { hi: 'बच्चा एक मिनट पढ़ता है; आप सही शब्द और गलतियाँ लिखते हैं।', en: 'The child reads for a minute; you enter the correct words and the errors.' },
+    who: { hi: 'बच्चा एक मिनट पढ़ता है; आप सही पढ़े गए शब्द और गलतियाँ दर्ज करते हैं।', en: 'The child reads for a minute; you enter the words read correctly and the errors.' },
     why: { hi: 'यह पढ़ने की रफ़्तार का कौशल है; इसे बच्चे को पढ़ते हुए सुनकर ही जाँचा जा सकता है।', en: 'This is a reading-speed skill; it can only be checked by listening to the child read.' },
     how: [
-      { hi: 'नीचे दिया पाठ बच्चे को पढ़ने दें; यह आज कक्षा में नहीं पढ़ा गया, इसलिए रफ़्तार सही दिखेगी।', en: "Let the child read the text below; it was not read in class today, so the pace shows truly." },
+      { hi: 'नीचे दिया पाठ बच्चे को पढ़ने दें; यह आज कक्षा में नहीं पढ़ा गया, इसलिए पढ़ने की रफ़्तार सही पता चलेगी।', en: "Let the child read the text below; it was not read in class today, so the reading pace shows truly." },
       { hi: 'एक मिनट का समय शुरू करें।', en: 'Start a one-minute timer.' },
       { hi: 'एक मिनट में सही पढ़े गए शब्द गिनें।', en: 'Count the words read correctly in that minute.' },
       { hi: 'गलती गिनें: गलत शब्द, छूटा शब्द, या जो शब्द आपको बताना पड़ा।', en: 'Count errors: a wrong word, a skipped word, or a word you had to give.' },

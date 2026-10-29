@@ -5,19 +5,20 @@ import { getClassSummary } from '../services/api';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import { localToday } from '../services/today';
 import { backOrHome } from '../services/backHistory';
-import { hiDate, classLine } from '../services/printFormat';
+import { hiDate, classLine, CODE_NOTE } from '../services/printFormat';
+import { ABBR } from '../services/reviewWays';
 
 /**
  * The class summary (29 Oct, at /progress/class): the teacher's own page for planning next week, over the last 4 weeks (the server's
  * GET /progress/class-summary). Per subject: the class now, what each group was taught and how it went, then the children to look at, the most common
  * mistakes with an activity, and each group's next step. The server sends roll numbers only; the NAMES are added here, from the copy this phone already
  * holds (as on the Review and Progress screens), so the printed page carries names: it says so at its foot.
- * NOTE: the wording and the rule values are the app's working ones, for Vaishnavi's review.
+ * The wording and the rule values: reviewed by Vaishnavi on 29 Oct (docs/HINDI_REVIEW_29OCT_REVIEWED_291026.csv).
  */
 const SUBJECT = { numeracy: 'गणित', r1_literacy: 'हिंदी' };
 const NEXT_WHY = {
   advance: '⬆ आगे बढ़ें', advance_no_next: '⬆ आगे बढ़ें; अगला कौशल नहीं, इसलिए यही फिर', reteach: '🔄 दोहराएँ',
-  not_sure: '❓ पक्का नहीं: वही फिर', recommended: 'कई बच्चों से गलती हुई: वही फिर',
+  not_sure: '❓ पक्का नहीं: यही कौशल फिर', recommended: 'कई बच्चों से गलती हुई: यही फिर',
 };
 const groupsLine = (sizes) => GROUP_ORDER.filter((g) => sizes && sizes[g] != null).map((g) => `${GROUP_LABELS[g].mark} ${GROUP_LABELS[g].hi} ${sizes[g]}`).join(' · ');
 const G = (l) => `${GROUP_LABELS[l]?.mark || ''} ${GROUP_LABELS[l]?.hi || l}`;
@@ -108,6 +109,7 @@ export default function ClassSummary() {
       <div className="print-footer" data-testid="class-rules">
         नियम: “अभी हासिल नहीं” = समूह को {R.stuck_days}+ दिन वही कौशल पढ़ाया और बच्चे का सबसे नया नतीजा A नहीं · “नहीं जाँचे” = {R.not_checked_days} दिन से कोई नतीजा नहीं · NA {R.na_days} या ज़्यादा दिन
       </div>
+      <div className="print-footer" data-testid="class-key">{ABBR.hi} · {CODE_NOTE}</div>
       <div className="print-footer" data-testid="class-footer">🌱 अंकुर साथी · {s.period.end} · इस पन्ने पर बच्चों के नाम हैं (इसी फ़ोन से): इसे सँभालकर रखें</div>
     </div>
   );

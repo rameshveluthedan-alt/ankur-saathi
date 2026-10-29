@@ -7,7 +7,7 @@ export const HOW_STEPS = [
     text: { hi: 'आप आज का कौशल और समय चुनते हैं। ऐप तीनों समूहों (● शुरुआती, ▲ प्रगतिशील, ■ दक्ष) के कौशल सुझाता है: 101 कौशलों की सीढ़ी और पिछली समीक्षा से।',
             en: "You choose today's skill and time. The app suggests each group's skill (● Beginner, ▲ Progressor, ■ Proficient) from a ladder of 101 skills and the last review." } },
   { icon: '📋', hi: 'आज की योजना', en: "Today's plan", part: { hi: 'AI + जाँच', en: 'AI + checks' },
-    text: { hi: 'AI जाँची हुई सामग्री (गतिविधियाँ, पाठ, आम गलतियाँ) से हर समूह का पाठ, समझ की जाँच और वर्कशीट लिखता है। ऐप हर योजना को नियमों पर जाँचता है।',
+    text: { hi: 'AI जाँची-परखी सामग्री (गतिविधियाँ, पाठ, आम गलतियाँ) से हर समूह का पाठ, समझ की जाँच और वर्कशीट लिखता है। ऐप हर योजना को नियमों पर जाँचता है।',
             en: "The AI writes each group's lesson, understanding check and worksheet from checked content (activities, passages, common mistakes). The app checks every plan against rules." } },
   { icon: '☑️', hi: 'समीक्षा', en: 'Review', part: { hi: 'फ़ोटो से पढ़ना, नमूना', en: 'photo reading, sampling' },
     text: { hi: 'आप हर समूह के लिए अपना निर्णय दर्ज करते हैं, फिर कुछ बच्चों (नमूना) का काम देखते हैं: वर्कशीट की फ़ोटो (AI पढ़ता है), अवलोकन या पढ़कर सुनाना।',

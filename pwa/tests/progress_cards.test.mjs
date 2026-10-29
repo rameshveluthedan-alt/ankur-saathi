@@ -56,7 +56,7 @@ check('the counts on a row are the server\'s, and A + PA + NA equals "assessed" 
   const a = num(b, 'count-a'), pa = num(b, 'count-pa'), na = num(b, 'count-na');
   assert.deepEqual([a, pa, na], [2, 1, 3]);
   assert.equal(a + pa + na, today.by_level.beginner.assessed);
-  assert.ok(b.includes('10 में से 6 का आकलन') || /10<!-- --> में से <!-- -->6<!-- --> का आकलन/.test(b), 'assessed 6 of 10, in Hindi');
+  assert.ok(b.includes('10 में से 6 बच्चों का आकलन') || /10<!-- --> में से <!-- -->6<!-- --> बच्चों का आकलन/.test(b), 'assessed 6 of 10, in Hindi ("बच्चों का", as Vaishnavi asked)');
   assert.ok(/assessed <!-- -->6<!-- --> of <!-- -->10|assessed 6 of 10/.test(b), 'and in English');
 });
 check('the decision shown is the server\'s decision for that group, in the Review screen\'s own words (a swapped advance/re-teach mapping fails here)', () => {

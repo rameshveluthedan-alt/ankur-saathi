@@ -70,7 +70,7 @@ check('...it starts with the general instruction (watch during independent pract
   /स्वतंत्र अभ्यास \(तुम करोगे\) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A \/ PA \/ NA चुनें/.test(how().textContent) && !how().textContent.includes(LOOK) && !/आज की योजना से/.test(how().textContent));
 check('step 2 names the group and skill being observed: "● शुरुआती · N0.1.1 · छाँटना"', /● शुरुआती(Beginner)? · N0\.1\.1 · छाँटना/.test(q('[data-testid="skill-2"]').textContent), q('[data-testid="skill-2"]') && q('[data-testid="skill-2"]').textContent);
 check('...the Beginners also have a worksheet: "इस कौशल की वर्कशीट अभ्यास के लिए है; जाँच … देखकर होती है, वर्कशीट की फ़ोटो से नहीं"', /इस कौशल की वर्कशीट अभ्यास के लिए है; जाँच बच्चों को करते हुए देखकर होती है, वर्कशीट की फ़ोटो से नहीं/.test(q('[data-testid="worksheet-practice"]').textContent));
-check('...and says what A, PA and NA mean', /A = करके दिखाया, बिना मदद · PA = मदद से, या आधा सही · NA = अभी नहीं/.test(how().textContent));
+check('...and says what A, PA and NA mean', /A = बिना मदद के करके दिखाया · PA = मदद से या आंशिक रूप से सही · NA = अभी नहीं/.test(how().textContent));
 await click(q('[data-testid="channel-photo"]'));
 check('photo: the skill line follows the photographed group ("▲ प्रगतिशील · L2.3.1 · संयुक्त अक्षर"), and no worksheet-is-practice line (photos ARE the check here)', /▲ प्रगतिशील(Progressor)? · L2\.3\.1 · संयुक्त अक्षर/.test(q('[data-testid="skill-2"]').textContent) && !q('[data-testid="worksheet-practice"]'));
 check('photo: the steps (roll number at the top, flat in good light, the suggested sample, up to 6, no names), and no observation prompt',

@@ -98,7 +98,7 @@ const seen = [];          // what the teacher sees with each way chosen
 const who = async (id) => { await click(q(`[data-testid="channel-${id}"]`)); seen.push(document.getElementById('root').textContent); return q('[data-testid="channel-who"]').textContent; };
 check('the line under the tabs says who does what, for the way chosen; the photo way says the AI reads the work',
   /आप हर बच्चे के लिए A \/ PA \/ NA चुनते हैं/.test(await who('observed')) && /आप वर्कशीट की फ़ोटो लेते हैं; AI हर बच्चे का काम पढ़ता है/.test(await who('photo'))
-  && /बच्चा एक मिनट पढ़ता है; आप सही शब्द और गलतियाँ लिखते हैं/.test(await who('orf')));
+  && /बच्चा एक मिनट पढ़ता है; आप सही पढ़े गए शब्द और गलतियाँ दर्ज करते हैं/.test(await who('orf')));
 check('no card title repeats the tab: with each way chosen, the screen shows no "शिक्षक अवलोकन", "वर्कशीट फ़ोटो", "पठन प्रवाह" or "ORF"', seen.length === 3 && seen.every((t) => !/शिक्षक अवलोकन|वर्कशीट फ़ोटो|पठन प्रवाह|ORF|Teacher Observation|Reading Fluency/.test(t)));
 
 await act(async () => root.unmount());

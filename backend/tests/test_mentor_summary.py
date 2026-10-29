@@ -2,7 +2,7 @@
 The mentor summary (29 Oct): one page for a block or cluster officer's visit, over the last 4 weeks. How the teacher works (plans made, reviews completed,
 groups checked with evidence, the first judgment against the evidence), how the children moved (the groups at the start and the end, skills achieved,
 groups taught the same skill again and again, children not checked), the most common mistakes with a matching activity, and talking points from FIXED
-rules: one strength first, then up to two things to work on (in a set order), then a question. Counts and roll numbers only, never a name. Only the
+rules: the strength first (one line naming each part that is not zero), then up to two things to work on (in a set order), then a question. Counts and roll numbers only, never a name. Only the
 period counts: a plan or a result from before it never shows.
 
     python tests/test_mentor_summary.py --env-file .env
@@ -110,7 +110,7 @@ async def main():
         check("each with a matching activity from the content bank (the mistake's own first: INT-OP-005)", act and act["id"] == "INT-OP-005" and act["title_hi"], act)
         print("the talking points (fixed rules)")
         pts = m["points"]
-        check("the strength comes first: days with a plan and days with a full review", pts["strength"] == "पिछले 4 हफ़्तों में 4 दिन योजना बनी और 2 दिन समीक्षा पूरी हुई।", pts["strength"])
+        check("the strength comes first, one line naming each part in order: full reviews, skills achieved, plans made (Vaishnavi, 29 Oct)", pts["strength"] == "पिछले 4 हफ़्तों में 2 दिन समीक्षा पूरी हुई, बच्चों ने 3 कौशल हासिल किए और 4 दिन योजना बनी।", pts["strength"])
         check("at most two things to work on, in the set order: the stuck group first, then the first judgment (evidence and not-checked also apply, but wait)", [w["kind"] for w in pts["work"]] == ["stuck", "judgment"], pts["work"])
         check("the stuck point names the group, the skill, the days, its most common mistake and the activity", pts["work"][0]["hi"].startswith("प्रगतिशील समूह में N2.3.2 4 दिन पढ़ाया गया।")
               and m["mistakes"][1]["name_hi"] in pts["work"][0]["hi"] and act["title_hi"] in pts["work"][0]["hi"], pts["work"][0]["hi"])
@@ -121,10 +121,13 @@ async def main():
         print("the rules on their own")
         base_p = {"plan_days": 10, "review_days": 0, "groups_taught": 10, "groups_checked": 5, "judgments_compared": 2, "judgments_matched": 0}
         base_g = {"class_size": 20, "skills_achieved": 0, "stuck": [], "not_checked": [1, 2, 3, 4]}
-        check("no review completed: the strength falls back to skills achieved, then to plans made", ps.mentor_points(base_p, {**base_g, "skills_achieved": 6}, [])["strength"] == "पिछले 4 हफ़्तों में बच्चों ने 6 कौशल हासिल किए।"
-              and ps.mentor_points(base_p, base_g, [])["strength"] == "पिछले 4 हफ़्तों में 10 दिन योजना बनी।")
+        check("a part that is zero is left out (never \"0 दिन\"): no review → skills and plans; no skills either → plans alone", ps.mentor_points(base_p, {**base_g, "skills_achieved": 6}, [])["strength"] == "पिछले 4 हफ़्तों में बच्चों ने 6 कौशल हासिल किए और 10 दिन योजना बनी।"
+              and ps.mentor_points(base_p, base_g, [])["strength"] == "पिछले 4 हफ़्तों में 10 दिन योजना बनी।"
+              and ps.mentor_points({**base_p, "review_days": 3}, base_g, [])["strength"] == "पिछले 4 हफ़्तों में 3 दिन समीक्षा पूरी हुई और 10 दिन योजना बनी।")
         check("exactly half the groups checked, fewer than 3 judgments compared, under a quarter not checked: nothing to work on", ps.mentor_points(base_p, base_g, [])["work"] == [])
         check("4 of 10 checked: the evidence point", [w["kind"] for w in ps.mentor_points({**base_p, "groups_checked": 4}, base_g, [])["work"]] == ["evidence"])
+        check("too few groups taught (Vaishnavi, 29 Oct): 0 of 2 checked is no point; 0 of 3 is", [w["kind"] for w in ps.mentor_points({**base_p, "groups_taught": 2, "groups_checked": 0}, base_g, [])["work"]] == []
+              and [w["kind"] for w in ps.mentor_points({**base_p, "groups_taught": 3, "groups_checked": 0}, base_g, [])["work"]] == ["evidence"])
         check("a quarter of the class not checked: the not-checked point", [w["kind"] for w in ps.mentor_points(base_p, {**base_g, "not_checked": [1, 2, 3, 4, 5]}, [])["work"]] == ["not_checked"])
         check("a stuck group with no mistake recorded: the point without a mistake or activity", ps.mentor_points(base_p, {**base_g, "stuck": [{"level": "beginner", "skill_id": "N1.1.1", "days": 3}]}, [])["work"][0]["hi"] == "शुरुआती समूह में N1.1.1 3 दिन पढ़ाया गया।")
 

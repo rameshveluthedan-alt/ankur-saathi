@@ -8,7 +8,7 @@ import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import { isFluencySkill } from '../services/pace';
 import { localToday } from '../services/today';
 import { planMinutes } from '../services/planMinutes';
-import { hasObservation } from '../services/reviewWays';
+import { hasObservation, ABBR } from '../services/reviewWays';
 import { hiDate, classLine } from '../services/printFormat';
 
 /**
@@ -116,6 +116,7 @@ export default function PlanPrint() {
       <hr />
       <div data-testid="print-review">
         {observing && <Line testid="print-review-obs"><b>अवलोकन:</b> स्वतंत्र अभ्यास के दौरान देखकर हर बच्चे के लिए A / PA / NA</Line>}
+        {observing && <Line testid="print-abbr" className="print-footer">{ABBR.hi}</Line>}
         <Line testid="print-review-photo"><b>फ़ोटो:</b> समीक्षा स्क्रीन पर चुने जाएँगे</Line>
         {reading && <Line testid="print-review-reading"><b>पढ़कर सुनाना:</b> समीक्षा स्क्रीन पर</Line>}
       </div>

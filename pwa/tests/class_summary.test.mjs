@@ -83,6 +83,8 @@ dom.window.history.replaceState({ idx: 0 }, '');
 await click(q('[data-testid="class-back"]'));
 check('"← वापस", opened straight here: to Class progress', JSON.stringify(globalThis.__navs.pop()) === JSON.stringify(['/progress']));
 
+check('the footnote: what the letters, marks and codes mean', txt('[data-testid="class-key"]') === 'A = बिना मदद के करके दिखाया · PA = मदद से या आंशिक रूप से सही · NA = अभी नहीं · N2.3.2 जैसे कोड कौशल-सीढ़ी में दिए गए कौशलों की पहचान करते हैं।', txt('[data-testid="class-key"]'));
+
 console.log('\nwhen there is little to say');
 summary = { ...SUMMARY(), not_checked: [], not_achieved_again: [], mistakes: [], subjects: { numeracy: { ...SUMMARY().subjects.numeracy, stuck: [] } } };
 await show(Summary);
