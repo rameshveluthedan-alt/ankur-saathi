@@ -6,7 +6,12 @@
 ## What moves
 
 - **The lab commits** on `lab/experiments` since `main` at `4e17b06` (Release candidate 3). Count them with `git log --oneline main..lab/experiments`, and see the files with `git diff --stat main..lab/experiments` (a fixed number here would go out of date with every lab commit).
-- **No database change.** The one schema file touched (`db/schema/09_auth.sql`) only has its comment updated (the event list).
+- **The first lab commit is not UI work.** `dce44f3` ("WIP snapshot before UI work: employee-code sign-in, consent gate, login rework", 39 files) is a
+  snapshot of the sign-in work: `auth_service.py`, `auth_routes.py`, `register_service.py`, `config.py`, `LoginScreen.jsx`, `ConsentGate.jsx`, `ChangePinScreen.jsx`,
+  the account scripts, `DEPLOY.md`, `cloudrun-env.yaml` and their tests. **If main already has the sign-in work in its own form (v30b), leave this commit out**
+  (see step 1). Everything after it is the UI work in `docs/LAB_UI_HANDOVER.md`.
+- **No database migration.** The UI work only updates the comment in `db/schema/09_auth.sql` (the event list); the snapshot also changes the seed
+  `db/seeds/classroom/01_profile.sql`.
 - **Two new read-only server routes:** `GET /progress/mentor/{teacher}` (the mentor report) and `GET /progress/class-summary/{teacher}` (the class summary).
   One new audit event name: `class_summary_view` (each opening of the class summary is logged).
 - **The AI prompt is unchanged.** The prompt work is drafts only, in `docs/drafts/`.
@@ -14,15 +19,22 @@
 ## Steps
 
 1. **Package (in the lab folder):**
-   - one file per commit: `git format-patch main..lab/experiments -o C:\dev\lab-patches`
-   - or one file: `git diff main..lab/experiments > C:\dev\lab.patch`
-   - leave `docs/drafts/` out if the drafts should not ship.
+   - **the UI work only** (main already has its own sign-in work): one file per commit, `git format-patch dce44f3..lab/experiments -o C:\dev\lab-patches`;
+     or one file, `git diff dce44f3 lab/experiments > C:\dev\lab.patch`.
+   - **everything, the sign-in snapshot included** (only if main does NOT have the sign-in work): `git format-patch main..lab/experiments -o C:\dev\lab-patches`.
+   - Never `git diff main..lab/experiments` for the UI work alone: it carries the snapshot with it.
+   - Leave `docs/drafts/` out if the drafts should not ship.
+   - **Where the UI work sits on the snapshot's changes** (both changed these files, so they may not apply cleanly onto main's own sign-in version; merge
+     them by hand): `pwa/src/App.jsx`, `pwa/src/screens/AccountScreen.jsx`, `ChangePinScreen.jsx`, `ConsentGate.jsx`, `LoginScreen.jsx`, `pwa/src/services/api.js`,
+     `backend/app/models/schemas.py`, `pwa/tests/consent.dom.test.mjs`, `demo_accounts.test.mjs`, `login.dom.test.mjs`, `docs/DEMO_ACCESS.md`, `docs/ROADMAP.md`.
 2. **Apply (in `C:\dev\Ankur-Saathi`):**
    - `git branch --show-current` must say `main`.
    - `git log 4e17b06..main`: if main has moved since the lab began, expect a few conflicts.
    - `git am C:\dev\lab-patches\*.patch`, or `git apply --3way C:\dev\lab.patch`.
 3. **Gate:**
-   - `python scripts\run_tests.py --env-file backend\.env --pwa`: 44 backend and 38 front-end suites, all OK.
+   - `python scripts\run_tests.py --env-file backend\.env --pwa`: all OK (in the lab: 44 backend and 38 front-end suites). Without the snapshot, the sign-in
+     tests (`test_auth_flow`, `test_auth_pin`, `test_test_teachers`, `login.dom`, `consent.dom`, `demo_accounts`, and the login part of `ui_review`) follow
+     main's own sign-in: a failure there is a merge to check against main's version, not a lab change to copy.
    - `cd pwa; npm run build`.
    - `python scripts\precommit_check.py`, and commit only if it exits 0 on its own (never piped through `tail`).
    - **Do not set `VITE_MOCK_SIGNAL`** for the main build: it is the lab's placeholder for the signal panel.
