@@ -29,6 +29,7 @@ const React = (await import('react')).default; const { act } = await import('rea
 const Ticks = (await import(pathToFileURL(path.join(out, 'ticks.mjs')).href)).default;
 const Yojana = (await import(pathToFileURL(path.join(out, 'yojana.mjs')).href)).default;
 const appSrc = fs.readFileSync(path.join(src, 'App.jsx'), 'utf8');
+const css = fs.readFileSync(path.join(src, 'index.css'), 'utf8');
 
 // ── the fake server: the Beginners observed, the Progressors photographed, the Proficients read aloud ──
 const teach = (g) => ({ type: 'teach', teach_group: g, duration_minutes: 20, script_hi: `${g} का काम`, talking_points: { you_do_hi: 'तुम करोगे' } });
@@ -61,15 +62,17 @@ check('when to fill it and where it goes after class (step 2)', /तुम क�
 check('one table per observed or read-aloud group, in group order; none for the photographed Progressors', JSON.stringify(qa('[data-testid^="tick-group-"]').map((e) => e.dataset.testid)) === JSON.stringify(['tick-group-beginner', 'tick-group-proficient']));
 const beg = q('[data-testid="tick-group-beginner"]');
 check('the Beginners: the skill and the way in the heading', /शुरुआती · N0\.1\.1 छाँटना · ✓ देखकर दर्ज करें/.test(beg.querySelector('[data-testid="tick-head"]').textContent), beg.querySelector('[data-testid="tick-head"]').textContent);
-check('observing: columns रोल | A | PA | NA', JSON.stringify(cells(beg.querySelector('thead tr'))) === JSON.stringify(['रोल', 'A', 'PA', 'NA']));
+check('observing: columns रोल | A | PA | NA, the group’s mark in the column row (it repeats on a new page)', JSON.stringify(cells(beg.querySelector('thead tr'))) === JSON.stringify(['● रोल', 'A', 'PA', 'NA']));
 check('a row per child, roll numbers in order, the boxes empty', JSON.stringify([...beg.querySelectorAll('tbody tr')].map(cells)) === JSON.stringify([1, 2, 3, 4].map((r) => [String(r), '', '', ''])));
 check('the meanings of A / PA / NA are the Review\'s own ("A = करके दिखाया, बिना मदद")', /A = करके दिखाया, बिना मदद · PA = मदद से, या आधा सही · NA = अभी नहीं/.test(beg.querySelector('[data-testid="tick-key"]').textContent));
 const pro = q('[data-testid="tick-group-proficient"]');
-check('reading aloud: columns रोल | सही शब्द | गलतियाँ, a row per child in order', JSON.stringify(cells(pro.querySelector('thead tr'))) === JSON.stringify(['रोल', 'सही शब्द', 'गलतियाँ'])
+check('reading aloud: columns रोल | सही शब्द | गलतियाँ, a row per child in order', JSON.stringify(cells(pro.querySelector('thead tr'))) === JSON.stringify(['■ रोल', 'सही शब्द', 'गलतियाँ'])
   && JSON.stringify([...pro.querySelectorAll('tbody tr')].map((tr) => cells(tr)[0])) === JSON.stringify(['9', '10', '11']));
 check('reading aloud: the text to read and its length, and the error rule', /«मेला» \(62 शब्द\) · एक मिनट/.test(pro.querySelector('[data-testid="tick-passage"]').textContent) && /छूटा शब्द/.test(pro.querySelector('[data-testid="tick-key"]').textContent));
 check('never a child\'s name, though the phone knows them', !/सीता|रामू/.test(sheet.textContent));
 check('printing shows this page alone (body.print-plan, with the page\'s .plan-print class)', document.body.classList.contains('print-plan') && sheet.classList.contains('plan-print'));
+check('printing: a long table runs on to the next page (no white space), rows never cut, the column row repeats', (() => { const g = (css.match(/\.tick-group \{[^}]*\}/) || [''])[0];
+  return !!g && !/break-inside/.test(g) && /\.tick-table tr \{[^}]*break-inside: avoid/.test(css) && /\.tick-table thead \{[^}]*table-header-group/.test(css); })());
 check('a page of its own: the route, and no bottom bar there', /path="\/plan\/ticks"/.test(appSrc) && /path === '\/plan\/ticks'/.test(appSrc));
 await click(q('[data-testid="ticks-back"]'));
 check('"← वापस" leads to the plan', JSON.stringify(globalThis.__navs.pop()) === JSON.stringify(['/yojana']));

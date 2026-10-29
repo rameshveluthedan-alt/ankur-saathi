@@ -10,7 +10,7 @@ import { hiDate, classLine } from './PlanPrint';
 /**
  * The paper tick sheet: for a teacher who records during You Do without her phone, then enters the marks in the Review's step 2 after class.
  * One table per group checked by observing (रोल | A | PA | NA, a box to tick) or by reading aloud (रोल | सही शब्द | गलतियाँ, a box to write in);
- * photo groups get none (their evidence is the worksheet itself). Hindi only, roll numbers but never a name (as the printed plan).
+ * photo groups get none (their evidence is the worksheet itself). A long table runs on to the next page; its column row, with the group's mark, repeats there. Hindi only, roll numbers but never a name (as the printed plan).
  * The groups and their rolls are the server's review ways for today's plan; with the ways unknown there is no sheet (never a guess).
  */
 const KEY = CHANNELS.find((c) => c.id === 'observed').how[1].hi;        // "A = करके दिखाया, बिना मदद · PA = …": the Review's own meanings
@@ -36,7 +36,7 @@ function Group({ l }) {
       )}
       <div style={{ fontSize: '9pt' }} data-testid="tick-key">{reading ? ERRORS : KEY}</div>
       <table className="tick-table">
-        <thead><tr><th>रोल</th>{cols.map((c) => <th key={c}>{c}</th>)}</tr></thead>
+        <thead><tr><th>{L.mark} रोल</th>{cols.map((c) => <th key={c}>{c}</th>)}</tr></thead>
         <tbody>
           {[...l.rolls].sort((a, b) => a - b).map((r) => (
             <tr key={r} data-testid={`tick-row-${l.level}-${r}`}><td>{r}</td>{cols.map((c) => <td key={c} />)}</tr>
