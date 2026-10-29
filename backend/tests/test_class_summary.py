@@ -105,13 +105,18 @@ async def main():
         check("the rules are part of the answer (printed on the page)", s["rules"] == ps.CLASS_RULES)
 
         print("\nthe route, and no names")
+        views = lambda: db.fetchval("SELECT COUNT(*) FROM auth_events WHERE teacher_id = $1 AND event = 'class_summary_view'", teacher_id)
+        before = await views()
         with TestClient(app) as c:
             r = c.get(f"/api/progress/class-summary/{teacher_id}?on={D}")
             check("GET /progress/class-summary/{teacher}?on= gives the same summary", r.status_code == 200 and r.json()["subjects"]["numeracy"]["stuck"] == num["stuck"], r.text[:200])
+            c.get(f"/api/progress/class-summary/{teacher_id}?on={D}")
+        check("each opening is logged (the page is shown with names, as the class report's export is): two openings, two entries", await views() - before == 2, await views() - before)
         src = open(os.path.join(HERE, "..", "app", "services", "progress_service.py"), encoding="utf-8").read()
         body = src[src.index("async def get_class_summary"):src.index("GROUP_HI = {")]
         check("the summary never reads the children's names (no child_names, no names_service)", "child_names" not in body and "names_service" not in body)
     finally:
+        await db.execute("DELETE FROM auth_events WHERE teacher_id = $1", teacher_id)
         await _scratch.remove_class(db, teacher_id, school)
         await db.close()
     if failures:

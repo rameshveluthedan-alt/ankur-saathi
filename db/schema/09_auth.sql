@@ -25,7 +25,7 @@ ALTER TABLE schools  ADD COLUMN IF NOT EXISTS join_code           TEXT;
 CREATE TABLE IF NOT EXISTS auth_events (
     id          BIGSERIAL PRIMARY KEY,
     teacher_id  UUID REFERENCES teachers(id) ON DELETE SET NULL,
-    event       TEXT NOT NULL,              -- login_ok, login_failed, locked, pin_changed, pin_reset_by_admin, unlocked, registered, class_report_export
+    event       TEXT NOT NULL,              -- login_ok, login_failed, locked, pin_changed, pin_reset_by_admin, unlocked, registered, class_report_export, class_summary_view
     detail      TEXT,
     created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );

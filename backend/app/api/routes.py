@@ -407,7 +407,10 @@ async def get_mentor_summary(teacher_id: str, on: Optional[date] = None):
 async def get_class_summary(teacher_id: str, on: Optional[date] = None):
     """The teacher's class summary for planning next week: the last 4 weeks up to `on` (the phone's date). Roll numbers only: the phone adds the names it holds."""
     async with get_db() as db:
-        return await progress_service.get_class_summary(db, teacher_id, on or date.today())
+        summary = await progress_service.get_class_summary(db, teacher_id, on or date.today())
+        from app.services import auth_service
+        await auth_service.log_event(db, teacher_id, "class_summary_view")        # a page that is shown (and printed) with names: each opening is logged, as the class report's export
+        return summary
 
 
 @router.get("/progress/export/class/{teacher_id}", tags=["Progress"])
