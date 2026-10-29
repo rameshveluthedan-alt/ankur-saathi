@@ -7,6 +7,7 @@ import { PinChangeForm } from './ChangePinScreen';
 import { getHindiOnly, setHindiOnly, bi } from '../services/language';
 import { getFamiliarMode, setFamiliarMode } from '../services/preferences';
 import Bi from '../components/Bi';
+import HowItWorks from '../components/HowItWorks';
 
 const GRADE_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
 
@@ -22,6 +23,9 @@ export default function AccountScreen() {
   const [error, setError] = useState('');
   const [hindiOnly, setHindiOnlyState] = useState(getHindiOnly);
   const toggleHindiOnly = (on) => { setHindiOnly(on); setHindiOnlyState(on); };
+  const confirmLogout = () => {
+    if (window.confirm(bi('लॉग आउट करें? इस फ़ोन पर रखी योजनाएँ और वर्कशीट हट जाएँगी।', 'Log out? The plans and worksheets kept on this phone will be removed.'))) logout();
+  };
   const [shorter, setShorter] = useState(getFamiliarMode);        // "छोटी स्क्रीन": the plan screen folds the one-line scripts and the anchor card
   const toggleShorter = (on) => { setFamiliarMode(on); setShorter(on); };
 
@@ -58,7 +62,13 @@ export default function AccountScreen() {
         <div style={{ fontSize: '0.875rem', marginTop: 4 }}><Bi hi="भूमिका" en="Role" inline />: <b>{isAdmin ? <Bi hi="स्कूल लीडर" en="School leader" inline /> : <Bi hi="शिक्षक" en="Teacher" inline />}</b></div>
         <div style={{ fontSize: '0.875rem', marginTop: 4 }}><Bi hi="कक्षाएँ" en="Grades" inline />: {(teacher.enrolled_grades || []).map(g => GRADE_HI[g] || g).join(', ')}</div>
         {teacher.is_demo && <div style={{ fontSize: '0.75rem', color: '#8A5A00', marginTop: 6 }}><Bi hi="डेमो अकाउंट: काल्पनिक डेटा" en="Demo account: fictional data" inline /></div>}
+        {/* at the top, not after the leader's list; signing out removes this phone's offline copies, so it asks first */}
+        <button type="button" className="btn btn-secondary" data-testid="logout" onClick={confirmLogout} style={{ marginTop: 10, flexDirection: 'column', gap: 0 }}>
+          <Bi hi="लॉग आउट" en="Log out" />
+        </button>
       </div>
+
+      <HowItWorks />
 
       <div className="card" data-testid="language-card">
         <h3 style={{ marginBottom: 6 }}>🔤 <Bi hi="भाषा" en="Language" inline /></h3>
@@ -141,7 +151,6 @@ export default function AccountScreen() {
         </div>
       )}
 
-      <button type="button" className="btn btn-secondary" onClick={logout} data-testid="logout" style={{ marginTop: 8 }}><Bi hi="लॉग आउट" en="Log out" inline /></button>
       <div style={{ height: 80 }} />
     </div>
   );

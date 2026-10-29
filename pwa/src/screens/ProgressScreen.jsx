@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../App';
 import { getProgressDashboard, downloadClassReport, downloadOfficerReport } from '../services/api';
 import Bi from '../components/Bi';
 import { notify } from '../services/notify';
+import { friendlyError } from '../services/errors';
 import { localToday } from '../services/today';
 import { TodayCard, ChildToday, LookAtChildren } from '../components/ProgressToday';
 
@@ -12,12 +14,22 @@ const BPP = {
   proficient: { hi: 'दक्ष', en: 'Proficient', color: 'var(--proficient-ink)' },
 };
 
+const REPORT_FAILED = { hi: 'रिपोर्ट नहीं खुल सकी', en: 'The report could not be opened' };
+
 export default function ProgressScreen() {
   const { teacher, selectedDomain, setSelectedDomain, names } = useAuth();
   const nameOf = (roll) => (names && names[roll]) ? ` · ${names[roll]}` : '';
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedChild, setSelectedChild] = useState(null);
+  // opened from a save on the Review ("प्रगति टैब पर … देखें →"): the way back to it, where the review was left (services/reviewPlace.js)
+  const location = useLocation();
+  const navigate = useNavigate();
+  const back = location.state && location.state.from === 'review' ? (
+    <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-review" onClick={() => navigate('/review')} style={{ marginBottom: 8 }}>
+      ← <Bi hi="समीक्षा पर लौटें" en="Back to the review" inline />
+    </button>
+  ) : null;
 
   useEffect(() => {
     setLoading(true);
@@ -26,8 +38,8 @@ export default function ProgressScreen() {
       .catch(() => setLoading(false));
   }, [teacher.teacher_id]);
 
-  if (loading) return <div className="screen"><div className="loading"><div className="spinner" /><span><Bi hi="प्रगति लोड हो रही..." en="Loading progress" inline /></span></div></div>;
-  if (!data) return <div className="screen"><div className="empty-state"><div className="empty-icon">📊</div><p><Bi hi="डेटा उपलब्ध नहीं" en="No data available" inline /></p></div></div>;
+  if (loading) return <div className="screen">{back}<div className="loading"><div className="spinner" /><span><Bi hi="प्रगति लोड हो रही..." en="Loading progress" inline /></span></div></div>;
+  if (!data) return <div className="screen">{back}<div className="empty-state"><div className="empty-icon">📊</div><p><Bi hi="डेटा उपलब्ध नहीं" en="No data available" inline /></p></div></div>;
 
   const { bpp_summary, children, reassessment_flags } = data;
   const ds = bpp_summary.find(s => s.domain_id === selectedDomain) || { beginner_count: 0, progressor_count: 0, proficient_count: 0 };
@@ -41,14 +53,15 @@ export default function ProgressScreen() {
 
   return (
     <div className="screen">
+      {back}
       <div className="screen-header">
         <h1>📊 <Bi hi="प्रगति" en="Progress" inline /></h1>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}>
-          <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => notify(e.message, 'error'))}
+          <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => notify(friendlyError(e, REPORT_FAILED), 'error'))}
             style={{ background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'right' }}>
             📥 कक्षा रिपोर्ट, नामों के साथ<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>Class report</span>
           </button>
-          <button type="button" data-testid="mlo-report" onClick={() => downloadOfficerReport(teacher.teacher_id).catch(e => notify(e.message, 'error'))}
+          <button type="button" data-testid="mlo-report" onClick={() => downloadOfficerReport(teacher.teacher_id).catch(e => notify(friendlyError(e, REPORT_FAILED), 'error'))}
             style={{ background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--text-secondary)', fontFamily: 'inherit', textAlign: 'right' }}>
             📥 अधिकारी रिपोर्ट, सिर्फ़ रोल नंबर<span className="en en-inline" lang="en">Officer report</span>
           </button>

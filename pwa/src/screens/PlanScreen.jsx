@@ -11,10 +11,12 @@ import { GROUP_LABELS } from '../tiers';
 import Bi from '../components/Bi';
 import { bi } from '../services/language';
 import { notify } from '../services/notify';
+import { friendlyError } from '../services/errors';
 import { localToday } from '../services/today';
 import SessionLength from '../components/SessionLength';
 import { getSessionMinutes, setSessionMinutes } from '../services/preferences';
 import ReplacePlanDialog from '../components/ReplacePlanDialog';
+import SuggestedSkill from '../components/SuggestedSkill';
 import { planMinutes, PRESETS } from '../services/planMinutes';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
@@ -36,6 +38,8 @@ const TIERS = {
 };
 const TIER_ORDER = ['tested', 'ai_written', 'experimental', 'untested'];
 const fmtClock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+
+const PLAN_FAILED = { hi: 'योजना नहीं बन सकी', en: 'The plan could not be made' };
 
 const GROUP_SHORT = { beginner: 'शु', progressor: 'प्र', proficient: 'द' };
 
@@ -163,12 +167,12 @@ export default function PlanScreen() {
         try {
           const found = await getCachedPlan(teacher.teacher_id, today, selectedDomain);
           setExisting({ status: 'exists', plan: found }); setUnlocked(false); setUnlockHint(false); setDrawerOpen(false); setDialog('plan');
-        } catch { notify(e.message, 'error'); }
+        } catch (e2) { notify(friendlyError(e2, PLAN_FAILED), 'error'); }
       } else if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
         const samples = (e.detail && e.detail.sample_skills) || [];
         notify(e.message + (samples.length ? `\n\n${bi('इन कौशलों की नमूना योजना उपलब्ध है', 'Sample plans are available for')}: ${samples.join(', ')}` : ''), 'error');
       } else {
-        notify(bi('योजना बनाने में समस्या', 'Plan generation error') + ': ' + e.message, 'error');
+        notify(friendlyError(e, PLAN_FAILED), 'error');
       }
     }
     setGenerating(false);
@@ -316,6 +320,10 @@ export default function PlanScreen() {
 
       {/* how long the teacher has today: just above the skill list, so it is set before a skill is chosen */}
       <SessionLength value={sessionMinutes} onChange={chooseMinutes} disabled={generating} />
+
+      {/* the Progressors' skill the last review points to: one tap, instead of searching the list */}
+      {!loading && <SuggestedSkill proposal={proposal} competencies={competencies} selectedId={selectedId}
+        onChoose={(id) => { setDrawerOpen(false); setGradeFilter(null); selectSkill(id); }} />}
 
       <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
         <button style={{ minHeight: 40, minWidth: 48, padding: '4px 12px', fontSize: '0.8125rem', borderRadius: 6, border: '1px solid var(--border)', background: !gradeFilter ? 'var(--green-dark)' : 'var(--surface)', color: !gradeFilter ? 'white' : 'var(--text)', cursor: 'pointer', fontFamily: 'inherit' }}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../App';
 import { login, setToken } from '../services/api';
 import Bi from '../components/Bi';
+import HowItWorks from '../components/HowItWorks';
 import { bi } from '../services/language';
 
 // Published demo accounts (fictional data only). Shown for reviewers; set VITE_DEMO_HINT=false for a real school.
@@ -143,6 +144,9 @@ export default function LoginScreen() {
           </button>
         </div>
       )}
+
+      {/* how the parts come together, for a teacher or an evaluator before signing in */}
+      <HowItWorks />
     </div>
   );
 }

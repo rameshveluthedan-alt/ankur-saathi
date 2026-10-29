@@ -186,7 +186,7 @@ async def get_cached_plan(teacher_id: str, plan_date: date, domain_id: str):
     """
     async with get_db() as db:
         row = await db.fetchrow("""
-            SELECT plan_content, groups_snapshot, selected_competency_id, generation_time_ms
+            SELECT plan_content, groups_snapshot, selected_competency_id, generation_time_ms, explainability
             FROM daily_plans
             WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3
         """, teacher_id, plan_date, domain_id)
@@ -232,6 +232,9 @@ async def get_cached_plan(teacher_id: str, plan_date: date, domain_id: str):
             "served_from": plan.get('served_from', 'ai'),
             # what has already been recorded against this plan: the Plan screen warns before it is replaced
             **(await plan_service.plan_evidence(db, teacher_id, plan_date, snapshot)),
+            # the decisions recorded at this day's review (Review step 1), so the Review can carry on where the teacher left it
+            "decisions": {k[len("teacher_decision_"):]: v for k, v in (as_obj(row['explainability']) or {}).items()
+                          if k.startswith("teacher_decision_") and v in ("advance", "reteach", "not_sure")},
         }
 
 

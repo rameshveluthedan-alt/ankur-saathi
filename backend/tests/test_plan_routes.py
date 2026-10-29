@@ -97,6 +97,14 @@ async def main():
             st, j = get(D4)
             check("a written_photo row (written as soon as the AI reads the sheet) counts: Beginner 1", j.get("has_evidence") is True and j["evidence_by_group"]["beginner"] == 1, j.get("evidence_by_group"))
 
+            print("\nthe day's review decisions come back with the plan (the Review carries on where the teacher left it)")
+            st, j = get(D1)
+            check("nothing decided yet: decisions is empty", j.get("decisions") == {}, j.get("decisions"))
+            r = c.post(f"/api/review/decisions?teacher_id={teacher_id}", json={"plan_date": str(D1), "domain_id": "numeracy", "decisions": {"beginner": "advance", "progressor": "reteach"}})
+            st, j = get(D1)
+            check("after Review step 1: the two decisions, exactly as recorded", r.status_code == 200 and j.get("decisions") == {"beginner": "advance", "progressor": "reteach"}, (r.status_code, j.get("decisions")))
+            check("...and only that day's: another day's plan has none", get(D3)[1].get("decisions") == {})
+
             print("\nan older snapshot, and no plan")
             D5 = TODAY + timedelta(days=30)
             await plan(D5, {"beginner": {"count": 3, "target": "N2.3.1"}, "progressor": {"count": 3, "target": "N2.3.2"}})

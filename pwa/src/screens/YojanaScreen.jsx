@@ -12,6 +12,7 @@ import { reteachTitleParts } from '../services/reteachInfo';
 import { GROUP_LABELS } from '../tiers';
 import Bi from '../components/Bi';
 import { notify } from '../services/notify';
+import { friendlyError } from '../services/errors';
 import { localToday } from '../services/today';
 import { getFamiliarMode } from '../services/preferences';
 import { planMinutes } from '../services/planMinutes';
@@ -71,6 +72,9 @@ export default function YojanaScreen() {
           <p className="en" lang="en" style={{ fontSize: '0.8rem', marginTop: 4 }}>
             Select a Lakshya from the Plan tab first, then generate the daily plan.
           </p>
+          <button type="button" className="btn btn-primary" data-testid="yojana-make-plan" onClick={() => navigate('/')} style={{ marginTop: 12, flexDirection: 'column', gap: 0 }}>
+            <Bi hi="योजना बनाएँ →" en="Make a plan" />
+          </button>
         </div>
       </div>
     );
@@ -325,7 +329,7 @@ export default function YojanaScreen() {
           );
           return available ? (
             <button key={level} type="button" className="btn btn-secondary" style={style} data-testid={`worksheet-${level}`}
-              onClick={() => openAuthedPage(worksheetPath(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id, level)).catch(e => notify(e.message, 'error'))}>{inner}</button>
+              onClick={() => openAuthedPage(worksheetPath(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id, level)).catch(e => notify(friendlyError(e, { hi: 'वर्कशीट नहीं खुल सकी', en: 'The worksheet could not be opened' }), 'error'))}>{inner}</button>
           ) : (
             <span key={level} className="btn" style={{ ...style, opacity: 0.45, border: '2px dashed var(--border)', color: 'var(--text-secondary)' }}>
               {inner}<span style={{ fontSize: '0.6875rem' }}><Bi hi="उपलब्ध नहीं" en="not available" /></span>
@@ -336,6 +340,11 @@ export default function YojanaScreen() {
       <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }}>
         <Bi hi="खुलने पर प्रिंट करें, या बोर्ड पर उतारें।" en="Opens the sheet: print it, or copy it to the board." inline />
       </p>
+
+      {/* the next step after teaching, without having to know which tab it is */}
+      <button type="button" className="btn btn-primary" data-testid="to-review" onClick={() => navigate('/review')} style={{ marginTop: 16, flexDirection: 'column', gap: 0 }}>
+        <Bi hi="पढ़ाने के बाद: समीक्षा करें →" en="After teaching: review" />
+      </button>
 
       {/* Why this plan? */}
       <div style={{ marginTop: 16, marginBottom: 80 }}>

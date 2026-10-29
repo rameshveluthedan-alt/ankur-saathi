@@ -4,6 +4,7 @@
 **Status:** done in the lab and tested; **not** in `main`. To be reviewed, then packaged for `main` by the release owner.
 **Updated (27 Oct, later):** five Progress and Review additions, plus two fixes found on the way. See "Additions after the first handover" below.
 **Updated (28 Oct):** the follow-up spec: today's time (45 / 60 / 90), the signal panel, "छोटी स्क्रीन", the printed plan and the time chip, with a lab-only mock for the phone test. See "Follow-up spec" below. Items 1–3 (Progress) were checked on a phone on 28 Oct; the rest is for the phone pass on Thursday.
+**Updated (29 Oct):** a UI review against the evaluation criteria (user at the centre; how the solution comes together) and a navigation review: see "UI review and navigation (29 Oct)" below.
 
 ## How this was done (lab rules)
 
@@ -158,6 +159,30 @@ Before, the Plan screen always invited a Generate: a plan already made for today
 
 **Hindi reviewed** (Vaishnavi's note, section 7, 28 Oct): all of the above, including "आज की योजना देखी जा रही है…", "अभी की योजना: N2.3.2 — नई योजना बनाने पर यह बदल जाएगी", the failed-check question with "नहीं, रुकें" / "हाँ, बनाएँ", and the card's labels; the button stays "🪄 नई योजना बनाएँ". Her suggested feminine forms, English group names, "'Generate' दबाएँ" and a 409 notification were not applied (see the wording line above; a 409 shows the locked card and the question, not a notification).
 
+## UI review and navigation (29 Oct)
+
+A review of the lab version against the Build Stage criteria: **keep the user at the centre** and **explain how the solution comes together**, plus a click-through of the navigation. Built after the review; the new Hindi is for Vaishnavi.
+
+**1. Review, step 1 waits for every group.** "दर्ज करें → बच्चों का काम देखें" (was "… साक्ष्य कैप्चर") stays off until every group with children has a decision, with "हर समूह के लिए एक विकल्प चुनें (बाकी: ● शुरुआती, …)" under it. A step marker "1/3 निर्णय · 2/3 बच्चों का काम · 3/3 विश्लेषण" shows where the teacher is; step 2's heading is "बच्चों का काम देखें" (was "साक्ष्य कैप्चर करें").
+
+**2. "ℹ️ कैसे काम करता है?" (How it works)** (`components/HowItWorks.jsx`), a fold on the login screen and on Profile: four steps in the app's order, each naming what powers it (योजना · कौशल-सीढ़ी; दैनिक योजना · AI + जाँच; समीक्षा · फ़ोटो से पढ़ना, नमूना; प्रगति · आज के नतीजे), the loop ("↻ आपके निर्णय और आज के नतीजे कल की योजना का सुझाव बनाते हैं।") and "🔒 बच्चों के नाम AI को कभी नहीं भेजे जाते।". For criterion 2: an evaluator finds the whole loop in one place.
+
+**3. Logout at the top of Profile, asking first.** It was at the very bottom (after the leader's teacher list) and signed out at once, although signing out removes this phone's offline plans and worksheets. Now it is in the account card, under the code, and asks "लॉग आउट करें? इस फ़ोन पर रखी योजनाएँ और वर्कशीट हट जाएँगी।". A logout on every screen was considered and not done: Profile is one tap away on every screen, and a header button costs space and invites a mis-tap on a shared phone.
+
+**4. Failures in plain Hindi** (`services/errors.js`). The screens showed the server's raw text, often English ("योजना बनाने में समस्या: Plan generation failed: …"). Now: what failed, why and what to do, e.g. "योजना नहीं बन सकी। सर्वर अभी जवाब नहीं दे रहा। थोड़ी देर बाद फिर कोशिश करें।"; a message the server already wrote in Hindi is kept; the offline message is unchanged; plainer reasons where they help (a photo that cannot be read; a reading-aloud roll number not in the class). Used for making a plan, recording decisions, photo analysis, the two Review saves, the reports and opening a worksheet. The raw text goes to the console. The AI-limit message is the server's own (both languages) and is unchanged.
+
+**5. ⓘ instead of hover tooltips** (`components/Hint.jsx`). A phone never shows a `title` tooltip, so the places where a teacher hesitates get a tappable ⓘ (44 px) that opens a line or two: on Review step 1, what each choice does to the next plan; on step 2, what Observed, Photo and Reading aloud mean.
+
+**6. "⭐ सुझाया गया" (Suggested) at the top of the Plan screen's skill list** (`components/SuggestedSkill.jsx`): the Progressors' skill the last review points to (the existing `GET /plan/proposal`: advance → the next skill; re-teach or not sure → the same; no decision but many mistakes → the same), with the reason ("पिछली समीक्षा (24 अक्टू॰): प्रगतिशील: ⬆ आगे बढ़ें"), and "यही चुनें" chooses it as the list does. No card when there is no suggestion, when it is not in this subject's list, or when today's plan already exists (locked). No server change.
+
+**Navigation (the click-through):** a teacher who saved an observation and followed "प्रगति टैब पर … देखें →" could not get back: the Review forgot everything when left, started again at step 1 and (with point 1) asked for every decision again.
+- **A. The Review keeps its place** (`services/reviewPlace.js`): step, way of checking, group and the decisions on screen, for that teacher, day and subject, in this browser tab only (`sessionStorage`: it survives a reload, not closing the tab; no names, no photos). An analysis is not kept (it can be reopened from "आज का विश्लेषण"), so a review left at step 3 comes back at step 2.
+- **A. The Review loads today's plan itself** (after the app is reopened it is not in memory) and carries on from the decisions already recorded today: with one for every group it opens at step 2; otherwise the recorded ones are already chosen on step 1. A choice the teacher makes on the screen is never overwritten by the server's copy. With no plan: "आज इस विषय की योजना नहीं बनी है…" and "योजना बनाएँ →"; if it cannot be loaded, it says so instead. **Server:** the plan reply (`GET /plan/{teacher}/{date}/{subject}`) gains `decisions` (that day's recorded decision per group).
+- **B. Ways back inside the Review:** step 2 "← निर्णय बदलें" (decisions kept); step 3 "← बच्चों का काम: अगला समूह या तरीका" (nothing reset); the step marker can be tapped for steps already reached (step 3 only when there is an analysis to show); "↺ नई समीक्षा शुरू करें" asks first. The header's second "चरण x/3" is gone (the marker shows it).
+- **C. Progress opened from the Review's pointer** shows "← समीक्षा पर लौटें" at the top (not when opened from its tab).
+- **E. दैनिक योजना leads on:** "पढ़ाने के बाद: समीक्षा करें →" after the plan; with no plan, "योजना बनाएँ →".
+- **Not done (suggested):** the phone's Back button following the Review's steps and closing dialogs (D), and Profile's and the register's "← वापस" returning to where the teacher came from instead of always to the Plan screen (F).
+
 ## How to see it
 
 ```powershell
@@ -195,8 +220,8 @@ Then: दैनिक योजना → each teach block shows its panel; Prof
 ## Tests
 
 `python scripts\run_tests.py --env-file backend\.env --pwa`, run on the lab database:
-- **41 backend suites:** all OK (new: `test_plan_routes.py`, 9 checks: nothing recorded, one observation, the same child twice, results that must not count (yesterday, another skill, another teacher, a child outside the snapshot), a photo result, an older snapshot, and no plan; `test_plan_service.py`, 26 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused, the stored plan records the chosen length (not the AI's total), a sample plan records 90, an existing plan refused with 409 without `replace` (before any paid call, evidence or not) and replaced with it, per subject; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
-- **24 front-end suites:** all OK, 461 checks
+- **41 backend suites:** all OK (new: `test_plan_routes.py`, 12 checks: the day's review decisions in the plan reply; nothing recorded, one observation, the same child twice, results that must not count (yesterday, another skill, another teacher, a child outside the snapshot), a photo result, an older snapshot, and no plan; `test_plan_service.py`, 26 checks: 45 / 60 / 90 minutes reach the prompt and PART C, 90 without the field, other values refused, the stored plan records the chosen length (not the AI's total), a sample plan records 90, an existing plan refused with 409 without `replace` (before any paid call, evidence or not) and replaced with it, per subject; and `test_progress_today.py`, 29 checks: today vs yesterday fixtures, counts once per child, A + PA + NA = assessed, the rare lines, reading aloud scored on its own skill, "still to score" per day, group and skill)
+- **28 front-end suites:** all OK, 524 checks
 
 New suites:
 - `bilingual.test.mjs` (13 checks)
@@ -209,6 +234,10 @@ New suites:
 - `plan_familiar_mode.test.mjs` (16): the real Profile and plan screens in a simulated browser: the toggle's label and place, off by default, flipping it changes the plan screen, the folds closed, and the title, re-teach note and panel never folded
 - `plan_print.test.mjs` (21): the printed plan from fixture plans: the three blocks, the same SignalPanel (compact) as the screen, no talking points, no names although the app holds them, the one-line note, the first question only, "बाकी" from the plan, a worst case within 8 lines a block and 36 a page with no text outside an allowance, identical with "छोटी स्क्रीन" on and off
 - `plan_time_chip.test.mjs` (10): the chip reads the recorded length and never the AI's `total_minutes`; an older plan rounds to 45 / 60 / 90 within 5 minutes (both ways), otherwise the exact sum; the printed plan agrees
+- `review_steps.test.mjs` (12): the Review's step 1 waits for every group with children, names the ones left, the step marker, the plain wording, and the two ⓘ hints
+- `ui_review.test.mjs` (15): "कैसे काम करता है" on the login screen and Profile (four steps, the loop, names never sent), logout at the top asking first, and failures in plain Hindi (offline, 5xx, a Hindi server message kept, a plainer reason, "Hindi only")
+- `plan_suggested_skill.test.mjs` (13): the suggestion card from the last review, each reason, "यही चुनें" choosing it (and clearing the grade filter), and no card in four cases or when locked
+- `review_navigation.test.mjs` (23): the Review loading today's plan and carrying on from recorded decisions, keeping its place across Progress, per subject, never overwriting the teacher's tap, the ways back, the step marker, the new-review question, "← समीक्षा पर लौटें" on Progress, and the plan screen's links on
 - `plan_load_existing.test.mjs` (32): the real Plan and plan screens in a simulated browser: the status card and the locks, no plan made on opening, the question and its default, the groups and counts, "हाँ, बदलें" unlocking without generating and then one plan, keeping (button, Escape, a tap outside), opening this plan, a 404, a failed check, each subject on its own, `replace: true` only after a yes, and a 409 (a plan made meanwhile) turned into the locked card and the question
 - `dev_mock_signal.test.mjs` (9): the lab mock fills only plans, only with the setting, never over the server's own signal
 - `plan_session_length.test.mjs` (13): the real Plan screen in a simulated browser: 90 on first use, a stored 60 preselected, the 44 px targets, and the chosen time in the request
@@ -219,7 +248,7 @@ Updated to the new wording or format:
 - `login.dom` also checks the new login layout: the card order, the five test-teacher chips and their tap targets.
 - `demo_accounts` now reads the guide's range row ("MPT102 to MPT106") and checks each of those codes is on the login screen with its password.
 
-Checked on a real phone: items 1–3 (Progress), 28 Oct. Not yet: the rest, for the phone pass on Thursday (including the printed plan's fit on one A4 page).
+Checked on a real phone: items 1–3 (Progress), 28 Oct. Reviewed in the browser before committing: the UI review and navigation changes, 29 Oct. Not yet: the rest, for the phone pass on Thursday (including the printed plan's fit on one A4 page).
 
 **Mutation runs:** for each new test, the code was broken on purpose in the ways the spec names (a dropped or reordered question, a wrong extras count, a "random" note, a smaller prompt, a panel for a null shape, a folded panel or note, the chip reading the AI's `total_minutes`, the rounding window off by one, the server not recording the length, a talking point or a name on the print page, a longer allowance, and more). Every one made its test fail. Two tests were strengthened on the way, when a first run let a mutation through (`plan_signal_panel`: a later shape drawn as a writing panel; `plan_print`: a three-line allowance).
 
@@ -256,9 +285,14 @@ c591682 signal panel and skill in each teach block; "छोटी स्क्�
 77ad564 CURATED_SKILLS.md corrections; content expansion moved to ROADMAP section 9
 e44034d printed plan (/plan/print): one A4 page, the screen's own signal panel (compact)
 a55d3b9 time chip: the server records session_minutes on every plan; older plans add up their blocks
+c92cb24 handover note: 28 Oct follow-up, how to run it on a phone and with a key
+8d40869 item 12: Plan screen keeps today's plan (locked card, ask before replacing, evidence counts); KNOWN_ISSUES.md
+d49580a server never replaces a plan silently (409 plan_exists unless replace: true)
+3c82855 item 12 wording after Vaishnavi's review
+(next)  UI review (step 1 waits, how it works, logout, plain errors, ⓘ hints, suggested skill) and Review navigation (keeps its place, ways back)
 ```
 
-Files: 68. They're `pwa/src` (37), `pwa/tests` (19), `docs/` (5: `GROUP_SKILLS.md`, `DEMO_ACCESS.md`, `CURATED_SKILLS.md`, `ROADMAP.md` and this note) and the backend (7: `progress_service.py`, `review_service.py`, `plan_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`, `tests/test_plan_service.py`). **No database, migration or prompt changes**, and no new server route (`/plan/print` is a screen of the app). The one new stored field is `session_minutes` inside the plan's existing JSON.
+Files: 81. They're `pwa/src` (43), `pwa/tests` (24), `docs/` (6: `GROUP_SKILLS.md`, `DEMO_ACCESS.md`, `CURATED_SKILLS.md`, `ROADMAP.md`, `KNOWN_ISSUES.md` and this note) and the backend (8: `progress_service.py`, `review_service.py`, `plan_service.py`, `routes.py`, `schemas.py`, `tests/test_progress_today.py`, `tests/test_plan_service.py`, `tests/test_plan_routes.py`). **No database, migration or prompt changes**, and no new server route (`/plan/print` is a screen of the app). The one new stored field is `session_minutes` inside the plan's existing JSON; the plan reply also carries `has_evidence`, `evidence_by_group` and `decisions`, and `POST /plan/generate` takes `session_minutes` and `replace`.
 
 `docs/CURATED_SKILLS.md` and the new `docs/ROADMAP.md` section 9 are the team's own documents, committed in the lab with these corrections. The lab mock (`pwa/src/services/devMockSignal.js`, `pwa/tests/dev_mock_signal.test.mjs`) is for the phone test: a normal build leaves it out, but whether to package it for `main` at all is the release owner's choice.
 
@@ -276,6 +310,8 @@ So the UI commits **cannot be applied to `main` on their own as they are.** The 
 - **(b)** take the UI without those 8 files' sign-in parts, and redo the small UI edits in them by hand. Mostly that means wrapping labels in `<Bi>` and the tappable demo cards, plus, since 28 Oct, the `/plan/print` route and the hidden bottom bar there (`App.jsx`) and the "छोटी स्क्रीन" toggle (`AccountScreen.jsx`).
 
 ## Open decisions for the team
+
+0. **The UI review's Hindi** (29 Oct) is not yet reviewed: the step names "निर्णय / बच्चों का काम / विश्लेषण", "हर समूह के लिए एक विकल्प चुनें", "दर्ज करें → बच्चों का काम देखें", the "कैसे काम करता है" texts, the logout question, the error sentences, the two ⓘ hints, "सुझाया गया / यही चुनें / ✓ चुना गया" and the reasons, "निर्णय बदलें", "बच्चों का काम: अगला समूह या तरीका", the new-review question, "समीक्षा पर लौटें", "पढ़ाने के बाद: समीक्षा करें", "योजना बनाएँ →", the Review's no-plan and could-not-open lines, and "आज की योजना खोली जा रही है…".
 
 1. **"English only":**
    - The labels alone would take about 2–3 hours: mark the Hindi, and write English for 60–100 bits that have none.

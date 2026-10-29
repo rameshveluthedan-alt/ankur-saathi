@@ -1,27 +1,61 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../App';
-import { recordDecisions, recordObserved, recordORF, analysePhotos, getSavedAnalyses, getReviewCoverage, getReviewChannels } from '../services/api';
+import { recordDecisions, recordObserved, recordORF, analysePhotos, getSavedAnalyses, getReviewCoverage, getReviewChannels, getCachedPlan } from '../services/api';
+import { placeKey, loadPlace, savePlace, clearPlace } from '../services/reviewPlace';
 import { compressImage } from '../utils/imageCompress';
 import { useOnline } from '../components/OfflineBanner';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import Bi from '../components/Bi';
 import { bi } from '../services/language';
 import { notify } from '../services/notify';
+import { friendlyError } from '../services/errors';
 import { localToday } from '../services/today';
 import { useNavigate } from 'react-router-dom';
 import { ObservedSaved, ReadingSaved, SaveError } from '../components/ReviewConfirm';
+import Hint from '../components/Hint';
 
 // an English translation on the same line, after its Hindi (hidden by the "Hindi only" setting)
+const SAVE_FAILED = { hi: 'सहेजा नहीं जा सका', en: 'Could not save' };
+
 const En = ({ children }) => <span className="en en-inline" lang="en">{children}</span>;
 
+// Where the teacher is in the review: three short steps, the current one marked (a teacher should know a second and a third step are coming)
+const STEPS = [{ hi: 'निर्णय', en: 'Decide' }, { hi: 'बच्चों का काम', en: "Children's work" }, { hi: 'विश्लेषण', en: 'Analysis' }];
+// A step already reached (and not the current one) can be tapped to go back to it; canGo(n) says whether step n has something to show.
+export function ReviewSteps({ step, canGo = () => false, onGo = () => {} }) {
+  return (
+    <ol data-testid="review-steps" data-step={step} aria-label="समीक्षा के चरण" style={{ display: 'flex', gap: 6, listStyle: 'none', padding: 0, margin: '0 0 12px', fontSize: '0.75rem', flexWrap: 'wrap' }}>
+      {STEPS.map((st, i) => {
+        const n = i + 1; const now = n === step; const go = !now && canGo(n);
+        const look = { padding: '2px 8px', borderRadius: 10, background: now ? 'var(--green-dark)' : 'var(--surface)', color: now ? 'white' : go ? 'var(--green-dark)' : 'var(--text-secondary)',
+                       border: `1px solid ${go ? 'var(--green-dark)' : 'var(--border)'}`, fontWeight: now ? 700 : 400 };
+        const label = <>{n}/{STEPS.length} {st.hi}<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>{st.en}</span></>;
+        return (
+          <li key={n} aria-current={now ? 'step' : undefined} data-testid={`review-step-${n}`}>
+            {go ? <button type="button" data-testid={`go-step-${n}`} onClick={() => onGo(n)} style={{ ...look, minHeight: 32, cursor: 'pointer', fontFamily: 'inherit', fontSize: 'inherit' }}>{label}</button>
+                : <span style={{ ...look, display: 'inline-block' }}>{label}</span>}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 export default function ReviewScreen() {
-  const { teacher, currentPlan, selectedDomain, names } = useAuth();
-  const [step, setStep] = useState(1);
-  const [decisions, setDecisions] = useState({});
-  const [channel, setChannel] = useState(null);
+  const { teacher, currentPlan, setCurrentPlan, selectedDomain, names } = useAuth();
+  // where the teacher was in today's review (services/reviewPlace.js): leaving for Progress or another tab and coming back lands in the same place.
+  // An analysis is not kept (it can be reopened from "आज का विश्लेषण"), so a review left at step 3 comes back at step 2.
+  const place = placeKey(teacher.teacher_id, localToday(), selectedDomain);
+  const [restored] = useState(() => loadPlace(place));
+  const [step, setStep] = useState(() => Math.min((restored && restored.step) || 1, 2));
+  const [reached, setReached] = useState(() => (restored && restored.reached) || 1);      // the furthest step reached: the marker lets the teacher go back to it
+  const [decisions, setDecisions] = useState(() => (restored && restored.decisions) || {});
+  const [channel, setChannel] = useState(() => (restored && restored.channel) || null);
   const [photos, setPhotos] = useState([]);
   const [analysisResult, setAnalysisResult] = useState(null);
-  const [sheetLevel, setSheetLevel] = useState('progressor');   // which group's worksheet the photos are of
+  const [sheetLevel, setSheetLevel] = useState(() => (restored && restored.sheetLevel) || 'progressor');   // which group's worksheet the photos are of
+  const goStep = (n) => { setStep(n); setReached((r) => Math.max(r, n)); };
+  const touched = useRef(false);                     // the teacher has changed a decision on this screen: the server's copy never overwrites it
   const [loading, setLoading] = useState(false);
   const online = useOnline();            // sending photos for analysis needs the internet (they go to the AI); the chosen photos stay on the screen
   const [observedItems, setObservedItems] = useState([]);
@@ -35,7 +69,29 @@ export default function ReviewScreen() {
   const [orfError, setOrfError] = useState('');
 
   const today = localToday();
-  const groups = currentPlan?.groups || [];
+  // today's plan in this subject: the one in memory if it is that, else loaded here (after the app is reopened, the plan is not in memory)
+  const isToday = (p) => !!p && p.domain_id === selectedDomain && p.plan_date === today;
+  const plan = isToday(currentPlan) ? currentPlan : null;
+  const [planStatus, setPlanStatus] = useState(plan ? 'ready' : 'loading');     // 'ready' | 'loading' | 'none' (no plan today) | 'error'
+  useEffect(() => {
+    let cancelled = false;
+    getCachedPlan(teacher.teacher_id, today, selectedDomain).then((reply) => {
+      if (cancelled) return;
+      if (!isToday(currentPlan)) setCurrentPlan(reply);
+      setPlanStatus('ready');
+      // the decisions already recorded today: with one for every group, the review carries on at step 2 (unless the teacher's own place says otherwise)
+      const d = reply.decisions || {};
+      const needed = (reply.groups || []).filter((g) => g.count > 0);
+      if (touched.current) return;
+      if (!restored && needed.length && needed.every((g) => d[g.label])) { setDecisions(d); goStep(2); }
+      else setDecisions((prev) => ({ ...d, ...prev }));
+    }).catch((e) => { if (!cancelled) setPlanStatus(isToday(currentPlan) ? 'ready' : (e && e.status === 404 ? 'none' : 'error')); });
+    return () => { cancelled = true; };
+  }, [teacher.teacher_id, selectedDomain]);
+  useEffect(() => { savePlace(place, { step, reached, decisions, channel, sheetLevel }); }, [place, step, reached, decisions, channel, sheetLevel]);
+  const groups = plan?.groups || [];
+  // step 1 is complete when every group with children has a decision: until then "record" is off, and the screen says which groups are left
+  const undecided = groups.filter((g) => g.count > 0 && !decisions[g.label]);
   const [savedAnalyses, setSavedAnalyses] = useState([]);
   const [coverage, setCoverage] = useState(null);       // who in this group is done today, and who is left
   const [dupNotice, setDupNotice] = useState('');       // the same photo picked twice
@@ -75,9 +131,20 @@ export default function ReviewScreen() {
   };
   useEffect(() => { setAbsent([]); }, [sheetLevel]);
   useEffect(refreshCoverage, [teacher?.teacher_id, selectedDomain, today, sheetLevel, savedAnalyses.length, absent.join(','), activeChannel]);
-  const openSaved = (a) => { setAnalysisResult(a.result); setSheetLevel(a.worksheet_level); setStep(3); };
+  const openSaved = (a) => { setAnalysisResult(a.result); setSheetLevel(a.worksheet_level); goStep(3); };
+
+  // to Progress from a save's pointer: Progress shows "← समीक्षा पर लौटें", and the review is where it was (reviewPlace)
+  const toProgress = () => navigate('/progress', { state: { from: 'review' } });
+  // a new review clears what is chosen on this screen (what was recorded stays on the server), so it asks first
+  const startNewReview = () => {
+    if (!window.confirm(bi('नई समीक्षा शुरू करें? इस स्क्रीन पर चुने निर्णय और फ़ोटो हट जाएँगे; जो दर्ज हो चुका है वह सुरक्षित रहेगा।',
+      'Start a new review? The decisions and photos chosen on this screen will be cleared; what was already recorded stays.'))) return;
+    clearPlace(); touched.current = true;
+    setStep(1); setReached(1); setDecisions({}); setPhotos([]); setAnalysisResult(null); setChannel(null);
+  };
 
   const handleDecision = (groupLabel, decision) => {
+    touched.current = true;
     setDecisions(d => ({ ...d, [groupLabel]: d[groupLabel] === decision ? null : decision }));
   };
 
@@ -85,8 +152,8 @@ export default function ReviewScreen() {
     setLoading(true);
     try {
       await recordDecisions(teacher.teacher_id, today, selectedDomain, decisions);
-      setStep(2);
-    } catch (e) { notify(bi('समस्या', 'Error') + ': ' + e.message, 'error'); }
+      goStep(2);
+    } catch (e) { notify(friendlyError(e, { hi: 'निर्णय दर्ज नहीं हो सके', en: 'The decisions could not be recorded' }), 'error'); }
     setLoading(false);
   };
 
@@ -120,14 +187,14 @@ export default function ReviewScreen() {
   };
 
   const submitPhotos = async (opts = {}) => {
-    if (!photos.length || !currentPlan) return;
+    if (!photos.length || !plan) return;
     setLoading(true);
     try {
       const fd = new FormData();
       fd.append('teacher_id', teacher.teacher_id);
       fd.append('session_date', today);
       fd.append('domain_id', selectedDomain);
-      fd.append('competency_id', currentPlan.selected_competency_id);
+      fd.append('competency_id', plan.selected_competency_id);
       fd.append('worksheet_level', sheetLevel);
       fd.append('teacher_pre_judgment', decisions[sheetLevel] || '');
       fd.append('on_duplicate', 'skip');                       // a child already analysed today keeps the earlier result
@@ -135,10 +202,10 @@ export default function ReviewScreen() {
       photos.forEach(p => fd.append('photos', p));
       const result = await analysePhotos(teacher.teacher_id, fd);
       setAnalysisResult(result);
-      setStep(3);
+      goStep(3);
       refreshSaved();
       refreshCoverage();
-    } catch (e) { notify(bi('विश्लेषण में समस्या', 'Analysis error') + ': ' + e.message, 'error'); }
+    } catch (e) { notify(friendlyError(e, { hi: 'फ़ोटो का विश्लेषण नहीं हो सका', en: 'The photos could not be analysed' }, { 400: { hi: 'फ़ोटो पढ़ी नहीं जा सकी। वर्कशीट की साफ़ फ़ोटो चुनें।', en: "The photo couldn't be read. Choose a clear photo of the worksheet." } }), 'error'); }
     setLoading(false);
   };
 
@@ -156,7 +223,7 @@ export default function ReviewScreen() {
       setObservedSaved({ level: sheetLevel, items: observedItems }); setObservedError('');    // exactly the children of this save
       setObservedItems([]);
       refreshCoverage();
-    } catch (e) { setObservedSaved(null); setObservedError(bi('सहेजा नहीं जा सका', 'Could not save') + ': ' + e.message); }
+    } catch (e) { setObservedSaved(null); setObservedError(friendlyError(e, SAVE_FAILED)); }
     setLoading(false);
   };
 
@@ -175,7 +242,7 @@ export default function ReviewScreen() {
       setOrfError('');
       setOrfEntry({ roll_number: '', cwpm: '', error_count: '', passage_id: 'RP-004' });
       refreshCoverage();
-    } catch (e) { setOrfSaved(null); setOrfError(bi('सहेजा नहीं जा सका', 'Could not save') + ': ' + e.message); }
+    } catch (e) { setOrfSaved(null); setOrfError(friendlyError(e, SAVE_FAILED, { 404: { hi: 'यह रोल नंबर इस कक्षा में नहीं है।', en: "This roll number isn't in this class." } })); }
     setLoading(false);
   };
 
@@ -183,10 +250,23 @@ export default function ReviewScreen() {
     <div className="screen">
       <div className="screen-header">
         <h1>📷 <Bi hi="समीक्षा" en="Review" inline /></h1>
-        <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', whiteSpace: 'nowrap' }}>
-          चरण<span className="en en-inline" lang="en">Step</span> {step}/3
-        </span>
       </div>
+
+      {/* no plan for today in this subject (or it could not be loaded): say so, and the way to make one */}
+      {!plan && (planStatus === 'loading' ? (
+        <div className="loading" data-testid="review-loading"><div className="spinner" /><span><Bi hi="आज की योजना खोली जा रही है…" en="Opening today's plan" inline /></span></div>
+      ) : (
+        <div className="card" data-testid="review-no-plan" style={{ textAlign: 'center' }}>
+          {planStatus === 'none'
+            ? <Bi hi="आज इस विषय की योजना नहीं बनी है। पहले योजना बनाएँ; पढ़ाने के बाद यहाँ समीक्षा करें।" en="No plan for this subject today. Make a plan first; review here after teaching." />
+            : <Bi hi="आज की योजना खुल नहीं सकी। इंटरनेट जाँचकर फिर कोशिश करें।" en="Today's plan could not be opened. Check the internet and try again." />}
+          <button type="button" className="btn btn-primary" data-testid="review-make-plan" onClick={() => navigate('/')} style={{ marginTop: 10, flexDirection: 'column', gap: 0 }}>
+            <Bi hi="योजना बनाएँ →" en="Make a plan" />
+          </button>
+        </div>
+      ))}
+
+      {plan && (<>
 
       {/* An analysis already done today can always be reopened, even after pressing Back or reloading */}
       {step !== 3 && savedAnalyses.length > 0 && (
@@ -202,6 +282,8 @@ export default function ReviewScreen() {
         </div>
       )}
 
+      <ReviewSteps step={step} onGo={goStep} canGo={(n) => n <= reached && (n !== 3 || !!analysisResult)} />
+
       {/* STEP 1: Decisions */}
       {step === 1 && (
         <>
@@ -210,6 +292,11 @@ export default function ReviewScreen() {
             AI विश्लेषण से पहले अपना आकलन दर्ज करें।
             <span className="en" lang="en">How did each group do today? Record your judgment before AI analysis.</span>
           </p>
+          {/* what each choice does to the next plan, one tap away */}
+          <Hint testid="hint-decisions">
+            <Bi hi="⬆ आगे बढ़ें: अगली योजना में अगला कौशल। 🔄 दोहराएँ या ❓ पक्का नहीं: अगली योजना में वही कौशल, दोबारा समझाकर। योजना बनाते समय आप इसे बदल सकते हैं।"
+              en="Advance: the next plan moves to the next skill. Re-teach or Not sure: the next plan keeps the same skill and teaches it again. You can change this when you make the plan." />
+          </Hint>
 
           {groups.map(g => (
             <div key={g.label} className={`card tier-card tier-${g.label}`}>
@@ -237,8 +324,14 @@ export default function ReviewScreen() {
             </div>
           ))}
 
-          <button className="btn btn-primary" onClick={submitDecisions} disabled={loading} style={{ marginTop: 8, flexDirection: 'column', gap: 0 }}>
-            {loading ? <Bi hi="दर्ज हो रहा..." en="Recording" /> : <Bi hi="दर्ज करें → साक्ष्य कैप्चर" en="Record → Capture Evidence" />}
+          {undecided.length > 0 && (
+            <p data-testid="decisions-left" style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: '8px 0 0' }}>
+              <Bi hi={`हर समूह के लिए एक विकल्प चुनें (बाकी: ${undecided.map((g) => `${GROUP_LABELS[g.label]?.mark || ''} ${GROUP_LABELS[g.label]?.hi || g.label}`.trim()).join(', ')})`}
+                en={`Choose an option for each group (left: ${undecided.map((g) => GROUP_LABELS[g.label]?.en || g.label).join(', ')})`} />
+            </p>
+          )}
+          <button className="btn btn-primary" data-testid="record-decisions" onClick={submitDecisions} disabled={loading || undecided.length > 0} style={{ marginTop: 8, flexDirection: 'column', gap: 0 }}>
+            {loading ? <Bi hi="दर्ज हो रहा..." en="Recording" /> : <Bi hi="दर्ज करें → बच्चों का काम देखें" en="Record → Look at the children's work" />}
           </button>
         </>
       )}
@@ -246,7 +339,10 @@ export default function ReviewScreen() {
       {/* STEP 2: Evidence capture */}
       {step === 2 && (
         <>
-          <h2 style={{ marginBottom: 12 }}><Bi hi="साक्ष्य कैप्चर करें" en="Capture Evidence" /></h2>
+          <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-decisions" onClick={() => setStep(1)} style={{ marginBottom: 8 }}>
+            ← <Bi hi="निर्णय बदलें" en="Change decisions" inline />
+          </button>
+          <h2 style={{ marginBottom: 12 }}><Bi hi="बच्चों का काम देखें" en="Look at the children's work" /></h2>
 
           <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
             {[
@@ -261,6 +357,11 @@ export default function ReviewScreen() {
               </button>
             ))}
           </div>
+          {/* the three ways of looking at the children's work, one tap away */}
+          <Hint testid="hint-channels">
+            <Bi hi="✓ अवलोकन: आप हर बच्चे के लिए A / PA / NA चुनते हैं। 📸 फ़ोटो: वर्कशीट की फ़ोटो लें, AI हर बच्चे का काम पढ़ता है। ⏱️ पठन प्रवाह: बच्चा पढ़कर सुनाता है, आप एक मिनट के सही शब्द और गलतियाँ लिखते हैं।"
+              en="Observed: you choose A / PA / NA for each child. Photo: take a photo of the worksheets; the AI reads each child's work. Reading aloud: a child reads; you enter the correct words in one minute and the errors." />
+          </Hint>
           {channelsInfo?.has_plan && relevantChannels.length < 3 && (
             <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', margin: '-8px 0 12px' }} data-testid="channel-hint">
               आज के कौशल के लिए यही तरीका चाहिए<span className="en en-inline" lang="en">Today's skills need this way</span> ·{' '}
@@ -299,7 +400,7 @@ export default function ReviewScreen() {
                   </div>
                 )}
                 {/* what the last save recorded; the list below stays usable (retap and submit again) */}
-                <ObservedSaved saved={observedSaved} onOpenProgress={() => navigate('/progress')} />
+                <ObservedSaved saved={observedSaved} onOpenProgress={toProgress} />
                 <SaveError message={observedError} testid="observed-error" />
                 {rolls.map(r => (
                   <div key={r} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
@@ -327,7 +428,7 @@ export default function ReviewScreen() {
                 <Bi hi="हर बच्चे के लिए A / PA / NA दबाएँ" en="Tap A / PA / NA for each child" />
               </p>
               {/* what the last save recorded; the list below stays usable (retap and submit again) */}
-              <ObservedSaved saved={observedSaved} onOpenProgress={() => navigate('/progress')} />
+              <ObservedSaved saved={observedSaved} onOpenProgress={toProgress} />
               <SaveError message={observedError} testid="observed-error" />
               <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
                 <input type="number" inputMode="numeric" placeholder="रोल नं." aria-label="रोल नंबर (Roll number)" min="1"
@@ -459,7 +560,7 @@ export default function ReviewScreen() {
                 </div>
               )}
               {/* the child just scored, and how many in the group are still to score today on this skill (the server's coverage) */}
-              <ReadingSaved saved={orfSaved} left={coverage && coverage.pending_rolls ? coverage.pending_rolls.length : 0} onOpenProgress={() => navigate('/progress')} />
+              <ReadingSaved saved={orfSaved} left={coverage && coverage.pending_rolls ? coverage.pending_rolls.length : 0} onOpenProgress={toProgress} />
               <SaveError message={orfError} testid="orf-error" />
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <input type="number" inputMode="numeric" placeholder="रोल नं." aria-label="रोल नंबर (Roll number)" value={orfEntry.roll_number}
@@ -485,7 +586,7 @@ export default function ReviewScreen() {
             </div>
           )}
 
-          <button className="btn btn-secondary" onClick={() => setStep(3)} style={{ marginTop: 12 }}>
+          <button className="btn btn-secondary" onClick={() => goStep(3)} style={{ marginTop: 12 }}>
             <Bi hi="विश्लेषण देखें" en="View Analysis" inline /> →
           </button>
         </>
@@ -605,12 +706,16 @@ export default function ReviewScreen() {
             </div>
           )}
 
-          <button className="btn btn-secondary" onClick={() => { setStep(1); setDecisions({}); setPhotos([]); setAnalysisResult(null); setChannel(null); }}
-            style={{ marginTop: 16, marginBottom: 80 }}>
-            ← <Bi hi="नई समीक्षा शुरू करें" en="Start new review" inline />
+          <button type="button" className="btn btn-primary" data-testid="back-to-work" onClick={() => setStep(2)} style={{ marginTop: 16, flexDirection: 'column', gap: 0 }}>
+            <Bi hi="← बच्चों का काम: अगला समूह या तरीका" en="Back to the children's work: the next group or way" />
+          </button>
+          <button className="btn btn-secondary" data-testid="new-review" onClick={startNewReview}
+            style={{ marginTop: 8, marginBottom: 80 }}>
+            ↺ <Bi hi="नई समीक्षा शुरू करें" en="Start new review" inline />
           </button>
         </>
       )}
+      </>)}
     </div>
   );
 }
