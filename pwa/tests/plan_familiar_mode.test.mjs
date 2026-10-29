@@ -12,6 +12,8 @@ import { build } from 'esbuild';
 let JSDOM;
 try { ({ JSDOM } = await import('jsdom')); } catch (e) { console.log('SKIPPED: jsdom is not installed. To run this test: cd pwa; npm install --save-dev jsdom@24'); process.exit(0); }
 const here = path.dirname(fileURLToPath(import.meta.url)); const src = path.join(here, '..', 'src'); const out = path.join(here, `.tmp-familiar-${process.pid}`);
+// the plan screen shows TODAY's plan only ("आज की योजना"), so its fixture plans are dated today, on the phone's own calendar
+const TODAY = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
 const API = ['adminSchool', 'adminTeachers', 'adminResetPin', 'adminUnlock', 'adminRecordConsent', 'getCachedPlan', 'openAuthedPage', 'worksheetPath', 'prepareOfflineCopy', 'getReviewChannels'];
 const stubs = {
@@ -45,7 +47,7 @@ const visible = (el) => !!el && !folded(el);
 // a plan: an anchor card, the Progressors re-teaching (with the note) on maths questions, the Beginners on a writing prompt, the Proficients with no panel
 const teach = (g, script, extra) => ({ type: 'teach', teach_group: g, duration_minutes: 15, time_start: '0:12', script_hi: script, talking_points: { i_do_hi: 'मैं', we_do_hi: 'हम', you_do_hi: 'तुम' }, ...extra });
 const PLAN = {
-  plan_date: '2026-10-28', domain_id: 'numeracy', selected_competency_id: 'N2.3.2',
+  plan_date: TODAY, domain_id: 'numeracy', selected_competency_id: 'N2.3.2',
   groups: [{ label: 'beginner', count: 7, target_competency_id: 'N2.3.1' }, { label: 'progressor', count: 14, target_competency_id: 'N2.3.2' }, { label: 'proficient', count: 9, target_competency_id: 'N3.3.1' }],
   plan: {
     anchor: { narration_hi: 'बाज़ार का खेल', opening_question_hi: 'कितने आम?' }, worksheets: {},

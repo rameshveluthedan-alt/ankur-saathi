@@ -13,6 +13,8 @@ import { build } from 'esbuild';
 let JSDOM;
 try { ({ JSDOM } = await import('jsdom')); } catch (e) { console.log('SKIPPED: jsdom is not installed. To run this test: cd pwa; npm install --save-dev jsdom@24'); process.exit(0); }
 const here = path.dirname(fileURLToPath(import.meta.url)); const src = path.join(here, '..', 'src'); const out = path.join(here, `.tmp-existing-${process.pid}`);
+// the plan screen shows TODAY's plan only ("आज की योजना"), so its fixture plans are dated today, on the phone's own calendar
+const TODAY = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
 const API = ['getCompetencies', 'getGroups', 'generatePlan', 'getGroupProposal', 'getLadder', 'getCachedPlan', 'openAuthedPage', 'worksheetPath', 'prepareOfflineCopy', 'getReviewChannels'];
 const stubs = { '../App': 'export const useAuth = () => globalThis.__auth;', 'react-router-dom': 'export const useNavigate = () => globalThis.__navigate;',
@@ -33,7 +35,7 @@ const sk = (id) => ({ id, name_hi: `${id} का नाम`, name_en: id, grade_
 const LADDER = { beginner: sk('N2.3.1'), progressor: sk('N2.3.2'), proficient: sk('N3.3.1'), options: { beginner: [sk('N2.3.1')], proficient: [sk('N3.3.1')] } };
 const ZERO = { beginner: 0, progressor: 0, proficient: 0 };
 const PLAN = (evidence = ZERO) => ({
-  plan_date: '2026-10-28', domain_id: 'numeracy', selected_competency_id: 'N2.3.2', served_from: 'ai',
+  plan_date: TODAY, domain_id: 'numeracy', selected_competency_id: 'N2.3.2', served_from: 'ai',
   groups: [{ label: 'beginner', count: 7, target_competency_id: 'N2.3.1' }, { label: 'progressor', count: 14, target_competency_id: 'N2.3.2' }, { label: 'proficient', count: 9, target_competency_id: 'N3.3.1' }],
   plan: { session_minutes: 90, anchor: { narration_hi: 'ANCHOR-बाज़ार का खेल' }, worksheets: { progressor: { problems: [{ number: 1 }] } },
     rotation_schedule: { blocks: [{ type: 'anchor', duration_minutes: 10 }, { type: 'teach', teach_group: 'progressor', duration_minutes: 30, script_hi: 'TEACH-पहले जोड़' }] } },

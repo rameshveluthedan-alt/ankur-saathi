@@ -30,7 +30,8 @@ export default function YojanaScreen() {
   const navigate = useNavigate();
   const [expandedBlock, setExpandedBlock] = useState(null);
   const [showWhyPanel, setShowWhyPanel] = useState(false);
-  const [loadingStored, setLoadingStored] = useState(false);
+  // loading from the first frame when the plan in memory is not today's for the chosen subject (see below): never a moment of "no plan" first
+  const [loadingStored, setLoadingStored] = useState(() => !(currentPlan && currentPlan.plan_date === localToday() && currentPlan.domain_id === selectedDomain));
   // how each group's skill is checked at the review (and what to look for, the text to read aloud): the "आज की समीक्षा" fold, readable before class
   const [ways, setWays] = useState(null);
   useEffect(() => {
@@ -51,19 +52,39 @@ export default function YojanaScreen() {
     prepareOfflineCopy(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id, Object.keys(sheets).filter(l => sheets[l]));
   }, [currentPlan && currentPlan.plan_date, currentPlan && currentPlan.domain_id, sheetsKey]);
 
-  // After a page reload the plan is no longer in memory: load today's stored plan
-  // from the backend instead of making the teacher regenerate it.
+  // "आज की योजना" shows TODAY's plan only (29 Oct). The plan in memory may be an older day's (a phone brings back yesterday's page in the morning) or
+  // another subject's, or there may be none (a reload): then today's stored plan is loaded for the chosen subject. With none stored, a plan of today in
+  // memory (the other subject) is still shown, but an older day's plan is put away, never shown as today's. The day is looked at again whenever the app
+  // comes back to the screen, so a phone left open across midnight moves on to the new day; with no plan of today on the screen, coming back also
+  // looks again (a plan may have been made meanwhile, on another phone).
+  const [today, setToday] = useState(localToday);
+  const [wake, setWake] = useState(0);
+  const [loadFailed, setLoadFailed] = useState(false);
   useEffect(() => {
-    if (currentPlan) return;
-    const today = localToday();
-    setLoadingStored(true);
-    getCachedPlan(teacher.teacher_id, today, selectedDomain)
-      .then(setCurrentPlan)
-      .catch(() => {})   // no stored plan for today: the empty state below is shown
-      .finally(() => setLoadingStored(false));
+    const again = () => { if (document.visibilityState !== 'hidden') { setToday(localToday()); setWake((w) => w + 1); } };
+    document.addEventListener('visibilitychange', again);
+    window.addEventListener('focus', again);
+    return () => { document.removeEventListener('visibilitychange', again); window.removeEventListener('focus', again); };
   }, []);
+  const isToday = (p) => !!p && p.plan_date === today;
+  const fits = isToday(currentPlan) && currentPlan.domain_id === selectedDomain;
+  useEffect(() => {
+    if (fits) return undefined;
+    let cancelled = false;
+    setLoadingStored(true);
+    setLoadFailed(false);
+    getCachedPlan(teacher.teacher_id, today, selectedDomain)
+      .then((p) => { if (!cancelled) setCurrentPlan(p); })
+      .catch((e) => {
+        if (cancelled) return;
+        if (!isToday(currentPlan)) setCurrentPlan(null);          // no plan stored for today: an older day's plan is put away
+        if (!(e && e.status === 404)) setLoadFailed(true);         // not "none stored" but a failure (no internet): the empty state says so
+      })
+      .finally(() => { if (!cancelled) setLoadingStored(false); });
+    return () => { cancelled = true; };
+  }, [today, selectedDomain, fits, wake]);
 
-  if (!currentPlan && loadingStored) {
+  if (loadingStored && !isToday(currentPlan)) {
     return (
       <div className="screen">
         <div className="loading"><div className="spinner" /><span><Bi hi="योजना लोड हो रही है..." en="Loading plan" inline /></span></div>
@@ -71,12 +92,13 @@ export default function YojanaScreen() {
     );
   }
 
-  if (!currentPlan) {
+  if (!isToday(currentPlan)) {
     return (
       <div className="screen">
-        <div className="empty-state">
+        <div className="empty-state" data-testid="yojana-empty">
           <div className="empty-icon">📋</div>
           <h2><Bi hi="कोई योजना नहीं" en="No plan yet" inline /></h2>
+          {loadFailed && <p data-testid="yojana-load-failed" style={{ marginTop: 8, color: '#8A5A00' }}><Bi hi="आज की योजना खुल नहीं सकी। इंटरनेट जाँचकर फिर कोशिश करें।" en="Today's plan could not be opened. Check the internet and try again." /></p>}
           <p style={{ marginTop: 8, color: 'var(--text-secondary)' }}>
             पहले "योजना बनाएँ" टैब पर कौशल चुनें और आज की योजना बनाएँ।
           </p>

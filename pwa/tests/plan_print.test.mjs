@@ -15,6 +15,8 @@ let JSDOM;
 try { ({ JSDOM } = await import('jsdom')); } catch (e) { console.log('SKIPPED: jsdom is not installed. To run this test: cd pwa; npm install --save-dev jsdom@24'); process.exit(0); }
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+// the plan screen shows TODAY's plan only ("आज की योजना"), so its fixture plans are dated today, on the phone's own calendar
+const TODAY = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
 const src = path.join(here, '..', 'src');
 const out = path.join(here, `.tmp-print-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
@@ -93,7 +95,7 @@ check('2. the print page imports the SAME SignalPanel as the plan screen, and wr
 check('...the same three questions appear on the screen and on the print page', () => {
   const qs = (h) => [...doc(h).querySelectorAll('[data-testid="core-question"]')].map((e) => e.textContent.replace(/^\d+\.\s*/, ''));
   assert.deepEqual(qs(html), ['Q1', 'Q2', 'Q3']);
-  assert.deepEqual(qs(render(Screen, auth(PLAN()))), ['Q1', 'Q2', 'Q3']);
+  assert.deepEqual(qs(render(Screen, auth({ ...PLAN(), plan_date: TODAY }))), ['Q1', 'Q2', 'Q3']);
 });
 check('...and the print page asks for the compact form (title, then the questions on one line; the extras are in the worksheet line)', () => {
   assert.ok(/<SignalPanel signal=\{block\.signal\} compact \/>/.test(printSrc));
@@ -200,7 +202,7 @@ check('the footer, like the worksheets\'', () => {
 
 console.log('\nreaching it');
 check('the plan screen has ONE "🖨️ प्रिंट" button in its title row, opening /plan/print', () => {
-  const sh = render(Screen, auth(PLAN()));
+  const sh = render(Screen, auth({ ...PLAN(), plan_date: TODAY }));
   assert.equal((sh.match(/data-testid="open-print"/g) || []).length, 1);
   assert.ok(/class="screen-header plan-title"[\s\S]*?data-testid="open-print"[^>]*>🖨️ प्रिंट</.test(sh));
   assert.ok(/navigate\('\/plan\/print'\)/.test(screenSrc));

@@ -13,6 +13,8 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+// the plan screen shows TODAY's plan only ("आज की योजना"), so its fixture plans are dated today, on the phone's own calendar
+const TODAY = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
 const src = path.join(here, '..', 'src');
 const out = path.join(here, `.tmp-chip-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
@@ -37,7 +39,7 @@ const check = (label, fn) => { fn(); n += 1; console.log(`  OK  ${label}`); };
 // a plan whose blocks add up to `sum` minutes; `extra` goes into the plan (session_minutes, the AI's total_minutes)
 const plan = (sum, extra = {}) => {
   const teach = Math.max(1, sum - 10 - 2 - 4);
-  return { plan_date: '2026-10-28', domain_id: 'numeracy', selected_competency_id: 'N2.3.2', groups: [{ label: 'progressor', count: 14, target_competency_id: 'N2.3.2' }],
+  return { plan_date: TODAY, domain_id: 'numeracy', selected_competency_id: 'N2.3.2', groups: [{ label: 'progressor', count: 14, target_competency_id: 'N2.3.2' }],
     plan: { anchor: {}, worksheets: {}, ...extra, rotation_schedule: { total_minutes: extra.total_minutes, blocks: [
       { type: 'anchor', duration_minutes: 10 }, { type: 'setup', duration_minutes: 2 }, { type: 'transition', duration_minutes: 4 }, { type: 'teach', teach_group: 'progressor', duration_minutes: teach }] } } };
 };

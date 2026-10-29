@@ -13,6 +13,8 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+// the plan screen shows TODAY's plan only ("आज की योजना"), so its fixture plans are dated today, on the phone's own calendar
+const TODAY = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
 const src = path.join(here, '..', 'src');
 const out = path.join(here, `.tmp-signal-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
@@ -39,7 +41,7 @@ const planWith = (signals) => {
   const teach = (g, script) => ({ type: 'teach', teach_group: g, duration_minutes: 15, time_start: '0:12', script_hi: script, talking_points: { i_do_hi: 'मैं', we_do_hi: 'हम', you_do_hi: 'तुम' },
     ...(signals[g] !== undefined ? { signal: signals[g] } : {}) });
   return {
-    plan_date: '2026-10-28', domain_id: 'numeracy', selected_competency_id: 'N2.3.2',
+    plan_date: TODAY, domain_id: 'numeracy', selected_competency_id: 'N2.3.2',
     groups: [{ label: 'beginner', count: 7, target_competency_id: 'N2.3.1' }, { label: 'progressor', count: 14, target_competency_id: 'N2.3.2' }, { label: 'proficient', count: 9, target_competency_id: 'N3.3.1' }],
     plan: { anchor: {}, worksheets: {}, rotation_schedule: { blocks: [{ type: 'anchor', duration_minutes: 10 }, teach('progressor', 'पहले एक जोड़ दिखाओ'), teach('beginner', 'तीली से गिनो'), teach('proficient', 'तीन अंकों का जोड़')] } },
   };
