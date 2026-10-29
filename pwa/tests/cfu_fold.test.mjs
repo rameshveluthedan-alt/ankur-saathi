@@ -17,6 +17,10 @@ const check = (label, fn) => { fn(); n += 1; console.log(`  OK  ${label}`); };
 const cfu = src.slice(src.indexOf('data-testid="cfu"'), src.indexOf('data-testid="cfu-item"'));
 const fold = cfu.slice(cfu.indexOf('<details'), cfu.indexOf('</details>'));
 
+check('sticks are named only in a maths plan: "(छड़ियों से)" and ", with sticks," depend on the plan’s subject (they leaked into every Hindi lesson)', () => {
+  assert.ok(fold.includes("{currentPlan.domain_id === 'numeracy' ? ' (छड़ियों से)' : ''}") && fold.includes("{currentPlan.domain_id === 'numeracy' ? ', with sticks,' : ''}"));
+  assert.ok(!/समझाएँ \(छड़ियों से\)/.test(fold) && !/at once, with sticks,/.test(fold));
+});
 check('the heading "समझ की जाँच" (Check for understanding) is OUTSIDE the fold: always visible', () => {
   const heading = cfu.indexOf('hi="समझ की जाँच"');
   assert.ok(heading > -1 && heading < cfu.indexOf('<details'));
