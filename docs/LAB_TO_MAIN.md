@@ -5,7 +5,7 @@
 
 ## What moves
 
-- **46 lab commits** on `lab/experiments` since `main` at `4e17b06` (Release candidate 3): 138 files (this note included).
+- **The lab commits** on `lab/experiments` since `main` at `4e17b06` (Release candidate 3). Count them with `git log --oneline main..lab/experiments`, and see the files with `git diff --stat main..lab/experiments` (a fixed number here would go out of date with every lab commit).
 - **No database change.** The one schema file touched (`db/schema/09_auth.sql`) only has its comment updated (the event list).
 - **Two new read-only server routes:** `GET /progress/mentor/{teacher}` (the mentor report) and `GET /progress/class-summary/{teacher}` (the class summary).
   One new audit event name: `class_summary_view` (each opening of the class summary is logged).
