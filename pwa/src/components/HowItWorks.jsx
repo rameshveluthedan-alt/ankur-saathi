@@ -9,18 +9,18 @@ export const HOW_STEPS = [
   { icon: '📋', hi: 'आज की योजना', en: "Today's plan", part: { hi: 'AI + जाँच', en: 'AI + checks' },
     text: { hi: 'AI जाँची-परखी सामग्री (गतिविधियाँ, पाठ, आम गलतियाँ) से हर समूह का पाठ, समझ की जाँच और वर्कशीट लिखता है। ऐप हर योजना को नियमों पर जाँचता है।',
             en: "The AI writes each group's lesson, understanding check and worksheet from checked content (activities, passages, common mistakes). The app checks every plan against rules." } },
-  { icon: '☑️', hi: 'समीक्षा', en: 'Review', part: { hi: 'फ़ोटो से पढ़ना, नमूना', en: 'photo reading, sampling' },
-    text: { hi: 'आप हर समूह के लिए अपना निर्णय दर्ज करते हैं, फिर कुछ बच्चों (नमूना) का काम देखते हैं: वर्कशीट की फ़ोटो (AI पढ़ता है), अवलोकन या पढ़कर सुनाना।',
-            en: "You record your decision for each group, then look at a sample of children's work: a worksheet photo (read by the AI), observation, or reading aloud." } },
+  { icon: '☑️', hi: 'समीक्षा', en: 'Review', part: { hi: 'फ़ोटो, अवलोकन, पढ़कर सुनाना', en: 'photo, observation, reading aloud' },
+    text: { hi: 'तीन चरण: हर समूह का आपका पहला अनुमान; बच्चों का काम देखें (वर्कशीट की फ़ोटो जिसे AI पढ़ता है, अवलोकन, या पढ़कर सुनाना, जो कौशल के लिए ठीक हो); और आज की जाँच देखकर अंतिम निर्णय।',
+            en: "Three steps: your first judgment for each group; the children's work (a worksheet photo read by the AI, observation, or reading aloud: whichever fits the skill); and a final decision with today's evidence in front of you." } },
   { icon: '📊', hi: 'कक्षा प्रगति', en: 'Class progress', part: { hi: 'आज के नतीजे', en: "today's results" },
     text: { hi: 'आज के नतीजे, आपके निर्णय, और जिन बच्चों पर एक नज़र डालनी है।', en: "Today's results, your decisions, and the children to look at." } },
 ];
 
-/** "कैसे काम करता है" (How it works): a fold, closed by default, on the login screen and on Profile. */
+/** "अंकुर साथी कैसे काम करता है?" (How Ankur Saathi works): a fold, closed by default, on the login screen only (Profile is for account tasks). */
 export default function HowItWorks({ className = 'card fold' }) {
   return (
     <details className={className} data-testid="how-it-works" style={{ padding: '4px 12px' }}>
-      <summary><span>ℹ️ <Bi hi="कैसे काम करता है?" en="How it works" inline /></span></summary>
+      <summary><span>ℹ️ <Bi hi="अंकुर साथी कैसे काम करता है?" en="How Ankur Saathi works" inline /></span></summary>
       <ol style={{ listStyle: 'none', padding: 0, margin: '4px 0 0' }}>
         {HOW_STEPS.map((s, i) => (
           <li key={s.en} data-testid="how-step" style={{ display: 'flex', gap: 8, padding: '6px 0', borderTop: i ? '1px dashed var(--border)' : 'none' }}>

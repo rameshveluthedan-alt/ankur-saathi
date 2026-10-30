@@ -90,7 +90,7 @@ export default function LoginScreen() {
         {error && <p data-testid="login-error" role="alert" style={{ color: 'var(--beginner)', fontSize: '0.875rem', marginBottom: 8 }}>{error}</p>}
         <button className="btn btn-primary" onClick={handleLogin} disabled={loading} data-testid="login-submit">{loading ? <Bi hi="लॉगिन हो रहा है..." en="Logging in" inline /> : <Bi hi="लॉगिन करें" en="Login" inline />}</button>
         <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 10 }}><Bi hi="पासवर्ड भूल गए? अपने स्कूल लीडर से कहें।" en="Forgot your password? Ask your school leader." /></p>
-        <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}><Bi hi="खाता आपके स्कूल लीडर बनाते हैं।" en="Your school leader makes your account." /></p>
+        <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}><Bi hi="आपका खाता आपके स्कूल लीडर द्वारा बनाया जाता है।" en="Your account is created by your school leader." /></p>
       </div>
 
       {DEMO_HINT && (
@@ -135,8 +135,8 @@ export default function LoginScreen() {
 
           {/* 3. The school leader */}
           <DemoCard acct={LEADER} code={code} fill={fill} icon="🏫"
-            title={<Bi hi="स्कूल लीडर: खाते सँभालें" en="School leader: manage the accounts" />}
-            lines={[<Bi key="w" hi="पढ़ाते भी हैं; शिक्षकों के खाते देखते, खोलते और पासवर्ड रीसेट करते हैं" en="Teaches too; lists, unlocks and resets the teachers' accounts" />]} />
+            title={<Bi hi="स्कूल लीडर: स्कूल के खाते सँभालें" en="School leader: manage the school's accounts" />}
+            lines={[<Bi key="w" hi="पढ़ाते भी हैं; शिक्षकों के खाते देखते, अनलॉक करते और पासवर्ड रीसेट करते हैं।" en="Teaches too; views teachers' accounts, unlocks them and resets passwords." />]} />
           <button type="button" data-testid={`demo-${PRACTICE.code}`} onClick={() => fill(PRACTICE.code, PRACTICE.password)} aria-pressed={code === PRACTICE.code}
             className={`demo-link ${code === PRACTICE.code ? 'selected' : ''}`}
             style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '6px 2px', fontSize: '0.75rem', fontFamily: 'inherit', color: 'var(--green-dark)', minHeight: 44 }}>

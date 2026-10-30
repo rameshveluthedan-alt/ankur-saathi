@@ -1,4 +1,4 @@
-// UI review, points 2-4: "कैसे काम करता है" (how the parts come together) on the login screen and on Profile; logout at the top of Profile, asking first
+// UI review, points 2-4: "अंकुर साथी कैसे काम करता है?" (how the parts come together) on the login screen only (not on Profile); logout at the top of Profile, asking first
 // (it removes this phone's offline copies); and failures in plain Hindi a teacher can act on, never the server's raw English.
 // The REAL Login and Profile screens in a simulated browser, and services/errors.js. No server.
 //
@@ -45,14 +45,14 @@ let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${o
 console.log('2. "कैसे काम करता है"');
 await show(Login);
 const how = () => q('[data-testid="how-it-works"]');
-check('on the login screen, before signing in: a fold "ℹ️ कैसे काम करता है?", closed', how() && how().tagName === 'DETAILS' && !how().open && /कैसे काम करता है\?/.test(how().querySelector('summary').textContent));
-check('four steps in the app\'s order, each named as its tab and naming what powers it: योजना बनाएँ (कौशल-सीढ़ी), आज की योजना (AI + जाँच), समीक्षा (फ़ोटो से पढ़ना, नमूना), कक्षा प्रगति',
+check('on the login screen, before signing in: a fold "ℹ️ अंकुर साथी कैसे काम करता है?" (How Ankur Saathi works), closed', how() && how().tagName === 'DETAILS' && !how().open && /अंकुर साथी कैसे काम करता है\?/.test(how().querySelector('summary').textContent) && /How Ankur Saathi works/.test(how().querySelector('summary').textContent));
+check('four steps in the app\'s order, each named as its tab and naming what powers it: योजना बनाएँ (कौशल-सीढ़ी), आज की योजना (AI + जाँच), समीक्षा (फ़ोटो, अवलोकन, पढ़कर सुनाना), कक्षा प्रगति',
   (() => { const st = qa('[data-testid="how-step"]').map((li) => li.textContent);
-    return st.length === 4 && /1\. योजना बनाएँ.*कौशल-सीढ़ी/.test(st[0]) && /2\. आज की योजना.*AI \+ जाँच/.test(st[1]) && /3\. समीक्षा.*फ़ोटो से पढ़ना, नमूना/.test(st[2]) && /4\. कक्षा प्रगति/.test(st[3]); })());
+    return st.length === 4 && /1\. योजना बनाएँ.*कौशल-सीढ़ी/.test(st[0]) && /2\. आज की योजना.*AI \+ जाँच/.test(st[1]) && /3\. समीक्षा.*फ़ोटो, अवलोकन, पढ़कर सुनाना/.test(st[2]) && /पहला अनुमान/.test(st[2]) && /अंतिम निर्णय/.test(st[2]) && /अवलोकन/.test(st[2]) && /पढ़कर सुनाना/.test(st[2]) && /observation, or reading aloud/.test(st[2]) && /4\. कक्षा प्रगति/.test(st[3]); })());
 check('...the loop back to tomorrow\'s plan, and that names never reach the AI', /↻ आपके निर्णय और आज के नतीजे कल की योजना का सुझाव बनाते हैं/.test(q('[data-testid="how-loop"]').textContent) && /बच्चों के नाम AI को कभी नहीं भेजे जाते/.test(how().textContent));
 check('every line keeps its English in a hideable translation ("Hindi only" hides it)', qa('[data-testid="how-step"]').every((li) => li.querySelector('.en')) && !!q('[data-testid="how-loop"] .en'));
 await show(Account);
-check('...and on Profile, the same component', !!how() && /import HowItWorks from '\.\.\/components\/HowItWorks'/.test(read('screens/AccountScreen.jsx')) && /import HowItWorks from '\.\.\/components\/HowItWorks'/.test(read('screens/LoginScreen.jsx')));
+check('...and NOT on Profile (a duplicate there: Profile is for account tasks); it is on the login screen only', !how() && !/HowItWorks/.test(read('screens/AccountScreen.jsx')) && /import HowItWorks from '\.\.\/components\/HowItWorks'/.test(read('screens/LoginScreen.jsx')));
 
 console.log('\n3. logout');
 const lo = () => qa('[data-testid="logout"]');

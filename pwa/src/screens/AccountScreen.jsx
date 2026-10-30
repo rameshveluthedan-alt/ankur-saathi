@@ -8,7 +8,6 @@ import { PinChangeForm } from './ChangePinScreen';
 import { getHindiOnly, setHindiOnly, bi } from '../services/language';
 import { getFamiliarMode, setFamiliarMode } from '../services/preferences';
 import Bi from '../components/Bi';
-import HowItWorks from '../components/HowItWorks';
 
 const GRADE_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
 
@@ -69,8 +68,6 @@ export default function AccountScreen() {
           <Bi hi="लॉग आउट" en="Log out" />
         </button>
       </div>
-
-      <HowItWorks />
 
       <div className="card" data-testid="language-card">
         <h3 style={{ marginBottom: 6 }}>🔤 <Bi hi="भाषा" en="Language" inline /></h3>

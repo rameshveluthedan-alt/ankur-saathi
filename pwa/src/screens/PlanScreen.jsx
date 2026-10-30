@@ -17,6 +17,7 @@ import SessionLength from '../components/SessionLength';
 import { getSessionMinutes, setSessionMinutes } from '../services/preferences';
 import ReplacePlanDialog from '../components/ReplacePlanDialog';
 import SuggestedSkill from '../components/SuggestedSkill';
+import { CHANNELS } from '../services/reviewWays';
 import { planMinutes, PRESETS } from '../services/planMinutes';
 
 const GRADE_LABELS = { balvatika: 'BV', grade_1: 'G1', grade_2: 'G2', grade_3: 'G3' };
@@ -36,7 +37,13 @@ const TIERS = {
   untested:     { icon: '○', hi: 'अभी परखा नहीं', en: 'Not yet tested', color: '#555', bg: '#EDEDED',
                   what: 'Not yet run through the real AI.' },
 };
-const TIER_ORDER = ['tested', 'ai_written', 'experimental', 'untested'];
+// how a skill is checked at the Review, on every skill of the list (the same icons and words as the Review's three ways, services/reviewWays.js)
+const MODE = {
+  observed:     { icon: '✓',  id: 'observed', short: { hi: 'देखकर', en: 'observe' } },
+  oral_reading: { icon: '⏱️', id: 'orf',      short: { hi: 'पढ़कर', en: 'read aloud' } },
+  written:      { icon: '📸', id: 'photo',    short: { hi: 'फ़ोटो', en: 'photo' } },
+};
+const modeOf = (c) => MODE[c.assessment_modality] || MODE.written;
 const fmtClock = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 
 const PLAN_FAILED = { hi: 'योजना नहीं बन सकी', en: 'The plan could not be made' };
@@ -178,9 +185,7 @@ export default function PlanScreen() {
     setGenerating(false);
   };
 
-  const tierCounts = {};
-  competencies.forEach(c => { const t = c.coverage_tier || 'untested'; tierCounts[t] = (tierCounts[t] || 0) + 1; });
-  const selectedSkill = competencies.find(c => c.id === selectedId);
+    const selectedSkill = competencies.find(c => c.id === selectedId);
   const selectedTier = selectedSkill ? (selectedSkill.coverage_tier || 'untested') : null;
 
   const filtered = gradeFilter ? competencies.filter(c => c.grade_level === gradeFilter) : competencies;
@@ -289,35 +294,6 @@ export default function PlanScreen() {
       )}
 
       {existing.status !== 'checking' && !locked && (<>
-      {!loading && competencies.length > 0 && (
-        // one line with the counts; the explanation and the labels' meaning open on tap (the skill list starts higher up)
-        <details className="card fold" style={{ padding: '4px 12px' }} data-testid="coverage-card">
-          <summary style={{ fontWeight: 400, color: 'var(--text-secondary)', fontSize: '0.75rem' }}>
-            <span style={{ fontWeight: 600 }}>ज्ञान-आधार कवरेज<span className="en en-inline" lang="en">Knowledge-base coverage</span>:</span>
-            <span style={{ marginLeft: 4 }}>{TIER_ORDER.filter(t => tierCounts[t]).map(t => <span key={t} title={TIERS[t].hi} style={{ color: TIERS[t].color, fontWeight: 600, marginRight: 8 }}>{TIERS[t].icon} {tierCounts[t]}</span>)}</span>
-          </summary>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 6px' }}>
-            हर कौशल के लिए योजना बनती है; लेबल बताता है कि उसके पीछे कितनी जाँची-परखी सामग्री है।
-            <span className="en" lang="en">Every skill gets a plan; the label says how much checked material stands behind it.</span>
-          </div>
-          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-            {TIER_ORDER.filter(t => tierCounts[t]).map(t => (
-              <span key={t} style={{ background: TIERS[t].bg, color: TIERS[t].color, borderRadius: 10, padding: '2px 8px', fontSize: '0.7rem', fontWeight: 600 }}>
-                {TIERS[t].icon} {TIERS[t].hi}<span className="en en-inline" lang="en" style={{ color: 'inherit', fontWeight: 400 }}>{TIERS[t].en}</span> · {tierCounts[t]}
-              </span>
-            ))}
-          </div>
-          <details style={{ marginTop: 6 }}>
-            <summary style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', cursor: 'pointer', minHeight: 32 }}><Bi hi="इन लेबलों का मतलब" en="What the labels mean" inline /></summary>
-            {TIER_ORDER.map(t => (
-              <div key={t} style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 4 }}>
-                <b style={{ color: TIERS[t].color }}>{TIERS[t].icon} {TIERS[t].hi}<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>{TIERS[t].en}</span></b>: <span lang="en">{TIERS[t].what}</span>
-              </div>
-            ))}
-          </details>
-        </details>
-      )}
-
       {/* how long the teacher has today: just above the skill list, so it is set before a skill is chosen */}
       <SessionLength value={sessionMinutes} onChange={chooseMinutes} disabled={generating} />
 
@@ -333,6 +309,12 @@ export default function PlanScreen() {
             onClick={() => setGradeFilter(g)}>{GRADE_LABELS[g]}</button>
         ))}
       </div>
+
+      {!loading && competencies.length > 0 && (
+        <p data-testid="mode-key" style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', margin: '0 0 6px' }}>
+          {CHANNELS.map((ch, k) => <span key={ch.id}>{k ? ' · ' : ''}{ch.icon} <Bi hi={ch.hi} en={ch.en} inline /></span>)}: <Bi hi="हर कौशल कैसे जाँचा जाता है" en="how each skill is checked" inline />
+        </p>
+      )}
 
       {loading ? (
         <div className="loading"><div className="spinner" /><span><Bi hi="लक्ष्य लोड हो रहे हैं..." en="Loading competencies" inline /></span></div>
@@ -355,8 +337,8 @@ export default function PlanScreen() {
                         {T.icon} {T.hi}
                       </span>); })()}
                   </span>
-                  <span className="grade-tag">
-                    {c.assessment_modality === 'observed' ? '✓' : c.assessment_modality === 'oral_reading' ? '⏱️' : '📝'}
+                  <span className="grade-tag" data-testid="skill-mode" data-mode={modeOf(c).id} style={{ textAlign: 'center', lineHeight: 1.2 }}>
+                    {modeOf(c).icon}<br /><span style={{ fontSize: '0.55rem' }}>{modeOf(c).short.hi}<span className="en en-inline" lang="en" style={{ fontSize: '0.5rem' }}>{modeOf(c).short.en}</span></span>
                   </span>
                 </div>
               ))}

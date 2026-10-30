@@ -34,6 +34,6 @@ check('the reading-aloud form says, in Hindi and in English, that no audio is re
 check('...and says what the teacher does: listen to one child for a minute, then enter the words and the errors', review.includes('एक बच्चे को एक मिनट पढ़ते सुनें') && /Listen to one child read for a minute/.test(review));
 check('the button says it saves a reading score, not that it records', review.includes('पठन दर्ज करें') && review.includes('Save reading score') && !/Record ORF/.test(review));
 const plan = all.find(([f]) => f.endsWith('screens/PlanScreen.jsx'))[1];
-check('the skill list marks a reading-aloud skill with a stopwatch', plan.includes("'oral_reading' ? '⏱️'"));
+check('the skill list marks a reading-aloud skill with a stopwatch', /oral_reading: \{ icon: '⏱️'/.test(plan));
 
 console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks: the app has no way to record sound, and nothing on screen says it does'}`);

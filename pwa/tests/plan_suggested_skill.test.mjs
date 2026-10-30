@@ -78,5 +78,21 @@ cached = async () => ({ plan_date: '2026-10-28', domain_id: 'numeracy', selected
 await show();
 check('today\'s plan already exists: the screen is locked, so no card', !card() && !!q('[data-testid="plan-status"]'));
 
+console.log('\nhow each skill is checked (30 Oct): an icon AND a word, as in the Review');
+const SKILLS_BEFORE = SKILLS.slice();
+SKILLS.splice(0, SKILLS.length, { ...sk('N0.1.1', 'grade_1'), assessment_modality: 'observed' }, { ...sk('N2.3.2'), assessment_modality: 'written' }, { ...sk('L2.5.1'), assessment_modality: 'oral_reading' }, { ...sk('N2.3.3'), assessment_modality: 'something_new' });
+proposal = proposalWith(null, 'no_decision', false); cached = async () => { throw notFound(); };
+await show();
+const modeOfSkill = (id) => [...document.querySelectorAll('.competency-item')].find((e) => e.textContent.includes(id)).querySelector('[data-testid="skill-mode"]');
+check('an observed skill: "✓ देखकर"', modeOfSkill('N0.1.1').dataset.mode === 'observed' && /✓/.test(modeOfSkill('N0.1.1').textContent) && /देखकर/.test(modeOfSkill('N0.1.1').textContent));
+check('a written skill is the PHOTO way, with the Review’s own icon: "📸 फ़ोटो" (it was 📝 before, which the Review never uses)', modeOfSkill('N2.3.2').dataset.mode === 'photo' && /📸/.test(modeOfSkill('N2.3.2').textContent) && /फ़ोटो/.test(modeOfSkill('N2.3.2').textContent) && !/📝/.test(modeOfSkill('N2.3.2').textContent));
+check('a reading-aloud skill: "⏱️ पढ़कर"', modeOfSkill('L2.5.1').dataset.mode === 'orf' && /⏱️/.test(modeOfSkill('L2.5.1').textContent) && /पढ़कर/.test(modeOfSkill('L2.5.1').textContent));
+check('a mode the app does not know falls back to the photo way (as before)', modeOfSkill('N2.3.3').dataset.mode === 'photo');
+check('the English words are there too, hideable ("observe", "photo", "read aloud")', /observe/.test(modeOfSkill('N0.1.1').textContent) && /photo/.test(modeOfSkill('N2.3.2').textContent) && /read aloud/.test(modeOfSkill('L2.5.1').textContent) && !!modeOfSkill('N0.1.1').querySelector('.en'));
+check('one key line above the list, in the Review’s own words: "✓ देखकर दर्ज करें · 📸 वर्कशीट की फ़ोटो · ⏱️ पढ़कर सुनाना: हर कौशल कैसे जाँचा जाता है"', /✓ देखकर दर्ज करें.*📸 वर्कशीट की फ़ोटो.*⏱️ पढ़कर सुनाना.*हर कौशल कैसे जाँचा जाता है/.test(q('[data-testid="mode-key"]').textContent)
+  && (q('[data-testid="mode-key"]').compareDocumentPosition(q('.competency-item')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING));
+check('the coverage summary line is gone, and each skill still carries its own label', !q('[data-testid="coverage-card"]') && !/ज्ञान-आधार कवरेज/.test(document.body.textContent) && /परखा हुआ/.test(document.body.textContent));
+SKILLS.splice(0, SKILLS.length, ...SKILLS_BEFORE);
+
 await act(async () => root.unmount());
 console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks: the Plan screen suggests the skill the last review points to, says why, and chooses it in one tap'}`);
