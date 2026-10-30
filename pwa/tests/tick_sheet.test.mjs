@@ -33,7 +33,11 @@ const css = fs.readFileSync(path.join(src, 'index.css'), 'utf8');
 
 // ── the fake server: the Beginners observed, the Progressors photographed, the Proficients read aloud ──
 const teach = (g) => ({ type: 'teach', teach_group: g, duration_minutes: 20, script_hi: `${g} का काम`, talking_points: { you_do_hi: 'तुम करोगे' } });
-const PLAN = () => ({ plan_date: '2026-10-29', domain_id: 'numeracy', selected_competency_id: 'N2.3.2', served_from: 'ai',
+// the plan screen shows TODAY's plan only, so the fixture plan is dated today, on the phone's own calendar
+const TODAY = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
+const HI_MONTHS = ['जन॰', 'फ़र॰', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अग॰', 'सित॰', 'अक्टू॰', 'नव॰', 'दिस॰'];
+const TODAY_HI = (() => { const [y, m, d] = TODAY.split('-').map(Number); return `${d} ${HI_MONTHS[m - 1]} ${y}`; })();
+const PLAN = () => ({ plan_date: TODAY, domain_id: 'numeracy', selected_competency_id: 'N2.3.2', served_from: 'ai',
   groups: [{ label: 'beginner', count: 4, target_competency_id: 'N0.1.1' }, { label: 'progressor', count: 4, target_competency_id: 'N2.3.2' }, { label: 'proficient', count: 3, target_competency_id: 'L2.5.1' }],
   plan: { worksheets: {}, anchor: {}, rotation_schedule: { blocks: [teach('beginner'), teach('progressor'), teach('proficient')] } } });
 const CH = { has_plan: true, channels: { observed: ['beginner'], photo: ['progressor'], orf: ['proficient'] },
@@ -56,8 +60,8 @@ let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${o
 console.log('the sheet');
 await show(Ticks);
 const sheet = q('[data-testid="tick-sheet"]');
-check('it asks the server for the review ways of the plan\'s own day and subject', calls.length === 1 && calls[0][0] === 'T1' && calls[0][1] === '2026-10-29' && calls[0][2] === 'numeracy', JSON.stringify(calls));
-check('the title: "टिक शीट", the teacher\'s code, the class and the date', /टिक शीट · MPT101 · कक्षा 2 · 29 अक्टू॰ 2026/.test(q('[data-testid="ticks-title"]').textContent), q('[data-testid="ticks-title"]').textContent);
+check('it asks the server for the review ways of the plan\'s own day and subject', calls.length === 1 && calls[0][0] === 'T1' && calls[0][1] === TODAY && calls[0][2] === 'numeracy', JSON.stringify(calls));
+check('the title: "टिक शीट", the teacher\'s code, the class and the date', q('[data-testid="ticks-title"]').textContent.includes(`टिक शीट · MPT101 · कक्षा 2 · ${TODAY_HI}`), q('[data-testid="ticks-title"]').textContent);
 check('when to fill it and where it goes after class (step 2)', /तुम करोगे/.test(q('[data-testid="ticks-when"]').textContent) && /चरण 2/.test(q('[data-testid="ticks-when"]').textContent));
 check('one table per observed or read-aloud group, in group order; none for the photographed Progressors', JSON.stringify(qa('[data-testid^="tick-group-"]').map((e) => e.dataset.testid)) === JSON.stringify(['tick-group-beginner', 'tick-group-proficient']));
 const beg = q('[data-testid="tick-group-beginner"]');
