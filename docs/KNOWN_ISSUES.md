@@ -87,3 +87,14 @@ In practice this is the right behaviour (the teacher doesn't need to "confirm" w
 ## 45-minute plans are hidden for the submission
 
 At 45 minutes the teach blocks are 15, 7 and 7 minutes, but the prompt still assumes 22–29-minute blocks. In a test plan (N2.3.2, 29 Oct) a 7-minute Beginner block headed N2.3.2 (addition with regrouping) taught and tested only addition without regrouping, so its worksheet results would have been recorded against the wrong skill. The 45 choice is removed from the time picker (`pwa/src/services/preferences.js`); the server still accepts it. Fix on the roadmap: give the prompt each block's real length, and decide with the education lead whether a 45-minute session teaches two groups instead of three (`docs/drafts/PROMPT_REVIEW_29OCT.md`, point 1).
+
+## The photo analysis reads well but names the mistake roughly
+
+**Found:** 30 October 2026, in the first scored run on photographed worksheets (`docs/vision/`).
+
+**What happens:** on five N2.3.2 sheets (adult handwriting, deliberate mistakes) the AI read the numbers almost perfectly, but when a sheet had carry mistakes it named "drops the carry" (M1) and "writes the whole ones sum" (M2) together every time, and it never named "carries the wrong digit" (M3). It found 5 of 8 copying slips; it missed a plus turned into a minus and a copied number.
+
+**Impact:** the teacher's "which children got it wrong" is dependable; the "why" is a hint. A missed copying slip marks a child down for something that is not a mistake in the skill.
+
+**Status for this submission:** not changed. The review screens show the AI's reading for the teacher to look at, and the teacher decides (her own first judgment is recorded before the photo is read). Improving it needs more test sheets (children's handwriting, other skills, Hindi) and prompt work on separating the carry mistakes (`prompts/vision_analysis.py`).
+

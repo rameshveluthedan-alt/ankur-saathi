@@ -1,0 +1,70 @@
+{
+  "worksheets": {
+    "progressor": {
+      "required_count": 6,
+      "instructions_hi": "पहले इकाई जोड़ो। अगर इकाई का योग 10 या उससे ज़्यादा हो तो सिर्फ़ एक अंक इकाई में लिखो और हासिल दहाई में जोड़ो।",
+      "example_block": {
+        "problem_hi": "27 + 15",
+        "answer": "42"
+      },
+      "problems": [
+        {
+          "number": 1,
+          "problem_hi": "36 + 27",
+          "answer": "63",
+          "row_type": "grid",
+          "diagnostic_for_misconception": null
+        },
+        {
+          "number": 2,
+          "problem_hi": "48 + 35",
+          "answer": "83",
+          "row_type": "grid",
+          "diagnostic_for_misconception": null
+        },
+        {
+          "number": 3,
+          "problem_hi": "25 + 45",
+          "answer": "70",
+          "row_type": "grid",
+          "diagnostic_for_misconception": null
+        },
+        {
+          "number": 4,
+          "problem_hi": "19 + 43 = ___",
+          "answer": "62",
+          "row_type": "plain",
+          "diagnostic_for_misconception": null
+        },
+        {
+          "number": 5,
+          "problem_hi": "56 + 38 = ___",
+          "answer": "94",
+          "row_type": "plain",
+          "diagnostic_for_misconception": null
+        },
+        {
+          "number": 6,
+          "problem_hi": "67 + 29 = ___",
+          "answer": "96",
+          "row_type": "plain",
+          "diagnostic_for_misconception": null
+        },
+        {
+          "number": 7,
+          "problem_hi": "रवि के पास 38 कंचे थे। दोस्त ने उसे 17 कंचे और दिए। रवि के पास अब कुल कितने कंचे हैं?",
+          "answer": "55 कंचे",
+          "row_type": null,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "number": 8,
+          "problem_hi": "बाज़ार में सीता ने 46 रुपये की सब्ज़ी और 39 रुपये का फल खरीदा। कुल कितने रुपये लगे?",
+          "answer": "85 रुपये",
+          "row_type": null,
+          "diagnostic_for_misconception": null
+        }
+      ]
+    }
+  }
+}

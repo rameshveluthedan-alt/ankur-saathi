@@ -38,7 +38,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 | | Promise | Where it stands |
 |---|---|---|
 | ✅ | Photo channel: Claude Vision reads the answers by roll number and classifies misconceptions against the taxonomy | `/review/analyse-photos`, the taxonomy comes from Layer 1. |
-| ❌ | Photo analysis validated on real children's handwriting (the proposal named this a risk to test in the Build stage) | A protocol (`docs/VISION_PHOTO_TEST.md`), a scoring script (`scripts/eval_vision.py`) and a truth-file template exist. No results on real handwriting are recorded yet. |
+| 🟡 | Photo analysis validated on real children's handwriting (the proposal named this a risk to test in the Build stage) | **Not validated; a smoke test only** (`docs/vision/`): 5 worksheets, one skill (N2.3.2), handwriting by an adult, not children. It read the roll number 5 of 5 and 39 of 40 answers correctly (30 of 30 sums, judged right or wrong exactly as the teacher did), found 5 of 8 copying slips, and named the mistake pattern correctly on 1 of 3 sheets. A test on children's handwriting, more skills and Hindi sheets is still to do (protocol: `docs/VISION_PHOTO_TEST.md`). |
 | ✅ | Sampling: all of the taught group, a rotating system-chosen sample of the others | `docs/SAMPLING.md`. |
 | ✅ | Observed channel: the teacher taps Achieved / Partial / Not achieved per child | `/review/observed`. |
 | ✅ | Reading fluency: stopwatch + manual entry (CWPM + errors) | `/review/orf`. The teacher times one child and types the result; **no audio is recorded** (a class of groups at work is too noisy for a clear recording). A code check keeps the app unable to record sound. |
