@@ -98,3 +98,12 @@ At 45 minutes the teach blocks are 15, 7 and 7 minutes, but the prompt still ass
 
 **Status for this submission:** not changed. The review screens show the AI's reading for the teacher to look at, and the teacher decides (her own first judgment is recorded before the photo is read). Improving it needs more test sheets (children's handwriting, other skills, Hindi) and prompt work on separating the carry mistakes (`prompts/vision_analysis.py`).
 
+## The "tested / not yet tested" label on each skill is out of date
+
+**Found:** 30 October 2026, while removing the coverage summary line from the Plan screen.
+
+**What happens:** each skill on the Plan screen carries a label for how much testing stands behind it (✔ tested, ◐ AI-written content, ⚠ experimental, ○ not yet tested). The labels in the database were built before the real-model batch runs: 1 skill shows as tested, 1 as AI-written and 99 as not yet tested. Rebuilt from `docs/batch/batch_results.csv` (27 skills run), the counts would be 5 tested, 7 AI-written, 15 experimental and 74 not yet tested (`python scripts/build_coverage.py`, then loaded into the database).
+
+**Impact:** the labels understate the testing that was done, and show nothing at all for the skills whose plans failed a check. The 15 "experimental" skills come from earlier runs (22 to 26 Oct) and may have been fixed since, so they should be run again before they are shown as experimental.
+
+**Status for this submission:** to be decided before the freeze: either leave the labels as they are (and say so in the evaluator guide, which it does), or re-run the 27 skills, rebuild the labels and load them into the cloud database. The summary line that counted them was removed from the screen on 30 Oct.

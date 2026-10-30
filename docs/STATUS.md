@@ -16,7 +16,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 | ✅ | Whole-class anchor activity from the content bank | L2 bank: 14 anchors. Exact / related / topic-area / loose match, stated to the model. Semantic fallback built (v29g), OFF until the Thursday gate. |
 | ✅ | 3 teaching scripts: I Do / We Do / You Do with talking points per group | Every sum and answer key is also checked by code (added beyond the proposal). |
 | 🟡 | 3 levelled printable worksheets with roll-number grid | Done and print-ready, but as HTML printed from the browser, not server-made PDFs. Place-value grid, carry tab, board-work line for schools without printers. |
-| ✅ | Rotation schedule, transition scripts, peer monitors, warm-ups for independent groups | Rules in the prompt; checked on all 101 skills. |
+| ✅ | Rotation schedule, transition scripts, peer monitors, warm-ups for independent groups | Rules in the prompt; checked with the real model on 27 of the 101 skills so far (`docs/batch/batch_results.csv`). |
 | ✅ | Re-teaching built from yesterday's gaps (the loop closes) | Evidence-driven suggestion per group, the teacher's recorded decision drives it, re-teach is the group's main block. Check-for-understanding questions added (not in the proposal). |
 | ✅ | Advance / Re-teach / Not sure BEFORE the AI analysis; the AI proposes, the teacher decides | `/review/decisions` comes first; Progressors cannot move on separately (anchor design). |
 
@@ -114,7 +114,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 - **Check-for-understanding** show-me questions in every lesson, aimed at the last review's mistakes (`docs/CFU.md`).
 - **Sign-in and school administration**, rate limits and lockouts, daily **AI spending caps** per teacher, school and overall (`docs/AI_BUDGET.md`), and a nightly demo reset.
 - **An open-weights embedding route** for the L2 semantic retrieval: BGE-M3 run offline, vectors loaded from a file, no embedding call at runtime (`docs/SEMANTIC_RETRIEVAL.md`).
-- **Automated tests:** backend test suites, front-end tests, and a generation test over all 101 skills before each release.
+- **Automated tests:** backend test suites, front-end tests, and a generation test with the real model (27 of the 101 skills so far; the run over all 101 is still to do, `docs/BATCH_AND_COVERAGE.md`).
 
 ## Where the build differs from the proposal
 
