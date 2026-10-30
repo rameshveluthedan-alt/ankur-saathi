@@ -18,9 +18,10 @@ The teacher picks the day's skill on her phone. Ankur Saathi sorts the children 
 - a whole-class **anchor activity** (a short shared story or situation);
 - three levelled **teaching scripts** (I Do, We Do, You Do) with talking points and quick "show me" questions to check understanding;
 - three printable **worksheets** with a roll-number answer grid, and a line to copy on the board where there is no printer;
-- a **rotation schedule** with transition scripts, peer monitors and activities for the groups working alone.
+- a **rotation schedule** with transition scripts, peer monitors and activities for the groups working alone;
+- a one-page **printed plan** and a **paper tick sheet**, for a teacher who records during the lesson without her phone in hand.
 
-After class the teacher records **Advance, Re-teach or Not sure** for each group, photographs a sample of worksheets, and the evidence shapes tomorrow's plan (a group that struggled is re-taught). **The AI proposes, the teacher decides.** The interface is Hindi first. Only the teacher uses a phone; no child uses a device.
+After class the **Review** has three steps: her own **first judgment** for each group (Advance, Re-teach or Not sure) before the AI reads anything; **the children's work**, checked by a photo of the worksheet, a quick tap per child, or a one-minute reading count; and a **final decision** with the day's evidence in front of her. That evidence shapes tomorrow's plan (a group that struggled is re-taught). A **class summary** gives the teacher the children to look at and the next step; a **mentor report** (roll numbers only, with talking points from fixed rules) gives a visiting officer something to talk through with her. **The AI proposes, the teacher decides.** The interface is Hindi first. Only the teacher uses a phone; no child uses a device.
 
 ## How AI is used
 
@@ -32,7 +33,7 @@ After class the teacher records **Advance, Re-teach or Not sure** for each group
 | **Anthropic Claude** (vision) | `claude-sonnet-5-5` (`CLAUDE_VISION_MODEL`) | `backend/app/services/review_service.py`, `prompts/vision_analysis.py` | Reads photos of worksheets by roll number and classifies mistakes against the misconception list. The teacher has already recorded her own decision. | same key |
 | **BAAI/bge-m3** (open weights, MIT licence), **offline only** | `BAAI/bge-m3` | `scripts/embed_content.py` | Run once on a laptop to compute vectors for the content bank and the skills. The vectors are stored in `db/seeds/content/embeddings.json` and loaded into PostgreSQL. **The running app never loads or calls a model for this.** | none |
 
-**The only key the app needs is `ANTHROPIC_API_KEY`.** It is read on the server (Secret Manager in the cloud, `backend/.env` locally) and is never sent to the browser. There is no other AI service, no embedding API, no analytics and no third-party script. With `AI_ENABLED=false` the app makes no AI call at all and serves recorded sample plans for skills N2.2.1 and N2.3.2.
+**The only key the app needs is `ANTHROPIC_API_KEY`.** It is read on the server (Secret Manager in the cloud, `backend/.env` locally) and is never sent to the browser. There is no other AI service, no embedding API, no analytics and no third-party script. With `AI_ENABLED=false` the app makes no AI call at all and serves recorded sample plans for six skills (N0.1.1, N2.2.1, N2.3.2, L2.3.1, L2.5.1, L2.7.2).
 
 **What stands between the model and the teacher** (data input, processing, guardrails, evaluation, output):
 
@@ -52,7 +53,7 @@ After class the teacher records **Advance, Re-teach or Not sure** for each group
 
 ### 1. Get the code and install the backend
 ```bash
-git clone <this repository>
+git clone https://github.com/rameshveluthedan-alt/ankur-saathi.git
 cd Ankur-Saathi
 python -m venv backend/venv
 source backend/venv/bin/activate            # Windows PowerShell: backend\venv\Scripts\Activate.ps1
@@ -138,9 +139,9 @@ Dainik Yojana → the app, and printable worksheets
 backend/app/      FastAPI app: api/ (routes, sign-in), services/ (plan, review, progress, register, AI budget...), core/ (settings, database)
 backend/tests/    the backend test suites (python tests/test_X.py --env-file .env)
 prompts/          the prompts and rules sent to Claude, the Hindi style rules, the show-me question rules
-db/schema/        the database, 01 to 12 (12 = embeddings, optional)
+db/schema/        the database, 01 to 13 (12 = embeddings, optional; 13 = the school's consent, created by the app on first use)
 db/seeds/         curriculum, misconceptions, content bank, state plan, demo class, recorded sample plans
-pwa/src/          the app: screens (Plan, Yojana, Review, Progress, Register, Account), components, services
+pwa/src/          the app: screens (Make plan, Today's plan, Review, Class progress, Profile, class register, printable pages), components, services
 scripts/          operator tools: demo accounts, test teachers, nightly reset, AI usage, bridges, embeddings, tests, checks
 deploy/           Cloud Run guide, environment template, first-time setup
 docs/             one note per design topic (below)
@@ -179,6 +180,8 @@ docs/             one note per design topic (below)
 | [docs/SEMANTIC_RETRIEVAL.md](docs/SEMANTIC_RETRIEVAL.md) | the optional semantic retrieval |
 | [docs/MODEL_JSON.md](docs/MODEL_JSON.md), [docs/SCORING.md](docs/SCORING.md), [docs/SAMPLING.md](docs/SAMPLING.md) | reading model output, scoring, photo sampling |
 | [docs/VISION_PHOTO_TEST.md](docs/VISION_PHOTO_TEST.md) | how to test photo analysis on real worksheets |
+| [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md) | what we know is not right yet, and why |
+| [docs/LAB_UI_HANDOVER.md](docs/LAB_UI_HANDOVER.md) | the teacher-UI review rounds, change by change, with the tests and the open decisions |
 
 ## Team
 - **Vaishnavi**: Education Domain Lead (curriculum knowledge base, misconceptions, Hindi review)

@@ -43,3 +43,47 @@ With the rule in place (and a check in `plan_service.py` that each observation r
 When a teacher takes a photo of a worksheet and the AI returns its reading, each child's result is written to `assessment_evidence` as a `written_photo` row at that moment (`prompts/vision_analysis.py`), before the teacher has looked at the result screen. The regenerate warning on the Plan screen and the Progress screen both treat this as recorded evidence.
 
 In practice this is the right behaviour (the teacher doesn't need to "confirm" what she can see on her phone), but it's worth knowing that photo evidence appears before any teacher action beyond taking the photo.
+
+## Beginner and Proficient worksheets are tagged with the Progressors' mistakes
+
+**Found:** 29 October 2026, reviewing the plan prompt (`docs/drafts/PROMPT_REVIEW_29OCT.md`, point 2).
+
+**What happens:** the prompt lists only the mistakes of the Progressors' skill (the day's skill), yet every worksheet's mistake-revealing problems must carry "an ID from the misconception list". So the Beginner and Proficient sheets either borrow the Progressors' IDs (wrong for their own skill) or carry none.
+
+**Impact:** the photo analysis can name the wrong mistake for a Beginner or Proficient, or none. It probably explains part of why the N0.1.1 Beginner worksheet was weak (the first issue above).
+
+**Status for this submission:** not changed (a prompt change this late would put the plans that are known to work at risk). The fix is in the drafted plan prompt v2: one list of mistakes per group, used for both the show-me questions and the worksheets (`docs/drafts/PROMPT_DRAFT_V2.md`).
+
+## The show-me rules contradict the Hindi style rule
+
+**Found:** 29 October 2026, in the prompt review and in a reviewed plan for L2.5.1.
+
+**What happens:** the Hindi style rules say the teacher never uses abrupt "तुम" commands ("देखें", never "देखो"), but the model line in the show-me rules (`prompts/cfu_prompt.py`) is "बोर्ड पर देखो: 34 + 28 = 52 लिखा है।". A model copies an example before it follows a rule. A reviewed live plan for L2.5.1 still showed "बोर्ड पर देखो" in a Progressor's show-me question.
+
+**Impact:** a command form of the kind the education lead asked us to avoid can reach a teacher. The safety net (`hindi_style.soften_plan`) fixes the command forms it knows, but it is a net, not the rule.
+
+**Status for this submission:** not changed (one string, but even one string needs a new generation to confirm). Fix: "बोर्ड पर देखें" in the example (drafted in v2).
+
+## The plan prompt assumes a 90-minute session, but 45 and 60 minutes can be chosen
+
+**Found:** 29 October 2026, in the prompt review (point 1).
+
+**What happens:** the Plan screen offers 45, 60 and 90 minutes, and the code lays the day out for the length chosen. At 45 minutes the teach blocks are about 15, 7 and 7 minutes. The prompt still tells the model that independent activities run "22-29 minutes", that a re-teach block is "about 27 minutes", that the anchor is always 10 minutes, and that every block gets 3 show-me questions.
+
+**Impact:** a 45-minute plan may give a 7-minute block a full I Do, We Do and You Do. Until the plans are read, the 45 and 60 minute plans are not known to be good: this path has not been checked with the real model.
+
+**Status for this submission:** checked with the real model on 29 October (N2.3.2): **60 minutes read well; 45 did not**, so 45 is hidden from the picker (next entry) and 90 and 60 stay. A real fix (block lengths in the prompt, a shorter anchor, fewer show-me questions in a short block) is in `docs/drafts/PROMPT_DRAFT_V2.md`; whether a 7-minute block is worth teaching at all is a decision for the education lead.
+
+## Writing skills: the worksheets test reading, not writing
+
+**Found:** 30 October 2026, reading two plans for L2.7.2 side by side (`docs/drafts/PLAN_REVIEW_L2.7.2.md`): the recorded fallback plan and a new one.
+
+**What happens:** the Progressors and Proficients are taught to write 3-5 or 5-7 connected sentences, but most of their worksheet problems are reading-comprehension questions about a passage. The new plan adds one writing task to each sheet (1 problem in 6), with an open answer ("any 3 connected sentences") that the photo analysis cannot mark against an answer key. The Beginners' dictation sheet prints the sentences it dictates, so the children can copy them. No mistakes are recorded in the knowledge base for L2.7.1, L2.7.2 or L3.7.1.
+
+**Impact:** the photo after class measures comprehension, and records it as evidence for a writing skill. L2.7.2 is one of the six skills with a recorded fallback plan, so a judge can meet this.
+
+**Status for this submission:** not changed. Fixes (prompt, photo analysis, content) are listed in `docs/drafts/PLAN_REVIEW_L2.7.2.md`; the writing-sheet shape is the open question in `docs/drafts/PROMPT_DRAFT_3N_WORKSHEET.md`.
+
+## 45-minute plans are hidden for the submission
+
+At 45 minutes the teach blocks are 15, 7 and 7 minutes, but the prompt still assumes 22–29-minute blocks. In a test plan (N2.3.2, 29 Oct) a 7-minute Beginner block headed N2.3.2 (addition with regrouping) taught and tested only addition without regrouping, so its worksheet results would have been recorded against the wrong skill. The 45 choice is removed from the time picker (`pwa/src/services/preferences.js`); the server still accepts it. Fix on the roadmap: give the prompt each block's real length, and decide with the education lead whether a 45-minute session teaches two groups instead of three (`docs/drafts/PROMPT_REVIEW_29OCT.md`, point 1).
