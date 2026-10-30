@@ -22,6 +22,8 @@ import { planMinutes } from '../services/planMinutes';
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
 const ML = { whiteSpace: 'pre-line', overflowWrap: 'anywhere' };
 const fmt = (s) => String(s ?? '').replace(/\*\*|__/g, '');
+// "Why this plan?": only the labels the app itself wraps in **…** (the resources item) are bold; anything else stays plain text
+const boldLabels = (s) => String(s ?? '').split(/\*\*([^*\n]+)\*\*/g).map((part, i) => (i % 2 ? <strong key={i}>{part}</strong> : part.replace(/\*\*|__/g, '')));
 // the screen already shows the group's name, so drop a repeated leading label such as "शुरुआती:"
 const stripGroup = (t) => fmt(t).replace(/^\s*(शुरुआती|प्रगतिशील|दक्ष)(\s*\([^)]*\))?\s*[:：]\s*/, '');
 
@@ -425,7 +427,7 @@ export default function YojanaScreen() {
 
       {/* Why this plan? */}
       <div style={{ marginTop: 16, marginBottom: 80 }}>
-        <button onClick={() => setShowWhyPanel(!showWhyPanel)}
+        <button data-testid="why-toggle" onClick={() => setShowWhyPanel(!showWhyPanel)}
           style={{ background: 'none', border: 'none', color: 'var(--green-dark)', fontSize: '0.875rem', cursor: 'pointer', fontFamily: 'inherit', fontWeight: 600, minHeight: 44, padding: '0 4px' }}>
           {showWhyPanel ? '▾' : '▸'} <Bi hi="यह योजना क्यों?" en="Why this plan?" inline />
         </button>
@@ -434,8 +436,8 @@ export default function YojanaScreen() {
             {Array.isArray(explainability.items) ? explainability.items.map((item, i) => (
               <div key={i} style={{ marginBottom: 10 }}>
                 <strong>{fmt(item.title_hi)} <span className="en en-inline" lang="en">{fmt(item.title_en)}</span></strong>
-                <div style={ML}>{fmt(item.body_hi)}</div>
-                <div className="en" lang="en" style={{ fontSize: '0.75rem', ...ML }}>{fmt(item.body_en)}</div>
+                <div style={ML} data-testid="why-body">{boldLabels(item.body_hi)}</div>
+                <div className="en" lang="en" style={{ fontSize: '0.75rem', ...ML }}>{boldLabels(item.body_en)}</div>
               </div>
             )) : Object.entries(explainability).filter(([key]) => !key.startsWith('teacher_decision_')).map(([key, val]) => (
               <div key={key} style={{ marginBottom: 6 }}>

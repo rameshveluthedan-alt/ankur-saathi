@@ -18,11 +18,11 @@ try { ({ JSDOM } = await import('jsdom')); } catch (e) { console.log('SKIPPED: j
 const here = path.dirname(fileURLToPath(import.meta.url)); const src = path.join(here, '..', 'src'); const out = path.join(here, `.tmp-back-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
 const API = ['recordDecisions', 'recordObserved', 'recordORF', 'analysePhotos', 'getSavedAnalyses', 'getReviewCoverage', 'getReviewChannels', 'getCachedPlan',
-  'adminSchool', 'adminTeachers', 'adminResetPin', 'adminUnlock', 'adminRecordConsent', 'previewRegister', 'commitRegister', 'REGISTER_TEMPLATE_URL'];
+  'adminSchool', 'adminTeachers', 'adminResetPin', 'adminUnlock', 'adminRecordConsent', 'previewRegister', 'commitRegister', 'downloadRegisterTemplate'];
 const stubs = { '../App': 'export const useAuth = () => globalThis.__auth;',
   'react-router-dom': 'export const useNavigate = () => (...a) => globalThis.__navs.push(a); export const useLocation = () => globalThis.__location;',
   './ChangePinScreen': 'export const PinChangeForm = () => null;',
-  '../services/api': API.map((n) => (n === 'REGISTER_TEMPLATE_URL' ? `export const ${n} = '/t';` : `export const ${n} = (...a) => globalThis.__api.${n}(...a);`)).join('\n') };
+  '../services/api': API.map((n) => `export const ${n} = (...a) => globalThis.__api.${n}(...a);`).join('\n') };
 await build({ entryPoints: { review: path.join(src, 'screens/ReviewScreen.jsx'), dialog: path.join(src, 'components/ReplacePlanDialog.jsx'),
     account: path.join(src, 'screens/AccountScreen.jsx'), register: path.join(src, 'screens/RegisterScreen.jsx') },
   bundle: true, format: 'esm', platform: 'node', outdir: out, outExtension: { '.js': '.mjs' }, loader: { '.js': 'jsx', '.jsx': 'jsx' }, external: ['react', 'react-dom', 'react-dom/client'], logLevel: 'error',
@@ -51,7 +51,7 @@ globalThis.__api = {
   getCachedPlan: async () => JSON.parse(JSON.stringify(reply)), getReviewChannels: async () => ({ has_plan: false, levels: [], channels: {} }), getSavedAnalyses: async () => JSON.parse(JSON.stringify(SAVED)),
   getReviewCoverage: async () => null, recordDecisions: async () => ({}), recordObserved: async () => ({}), recordORF: async () => ({}), analysePhotos: async () => ({}),
   adminSchool: async () => ({}), adminTeachers: async () => ({ teachers: [] }), adminResetPin: async () => ({}), adminUnlock: async () => ({}), adminRecordConsent: async () => ({}),
-  previewRegister: async () => ({}), commitRegister: async () => ({}),
+  previewRegister: async () => ({}), commitRegister: async () => ({}), downloadRegisterTemplate: async () => { globalThis.__tpl += 1; },
 };
 let root;
 const flush = async () => { for (let i = 0; i < 6; i += 1) await act(async () => { await new Promise((r) => setTimeout(r, 0)); }); };
@@ -172,6 +172,14 @@ for (const [C, tid, name] of [[Account, 'account-back', 'Profile'], [Register, '
   await click(q(`[data-testid="${tid}"]`));
   check(`${name}, the app opened straight there: to the Plan screen (never out of the app)`, JSON.stringify(globalThis.__navs) === JSON.stringify([['/']]), JSON.stringify(globalThis.__navs));
 }
+
+console.log('\nthe class-register template');
+globalThis.__tpl = 0;
+await show(Register);
+const tpl = q('[data-testid="template-link"]');
+check('the template button is a button, not a plain link (a link to /api/... is answered by the installed app’s own page, so nothing downloaded)', !!tpl && tpl.tagName === 'BUTTON' && !tpl.getAttribute('href'));
+await click(tpl);
+check('tapping it fetches and saves the template with the teacher’s sign-in (the same way as the reports)', globalThis.__tpl === 1, String(globalThis.__tpl));
 
 await act(async () => root.unmount());
 console.log(process.exitCode ? `\nFAILED (${n} checks)` : `\nAll ${n} checks passed.`);

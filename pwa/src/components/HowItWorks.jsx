@@ -3,9 +3,9 @@ import Bi from './Bi';
 
 // How the parts come together, in the order a teacher meets them. Each step names what powers it, so an evaluator sees the whole loop in one place.
 export const HOW_STEPS = [
-  { icon: '👥', hi: 'कक्षा-रजिस्टर', en: 'Class register', part: { hi: 'CSV / Excel', en: 'CSV / Excel' },
-    text: { hi: 'सब यहीं से शुरू होता है: आप अपनी कक्षा का रजिस्टर (CSV या Excel) डालते हैं, और बच्चों के स्तर से ऐप तीनों समूह बनाता है।',
-            en: "Everything starts here: you upload your class register (CSV or Excel), and the app forms the three groups from the children's levels." } },
+  { icon: '👥', hi: 'कक्षा-रजिस्टर', en: 'Class register', part: { hi: 'CSV या Excel फ़ाइल', en: 'CSV or Excel file' },
+    text: { hi: 'सब यहीं से शुरू होता है: आप बच्चों के स्तर वाली अपनी कक्षा का रजिस्टर (CSV या Excel) डालते हैं, और ऐप तीनों समूह बनाता है।',
+            en: "Everything starts here: you upload your class register (CSV or Excel) containing student levels, and the app automatically organizes them into three groups." } },
   { icon: '🎯', hi: 'योजना बनाएँ', en: 'Make plan', part: { hi: 'कौशल-सीढ़ी', en: 'skill ladder' },
     text: { hi: 'आप आज का कौशल और समय चुनते हैं। ऐप तीनों समूहों (● शुरुआती, ▲ प्रगतिशील, ■ दक्ष) के कौशल सुझाता है: 101 कौशलों की सीढ़ी और पिछली समीक्षा से।',
             en: "You choose today's skill and time. The app suggests each group's skill (● Beginner, ▲ Progressor, ■ Proficient) from a ladder of 101 skills and the last review." } },

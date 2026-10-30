@@ -121,7 +121,8 @@ export const downloadClassReport = (teacherId) => downloadAuthed(`/progress/expo
 export const downloadOfficerReport = (teacherId) => downloadAuthed(`/progress/export/${teacherId}`, 'officer_report.csv');
 
 // ── Class register (bulk enrolment) ──
-export const REGISTER_TEMPLATE_URL = `${BASE}/register/template`;
+// fetched and saved like the reports: a plain link to /api/... is answered by the installed app's own page, not by the server
+export const downloadRegisterTemplate = () => downloadAuthed('/register/template', 'class_register_template.csv');
 export const previewRegister = async (teacherId, file) => {
   const fd = new FormData();
   fd.append('teacher_id', teacherId);

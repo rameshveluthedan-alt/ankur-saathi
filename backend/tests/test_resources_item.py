@@ -70,17 +70,22 @@ def unit():
     check("titled 'शिक्षण और सीखने की सामग्री' / 'Teaching and Learning Resources'", it["title_hi"] == "शिक्षण और सीखने की सामग्री" and it["title_en"] == "Teaching and Learning Resources")
     hi, en = lines(it, "hi"), lines(it, "en")
     check("an exact anchor: named, 'written for this very skill', adapted to today's numbers",
-          hi[0] == "एंकर गतिविधि (पूरी कक्षा के लिए): «गाँव का बाज़ार» इसी कौशल के लिए लिखी गई थी; इसे आज की संख्याओं के हिसाब से ढाला गया।"
-          and en[0] == "Anchor activity (whole class): 'Village Market Story' was written for this very skill; it was adapted to today's numbers.", hi[0])
-    check("all three groups are named with their own skill", all(any(s in l for l in hi) for s in ("शुरुआती («बिना हासिल वाला जोड़»)", "प्रगतिशील («हासिल वाला जोड़»)", "दक्ष («3 अंकों का जोड़»)"))
-          and all(any(s in l for l in en) for s in ("Beginners ('addition without carrying')", "Progressors ('addition with carrying')", "Proficients ('3-digit addition')")))
+          hi[0] == "**एंकर गतिविधि (पूरी कक्षा के लिए):** «गाँव का बाज़ार» इसी कौशल के लिए लिखी गई थी; इसे आज की संख्याओं के हिसाब से ढाला गया।"
+          and en[0] == "**Anchor activity (whole class):** 'Village Market Story' was written for this very skill; it was adapted to today's numbers.", hi[0])
+    check("all three groups are named with their own skill", all(any(s in l for l in hi) for s in ("**शुरुआती** («बिना हासिल वाला जोड़»)", "**प्रगतिशील** («हासिल वाला जोड़»)", "**दक्ष** («3 अंकों का जोड़»)"))
+          and all(any(s in l for l in en) for s in ("**Beginners** ('addition without carrying')", "**Progressors** ('addition with carrying')", "**Proficients** ('3-digit addition')")))
     check("Beginners: the stick pair kits; Proficients: no sticks", any("शुरुआती" in l and "जोड़ी-किट" in l for l in hi) and any("दक्ष" in l and "बिना छड़ियों के" in l for l in hi))
     check("Progressors: the re-teach template's steps are the I Do and We Do, then You Do on the worksheet",
           any("प्रगतिशील" in l and "«हासिल पुनःशिक्षण (बंडल से)» के चरण I Do और We Do" in l and "You Do" in l for l in hi)
           and any("Progressors" in l and "'Carry-over Re-teaching with Bundling'" in l and "You Do" in l for l in en))
-    check("materials: the teacher kit (99 sticks) and the Beginners' pair kits (3)", any(l.startswith("सामग्री (तैयारी): बंडल की छड़ियाँ: शिक्षक के लिए 99 छड़ियों का किट और शुरुआती समूह के लिए 3 जोड़ी-किट") for l in hi)
-          and any(l.startswith("Materials (to prepare): Bundling sticks: a teacher demo kit of 99 sticks and 3 pair kits for the Beginners") for l in en))
+    check("materials: the teacher kit (99 sticks) and the Beginners' pair kits (3)", any(l.startswith("**सामग्री (तैयारी):** बंडल की छड़ियाँ: शिक्षक के लिए 99 छड़ियों का किट और शुरुआती समूह के लिए 3 जोड़ी-किट") for l in hi)
+          and any(l.startswith("**Materials (to prepare):** Bundling sticks: a teacher demo kit of 99 sticks and 3 pair kits for the Beginners") for l in en))
     check("the codes line ends the item: ANC-N-001 · INT-OP-005 · TLM-001", hi[-1] == "(कोड: ANC-N-001 · INT-OP-005 · TLM-001)" and en[-1] == "(Codes: ANC-N-001 · INT-OP-005 · TLM-001)")
+    import re as _re
+    labels = lambda lang: sorted(m for l in lines(it, lang) for m in _re.findall(r"\*\*(.+?)\*\*", l))
+    check("the labels are wrapped in ** for bold: the lead-ins and the three group names, and nothing else (skill names, the codes and the body stay plain)",
+          labels("hi") == sorted(["एंकर गतिविधि (पूरी कक्षा के लिए):", "हर समूह के लिए:", "शुरुआती", "प्रगतिशील", "दक्ष", "सामग्री (तैयारी):"])
+          and labels("en") == sorted(["Anchor activity (whole class):", "For each group:", "Beginners", "Progressors", "Proficients", "Materials (to prepare):"]), (labels("hi"), labels("en")))
     check("no state plan note, no line for it", not any("State plan note" in l for l in en))
 
     n = build_resources_item(ctx(stick_policy={"beginner_children": 0, "pair_kits": 0}), 99)
@@ -88,7 +93,7 @@ def unit():
 
     print("\nthe state plan's note")
     en_note = build_resources_item(ctx(week_notes="Use concrete objects before symbols."), 99)
-    check("an English note: in the English text only, as a line before the codes", lines(en_note, "en")[-2] == "State plan note: Use concrete objects before symbols." and "Use concrete objects" not in en_note["body_hi"])
+    check("an English note: in the English text only, as a line before the codes", lines(en_note, "en")[-2] == "**State plan note:** Use concrete objects before symbols." and "Use concrete objects" not in en_note["body_hi"])
     hi_note = build_resources_item(ctx(week_notes="ठोस वस्तुओं से शुरू करें।"), 99)
     check("a note already in Hindi is not copied into the English text", "State plan note" not in hi_note["body_en"] and "ठोस वस्तुओं" not in hi_note["body_en"])
 
@@ -99,7 +104,7 @@ def unit():
         it = build_resources_item(ctx(anchor=a), 99)
         check(f"a {q} anchor is said to be {q}, never 'written for this very skill'", word_hi in lines(it, "hi")[0] and word_en in lines(it, "en")[0] and "इसी कौशल के लिए लिखी गई" not in lines(it, "hi")[0] and "very skill" not in lines(it, "en")[0], lines(it, "hi")[0])
     it = build_resources_item(ctx(anchor=None, intervention=None, stick_policy=None, available_tlms=[]), 99)
-    check("no anchor, no template, no kit: no anchor line, no materials line, no empty codes line", not any("एंकर" in l or l.startswith("सामग्री") or "कोड" in l for l in lines(it, "hi")) and lines(it, "hi")[0] == "हर समूह के लिए:")
+    check("no anchor, no template, no kit: no anchor line, no materials line, no empty codes line", not any("एंकर" in l or l.startswith("**सामग्री") or "कोड" in l for l in lines(it, "hi")) and lines(it, "hi")[0] == "**हर समूह के लिए:**")
     check("...and no sticks claim for Proficients or Beginners", not any("छड़ि" in l for l in lines(it, "hi")))
     it = build_resources_item(ctx(domain_id="r1_literacy", stick_policy=None), 99)
     check("a literacy plan says 'today's skill', not 'today's numbers'", "आज के कौशल" in lines(it, "hi")[0] and "skill" in lines(it, "en")[0] and "संख्याओं" not in lines(it, "hi")[0])

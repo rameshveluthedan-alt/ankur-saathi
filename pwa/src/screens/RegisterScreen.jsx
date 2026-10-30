@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { backOrHome } from '../services/backHistory';
 import { useAuth } from '../App';
-import { previewRegister, commitRegister, REGISTER_TEMPLATE_URL } from '../services/api';
+import { previewRegister, commitRegister, downloadRegisterTemplate } from '../services/api';
 import Bi from '../components/Bi';
 
 const GRADE_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
@@ -57,9 +57,9 @@ export default function RegisterScreen() {
         <p className="en" lang="en" style={{ fontSize: '0.75rem', marginBottom: 10 }}>
           Upload your class list: grade and roll number, and optionally the name and each child's starting level per subject. Names stay in this app, visible only to you: they are never sent to the AI and never go into the officer report. CSV is best; Excel works too if the server has it.
         </p>
-        <a href={REGISTER_TEMPLATE_URL} className="btn btn-secondary" style={{ display: 'block', textAlign: 'center', marginBottom: 8, textDecoration: 'none' }} data-testid="template-link">
+        <button type="button" className="btn btn-secondary" style={{ display: 'block', width: '100%', textAlign: 'center', marginBottom: 8 }} data-testid="template-link" onClick={() => downloadRegisterTemplate().catch((err) => setError(err.message))}>
           ⬇ <Bi hi="टेम्पलेट डाउनलोड करें" en="Download template" inline />
-        </a>
+        </button>
         <label className="btn btn-primary" style={{ display: 'block', textAlign: 'center' }}>
           📂 <Bi hi="फ़ाइल चुनें" en="Choose file" inline />
           <input type="file" accept=".csv,.xlsx,.txt" onChange={choose} style={{ display: 'none' }} data-testid="register-file" />
