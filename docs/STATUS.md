@@ -46,7 +46,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 | ❌ | Guided camera with an alignment frame overlay | It is the phone's own camera (a file input with `capture`). No frame overlay. |
 | ✅ | Memory-safe capture: compress to 1600 px / 80% before upload | Photos shrink on the phone: 1600 px at quality 0.8, and 1200 px at 0.7 on phones that report 2 GB of memory or less (Chrome and Edge on Android report it), then again on the server. |
 | ❌ | Tier 3: on-demand deep assessment for one child | Not built. |
-| 🟡 | Photo analysis flags unclear handwriting for the teacher to verify | A confidence value is stored with each piece of evidence. The Review screen has no 'unclear: please check' state yet. |
+| 🟡 | Photo analysis flags unclear handwriting for the teacher to verify | **Partly built.** The AI gives each answer a confidence (high, medium, needs verification, unclear) and the Review screen shows "👀 check in the notebook: problem N" under a child when an answer is marked needs-verification or low; an unreadable roll number says "retake the photo". Not built: the screen does not flag "medium" (in the first scored run the one misread answer was "medium", so no warning showed), there is no photo-quality note, no log of flags and what the teacher did, and the photo is not kept to show the unclear patch. The AI was also confidently wrong on copying slips (`docs/vision/`). Roadmap: section 12. |
 
 ## 4. LEVELS, PROGRESS AND REPORTING
 
