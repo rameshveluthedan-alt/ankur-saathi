@@ -65,9 +65,9 @@ Ankur Saathi's point is that **the next day looks at yesterday**. On MPT101 this
 ## Frozen version (what you are evaluating)
 | | |
 |---|---|
-| Git commit | [FILL ON FREEZE: commit hash] |
-| Git tag | [FILL ON FREEZE: tag, for example `submission-stage2`] |
-| Cloud Run revision | [FILL ON FREEZE: revision name] |
-| Frozen on | [FILL ON FREEZE: date and time, India time] |
+| Git commit | `4ad1dce` (the code that is deployed; later commits change only documents) |
+| Git tag | `rc7` |
+| Cloud Run revision | `ankur-saathi-00013-bdr` (100% of traffic) |
+| Frozen on | 30 October 2026, 16:07 IST |
 
-Where the AI is used, every external service and model, and where keys are needed: the README, section "How AI is used". Questions: [FILL ON FREEZE: a contact].
+Where the AI is used, every external service and model, and where keys are needed: the README, section "How AI is used". Questions: rameshveluthedan@gmail.com.
