@@ -181,7 +181,7 @@ export default function YojanaScreen() {
       {/* Anchor Activity */}
       {/* in "छोटी स्क्रीन" it starts folded to its title row (one tap opens it) */}
       {anchor.narration_hi && (() => {
-        const title = <h3>🎯 <Bi hi="एंकर गतिविधि" en="Anchor Activity" inline /></h3>;
+        const title = <h3>🎯 <Bi hi="एंकर गतिविधि" en="Anchor Activity" inline />{anchor.title_hi && <span data-testid="anchor-title" style={{ fontWeight: 400 }}>: «{anchor.title_hi}»{anchor.title_en && <span className="en en-inline" lang="en">'{anchor.title_en}'</span>}</span>}</h3>;
         const minutes = <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>10 मि.</span>;
         const body = (<>
           <p style={{ fontSize: '0.9375rem', marginBottom: 8, ...ML }}>{fmt(anchor.narration_hi)}</p>

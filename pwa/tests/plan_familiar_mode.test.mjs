@@ -50,7 +50,7 @@ const PLAN = {
   plan_date: TODAY, domain_id: 'numeracy', selected_competency_id: 'N2.3.2',
   groups: [{ label: 'beginner', count: 7, target_competency_id: 'N2.3.1' }, { label: 'progressor', count: 14, target_competency_id: 'N2.3.2' }, { label: 'proficient', count: 9, target_competency_id: 'N3.3.1' }],
   plan: {
-    anchor: { narration_hi: 'बाज़ार का खेल', opening_question_hi: 'कितने आम?' }, worksheets: {},
+    anchor: { title_hi: 'गाँव का बाज़ार', title_en: 'Village Market Story', narration_hi: 'बाज़ार का खेल', opening_question_hi: 'कितने आम?' }, worksheets: {},
     rotation_schedule: { blocks: [
       { type: 'anchor', duration_minutes: 10 },
       teach('progressor', 'पहले एक जोड़ दिखाओ', { reteach: true, affected_rolls: [4, 5], reteach_mistakes: [{ misconception_id: 'N2.3.2-M1', name_hi: 'हासिल भूलना', children: 2 }],
@@ -83,6 +83,10 @@ console.log('\nthe plan screen with it OFF (as today)');
 await show(Plan);
 check('every one-line script is visible without a tap, and there is no "आज की गतिविधि" fold', scriptsOf().length === 3 && scriptsOf().every(visible) && !q('[data-testid="script-fold"]'));
 check('the anchor card is open as today (no fold)', !!q('[data-testid="anchor-card"]') && !q('[data-testid="anchor-fold"]') && visible(q('[data-testid="anchor-card"] p')));
+check('the anchor card names its story: "एंकर गतिविधि: «गाँव का बाज़ार»" with the English title hideable (the heading was the same generic words for every skill)', (() => {
+  const t = q('[data-testid="anchor-title"]');
+  return !!t && /«गाँव का बाज़ार»/.test(t.textContent) && /Village Market Story/.test(t.querySelector('.en').textContent) && !!t.closest('h3') && /एंकर गतिविधि/.test(t.closest('h3').textContent);
+})());
 
 console.log('\nflipping it on Profile, then the plan screen again');
 await show(Account);

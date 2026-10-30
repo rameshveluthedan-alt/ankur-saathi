@@ -46,9 +46,9 @@ console.log('2. "कैसे काम करता है"');
 await show(Login);
 const how = () => q('[data-testid="how-it-works"]');
 check('on the login screen, before signing in: a fold "ℹ️ अंकुर साथी कैसे काम करता है?" (How Ankur Saathi works), closed', how() && how().tagName === 'DETAILS' && !how().open && /अंकुर साथी कैसे काम करता है\?/.test(how().querySelector('summary').textContent) && /How Ankur Saathi works/.test(how().querySelector('summary').textContent));
-check('four steps in the app\'s order, each named as its tab and naming what powers it: योजना बनाएँ (कौशल-सीढ़ी), आज की योजना (AI + जाँच), समीक्षा (फ़ोटो, अवलोकन, पढ़कर सुनाना), कक्षा प्रगति',
+check('five steps, the class register first, in the app\'s order, each named as its tab and naming what powers it: योजना बनाएँ (कौशल-सीढ़ी), आज की योजना (AI + जाँच), समीक्षा (फ़ोटो, अवलोकन, पढ़कर सुनाना), कक्षा प्रगति',
   (() => { const st = qa('[data-testid="how-step"]').map((li) => li.textContent);
-    return st.length === 4 && /1\. योजना बनाएँ.*कौशल-सीढ़ी/.test(st[0]) && /2\. आज की योजना.*AI \+ जाँच/.test(st[1]) && /3\. समीक्षा.*फ़ोटो, अवलोकन, पढ़कर सुनाना/.test(st[2]) && /पहला अनुमान/.test(st[2]) && /अंतिम निर्णय/.test(st[2]) && /अवलोकन/.test(st[2]) && /पढ़कर सुनाना/.test(st[2]) && /observation, or reading aloud/.test(st[2]) && /4\. कक्षा प्रगति/.test(st[3]); })());
+    return st.length === 5 && /1\. कक्षा-रजिस्टर.*CSV/.test(st[0]) && /रजिस्टर \(CSV या Excel\)/.test(st[0]) && /class register \(CSV or Excel\)/.test(st[0]) && /2\. योजना बनाएँ.*कौशल-सीढ़ी/.test(st[1]) && /3\. आज की योजना.*AI \+ जाँच/.test(st[2]) && /4\. समीक्षा.*फ़ोटो, अवलोकन, पढ़कर सुनाना/.test(st[3]) && /पहला अनुमान/.test(st[3]) && /अंतिम निर्णय/.test(st[3]) && /अवलोकन/.test(st[3]) && /पढ़कर सुनाना/.test(st[3]) && /observation, or reading aloud/.test(st[3]) && /5\. कक्षा प्रगति/.test(st[4]); })());
 check('...the loop back to tomorrow\'s plan, and that names never reach the AI', /↻ आपके निर्णय और आज के नतीजे कल की योजना का सुझाव बनाते हैं/.test(q('[data-testid="how-loop"]').textContent) && /बच्चों के नाम AI को कभी नहीं भेजे जाते/.test(how().textContent));
 check('every line keeps its English in a hideable translation ("Hindi only" hides it)', qa('[data-testid="how-step"]').every((li) => li.querySelector('.en')) && !!q('[data-testid="how-loop"] .en'));
 await show(Account);

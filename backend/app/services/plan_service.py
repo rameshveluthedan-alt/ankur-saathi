@@ -21,6 +21,7 @@ from app.services.sampling import sample_for_group
 from app.services.cfu import clean_plan_cfu, strip_cfu, MIN_ITEMS, right_answer as _cfu_right_answer, _avoid_for as _cfu_lesson_ops
 from app.services.model_json import parse_model_json, ModelJSONError
 from app.services import group_skills as _group_skills
+from app.services.resources_item import build_resources_item, put_resources_item
 from app.services.hindi_numbers import find_number_word_errors, find_numeric_overlaps, repair_place_value
 
 # Import the orchestration module (copied from prompts/ into services/ or added to path)
@@ -1390,6 +1391,12 @@ async def generate_dainik_yojana(
     plan_json["group_skills"] = {"beginner": beginner_target_id, "progressor": competency_id, "proficient": proficient_comp.id}
     plan_json["group_skills_source"] = {"beginner": "teacher" if "beginner" in overrides else "derived", "progressor": "selected",
                                         "proficient": "teacher" if "proficient" in overrides else "derived"}
+
+    # The "Why this plan?" item about the content used is built from the retrieved facts, not written by the model
+    try:
+        print(f"   Resources item: {put_resources_item(plan_json, build_resources_item(ctx, STICK_TEACHER_KIT_TOTAL))}")
+    except Exception as e:      # never let this break plan generation
+        print(f"   Resources item skipped: {type(e).__name__}: {e}")
 
     # ── Store plan ──
     explainability = plan_json.get('explainability', {})
