@@ -1,4 +1,4 @@
-// "Today's time" on the Plan screen (45 / 60 / 90 minutes): the REAL Plan screen in a simulated browser with a fake server, plus the request the app builds.
+// "Today's time" on the Plan screen (60 / 90 minutes; 45 hidden for now): the REAL Plan screen in a simulated browser with a fake server, plus the request the app builds.
 // The last choice is kept on the device and preselected; 90 on first use; the chosen time goes with every plan request (session_minutes), and nowhere else.
 // That the server lays the plan out for it is tested in backend/tests/test_session_minutes.py.
 //
@@ -53,7 +53,7 @@ let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${o
 console.log('the chooser');
 localStorage.clear();
 await mount();
-check('first use (nothing stored): three choices, 45 / 60 / 90 minutes, and 90 is selected', qa('[data-testid="session-length"] input[type="radio"]').map((i) => i.value).join() === '45,60,90' && chosen().join() === '90', chosen().join());
+check('first use (nothing stored): two choices, 60 / 90 minutes, and 90 is selected', qa('[data-testid="session-length"] input[type="radio"]').map((i) => i.value).join() === '60,90' && chosen().join() === '90', chosen().join());
 check('it sits above the skill list, with its heading and the one-line hint, in Hindi with the English hideable', (() => {
   const box = q('[data-testid="session-length"]'); const list = q('.competency-item');
   return box && list && (box.compareDocumentPosition(list) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING) && /आज का समय/.test(box.textContent)
@@ -61,15 +61,15 @@ check('it sits above the skill list, with its heading and the one-line hint, in 
 })());
 check('each choice is a 44 px tap target (the whole label, not the small radio)', qa('[data-testid^="session-"][data-checked]').every((l) => parseInt(l.style.minHeight, 10) >= 44 && l.contains(l.querySelector('input[type="radio"]'))),
   qa('[data-testid^="session-"][data-checked]').map((l) => l.style.minHeight).join());
-check('the chosen one fills with the brand green (a setting for the whole session, not a group colour)', /green-dark/.test(q('[data-testid="session-90"]').style.background) && !/green-dark/.test(q('[data-testid="session-45"]').style.background) && !/tier|beginner|progressor|proficient/.test(q('[data-testid="session-90"]').getAttribute('style')));
+check('the chosen one fills with the brand green (a setting for the whole session, not a group colour)', /green-dark/.test(q('[data-testid="session-90"]').style.background) && !/green-dark/.test(q('[data-testid="session-60"]').style.background) && !/tier|beginner|progressor|proficient/.test(q('[data-testid="session-90"]').getAttribute('style')));
 let call = await generate();
 check('Generate sends 90 when nothing was chosen', call[4].sessionMinutes === 90, JSON.stringify(call[4]));
 
 console.log('\nchoosing, and remembering');
-await click(q('[data-testid="session-45"]'));
-check('tapping 45 selects it (and only it), and keeps it on the device under "session_minutes"', chosen().join() === '45' && localStorage.getItem('session_minutes') === '45', `${chosen().join()} / ${localStorage.getItem('session_minutes')}`);
+await click(q('[data-testid="session-60"]'));
+check('tapping 60 selects it (and only it), and keeps it on the device under "session_minutes"', chosen().join() === '60' && localStorage.getItem('session_minutes') === '60', `${chosen().join()} / ${localStorage.getItem('session_minutes')}`);
 call = await generate();
-check('Generate then sends 45 (if the choice were not sent, the server would lay the plan out for 90)', call[4].sessionMinutes === 45, JSON.stringify(call[4]));
+check('Generate then sends 60 (if the choice were not sent, the server would lay the plan out for 90)', call[4].sessionMinutes === 60, JSON.stringify(call[4]));
 localStorage.setItem('session_minutes', '60');
 await mount();
 check('"60" stored on the device: the screen opens with 60 preselected', chosen().join() === '60', chosen().join());
@@ -78,6 +78,9 @@ check('...and sends 60', call[4].sessionMinutes === 60, JSON.stringify(call[4]))
 localStorage.setItem('session_minutes', '30');
 await mount();
 check('a value this app does not offer ("30") falls back to 90', chosen().join() === '90', chosen().join());
+localStorage.setItem('session_minutes', '45');
+await mount();
+check('a phone that saved 45 before it was hidden opens on 90', chosen().join() === '90', chosen().join());
 
 console.log('\nthe request');
 const bodies = [];

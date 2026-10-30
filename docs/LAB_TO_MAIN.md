@@ -41,7 +41,7 @@
 4. **Deploy:** the two guard lines first, then `deploy/DEPLOY.md` section 7; then **section 11, "After EVERY redeploy"**, to point the nightly job at the new
    image (otherwise the nightly demo reset keeps running the old code).
 5. **Smoke test on the deployed app:**
-   - a plan at 45 minutes (the time chip says 45);
+   - a plan at 60 minutes (the time chip says 60; 45 is hidden from the picker for the submission, see `docs/KNOWN_ISSUES.md`);
    - the Review's three steps, and "अभी दर्ज करें" from a teach block's You Do;
    - the tick sheet and the printed plan, printed;
    - the mentor report and the class summary (Class progress → "📄 रिपोर्ट");

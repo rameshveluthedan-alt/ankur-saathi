@@ -3,7 +3,7 @@
 
 // How long the teacher has today, from the Plan screen's time picker. The last choice is preselected next time; 90 on first use.
 // It goes to the server only with each plan request (session_minutes), where it is the plan's teaching time.
-export const SESSION_MINUTES = [45, 60, 90];
+export const SESSION_MINUTES = [60, 90];         // 45 hidden for the submission: at 45 the 7-minute blocks drift to an easier skill (docs/KNOWN_ISSUES.md)
 export const DEFAULT_SESSION_MINUTES = 90;
 const SESSION_KEY = 'session_minutes';
 
