@@ -7,9 +7,9 @@
 ## 1. Who does what (a starting point for discussion)
 | Role | Does | Sees | Does not see or do |
 |---|---|---|---|
-| **State admin** (super admin) | Loads the state's school list (district, block, school code) in bulk; creates district admins; sets state-wide settings (the weekly curriculum plan, language, AI limits) | State totals: schools onboarded, teachers active, plans generated, level mix | Any child's name, photo or answers |
+| **State admin** (super admin) | Loads the state's school list (district, block, school code) in bulk; creates district admins; sets state-wide settings (the weekly curriculum plan, language, AI limits) | State-wide aggregates and trends: schools onboarded, teachers active, plans generated, the level mix and how it moves, skills taught, common mistakes by district | Any child's name, photo or answers |
 | **Division officer** (only where the state has a division) | Oversees the districts of one division | The division's aggregates, as counts | Names, photos |
-| **District admin** | Oversees the schools of one district; creates block coordinators; invites school admins | The district's aggregates, schools that are inactive, and children flagged "consider re-assessing" as counts | Names, photos |
+| **District admin** | Oversees the schools of one district; creates block coordinators; invites school admins | The district's aggregates and trends, compared block by block; schools that are inactive; children flagged "consider re-assessing" as counts | Names, photos |
 | **Block / cluster coordinator** (the academic support role, often called BRC or CRC) | Supports the schools of one block or cluster; reads how each school is doing | Per-school aggregates and trends; read-only | Names, photos; no changes to a school |
 | **School leader** (head teacher, who teaches too) | Claims the school; invites and approves teachers; assigns teachers to grades and classes; enrols or syncs the class registers; resets passwords; confirms the school's consent | Her school's reports (level mix per class, plan use, flags) and, if decided (below), the names of her own school's children | Other schools; photos of children's work |
 | **Teacher** | Plans, teaches, reviews, records decisions for her own classes | Her own children, by name, and their evidence | Other teachers' classes (unless a school admin assigns her to them) |
@@ -141,18 +141,21 @@ Today the app covers Numeracy and Hindi (R1) literacy, with a Hindi-first screen
 - **Order:** the ladder first (section 9); then one more language end to end before any further one.
 
 ## 16. Next, not built: the monitoring dashboard
-The proposal promised an admin dashboard (usage, level mix, misconception patterns, override rate). The roles table (§1), the officers' reports (§8) and the AI-quality log (§12) each describe a part of it. They are one product: **a monitoring dashboard, with one set of screens filtered by the viewer's place in the hierarchy.** Each level sees the roll-up of the levels below it, and the detail falls as you go up (§3).
+The proposal promised an admin dashboard (usage, level mix, misconception patterns, override rate). The roles table (§1), the officers' reports (§8) and the AI-quality log (§12) each describe a part of it. They are one product: **a monitoring dashboard, with one set of screens filtered by the viewer's place in the hierarchy.** Each level sees the roll-up of the levels below it. What falls as you go up is **identity** (names, photos, answer sheets), **not the depth of analysis**: every level can analyse its own scope with trends, comparisons and drill-down (§3).
 
 **Levels:** state, division (only where the state has one), district, block, cluster, school. The teacher keeps her own screens. Today the `schools` table holds only free-text `block_name` and `district_name`. The hierarchy needs to be a configurable tree (each level has a parent), because states differ in the levels they use.
 
 **What it shows**
 - **Usage:** teachers active this week, plans made, reviews recorded, schools not using the app, AI spend against its limit.
 - **Assessment:** how many children have a baseline, the result of each periodic round, and how the level mix moved between rounds (this needs the history of rounds, §14).
+- **Teaching progress:** plans made against the state's weekly plan (the pace), skills taught and still due, the re-teach rate, skills repeated most (this needs the skill taught to be compared with the week's topic).
 - **Progress:** children by level (Beginner, Progressor, Proficient) by subject and grade; groups re-taught versus moved on; the skills taught most; the "consider re-assessing" flags as counts per school.
 - **AI quality, for the team and the state's academic cell only:** the override rate, photo-reading confidence and the flag log (§12).
 
+**How it analyses:** trends over time and movement between rounds; comparisons between districts, blocks, clusters and schools; drill-down from state to school; filters by subject, grade and period; export to CSV for the department's own tools.
+
 **Five rules**
-1. Counts only, never a name or a photo above the school. The school leader sees her own school.
+1. **Aggregates only above the school: no name, photo or answer sheet.** Depth comes from analysis (trends, comparisons, drill-down), not from identity. The school leader sees her own school; the block coordinator's mentoring view may show roll numbers for a visit (as today's mentor summary does), never names.
 2. Small counts are hidden. A school with three Beginners must not show "3" at a higher level: anything under a small threshold (for example 5 children) is folded into the level above.
 3. Teachers' usage rolls up by school, and only the school leader sees individual teachers. The proposal's own words: "not surveillance of teachers".
 4. Every look is logged (§3), with a screen to read the log.
