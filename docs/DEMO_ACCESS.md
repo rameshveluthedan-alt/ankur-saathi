@@ -16,9 +16,11 @@ The demo holds **fictional data only**, so its passwords are published. Everyone
 3. **A real school's first sign-in:** the school leader sees one screen, once, asking her to confirm a short statement (that the children's parents have been told and have given permission, that photos are not kept and names never go to the AI). It is kept with the date and the exact wording. The demo school carries its own statement ("every child here is fictional"), so you will not see this screen with the demo accounts.
 
 ## If the AI limit is reached
-The demo's AI use is capped so the credits last through evaluation (`docs/AI_BUDGET.md`). When a limit is reached, a plan for a skill with a
-recorded sample is still shown, labelled "sample plan" (the recorded sample plans are N0.1.1, N2.2.1, N2.3.2, L2.3.1, L2.5.1 and L2.7.2); other skills and photo analysis say the limit was reached
-and that it resets the next day.
+The demo's AI use is capped so the credits last through evaluation (`docs/AI_BUDGET.md`): per teacher, per school, for the shared demo account (higher, because many reviewers use it) and for the whole app, each per India day, and the credit ends on 20 November. When a limit is reached, or the AI is switched off:
+- **N0.1.1, N2.2.1, N2.3.2, L2.3.1, L2.5.1 and L2.7.2** still give a plan: a recorded sample plan for the same skill, put through the same checks, under a yellow banner "📄 नमूना योजना" (Sample plan). It is always the 90-minute version, whatever time was picked.
+- **Any other skill** says in Hindi and English which limit was reached, and lists the skills that have a sample plan. A daily limit resets the next day; the message says so for the teacher and whole-app limits.
+- **Photo analysis** cannot be faked: it says the limit was reached.
+- **Observation and reading aloud** need no AI and always work.
 
 ## Why some accounts cannot change their password
 The shared demo accounts have a fixed password on purpose: if one reviewer changed it, everyone else would be locked out. The practice account (MPT199) exists so the change and reset flows can still be tried. A new password is 6 to 12 letters or digits (a 6-digit number is fine); the shared demo accounts keep their short published ones.
