@@ -72,7 +72,7 @@ Ankur Saathi's point is that **the next day looks at yesterday**. On MPT101 this
 ## Frozen version (what you are evaluating)
 | | |
 |---|---|
-| Git commit | `4ad1dce` (the code that is deployed; later commits change only documents) |
+| Git commit | `4ad1dce` (the code that is deployed; later commits change only documents and one database set-up script, `db/setup.sh`, which the running app does not use) |
 | Git tag | `rc7` |
 | Cloud Run revision | `ankur-saathi-00013-bdr` (100% of traffic) |
 | Frozen on | 30 October 2026, 16:07 IST |

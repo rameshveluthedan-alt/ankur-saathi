@@ -54,7 +54,7 @@ After class the **Review** has three steps: her own **first judgment** for each 
 ### 1. Get the code and install the backend
 ```bash
 git clone https://github.com/rameshveluthedan-alt/ankur-saathi.git
-cd Ankur-Saathi
+cd ankur-saathi
 python -m venv backend/venv
 source backend/venv/bin/activate            # Windows PowerShell: backend\venv\Scripts\Activate.ps1
 pip install -r backend/requirements.txt openpyxl tzdata
@@ -65,6 +65,8 @@ pip install -r backend/requirements.txt openpyxl tzdata
 ```bash
 bash db/setup.sh postgresql://postgres:PASSWORD@localhost/ankur_saathi
 ```
+If your password contains characters such as `@`, `:`, `/`, `#` or `%`, write them percent-encoded in the URL (`@` becomes `%40`). The setup may print one line, `extension "vector" is not available`: that is the optional pgvector extension, and it is safe to ignore.
+
 This creates the database, the schema and all seed data: 101 skills (53 numeracy, 48 Hindi literacy) from Balvatika to Grade 3, the prerequisite graph, the misconception list, the content bank, a representative Madhya Pradesh weekly plan and a fictional demo class. If `pgvector` is not installed it says so and continues; everything works except the optional semantic switch.
 
 ### 3. Configure
@@ -87,7 +89,7 @@ The first command prints the accounts (they are also in [docs/DEMO_ACCESS.md](do
 cd backend
 uvicorn app.main:app --reload --port 8000
 ```
-Check it: http://localhost:8000/health (it answers `{"status": "ok", ...}`)
+Check it: http://localhost:8000/health (it answers `{"status": "ok", ...}`). On Windows, if you send the backend's output to a file, set `PYTHONIOENCODING=utf-8` first, or its start-up message cannot be written.
 
 ### 6. Start the app
 In a second terminal:
@@ -108,7 +110,7 @@ Where the curated anchors have nothing for a skill, the app can choose the ancho
 python scripts/run_tests.py --env-file backend/.env          # every backend suite: return code, checks, tracebacks
 python scripts/run_tests.py --env-file backend/.env --pwa    # and the front-end tests (run `npm install` in pwa first)
 ```
-The backend suites need the database from step 2 and the backend's packages (run it with the virtual environment from step 1 active; if you forget, the runner uses `backend/venv` by itself, or says exactly what to activate or install). When a suite fails it prints the failing lines, grouped by reason. They cover the plan rules, the check-for-understanding validator, the Hindi style rules, worksheet layout, sign-in and PIN rules, the AI spending caps, the guarantee that names never reach the AI, the skill bridges, the semantic retrieval and the production server. A suite that needs `pgvector` says **SKIPPED** and why when it is missing. Plans have also been generated with the real model for 27 of the 101 skills so far (`docs/batch/batch_results.csv`); the run over all 101 is described in `docs/BATCH_AND_COVERAGE.md` and is still to do.
+The suites use a fake AI, so keep `AI_ENABLED` at its default (`true`) in `backend/.env` while you run them. The backend suites need the database from step 2 and the backend's packages (run it with the virtual environment from step 1 active; if you forget, the runner uses `backend/venv` by itself, or says exactly what to activate or install). When a suite fails it prints the failing lines, grouped by reason. They cover the plan rules, the check-for-understanding validator, the Hindi style rules, worksheet layout, sign-in and PIN rules, the AI spending caps, the guarantee that names never reach the AI, the skill bridges, the semantic retrieval and the production server. A suite that needs `pgvector` says **SKIPPED** and why when it is missing. Plans have also been generated with the real model for 27 of the 101 skills so far (`docs/batch/batch_results.csv`); the run over all 101 is described in `docs/BATCH_AND_COVERAGE.md` and is still to do.
 
 Before committing: `python scripts/precommit_check.py` (refuses secrets and `.env` files). Before the final submission: `python scripts/submission_check.py --final`.
 

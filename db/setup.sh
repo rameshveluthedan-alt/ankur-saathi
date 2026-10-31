@@ -10,6 +10,10 @@
 
 set -e
 
+# On Windows, psql ignores every option that comes AFTER the connection string (Linux and macOS accept it), so a call written
+# as  psql "$URL" -c "..."  would silently do nothing there. This wrapper moves the connection string last for every call below.
+psql() { local url="$1"; shift; command psql "$@" "$url"; }
+
 DB_URL="${1:-postgresql://postgres@localhost/ankur_saathi}"
 # Plain shell string handling (no `grep -P`, which macOS does not have): BASE_URL is the URL without its ?query, DB_NAME its last part
 BASE_URL="${DB_URL%%\?*}"
