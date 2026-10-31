@@ -28,7 +28,7 @@ A phone can show signal bars and still get nothing through, and the service work
 An ordinary answer does **not** clear a remembered failure (it may have come from a saved copy); only a probe that gets an answer does.
 
 ## Slow networks and small phones
-- **The server compresses** what it sends. The app's JavaScript goes from 279 KB to 83 KB; the whole first load (page, script, style, icons) travels **88 KB**, against 336 KB before.
+- **The server compresses** what it sends. The app's JavaScript goes from 395 KB to 112 KB; the whole first load (page, script, style, icons) travels about **120 KB** (measured on the live app on 31 October; it was 88 KB when first measured, before later features).
 - **A slow or hanging connection:** after 6 seconds the plan and worksheet reads fall back to the saved copy instead of waiting for ever.
 - **Photos shrink on the phone** before they are sent: 1600 px at quality 0.8, and 1200 px at 0.7 on a phone that reports 2 GB of memory or less (Chrome and Edge on Android report it; other browsers use the normal size). The server shrinks them again before the AI sees them.
 

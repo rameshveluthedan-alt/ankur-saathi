@@ -10,10 +10,10 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 
 | | Promise | Where it stands |
 |---|---|---|
-| ✅ | Teacher picks the subject and today's Lakshya (Numeracy, R1 Hindi, R2) | Numeracy 53 skills and R1 literacy 48 skills, Balvatika to Grade 3. R2 was never in the 3-week scope (the roadmap itself says numeracy + R1). |
+| 🟡 | Teacher picks the subject and today's Lakshya (Numeracy, R1 Hindi, R2) | Numeracy 53 skills and R1 literacy 48 skills, Balvatika to Grade 3. **R2 (second-language literacy) is not built:** it was never in the 3-week scope (the roadmap itself says numeracy + R1); see `docs/ROADMAP.md`, section 15. |
 | ✅ | Children auto-clustered into 3 groups from their Lakshya position | Per subject; the teacher can change a group's skill in the drawer (`GroupSkillsDrawer`). |
 | 🟡 | AI generates the whole package in under 60 seconds | About 65 s typical (11k tokens). About 130 s when the model's first reply cannot be read and the app asks again: v29f repairs the cause found in the logs. |
-| ✅ | Whole-class anchor activity from the content bank | L2 bank: 14 anchors. Exact / related / topic-area / loose match, stated to the model. Semantic fallback built (v29g), OFF until the Thursday gate. |
+| ✅ | Whole-class anchor activity from the content bank | L2 bank: 14 anchors. Exact / related / topic-area / loose match, stated to the model. Semantic fallback built (v29g), switched OFF in the submitted version (evaluated on 31 October: `docs/SEMANTIC_RETRIEVAL.md`). |
 | ✅ | 3 teaching scripts: I Do / We Do / You Do with talking points per group | Every sum and answer key is also checked by code (added beyond the proposal). |
 | 🟡 | 3 levelled printable worksheets with roll-number grid | Done and print-ready, but as HTML printed from the browser, not server-made PDFs. Place-value grid, carry tab, board-work line for schools without printers. |
 | ✅ | Rotation schedule, transition scripts, peer monitors, warm-ups for independent groups | Rules in the prompt; checked with the real model on 27 of the 101 skills so far (`docs/batch/batch_results.csv`). |
@@ -29,7 +29,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 | ✅ | Layer 1: misconception taxonomy, each mapped to an intervention | 55 misconceptions (34 numeracy, 21 literacy); 15 intervention templates. |
 | ✅ | Layer 1: one pilot state's weekly curriculum plan | Madhya Pradesh, 171 weeks (`/plan/curriculum-week`). |
 | ✅ | Layer 2: anchors, reading passages, intervention templates, TLM references | 14 / 9 / 15 / 12 rows. Small: the larger gain is more content. |
-| 🟡 | Layer 2: semantic retrieval on pgvector, embeddings in the database | Built in v29g: open-weights model (BGE-M3, 1024 dims) run offline, vectors loaded by the nightly job, no embedding call at runtime. Switch OFF until Thursday's gate; real-vector quality not yet measured. |
+| 🟡 | Layer 2: semantic retrieval on pgvector, embeddings in the database | Built in v29g: open-weights model (BGE-M3, 1024 dims) run offline, vectors loaded by the nightly job, no embedding call at runtime. Evaluated on 31 October with the real vectors: it recovers the curated anchor first 75% of the time (random: 25%); the blind review of the 9 skills where it differs from today's pick was split (4 for semantic, 5 for today's). Switched OFF in the submitted version. |
 | ✅ | Layer 3: Claude generates only inside the L1 + L2 context | Plus deterministic validators: number ranges, the two-digit cap, answer keys, JSON repair, spend caps. |
 | ✅ | Worksheets validated against the competency benchmarks before delivery | `skill_rules` and the worksheet number repair. |
 
@@ -70,7 +70,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 | 🟡 | Worksheets work offline | A plan's worksheets are prepared automatically while it is on screen and then open and print with no network for 24 hours. A worksheet that was never prepared (a plan made on another phone) still needs the internet. |
 | ✅ | Clear behaviour when there is no network | An offline notice (it appears and clears by itself), Generate and photo sending switched off with the reason, one clear sentence in Hindi and English instead of 'Failed to fetch', no blank tab left behind. Checked in a real browser with the server stopped. |
 | ❌ | REVIEW capture and the Advance/Re-teach decision work offline, queued and synced later (IndexedDB) | Recording a decision, observations and reading scores, and sending photos, still need the internet; the app says so. Nothing is queued for later yet. |
-| ✅ | Light on data | The whole app is 336 KB raw; the server now compresses what it sends, so the first load travels 88 KB (measured in a real browser). Plan and worksheet reads fall back to the saved copy after 6 seconds on a slow connection. |
+| ✅ | Light on data | The app's script is 395 KB raw; the server compresses what it sends, so the first load (page, script, style, icons) travels about 120 KB (measured on the live app on 31 October). It was 88 KB when first measured, before later features. Plan and worksheet reads fall back to the saved copy after 6 seconds on a slow connection. |
 | ❌ | Tested on budget Android phones (2-3 GB RAM) | Not yet tested on budget Android phones with 2 to 3 GB of RAM. |
 
 ## 6. PRIVACY (DPDP) AS PROMISED

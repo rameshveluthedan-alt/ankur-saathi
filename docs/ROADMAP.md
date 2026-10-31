@@ -81,6 +81,8 @@ The three content expansions below follow once the ladder is settled.
 - **L2 content bank at 3× its current size.** Today: 14 anchor activities, 9 reading passages, 15 intervention templates, 12 TLM references. The semantic retrieval machinery is built but retrieves against a thin bank. Growing each corpus by about 3× (40 anchors, 30 passages across Grades 1 to 3, 50 interventions, 35 TLM references) is **about three months of content work**, reviewed sample by sample, feeding the same retrieval system without a code change.
 - **Recorded sample plans for the AI-off fallback.** Today: 6 recorded plans: observation (N0.1.1), photo (N2.2.1, N2.3.2), reading-aloud (L2.5.1), and two Hindi examples (L2.3.1, L2.7.2). When the AI budget runs out or the service is slow, the teacher sees a known-good plan for one of these six skills; for the other 95 she sees a short note and no plan. Growing to the 20 most-taught skills in Mission Ankur is **about one month of work**, reviewed by the education lead.
 
+- **Test and review every plan.** Run all 101 skills through the real model (27 so far, `docs/batch/batch_results.csv`), read the flagged plans with the education lead, fix the skills that come out experimental (the N0.1.1 worksheet is the known case, `docs/KNOWN_ISSUES.md`), and refresh the tested / not-yet-tested labels, which are out of date. About $10 to $30 of AI cost for the 74 skills not yet run (at about $0.14 a plan, more when a plan is redone); the review is the longer part.
+
 These are content jobs, not code jobs. The code that reads them, retrieves against them and falls back on them is already in place. The sizing above assumes one full-time education lead at Vaishnavi's level with support for drafting and quality-checking.
 
 ## 10. Next, agreed on 29 Oct and not built: a photo of the paper tick sheet
@@ -92,6 +94,8 @@ The paper tick sheet (`/plan/ticks`, built in the lab) lets a teacher record A /
 
 ## 11. Next: the plan prompt v2 (drafted and reviewed, not applied)
 The plan prompt was reviewed line by line and a second version drafted (`docs/drafts/PROMPT_REVIEW_29OCT.md`, `docs/drafts/PROMPT_DRAFT_V2.md`, `docs/drafts/PROMPT_DRAFT_3N_WORKSHEET.md`): each group's own mistakes for both the show-me questions and the worksheets, plans shaped by the session's length (45, 60 or 90 minutes), worksheets as 3 core problems plus 1 to 3 extras, and the fixed rules moved into a cached system prompt to cut cost. Applying it needs real-model runs for four skill shapes at three lengths, and the education lead's review of the new Hindi: a few days of work after the submission.
+
+**A cheaper model for photo reading.** Haiku 5.5 was meant to be tried for reading worksheet photos and was not run before the freeze. The test is the one already built: the scored photo test (`scripts/eval_vision.py`, `docs/vision/`) run against the current model on the same sheets. Switch only if its answers, verdicts and mistake-naming score as well; otherwise keep Sonnet 5.5. A lower cost per photo is part of the cost goal above.
 
 ## 12. Next, not built: telling the teacher when the AI is not sure, and keeping a record
 The photo analysis already gives each answer a confidence and shows "check in the notebook" for answers marked unclear. What is missing, and what the first scored run (`docs/vision/`, 40 answers) showed:

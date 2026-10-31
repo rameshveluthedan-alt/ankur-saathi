@@ -14,7 +14,7 @@
 
 **Root cause:** likely the prompt and the lack of a reviewed sample plan for N0.1.1. The AI generates it ad hoc on every request, with no few-shot example to anchor the attribute spread.
 
-**Status for this submission:** the N0.1.1 worksheet is being re-curated with Vaishnavi on Wednesday afternoon. The curated version will span all three attributes and move the attribute cue out of the question stem (e.g., "look at picture 1" with the picture label stored separately, not inside the question). A regeneration test on Thursday morning will confirm the fix.
+**Status for this submission:** NOT FIXED. The re-curation of the N0.1.1 worksheet with Vaishnavi (planned for 28 October) and the regeneration test (planned for 29 October) did not happen before the freeze, so a freshly generated plan for this skill can still show the weakness above. The planned fix: a curated worksheet that spans all three attributes (colour, shape, size) and keeps the attribute cue out of the question stem (for example "look at picture 1", with the picture label stored separately, not inside the question). Reviewing and testing every plan is on the roadmap (`docs/ROADMAP.md`, section 9).
 
 ## The observation prompts can describe a task the plan does not contain
 
@@ -106,4 +106,4 @@ At 45 minutes the teach blocks are 15, 7 and 7 minutes, but the prompt still ass
 
 **Impact:** the labels understate the testing that was done, and show nothing at all for the skills whose plans failed a check. The 15 "experimental" skills come from earlier runs (22 to 26 Oct) and may have been fixed since, so they should be run again before they are shown as experimental.
 
-**Status for this submission:** to be decided before the freeze: either leave the labels as they are (and say so in the evaluator guide, which it does), or re-run the 27 skills, rebuild the labels and load them into the cloud database. The summary line that counted them was removed from the screen on 30 Oct.
+**Status for this submission:** decided on 30 October: the labels are left as they are, and the evaluator guide says so. Re-running the 27 skills, rebuilding the labels and loading them into the cloud database is on the roadmap (`docs/ROADMAP.md`, section 9). The summary line that counted them was removed from the screen on 30 Oct.

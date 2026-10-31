@@ -35,7 +35,16 @@ To load it into a LOCAL database too, that database needs pgvector (the setup sc
 ## The switch
 `SEMANTIC_RETRIEVAL=on|off`, **off by default**. In the cloud it lives in `deploy/cloudrun-env.yaml` (a redeploy REPLACES the service's variables with the generated file, so keep it there): put `SEMANTIC_RETRIEVAL: "on"` in `deploy\cloudrun-env.generated.yaml` and redeploy, or switch at once with no build: `gcloud run services update $SERVICE --region $REGION --update-env-vars SEMANTIC_RETRIEVAL=on` (and `=off` to roll back). Switching changes only the anchor chosen for the weakly served skills; nothing else.
 
+## The result (31 October 2026)
+The gate date (Thursday 29 October) passed without a recorded decision. The evidence was completed on 31 October. **Decision: it stays OFF in the frozen version.**
+
+1. **Recovery test** (the real BGE-M3 vectors, none stale; `python scripts/eval_semantic.py --env-file backend/.env --file db/seeds/content/embeddings.json`). The curated anchor ranked **first for 75%** of the 48 skills that have one (a random ranking: 25%), **in the top 3 for 88%** (random: 62%), mean reciprocal rank 0.82. Numeracy: 68% first (random 22%). Hindi literacy: 83% (random 29%). Clearly above random.
+2. **Blind A/B** (`docs/semantic_ab_sheet_answered_311026.csv`, the key in `docs/semantic_ab_key.csv`). Of the 24 skills served weakly today, 15 get the same anchor either way and 9 differ. The sheet was filled in with AI assistance and reviewed by Vaishnavi, the education lead. She preferred the semantic pick for **4** of the 9 (L2.4.2, N1.1.1, N3.5.1, N3.6.1) and today's pick for **5** (L3.3.1, L3.4.1, N1.2.6, N2.6.1, N3.6.2); none "same". That is 44%, just under "about half", and with 9 skills it cannot separate the two.
+3. **Determinism and speed** on a database with pgvector: not measured for the frozen version.
+
+**Reading:** the matching recovers the curated choice far above chance, so the mechanism works. Whether it improves the weak cases is not shown. Hence OFF. To revisit when the bank is larger (`docs/ROADMAP.md` section 9): run the same two tests again with more anchors and a bigger blind sample.
+
 ## Honest limits
 - The bank is small (14 anchors; 8 numeracy). The larger gain is **more anchors** (content work); this is the machinery and the evidence that scales when the bank grows.
 - Only anchors use it today. Passages, intervention templates and teaching materials have vectors loaded for later (matching a recorded misconception to an intervention, a passage by theme and level) but nothing reads them yet.
-- Nothing here is proven for the real model until `eval_semantic.py` has run on the real vectors and the reviewer has answered the sheet.
+- The real-vector evidence is in the result above: the matching works (75% first against 25% random), but the blind review of 9 skills was split (4 for semantic, 5 for today's), so the switch stays off.

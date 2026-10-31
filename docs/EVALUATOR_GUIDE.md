@@ -59,7 +59,7 @@ Ankur Saathi's point is that **the next day looks at yesterday**. On MPT101 this
 - **Limits protect the credits.** If a daily limit is reached, these skills still show a recorded sample plan (labelled "sample plan"): **N0.1.1, N2.2.1, N2.3.2, L2.3.1, L2.5.1, L2.7.2**; other skills say the limit was reached and that it resets the next day. Observation and reading aloud (input 4) need no AI at all.
 - **MPT101 is a single, shared class.** If more than one of you is on MPT101 at the same time, the plan and the group decisions you see are the last ones that were pressed; your own may be replaced by someone else's. Nothing lasting is lost, and MPT102 to MPT106 are separate classes, one per reviewer, that stay yours between sessions.
 - **The demo resets every night at 01:30 India time** (MPT101's history is restored to the recorded N2.3.2 story; the test teachers MPT102 to MPT106 are not touched; accounts keep their passwords).
-- **Slow or no network:** the whole first load is under 90 KB. To try it: generate a plan (step 1 above), switch on airplane mode (or DevTools → Network → Offline) and reload. The app opens, a notice says you are offline, today's plan and its worksheets still open and print, and Generate and photo sending are switched off with the reason. Recording decisions, observations and reading scores need the internet (nothing is queued yet). Details: [docs/OFFLINE.md](OFFLINE.md). [FILL ON FREEZE: repeat this on the frozen version and confirm]
+- **Slow or no network:** the whole first load is about 120 KB (compressed). To try it: generate a plan (step 1 above), switch on airplane mode (or DevTools → Network → Offline) and reload. The app opens, a notice says you are offline, today's plan and its worksheets still open and print, and Generate and photo sending are switched off with the reason. Recording decisions, observations and reading scores need the internet (nothing is queued yet). Details: [docs/OFFLINE.md](OFFLINE.md). [FILL ON FREEZE: repeat this on the frozen version and confirm]
 - **What is not built** is listed openly in [docs/STATUS.md](STATUS.md); the plan for roles (state, district, school) is in [docs/ROADMAP.md](ROADMAP.md).
 
 ## Frozen version (what you are evaluating)
@@ -70,4 +70,4 @@ Ankur Saathi's point is that **the next day looks at yesterday**. On MPT101 this
 | Cloud Run revision | `ankur-saathi-00013-bdr` (100% of traffic) |
 | Frozen on | 30 October 2026, 16:07 IST |
 
-Where the AI is used, every external service and model, and where keys are needed: the README, section "How AI is used". Questions: rameshveluthedan@gmail.com.
+Where the AI is used, every external service and model, and where keys are needed: the README, section "How AI is used".

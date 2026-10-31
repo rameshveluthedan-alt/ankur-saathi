@@ -1,7 +1,7 @@
 # Lab handover: teacher UI review (27–29 Oct)
 
 **Branch:** `lab/experiments` (lab worktree, not pushed) · **Base:** `main` at `4e17b06` (Release candidate 3)
-**Status:** done in the lab and tested; **not** in `main`. To be reviewed, then packaged for `main` by the release owner.
+**Status: merged into `main`** and part of the deployed `rc7`. Kept as the history of the UI review rounds; the rest of this page describes the lab as it was.
 **Updated (27 Oct, later):** five Progress and Review additions, plus two fixes found on the way. See "Additions after the first handover" below.
 **Updated (28 Oct):** the follow-up spec: today's time (45 / 60 / 90), the signal panel, "छोटी स्क्रीन", the printed plan and the time chip, with a lab-only mock for the phone test. See "Follow-up spec" below. Items 1–3 (Progress) were checked on a phone on 28 Oct; the rest is for the phone pass on Thursday.
 **Updated (29 Oct):** a UI review against the evaluation criteria (user at the centre; how the solution comes together) and a navigation review: see "UI review and navigation (29 Oct)" below.

@@ -33,7 +33,7 @@ AI teaching companion for foundational literacy and numeracy (FLN), multi-grade 
   Re-check the prices if the model changes. `scripts/ai_usage.py calibrate` compares the meter with actual spend.
 - **Thinking is set low on purpose** (`CLAUDE_THINKING_BODY = between_tools`): at default effort thinking used the whole 16,000-token budget and the plan was never written.
   Do not raise it without testing 3 plans.
-- Pending experiment: Haiku 5.5 for photo reading, judged by the scored photo test.
+- Not run before the freeze: Haiku 5.5 for photo reading, judged by the scored photo test (on the roadmap: `docs/ROADMAP.md`, section 11).
 
 ## Decisions made
 - **Levels** change ONLY through an assessment (baseline, periodic, or re-assessing one child). Daily results never change a level; they only raise a "consider re-assessing"

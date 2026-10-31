@@ -101,7 +101,7 @@ Open http://localhost:5173 and sign in as the demo teacher: **MPT101 / 4826** (e
 **To run the built app from the backend alone** (what the cloud does): `cd pwa && npm run build`, then from `backend/` run `uvicorn app.production:app --port 8000` and open http://localhost:8000.
 
 ### Optional: semantic retrieval
-Where the curated anchors have nothing for a skill, the app can choose the anchor nearest in meaning. It is **off by default** (`SEMANTIC_RETRIEVAL=off`) and needs no key and no model at run time. See [docs/SEMANTIC_RETRIEVAL.md](docs/SEMANTIC_RETRIEVAL.md).
+Where the curated anchors have nothing for a skill, the app can choose the anchor nearest in meaning. It is **off by default** (`SEMANTIC_RETRIEVAL=off`) and needs no key and no model at run time. Evaluated on 31 October: it recovers the curated anchor first 75% of the time (random: 25%), but a blind review of the 9 skills where it differs from today's pick was split (4 for semantic, 5 for today's), so it is **switched off in the submitted version**. See [docs/SEMANTIC_RETRIEVAL.md](docs/SEMANTIC_RETRIEVAL.md).
 
 ## Tests
 ```bash
