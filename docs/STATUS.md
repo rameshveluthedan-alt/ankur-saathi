@@ -27,7 +27,7 @@ The Ideate-stage proposal made a number of promises. This table says, for each, 
 | ✅ | Layer 1: competency tree with prerequisite links, Balvatika to Grade 3 | 101 skills, 142 prerequisite links, all four grades. |
 | ✅ | Layer 1: A/PA/NA criteria per skill and an assessment-modality tag | 101 of 101 have both. |
 | ✅ | Layer 1: misconception taxonomy, each mapped to an intervention | 55 misconceptions (34 numeracy, 21 literacy); 15 intervention templates. |
-| ✅ | Layer 1: one pilot state's weekly curriculum plan | Madhya Pradesh, 171 weeks (`/plan/curriculum-week`). |
+| 🟡 | Layer 1: one pilot state's weekly curriculum plan | A **representative** Madhya Pradesh plan that we drafted, not the SCERT's own calendar (the database record says "Replace with actual SCERT weekly plan when obtained"): 171 week entries for Grades 1 to 3, numeracy and Hindi literacy, no Balvatika, 90 of them with a note (`/plan/curriculum-week`). |
 | ✅ | Layer 2: anchors, reading passages, intervention templates, TLM references | 14 / 9 / 15 / 12 rows. Small: the larger gain is more content. |
 | 🟡 | Layer 2: semantic retrieval on pgvector, embeddings in the database | Built in v29g: open-weights model (BGE-M3, 1024 dims) run offline, vectors loaded by the nightly job, no embedding call at runtime. Evaluated on 31 October with the real vectors: it recovers the curated anchor first 75% of the time (random: 25%); the blind review of the 9 skills where it differs from today's pick was split (4 for semantic, 5 for today's). Switched OFF in the submitted version. |
 | ✅ | Layer 3: Claude generates only inside the L1 + L2 context | Plus deterministic validators: number ranges, the two-digit cap, answer keys, JSON repair, spend caps. |

@@ -65,7 +65,7 @@ pip install -r backend/requirements.txt openpyxl tzdata
 ```bash
 bash db/setup.sh postgresql://postgres:PASSWORD@localhost/ankur_saathi
 ```
-This creates the database, the schema and all seed data: 101 skills (53 numeracy, 48 Hindi literacy) from Balvatika to Grade 3, the prerequisite graph, the misconception list, the content bank, the Madhya Pradesh weekly plan and a fictional demo class. If `pgvector` is not installed it says so and continues; everything works except the optional semantic switch.
+This creates the database, the schema and all seed data: 101 skills (53 numeracy, 48 Hindi literacy) from Balvatika to Grade 3, the prerequisite graph, the misconception list, the content bank, a representative Madhya Pradesh weekly plan and a fictional demo class. If `pgvector` is not installed it says so and continues; everything works except the optional semantic switch.
 
 ### 3. Configure
 ```bash
@@ -135,6 +135,18 @@ Code checks: sums · answer keys · number ranges · readable JSON · "show me" 
 Dainik Yojana → the app, and printable worksheets
 ```
 
+How it is deployed:
+
+```mermaid
+flowchart LR
+  phone["Teacher's phone<br/>installable web app<br/>(a service worker keeps today's plan)"] -- HTTPS --> run["Cloud Run, Mumbai<br/>FastAPI backend"]
+  run --> sql[("Cloud SQL for PostgreSQL<br/>knowledge base, content bank,<br/>classes, evidence, plans")]
+  run -- "roll numbers and answers,<br/>never names" --> claude["Anthropic Claude API<br/>plans (text), photos (vision)"]
+  secrets["Secret Manager<br/>Claude key, database password"] -.-> run
+  sched["Cloud Scheduler"] --> job["Cloud Run job, nightly<br/>demo reset, embeddings load"] --> sql
+  laptop["A laptop, once<br/>BGE-M3 writes the vectors file"] -.-> job
+```
+
 ```
 backend/app/      FastAPI app: api/ (routes, sign-in), services/ (plan, review, progress, register, AI budget...), core/ (settings, database)
 backend/tests/    the backend test suites (python tests/test_X.py --env-file .env)
@@ -181,7 +193,32 @@ docs/             one note per design topic (below)
 | [docs/MODEL_JSON.md](docs/MODEL_JSON.md), [docs/SCORING.md](docs/SCORING.md), [docs/SAMPLING.md](docs/SAMPLING.md) | reading model output, scoring, photo sampling |
 | [docs/VISION_PHOTO_TEST.md](docs/VISION_PHOTO_TEST.md) | how to test photo analysis on real worksheets |
 | [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md) | what we know is not right yet, and why |
+| [docs/skill_ladder.csv](docs/skill_ladder.csv) | the whole skill ladder on one sheet, for review (made by `scripts/export_skill_ladder.py`) |
 | [docs/LAB_UI_HANDOVER.md](docs/LAB_UI_HANDOVER.md) | the teacher-UI review rounds, change by change, with the tests and the open decisions |
+
+## Terms and abbreviations
+| Term | Meaning |
+|---|---|
+| **FLN** | foundational literacy and numeracy: reading with understanding and basic arithmetic in the early grades |
+| **NIPUN Bharat** | the national mission for FLN; its coded learning outcomes are what our skills are mapped to |
+| **NCF-FS** | the National Curriculum Framework for the Foundational Stage (2022), for ages 3 to 8 |
+| **Lakshya** | a learning target: NIPUN's word for a skill |
+| **Beginner / Progressor / Proficient** | the three levels the children are grouped into, per subject |
+| **A / PA / NA** | Achieved / Partly achieved / Not achieved: NIPUN's way of recording a skill |
+| **Anchor activity** | the whole-class opening story or activity of a plan |
+| **I Do / We Do / You Do** | the teacher shows; the group does it together; the child does it alone |
+| **TLM** | teaching-learning material, for example bundling sticks |
+| **Layer 1 / 2 / 3** | the knowledge base; the content bank; and the AI, which writes the plan inside the first two |
+| **R1 / R2** | first-language and second-language literacy |
+| **BRC, CRC, BAC, MLO** | block and cluster academic support officers; the titles vary by state |
+| **Skill id** | N or L (numeracy or Hindi literacy), then the grade and the skill's place in the ladder: N2.3.2 is a Grade 2 numeracy skill |
+| **Roll number** | the school's own number for a child, and the only identifier sent to the AI |
+| **PWA** | progressive web app: a web app that installs from a link and keeps what it has loaded for offline use |
+| **DPDP Act** | India's Digital Personal Data Protection Act, 2023 |
+| **CWPM** | correct words per minute, the measure of reading fluency |
+| **Embedding, pgvector** | a list of numbers that stands for the meaning of a text; the PostgreSQL extension that compares them |
+| **BGE-M3** | the open-weights model that makes the embeddings, run offline on a laptop |
+| **CSV, JSON, API** | a file a spreadsheet opens; a plain-text data format; the way one program calls another |
 
 ## Team Beej
 Beej (बीज) means seed: the team behind Ankur (अंकुर), the sprout.

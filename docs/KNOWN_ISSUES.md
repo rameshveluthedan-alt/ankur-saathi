@@ -107,3 +107,17 @@ At 45 minutes the teach blocks are 15, 7 and 7 minutes, but the prompt still ass
 **Impact:** the labels understate the testing that was done, and show nothing at all for the skills whose plans failed a check. The 15 "experimental" skills come from earlier runs (22 to 26 Oct) and may have been fixed since, so they should be run again before they are shown as experimental.
 
 **Status for this submission:** decided on 30 October: the labels are left as they are, and the evaluator guide says so. Re-running the 27 skills, rebuilding the labels and loading them into the cloud database is on the roadmap (`docs/ROADMAP.md`, section 9). The summary line that counted them was removed from the screen on 30 Oct.
+
+## The weekly plan is a representative one, not the state's own
+
+**Found:** 31 October 2026, while checking the "Madhya Pradesh, 171 weeks" claim.
+
+**What happens:** the weekly plan in the database is marked `representative_v1`, and its source says "Representative plan based on NIPUN Bharat Lakshya progression and MP Mission Ankur grade-level targets. Replace with actual SCERT weekly plan when obtained." It is our own drafting, not the SCERT's calendar. It holds 171 week entries for Grades 1 to 3, in numeracy and Hindi literacy (21 to 36 weeks each), none for Balvatika, and 90 of the entries carry a note. The note is shown to the teacher as "State plan note" in the "Teaching and Learning Resources" item, and the week's topic and note also go into the AI's request.
+
+**Impact:** the week topic and the note look like the state's, and are not. Most notes are in English.
+
+**What stays right:** the label "State plan note" is correct once the real plan is loaded. The lesson takes the note from the active plan, so it changes when the plan does, with no code change.
+
+**What would need a change:** the item shows a note only when it contains no Devanagari, and only in the English text. A real plan's notes are likely in Hindi, so they would drop out of that item (the AI would still see them). Plans already stored keep the note they were made with; only new plans pick up the new one.
+
+**Status for this submission:** not changed. The evaluator guide says the plan is representative. Loading the SCERT's own plan, and showing Hindi notes, are on the roadmap (`docs/ROADMAP.md`, section 9).

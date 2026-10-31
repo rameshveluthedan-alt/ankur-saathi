@@ -1,6 +1,6 @@
 # L2 semantic retrieval (pgvector): how it works, how to run it, how to switch it on
 
-**What it is.** The proposal promised semantic retrieval of the L2 content bank on pgvector. Today it covers the **anchor activities** (the whole-class opening story), where the curated ladder is weakest. **Curated first, semantic as the fallback:** for the 77% of skills with an exact or related anchor (48 + 29 of 101), nothing changes. For the 24% the ladder served only weakly (topic area 10, loose 14: "the most broadly applicable first"), the semantic tier chooses the anchor **nearest in meaning to the skill**.
+**What it is.** The proposal promised semantic retrieval of the L2 content bank on pgvector. Today it covers the **anchor activities** (the whole-class opening story), where the curated ladder is weakest. **Curated first, semantic as the fallback:** for the 76% of skills with an exact or related anchor (48 + 29 of 101), nothing changes. For the 24% the ladder served only weakly (topic area 10, loose 14: "the most broadly applicable first"), the semantic tier chooses the anchor **nearest in meaning to the skill**.
 
 **The running app calls no embedding service and needs no key for it.** The query is the skill's own **stored vector** (`competencies.embedding`), compared inside PostgreSQL with `<=>`. The vectors are computed once, **offline, on a laptop, with an open-weights model**: `BAAI/bge-m3` (MIT licence, 1024 dimensions, handles Hindi and English). Nothing leaves the machine.
 
