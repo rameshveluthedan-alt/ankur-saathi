@@ -98,6 +98,8 @@ The plan prompt was reviewed line by line and a second version drafted (`docs/dr
 
 **A cheaper model for photo reading.** Haiku 5.5 was meant to be tried for reading worksheet photos and was not run before the freeze. The test is the one already built: the scored photo test (`scripts/eval_vision.py`, `docs/vision/`) run against the current model on the same sheets. Switch only if its answers, verdicts and mistake-naming score as well; otherwise keep Sonnet 5.5. A lower cost per photo is part of the cost goal above.
 
+**A check on worksheet answers.** Two real worksheet faults (the N0.1.1 entry in `docs/KNOWN_ISSUES.md`) are mechanical, so code can catch them like it already catches wrong sums: a problem whose stem contains the number its own question asks for, and a sheet on which most answers are the same. Both can be found by reading the problems and answers, with no extra AI call; a sheet that fails is repaired or asked for again.
+
 ## 12. Next, not built: telling the teacher when the AI is not sure, and keeping a record
 The photo analysis already gives each answer a confidence and shows "check in the notebook" for answers marked unclear. What is missing, and what the first scored run (`docs/vision/`, 40 answers) showed:
 - **Show "medium" as "check this answer".** The one misread (715 read as 745) was "medium", and the screen flags only "unclear" and "low". Three of the six "medium" answers were errors; three of the 34 "high" answers were wrong (copying slips the AI did not notice), so confidence helps with legibility but not with every kind of error.
