@@ -183,7 +183,9 @@ docs/             one note per design topic (below)
 | [docs/KNOWN_ISSUES.md](docs/KNOWN_ISSUES.md) | what we know is not right yet, and why |
 | [docs/LAB_UI_HANDOVER.md](docs/LAB_UI_HANDOVER.md) | the teacher-UI review rounds, change by change, with the tests and the open decisions |
 
-## Team
+## Team Beej
+Beej (बीज) means seed: the team behind Ankur (अंकुर), the sprout.
+
 - **Vaishnavi**: Education Domain Lead (curriculum knowledge base, misconceptions, Hindi review)
 - **Ramesh**: AI and Engineering Lead (orchestration, Claude integration)
 - **Arjun**: Data and Architecture Lead (backend, database, infrastructure)
