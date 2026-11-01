@@ -6,6 +6,7 @@ AI for Foundational Learning Hackathon 2026 · Challenge #1: Classroom Complexit
 | | |
 |---|---|
 | **Live demo** | https://ankur-saathi-434145152242.asia-south1.run.app |
+| **3-minute video** | https://youtu.be/fSvoh9tDXY4 |
 | **Test accounts and a guided path** | [docs/DEMO_ACCESS.md](docs/DEMO_ACCESS.md) (the demo holds fictional data only) |
 | **What is built, against the original proposal** | [docs/STATUS.md](docs/STATUS.md) |
 
