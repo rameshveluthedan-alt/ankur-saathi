@@ -10,6 +10,8 @@ AI for Foundational Learning Hackathon 2026 · Challenge #1: Classroom Complexit
 | **Test accounts and a guided path** | [docs/DEMO_ACCESS.md](docs/DEMO_ACCESS.md) (the demo holds fictional data only) |
 | **What is built, against the original proposal** | [docs/STATUS.md](docs/STATUS.md) |
 
+> **Status: early piloting.** Ankur Saathi is a prototype and the code will change. Its skill ladder, its mapping to NIPUN Bharat outcomes, the content bank and the generated plans have not been reviewed or approved by government curriculum experts, and AI-generated plans can contain mistakes. It is not an official government product. See the Licence section at the end.
+
 ## What it does
 
 One teacher, 60 or more children at three different levels, about 90 minutes. No tool helps her teach each group at its own level.
@@ -229,3 +231,11 @@ Beej (बीज) means seed: the team behind Ankur (अंकुर), the sprout
 - **Vaishnavi**: Education Domain Lead (curriculum knowledge base, misconceptions, Hindi review)
 - **Ramesh**: AI and Engineering Lead (orchestration, Claude integration)
 - **Arjun**: Data and Architecture Lead (backend, database, infrastructure)
+
+## Licence
+
+The code is released under the MIT Licence (see `LICENSE`). Any third-party material keeps its own licence.
+
+Content: the skill ladder, its mapping to NIPUN Bharat outcomes (proposed with AI help, awaiting expert confirmation), the content bank, and the generated plans and worksheets are work in progress. A teacher should review every plan before use.
+
+Data: the data in the demonstration is fictional. Do not use the software with real children's data without a data-protection review.
