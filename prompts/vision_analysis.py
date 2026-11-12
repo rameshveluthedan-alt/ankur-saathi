@@ -63,6 +63,7 @@ def build_vision_prompt(
     photo_count: int = 1,
     required_count: Optional[int] = None,   # children must do problems 1..N; the rest are extras
     domain_id: str = "numeracy",            # 'r1_literacy' adds the rules for judging Hindi text answers
+    writing: Optional[dict] = None,         # a writing sheet (backend/app/services/writing_sheets.py vision_spec): marked against a checklist or the dictated sentences
 ) -> str:
     """Build the user prompt that accompanies the worksheet photograph(s)."""
     
@@ -81,6 +82,29 @@ def build_vision_prompt(
             "- Do NOT diagnose reading or decoding misconceptions (for example a child who reads accurately but cannot answer) from written answers: "
             "they need oral reading evidence. Set diagnosed_misconception only for an error pattern visible in the writing itself, otherwise null.\n"
             "- carry_written does not apply: set it to null.\n\n"
+        )
+
+    # A writing sheet: the writing is marked against what was asked, not against a reading answer key
+    if writing and writing.get("kind") == "composition":
+        tasks = ", ".join(str(n) for n in writing.get("task_numbers") or []) or "1"
+        items = "\n".join(f"  {i}. {t}" for i, t in enumerate(writing.get("checklist") or [], 1))
+        literacy_block += (
+            "## THE WRITING TASK (a composition sheet)\n\n"
+            f"Problem(s) {tasks} ask the child to WRITE on a topic; their answer key says CHECKLIST. Do not look for one right answer: mark the writing against this checklist:\n"
+            f"{items}\n"
+            "- For each such problem add \"checklist_met\": a list with one entry per checklist item, in order: true (clearly met), false (not met) or null (cannot tell).\n"
+            "- is_correct is true only when EVERY item is met. When at least half are met, set is_correct false and \"partially_correct\": true. Fewer than half, or blank: is_correct false.\n"
+            "- extracted_answer: the child's text, copied exactly as written (spelling and matra mistakes kept).\n"
+            "- Judge only what the checklist asks. Handwriting, length beyond what it asks, and ideas are not marked.\n"
+            "- The other problems on the sheet have ordinary answers: mark them by the rules above.\n\n"
+        )
+    elif writing and writing.get("kind") == "dictation":
+        literacy_block += (
+            "## DICTATION (the teacher read each sentence aloud; the child wrote it on the numbered line)\n\n"
+            "- The answer key for each line is the sentence that was read. Here SPELLING IS THE SKILL: compare word by word, matras included.\n"
+            "- is_correct is true only when every word is written correctly. When at least half the words are right, set is_correct false and \"partially_correct\": true.\n"
+            "- Add \"wrong_words\": the words written wrongly, as the child wrote them, each with the right word (for example \"किताब→कीताब\").\n"
+            "- This rule replaces 'judge meaning, not exact wording' above, for this sheet.\n\n"
         )
 
     # Build answer key
@@ -225,6 +249,8 @@ def rescore(child_result: dict, required_count: Optional[int]) -> dict:
     two extras wrong was "partly achieved" (6 of 8 = 75%): it punished the children who try more.
     correct / total_problems / accuracy always describe the SAME basis, and score_basis says which.
     Without a required_count the model's own summary is kept.
+    A WRITING TASK (a composition sheet, 12 Nov) is marked against its checklist: it counts as one point per checklist item, and the child earns the
+    items met (checklist_met). Before, the task was one problem among the short items, right or wrong, so the skill itself weighed least.
     """
     summary = dict(child_result.get("summary") or {})
     probs = child_result.get("problems") or []
@@ -235,7 +261,7 @@ def rescore(child_result: dict, required_count: Optional[int]) -> dict:
         a = p.get("extracted_answer")
         return p.get("attempted") is False or a is None or str(a).strip() == ""
 
-    req_correct, extras_correct, extras_attempted, excluded_required, copy_excluded = 0, 0, 0, 0, 0
+    req_correct, extras_correct, extras_attempted, excluded_required, copy_excluded, extra_weight = 0, 0, 0, 0, 0, 0
     for p in probs:
         n = p.get("number")
         is_required = isinstance(n, int) and n <= required_count
@@ -246,13 +272,19 @@ def rescore(child_result: dict, required_count: Optional[int]) -> dict:
             continue
         if not is_required and blank(p):
             continue                                  # skipped extra: not an error
-        right = p.get("is_correct") is True and not blank(p)
-        if is_required:
-            req_correct += 1 if right else 0
+        cl = p.get("checklist_met")
+        if isinstance(cl, list) and cl:              # a writing task: its checklist items are its points
+            weight, right = len(cl), (0 if blank(p) else sum(1 for x in cl if x is True))
+            if is_required:
+                extra_weight += weight - 1
         else:
-            extras_attempted += 1
-            extras_correct += 1 if right else 0
-    req_total = required_count - excluded_required
+            weight, right = 1, (1 if p.get("is_correct") is True and not blank(p) else 0)
+        if is_required:
+            req_correct += right
+        else:
+            extras_attempted += weight
+            extras_correct += right
+    req_total = required_count - excluded_required + extra_weight
     all_total, all_correct = req_total + extras_attempted, req_correct + extras_correct
     # extras can only help: take whichever basis gives the child the better score (the required problems alone win a tie)
     use_all = extras_attempted > 0 and all_total > 0 and (req_total <= 0 or all_correct * req_total > req_correct * all_total)

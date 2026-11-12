@@ -1,0 +1,261 @@
+"""
+Writing skills get WRITING worksheets (12 Nov 2026, the fix for docs/KNOWN_ISSUES.md "Writing skills: the worksheets test reading, not writing").
+
+Before: the literacy worksheet rules made every Progressor and Proficient sheet a passage with comprehension questions, whatever the group's skill,
+and the code put the bank's reading questions first. So a group taught to WRITE was checked on READING, and the photo after class recorded reading
+as evidence of a writing skill (docs/drafts/PLAN_REVIEW_L2.7.2.md).
+
+Now each group's sheet follows ITS OWN skill:
+  reading      every literacy skill outside strand 7: the passage sheet, as before.
+  formation    L0.7.2, L1.7.1, L1.7.2, L1.7.3 (letters, words, short sentences): an example and writing items, never a passage.
+  dictation    L2.7.1: the teacher dictates; the child's sheet has only numbered blank lines. The sentences are in the teacher's plan only
+               (worksheet.dictation_sentences), never on the sheet or the board. The code builds the lines from the sentences.
+  composition  L2.7.2, L3.7.1, L3.7.3: ONE writing task on the topic the You Do names (never the teacher's own model topic), lined space, a 3-5 point
+               checklist instead of an answer key (printed on the sheet, so the child can tick it too), and 2-3 short items on the parts
+               (joining two sentences, ending one with ।, putting sentences in order), each with one checkable answer.
+The photo analysis marks a composition against its checklist and a dictation against the dictated sentences (vision_spec, prompts/vision_analysis.py).
+
+PURE (no database, no network): tested in backend/tests/test_writing_sheets.py.
+"""
+import re
+
+LEVELS = ("beginner", "progressor", "proficient")
+_WRITING = re.compile(r"^L\d+\.7\.\d+$")
+DICTATION = {"L2.7.1"}
+COMPOSITION = {"L2.7.2", "L3.7.1", "L3.7.3"}
+CHECKLIST_MIN, CHECKLIST_MAX = 3, 5
+TASK_ANSWER = "CHECKLIST"          # the writing task's "answer": the photo analysis uses the checklist instead of a key
+
+
+def sheet_kind(competency_id, domain_id="r1_literacy"):
+    """'reading' | 'formation' | 'dictation' | 'composition' for a literacy skill; None for numeracy."""
+    if domain_id != "r1_literacy" or not competency_id:
+        return None
+    cid = str(competency_id)
+    if cid in DICTATION:
+        return "dictation"
+    if cid in COMPOSITION:
+        return "composition"
+    if _WRITING.match(cid):
+        return "formation"
+    return "reading"
+
+
+def group_kinds(group_skill_ids, domain_id) -> dict:
+    """{level: kind} for the groups whose skill is known."""
+    return {lvl: sheet_kind(cid, domain_id) for lvl, cid in (group_skill_ids or {}).items() if cid and sheet_kind(cid, domain_id)}
+
+
+def writing_levels(group_skill_ids, domain_id) -> set:
+    return {lvl for lvl, k in group_kinds(group_skill_ids, domain_id).items() if k != "reading"}
+
+
+def prompt_section(group_skill_ids, domain_id) -> str:
+    """The prompt's rules for the groups on a writing skill (empty when no group is). They OVERRIDE the passage rules for those groups."""
+    kinds = group_kinds(group_skill_ids, domain_id)
+    writing = {lvl: k for lvl, k in kinds.items() if k != "reading"}
+    if not writing:
+        return ""
+    lines = ["\n### WRITING WORKSHEETS (these groups are taught a WRITING skill: their worksheet checks WRITING, not reading)"]
+    for lvl in LEVELS:
+        if lvl in writing:
+            lines.append(f"- {lvl} ({group_skill_ids[lvl]}): sheet_kind \"{writing[lvl]}\"")
+    lines.append("For these groups the literacy worksheet rules above about passages do NOT apply: passage_block null, no comprehension questions. Set \"sheet_kind\" on the worksheet.")
+    if "composition" in writing.values():
+        lines += [
+            "COMPOSITION sheet (\"composition\"):",
+            "- \"writing_task\": {\"topic_hi\": the topic, \"lines\": 6-10}. Problem 1 IS the writing task: problem_hi states the task with its topic and the number of sentences "
+            "(for example 'अपने गाँव के मेले पर 3-5 जुड़े हुए वाक्य लिखिए।'), row_type null, answer_type \"lines\", answer \"CHECKLIST\".",
+            "- The topic must be the one the group's You Do names, and must NOT be the topic, sentence or example the teacher models in the I Do or We Do.",
+            f"- \"checklist\": {CHECKLIST_MIN}-{CHECKLIST_MAX} items [{{\"item_hi\": \"...\", \"item_en\": \"...\"}}], each one thing a teacher can SEE in the writing "
+            "(for example: कम से कम 3 वाक्य · सभी वाक्य विषय पर · हर वाक्य के अंत में । · वाक्य 'और / फिर / क्योंकि' से जुड़े). Fit it to the group's skill and grade.",
+            "- Problems 2-4: short items on the PARTS of the skill, each with ONE checkable answer (join two given sentences with a joining word, put a full stop "
+            "where a sentence ends, put 3 jumbled sentences in order). Never a reading-comprehension question.",
+            "- required_count: all of these. An optional extra: a second, shorter writing task (answer \"CHECKLIST\").",
+        ]
+    if "dictation" in writing.values():
+        lines += [
+            "DICTATION sheet (\"dictation\"):",
+            "- \"dictation_sentences\": 4-6 short sentences at the group's level, using the matras the skill practises. They are for the TEACHER to read aloud: "
+            "they must NOT appear in the problems, the instructions, the example, the board work or the I Do / We Do. The system builds the child's sheet "
+            "(one numbered blank line per sentence) from them.",
+            "- The You Do says the teacher reads each sentence aloud twice and the children write it on line 1, 2, 3...; never that they copy from the board.",
+        ]
+    if "formation" in writing.values():
+        lines += [
+            "FORMATION sheet (\"formation\"): an example_block and short writing items (letters, words or short sentences, as the skill asks), never a passage, "
+            "even for a progressor or proficient group.",
+        ]
+    lines.append("For every writing sheet: never reuse a topic, sentence or example from the lesson or the anchor story.\n")
+    return "\n".join(lines)
+
+
+def _strip(s) -> str:
+    return re.sub(r"\s+", " ", str(s or "")).strip()
+
+
+def _sentences_from(ws: dict) -> list:
+    s = ws.get("dictation_sentences")
+    if isinstance(s, list) and any(_strip(x) for x in s):
+        return [_strip(x) for x in s if _strip(x)]
+    # the model put them in the problems' answers instead (or printed them in the questions): take the answers
+    return [_strip(p.get("answer")) for p in ws.get("problems") or [] if _strip(p.get("answer")) and _strip(p.get("answer")) != TASK_ANSWER]
+
+
+def _checklist_of(ws: dict) -> list:
+    out = []
+    for c in ws.get("checklist") or []:
+        if isinstance(c, dict) and _strip(c.get("item_hi")):
+            out.append({"item_hi": _strip(c["item_hi"]), "item_en": _strip(c.get("item_en"))})
+        elif isinstance(c, str) and _strip(c):
+            out.append({"item_hi": _strip(c), "item_en": ""})
+    return out[:CHECKLIST_MAX]
+
+
+def apply_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> list:
+    """
+    Make each writing group's sheet a writing sheet, in code, whatever the model wrote: no passage and no bank questions; a dictation sheet is rebuilt
+    as numbered blank lines from its sentences (so a sentence can never be printed for the child); a composition's task is problem 1 with the checklist
+    as its answer. Returns log lines. Never raises on a malformed sheet: it leaves what it cannot fix for check_writing_sheets to report.
+    """
+    log = []
+    for lvl, kind in group_kinds(group_skill_ids, domain_id).items():
+        if kind == "reading":
+            continue
+        ws = (plan.get("worksheets") or {}).get(lvl)
+        if not isinstance(ws, dict):
+            continue
+        if kind == "composition" and not _checklist_of(ws) and not any(_strip(p.get("answer")).upper() == TASK_ANSWER for p in ws.get("problems") or [] if isinstance(p, dict)):
+            # a sheet in the OLD shape (a recorded plan from before 12 Nov: comprehension questions on a passage, no task, no checklist): reshaping it would
+            # leave questions about a passage that is gone. It is left as it is, and check_writing_sheets reports it until the plan is recorded again.
+            log.append(f"{lvl}: an old-shape composition sheet (no writing task, no checklist): left as it is")
+            continue
+        ws["sheet_kind"] = kind
+        if ws.get("passage_block"):
+            ws["passage_block"] = None
+            log.append(f"{lvl}: passage removed (a {kind} sheet)")
+        probs = [p for p in ws.get("problems") or [] if isinstance(p, dict)]
+        bank = [p for p in probs if p.get("from_bank")]
+        if bank:
+            probs = [p for p in probs if not p.get("from_bank")]
+            log.append(f"{lvl}: {len(bank)} bank reading question(s) removed")
+        if kind == "dictation":
+            sentences = _sentences_from({**ws, "problems": probs})
+            ws["dictation_sentences"] = sentences
+            ws["problems"] = [{"number": n, "problem_hi": f"वाक्य {n}", "answer": s, "row_type": None, "answer_type": "lines", "answer_lines": 2,
+                               "show_letter_grid": False, "diagnostic_for_misconception": None, "dictation": True} for n, s in enumerate(sentences, 1)]
+            ws["required_count"] = len(sentences)
+            ws["example_block"] = None if ws.get("example_block") and any(s in _strip(ws["example_block"]) for s in sentences) else ws.get("example_block")
+            log.append(f"{lvl}: dictation sheet built from {len(sentences)} sentence(s), none printed for the child")
+            continue
+        if kind == "composition":
+            ws["checklist"] = _checklist_of(ws)
+            task = next((p for p in probs if _strip(p.get("answer")).upper() == TASK_ANSWER), None)
+            if task is None:                                            # no task marked: an item that asks for sentences to be written
+                task = next((p for p in probs if p.get("answer_type") == "lines" and re.search(r"वाक्य[^।?]*लिख|लिखिए|लिखें|लिखो", str(p.get("problem_hi") or ""))), None)
+            if task is not None:
+                probs.remove(task)
+                topic = _strip((ws.get("writing_task") or {}).get("topic_hi"))
+                lines_n = (ws.get("writing_task") or {}).get("lines")
+                task.update({"answer": TASK_ANSWER, "answer_type": "lines", "row_type": None, "writing_task": True,
+                             "answer_lines": max(6, min(10, int(lines_n) if isinstance(lines_n, int) and not isinstance(lines_n, bool) else 8))})
+                if topic:
+                    task["topic_hi"] = topic
+                probs.insert(0, task)
+            for n, p in enumerate(probs, 1):
+                p["number"] = n
+            ws["problems"] = probs
+            rc = ws.get("required_count")
+            if not (isinstance(rc, int) and not isinstance(rc, bool) and 1 <= rc <= len(probs)):
+                ws["required_count"] = len(probs)
+            continue
+        ws["problems"] = probs                                         # formation: the model's items, without any passage or bank question
+    return log
+
+
+def _lesson_text(plan: dict, level: str, keys=("i_do_hi", "we_do_hi")) -> str:
+    out = []
+    for b in (plan.get("rotation_schedule") or {}).get("blocks") or []:
+        if isinstance(b, dict) and b.get("teach_group") == level:
+            tp = b.get("talking_points") or {}
+            out += [str(tp.get(k) or "") for k in keys]
+    return " ".join(out)
+
+
+_SENT_SPLIT = re.compile(r"[।?!\n]")
+
+
+def _sentences(text) -> set:
+    """Whole sentences of 3+ words, punctuation and spacing ignored: a short sentence copied from the lesson is still copying."""
+    out = set()
+    for s in _SENT_SPLIT.split(str(text or "")):
+        w = re.sub(r"[\"'‘’“”«»(),:;.\-–—]", " ", s).split()
+        if len(w) >= 3:
+            out.add(" ".join(w))
+    return out
+
+
+def _norm(text) -> str:
+    """Words only, one space apart: punctuation, quotes and line breaks ignored (a dictated sentence inside 'बोर्ड पर लिखें: …' is still found)."""
+    return " " + " ".join(re.sub(r"[।?!\"'‘’“”«»(),:;.\-–—]", " ", str(text or "")).split()) + " "
+
+
+def check_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> list:
+    """What is still wrong with a writing sheet after apply_writing_sheets: human-readable warnings (empty = good)."""
+    issues = []
+    anchor = plan.get("anchor") or {}
+    for lvl, kind in group_kinds(group_skill_ids, domain_id).items():
+        if kind == "reading":
+            continue
+        ws = (plan.get("worksheets") or {}).get(lvl) or {}
+        where = f"worksheets.{lvl} ({kind})"
+        if ws.get("passage_block"):
+            issues.append(f"{where}: has a reading passage")
+        probs = ws.get("problems") or []
+        lesson = _lesson_text(plan, lvl)
+        lesson_all = lesson + " " + " ".join(str(anchor.get(k) or "") for k in ("narration_hi", "opening_question_hi", f"{lvl}_participation_hi"))
+        if kind == "composition":
+            cl = ws.get("checklist") or []
+            if not (CHECKLIST_MIN <= len(cl) <= CHECKLIST_MAX):
+                issues.append(f"{where}: the checklist has {len(cl)} item(s), not {CHECKLIST_MIN}-{CHECKLIST_MAX}")
+            if not probs or not probs[0].get("writing_task"):
+                issues.append(f"{where}: problem 1 is not the writing task")
+            topic = _strip((ws.get("writing_task") or {}).get("topic_hi"))
+            if topic and topic in _strip(lesson):
+                issues.append(f"{where}: the writing topic «{topic}» is the teacher's own model in the I Do / We Do")
+            you_do = _lesson_text(plan, lvl, ("you_do_hi",))
+            if topic and you_do and topic not in _strip(you_do):
+                issues.append(f"{where}: the You Do does not name the writing topic «{topic}»")
+            for p in probs[1:]:
+                if not p.get("writing_task") and not _strip(p.get("answer")):
+                    issues.append(f"{where} problem {p.get('number')}: no answer to check")
+        if kind == "dictation":
+            sentences = ws.get("dictation_sentences") or []
+            if not (3 <= len(sentences) <= 8):
+                issues.append(f"{where}: {len(sentences)} dictation sentence(s), not 4-6")
+            child = " ".join([str(ws.get("instructions_hi") or ""), str(ws.get("example_block") or "")] + [str(p.get("problem_hi") or "") for p in probs])
+            board = lesson + " " + _lesson_text(plan, lvl, ("you_do_hi",))
+            for s in sentences:
+                if _norm(s) and _norm(s) in _norm(child):
+                    issues.append(f"{where}: the dictated sentence «{s}» is printed on the child's sheet")
+                if _norm(s) and _norm(s) in _norm(board):
+                    issues.append(f"{where}: the dictated sentence «{s}» is in the lesson (the board)")
+        shown = set()
+        for p in probs:
+            shown |= _sentences(p.get("problem_hi"))
+        for s in sorted(shown & _sentences(lesson_all)):
+            issues.append(f"{where}: «{s}» is copied from the lesson or the anchor")
+    return issues
+
+
+def vision_spec(worksheet: dict):
+    """What the photo analysis needs to mark a writing sheet: None for any other sheet."""
+    kind = (worksheet or {}).get("sheet_kind")
+    if kind == "composition":
+        tasks = [p.get("number") for p in worksheet.get("problems") or [] if p.get("writing_task") or _strip(p.get("answer")).upper() == TASK_ANSWER]
+        return {"kind": "composition", "checklist": [c.get("item_hi") for c in worksheet.get("checklist") or [] if c.get("item_hi")], "task_numbers": tasks}
+    if kind == "dictation":
+        return {"kind": "dictation", "sentences": list(worksheet.get("dictation_sentences") or [])}
+    if kind == "formation":
+        return {"kind": "formation"}
+    return None

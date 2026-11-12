@@ -10,7 +10,7 @@ from datetime import date
 from typing import Optional
 
 import anthropic
-from app.services import ai_budget
+from app.services import ai_budget, writing_sheets
 
 from app.core.config import get_settings
 from app.services.plan_service import get_current_groups, _pick_passage
@@ -421,6 +421,7 @@ async def analyse_worksheet_photos(
     
     problems = []
     required_count = None
+    worksheet_data = {}
     if plan and plan['plan_content']:
         plan_data = plan['plan_content'] if isinstance(plan['plan_content'], dict) else json.loads(plan['plan_content'])
         worksheet_data = plan_data.get('worksheets', {}).get(worksheet_level, {})
@@ -461,6 +462,7 @@ async def analyse_worksheet_photos(
         photo_count=len(photo_bytes_list),
         required_count=required_count,
         domain_id=domain_id,
+        writing=writing_sheets.vision_spec(worksheet_data),       # a writing sheet: marked against its checklist or the dictated sentences
     )
     
     await ai_budget.check(db, teacher_id, "vision")        # over the AI limit: raises AICapReached (the route answers 429); a photo analysis cannot be faked

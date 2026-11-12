@@ -108,6 +108,11 @@
   }
 
   /* first-N-required banner and the tag on extra problems */
+  .checklist-box { margin-top: 10px; padding: 8px 12px; border: 1.5px solid #2D6A4F; border-radius: 6px; background: #F3FAF5; font-size: 11pt; break-inside: avoid; }
+  .checklist-label { font-weight: 700; color: #2D6A4F; margin-bottom: 4px; }
+  .checklist-item { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
+  .checklist-en { color: #888; font-size: 9pt; }
+  .tick-box { display: inline-block; width: 14px; height: 14px; border: 1.5px solid #2D6A4F; border-radius: 3px; flex-shrink: 0; }
   .required-note {
     background: #EEF4FB;
     border-left: 3px solid #4C78A8;
@@ -623,6 +628,10 @@
 {% endif %}
 
 <!-- Reading passage header (shown once, not a numbered question) -->
+{% if sheet_kind == 'dictation' %}
+<div class="required-note"><strong>{% if polite %}शिक्षक जो वाक्य बोलेंगे, उसे सुनकर उसी नंबर की लाइन पर लिखें।{% else %}शिक्षक जो वाक्य बोलेंगे, उसे सुनकर उसी नंबर की लाइन पर लिखो।{% endif %}</strong> (Listen to each sentence and write it on its line.)</div>
+{% endif %}
+
 {% if passage_block %}
 <div class="passage-header">
   <div class="passage-label">{% if polite %}अनुच्छेद पढ़ें{% else %}अनुच्छेद पढ़ो{% endif %} (Read the passage):</div>
@@ -725,6 +734,14 @@
 {% endif %}
 
 {% endfor %}
+
+{% if checklist %}
+<!-- A composition sheet: the checklist the writing is marked against, for the child to tick too (services/writing_sheets.py) -->
+<div class="checklist-box">
+  <div class="checklist-label">✅ जाँच सूची (Checklist): {% if polite %}लिखने के बाद हर बात पर ✓ लगाएँ{% else %}लिखने के बाद हर बात पर ✓ लगाओ{% endif %}</div>
+  {% for c in checklist %}<div class="checklist-item"><span class="tick-box"></span>{{ c.item_hi }}{% if c.item_en %} <span class="checklist-en">({{ c.item_en }})</span>{% endif %}</div>{% endfor %}
+</div>
+{% endif %}
 
 <!-- Footer -->
 <div class="worksheet-footer">

@@ -143,6 +143,20 @@ _NOTES_RE = [re.compile(p) for p in _TEACHER_NOTES]
 _PRINTED_RE = [re.compile(p) for p in _PRINTED]
 
 
+# The teacher's own first person, feminine only ("मैं बोलती हूँ"): written as the neutral pair, as the prompt asks ("बोलता/बोलती हूँ").
+# Only in the teacher's speech (a story character on a worksheet may be a girl). Idempotent: a word already after "/" is left alone.
+_FIRST_PERSON_F = re.compile(r"(?<![/ऀ-ॿ])([ऀ-ॿ]+?)ती हूँ")
+
+
+_FIRST_PERSON_RAHI = re.compile(r"(?<![/ऀ-ॿ])रही हूँ")         # "पढ़ा रही हूँ" -> "पढ़ा रहा/रही हूँ"
+
+
+def neutral_first_person(text: str) -> tuple:
+    new, n = _FIRST_PERSON_F.subn(lambda m: f"{m.group(1)}ता/{m.group(1)}ती हूँ", text)
+    new, n2 = _FIRST_PERSON_RAHI.subn("रहा/रही हूँ", new)
+    return new, ["grammar"] * (n + n2)
+
+
 def soften_plan(plan: dict) -> dict:
     """Apply the style to a generated plan, in place. Returns how many changes of each kind were made. Word problems, passages,
     answers, names and the explanations are never touched."""
@@ -170,6 +184,9 @@ def soften_plan(plan: dict) -> dict:
         if not (speech or notes or printed):
             return
         new, changes = soften_text(text, polite=speech or (printed and POLITE_IN_WORKSHEETS), frame=True, protect_quotes=printed)
+        if speech:
+            new, ch = neutral_first_person(new)
+            changes += ch
         if new != text:
             container[key] = new
             for c in changes:

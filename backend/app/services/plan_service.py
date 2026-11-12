@@ -22,6 +22,7 @@ from app.services.cfu import clean_plan_cfu, strip_cfu, MIN_ITEMS, right_answer 
 from app.services.model_json import parse_model_json, ModelJSONError
 from app.services import group_skills as _group_skills
 from app.services.resources_item import build_resources_item, put_resources_item
+from app.services import writing_sheets
 from app.services.hindi_numbers import find_number_word_errors, find_numeric_overlaps, repair_place_value
 
 # Import the orchestration module (copied from prompts/ into services/ or added to path)
@@ -1205,9 +1206,12 @@ async def generate_dainik_yojana(
     ctx.cfu_detected = {r["misconception_id"]: r["affected_count"] for r in reteach_competencies if r.get("misconception_id")}
     
     # ── Reading passages (literacy): chosen in code from the content bank ──
+    # a group taught a WRITING skill gets a writing sheet, never a passage (services/writing_sheets.py)
+    writing_groups = writing_sheets.writing_levels(ctx.group_skill_ids, domain_id)
     group_passages = await retrieve_group_passages(
-        db, domain_id, {"progressor": competency_id, "proficient": proficient_comp.id}, plan_date)
+        db, domain_id, {lvl: cid for lvl, cid in {"progressor": competency_id, "proficient": proficient_comp.id}.items() if lvl not in writing_groups}, plan_date)
     ctx.group_passages = group_passages
+    ctx.writing_rules = writing_sheets.prompt_section(ctx.group_skill_ids, domain_id)
     independent_passages = await retrieve_independent_passages(
         db, domain_id, {"progressor": beginner_target_id, "proficient": competency_id}, plan_date,
         {ps["id"] for ps in group_passages.values()})
@@ -1296,6 +1300,11 @@ async def generate_dainik_yojana(
         print(f"   Passage: {line}")
     for line in apply_bank_questions(plan_json, group_passages):
         print(f"   Bank questions: {line}")
+    try:                                         # writing groups: a writing sheet, whatever the model (or a recorded plan) wrote
+        for line in writing_sheets.apply_writing_sheets(plan_json, ctx.group_skill_ids, domain_id):
+            print(f"   Writing sheet: {line}")
+    except Exception as e:
+        print(f"   Writing sheet step skipped: {type(e).__name__}: {e}")
     for line in inject_independent(plan_json, independent_passages):
         print(f"   Independent practice: {line}")
 
@@ -1376,6 +1385,7 @@ async def generate_dainik_yojana(
         print(f"   CFU check skipped (questions removed): {type(e).__name__}: {e}")
 
     validation_warnings = validate_plan_shape(plan_json, domain_id)
+    validation_warnings += writing_sheets.check_writing_sheets(plan_json, ctx.group_skill_ids, domain_id)
     if decided_groups is not None and any(b.get("type") == "reteach" for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or []):
         validation_warnings.append("a separate re-teach block was written, but the teacher decided the re-teach is the group's main block")
     plan_json["coverage"] = await get_coverage(db, competency_id)      # shown on the plan screen

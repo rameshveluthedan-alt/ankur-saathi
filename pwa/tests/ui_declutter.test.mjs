@@ -109,6 +109,13 @@ check('the plan screen marks groups with the coloured shapes (GroupMark), not th
   assert.ok(y.includes('<GroupMark') && !/🟠|🟡|🟢|\.emoji/.test(y));
 });
 
+console.log('\nthe dictation sentences: for the teacher only');
+check('a dictation group\'s slot has a "बोलकर लिखवाएँ" fold with the sheet\'s sentences, and the printed plan a line with them', () => {
+  const y = read('screens/YojanaScreen.jsx'); const pp = read('screens/PlanPrint.jsx');
+  assert.ok(y.includes("ws.sheet_kind === 'dictation'") && y.includes('ws.dictation_sentences') && y.includes('testid={`dictation-${level}`}') && y.includes('ये वाक्य बोर्ड पर न लिखें'));
+  assert.ok(pp.includes("ws.sheet_kind === 'dictation'") && pp.includes('testid="print-dictation"'));
+});
+
 console.log('\nthe language pill');
 check('on every screen, the sign-in too, and not printed', () => {
   const app = read('App.jsx');

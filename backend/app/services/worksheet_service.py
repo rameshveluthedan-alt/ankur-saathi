@@ -77,7 +77,8 @@ def _enrich_literacy_problem(problem: dict, level: str) -> dict:
     problem_text = (problem.get("problem_hi") or "").lower()
     
     # Letter/matra writing grid
-    if any(kw in problem_text for kw in ["लिखो", "लिखें", "लिखिए", "write", "अक्षर", "मात्रा"]):
+    # (never on a writing task or a dictation line: they need lines, not a tracing grid; services/writing_sheets.py)
+    if not problem.get("writing_task") and not problem.get("dictation") and any(kw in problem_text for kw in ["लिखो", "लिखें", "लिखिए", "write", "अक्षर", "मात्रा"]):
         if level == "beginner":
             enriched["show_letter_grid"] = True
             # Create alternating prefilled + empty cells for tracing
@@ -236,6 +237,8 @@ def render_worksheet(
         render_blocks=render_blocks,
         required_count=required_count,
         date=plan_date,
+        sheet_kind=worksheet.get("sheet_kind"),                      # a writing sheet (services/writing_sheets.py)
+        checklist=[c for c in (worksheet.get("checklist") or []) if isinstance(c, dict) and c.get("item_hi")] if worksheet.get("sheet_kind") == "composition" else [],
     )
     
     return html

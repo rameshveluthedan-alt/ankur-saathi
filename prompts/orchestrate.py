@@ -146,6 +146,7 @@ class OrchestrationContext:
     group_passages: dict = field(default_factory=dict)
     # Texts for each group's independent practice, from the bank: {level: {id, title, text, questions}}
     independent_passages: dict = field(default_factory=dict)
+    writing_rules: str = ""          # the rules for groups taught a writing skill (backend/app/services/writing_sheets.py prompt_section)
     
     # Curriculum note for the week that teaches today's competency (from L1)
     week_notes: Optional[str] = None
@@ -547,6 +548,9 @@ _SCHEMA_WORKSHEET_LITERACY = """
   "instructions_hi": "...", "instructions_en": "...", "required_count": 5,
   "example_block": {"problem_hi": "मात्रा जोड़ने का उदाहरण:", "example_text": "क + ो = को"} or null,
   "passage_block": {"title": "...", "text": "short passage at grade level"} or null,
+  "sheet_kind": "reading|formation|dictation|composition" (only when the WRITING WORKSHEETS section names this group),
+  "writing_task": {"topic_hi": "...", "lines": 8} (composition only), "checklist": [{"item_hi": "...", "item_en": "..."}] (composition only),
+  "dictation_sentences": ["...", "..."] (dictation only: for the teacher, never printed),
   "problems": [
     {"number": 1, "problem_hi": "...", "answer": "...", "row_type": "plain" or null,
      "answer_type": "box|lines", "answer_lines": <int, only for lines>,
@@ -555,9 +559,10 @@ _SCHEMA_WORKSHEET_LITERACY = """
 }
 Literacy worksheet rules:
 - beginner: example_block REQUIRED, passage_block null. Q1 may be a letter-tracing item: show_letter_grid true, target_letter "क", letter_grid_cells [{"prefilled": true, "text": "क"}, {"prefilled": false}, ...]. Short-answer items use row_type "plain" (grouped three per row); writing items use row_type null with answer_type "lines".
-- progressor: passage_block REQUIRED, example_block null. Short comprehension or matra items row_type "plain"; longer answers row_type null with answer_type "lines".
-- proficient: passage_block REQUIRED, example_block null. All items row_type null with answer_type "lines".
+- progressor (a READING skill): passage_block REQUIRED, example_block null. Short comprehension or matra items row_type "plain"; longer answers row_type null with answer_type "lines".
+- proficient (a READING skill): passage_block REQUIRED, example_block null. All items row_type null with answer_type "lines".
 - Do not number the passage as a question.
+- A group taught a WRITING skill follows the WRITING WORKSHEETS section of the context instead (no passage).
 """
 
 
@@ -857,6 +862,8 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
                                   + "".join(f"  Question {n}: {q['question_hi']}\n" for n, q in enumerate(qs, 1)))
             passages_text += ("Rules: in every teach block's other_groups_hi and in classroom_management.independent_activities_hi, send these groups to THEIR passage "
                               "by its title and tell them to answer its listed questions. Do not mention any other independent text.\n")
+
+    passages_text += ctx.writing_rules or ""          # writing groups: their sheet rules override the passage rules above
 
     # Compute rotation timing
     anchor_duration = 10

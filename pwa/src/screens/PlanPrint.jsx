@@ -27,7 +27,7 @@ function Line({ n = 1, testid, className = '', children }) {
   return <div className={`print-line-${n} ${className}`.trim()} data-lines={n} data-testid={testid}>{children}</div>;
 }
 
-function Block({ block, groups }) {
+function Block({ block, groups, plan }) {
   const L = GROUP_LABELS[block.teach_group] || { hi: block.teach_group, mark: '' };
   const skill = (groups.find((g) => g.label === block.teach_group) || {}).target_competency_id;
   const rt = reteachSummary(block);
@@ -45,6 +45,11 @@ function Block({ block, groups }) {
       )}
       {fmt(block.script_hi) && <Line n={2} testid="print-script">“{fmt(block.script_hi)}”</Line>}
       {hasSignalPanel(block.signal) && <div data-lines={2} data-testid="print-signal"><SignalPanel signal={block.signal} compact /></div>}
+      {(() => {        /* a dictation sheet: the teacher reads these aloud (the child's sheet has only blank numbered lines) */
+        const ws = ((plan && plan.worksheets) || {})[block.teach_group];
+        const ds = ws && ws.sheet_kind === 'dictation' && Array.isArray(ws.dictation_sentences) ? ws.dictation_sentences.filter(Boolean) : [];
+        return ds.length ? <Line n={2} testid="print-dictation"><b>🗣️ बोलकर लिखवाएँ:</b> {ds.map((t, k) => `${k + 1}) ${fmt(t)}`).join(' ')}</Line> : null;
+      })()}
       {cfu && fmt(cfu.question_hi) && <Line testid="print-cfu"><b>समझ की जाँच:</b> {fmt(cfu.question_hi)}</Line>}
       {fmt(block.other_groups_hi) && <Line testid="print-others"><b>बाकी:</b> {fmt(block.other_groups_hi)}</Line>}
     </section>
@@ -112,7 +117,7 @@ export default function PlanPrint() {
       </header>
       <hr />
       {anchorTitle && <Line testid="print-anchor">🎯 <b>एंकर गतिविधि:</b> {anchorTitle}{anchorBlock && anchorBlock.duration_minutes ? ` · ${anchorBlock.duration_minutes} मि.` : ''}</Line>}
-      {teachBlocks.map((b, i) => <Block key={i} block={b} groups={groups} />)}
+      {teachBlocks.map((b, i) => <Block key={i} block={b} groups={groups} plan={plan} />)}
       <hr />
       <div data-testid="print-review">
         {observing && <Line testid="print-review-obs"><b>अवलोकन:</b> स्वतंत्र अभ्यास के दौरान देखकर हर बच्चे के लिए A / PA / NA</Line>}

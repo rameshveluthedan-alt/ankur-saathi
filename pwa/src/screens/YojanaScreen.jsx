@@ -230,6 +230,19 @@ export default function YojanaScreen() {
         ))}
         {/* what the children will do (the three core questions, or the writing prompt): visible without a tap, in every mode */}
         {block.type === 'teach' && <SignalPanel signal={block.signal} />}
+        {/* a dictation sheet: the sentences are for the teacher only (the child's sheet has blank numbered lines; services/writing_sheets.py) */}
+        {(() => {
+          const ws = plan.worksheets?.[level];
+          const ds = ws && ws.sheet_kind === 'dictation' && Array.isArray(ws.dictation_sentences) ? ws.dictation_sentences.filter(Boolean) : [];
+          return ds.length > 0 ? (
+            <Fold icon="🗣️" hi="बोलकर लिखवाएँ: वर्कशीट के वाक्य" en="Dictate: the worksheet's sentences" testid={`dictation-${level}`}>
+              <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '0 0 4px' }}>
+                <Bi hi="हर वाक्य दो बार साफ़ बोलें; बच्चे उसी नंबर की लाइन पर लिखें। ये वाक्य बोर्ड पर न लिखें।" en="Read each sentence clearly twice; the children write it on the line with its number. Do not write these on the board." />
+              </p>
+              <ol style={{ paddingLeft: 20, margin: 0 }}>{ds.map((t, k) => <li key={k} data-testid="dictation-sentence">{fmt(t)}</li>)}</ol>
+            </Fold>
+          ) : null;
+        })()}
         {tp.i_do_hi && <Fold icon="🧑‍🏫" hi="मैं करूँगा" en="I do" testid="fold-i-do"><div style={ML}>{fmt(tp.i_do_hi)}</div></Fold>}
         {tp.we_do_hi && <Fold icon="🤝" hi="हम करेंगे" en="We do" testid="fold-we-do"><div style={ML}>{fmt(tp.we_do_hi)}</div></Fold>}
         {tp.you_do_hi && (
