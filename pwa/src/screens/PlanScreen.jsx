@@ -17,6 +17,7 @@ import SessionLength from '../components/SessionLength';
 import { getSessionMinutes, setSessionMinutes } from '../services/preferences';
 import ReplacePlanDialog from '../components/ReplacePlanDialog';
 import SuggestedSkill from '../components/SuggestedSkill';
+import PilotFlag from '../components/PilotFlag';
 import { CHANNELS } from '../services/reviewWays';
 import { planMinutes, PRESETS } from '../services/planMinutes';
 
@@ -26,17 +27,6 @@ const GRADE_ORDER = ['balvatika', 'grade_1', 'grade_2', 'grade_3'];
 // Generating a plan takes about a minute (measured: 59-82 s). Tell the teacher, and reassure if it runs long.
 const SLOW_AFTER_S = 100;
 
-// How much of the knowledge base stands behind a skill (see docs/COVERAGE.md)
-const TIERS = {
-  tested:       { icon: '✔', hi: 'परखा हुआ', en: 'Tested', color: '#1B6B43', bg: '#E4F4EA',
-                  what: 'Passed every automatic check with the real AI, using an exact anchor from the bank.' },
-  ai_written:   { icon: '◐', hi: 'AI-लिखित सामग्री', en: 'AI-written content', color: '#8A5A00', bg: '#FFF1CC',
-                  what: 'The plan works, but part of it (the opening activity or the passage) is adapted or written by the AI, so it is less validated.' },
-  experimental: { icon: '⚠', hi: 'प्रयोगात्मक', en: 'Experimental', color: '#A12A1E', bg: '#FCE4E1',
-                  what: 'It failed in testing or the checks still flag problems. Expect to edit it.' },
-  untested:     { icon: '○', hi: 'अभी परखा नहीं', en: 'Not yet tested', color: '#555', bg: '#EDEDED',
-                  what: 'Not yet run through the real AI.' },
-};
 // how a skill is checked at the Review, on every skill of the list (the same icons and words as the Review's three ways, services/reviewWays.js)
 const MODE = {
   observed:     { icon: '✓',  id: 'observed', short: { hi: 'देखकर', en: 'observe' } },
@@ -186,7 +176,6 @@ export default function PlanScreen() {
   };
 
     const selectedSkill = competencies.find(c => c.id === selectedId);
-  const selectedTier = selectedSkill ? (selectedSkill.coverage_tier || 'untested') : null;
 
   const filtered = gradeFilter ? competencies.filter(c => c.grade_level === gradeFilter) : competencies;
   const grouped = {};
@@ -197,7 +186,7 @@ export default function PlanScreen() {
       <div className="screen-header">
         <h1>🎯 <Bi hi="योजना बनाएँ" en="Make plan" inline /></h1>
         {/* Profile is the 👤 tab in the bottom bar, so there is no second Profile button here */}
-        <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/register')} data-testid="open-register">👥 कक्षा रजिस्टर</button>
+        <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/register')} data-testid="open-register">👥 <Bi hi="कक्षा रजिस्टर" en="Class register" inline /></button>
       </div>
 
       {/* after "हाँ, बदलें": the screen is unlocked; nothing has been replaced yet */}
@@ -210,11 +199,10 @@ export default function PlanScreen() {
       )}
 
       {!teacher.total_children && (
-        <div className="card" style={{ borderLeft: '4px solid #C9A227', background: '#FFF8E1' }} data-testid="empty-class">
-          <h3 style={{ marginBottom: 4 }}>आपकी कक्षा में अभी कोई बच्चा नहीं है</h3>
+        <div className="card" style={{ borderLeft: '4px solid var(--info)', background: 'var(--info-bg)' }} data-testid="empty-class">
+          <h3 style={{ marginBottom: 4 }}><Bi hi="आपकी कक्षा में अभी कोई बच्चा नहीं है" en="No children in your class yet" /></h3>
           <p style={{ fontSize: '0.8125rem', marginBottom: 8 }}>
-            पहले अपनी कक्षा का रजिस्टर अपलोड करें, फिर आपके समूहों के लिए योजनाएँ बन सकेंगी।
-            <span className="en" lang="en">No children in your class yet. Upload your class register first, then plans can be made for your groups.</span>
+            <Bi hi="पहले अपनी कक्षा का रजिस्टर अपलोड करें, फिर आपके समूहों के लिए योजनाएँ बन सकेंगी।" en="Upload your class register first, then plans can be made for your groups." />
           </p>
           <button type="button" className="btn btn-primary" onClick={() => navigate('/register')} style={{ flexDirection: 'column', gap: 0 }}><Bi hi="कक्षा रजिस्टर अपलोड करें" en="Upload class register" /></button>
         </div>
@@ -233,8 +221,7 @@ export default function PlanScreen() {
           <div style={{ display: 'flex', gap: 8 }}>
             {groups.map(g => (
               <div key={g.label} style={{ flex: 1, textAlign: 'center' }}>
-                <span className={`badge badge-${g.label}`}>{GROUP_LABELS[g.label]?.hi}</span>
-                <div className="en" lang="en">{GROUP_LABELS[g.label]?.en}</div>
+                <span className={`badge badge-${g.label}`}><Bi hi={GROUP_LABELS[g.label]?.hi} en={GROUP_LABELS[g.label]?.en} inline /></span>
                 <div style={{ fontSize: '1.25rem', fontWeight: 700, marginTop: 4 }}>{g.count}</div>
               </div>
             ))}
@@ -288,7 +275,7 @@ export default function PlanScreen() {
         </div>
       )}
       {existing.status === 'unknown' && (
-        <div data-testid="plan-check-failed" style={{ fontSize: '0.8125rem', color: '#8A5A00', background: '#FFF8E1', borderRadius: 8, padding: '6px 10px', marginBottom: 10 }}>
+        <div data-testid="plan-check-failed" style={{ fontSize: '0.8125rem', color: 'var(--info)', background: 'var(--info-bg)', borderRadius: 8, padding: '6px 10px', marginBottom: 10 }}>
           <Bi hi="आज की योजना की जाँच नहीं हो सकी" en="Could not check for today's plan" />
         </div>
       )}
@@ -296,6 +283,10 @@ export default function PlanScreen() {
       {existing.status !== 'checking' && !locked && (<>
       {/* how long the teacher has today: just above the skill list, so it is set before a skill is chosen */}
       <SessionLength value={sessionMinutes} onChange={chooseMinutes} disabled={generating} />
+
+      {/* one honest line instead of a label on every skill: the per-skill labels were out of date (99 of 101 "not yet tested", docs/KNOWN_ISSUES.md) */}
+      <PilotFlag testid="pilot-plans" hi="योजनाएँ AI बनाता है और अभी परखी जा रही हैं; छह कौशलों की योजनाएँ टीम ने जाँची हैं। पढ़ाने से पहले योजना एक बार पढ़ लें।"
+        en="Plans are written by the AI and still being tested; the team has reviewed the plans of six skills. Read the plan once before teaching." />
 
       {/* the Progressors' skill the last review points to: one tap, instead of searching the list */}
       {!loading && <SuggestedSkill proposal={proposal} competencies={competencies} selectedId={selectedId}
@@ -323,22 +314,17 @@ export default function PlanScreen() {
           {GRADE_ORDER.filter(g => grouped[g]).map(grade => (
             <div key={grade}>
               <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-secondary)', padding: '8px 0 4px' }}>
-                {GRADE_LABELS[grade]} — {GRADE_LABELS_HI[grade]}
+                {GRADE_LABELS[grade]} <span className="hi">— {GRADE_LABELS_HI[grade]}</span>
               </div>
               {grouped[grade].map(c => (
                 <div key={c.id} className={`competency-item ${selectedId === c.id ? 'recommended' : ''}`}
                   onClick={() => { setDrawerOpen(false); setSelectedId(c.id); }}>
                   <span className="competency-id">{c.id}</span>
                   <span className="competency-name">
-                    {c.name_hi || c.name_en}
-                    {c.name_hi && <span className="en" lang="en">{c.name_en}</span>}
-                    {(() => { const T = TIERS[c.coverage_tier || 'untested']; return (
-                      <span title={c.coverage_note || T.what} style={{ display: 'inline-block', marginTop: 3, background: T.bg, color: T.color, borderRadius: 8, padding: '1px 7px', fontSize: '0.62rem', fontWeight: 600 }}>
-                        {T.icon} {T.hi}
-                      </span>); })()}
+                    {c.name_hi ? <Bi hi={c.name_hi} en={c.name_en} /> : c.name_en}
                   </span>
                   <span className="grade-tag" data-testid="skill-mode" data-mode={modeOf(c).id} style={{ textAlign: 'center', lineHeight: 1.2 }}>
-                    {modeOf(c).icon}<br /><span style={{ fontSize: '0.55rem' }}>{modeOf(c).short.hi}<span className="en en-inline" lang="en" style={{ fontSize: '0.5rem' }}>{modeOf(c).short.en}</span></span>
+                    {modeOf(c).icon}<br /><span style={{ fontSize: '0.55rem' }}><span className="hi">{modeOf(c).short.hi}</span><span className="en en-inline" lang="en" style={{ fontSize: '0.5rem' }}>{modeOf(c).short.en}</span></span>
                   </span>
                 </div>
               ))}
@@ -352,11 +338,6 @@ export default function PlanScreen() {
       {selectedId && (
         <div style={{ position: 'fixed', bottom: 'calc(var(--nav-height) + var(--safe-bottom) + 8px)', left: 16, right: 16, maxWidth: 448, margin: '0 auto',
                       background: 'var(--bg)', borderRadius: 12, padding: 6, boxShadow: '0 -2px 10px rgba(0,0,0,0.08)' }}>
-          {!generating && !drawerOpen && selectedTier && selectedTier !== 'tested' && (
-            <div style={{ fontSize: '0.7rem', textAlign: 'center', background: TIERS[selectedTier].bg, color: TIERS[selectedTier].color, borderRadius: 8, padding: '4px 8px', marginBottom: 6 }}>
-              {TIERS[selectedTier].icon} {TIERS[selectedTier].hi}: {selectedSkill.coverage_note || TIERS[selectedTier].what}
-            </div>
-          )}
           {!generating && rows && ladder && groups.length > 0 && (
             <GroupSkillsDrawer open={drawerOpen} onToggle={() => setDrawerOpen((o) => !o)}
               summary={summarize(rows, reteach).map((s) => `${GROUP_SHORT[s.label]} ${s.skillId}${s.reteach ? '🔄' : ''}`).join(' · ')}>
@@ -382,11 +363,11 @@ export default function PlanScreen() {
           <button className="btn btn-primary" onClick={handleGenerate} disabled={generating || loadingPanel || !online}
             style={generating ? { opacity: 1, cursor: 'wait' } : undefined}>
             {generating ? (
-              <><div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }} /> योजना बन रही है...<span className="en en-inline" lang="en">Generating</span> {fmtClock(elapsed)}</>
+              <><div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }} /> <Bi hi="योजना बन रही है..." en="Generating…" inline /> {fmtClock(elapsed)}</>
             ) : loadingPanel ? (
-              <>समूहों के कौशल लोड हो रहे हैं…<span className="en en-inline" lang="en">Loading the groups</span></>
+              <Bi hi="समूहों के कौशल लोड हो रहे हैं…" en="Loading the groups" inline />
             ) : (
-              <>📋 आज की योजना बनाएँ<span className="en en-inline" lang="en">Make today's plan</span> → {selectedId}</>
+              <>📋 <Bi hi="आज की योजना बनाएँ" en="Make today's plan" inline /> → {selectedId}</>
             )}
           </button>
         </div>

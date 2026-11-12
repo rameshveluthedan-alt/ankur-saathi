@@ -115,8 +115,12 @@ check('the header has only the title now (the report buttons pushed it onto two 
 const card = q('[data-testid="reports"]');
 const after = (a, b) => !!(a && b && (a.compareDocumentPosition(b) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING));
 check('a "📄 रिपोर्ट" card below the children\'s list', !!card && /📄 रिपोर्ट/.test(card.textContent) && after(q('.domain-tabs'), card));
-check('the mentor report first, then the two CSV files as data', after(card.querySelector('[data-testid="open-mentor"]'), card.querySelector('[data-testid="class-report"]')) && after(card.querySelector('[data-testid="class-report"]'), card.querySelector('[data-testid="mlo-report"]'))
-  && /डेटा, CSV फ़ाइल/.test(card.textContent));
+check('the mentor report first, then the two CSV reports as data tables', after(card.querySelector('[data-testid="open-mentor"]'), card.querySelector('[data-testid="class-report"]')) && after(card.querySelector('[data-testid="class-report"]'), card.querySelector('[data-testid="mlo-report"]'))
+  && /डेटा तालिका/.test(card.textContent));
+await click(q('[data-testid="class-report"]'));
+check('the class report opens IN the app as a table (/report, kind class), not as a silent download (the evaluators, 12 Nov)', JSON.stringify(globalThis.__navs.pop()) === JSON.stringify(['/report', { state: { kind: 'class' } }]));
+await click(q('[data-testid="mlo-report"]'));
+check('the officer data the same way (kind officer)', JSON.stringify(globalThis.__navs.pop()) === JSON.stringify(['/report', { state: { kind: 'officer' } }]));
 await click(q('[data-testid="open-mentor"]'));
 check('"💬 मेंटर रिपोर्ट" opens /progress/mentor', JSON.stringify(globalThis.__navs.pop()) === JSON.stringify(['/progress/mentor']));
 

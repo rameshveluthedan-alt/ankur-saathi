@@ -11,10 +11,12 @@ export default function FluencyLine({ roll, correct, errors, classification, amb
   const warn = amber && manyErrors(correct, errors);
   return (
     <span data-testid="fluency-line" data-classification={classification}>
-      {roll != null && <>✓ रोल {roll}: </>}
-      <span data-testid="fluency-correct">{correct} सही</span> ·{' '}
-      <span data-testid="fluency-errors" className={warn ? 'many-errors' : undefined}>{errors} गलतियाँ{warn ? ' ⚠' : ''}</span> ·{' '}
-      <span data-testid="fluency-pace">{pace ? pace.hi : '—'}</span>
+      <span className="hi">
+        {roll != null && <>✓ रोल {roll}: </>}
+        <span data-testid="fluency-correct">{correct} सही</span> ·{' '}
+        <span data-testid="fluency-errors" className={warn ? 'many-errors' : undefined}>{errors} गलतियाँ{warn ? ' ⚠' : ''}</span> ·{' '}
+        <span data-testid="fluency-pace">{pace ? pace.hi : '—'}</span>
+      </span>
       <span className="en" lang="en">{roll != null ? `Roll ${roll}: ` : ''}{correct} correct · {errors} errors · {pace ? pace.en : '—'}</span>
     </span>
   );

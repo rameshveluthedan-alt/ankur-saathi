@@ -23,70 +23,92 @@ await build({
 const store = new Map();
 globalThis.localStorage = { getItem: (k) => (store.has(k) ? store.get(k) : null), setItem: (k, v) => store.set(k, String(v)), removeItem: (k) => store.delete(k) };
 const classes = new Set();
-globalThis.document = { body: { classList: { toggle: (c, on) => { if (on) classes.add(c); else classes.delete(c); return on; }, contains: (c) => classes.has(c) } } };
+globalThis.document = { body: { classList: { toggle: (c, on) => { if (on) classes.add(c); else classes.delete(c); return on; }, contains: (c) => classes.has(c) } }, documentElement: { lang: 'hi' } };
 
 const { default: Bi } = await import(pathToFileURL(path.join(out, 'bi.mjs')).href);
-const { getHindiOnly, setHindiOnly, applyLanguage, bi } = await import(pathToFileURL(path.join(out, 'language.mjs')).href);
+const { getLang, setLang, LANGS, getHindiOnly, setHindiOnly, applyLanguage, bi } = await import(pathToFileURL(path.join(out, 'language.mjs')).href);
 
 let n = 0;
 const check = (label, fn) => { fn(); n += 1; console.log(`  OK  ${label}`); };
 const html = (props) => ReactDOMServer.renderToStaticMarkup(React.createElement(Bi, props));
 
 console.log('the Hindi and its English');
-check('Hindi first, then the English in a .en span marked lang="en" (a screen reader switches voice)', () => {
-  assert.equal(html({ hi: 'समीक्षा', en: 'Review' }), 'समीक्षा<span class="en" lang="en">Review</span>');
+check('Hindi first in a .hi span, then the English in a .en span marked lang="en" (a screen reader switches voice)', () => {
+  assert.equal(html({ hi: 'समीक्षा', en: 'Review' }), '<span class="hi">समीक्षा</span><span class="en" lang="en">Review</span>');
 });
 check('inline puts the English on the same line', () => {
-  assert.equal(html({ hi: 'गणित', en: 'Numeracy', inline: true }), 'गणित<span class="en en-inline" lang="en">Numeracy</span>');
+  assert.equal(html({ hi: 'गणित', en: 'Numeracy', inline: true }), '<span class="hi">गणित</span><span class="en en-inline" lang="en">Numeracy</span>');
 });
 check('no English: just the Hindi, and no empty span', () => {
   assert.equal(html({ hi: 'गणित' }), 'गणित');
 });
 
-console.log('the "Hindi only" setting');
-check('off by default: the English shows', () => {
+console.log('the language setting: Hindi (default), English, both');
+check('the three modes, Hindi by default: the body hides the English', () => {
+  assert.deepEqual(LANGS, ['hi', 'en', 'both']);
   applyLanguage();
-  assert.equal(getHindiOnly(), false);
-  assert.ok(!classes.has('hide-en'));
+  assert.equal(getLang(), 'hi');
+  assert.ok(classes.has('hide-en') && !classes.has('lang-en'));
 });
-check('on: the body gets hide-en at once, and the setting is kept', () => {
-  setHindiOnly(true);
-  assert.ok(classes.has('hide-en') && getHindiOnly());
+check('English: the body gets lang-en (the Hindi with a translation is hidden), and the setting is kept', () => {
+  setLang('en');
+  assert.ok(classes.has('lang-en') && !classes.has('hide-en') && getLang() === 'en');
+  assert.equal(document.documentElement.lang, 'en');
 });
-check('kept across a reload: applying the stored setting hides the English again', () => {
+check('kept across a reload: applying the stored setting gives English again', () => {
   classes.clear();
   applyLanguage();
-  assert.ok(classes.has('hide-en'));
+  assert.ok(classes.has('lang-en'));
 });
-check('off again: the English comes back and nothing is left stored', () => {
+check('both: neither class, so Hindi and its English both show', () => {
+  setLang('both');
+  assert.ok(!classes.has('lang-en') && !classes.has('hide-en') && getLang() === 'both');
+});
+check('an unknown value is ignored', () => {
+  setLang('fr');
+  assert.equal(getLang(), 'both');
+});
+check('the earlier "Hindi only" checkbox (ankur_hindi_only) is read as Hindi, and the compatibility helpers still work', () => {
+  store.clear(); store.set('ankur_hindi_only', '1');
+  assert.equal(getLang(), 'hi');
+  assert.equal(getHindiOnly(), true);
   setHindiOnly(false);
-  assert.ok(!classes.has('hide-en') && !getHindiOnly() && store.size === 0);
-});
-check('pop-ups and messages (plain text): "हिंदी (English)" normally, only the Hindi with the setting on', () => {
-  assert.equal(bi('समस्या', 'Error'), 'समस्या (Error)');
+  assert.equal(getLang(), 'both');
+  assert.ok(!store.has('ankur_hindi_only'));
   setHindiOnly(true);
+  assert.equal(getLang(), 'hi');
+});
+check('pop-ups and messages (plain text): Hindi, English, or "हिंदी (English)" by the setting', () => {
+  setLang('hi');
   assert.equal(bi('समस्या', 'Error'), 'समस्या');
-  setHindiOnly(false);
+  setLang('en');
+  assert.equal(bi('समस्या', 'Error'), 'Error');
+  setLang('both');
+  assert.equal(bi('समस्या', 'Error'), 'समस्या (Error)');
   assert.equal(bi('समस्या'), 'समस्या');
 });
 check('a browser that refuses storage (private mode) still switches the screen, and nothing breaks', () => {
   const saved = globalThis.localStorage;
   globalThis.localStorage = { getItem: () => { throw new Error('denied'); }, setItem: () => { throw new Error('denied'); }, removeItem: () => { throw new Error('denied'); } };
-  setHindiOnly(true);
-  assert.ok(classes.has('hide-en'));
-  assert.equal(getHindiOnly(), false);
+  setLang('en');
+  assert.ok(classes.has('lang-en'));
+  assert.equal(bi('समस्या', 'Error'), 'Error');
+  assert.equal(getLang(), 'hi');
   globalThis.localStorage = saved;
-  setHindiOnly(false);
+  setLang('hi');
 });
 
 console.log('the screens');
 const read = (f) => fs.readFileSync(path.join(src, f), 'utf8');
-check('the stylesheet hides exactly the .en spans when the setting is on', () => {
+check('the stylesheet hides the .en spans in Hindi, and the .hi spans in English', () => {
   assert.match(read('index.css'), /body\.hide-en \.en\s*\{\s*display:\s*none;\s*\}/);
+  assert.match(read('index.css'), /body\.lang-en \.hi\s*\{\s*display:\s*none;\s*\}/);
 });
-check('the setting is applied before the first paint, and the Profile screen has the switch', () => {
+check('the setting is applied before the first paint; the pill is on every screen and the Profile screen has the three options', () => {
   assert.ok(/applyLanguage\(\)/.test(read('main.jsx')));
-  assert.ok(read('screens/AccountScreen.jsx').includes('data-testid="hindi-only"'));
+  assert.ok(read('App.jsx').includes('<LangSwitch />'));
+  const acc = read('screens/AccountScreen.jsx');
+  for (const id of ['hindi-only', 'lang-opt-en', 'lang-opt-both']) assert.ok(acc.includes(id), id);
 });
 check('the screen headings use Bi, so "Hindi only" hides their English', () => {
   for (const [f, hi] of [['screens/PlanScreen.jsx', 'योजना बनाएँ'], ['screens/YojanaScreen.jsx', 'आज की योजना'], ['screens/ReviewScreen.jsx', 'समीक्षा'], ['screens/ProgressScreen.jsx', 'कक्षा की प्रगति'], ['screens/AccountScreen.jsx', 'प्रोफ़ाइल']]) {
@@ -104,4 +126,4 @@ check('no screen writes an English translation in brackets after Hindi any more 
   assert.deepEqual(bad.map(([f, i]) => `${path.relative(src, f)}:${i}`), []);
 });
 
-console.log(`\nOK: ${n} checks: Hindi comes first with its English after it, and "Hindi only" hides the English and nothing else`);
+console.log(`\nOK: ${n} checks: Hindi and its English, shown by the language setting (Hindi, English or both)`);

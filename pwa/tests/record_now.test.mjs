@@ -60,30 +60,30 @@ const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.w
 const stepNow = () => q('[data-testid="review-title"]') && q('[data-testid="review-title"]').dataset.step;
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
 
-console.log('the plan screen: "अभी दर्ज करें" where the check happens in class');
+console.log('the plan screen: "अभी स्तर दर्ज करें" at the top of each group\'s slot, where the activity happens (12 Nov: the evaluators asked whether teachers record levels during the activities)');
 globalThis.__auth.currentPlan = PLAN();
 await show(Yojana);
-const openBlock = async (g) => { const b = [...document.querySelectorAll('.timeline-block')].find((x) => x.textContent.includes(`${g} का काम`)); if (b.getAttribute('aria-expanded') !== 'true') await click(b); };
-check('the button is in "You Do" (तुम करोगे): with the blocks closed there is none', !q('[data-testid^="record-now-"]'));
-await openBlock('beginner');          // one block is open at a time
-check('opened, it sits inside the Beginners\' "तुम करोगे" talking point, after its instruction', (() => { const b = q('[data-testid="record-now-beginner"]'); const tp = b && b.closest('.talking-point');
-  return !!tp && /तुम करोगे/.test(tp.querySelector('.talking-point-label').textContent) && /तुम करोगे/.test(tp.textContent); })());
-check('the observed Beginners\' block: "✓ अभी दर्ज करें · देखकर दर्ज करें"', /✓ अभी दर्ज करें.*देखकर दर्ज करें/.test(q('[data-testid="record-now-beginner"]').textContent) && q('[data-testid="record-now-beginner"]').dataset.channel === 'observed');
-await openBlock('proficient');
-check('the Proficients, read aloud: "⏱️ अभी दर्ज करें · पढ़कर सुनाना"', /⏱️ अभी दर्ज करें.*पढ़कर सुनाना/.test(q('[data-testid="record-now-proficient"]').textContent));
-await openBlock('progressor');
-check('the photographed Progressors: no button (photos are taken after class)', !q('[data-testid="record-now-progressor"]'));
-await openBlock('beginner');
-const block = q('[data-testid="record-now-beginner"]').closest('.timeline-block');
-const expanded = block.getAttribute('aria-expanded');
+const panelOf = (g) => q(`[role="tabpanel"][data-slot-group="${g}"]`);
+const tabOf = (g) => q(`[data-testid="slot-tab-${g}"]`);
+check('no tap needed: each group\'s slot has its button at the top, before the folds (I do, We do, You do)', (() => {
+  const p = panelOf('beginner'); const b = p && p.querySelector('[data-testid="record-now-beginner"]'); const f = p && p.querySelector('details');
+  return !!b && !!f && !!(b.compareDocumentPosition(f) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING) && !b.closest('details');
+})());
+check('the observed Beginners: "✓ अभी स्तर दर्ज करें", during You Do, by observing', /✓ अभी स्तर दर्ज करें/.test(q('[data-testid="record-now-beginner"]').textContent) && q('[data-testid="record-now-beginner"]').dataset.channel === 'observed'
+  && /'तुम करोगे' के दौरान.*देखकर दर्ज करें/.test(q('[data-testid="record-bar-beginner"]').textContent));
+check('the Proficients, read aloud: "⏱️ अभी स्तर दर्ज करें · पढ़कर सुनाना"', /⏱️ अभी स्तर दर्ज करें/.test(q('[data-testid="record-now-proficient"]').textContent) && /पढ़कर सुनाना/.test(q('[data-testid="record-bar-proficient"]').textContent));
+check('the photographed Progressors: "📸 फ़ोटो से स्तर दर्ज करें", after the worksheet', !q('[data-testid="record-now-progressor"]') && /📸 फ़ोटो से स्तर दर्ज करें/.test(q('[data-testid="record-photo-progressor"]').textContent)
+  && /वर्कशीट पूरी होने के बाद/.test(q('[data-testid="record-bar-progressor"]').textContent));
+await click(tabOf('proficient'));
+check('a tab shows its own slot only', !panelOf('proficient').hidden && panelOf('beginner').hidden && tabOf('proficient').getAttribute('aria-selected') === 'true');
 await click(q('[data-testid="record-now-beginner"]'));
-check('tapping it opens the Review with the way and the group (and does not open or close the teach block)', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/review', { state: { from: 'plan', channel: 'observed', level: 'beginner' } }])
-  && block.getAttribute('aria-expanded') === expanded, JSON.stringify(globalThis.__navs.at(-1)));
+check('tapping it opens the Review with the way and the group', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/review', { state: { from: 'plan', channel: 'observed', level: 'beginner' } }]), JSON.stringify(globalThis.__navs.at(-1)));
+await click(q('[data-testid="record-photo-progressor"]'));
+check('...and the photo button opens the Review on the photo way for that group', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/review', { state: { from: 'plan', channel: 'photo', level: 'progressor' } }]), JSON.stringify(globalThis.__navs.at(-1)));
 ch = { has_plan: false, levels: [], channels: {} };
-await show(Yojana); await openBlock('beginner');
-check('the ways not known: no "अभी दर्ज करें" anywhere (never a guess)', !q('[data-testid^="record-now-"]'));
+await show(Yojana);
+check('the ways not known: no record button anywhere (never a guess)', !q('[data-testid^="record-now-"]') && !q('[data-testid^="record-photo-"]'));
 ch = CH;
-
 console.log('\nthe Review, opened from the plan during the lesson');
 sessionStorage.clear(); globalThis.__auth.currentPlan = null; reply = PLAN();          // nothing judged yet today
 globalThis.__location = { pathname: '/review', state: { from: 'plan', channel: 'observed', level: 'beginner' } };

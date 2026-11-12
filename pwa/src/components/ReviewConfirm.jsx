@@ -73,12 +73,12 @@ export function ObservedSaved({ saved, onOpenProgress }) {
       </div>
       {naRolls.length > 0 && (
         <div style={{ ...grey, marginTop: 4 }} data-testid="saved-na-rolls">
-          ✗ NA<span className="en en-inline" lang="en">not yet</span>: {naRolls.map((r) => `रोल ${r}`).join(', ')}
+          ✗ NA<span className="en en-inline" lang="en">not yet</span>: <Bi hi="रोल" en="Roll" inline /> {naRolls.join(', ')}
         </div>
       )}
       <AbbrKey testid="abbr-saved" />
       {notFound.length > 0 && (
-        <div role="alert" style={{ fontSize: '0.75rem', color: 'var(--beginner-ink)', marginTop: 4 }} data-testid="saved-not-found">
+        <div role="alert" style={{ fontSize: '0.75rem', color: 'var(--danger)', marginTop: 4 }} data-testid="saved-not-found">
           <Bi hi={`${notFound.map((r) => `रोल ${r}`).join(', ')} कक्षा में नहीं है, दर्ज नहीं हुआ`} en={`${notFound.map((r) => `Roll ${r}`).join(', ')}: not in the class, not recorded`} inline />
         </div>
       )}
@@ -118,5 +118,5 @@ export function ReadingSaved({ saved, left, onOpenProgress }) {
 /** A failed save, in place (the block above is not shown). */
 export function SaveError({ message, testid }) {
   if (!message) return null;
-  return <p role="alert" data-testid={testid} style={{ color: 'var(--beginner-ink)', fontSize: '0.8125rem', margin: '6px 0' }}>{message}</p>;
+  return <p role="alert" data-testid={testid} style={{ color: 'var(--danger)', fontSize: '0.8125rem', margin: '6px 0' }}>{message}</p>;
 }

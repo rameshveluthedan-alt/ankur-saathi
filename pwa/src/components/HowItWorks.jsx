@@ -30,8 +30,8 @@ export default function HowItWorks({ className = 'card fold' }) {
             <span style={{ fontSize: '1.25rem', lineHeight: 1.2 }} aria-hidden="true">{s.icon}</span>
             <div style={{ fontSize: '0.8125rem' }}>
               <div style={{ fontWeight: 700 }}>
-                {i + 1}. {s.hi}<span className="en en-inline" lang="en">{s.en}</span>
-                <span style={{ fontWeight: 400, fontSize: '0.7rem', color: 'var(--text-secondary)', marginLeft: 6 }}>· {s.part.hi}<span className="en en-inline" lang="en">{s.part.en}</span></span>
+                {i + 1}. <Bi hi={s.hi} en={s.en} inline />
+                <span style={{ fontWeight: 400, fontSize: '0.7rem', color: 'var(--text-secondary)', marginLeft: 6 }}>· <Bi hi={s.part.hi} en={s.part.en} inline /></span>
               </div>
               <Bi hi={s.text.hi} en={s.text.en} />
             </div>

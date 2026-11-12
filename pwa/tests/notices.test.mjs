@@ -52,10 +52,10 @@ check('the messages are shown on every signed-in screen; an error stays until ta
   assert.ok(/n\.kind !== 'error'\) setTimeout/.test(v), 'only a non-error message times out');
   assert.ok(/role=\{n\.kind === 'error' \? 'alert' : 'status'\}/.test(v), 'a screen reader announces it');
 });
-check('the Plan screen has no coverage summary line ("ज्ञान-आधार कवरेज": jargon, bare symbols, and counts that were out of date); each skill still carries its own label', () => {
+check('the Plan screen has no coverage summary line and (12 Nov) no per-skill test labels (out of date); one pilot line says the plans are still being tested', () => {
   const plan = read('screens/PlanScreen.jsx');
   assert.ok(!plan.includes('coverage-card') && !plan.includes('ज्ञान-आधार कवरेज') && !plan.includes('tierCounts'));
-  assert.ok(plan.includes("const T = TIERS[c.coverage_tier || 'untested']"));
+  assert.ok(!plan.includes('TIERS[') && !plan.includes('coverage_tier') && plan.includes('data-testid="pilot-plans"') || plan.includes('testid="pilot-plans"'));
 });
 check('there is ONE Profile button: the 👤 tab in the bottom bar (the Plan header has none)', () => {
   assert.ok(!read('screens/PlanScreen.jsx').includes('data-testid="open-account"'));

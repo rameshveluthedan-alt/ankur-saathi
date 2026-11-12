@@ -46,7 +46,7 @@ const plan = (sum, extra = {}) => {
 const chip = (p) => {
   globalThis.__auth = { currentPlan: p, setCurrentPlan() {}, teacher: { teacher_id: 'T1', employee_code: 'MPT101', enrolled_grades: ['grade_2'] }, selectedDomain: 'numeracy' };
   const h = ReactDOMServer.renderToStaticMarkup(React.createElement(Screen));
-  const m = h.match(/data-testid="time-chip" data-recorded="(true|false)"[^>]*>⏱ (?:<!-- -->)?(\d+)(?:<!-- -->)? मिनट<span class="en en-inline" lang="en"[^>]*>min<\/span>/);
+  const m = h.match(/data-testid="time-chip" data-recorded="(true|false)"[^>]*>⏱ (?:<!-- -->)?(\d+)(?:<!-- -->)? <span class="hi">मिनट<\/span><span class="en en-inline" lang="en"[^>]*>min<\/span>/);
   return m ? { minutes: Number(m[2]), recorded: m[1] === 'true', html: h } : { minutes: null, html: h };
 };
 const printTime = (p) => {

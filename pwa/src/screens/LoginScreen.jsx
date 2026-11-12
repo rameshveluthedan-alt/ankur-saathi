@@ -69,8 +69,7 @@ export default function LoginScreen() {
     <div className="screen" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', minHeight: '100dvh' }}>
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         <div style={{ fontSize: '3rem', marginBottom: 8 }}>🌱</div>
-        <h1 style={{ fontSize: '1.75rem', color: 'var(--green-dark)' }}>अंकुर साथी</h1>
-        <p className="en" lang="en" style={{ fontSize: '1rem', marginTop: 4 }}>Ankur Saathi</p>
+        <h1 style={{ fontSize: '1.75rem', color: 'var(--green-dark)' }}><Bi hi="अंकुर साथी" en="Ankur Saathi" /></h1>
       </div>
 
       <div className="card">
@@ -87,14 +86,14 @@ export default function LoginScreen() {
             {show ? <Bi hi="छिपाएँ" en="Hide" inline /> : <Bi hi="दिखाएँ" en="Show" inline />}
           </button>
         </div>
-        {error && <p data-testid="login-error" role="alert" style={{ color: 'var(--beginner)', fontSize: '0.875rem', marginBottom: 8 }}>{error}</p>}
+        {error && <p data-testid="login-error" role="alert" style={{ color: 'var(--danger)', fontSize: '0.875rem', marginBottom: 8 }}>{error}</p>}
         <button className="btn btn-primary" onClick={handleLogin} disabled={loading} data-testid="login-submit">{loading ? <Bi hi="लॉगिन हो रहा है..." en="Logging in" inline /> : <Bi hi="लॉगिन करें" en="Login" inline />}</button>
         <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 10 }}><Bi hi="पासवर्ड भूल गए? अपने स्कूल लीडर से कहें।" en="Forgot your password? Ask your school leader." /></p>
         <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}><Bi hi="आपका खाता आपके स्कूल लीडर द्वारा बनाया जाता है।" en="Your account is created by your school leader." /></p>
       </div>
 
       {DEMO_HINT && (
-        <div className="card" data-testid="demo-hint" style={{ background: '#FFF8E1' }}>
+        <div className="card" data-testid="demo-hint" style={{ background: 'var(--info-bg)' }}>
           <div style={{ fontSize: '0.8125rem', fontWeight: 600, marginBottom: 2 }}><Bi hi="समीक्षकों के लिए: डेमो अकाउंट" en="For reviewers: demo accounts" inline /></div>
           <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}><Bi hi="सिर्फ़ काल्पनिक डेटा। अपने समय के हिसाब से एक कार्ड चुनें, कोड और पासवर्ड भर जाएँगे; फिर लॉगिन दबाएँ।" en="Fictional data only. Pick a card by the time you have; it fills in the code and password, then press Login." /></div>
 
@@ -129,7 +128,7 @@ export default function LoginScreen() {
               })}
             </div>
             <div style={{ fontFamily: 'monospace', fontSize: '0.75rem', marginTop: 6 }}>
-              पासवर्ड {TESTERS[0].password} · सबका एक<span className="en en-inline" lang="en">same for all</span>
+              <Bi hi="पासवर्ड" en="Password" inline /> {TESTERS[0].password} · <Bi hi="सबका एक" en="same for all" inline />
             </div>
           </div>
 
@@ -140,7 +139,7 @@ export default function LoginScreen() {
           <button type="button" data-testid={`demo-${PRACTICE.code}`} onClick={() => fill(PRACTICE.code, PRACTICE.password)} aria-pressed={code === PRACTICE.code}
             className={`demo-link ${code === PRACTICE.code ? 'selected' : ''}`}
             style={{ display: 'block', width: '100%', textAlign: 'left', background: 'none', border: 'none', padding: '6px 2px', fontSize: '0.75rem', fontFamily: 'inherit', color: 'var(--green-dark)', minHeight: 44 }}>
-            🔑 पासवर्ड बदलकर देखें<span className="en en-inline" lang="en">Try changing a password</span>: <span style={{ fontFamily: 'monospace' }}>कोड {PRACTICE.code} · पासवर्ड {PRACTICE.password}</span>
+            🔑 <Bi hi="पासवर्ड बदलकर देखें" en="Try changing a password" inline />: <span style={{ fontFamily: 'monospace' }}><Bi hi="कोड" en="code" inline /> {PRACTICE.code} · <Bi hi="पासवर्ड" en="password" inline /> {PRACTICE.password}</span>
           </button>
         </div>
       )}

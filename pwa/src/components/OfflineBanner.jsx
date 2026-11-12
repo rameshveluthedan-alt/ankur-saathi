@@ -16,8 +16,8 @@ export default function OfflineBanner() {
   return (
     <div role="status" data-testid="offline-banner"
       style={{ background: '#E8EEF4', color: '#26405A', fontSize: '0.72rem', padding: '5px 10px', textAlign: 'center', borderBottom: '1px solid #C9D6E3' }}>
-      📴 इंटरनेट नहीं है। पहले खुली योजना और वर्कशीट दिखेंगी; नई योजना बनाने और फ़ोटो भेजने के लिए इंटरनेट चाहिए।
-      <div className="en" lang="en" style={{ fontSize: '0.6875rem', color: 'inherit', opacity: 0.85 }}>Offline. Plans and worksheets you already opened are available; making a new plan and sending photos need the internet.</div>
+      <span className="hi">📴 इंटरनेट नहीं है। पहले खुली योजना और वर्कशीट दिखेंगी; नई योजना बनाने और फ़ोटो भेजने के लिए इंटरनेट चाहिए।</span>
+      <div className="en" lang="en" style={{ fontSize: '0.6875rem', color: 'inherit', opacity: 0.85 }}>📴 Offline. Plans and worksheets you already opened are available; making a new plan and sending photos need the internet.</div>
     </div>
   );
 }

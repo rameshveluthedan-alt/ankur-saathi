@@ -38,7 +38,7 @@ export default function ReplacePlanDialog({ kind = 'plan', evidence, onKeep, onR
             <>
               <Bi hi="आप इस योजना के लिए इन समूहों पर कुछ बच्चों का रिकॉर्ड पहले ही दर्ज कर चुके हैं:" en="You've already recorded evidence against this plan for some children in these groups:" />
               <div data-testid="replace-groups" style={{ fontWeight: 700, margin: '6px 0' }}>
-                {groups.map(({ g, n, L }, i) => <span key={g}>{i ? ' · ' : ''}<span className={`tier-${g}`} style={{ color: 'var(--tier-ink)' }}>{L.mark} {L.hi} — {n} बच्चे</span></span>)}
+                {groups.map(({ g, n, L }, i) => <span key={g} className="hi">{i ? ' · ' : ''}<span className={`tier-${g}`} style={{ color: 'var(--tier-ink)' }}>{L.mark} {L.hi} — {n} बच्चे</span></span>)}
                 <span className="en" lang="en">{groups.map(({ n, L }) => `${L.en} — ${n} ${n === 1 ? 'child' : 'children'}`).join(' · ')}</span>
               </div>
               <Bi hi="नई योजना बनाने पर पुरानी हट जाएगी, लेकिन आपके पुराने रिकॉर्ड सुरक्षित रहेंगे।" en="If you make a new plan, the old one will go, but your old records stay safe." />

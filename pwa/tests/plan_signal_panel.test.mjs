@@ -50,12 +50,12 @@ const render = (signals) => {
   globalThis.__auth = { currentPlan: planWith(signals), setCurrentPlan() {}, teacher: { teacher_id: 'T1' }, selectedDomain: 'numeracy' };
   return ReactDOMServer.renderToStaticMarkup(React.createElement(Screen));
 };
-// one group's teach block, from its opening tag to the next block
+// one group's slot panel (12 Nov: the session is one tab per slot), from its opening tag to the next panel
 const blockOf = (h, group) => {
-  const i = h.indexOf(`tier-${group}" role="button"`);
+  const i = h.indexOf(`data-slot-group="${group}"`);
   const start = h.lastIndexOf('<div', i);
-  const next = h.indexOf('class="timeline-block', i + 1);
-  return h.slice(start, next > 0 ? next : undefined);
+  const next = h.indexOf('data-slot-group=', i + 1);
+  return h.slice(start, next > 0 ? h.lastIndexOf('<div', next) : undefined);
 };
 const questions = (h) => [...h.matchAll(/<li data-testid="core-question">([^<]*)<\/li>/g)].map((m) => m[1]);
 const rem = (s) => parseFloat(s);
@@ -73,7 +73,7 @@ check('the questions on the block equal the server\'s core array, whatever it ho
   assert.deepEqual(questions(blockOf(render({ progressor: maths(['48 + 37 = ?', '23 + 15 = ?', '36 + 29 = ?']) }), 'progressor')), ['48 + 37 = ?', '23 + 15 = ?', '36 + 29 = ?']);
 });
 check('the title "तीन मुख्य प्रश्न" with its English hideable', () => {
-  assert.ok(/तीन मुख्य प्रश्न<span class="en en-inline" lang="en">The three core questions<\/span>/.test(prog));
+  assert.ok(/<span class="hi">तीन मुख्य प्रश्न<\/span><span class="en en-inline" lang="en">The three core questions<\/span>/.test(prog));
 });
 check('extra_count 2 says "2 और प्रश्न …", extra_count 1 says "1 और प्रश्न …" (the count is the server\'s), in a smaller grey line inside the panel', () => {
   assert.ok(prog.includes('data-extra="2"') && prog.includes('→ 2 और प्रश्न (जो जल्दी ख़त्म करें उनके लिए)') && prog.includes('2 more questions (for early finishers)'));
@@ -97,7 +97,7 @@ console.log('\nthe writing shape');
 const beg = blockOf(h, 'beginner');
 check('the prompt renders in the writing panel, under the title "लेखन कार्य"', () => {
   assert.ok(beg.includes('data-shape="writing_prompt"') && /data-testid="writing-prompt"[^>]*>x y z<\/div>/.test(beg));
-  assert.ok(/लेखन कार्य<span class="en en-inline" lang="en">Writing prompt<\/span>/.test(beg));
+  assert.ok(/<span class="hi">लेखन कार्य<\/span><span class="en en-inline" lang="en">Writing prompt<\/span>/.test(beg));
   assert.ok(!beg.includes('core-question'));
 });
 check(`the prompt is LARGER than a maths question (${PROMPT_SIZE} > ${QUESTION_SIZE}): the teacher reads it aloud`, () => {
@@ -134,10 +134,10 @@ check('a maths or writing shape with nothing in it renders no empty box', () => 
 });
 
 console.log('\nwhere it sits');
-check('under the one-line script, above the closed talking points and understanding check', () => {
-  const script = prog.indexOf('पहले एक जोड़ दिखाओ'), panel = prog.indexOf('data-testid="signal-panel"'), more = prog.indexOf('▸ बात के मुद्दे');
+check('under the one-line script, above the closed folds (I do, We do, You do, the understanding check)', () => {
+  const script = prog.indexOf('पहले एक जोड़ दिखाओ'), panel = prog.indexOf('data-testid="signal-panel"'), more = prog.indexOf('data-testid="fold-i-do"');
   assert.ok(script > -1 && panel > script && more > panel, `${script} < ${panel} < ${more}`);
-  assert.ok(!prog.includes('मैं करूँगा'), 'the talking points stay closed');
+  assert.ok(!/<details[^>]*open/.test(prog), 'the talking points stay closed');
 });
 check('the block title names the group\'s skill today ("— N2.3.2"), from the plan\'s groups', () => {
   assert.ok(/data-testid="block-skill"[^>]*> — (<!-- -->)?N2\.3\.2<\/span>/.test(prog) && /block-skill[^>]*> — (<!-- -->)?N2\.3\.1</.test(beg));

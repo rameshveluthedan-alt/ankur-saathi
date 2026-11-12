@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../App';
-import { getProgressDashboard, downloadClassReport, downloadOfficerReport } from '../services/api';
+import { getProgressDashboard } from '../services/api';
 import Bi from '../components/Bi';
-import { notify } from '../services/notify';
-import { friendlyError } from '../services/errors';
 import { localToday } from '../services/today';
 import { TodayCard, ChildToday, LookAtChildren } from '../components/ProgressToday';
 import AbbrKey from '../components/AbbrKey';
@@ -15,7 +13,6 @@ const BPP = {
   proficient: { hi: 'दक्ष', en: 'Proficient', color: 'var(--proficient-ink)' },
 };
 
-const REPORT_FAILED = { hi: 'रिपोर्ट नहीं खुल सकी', en: 'The report could not be opened' };
 
 export default function ProgressScreen() {
   const { teacher, selectedDomain, setSelectedDomain, names } = useAuth();
@@ -79,7 +76,7 @@ export default function ProgressScreen() {
           {['beginner', 'progressor', 'proficient'].map(level => (
             <div key={level}>
               <div style={{ fontSize: '1.5rem', fontWeight: 700, color: BPP[level].color }}>{ds[`${level}_count`]}</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{BPP[level].hi}</div>
+              <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }} className="hi">{BPP[level].hi}</div>
               <div className="en" lang="en">{BPP[level].en}</div>
             </div>
           ))}
@@ -94,7 +91,7 @@ export default function ProgressScreen() {
       <LookAtChildren flags={domainFlags} nameOf={nameOf} />
 
       {/* Children list */}
-      <h2 style={{ margin: '12px 0 8px' }}>👥 बच्चों की प्रगति<span className="en en-inline" lang="en">Children Progress</span> — {children.length}</h2>
+      <h2 style={{ margin: '12px 0 8px' }}>👥 <Bi hi="बच्चों की प्रगति" en="Children's progress" inline /> — {children.length}</h2>
       {children.map(c => {
         const bpp = selectedDomain === 'numeracy' ? c.numeracy_bpp : c.literacy_bpp;
         const compId = selectedDomain === 'numeracy' ? c.numeracy_competency_id : c.literacy_competency_id;
@@ -104,26 +101,26 @@ export default function ProgressScreen() {
             onClick={() => setSelectedChild(selectedChild === c.roll_number ? null : c.roll_number)}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <strong style={{ fontSize: '1rem' }}>रोल {c.roll_number}{nameOf(c.roll_number)}</strong>
+                <strong style={{ fontSize: '1rem' }}><Bi hi="रोल" en="Roll" inline /> {c.roll_number}{nameOf(c.roll_number)}</strong>
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 6 }}>
-                  {c.enrolled_grade === 'grade_1' ? 'कक्षा 1' : c.enrolled_grade === 'grade_2' ? 'कक्षा 2' : 'कक्षा 3'}
+                  <Bi hi="कक्षा" en="Grade" inline /> {c.enrolled_grade === 'grade_1' ? '1' : c.enrolled_grade === 'grade_2' ? '2' : '3'}
                 </span>
-                {asOf(c) && <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 6 }} data-testid={`as-of-${c.roll_number}`} title="level as of">· स्तर: {asOf(c)}</span>}
+                {asOf(c) && <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 6 }} data-testid={`as-of-${c.roll_number}`} title="level as of">· <Bi hi="स्तर" en="level as of" inline />: {asOf(c)}</span>}
               </div>
               <span className={`badge badge-${bpp || 'beginner'}`}>
-                {BPP[bpp]?.hi || '—'}{BPP[bpp] && <span className="en en-inline" lang="en" style={{ fontSize: '0.625rem' }}>{BPP[bpp].en}</span>}
+                {BPP[bpp] ? <span className="hi">{BPP[bpp].hi}</span> : '—'}{BPP[bpp] && <span className="en en-inline" lang="en" style={{ fontSize: '0.625rem' }}>{BPP[bpp].en}</span>}
               </span>
             </div>
             {/* what was recorded for this child today, if anything; the level above stays what it was */}
             <ChildToday today={selectedDomain === 'numeracy' ? c.numeracy_today : c.literacy_today} />
             {selectedChild === c.roll_number && (
               <div style={{ marginTop: 8, fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
-                <div>लक्ष्य<span className="en en-inline" lang="en">Lakshya</span>: <strong>{compId}</strong></div>
+                <div><Bi hi="लक्ष्य" en="Target skill" inline />: <strong>{compId}</strong></div>
                 <div>{compName}</div>
                 <div style={{ marginTop: 4 }}>
-                  गणित<span className="en en-inline" lang="en">Num</span>: <span className={`badge badge-${c.numeracy_bpp || 'beginner'}`}>{BPP[c.numeracy_bpp]?.hi || '—'}</span>
+                  <Bi hi="गणित" en="Num" inline />: <span className={`badge badge-${c.numeracy_bpp || 'beginner'}`}>{BPP[c.numeracy_bpp] ? <Bi hi={BPP[c.numeracy_bpp].hi} en={BPP[c.numeracy_bpp].en} inline /> : '—'}</span>
                   {' · '}
-                  हिंदी<span className="en en-inline" lang="en">Lit</span>: <span className={`badge badge-${c.literacy_bpp || 'beginner'}`}>{BPP[c.literacy_bpp]?.hi || '—'}</span>
+                  <Bi hi="हिंदी" en="Lit" inline />: <span className={`badge badge-${c.literacy_bpp || 'beginner'}`}>{BPP[c.literacy_bpp] ? <Bi hi={BPP[c.literacy_bpp].hi} en={BPP[c.literacy_bpp].en} inline /> : '—'}</span>
                 </div>
               </div>
             )}
@@ -146,14 +143,14 @@ export default function ProgressScreen() {
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0 8px' }}>
           <Bi hi="पिछले 4 हफ़्ते: बातचीत के बिंदु, पढ़ाने का तरीका, बच्चों की प्रगति। सिर्फ़ रोल नंबर, कोई नाम नहीं।" en="The last 4 weeks: talking points, how you teach, the children's progress. Roll numbers only, no names." inline />
         </p>
-        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi="डेटा, CSV फ़ाइल:" en="Data, CSV file:" inline /></div>
-        <button type="button" data-testid="class-report" onClick={() => downloadClassReport(teacher.teacher_id).catch(e => notify(friendlyError(e, REPORT_FAILED), 'error'))}
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi="डेटा तालिका (CSV के रूप में डाउनलोड भी):" en="Data table (also downloadable as CSV):" inline /></div>
+        <button type="button" data-testid="class-report" onClick={() => navigate('/report', { state: { kind: 'class' } })}
           style={{ display: 'block', background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'left' }}>
-          📥 कक्षा रिपोर्ट, नामों के साथ<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>Class report</span>
+          📥 <span className="hi">कक्षा रिपोर्ट, नामों के साथ</span><span className="en en-inline" lang="en" style={{ color: 'inherit' }}>Class report, with names</span>
         </button>
-        <button type="button" data-testid="mlo-report" onClick={() => downloadOfficerReport(teacher.teacher_id).catch(e => notify(friendlyError(e, REPORT_FAILED), 'error'))}
+        <button type="button" data-testid="mlo-report" onClick={() => navigate('/report', { state: { kind: 'officer' } })}
           style={{ display: 'block', background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'left' }}>
-          📥 अधिकारी डेटा, सिर्फ़ रोल नंबर<span className="en en-inline" lang="en">Officer data</span>
+          📥 <span className="hi">अधिकारी डेटा, सिर्फ़ रोल नंबर</span><span className="en en-inline" lang="en">Officer data, roll numbers only</span>
         </button>
       </div>
 

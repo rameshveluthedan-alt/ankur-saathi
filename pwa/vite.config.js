@@ -49,7 +49,7 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      '/api': 'http://localhost:8000',
+      '/api': process.env.VITE_API_TARGET || 'http://localhost:8000',      // the lab runs its backend on 8001
     },
   },
 });

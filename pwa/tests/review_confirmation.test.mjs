@@ -39,8 +39,8 @@ check('A + PA + NA in the counts row equals that count (a spurious count from a 
   assert.deepEqual([a, pa, na], [1, 0, 2]);
   assert.equal(a + pa + na, three.items.length);
 });
-check('the children marked NA are listed by roll, in order: "✗ NA: रोल 25, रोल 27" (NA is a code; "not yet" is a hideable translation)', () => {
-  assert.ok(obs.includes('data-testid="saved-na-rolls"') && obs.includes('रोल 25, रोल 27'));
+check('the children marked NA are listed by roll, in order: "✗ NA: रोल 25, 27" (NA is a code; "not yet" is a hideable translation)', () => {
+  assert.ok(obs.includes('data-testid="saved-na-rolls"') && obs.includes('<span class="hi">रोल</span><span class="en en-inline" lang="en">Roll</span> 25, 27'));
   assert.ok(/✗ NA<span class="en en-inline" lang="en">not yet<\/span>/.test(obs));
 });
 check('no NA in the save: no NA line', () => {

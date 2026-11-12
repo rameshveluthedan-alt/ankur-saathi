@@ -44,7 +44,7 @@ export function PinChangeForm({ forced = false, onDone }) {
       <input type={type} value={again} onChange={e => setAgain(clean(e.target.value))} data-testid="pin-new-again" style={field} autoComplete="new-password" autoCapitalize="none" autoCorrect="off" spellCheck={false} />
       <button type="button" onClick={() => setShow(v => !v)} data-testid="pin-toggle" aria-pressed={show}
         style={{ background: 'none', border: 'none', color: 'var(--green-dark)', fontSize: '0.8125rem', textDecoration: 'underline', minHeight: 44, marginBottom: 4 }}>{show ? <Bi hi="छिपाएँ" en="Hide" inline /> : <Bi hi="दिखाएँ" en="Show" inline />}</button>
-      {error && <p data-testid="pin-error" role="alert" style={{ color: 'var(--beginner)', fontSize: '0.8125rem', marginBottom: 8 }}>{error}</p>}
+      {error && <p data-testid="pin-error" role="alert" style={{ color: 'var(--danger)', fontSize: '0.8125rem', marginBottom: 8 }}>{error}</p>}
       <button className="btn btn-primary" onClick={submit} disabled={loading || current.length < 4 || next.length < 6} data-testid="pin-save">
         {loading ? 'सहेज रहे हैं...' : <Bi hi="नया पासवर्ड सहेजें" en="Save new password" inline />}
       </button>

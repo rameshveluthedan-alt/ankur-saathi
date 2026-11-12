@@ -129,7 +129,7 @@ await show(Plan);
 await click(q('[data-testid="open-plan"]'));
 check('8. it puts THIS plan in place (not the one the app held) and goes to आज की योजना', current && current.selected_competency_id === 'N2.3.2' && current.domain_id === 'numeracy' && navigations.at(-1) === '/yojana');
 await show(Yojana);
-check('8. ...where the plan is visible: a teach block for N2.3.2', qa('.timeline-block').some((b) => /N2\.3\.2/.test(b.textContent) && /TEACH-/.test(b.textContent)));
+check('8. ...where the plan is visible: a teach block for N2.3.2', qa('[role="tabpanel"]').some((b) => /N2\.3\.2/.test(b.textContent) && /TEACH-/.test(b.textContent)));
 
 console.log('\nno plan, a failed check, another subject');
 reset(); cached = async () => { throw notFound(); };

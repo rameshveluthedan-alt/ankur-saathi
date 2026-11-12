@@ -69,14 +69,15 @@ const act1 = { hi: 'योजना नहीं बन सकी', en: 'The pla
 const err = (status, message, extra = {}) => Object.assign(new Error(message), { status, ...extra });
 const quiet = console.warn; console.warn = () => {};
 check('no internet: the plain offline sentence, as it is', friendlyError(new NetworkError(), act1) === new NetworkError().message && /इंटरनेट/.test(new NetworkError().message));
+localStorage.setItem('ankur_lang', 'both');          // both languages (the default is Hindi only)
 check('a server error in English (500): what failed, why and what to do, in Hindi, without the raw text', (() => { const t = friendlyError(err(500, 'Plan generation failed: KeyError foo'), act1);
   return /^योजना नहीं बन सकी \(The plan could not be made\)। सर्वर अभी जवाब नहीं दे रहा। थोड़ी देर बाद फिर कोशिश करें।/.test(t) && !/KeyError/.test(t); })());
 check('a message the server wrote in Hindi is kept (it was written for the teacher)', friendlyError(err(400, 'एक दोहराव वही कौशल है जो कल था।'), act1).endsWith(': एक दोहराव वही कौशल है जो कल था।'));
 check('a plainer reason for this action wins: a reading-aloud 404 says the roll number is not in the class', /यह रोल नंबर इस कक्षा में नहीं है।/.test(friendlyError(err(404, 'Roll 999 not found'), { hi: 'सहेजा नहीं जा सका', en: 'Could not save' }, { 404: { hi: 'यह रोल नंबर इस कक्षा में नहीं है।', en: "This roll number isn't in this class." } })));
 check('other cases: 404 "not found, reopen", 400 "check what was sent", 401 "sign in again"', /पेज दोबारा खोलकर/.test(friendlyError(err(404, 'x'), act1)) && /जाँचकर फिर कोशिश करें/.test(friendlyError(err(422, 'x'), act1)) && /फिर से लॉगिन करें/.test(friendlyError(err(401, 'x'), act1)));
-localStorage.setItem('ankur_hindi_only', '1');
+localStorage.setItem('ankur_lang', 'hi');
 check('"Hindi only" on: no English in the message', !/[A-Za-z]/.test(friendlyError(err(500, 'boom'), act1)), friendlyError(err(500, 'boom'), act1));
-localStorage.removeItem('ankur_hindi_only'); console.warn = quiet;
+localStorage.setItem('ankur_lang', 'both'); console.warn = quiet;
 check('the teacher\'s screens no longer show e.message raw (only the AI-limit message, which the server writes in both languages)', ['screens/PlanScreen.jsx', 'screens/ReviewScreen.jsx', 'screens/ProgressScreen.jsx', 'screens/YojanaScreen.jsx'].every((f) => {
   const code = read(f); return !/notify\(e\.message(?! \+ \(samples)|\+ ':' \+ e\.message|'\): ' \+ e\.message|\+ ': ' \+ e\.message/.test(code) && (code.match(/e\.message/g) || []).length <= (f === 'screens/PlanScreen.jsx' ? 1 : 0); }));
 

@@ -40,7 +40,7 @@ function TodayRow({ label, g }) {
   return (
     <div className={`today-row tier-${label}`} data-testid={`today-${label}`}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-        <span className={`badge badge-${label}`}>{L.hi}<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>{L.en}</span></span>
+        <span className={`badge badge-${label}`}><span className="hi">{L.hi}</span><span className="en en-inline" lang="en" style={{ color: 'inherit' }}>{L.en}</span></span>
         {g.skill_id && <span style={{ ...grey, fontFamily: 'monospace' }}>{g.skill_id}</span>}
       </div>
       {g.assessed === 0 ? (
@@ -51,7 +51,7 @@ function TodayRow({ label, g }) {
             <span className="badge badge-result" data-testid="count-a">✓ A: {g.a}</span>
             <span className="badge badge-result" data-testid="count-pa">~ PA: {g.pa}</span>
             <span className="badge badge-result" data-testid="count-na">✗ NA: {g.na}</span>
-            <span style={grey} data-testid="count-of">{g.group_size} में से {g.assessed} बच्चों का आकलन<span className="en en-inline" lang="en">assessed {g.assessed} of {g.group_size}</span></span>
+            <span style={grey} data-testid="count-of"><span className="hi">{g.group_size} में से {g.assessed} बच्चों का आकलन</span><span className="en en-inline" lang="en">assessed {g.assessed} of {g.group_size}</span></span>
           </div>
           {decision ? (
             <div data-testid={`today-decision-${label}`} data-decision={g.decision}
@@ -62,7 +62,7 @@ function TodayRow({ label, g }) {
             <div style={{ ...grey, marginTop: 4 }} data-testid={`today-decision-${label}`} data-decision="none"><Bi hi="आज कोई निर्णय दर्ज नहीं" en="No decision recorded today" inline /></div>
           )}
           {g.conflict && (
-            <div style={{ fontSize: '0.75rem', color: '#8A5A00', marginTop: 2 }} data-testid={`today-conflict-${label}`}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--info)', marginTop: 2 }} data-testid={`today-conflict-${label}`}>
               <Bi hi="⚠ आपका निर्णय और आज की जाँच मेल नहीं खाते" en="Your decision disagrees with today's evidence" />
             </div>
           )}
@@ -103,7 +103,7 @@ export function ChildToday({ today }) {
 export function LookAtChildren({ flags, nameOf = () => '' }) {
   if (!flags || !flags.length) return null;
   const parts = [
-    { dir: 'higher', hi: '⬆ अच्छा प्रदर्शन कर रहे हैं — एक छोटा दोबारा आकलन?', en: 'Doing well — a short re-assessment?', edge: 'var(--proficient)' },
+    { dir: 'higher', hi: '⬆ अच्छा प्रदर्शन कर रहे हैं — एक छोटा दोबारा आकलन?', en: 'Doing well — a short re-assessment?', edge: 'var(--green-dark)' },
     { dir: 'lower', hi: '⬇ कठिनाई में हैं — थोड़ी मदद की ज़रूरत?', en: 'Struggling — needs a bit of help?', edge: '#C9A227' },
   ];
   return (

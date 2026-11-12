@@ -51,7 +51,7 @@ export default function RegisterScreen() {
       </div>
 
       <div className="card">
-        <p style={{ fontSize: '0.875rem', marginBottom: 8 }}>
+        <p style={{ fontSize: '0.875rem', marginBottom: 8 }} className="hi">
           अपनी कक्षा के बच्चों की सूची अपलोड करें: कक्षा और रोल नंबर, और चाहें तो हर विषय का शुरुआती स्तर। <b>नाम वैकल्पिक हैं:</b> वे सिर्फ़ आपको दिखेंगे, AI को कभी नहीं भेजे जाएँगे।
         </p>
         <p className="en" lang="en" style={{ fontSize: '0.75rem', marginBottom: 10 }}>
@@ -65,31 +65,31 @@ export default function RegisterScreen() {
           <input type="file" accept=".csv,.xlsx,.txt" onChange={choose} style={{ display: 'none' }} data-testid="register-file" />
         </label>
         <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 8 }}>
-          अभी आपकी कक्षा में {teacher.total_children || 0} बच्चे हैं।<span className="en en-inline" lang="en">Children in your class now.</span>
+          <span className="hi">अभी आपकी कक्षा में {teacher.total_children || 0} बच्चे हैं।</span><span className="en en-inline" lang="en">Children in your class now: {teacher.total_children || 0}.</span>
         </p>
       </div>
 
       {loading && <div className="card" style={{ textAlign: 'center' }}><div className="spinner" style={{ margin: '0 auto' }} /> <Bi hi="पढ़ रहे हैं..." en="Reading" inline /></div>}
-      {error && <div className="card" style={{ borderLeft: '4px solid var(--beginner)', background: 'var(--beginner-bg)', fontSize: '0.875rem' }} data-testid="register-error">⚠️ {error}</div>}
+      {error && <div className="card" style={{ borderLeft: '4px solid var(--danger)', background: 'var(--danger-bg)', fontSize: '0.875rem' }} data-testid="register-error">⚠️ {error}</div>}
 
       {preview && (
         <div className="card" data-testid="register-preview">
           <h3 style={{ marginBottom: 6 }}><Bi hi="पूर्वावलोकन · अभी कुछ दर्ज नहीं हुआ" en="Preview · nothing saved yet" /></h3>
           <div style={{ fontSize: '0.875rem', lineHeight: 1.6 }}>
-            ✅ <b>{preview.counts.new}</b> नए बच्चे जुड़ेंगे<span className="en en-inline" lang="en">new children</span> {gradeSummary && <span style={{ color: 'var(--text-secondary)' }}>· {gradeSummary}</span>}<br />
-            ↺ <b>{preview.counts.exists}</b> पहले से हैं, छोड़े जाएँगे<span className="en en-inline" lang="en">already enrolled, skipped</span><br />
-            {preview.counts.error > 0 && <span>⚠️ <b>{preview.counts.error}</b> पंक्तियों में गलती है, जुड़ेंगी नहीं<span className="en en-inline" lang="en">lines with problems, not added</span></span>}
+            ✅ <b>{preview.counts.new}</b> <Bi hi="नए बच्चे जुड़ेंगे" en="new children" inline /> {gradeSummary && <span style={{ color: 'var(--text-secondary)' }}>· {gradeSummary}</span>}<br />
+            ↺ <b>{preview.counts.exists}</b> <Bi hi="पहले से हैं, छोड़े जाएँगे" en="already enrolled, skipped" inline /><br />
+            {preview.counts.error > 0 && <span>⚠️ <b>{preview.counts.error}</b> <Bi hi="पंक्तियों में गलती है, जुड़ेंगी नहीं" en="lines with problems, not added" inline /></span>}
           </div>
-          {preview.names_to_save > 0 && preview.names_available && <p style={{ fontSize: '0.75rem', color: 'var(--proficient)', marginTop: 8 }} data-testid="names-note">🔒 {preview.names_to_save} नाम सहेजे जाएँगे: सिर्फ़ आपको दिखेंगे, AI को कभी नहीं भेजे जाएँगे<span className="en en-inline" lang="en">names kept private, never sent to the AI</span></p>}
-          {preview.warnings.map((w, i) => <p key={i} style={{ fontSize: '0.75rem', color: '#8A5A00', background: '#FFF4D6', borderRadius: 8, padding: '6px 10px', marginTop: 8 }}>{w}</p>)}
+          {preview.names_to_save > 0 && preview.names_available && <p style={{ fontSize: '0.75rem', color: 'var(--green-dark)', marginTop: 8 }} data-testid="names-note">🔒 {preview.names_to_save} <Bi hi="नाम सहेजे जाएँगे: सिर्फ़ आपको दिखेंगे, AI को कभी नहीं भेजे जाएँगे" en="names will be saved: private, never sent to the AI" inline /></p>}
+          {preview.warnings.map((w, i) => <p key={i} style={{ fontSize: '0.75rem', color: 'var(--info)', background: 'var(--info-bg)', borderRadius: 8, padding: '6px 10px', marginTop: 8 }}>{w}</p>)}
           {bad.length > 0 && (
             <div style={{ marginTop: 8, fontSize: '0.8125rem' }} data-testid="register-problems">
-              {bad.map(r => <div key={r.row} style={{ padding: '3px 0', borderBottom: '1px solid var(--border)' }}>पंक्ति<span className="en en-inline" lang="en">line</span> {r.row}: {r.errors.join('; ')}</div>)}
+              {bad.map(r => <div key={r.row} style={{ padding: '3px 0', borderBottom: '1px solid var(--border)' }}><Bi hi="पंक्ति" en="line" inline /> {r.row}: {r.errors.join('; ')}</div>)}
             </div>
           )}
           <div style={{ marginTop: 10, maxHeight: 190, overflow: 'auto', fontSize: '0.75rem' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <thead><tr style={{ textAlign: 'left', color: 'var(--text-secondary)' }}><th>कक्षा</th><th>रोल</th><th>कक्षा नं.</th><th>नाम</th><th>गणित</th><th>हिंदी</th></tr></thead>
+              <thead><tr style={{ textAlign: 'left', color: 'var(--text-secondary)' }}><th><Bi hi="कक्षा" en="Grade" inline /></th><th><Bi hi="रोल" en="Roll" inline /></th><th><Bi hi="कक्षा नं." en="Class no." inline /></th><th><Bi hi="नाम" en="Name" inline /></th><th><Bi hi="गणित" en="Maths" inline /></th><th><Bi hi="हिंदी" en="Hindi" inline /></th></tr></thead>
               <tbody>
                 {preview.rows.filter(r => r.status === 'new').slice(0, 40).map(r => (
                   <tr key={r.row} style={{ borderTop: '1px solid var(--border)' }}>
@@ -100,17 +100,17 @@ export default function RegisterScreen() {
             </table>
           </div>
           <button type="button" className="btn btn-primary" disabled={loading || preview.counts.new === 0} onClick={confirm} style={{ marginTop: 10 }} data-testid="register-confirm">
-            ✓ {preview.counts.new} बच्चे जोड़ें<span className="en en-inline" lang="en">Confirm and enrol</span>
+            ✓ <span className="hi">{preview.counts.new} बच्चे जोड़ें</span><span className="en en-inline" lang="en">Confirm and enrol {preview.counts.new}</span>
           </button>
         </div>
       )}
 
       {done && (
-        <div className="card" style={{ borderLeft: '4px solid var(--proficient)' }} data-testid="register-done">
-          <h3>✅ {done.added} बच्चे जुड़ गए<span className="en en-inline" lang="en">children enrolled</span></h3>
-          <p style={{ fontSize: '0.8125rem', margin: '6px 0' }}>कक्षा में कुल<span className="en en-inline" lang="en">Total in class</span>: <b>{done.total_children}</b></p>
-          {done.names_saved > 0 && <p style={{ fontSize: '0.8125rem' }}>🔒 {done.names_saved} नाम सहेजे गए<span className="en en-inline" lang="en">names saved, private</span></p>}
-          {done.numbering === 'composite' && <p style={{ fontSize: '0.8125rem', color: '#8A5A00' }}><Bi hi="कक्षा नंबर में कक्षा शामिल है: कक्षा 3 रोल 5 = 305। बच्चे वर्कशीट पर यही नंबर लिखेंगे।" en="Class numbers carry the grade; children write this number on worksheets." /></p>}
+        <div className="card" style={{ borderLeft: '4px solid var(--green-dark)' }} data-testid="register-done">
+          <h3>✅ {done.added} <Bi hi="बच्चे जुड़ गए" en="children enrolled" inline /></h3>
+          <p style={{ fontSize: '0.8125rem', margin: '6px 0' }}><Bi hi="कक्षा में कुल" en="Total in class" inline />: <b>{done.total_children}</b></p>
+          {done.names_saved > 0 && <p style={{ fontSize: '0.8125rem' }}>🔒 {done.names_saved} <Bi hi="नाम सहेजे गए" en="names saved, private" inline /></p>}
+          {done.numbering === 'composite' && <p style={{ fontSize: '0.8125rem', color: 'var(--info)' }}><Bi hi="कक्षा नंबर में कक्षा शामिल है: कक्षा 3 रोल 5 = 305। बच्चे वर्कशीट पर यही नंबर लिखेंगे।" en="Class numbers carry the grade; children write this number on worksheets." /></p>}
           <button type="button" className="btn btn-primary" onClick={() => navigate('/')} style={{ marginTop: 8 }}><Bi hi="योजना पर जाएँ" en="Go to Plan" inline /></button>
         </div>
       )}

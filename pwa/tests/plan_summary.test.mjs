@@ -64,7 +64,7 @@ check('different skills, no re-teach: the date, and a line per group with its sk
 check('the group\'s skill name is in the line\'s tooltip', () => { assert.ok(h1.includes('title="नाम N2.3.1"')); });
 const h2 = render(differing, [teach('beginner'), teach('progressor', { reteach: true }), teach('proficient')]);
 check('the Progressors re-teach: "🔄 पुनः शिक्षण Re-teach" is on the Progressors\' line, and only there', () => {
-  assert.ok(h2.includes('data-testid="plan-reteach-progressor"') && h2.includes('🔄 पुनः शिक्षण') && h2.includes('Re-teach'));
+  assert.ok(h2.includes('data-testid="plan-reteach-progressor"') && h2.includes('🔄 <span class="hi">पुनः शिक्षण') && h2.includes('Re-teach'));
   assert.ok(!h2.includes('plan-reteach-beginner') && !h2.includes('plan-reteach-proficient'));
   const progLine = h2.split('data-testid="plan-skill-progressor"')[1].split('data-testid="plan-skill-proficient"')[0];
   assert.ok(progLine.includes('N2.3.2') && progLine.includes('पुनः शिक्षण'));

@@ -14,14 +14,15 @@ const css = fs.readFileSync(path.join(here, '..', 'src', 'index.css'), 'utf8');
 let n = 0;
 const check = (label, fn) => { fn(); n += 1; console.log(`  OK  ${label}`); };
 
-const cfu = src.slice(src.indexOf('data-testid="cfu"'), src.indexOf('data-testid="cfu-item"'));
+// 12 Nov: the whole check for understanding is one fold of the group's slot tab (<Fold … testid="cfu">); the method is a fold inside it
+const cfu = src.slice(src.lastIndexOf('<Fold', src.indexOf('testid="cfu"')), src.indexOf('data-testid="cfu-item"'));
 const fold = cfu.slice(cfu.indexOf('<details'), cfu.indexOf('</details>'));
 
 check('sticks are named only in a maths plan: "(छड़ियों से)" and ", with sticks," depend on the plan’s subject (they leaked into every Hindi lesson)', () => {
-  assert.ok(fold.includes("{currentPlan.domain_id === 'numeracy' ? ' (छड़ियों से)' : ''}") && fold.includes("{currentPlan.domain_id === 'numeracy' ? ', with sticks,' : ''}"));
+  assert.ok(fold.includes("${currentPlan.domain_id === 'numeracy' ? ' (छड़ियों से)' : ''}") && fold.includes("${currentPlan.domain_id === 'numeracy' ? ', with sticks,' : ''}"));
   assert.ok(!/समझाएँ \(छड़ियों से\)/.test(fold) && !/at once, with sticks,/.test(fold));
 });
-check('the heading "समझ की जाँच" (Check for understanding) is OUTSIDE the fold: always visible', () => {
+check('the heading "समझ की जाँच" (Check for understanding) is the fold line of the section, outside the method’s own fold', () => {
   const heading = cfu.indexOf('hi="समझ की जाँच"');
   assert.ok(heading > -1 && heading < cfu.indexOf('<details'));
   assert.ok(cfu.includes('en="Check for understanding"'));

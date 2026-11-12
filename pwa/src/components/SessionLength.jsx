@@ -20,7 +20,7 @@ export default function SessionLength({ value, onChange, disabled }) {
                        fontSize: '0.875rem', fontWeight: on ? 700 : 400 }}>
               <input type="radio" name="session_minutes" value={m} checked={on} onChange={() => onChange(m)}
                 style={{ position: 'absolute', opacity: 0, width: 1, height: 1, margin: 0 }} />
-              {m} मिनट<span className="en en-inline" lang="en" style={{ color: 'inherit' }}>min</span>
+              {m} <span className="hi">मिनट</span><span className="en en-inline" lang="en" style={{ color: 'inherit' }}>min</span>
             </label>
           );
         })}

@@ -109,8 +109,8 @@ await show(Yojana);
 const fold = () => q('[data-testid="review-today"]');
 check('a closed fold "☑️ आज की समीक्षा: कैसे जाँचें"', fold() && !fold().open && /आज की समीक्षा: कैसे जाँचें/.test(fold().querySelector('summary').textContent));
 check('...each group, its skill and its way: ● शुरुआती N0.1.1 ✓ देखकर दर्ज करें, ▲ प्रगतिशील L2.3.1 📸 वर्कशीट की फ़ोटो (the AI reads), ■ दक्ष L2.5.1 ⏱️ पढ़कर सुनाना',
-  /● शुरुआती N0\.1\.1: ✓ देखकर दर्ज करें/.test(q('[data-testid="review-way-beginner"]').textContent) && /▲ प्रगतिशील L2\.3\.1: 📸 वर्कशीट की फ़ोटो/.test(q('[data-testid="review-way-progressor"]').textContent)
-  && /AI हर बच्चे का काम पढ़ता है/.test(q('[data-testid="review-way-progressor"]').textContent) && /■ दक्ष L2\.5\.1: ⏱️ पढ़कर सुनाना/.test(q('[data-testid="review-way-proficient"]').textContent));
+  /● शुरुआती(Beginner)? N0\.1\.1: ✓ देखकर दर्ज करें/.test(q('[data-testid="review-way-beginner"]').textContent) && /▲ प्रगतिशील(Progressor)? L2\.3\.1: 📸 वर्कशीट की फ़ोटो/.test(q('[data-testid="review-way-progressor"]').textContent)
+  && /AI हर बच्चे का काम पढ़ता है/.test(q('[data-testid="review-way-progressor"]').textContent) && /■ दक्ष(Proficient)? L2\.5\.1: ⏱️ पढ़कर सुनाना/.test(q('[data-testid="review-way-proficient"]').textContent));
 check('...the observed Beginners\' worksheet is marked as practice; the photographed Progressors\' is not', !!q('[data-testid="review-way-practice-beginner"]') && !q('[data-testid="review-way-practice-progressor"]'));
 check('...the text the Proficients will read aloud, and for the group observed the general instruction (not the plan\'s AI prompt)', /«पानी बचाओ»/.test(q('[data-testid="review-way-passage-proficient"]').textContent)
   && /देखकर दर्ज करना(Observing)?: स्वतंत्र अभ्यास \(तुम करोगे\) के दौरान/.test(q('[data-testid="review-observe"]').textContent) && !fold().textContent.includes(LOOK));

@@ -5,7 +5,8 @@ import { useAuth } from '../App';
 import { adminSchool, adminTeachers, adminResetPin, adminUnlock, adminRecordConsent } from '../services/api';
 import { CONSENT } from '../services/consent';
 import { PinChangeForm } from './ChangePinScreen';
-import { getHindiOnly, setHindiOnly, bi } from '../services/language';
+import { setLang, bi } from '../services/language';
+import { useLang } from '../components/LangSwitch';
 import { getFamiliarMode, setFamiliarMode } from '../services/preferences';
 import Bi from '../components/Bi';
 
@@ -21,8 +22,7 @@ export default function AccountScreen() {
   const [teachers, setTeachers] = useState([]);
   const [temp, setTemp] = useState(null);            // a temporary password, shown once
   const [error, setError] = useState('');
-  const [hindiOnly, setHindiOnlyState] = useState(getHindiOnly);
-  const toggleHindiOnly = (on) => { setHindiOnly(on); setHindiOnlyState(on); };
+  const lang = useLang();          // हिंदी / English / both: the same setting as the हिं / EN pill at the top
   const confirmLogout = () => {
     if (window.confirm(bi('लॉग आउट करें? इस फ़ोन पर रखी योजनाएँ और वर्कशीट हट जाएँगी।', 'Log out? The plans and worksheets kept on this phone will be removed.'))) logout();
   };
@@ -62,7 +62,7 @@ export default function AccountScreen() {
         <div style={{ fontSize: '0.875rem', marginTop: 4 }}><Bi hi="स्कूल" en="School" inline />: <b>{teacher.school_code}</b></div>
         <div style={{ fontSize: '0.875rem', marginTop: 4 }}><Bi hi="भूमिका" en="Role" inline />: <b>{isAdmin ? <Bi hi="स्कूल लीडर" en="School leader" inline /> : <Bi hi="शिक्षक" en="Teacher" inline />}</b></div>
         <div style={{ fontSize: '0.875rem', marginTop: 4 }}><Bi hi="कक्षाएँ" en="Grades" inline />: {(teacher.enrolled_grades || []).map(g => GRADE_HI[g] || g).join(', ')}</div>
-        {teacher.is_demo && <div style={{ fontSize: '0.75rem', color: '#8A5A00', marginTop: 6 }}><Bi hi="डेमो अकाउंट: काल्पनिक डेटा" en="Demo account: fictional data" inline /></div>}
+        {teacher.is_demo && <div style={{ fontSize: '0.75rem', color: 'var(--info)', marginTop: 6 }}><Bi hi="डेमो अकाउंट: काल्पनिक डेटा" en="Demo account: fictional data" inline /></div>}
         {/* at the top, not after the leader's list; signing out removes this phone's offline copies, so it asks first */}
         <button type="button" className="btn btn-secondary" data-testid="logout" onClick={confirmLogout} style={{ marginTop: 10, flexDirection: 'column', gap: 0 }}>
           <Bi hi="लॉग आउट" en="Log out" />
@@ -71,21 +71,23 @@ export default function AccountScreen() {
 
       <div className="card" data-testid="language-card">
         <h3 style={{ marginBottom: 6 }}>🔤 <Bi hi="भाषा" en="Language" inline /></h3>
-        <label style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 44, fontSize: '0.9375rem', cursor: 'pointer' }}>
-          <input type="checkbox" checked={hindiOnly} onChange={(e) => toggleHindiOnly(e.target.checked)} data-testid="hindi-only" />
-          <span>सिर्फ़ हिंदी दिखाएँ <span className="en en-inline" lang="en">Hindi only</span></span>
-        </label>
+        <div role="radiogroup" aria-label="भाषा / Language" data-testid="lang-options">
+          {[['hi', 'hindi-only', 'हिंदी', 'Hindi'], ['en', 'lang-opt-en', 'अंग्रेज़ी', 'English'], ['both', 'lang-opt-both', 'दोनों', 'Both']].map(([id, testid, hi, en]) => (
+            <label key={id} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 44, fontSize: '0.9375rem', cursor: 'pointer' }}>
+              <input type="radio" name="app_language" value={id} checked={lang === id} onChange={() => setLang(id)} data-testid={testid} />
+              <span><Bi hi={hi} en={en} inline /></span>
+            </label>
+          ))}
+        </div>
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>
-          अंग्रेज़ी अनुवाद छिप जाएँगे; कौशल कोड और रोल नंबर दिखते रहेंगे। यह सेटिंग इसी फ़ोन पर रहती है।
-          <span className="en" lang="en">Hides the English translations; skill codes and roll numbers stay. This setting stays on this phone.</span>
+          <Bi hi="ऊपर के हिं / EN बटन से भी बदलें। योजना की अपनी सामग्री हिंदी में रहती है; कौशल कोड और रोल नंबर हर भाषा में दिखते हैं। यह सेटिंग इसी फ़ोन पर रहती है।" en="Also switched with the हिं / EN button at the top. The plan's own content stays in Hindi; skill codes and roll numbers show in every language. This setting stays on this phone." />
         </p>
         <label style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 44, fontSize: '0.9375rem', cursor: 'pointer', marginTop: 6 }}>
           <input type="checkbox" checked={shorter} onChange={(e) => toggleShorter(e.target.checked)} data-testid="shorter-screen" />
-          <span>छोटी स्क्रीन <span className="en en-inline" lang="en">Shorter screen</span></span>
+          <span><Bi hi="छोटी स्क्रीन" en="Shorter screen" inline /></span>
         </label>
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }} data-testid="shorter-screen-hint">
-          योजना की स्क्रीन छोटी हो जाती है; एक टैप पर सब कुछ खुलता है।
-          <span className="en" lang="en">The plan screen gets shorter; one tap opens everything.</span>
+          <Bi hi="योजना की स्क्रीन छोटी हो जाती है; एक टैप पर सब कुछ खुलता है।" en="The plan screen gets shorter; one tap opens everything." />
         </p>
       </div>
 
@@ -96,7 +98,7 @@ export default function AccountScreen() {
             <Bi hi="यह साझा डेमो अकाउंट है: इसका पासवर्ड बदला नहीं जा सकता। बदलकर देखने के लिए अभ्यास अकाउंट MPT199 से लॉगिन करें।" en="This is a shared demo account: its password cannot be changed. To try changing a password, sign in with the practice account MPT199." />
           </p>
         ) : pinDone ? (
-          <p style={{ fontSize: '0.875rem', color: 'var(--proficient-ink)' }} data-testid="pin-changed">✅ <Bi hi="पासवर्ड बदल गया" en="Password changed" inline /></p>
+          <p style={{ fontSize: '0.875rem', color: 'var(--green-dark)' }} data-testid="pin-changed">✅ <Bi hi="पासवर्ड बदल गया" en="Password changed" inline /></p>
         ) : showPin ? (
           <PinChangeForm onDone={() => { setPinDone(true); setShowPin(false); }} />
         ) : (
@@ -118,7 +120,7 @@ export default function AccountScreen() {
                 </span>
               ) : (
                 <span data-testid="consent-missing">
-                  <span style={{ color: '#8A5A00' }}>⚠ <Bi hi="अभिभावकों की अनुमति की पुष्टि दर्ज नहीं है" en="Consent is not confirmed yet" inline /></span>
+                  <span style={{ color: 'var(--info)' }}>⚠ <Bi hi="अभिभावकों की अनुमति की पुष्टि दर्ज नहीं है" en="Consent is not confirmed yet" inline /></span>
                   <button type="button" onClick={confirmConsent} data-testid="consent-confirm" style={{ marginLeft: 8, background: 'none', border: 'none', color: 'var(--green-dark)', textDecoration: 'underline', fontSize: '0.8125rem', minHeight: 44, fontFamily: 'inherit' }}><Bi hi="पुष्टि करें" en="Confirm" inline /></button>
                 </span>
               )}
@@ -126,19 +128,19 @@ export default function AccountScreen() {
           )}
           {temp && (
             <div data-testid="temp-pin" style={{ background: '#E4F4EA', border: '1px solid #BFE3CC', borderRadius: 10, padding: 10, marginBottom: 10 }}>
-              <div style={{ fontSize: '0.8125rem' }}>शिक्षक {temp.who} का अस्थायी पासवर्ड, सिर्फ़ अभी दिख रहा है<span className="en en-inline" lang="en">Temporary password, shown once</span>:</div>
+              <div style={{ fontSize: '0.8125rem' }}><span className="hi">शिक्षक {temp.who} का अस्थायी पासवर्ड, सिर्फ़ अभी दिख रहा है</span><span className="en en-inline" lang="en">Temporary password for teacher {temp.who}, shown once</span>:</div>
               <div data-testid="temp-pin-value" style={{ fontSize: '2rem', fontWeight: 700, letterSpacing: 6, textAlign: 'center' }}>{temp.pin}</div>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi="शिक्षक को यह दें। इससे वे सिर्फ़ नया पासवर्ड चुन सकते हैं।" en="Give it to the teacher. It only lets them choose a new password." /></div>
             </div>
           )}
-          {error && <p style={{ color: 'var(--beginner)', fontSize: '0.8125rem' }}>{error}</p>}
+          {error && <p style={{ color: 'var(--danger)', fontSize: '0.8125rem' }}>{error}</p>}
           {teachers.map(t => (
             <div key={t.teacher_id} data-testid="teacher-row" style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 0', borderTop: '1px solid var(--border)', fontSize: '0.8125rem' }}>
               <div style={{ flex: 1 }}>
-                <b data-testid="teacher-code" style={{ letterSpacing: 1 }}>{t.code}</b> {t.is_you && <>(आप<span className="en en-inline" lang="en">/ you</span>)</>}<br />
+                <b data-testid="teacher-code" style={{ letterSpacing: 1 }}>{t.code}</b> {t.is_you && <>(<Bi hi="आप" en="you" inline />)</>}<br />
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                  {t.role === 'school_admin' ? 'स्कूल लीडर' : 'शिक्षक'} · {t.children} बच्चे
-                  {t.locked && <> · 🔒 बंद<span className="en en-inline" lang="en">locked</span></>}{t.must_change_pin && ' · नया पासवर्ड बाकी'}{!t.has_pin && ' · पासवर्ड नहीं'}
+                  {t.role === 'school_admin' ? <Bi hi="स्कूल लीडर" en="School leader" inline /> : <Bi hi="शिक्षक" en="Teacher" inline />} · {t.children} <Bi hi="बच्चे" en="children" inline />
+                  {t.locked && <> · 🔒 <Bi hi="बंद" en="locked" inline /></>}{t.must_change_pin && <> · <Bi hi="नया पासवर्ड बाकी" en="new password pending" inline /></>}{!t.has_pin && <> · <Bi hi="पासवर्ड नहीं" en="no password" inline /></>}
                 </span>
               </div>
               {t.locked && <button type="button" className="btn btn-secondary btn-small" data-testid={`unlock-${t.teacher_id}`} onClick={() => unlock(t)}><Bi hi="खोलें" en="Unlock" inline /></button>}

@@ -91,7 +91,7 @@ check('a mode the app does not know falls back to the photo way (as before)', mo
 check('the English words are there too, hideable ("observe", "photo", "read aloud")', /observe/.test(modeOfSkill('N0.1.1').textContent) && /photo/.test(modeOfSkill('N2.3.2').textContent) && /read aloud/.test(modeOfSkill('L2.5.1').textContent) && !!modeOfSkill('N0.1.1').querySelector('.en'));
 check('one key line above the list, in the Review’s own words: "✓ देखकर दर्ज करें · 📸 वर्कशीट की फ़ोटो · ⏱️ पढ़कर सुनाना: हर कौशल कैसे जाँचा जाता है"', /✓ देखकर दर्ज करें.*📸 वर्कशीट की फ़ोटो.*⏱️ पढ़कर सुनाना.*हर कौशल कैसे जाँचा जाता है/.test(q('[data-testid="mode-key"]').textContent)
   && (q('[data-testid="mode-key"]').compareDocumentPosition(q('.competency-item')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING));
-check('the coverage summary line is gone, and each skill still carries its own label', !q('[data-testid="coverage-card"]') && !/ज्ञान-आधार कवरेज/.test(document.body.textContent) && /परखा हुआ/.test(document.body.textContent));
+check('the coverage summary line is gone, and (12 Nov) the out-of-date per-skill labels too: one pilot line instead', !q('[data-testid="coverage-card"]') && !/ज्ञान-आधार कवरेज/.test(document.body.textContent) && !/परखा हुआ/.test(document.body.textContent) && !!q('[data-testid="pilot-plans"]'));
 SKILLS.splice(0, SKILLS.length, ...SKILLS_BEFORE);
 
 await act(async () => root.unmount());

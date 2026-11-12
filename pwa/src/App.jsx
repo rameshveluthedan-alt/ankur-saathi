@@ -4,6 +4,8 @@ import PlanScreen from './screens/PlanScreen';
 import YojanaScreen from './screens/YojanaScreen';
 import PlanPrint from './screens/PlanPrint';
 import TickSheet from './screens/TickSheet';
+import PageViewer from './screens/PageViewer';
+import ReportView from './screens/ReportView';
 import MentorReport from './screens/MentorReport';
 import ClassSummary from './screens/ClassSummary';
 import ReviewScreen from './screens/ReviewScreen';
@@ -11,6 +13,7 @@ import ProgressScreen from './screens/ProgressScreen';
 import LoginScreen from './screens/LoginScreen';
 import OfflineBanner from './components/OfflineBanner';
 import Notices from './components/Notices';
+import LangSwitch, { useLang } from './components/LangSwitch';
 import { probe } from './services/network';
 import { TAB_RESELECT_EVENT, tabTap, TABS, activeTab } from './services/tabs';
 import RegisterScreen from './screens/RegisterScreen';
@@ -18,6 +21,7 @@ import AccountScreen from './screens/AccountScreen';
 import ChangePinScreen from './screens/ChangePinScreen';
 import ConsentGate from './screens/ConsentGate';
 import { getNames, getToken, setToken } from './services/api';
+import Bi from './components/Bi';
 
 export const AuthContext = createContext(null);
 export const useAuth = () => useContext(AuthContext);
@@ -26,7 +30,7 @@ function BottomNav() {
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname;
-  if (path === '/plan/print' || path === '/plan/ticks' || path === '/progress/mentor' || path === '/progress/class') return null;        // the printed pages (plan, tick sheet, mentor report, class summary) stand alone: no bottom bar
+  if (path === '/plan/print' || path === '/plan/ticks' || path === '/progress/mentor' || path === '/progress/class' || path === '/page') return null;        // the printed pages (plan, tick sheet, mentor report, class summary) stand alone: no bottom bar
 
   const tabs = TABS;
   const lit = activeTab(path);
@@ -42,8 +46,7 @@ function BottomNav() {
             } else navigate(t.id);
           }}>
           <span className="nav-icon">{t.icon}</span>
-          <span style={{fontSize:'0.75rem'}}>{t.hi}</span>
-          <span className="en" lang="en" style={{fontSize:'0.625rem'}}>{t.en}</span>
+          <span style={{fontSize:'0.75rem'}}><Bi hi={t.hi} en={t.en} /></span>
         </button>
       ))}
     </nav>
@@ -52,16 +55,17 @@ function BottomNav() {
 
 function AppShell() {
   const { teacher } = useAuth();
-  if (!teacher || !getToken()) return <><OfflineBanner /><LoginScreen /></>;
-  if (teacher.must_change_pin) return <ChangePinScreen forced />;       // a first sign-in or a reset by the school leader: choose a new password first
-  if (teacher.consent_needed) return <ConsentGate />;                   // the school leader confirms the consent statement, once, before anything else
+  if (!teacher || !getToken()) return <><OfflineBanner /><LangSwitch /><LoginScreen /></>;
+  if (teacher.must_change_pin) return <><LangSwitch /><ChangePinScreen forced /></>;       // a first sign-in or a reset by the school leader: choose a new password first
+  if (teacher.consent_needed) return <><LangSwitch /><ConsentGate /></>;                   // the school leader confirms the consent statement, once, before anything else
   return (
     <>
+      <LangSwitch />
       <div style={{ position: 'sticky', top: 0, zIndex: 30 }}>
         <OfflineBanner />
         {teacher.is_demo && (
-          <div data-testid="demo-banner" style={{ background: '#FFF4D6', color: '#6B4A00', fontSize: '0.7rem', padding: '4px 10px', textAlign: 'center' }}>
-            डेमो अकाउंट: सिर्फ़ काल्पनिक डेटा, असली बच्चों के नाम न डालें।<span className="en en-inline" lang="en" style={{ color: 'inherit', fontSize: '0.7rem' }}>Demo account: fictional data only. Do not enter real children's names.</span>
+          <div data-testid="demo-banner" style={{ background: 'var(--info-bg)', color: 'var(--info)', fontSize: '0.7rem', padding: '4px 96px 4px 10px', minHeight: 32, display: 'flex', alignItems: 'center' }}>
+            <span><Bi hi="डेमो अकाउंट: सिर्फ़ काल्पनिक डेटा, असली बच्चों के नाम न डालें।" en="Demo account: fictional data only. Do not enter real children's names." inline /></span>
           </div>
         )}
       </div>
@@ -70,6 +74,8 @@ function AppShell() {
         <Route path="/yojana" element={<YojanaScreen />} />
         <Route path="/plan/print" element={<PlanPrint />} />
         <Route path="/plan/ticks" element={<TickSheet />} />
+        <Route path="/page" element={<PageViewer />} />
+        <Route path="/report" element={<ReportView />} />
         <Route path="/review" element={<ReviewScreen />} />
         <Route path="/progress" element={<ProgressScreen />} />
         <Route path="/progress/mentor" element={<MentorReport />} />
@@ -84,6 +90,7 @@ function AppShell() {
 }
 
 export default function App() {
+  const lang = useLang();        // in the context below, so every screen re-renders when the language changes (text made with bi() too)
   const [teacher, setTeacher] = useState(() => {
     // a stored teacher without a sign-in token is a leftover from before sign-in existed: do not treat it as signed in
     try { return getToken() ? JSON.parse(localStorage.getItem('ankur_teacher')) : null; } catch { return null; }
@@ -110,7 +117,7 @@ export default function App() {
   }, [teacher]);
 
   return (
-    <AuthContext.Provider value={{ teacher, setTeacher, currentPlan, setCurrentPlan, selectedDomain, setSelectedDomain, names, refreshNames, logout }}>
+    <AuthContext.Provider value={{ teacher, setTeacher, currentPlan, setCurrentPlan, selectedDomain, setSelectedDomain, names, refreshNames, logout, lang }}>
       <BrowserRouter>
         <AppShell />
       </BrowserRouter>

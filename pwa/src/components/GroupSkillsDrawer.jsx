@@ -1,4 +1,5 @@
 import React from 'react';
+import Bi from './Bi';
 
 /**
  * The group panel as a DRAWER in the bottom bar, above the Generate button.
@@ -17,7 +18,7 @@ export default function GroupSkillsDrawer({ open, onToggle, summary, disabled, c
       )}
       <button type="button" className="btn btn-secondary btn-small" data-testid="edit-group-skills" aria-expanded={open ? 'true' : 'false'}
         onClick={onToggle} disabled={disabled} style={{ width: '100%', marginBottom: 6, fontSize: '0.8125rem' }}>
-        {open ? <>▼ बंद करें: कौशल सूची पर लौटें<span className="en en-inline" lang="en">Close: back to the skill list</span></> : `समूहों के कौशल: ${summary} — देखें/बदलें ▲`}
+        {open ? <>▼ <Bi hi="बंद करें: कौशल सूची पर लौटें" en="Close: back to the skill list" inline /></> : <Bi hi={`समूहों के कौशल: ${summary} — देखें/बदलें ▲`} en={`Groups' skills: ${summary} — view/change ▲`} inline />}
       </button>
     </div>
   );

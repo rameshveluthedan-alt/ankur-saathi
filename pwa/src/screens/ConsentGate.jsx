@@ -36,7 +36,7 @@ export default function ConsentGate() {
           <input type="checkbox" checked={checked} onChange={e => setChecked(e.target.checked)} data-testid="consent-check" style={{ width: 24, height: 24 }} />
           <span><Bi hi="हाँ, यह सही है" en="Yes, this is correct" inline /></span>
         </label>
-        {error && <p data-testid="consent-error" role="alert" style={{ color: 'var(--beginner)', fontSize: '0.8125rem', margin: '6px 0' }}>{error}</p>}
+        {error && <p data-testid="consent-error" role="alert" style={{ color: 'var(--danger)', fontSize: '0.8125rem', margin: '6px 0' }}>{error}</p>}
         <button className="btn btn-primary" style={{ marginTop: 8 }} onClick={confirm} disabled={!checked || loading} data-testid="consent-continue">
           {loading ? 'दर्ज हो रहा है...' : <Bi hi="पुष्टि करें और आगे बढ़ें" en="Confirm and continue" inline />}
         </button>

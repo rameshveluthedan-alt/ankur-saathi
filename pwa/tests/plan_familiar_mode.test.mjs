@@ -65,7 +65,7 @@ globalThis.__auth = { currentPlan: PLAN, setCurrentPlan() {}, teacher: { teacher
 globalThis.__api = { getReviewChannels: async () => globalThis.__channels || ({ has_plan: false, levels: [], channels: {} }), adminSchool: async () => ({}), adminTeachers: async () => ({ teachers: [] }), getCachedPlan: async () => PLAN, openAuthedPage: async () => {}, worksheetPath: () => '/w', prepareOfflineCopy: () => {} };
 let root;
 const show = async (C) => { if (root) await act(async () => root.unmount()); root = createRoot(document.getElementById('root')); await act(async () => { root.render(React.createElement(C)); }); await flush(); };
-const blockOf = (g) => q(`.timeline-block.tier-${g}`) || qa('.timeline-block').find((b) => b.textContent.includes(PLAN.groups.find((x) => x.label === g).target_competency_id));
+const blockOf = (g) => q(`[role="tabpanel"][data-slot-group="${g}"]`);       // 12 Nov: one tab per session slot
 const scriptsOf = () => qa('[data-testid="block-script"]');
 
 console.log('the toggle on Profile');
@@ -103,18 +103,18 @@ await show(Plan);
 check('the plan screen drawn next has changed: each one-line script is in a "आज की गतिविधि" fold, CLOSED', qa('[data-testid="script-fold"]').length === 3 && qa('[data-testid="script-fold"]').every((d) => !d.open && /आज की गतिविधि/.test(d.querySelector('summary').textContent))
   && scriptsOf().length === 3 && scriptsOf().every(folded));
 const prog = blockOf('progressor');
-check('the block title stays visible: group, skill and minutes', visible(prog.querySelector('strong')) && /प्रगतिशील/.test(prog.querySelector('strong').textContent) && visible(prog.querySelector('[data-testid="block-skill"]')) && /15 मि\./.test(prog.textContent));
+check('the block title stays visible: group, skill and minutes', visible(prog.querySelector('h3')) && /प्रगतिशील/.test(prog.querySelector('h3').textContent) && visible(prog.querySelector('[data-testid="block-skill"]')) && /15 मि\./.test(prog.textContent));
 check('the re-teach note stays visible', visible(prog.querySelector('[data-testid="reteach-note"]')));
 check('the three core questions stay visible (never folded)', qa('[data-testid="core-question"]').length === 3 && qa('[data-testid="core-question"]').every(visible));
 check('the writing prompt stays visible (never folded)', visible(q('[data-testid="writing-prompt"]')));
-check('the anchor card is folded to its title row, closed: its title shows, its text does not', (() => {
-  const f = q('[data-testid="anchor-fold"]');
-  return f && !f.open && /एंकर गतिविधि/.test(f.querySelector('summary').textContent) && /10 मि\./.test(f.querySelector('summary').textContent) && folded([...f.querySelectorAll('p')].find((p) => p.textContent.includes('बाज़ार'))) && !q('[data-testid="anchor-card"]');
+check('the anchor activity’s text is folded, closed: its title and minutes show, its text does not', (() => {
+  const f = q('[data-testid="anchor-fold"]'); const card = q('[data-testid="anchor-card"]');
+  return f && !f.open && card && /एंकर गतिविधि/.test(card.querySelector('h3').textContent) && /10 मि\./.test(card.textContent) && folded([...f.querySelectorAll('p')].find((p) => p.textContent.includes('बाज़ार')));
 })());
 const expandedBefore = prog.getAttribute('aria-expanded');
 await click(prog.querySelector('[data-testid="script-fold"] summary'));
 check('one tap opens the script, and does not open or close the teach block itself', prog.querySelector('[data-testid="script-fold"]').open && visible(prog.querySelector('[data-testid="block-script"]')) && prog.getAttribute('aria-expanded') === expandedBefore);
-check('the talking points and the understanding check stay closed, as today', !document.body.textContent.includes('मैं करूँगा'));
+check('the talking points and the understanding check stay closed, as today', qa('[data-testid="fold-i-do"], [data-testid="fold-we-do"], [data-testid="fold-you-do"], [data-testid="cfu"]').every((d) => !d.open));
 
 console.log('\nand off again');
 await show(Account);

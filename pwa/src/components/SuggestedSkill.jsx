@@ -31,7 +31,7 @@ export default function SuggestedSkill({ proposal, competencies, selectedId, onC
   const where = s.reason === 'recommended' ? { hi: 'पिछली जाँच', en: 'At the last check' } : { hi: 'पिछली समीक्षा', en: 'At the last review' };
   const chosen = selectedId === s.skill.id;
   return (
-    <div className="card" data-testid="suggested-skill" data-skill={s.skill.id} data-reason={s.reason} style={{ padding: 12, borderLeft: '4px solid var(--progressor)' }}>
+    <div className="card" data-testid="suggested-skill" data-skill={s.skill.id} data-reason={s.reason} style={{ padding: 12, borderLeft: '4px solid var(--green-dark)' }}>
       <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-secondary)' }}>⭐ <Bi hi="सुझाया गया" en="Suggested" inline /></div>
       <div style={{ marginTop: 4 }}>
         <b style={{ fontFamily: 'monospace' }}>{s.skill.id}</b> — {s.skill.name_hi || s.skill.name_en}

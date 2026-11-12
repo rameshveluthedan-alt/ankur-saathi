@@ -24,5 +24,5 @@ export const TABS = [
 ];
 
 // Which tab is lit: the screen's own, and for a screen opened from one (the class register, from "योजना बनाएँ") that one, so the teacher still sees where she is
-const OPENED_FROM = { '/register': '/' };
+const OPENED_FROM = { '/register': '/', '/report': '/progress', '/page': '/yojana' };
 export const activeTab = (path) => OPENED_FROM[path] || path;

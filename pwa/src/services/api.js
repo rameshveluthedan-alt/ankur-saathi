@@ -91,6 +91,13 @@ export async function openAuthedPage(path) {
   const url = URL.createObjectURL(new Blob([await res.text()], { type: 'text/html' }));
   if (w) w.location.href = url; else window.open(url);
 }
+// A server page (a worksheet) as HTML text, shown INSIDE the app (screens/PageViewer.jsx): no pop-up tab, so it works the same on a desktop, on a phone
+// and offline (the service worker keeps the answer). The hackathon evaluators could not open the worksheets on a desktop (12 Nov) through the pop-up tab.
+export async function fetchAuthedPage(path) {
+  const res = await authFetch(`${BASE}${path}`);
+  if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(detailText(err, 'Could not open the page')); }
+  return res.text();
+}
 export async function downloadAuthed(path, filename) {
   const res = await authFetch(`${BASE}${path}`);
   if (!res.ok) { const err = await res.json().catch(() => ({})); throw new Error(detailText(err, 'Could not download the file')); }

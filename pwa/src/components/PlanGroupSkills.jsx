@@ -1,5 +1,6 @@
 import React from 'react';
 import { groupSkillLines, GROUP_HI } from '../services/planSummary';
+import { GROUP_LABELS } from '../tiers';
 
 /**
  * The top right of the lesson screen: the date, and which skill each group is on (when they differ), with "पुनः शिक्षण (Re-teach)" against a group that is re-teaching.
@@ -15,13 +16,13 @@ export default function PlanGroupSkills({ planDate, selectedId, groups, blocks }
         <div key={l.label} data-testid={`plan-skill-${l.label}`} title={l.name_hi}>
           <span aria-hidden="true">{l.emoji}</span> <b>{l.short}</b> {l.skillId}
           {l.reteach && (
-            <span style={tag} data-testid={`plan-reteach-${l.label}`}>🔄 पुनः शिक्षण<span className="en en-inline" lang="en" style={{ color: 'inherit', fontSize: '0.625rem' }}>Re-teach</span></span>
+            <span style={tag} data-testid={`plan-reteach-${l.label}`}>🔄 <span className="hi">पुनः शिक्षण</span><span className="en en-inline" lang="en" style={{ color: 'inherit', fontSize: '0.625rem' }}>Re-teach</span></span>
           )}
         </div>
       ))}
       {!s.differ && s.reteachLabels.length > 0 && (
         <div style={tag} data-testid="plan-reteach-all">
-          🔄 पुनः शिक्षण: {s.reteachLabels.map((l) => GROUP_HI[l]).join(', ')}<span className="en en-inline" lang="en" style={{ color: 'inherit', fontSize: '0.625rem' }}>Re-teach</span>
+          🔄 <span className="hi">पुनः शिक्षण: {s.reteachLabels.map((l) => GROUP_HI[l]).join(', ')}</span><span className="en en-inline" lang="en" style={{ color: 'inherit', fontSize: '0.625rem' }}>Re-teach: {s.reteachLabels.map((l) => (GROUP_LABELS[l] || {}).en || l).join(', ')}</span>
         </div>
       )}
     </div>
