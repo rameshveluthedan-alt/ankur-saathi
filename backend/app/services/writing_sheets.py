@@ -7,7 +7,8 @@ as evidence of a writing skill (docs/drafts/PLAN_REVIEW_L2.7.2.md).
 
 Now each group's sheet follows ITS OWN skill:
   reading      every literacy skill outside strand 7: the passage sheet, as before.
-  formation    L0.7.2, L1.7.1, L1.7.2, L1.7.3 (letters, words, short sentences): an example and writing items, never a passage.
+  formation    L0.7.1, L0.7.2, L1.7.1, L1.7.2, L1.7.3 (strokes, letters, words, short sentences): an example and writing items, never a passage.
+  usage        L2.7.3 (punctuation), L3.7.2 (grammar): short items on the rule, each with one checkable answer, never a passage.
   dictation    L2.7.1: the teacher dictates; the child's sheet has only numbered blank lines. The sentences are in the teacher's plan only
                (worksheet.dictation_sentences), never on the sheet or the board. The code builds the lines from the sentences.
   composition  L2.7.2, L3.7.1, L3.7.3: ONE writing task on the topic the You Do names (never the teacher's own model topic), lined space, a 3-5 point
@@ -23,12 +24,13 @@ LEVELS = ("beginner", "progressor", "proficient")
 _WRITING = re.compile(r"^L\d+\.7\.\d+$")
 DICTATION = {"L2.7.1"}
 COMPOSITION = {"L2.7.2", "L3.7.1", "L3.7.3"}
+USAGE = {"L2.7.3", "L3.7.2"}          # punctuation, and grammar (gender, number, tense): short items with one checkable answer
 CHECKLIST_MIN, CHECKLIST_MAX = 3, 5
 TASK_ANSWER = "CHECKLIST"          # the writing task's "answer": the photo analysis uses the checklist instead of a key
 
 
 def sheet_kind(competency_id, domain_id="r1_literacy"):
-    """'reading' | 'formation' | 'dictation' | 'composition' for a literacy skill; None for numeracy."""
+    """'reading' | 'formation' | 'usage' | 'dictation' | 'composition' for a literacy skill; None for numeracy."""
     if domain_id != "r1_literacy" or not competency_id:
         return None
     cid = str(competency_id)
@@ -36,6 +38,8 @@ def sheet_kind(competency_id, domain_id="r1_literacy"):
         return "dictation"
     if cid in COMPOSITION:
         return "composition"
+    if cid in USAGE:
+        return "usage"
     if _WRITING.match(cid):
         return "formation"
     return "reading"
@@ -70,7 +74,9 @@ def prompt_section(group_skill_ids, domain_id) -> str:
             f"- \"checklist\": {CHECKLIST_MIN}-{CHECKLIST_MAX} items [{{\"item_hi\": \"...\", \"item_en\": \"...\"}}], each one thing a teacher can SEE in the writing "
             "(for example: कम से कम 3 वाक्य · सभी वाक्य विषय पर · हर वाक्य के अंत में । · वाक्य 'और / फिर / क्योंकि' से जुड़े). Fit it to the group's skill and grade.",
             "- Problems 2-4: short items on the PARTS of the skill, each with ONE checkable answer (join two given sentences with a joining word, put a full stop "
-            "where a sentence ends, put 3 jumbled sentences in order). Never a reading-comprehension question.",
+            "where a sentence ends, put 3 jumbled sentences in order). Never a reading-comprehension question. A fill-in item that offers its options "
+            "in brackets ('(और / फिर)') has one of THOSE options as its answer. Never reuse a sentence the teacher models in the I Do or We Do.",
+            "- The You Do sends the group to the worksheet's task: it names the sheet's topic (or says 'वर्कशीट पर दिए विषय पर'), never another topic.",
             "- required_count: all of these. An optional extra: a second, shorter writing task (answer \"CHECKLIST\").",
         ]
     if "dictation" in writing.values():
@@ -79,7 +85,13 @@ def prompt_section(group_skill_ids, domain_id) -> str:
             "- \"dictation_sentences\": 4-6 short sentences at the group's level, using the matras the skill practises. They are for the TEACHER to read aloud: "
             "they must NOT appear in the problems, the instructions, the example, the board work or the I Do / We Do. The system builds the child's sheet "
             "(one numbered blank line per sentence) from them.",
-            "- The You Do says the teacher reads each sentence aloud twice and the children write it on line 1, 2, 3...; never that they copy from the board.",
+            "- The You Do says the teacher reads each sentence aloud twice and the children write it on line 1, 2, 3...; never that they copy from the board. "
+            "A dictation sheet has no extra problems: the You Do does not mention extras.",
+        ]
+    if "usage" in writing.values():
+        lines += [
+            "USAGE sheet (\"usage\": punctuation or grammar): short items that apply the rule (put the right mark at the end; change gender, number or tense; "
+            "correct the mistake), each with ONE checkable answer; an example_block shows one done item. Never a passage.",
         ]
     if "formation" in writing.values():
         lines += [
@@ -200,6 +212,27 @@ def _norm(text) -> str:
     return " " + " ".join(re.sub(r"[।?!\"'‘’“”«»(),:;.\-–—]", " ", str(text or "")).split()) + " "
 
 
+_QUOTED_TOPIC = re.compile(r"['‘“«]([^'’”»]{2,40})['’”»]\s*(?:विषय\s*)?पर\b")
+_OPTIONS = re.compile(r"\(([^()]*?/[^()]*?)\)")
+
+
+def _named_topics(text) -> list:
+    """Topics a text names the way a task does: 'मेरा परिवार' पर ..."""
+    return [_strip(m.group(1)) for m in _QUOTED_TOPIC.finditer(str(text or ""))]
+
+
+def _answer_outside_options(problem: dict):
+    """A fill-in item that offers its options in brackets ('(और / फिर)'): the answer must be one of them. Returns (answer, options) when it is not."""
+    m = _OPTIONS.search(str(problem.get("problem_hi") or ""))
+    ans = _strip(problem.get("answer"))
+    if not m or not ans or " " in ans:            # a whole-sentence answer is not a choice between options
+        return None
+    opts = [_strip(o) for o in m.group(1).split("/") if _strip(o)]
+    if len(opts) >= 2 and all(len(o.split()) <= 2 for o in opts) and ans.strip("।") not in opts:
+        return ans, opts
+    return None
+
+
 def check_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> list:
     """What is still wrong with a writing sheet after apply_writing_sheets: human-readable warnings (empty = good)."""
     issues = []
@@ -223,12 +256,17 @@ def check_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> l
             topic = _strip((ws.get("writing_task") or {}).get("topic_hi"))
             if topic and topic in _strip(lesson):
                 issues.append(f"{where}: the writing topic «{topic}» is the teacher's own model in the I Do / We Do")
+            # the You Do may name the sheet's topic or point to it ("दिए विषय पर"); it must never name ANOTHER topic ('हमारा स्कूल' पर ...)
             you_do = _lesson_text(plan, lvl, ("you_do_hi",))
-            if topic and you_do and topic not in _strip(you_do):
-                issues.append(f"{where}: the You Do does not name the writing topic «{topic}»")
+            for other in _named_topics(you_do):
+                if topic and other != topic:
+                    issues.append(f"{where}: the You Do names the topic «{other}», but the sheet's topic is «{topic}»")
             for p in probs[1:]:
                 if not p.get("writing_task") and not _strip(p.get("answer")):
                     issues.append(f"{where} problem {p.get('number')}: no answer to check")
+                bad = _answer_outside_options(p)
+                if bad:
+                    issues.append(f"{where} problem {p.get('number')}: the answer «{bad[0]}» is not one of the options it offers ({' / '.join(bad[1])})")
         if kind == "dictation":
             sentences = ws.get("dictation_sentences") or []
             if not (3 <= len(sentences) <= 8):

@@ -462,6 +462,8 @@ def find_text_overlaps(plan: dict, n: int = 5) -> list[str]:
         seen = set(_ngrams_ordered(_tokens(lesson + " " + anchor_text), n))
         quoted = set(_ngrams_ordered(_tokens((ws.get("passage_block") or {}).get("text")), n))
         for pr in ws.get("problems") or []:
+            if pr.get("writing_task") or pr.get("dictation"):
+                continue          # a writing task's instruction repeats the lesson's own wording ("विषय पर 3-5 जुड़े वाक्य") by design; writing_sheets checks the topic itself
             hits = [g for g in _ngrams_ordered(_tokens(pr.get("problem_hi")), n) if g in seen and g not in quoted]
             if hits:
                 issues.append(f"worksheets.{level} problem {pr.get('number')} repeats wording from the lesson or anchor: \u00ab{' '.join(hits[0])}\u00bb")

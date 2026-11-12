@@ -71,8 +71,9 @@ def new_shape(plan):
 
 def unit():
     print("which sheet each skill gets")
-    check("strand 7 is writing: L2.7.1 dictation; L2.7.2, L3.7.1, L3.7.3 composition; L0.7.2 and L1.7.x formation; others reading; numeracy none",
-          [W.sheet_kind(c) for c in ("L2.7.1", "L2.7.2", "L3.7.1", "L3.7.3", "L0.7.2", "L1.7.3", "L2.6.1", "L2.5.1")] == ["dictation", "composition", "composition", "composition", "formation", "formation", "reading", "reading"]
+    check("strand 7 is writing: L2.7.1 dictation; L2.7.2, L3.7.1, L3.7.3 composition; L2.7.3, L3.7.2 usage; L0.7.x, L1.7.x formation; others reading; numeracy none",
+          [W.sheet_kind(c) for c in ("L2.7.1", "L2.7.2", "L3.7.1", "L3.7.3", "L0.7.2", "L1.7.3", "L2.7.3", "L3.7.2", "L2.6.1", "L2.5.1")]
+          == ["dictation", "composition", "composition", "composition", "formation", "formation", "usage", "usage", "reading", "reading"]
           and W.sheet_kind("N2.3.2", "numeracy") is None)
     sec = W.prompt_section(SKILLS, "r1_literacy")
     check("the prompt names each writing group's sheet and says the passage rules do not apply to them",
@@ -114,7 +115,18 @@ def unit():
     for blk in q3["rotation_schedule"]["blocks"]:
         if blk.get("teach_group") == "progressor":
             blk["talking_points"]["you_do_hi"] = "अब 'हमारा स्कूल' पर लिखिए।"
-    check("the You Do names another topic than the sheet's", any("does not name the writing topic" in i for i in W.check_writing_sheets(q3, SKILLS, "r1_literacy")))
+    check("the You Do names another topic than the sheet's", any("the You Do names the topic «हमारा स्कूल», but the sheet's topic is «मेरा पसंदीदा खेल»" in i for i in W.check_writing_sheets(q3, SKILLS, "r1_literacy")))
+    q4 = copy.deepcopy(p)
+    for blk in q4["rotation_schedule"]["blocks"]:
+        if blk.get("teach_group") == "progressor":
+            blk["talking_points"]["you_do_hi"] = "अब आप वर्कशीट पर दिए विषय पर 3-5 जुड़े वाक्य लिखेंगे।"
+    check("...but a You Do that points to the sheet's topic ('दिए विषय पर') is fine (the first real run, 13 Nov)", not any("You Do" in i for i in W.check_writing_sheets(q4, SKILLS, "r1_literacy")))
+    q5 = copy.deepcopy(p)
+    q5["worksheets"]["proficient"]["problems"].append({"number": 9, "problem_hi": "खाली जगह में सही शब्द लिखें (फिर / क्योंकि): 'मैं देर से सोया ___ सुबह देर से उठा।'", "answer": "इसलिए", "answer_type": "box"})
+    check("a fill-in answer that is none of the options it offers (the first real run: '(फिर / क्योंकि)' -> 'इसलिए')",
+          any("the answer «इसलिए» is not one of the options it offers (फिर / क्योंकि)" in i for i in W.check_writing_sheets(q5, SKILLS, "r1_literacy")))
+    q5["worksheets"]["proficient"]["problems"][-1]["answer"] = "फिर"
+    check("...and one of them passes", not any("not one of the options" in i for i in W.check_writing_sheets(q5, SKILLS, "r1_literacy")))
 
     print("\nthe recorded L2.7.2 plan (old shape)")
     old = copy.deepcopy(SAMPLE)
