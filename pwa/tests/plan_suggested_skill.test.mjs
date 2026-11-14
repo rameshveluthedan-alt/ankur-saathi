@@ -53,7 +53,7 @@ proposal = proposalWith('N2.3.3', 'advance'); cached = async () => { throw notFo
 await show();
 check('"⭐ सुझाया गया" shows the Progressors\' proposed skill with its name, above the skill list', card() && card().dataset.skill === 'N2.3.3' && /⭐ सुझाया गया/.test(card().textContent) && /N2\.3\.3 — N2\.3\.3 का नाम/.test(card().textContent)
   && (card().compareDocumentPosition(q('.competency-item')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING));
-check('...with the reason and the review\'s date: "पिछली समीक्षा (24 …): प्रगतिशील: ⬆ आगे बढ़ें"', /पिछली समीक्षा \(24 [^)]+\): प्रगतिशील: ⬆ आगे बढ़ें/.test(q('[data-testid="suggested-why"]').textContent), q('[data-testid="suggested-why"]').textContent);
+check('...with the reason and the assessment\'s date: "पिछले आकलन (24 …): प्रगतिशील: ⬆ आगे बढ़ें"', /पिछले आकलन \(24 [^)]+\): प्रगतिशील: ⬆ आगे बढ़ें/.test(q('[data-testid="suggested-why"]').textContent), q('[data-testid="suggested-why"]').textContent);
 await click(qa('button').find((b) => b.textContent.trim().startsWith('G1')));           // the grade filter on Grade 1: N2.3.3 is not in the list on screen
 await click(q('[data-testid="choose-suggested"]'));
 check('"यही चुनें" chooses it, exactly as the list does (the grade filter is cleared so it is visible), and the card says "✓ चुना गया"',

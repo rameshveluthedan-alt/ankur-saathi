@@ -28,7 +28,7 @@ export default function SuggestedSkill({ proposal, competencies, selectedId, onC
   const r = REASON[s.reason];
   const day = s.date && !Number.isNaN(new Date(`${s.date}T00:00:00`).getTime())
     ? new Date(`${s.date}T00:00:00`).toLocaleDateString('hi-IN', { day: 'numeric', month: 'short' }) : '';
-  const where = s.reason === 'recommended' ? { hi: 'पिछली जाँच', en: 'At the last check' } : { hi: 'पिछली समीक्षा', en: 'At the last review' };
+  const where = s.reason === 'recommended' ? { hi: 'पिछली जाँच', en: 'At the last check' } : { hi: 'पिछले आकलन', en: 'At the last assessment' };
   const chosen = selectedId === s.skill.id;
   return (
     <div className="card" data-testid="suggested-skill" data-skill={s.skill.id} data-reason={s.reason} style={{ padding: 12, borderLeft: '4px solid var(--green-dark)' }}>

@@ -1,5 +1,5 @@
 // The Review screen (two steps since 14 Nov, Vaishnavi: "capture evidence -> one final decision"; the first-judgment step is gone): it opens at
-// "1/2 · आज का प्रदर्शन दर्ज करें" with one card per group (its way, its count), the other ways only on request, then "2/2 · अंतिम निर्णय: कल क्या पढ़ाएँ?".
+// "1/2 · आज का प्रदर्शन दर्ज करें" with one card per group (its way, its count), the other ways only on request, then "2/2 · अंतिम निर्णय: अगली कक्षा में क्या पढ़ाएँ?".
 // The REAL Review screen in a simulated browser with a fake server.
 //
 //     cd pwa
@@ -61,9 +61,9 @@ check('no first-judgment step anywhere: no "record-decisions", no "पहला 
 check('the intro says what to do, in any order, any time today', /किसी भी क्रम में, आज के दिन कभी भी/.test(q('[data-testid="performance-intro"]').textContent));
 
 console.log('\nthe Review\'s icon is ☑️, not a camera (it is not only photos)');
-check('☑️ on the bottom tab, the Review\'s heading and "कैसे काम करता है"; 📷 stays only on the photo capture area inside the Photo way', (() => {
+check('☑️ on the bottom tab, the Assess screen\'s heading and "कैसे काम करता है"; 📷 stays only on the photo capture area inside the Photo way', (() => {
   const app = fs.readFileSync(path.join(src, 'services/tabs.js'), 'utf8'); const how = fs.readFileSync(path.join(src, 'components/HowItWorks.jsx'), 'utf8');
-  return /\{ id: '\/review', icon: '☑️'/.test(app) && /☑️ <Bi hi="समीक्षा"/.test(reviewSrc) && /icon: '☑️', hi: 'समीक्षा'/.test(how)
+  return /\{ id: '\/review', icon: '☑️'/.test(app) && /☑️ <Bi hi="आकलन"/.test(reviewSrc) && /icon: '☑️', hi: 'आकलन'/.test(how)
     && !app.includes('📷') && !how.includes('📷') && (reviewSrc.match(/📷/g) || []).length === 1 && /className="capture-icon">📷</.test(reviewSrc)
     && /^☑️/.test(document.querySelector('h1').textContent);
 })());
@@ -103,8 +103,8 @@ check('the wording stays plain: never "साक्ष्य कैप्चर"
 
 console.log('\non to the decision');
 await click(q('[data-testid="to-final"]'));
-check('"आगे: अंतिम निर्णय: कल क्या पढ़ाएँ? →" opens "2/2 · अंतिम निर्णय: कल क्या पढ़ाएँ?"', q('[data-testid="review-title"]').dataset.step === '3'
-  && /^2\/2 अंतिम निर्णय: कल क्या पढ़ाएँ\?/.test(q('[data-testid="review-title"]').textContent) && q('[data-testid="review-title"] .step-count').textContent === '2/2');
+check('"आगे: अगली कक्षा में क्या पढ़ाएँ, तय करें →" opens "2/2 · अंतिम निर्णय: अगली कक्षा में क्या पढ़ाएँ?"', q('[data-testid="review-title"]').dataset.step === '3'
+  && /^2\/2 अंतिम निर्णय: अगली कक्षा में क्या पढ़ाएँ\?/.test(q('[data-testid="review-title"]').textContent) && q('[data-testid="review-title"] .step-count').textContent === '2/2');
 
 console.log('\ntoday\'s ways not known (offline, an older server): the teacher still has a way to record');
 await act(async () => root.unmount());

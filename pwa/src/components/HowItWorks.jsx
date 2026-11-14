@@ -6,15 +6,15 @@ export const HOW_STEPS = [
   { icon: '👥', hi: 'कक्षा-रजिस्टर', en: 'Class register', part: { hi: 'CSV या Excel फ़ाइल', en: 'CSV or Excel file' },
     text: { hi: 'सब यहीं से शुरू होता है: आप बच्चों के स्तर वाली अपनी कक्षा का रजिस्टर (CSV या Excel) डालते हैं, और ऐप तीनों समूह बनाता है।',
             en: "Everything starts here: you upload your class register (CSV or Excel) containing student levels, and the app automatically organizes them into three groups." } },
-  { icon: '🎯', hi: 'योजना बनाएँ', en: 'Make plan', part: { hi: 'कौशल-सीढ़ी', en: 'skill ladder' },
-    text: { hi: 'आप आज का कौशल और समय चुनते हैं। ऐप तीनों समूहों (● शुरुआती, ▲ प्रगतिशील, ■ दक्ष) के कौशल सुझाता है: 101 कौशलों की सीढ़ी और पिछली समीक्षा से।',
-            en: "You choose today's skill and time. The app suggests each group's skill (● Beginner, ▲ Progressor, ■ Proficient) from a ladder of 101 skills and the last review." } },
-  { icon: '📋', hi: 'आज की योजना', en: "Today's plan", part: { hi: 'AI + जाँच', en: 'AI + checks' },
+  { icon: '🎯', hi: 'योजना बनाएँ', en: 'Plan', part: { hi: 'कौशल-सीढ़ी', en: 'skill ladder' },
+    text: { hi: 'आप आज का कौशल और समय चुनते हैं। ऐप तीनों समूहों (● शुरुआती, ▲ प्रगतिशील, ■ दक्ष) के कौशल सुझाता है: 101 कौशलों की सीढ़ी और पिछले आकलन से।',
+            en: "You choose today's skill and time. The app suggests each group's skill (● Beginner, ▲ Progressor, ■ Proficient) from a ladder of 101 skills and the last assessment." } },
+  { icon: '📋', hi: 'पढ़ाएँ', en: 'Teach', part: { hi: 'AI + जाँच', en: 'AI + checks' },
     text: { hi: 'AI जाँची-परखी सामग्री (गतिविधियाँ, पाठ, आम गलतियाँ) से हर समूह का पाठ, समझ की जाँच और वर्कशीट लिखता है। ऐप हर योजना को नियमों पर जाँचता है।',
             en: "The AI writes each group's lesson, understanding check and worksheet from checked content (activities, passages, common mistakes). The app checks every plan against rules." } },
-  { icon: '☑️', hi: 'समीक्षा', en: 'Review', part: { hi: 'अवलोकन, पढ़कर सुनाना, फ़ोटो', en: 'observation, reading aloud, photo' },
-    text: { hi: 'पढ़ाते समय: हर समूह का काम ऐप में या कागज़ पर दर्ज करें (देखकर, पढ़कर सुनाना, या वर्कशीट की फ़ोटो जिसे AI पढ़ता है)। पढ़ाने के बाद, उसी दिन: हर समूह का प्रदर्शन देखें या दर्ज करें, और अंतिम निर्णय लें कि कल क्या पढ़ाएँ।',
-            en: "While teaching, record each group's work in the app or on paper (by watching, by listening to reading, or with a worksheet photo the AI reads). After teaching, the same day, check each group's performance and decide what to teach tomorrow." } },
+  { icon: '☑️', hi: 'आकलन', en: 'Assess', part: { hi: 'अवलोकन, पढ़कर सुनाना, फ़ोटो', en: 'observation, reading aloud, photo' },
+    text: { hi: 'पढ़ाते समय: हर समूह का काम ऐप में या कागज़ पर दर्ज करें (देखकर, पढ़कर सुनाना, या वर्कशीट की फ़ोटो जिसे AI पढ़ता है)। पढ़ाने के बाद, उसी दिन: हर समूह का प्रदर्शन देखें या दर्ज करें, और अंतिम निर्णय लें कि अगली कक्षा में क्या पढ़ाएँ।',
+            en: "While teaching, record each group's work in the app or on paper (by watching, by listening to reading, or with a worksheet photo the AI reads). After teaching, the same day, check each group's performance and decide what to teach in the next class." } },
   { icon: '📊', hi: 'कक्षा प्रगति', en: 'Progress', part: { hi: 'आज के नतीजे', en: "today's results" },
     text: { hi: 'आज के नतीजे, आपके निर्णय, और जिन बच्चों पर एक नज़र डालनी है।', en: "Today's results, your decisions, and the children to look at." } },
 ];
@@ -39,7 +39,7 @@ export default function HowItWorks({ className = 'card fold' }) {
         ))}
       </ol>
       <p data-testid="how-loop" style={{ fontSize: '0.8125rem', fontWeight: 600, margin: '6px 0 2px' }}>
-        <Bi hi="↻ आपके निर्णय और आज के नतीजे कल की योजना का सुझाव बनाते हैं।" en="↻ Your decisions and today's results shape tomorrow's suggestion." />
+        <Bi hi="↻ आपके निर्णय और आज के नतीजे अगली कक्षा के सुझाव बनाते हैं।" en="↻ Your decisions and today's results shape the next class's suggestion." />
       </p>
       <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 8px' }}>
         <Bi hi="🔒 बच्चों के नाम AI को कभी नहीं भेजे जाते।" en="🔒 Children's names never go to the AI." />

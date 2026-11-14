@@ -13,7 +13,7 @@ export function useLang() {
 }
 
 // The हिं / EN pill at the top right of every screen (the sign-in screen too). One tap shows the whole app in the other language.
-// "Both" (Hindi with the English after it) is on the Profile screen; while it is on, neither half of the pill is lit.
+// "Both" (Hindi with the English after it) is no longer offered on Profile (14 Nov); a phone that still has it shows neither half lit, and one tap ends it.
 export default function LangSwitch() {
   const lang = useLang();
   const seg = (id, label, aria) => (

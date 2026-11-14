@@ -22,7 +22,7 @@ export default function AccountScreen() {
   const [teachers, setTeachers] = useState([]);
   const [temp, setTemp] = useState(null);            // a temporary password, shown once
   const [error, setError] = useState('');
-  const lang = useLang();          // हिंदी / English / both: the same setting as the हिं / EN pill at the top
+  const lang = useLang();          // हिंदी / English: the same setting as the हिं / EN pill at the top ("both" is no longer offered, 14 Nov: it doubled the text)
   const confirmLogout = () => {
     if (window.confirm(bi('लॉग आउट करें? इस फ़ोन पर रखी योजनाएँ और वर्कशीट हट जाएँगी।', 'Log out? The plans and worksheets kept on this phone will be removed.'))) logout();
   };
@@ -72,7 +72,7 @@ export default function AccountScreen() {
       <div className="card" data-testid="language-card">
         <h3 style={{ marginBottom: 6 }}>🔤 <Bi hi="भाषा" en="Language" inline /></h3>
         <div role="radiogroup" aria-label="भाषा / Language" data-testid="lang-options">
-          {[['hi', 'hindi-only', 'हिंदी', 'Hindi'], ['en', 'lang-opt-en', 'अंग्रेज़ी', 'English'], ['both', 'lang-opt-both', 'दोनों', 'Both']].map(([id, testid, hi, en]) => (
+          {[['hi', 'hindi-only', 'हिंदी', 'Hindi'], ['en', 'lang-opt-en', 'अंग्रेज़ी', 'English']].map(([id, testid, hi, en]) => (
             <label key={id} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 44, fontSize: '0.9375rem', cursor: 'pointer' }}>
               <input type="radio" name="app_language" value={id} checked={lang === id} onChange={() => setLang(id)} data-testid={testid} />
               <span><Bi hi={hi} en={en} inline /></span>

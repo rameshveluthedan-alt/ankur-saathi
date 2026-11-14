@@ -137,7 +137,7 @@ check('the Progressors keep a re-teach BOX (ticked, with what it means); the Beg
   assert.ok(html.includes('मुख्य ब्लॉक पिछली जाँच की गलतियों को दोबारा समझाएगा'));
 });
 check('the sources are named: from the review, from the chosen skill, the teacher\'s own', () => {
-  assert.ok(html.includes('पिछली समीक्षा में आपके निर्णय से') && html.includes('आपका चुना कौशल'));
+  assert.ok(html.includes('पिछले आकलन में आपके निर्णय से') && html.includes('आपका चुना कौशल'));
   const changed = { ...ex.rows, beginner: withSkill(ex.rows.beginner, 'N2.3.1') };
   const h2 = render(changed, ex.reteach);
   assert.ok(h2.includes('आपकी पसंद') && h2.includes('सुझाव पर लौटें'));

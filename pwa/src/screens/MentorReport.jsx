@@ -64,7 +64,7 @@ export default function MentorReport() {
 
       <section data-testid="mentor-practice">
         <div className="print-block-head">पढ़ाने का तरीका</div>
-        <div>योजना बनी: <b>{p.plan_days}</b> दिन · समीक्षा पूरी (कल का निर्णय दर्ज): <b>{p.review_days}</b> दिन</div>
+        <div>योजना बनी: <b>{p.plan_days}</b> दिन · आकलन पूरा (अगली कक्षा का निर्णय दर्ज): <b>{p.review_days}</b> दिन</div>
         <div>बच्चों का काम जाँचकर निर्णय: <b>{p.groups_taught}</b> में से <b>{p.groups_checked}</b> बार</div>
       </section>
 

@@ -25,7 +25,7 @@ export default function ProgressScreen() {
   const navigate = useNavigate();
   const back = location.state && location.state.from === 'review' ? (
     <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-review" onClick={() => navigate('/review')} style={{ marginBottom: 8 }}>
-      ← <Bi hi="समीक्षा पर लौटें" en="Back to the review" inline />
+      ← <Bi hi="आकलन पर लौटें" en="Back to Assess" inline />
     </button>
   ) : null;
 

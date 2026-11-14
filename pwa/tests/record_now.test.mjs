@@ -72,9 +72,9 @@ check('the observed Beginners: "✓ देखते हुए A / PA / NA दर
   && /Mark A \/ PA \/ NA/.test(q('[data-testid="record-now-beginner"]').textContent)
   && q('[data-testid="record-now-beginner"]').dataset.channel === 'observed' && /अभी, या कागज़ पर लिखकर बाद में/.test(q('[data-testid="record-bar-beginner"]').textContent));
 check('the Proficients, read aloud: "⏱️ बच्चे का पढ़ना सुनकर दर्ज करें"', /⏱️ बच्चे का पढ़ना सुनकर दर्ज करें/.test(q('[data-testid="record-now-proficient"]').textContent));
-check('the photographed Progressors: the button is back (14 Nov, no question before it): "📸 वर्कशीट की फ़ोटो लें", now or after teaching on the Review',
+check('the photographed Progressors: the button is back (14 Nov, no question before it): "📸 वर्कशीट की फ़ोटो लें", now or after teaching in Assess',
   !!q('[data-testid="record-now-progressor"]') && q('[data-testid="record-now-progressor"]').dataset.channel === 'photo' && /वर्कशीट की फ़ोटो लें/.test(q('[data-testid="record-now-progressor"]').textContent)
-  && /Photograph worksheets/.test(q('[data-testid="record-now-progressor"]').textContent) && /अभी या पढ़ाने के बाद, समीक्षा में/.test(q('[data-testid="record-bar-progressor"]').textContent)
+  && /Photograph worksheets/.test(q('[data-testid="record-now-progressor"]').textContent) && /अभी या पढ़ाने के बाद, आकलन में/.test(q('[data-testid="record-bar-progressor"]').textContent)
   && !!q('[data-testid="record-now-progressor"]').closest('[data-testid="fold-you-do"]'));
 await click(q('[data-testid="record-now-progressor"]'));
 check('...tapping it opens the in-class page on the photo way for that group', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/review', { state: { from: 'plan', channel: 'photo', level: 'progressor' } }]), JSON.stringify(globalThis.__navs.at(-1)));

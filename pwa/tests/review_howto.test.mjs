@@ -1,6 +1,6 @@
 // How to do each way of checking (29 Oct): on the Review, "▸ कैसे करें?" under the way chosen, with the plan's own review prompts (what to look for in today's
 // skill) for observation, the meanings of A / PA / NA, the photo steps and the reading-aloud steps; reading aloud shows the text to read (one not read in class
-// today) and records THAT passage, never a made-up one; and the plan screen's "☑️ आज कैसे जाँचें" fold says, before class, how each group will be checked.
+// today) and records THAT passage, never a made-up one; and the plan screen's "☑️ आज आकलन कैसे करें" fold says, before class, how each group will be checked.
 // The REAL Review and plan screens in a simulated browser with a fake server. The server's passage choice is tested in backend/tests/test_review_recorded.py.
 //
 //     cd pwa
@@ -105,11 +105,11 @@ await show(Review); await click(q(WAY.observed));
 check('an observed group with NO worksheet: no worksheet-is-practice line', !!how() && !q('[data-testid="worksheet-practice"]'));
 PLAN.plan.worksheets = savedSheets;
 
-console.log('\nthe plan screen: "☑️ आज कैसे जाँचें"');
+console.log('\nthe plan screen: "☑️ आज आकलन कैसे करें"');
 ch = channels(); globalThis.__auth.currentPlan = JSON.parse(JSON.stringify(PLAN));
 await show(Yojana);
 const fold = () => q('[data-testid="review-today"]');
-check('a closed fold "☑️ आज कैसे जाँचें", in the "कक्षा से पहले" (Before class) section, before the session (14 Nov)', fold() && !fold().open && /आज कैसे जाँचें/.test(fold().querySelector('summary').textContent)
+check('a closed fold "☑️ आज आकलन कैसे करें", in the "कक्षा से पहले" (Before class) section, before the session (14 Nov)', fold() && !fold().open && /आज आकलन कैसे करें/.test(fold().querySelector('summary').textContent)
   && !!q('[data-testid="section-before"]') && !!(q('[data-testid="section-before"]').compareDocumentPosition(fold()) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING)
   && !!(fold().compareDocumentPosition(q('[data-testid="section-during"]')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING));
 check('...each group, its skill and its way: ● शुरुआती N0.1.1 ✓ देखकर दर्ज करें, ▲ प्रगतिशील L2.3.1 📸 वर्कशीट की फ़ोटो (the AI reads), ■ दक्ष L2.5.1 ⏱️ पढ़कर सुनाना',
@@ -120,7 +120,7 @@ check('...the text the Proficients will read aloud, and for the group observed t
   && /देखकर दर्ज करना(Observing)?: स्वतंत्र अभ्यास \(तुम करोगे\) के दौरान/.test(q('[data-testid="review-observe"]').textContent) && !fold().textContent.includes(LOOK));
 ch = { has_plan: false, levels: [], channels: {} };
 await show(Yojana);
-check('the ways not known (no channels): says the Review will show them, and (the plan says something is observed) gives the general instruction', /समीक्षा स्क्रीन पर हर समूह का तरीका दिखेगा/.test(fold().textContent) && !q('[data-testid="review-way-beginner"]')
+check('the ways not known (no channels): says the Assess screen will show them, and (the plan says something is observed) gives the general instruction', /आकलन स्क्रीन पर हर समूह का तरीका दिखेगा/.test(fold().textContent) && !q('[data-testid="review-way-beginner"]')
   && !!q('[data-testid="review-observe"]') && !fold().textContent.includes(LOOK));
 
 await act(async () => root.unmount());

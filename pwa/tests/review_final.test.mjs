@@ -1,4 +1,4 @@
-// The Review's last step, "2/2 · अंतिम निर्णय: कल क्या पढ़ाएँ?" (two steps since 14 Nov; no first judgment): for each group with children, today's evidence
+// The Assess screen's last step, "2/2 · अंतिम निर्णय: अगली कक्षा में क्या पढ़ाएँ?" (two steps since 14 Nov; no first judgment): for each group with children, today's evidence
 // (A / PA / NA, how many of the group were assessed) and the app's suggestion (re-teach when a third or more made a mistake; nothing when too few were checked);
 // nothing is chosen for her. Recording it sends stage 'final' (the decision tomorrow's plan suggests from).
 // The REAL Review screen in a simulated browser with a fake server. The server side is in backend/tests/test_plan_routes.py.
@@ -62,8 +62,8 @@ check('nothing decided finally yet: the Review opens at "1/2 आज का प�
   && /^1\/2 आज का प्रदर्शन/.test(q('[data-testid="review-title"]').textContent));
 const before = planCalls;
 await click(q('[data-testid="to-final"]'));
-check('"आगे: अंतिम निर्णय: कल क्या पढ़ाएँ? →": "2/2 अंतिम निर्णय: कल क्या पढ़ाएँ?", with today\'s evidence fetched again (the children\'s work may have changed it)',
-  stepNow() === '3' && /2\/2 अंतिम निर्णय: कल क्या पढ़ाएँ\?/.test(q('[data-testid="review-title"]').textContent) && planCalls === before + 1);
+check('"आगे: अगली कक्षा में क्या पढ़ाएँ, तय करें →": "2/2 अंतिम निर्णय: अगली कक्षा में क्या पढ़ाएँ?", with today\'s evidence fetched again (the children\'s work may have changed it)',
+  stepNow() === '3' && /2\/2 अंतिम निर्णय: अगली कक्षा में क्या पढ़ाएँ\?/.test(q('[data-testid="review-title"]').textContent) && planCalls === before + 1);
 check('one card for each group with children (no card for the empty Proficients)', !!q('[data-testid="final-beginner"]') && !!q('[data-testid="final-progressor"]') && !q('[data-testid="final-proficient"]'));
 
 console.log('\nwhat each card shows');
@@ -84,11 +84,11 @@ await click(q('[data-testid="final-beginner-reteach"]'));
 check('the Beginners chosen 🔄: no "first → final" change line (there is no first judgment to compare)', pressed('beginner', 'reteach') && !q('[data-testid="final-changed-beginner"]'));
 check('a group with no choice: the save button is off and the line names it', q('[data-testid="record-final"]').disabled && /बाकी: ▲ प्रगतिशील\)/.test(q('[data-testid="finals-left"]').textContent));
 await click(q('[data-testid="final-progressor-not_sure"]'));
-check('...every group chosen: "कल की योजना के लिए अंतिम निर्णय दर्ज करें" / "Save tomorrow\'s plan" is on', !q('[data-testid="record-final"]').disabled
-  && /कल की योजना के लिए अंतिम निर्णय दर्ज करें/.test(q('[data-testid="record-final"]').textContent) && /Save tomorrow's plan/.test(q('[data-testid="record-final"]').textContent));
+check('...every group chosen: "निर्णय दर्ज करें" / "Save decisions" is on', !q('[data-testid="record-final"]').disabled
+  && /निर्णय दर्ज करें/.test(q('[data-testid="record-final"]').textContent) && /Save decisions/.test(q('[data-testid="record-final"]').textContent));
 await click(q('[data-testid="record-final"]'));
 check('recording sends the FINAL decisions, stage "final" (what tomorrow\'s plan suggests from)', saves.length === 1 && JSON.stringify(saves[0][3]) === JSON.stringify({ beginner: 'reteach', progressor: 'not_sure' }) && saves[0][4] === 'final', JSON.stringify(saves[0]));
-check('...and says so: "✓ अंतिम निर्णय दर्ज हुए। कल की योजना इन्हीं से सुझाई जाएगी।" (and nothing more: no Progress pointer, the tab does that)', /✓ अंतिम निर्णय दर्ज हुए। कल की योजना इन्हीं से सुझाई जाएगी।/.test(q('[data-testid="final-saved"]').textContent) && !q('[data-testid="record-final"]'));
+check('...and says so: "✓ निर्णय दर्ज हुए। अगली कक्षा की योजना बनाते समय ऐप इन्हीं के आधार पर सुझाव देगा।" (and nothing more: no Progress pointer, the tab does that)', /✓ निर्णय दर्ज हुए। अगली कक्षा की योजना बनाते समय ऐप इन्हीं के आधार पर सुझाव देगा।/.test(q('[data-testid="final-saved"]').textContent) && !q('[data-testid="record-final"]'));
 check('...no Progress pointer at the end of the review', !q('[data-testid="final-to-progress"]') && !q('[data-testid="final-saved"] button') && !/प्रगति टैब पर/.test(q('[data-testid="final-saved"]').textContent));
 await click(q('[data-testid="final-beginner-advance"]'));
 check('changing a decision after recording: the save button is back (nothing is changed until recorded again)', !!q('[data-testid="record-final"]') && !q('[data-testid="final-saved"]') && saves.length === 1);

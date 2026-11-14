@@ -342,7 +342,7 @@ export default function ReviewScreen() {
         {fromPlan ? (
           <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-plan" onClick={backToPlan}>← <Bi hi="योजना" en="Plan" inline /></button>
         ) : null}
-        <h1>{fromPlan ? <>{channelOf(fromPlan.channel)?.icon} <Bi hi="कक्षा में दर्ज करें" en="In-class record" inline /></> : <>☑️ <Bi hi="समीक्षा" en="Review" inline /></>}</h1>
+        <h1>{fromPlan ? <>{channelOf(fromPlan.channel)?.icon} <Bi hi="कक्षा में दर्ज करें" en="In-class record" inline /></> : <>☑️ <Bi hi="आकलन" en="Assess" inline /></>}</h1>
         {!fromPlan && (
           <button type="button" className="btn btn-secondary btn-small" data-testid="review-to-plan" onClick={() => navigate('/yojana')}>📋 <Bi hi="आज की योजना" en="Today's plan" inline /></button>
         )}
@@ -351,7 +351,7 @@ export default function ReviewScreen() {
         <div data-testid="from-plan" className={`in-class-bar tier-${fromPlan.level}`}>
           <GroupMark group={fromPlan.level} name /> · <Bi hi={channelOf(fromPlan.channel)?.hi || ''} en={channelOf(fromPlan.channel)?.en || ''} inline />
           <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>
-            <Bi hi="सिर्फ़ इसी समूह के बच्चे। पहला अनुमान और अंतिम निर्णय पढ़ाने के बाद, समीक्षा टैब पर।" en="This group's children only. The first judgment and the final decision come after teaching, on the Review tab." />
+            <Bi hi="सिर्फ़ इसी समूह के बच्चे। अभी दर्ज करें, या कागज़ पर लिखकर पढ़ाने के बाद आकलन में। अगली कक्षा में क्या पढ़ाना है, यह पढ़ाने के बाद तय होगा।" en="Only this group's children. Record now, or on paper and enter it in Assess after teaching. What to teach in the next class is decided after teaching." />
           </div>
         </div>
       )}
@@ -362,7 +362,7 @@ export default function ReviewScreen() {
       ) : (
         <div className="card" data-testid="review-no-plan" style={{ textAlign: 'center' }}>
           {planStatus === 'none'
-            ? <Bi hi="आज इस विषय की योजना नहीं बनी है। पहले योजना बनाएँ; पढ़ाने के बाद यहाँ समीक्षा करें।" en="No plan for this subject today. Make a plan first; review here after teaching." />
+            ? <Bi hi="आज इस विषय की योजना नहीं बनी है। पहले योजना बनाएँ; पढ़ाने के बाद यहाँ आकलन करें।" en="No plan for this subject today. Make a plan first; assess here after teaching." />
             : <Bi hi="आज की योजना खुल नहीं सकी। इंटरनेट जाँचकर फिर कोशिश करें।" en="Today's plan could not be opened. Check the internet and try again." />}
           <button type="button" className="btn btn-primary" data-testid="review-make-plan" onClick={() => navigate('/')} style={{ marginTop: 10, flexDirection: 'column', gap: 0 }}>
             <Bi hi="योजना बनाएँ →" en="Make a plan" />
@@ -600,8 +600,8 @@ export default function ReviewScreen() {
               })()}
               <div className="capture-area" onClick={() => fileInput.current?.click()}>
                 <div className="capture-icon">📷</div>
-                <p className="hi">वर्कशीट की फ़ोटो लें या चुनें (अधिकतम 6)</p>
-                <p className="en" lang="en" style={{ fontSize: '0.75rem' }}>Tap to capture or select (max 6)</p>
+                <p className="hi">वर्कशीट की फ़ोटो लें या चुनें: एक बार में 6 तक (और फ़ोटो अगली बार भेजें)</p>
+                <p className="en" lang="en" style={{ fontSize: '0.75rem' }}>Take or choose photos: up to 6 at a time (send more in another round)</p>
                 <input ref={fileInput} type="file" accept="image/*" capture="environment"
                   multiple onChange={handlePhotoCapture} style={{ display: 'none' }} />
               </div>
@@ -720,7 +720,7 @@ export default function ReviewScreen() {
           )}
           {!fromPlan && (
           <button type="button" className="btn btn-primary" data-testid="to-final" onClick={enterFinal} style={{ marginTop: 12, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="आगे: अंतिम निर्णय: कल क्या पढ़ाएँ? →" en="Next: plan for tomorrow →" />
+            <Bi hi="आगे: अगली कक्षा में क्या पढ़ाएँ, तय करें →" en="Next: decide for the next class →" />
           </button>
           )}
         </>
@@ -850,7 +850,7 @@ export default function ReviewScreen() {
             <Bi hi="← आज का प्रदर्शन: अगला समूह" en="Back to today's performance: the next group" />
           </button>
           <button type="button" className="btn btn-primary" data-testid="to-final" onClick={enterFinal} style={{ marginTop: 8, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="आगे: अंतिम निर्णय: कल क्या पढ़ाएँ? →" en="Next: plan for tomorrow →" />
+            <Bi hi="आगे: अगली कक्षा में क्या पढ़ाएँ, तय करें →" en="Next: decide for the next class →" />
           </button>
           </>)}
         </>
@@ -879,10 +879,10 @@ export default function ReviewScreen() {
             <button type="button" className="btn btn-secondary btn-small" data-testid="final-back" onClick={() => goView('2')} style={{ marginBottom: 8 }}>
               ← <span className="step-count">1/2</span>: <Bi hi="आज का प्रदर्शन" en="Today's performance" inline />
             </button>
-            <StepTitle n={3} hi="अंतिम निर्णय: कल क्या पढ़ाएँ?" en="Plan for tomorrow" />
+            <StepTitle n={3} hi="अंतिम निर्णय: अगली कक्षा में क्या पढ़ाएँ?" en="Next class: what to teach?" />
             <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
-              <Bi hi="आज का प्रदर्शन देखकर हर समूह के लिए तय करें: कल आगे बढ़ें, दोबारा पढ़ाएँ, या पक्का नहीं। कल की योजना इसी से सुझाई जाएगी।"
-                en="With today's performance in front of you, decide for each group: move on, teach again, or not sure. Tomorrow's plan is suggested from this." />
+              <Bi hi="आज का प्रदर्शन देखकर हर समूह के लिए तय करें: अगली कक्षा में आगे बढ़ें, दोबारा पढ़ाएँ, या पक्का नहीं। अगली कक्षा की योजना बनाते समय ऐप इन्हीं के आधार पर सुझाव देगा।"
+                en="With today's performance in front of you, decide for each group: move on, teach again, or not sure. When you plan the next class, the app suggests based on these." />
             </p>
             {needed.map((g) => {
               const ev = (evidence && evidence[g.label]) || {};
@@ -932,11 +932,11 @@ export default function ReviewScreen() {
             )}
             {finalDone ? (
               <div className="saved-block" data-testid="final-saved" role="status" style={{ marginTop: 10, borderLeftColor: 'var(--green-dark)', background: 'var(--green-bg)' }}>
-                <div style={{ fontWeight: 600 }}><Bi hi="✓ अंतिम निर्णय दर्ज हुए। कल की योजना इन्हीं से सुझाई जाएगी।" en="Saved. Tomorrow's plan is suggested from these." /></div>
+                <div style={{ fontWeight: 600 }}><Bi hi="✓ निर्णय दर्ज हुए। अगली कक्षा की योजना बनाते समय ऐप इन्हीं के आधार पर सुझाव देगा।" en="Saved. When you plan the next class, the app suggests based on these." /></div>
               </div>
             ) : (
               <button className="btn btn-primary" data-testid="record-final" onClick={saveFinal} disabled={loading || undecidedFinal.length > 0} style={{ marginTop: 8, flexDirection: 'column', gap: 0 }}>
-                {loading ? <Bi hi="दर्ज हो रहा..." en="Recording" /> : <Bi hi="कल की योजना के लिए अंतिम निर्णय दर्ज करें" en="Save tomorrow's plan" />}
+                {loading ? <Bi hi="दर्ज हो रहा..." en="Recording" /> : <Bi hi="निर्णय दर्ज करें" en="Save decisions" />}
               </button>
             )}
             {/* the review ends here: every change has its own way (first judgment: step 2's "←", another group: "← बच्चों का काम", a final decision: tap and record again) */}

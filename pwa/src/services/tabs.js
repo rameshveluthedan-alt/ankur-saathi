@@ -16,9 +16,9 @@ export function tabTap(currentPath, tabId) {
 // The bottom tabs, named for what the teacher does there (29 Oct, reviewed by Vaishnavi): two tabs both called "योजना" were hard to tell apart, and
 // "प्रगति" (progress) sat too close to "प्रगतिशील" (the Progressors). The screens' titles and "कैसे काम करता है?" use the same names.
 export const TABS = [
-  { id: '/', icon: '🎯', hi: 'योजना बनाएँ', en: 'Plan a lesson' },
-  { id: '/yojana', icon: '📋', hi: 'आज की योजना', en: "Today's plan" },
-  { id: '/review', icon: '☑️', hi: 'समीक्षा', en: 'Review' },          // checking what the children can do, by any of the three ways (not only photos: 📸 marks the photo way inside)
+  { id: '/', icon: '🎯', hi: 'योजना बनाएँ', en: 'Plan' },
+  { id: '/yojana', icon: '📋', hi: 'पढ़ाएँ', en: 'Teach' },
+  { id: '/review', icon: '☑️', hi: 'आकलन', en: 'Assess' },          // checking what the children can do, by any of the three ways (not only photos: 📸 marks the photo way inside)
   { id: '/progress', icon: '📊', hi: 'कक्षा प्रगति', en: 'Progress' },
   { id: '/account', icon: '👤', hi: 'प्रोफ़ाइल', en: 'Profile' },        // on every screen: log out, change password, and the leader's reset
 ];

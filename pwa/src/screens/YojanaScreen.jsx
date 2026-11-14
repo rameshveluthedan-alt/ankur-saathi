@@ -171,7 +171,7 @@ export default function YojanaScreen() {
           onClick={(e) => { e.stopPropagation(); navigate('/review', { state: { from: 'plan', channel: l.channel, level } }); }}>
           {way.icon} {label}
         </button>
-        <span className="record-bar-note"><Bi hi={l.channel === 'photo' ? 'अभी या पढ़ाने के बाद, समीक्षा में' : 'अभी, या कागज़ पर लिखकर बाद में'} en={l.channel === 'photo' ? 'now, or after teaching on the Review' : 'now, or on paper and enter later'} inline /></span>
+        <span className="record-bar-note"><Bi hi={l.channel === 'photo' ? 'अभी या पढ़ाने के बाद, आकलन में' : 'अभी, या कागज़ पर लिखकर बाद में'} en={l.channel === 'photo' ? 'now, or after teaching, in Assess' : 'now, or on paper and enter later'} inline /></span>
       </div>
     );
   };
@@ -230,7 +230,7 @@ export default function YojanaScreen() {
         </h3>
         <div className="slot-meta">{slot.start && <>{slot.start} · </>}{slot.minutes} {MIN} · {groupOf(level).count ?? '—'} <Bi hi="बच्चे" en="children" inline /></div>
         {!slot.reteach && pacePlan(slot.minutes) && (
-          <div className="slot-pace" data-testid={`pace-${level}`}>⏱ {pacePlan(slot.minutes).parts.map((p, i) => <span key={p.key}>{i ? ' · ' : ''}<Bi hi={p.hi} en={p.en} inline /> {p.min}</span>)}</div>
+          <div className="slot-pace" data-testid={`pace-${level}`}>⏱ {pacePlan(slot.minutes).parts.map((p, i) => <span key={p.key}>{i ? ' · ' : ''}<Bi hi={p.hi} en={p.en} inline /> {p.min} {MIN}</span>)}</div>
         )}
         {block.type === 'reteach' && block.affected_rolls && block.affected_rolls.length > 0 && (
           <div data-testid="reteach-rolls" style={{ fontSize: '0.75rem', marginTop: 4, ...ML }}>
@@ -331,7 +331,7 @@ export default function YojanaScreen() {
         </div>
       )}
       <div className="screen-header plan-title">
-        <h1>📋 <Bi hi="आज की योजना" en="Today's plan" inline />
+        <h1>📋 <Bi hi="पढ़ाएँ: आज की योजना" en="Teach: today's plan" inline />
           {/* how long this plan is: the time the teacher chose, recorded on the plan (services/planMinutes.js) */}
           {length && (
             <span data-testid="time-chip" data-recorded={length.recorded ? 'true' : 'false'}
@@ -353,7 +353,6 @@ export default function YojanaScreen() {
       </div>
 
       {/* The screen follows the teacher's day (14 Nov, the evaluators' "order of sections"): before class, while teaching, after teaching */}
-      <h2 className="day-section" data-testid="section-before">🌅 <Bi hi="कक्षा से पहले" en="Before class" inline /></h2>
       {/* Today's groups: one row per group, its colour and mark, its children, its skill and its worksheet */}
       <table className="group-table" data-testid="group-table">
         <thead>
@@ -390,11 +389,12 @@ export default function YojanaScreen() {
         </tbody>
       </table>
       <p className="hint-line"><Bi hi="📝 वर्कशीट खोलें, प्रिंट करें या बोर्ड पर उतारें।" en="📝 opens the worksheet: print it, or copy it to the board." inline /></p>
+      <h2 className="day-section" data-testid="section-before">🌅 <Bi hi="कक्षा से पहले" en="Before class" inline /></h2>
 
       {/* Preparation before class (DIY TLMs etc.) */}
       {Array.isArray(plan.prep_hi) && plan.prep_hi.length > 0 && (
         <details className="card fold section-fold" data-testid="prep-fold">
-          <summary><span>🧰 <Bi hi="कक्षा से पहले तैयारी" en="Things to prepare" inline /> <span className="count-chip">{plan.prep_hi.length}</span></span></summary>
+          <summary><span>🧰 <Bi hi="कक्षा से पहले तैयारी" en="Things to prepare" inline /> <span className="count-chip">{plan.prep_hi.length} <Bi hi="चीज़ें" en={plan.prep_hi.length === 1 ? 'item' : 'items'} inline /></span></span></summary>
           <ul style={{ paddingLeft: 18, marginTop: 6, fontSize: '0.875rem' }}>
             {plan.prep_hi.map((t, i) => <li key={i} style={{ marginBottom: 4, ...ML }}>{fmt(t)}</li>)}
           </ul>
@@ -403,7 +403,7 @@ export default function YojanaScreen() {
 
       {/* today's review, readable before class: how each group is checked, what to look for, the text to read aloud */}
       <details className="card fold section-fold" data-testid="review-today" style={{ marginTop: 0 }}>
-        <summary><span>☑️ <Bi hi="आज कैसे जाँचें" en="How to check today" inline /></span></summary>
+        <summary><span>☑️ <Bi hi="आज आकलन कैसे करें" en="How to assess today" inline /></span></summary>
         {ways && ways.has_plan && (ways.levels || []).length > 0 ? (ways.levels || []).map((l) => {
           const way = channelOf(l.channel);
           return (
@@ -417,7 +417,7 @@ export default function YojanaScreen() {
             </div>
           );
         }) : (
-          <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: '4px 0' }}><Bi hi="पढ़ाने के बाद समीक्षा स्क्रीन पर हर समूह का तरीका दिखेगा।" en="After teaching, the Review screen shows each group's way." inline /></p>
+          <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: '4px 0' }}><Bi hi="पढ़ाने के बाद आकलन स्क्रीन पर हर समूह का तरीका दिखेगा।" en="After teaching, the Assess screen shows each group's way." inline /></p>
         )}
         {(ways && ways.has_plan ? (ways.levels || []).some((l) => l.channel === 'observed') : hasObservation(currentPlan)) && (
           <div data-testid="review-observe" style={{ fontSize: '0.8125rem', paddingTop: 4, borderTop: '1px dashed var(--border)' }}>
@@ -430,7 +430,7 @@ export default function YojanaScreen() {
             🖨️ <Bi hi="टिक शीट (कागज़ पर दर्ज करें)" en="Tick sheet (record on paper)" inline />
           </button>
         )}
-        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 6px' }}><Bi hi="हर तरीके के कदम समीक्षा स्क्रीन पर “कैसे करें?” में हैं।" en="The steps for each way are under “How to do it” on the Review." inline /></p>
+        <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 6px' }}><Bi hi="हर तरीके के कदम आकलन स्क्रीन पर “कैसे करें?” में हैं।" en="The steps for each way are under “How to do it” on Assess." inline /></p>
       </details>
 
 
@@ -448,7 +448,7 @@ export default function YojanaScreen() {
               className={`slot-tab ${s.group ? `tier-${s.group}` : 'slot-anchor'} ${active === s ? 'on' : ''}`} data-testid={`slot-tab-${s.kind === 'anchor' ? 'anchor' : s.group}`}
               onClick={() => setSlotIndex(k)}>
               <span className="slot-tab-name">{slotLabel(s)}</span>
-              <span className="slot-tab-time">{s.group && taught.includes(s.group) ? '✓ ' : ''}{s.minutes ? `${s.minutes}′` : ''}</span>
+              <span className="slot-tab-time">{s.group && taught.includes(s.group) ? '✓ ' : ''}{s.minutes ? <>{s.minutes} {MIN}</> : ''}</span>
             </button>
           ))}
         </div>
@@ -484,17 +484,17 @@ export default function YojanaScreen() {
 
       <h2 className="day-section" data-testid="section-after">✅ <Bi hi="पढ़ाने के बाद" en="After teaching" inline /></h2>
       {/* the next step after teaching comes first in this section; "Why this plan?" is for whoever is curious */}
-      {/* the next step after teaching: it opens once every group is marked taught, and says which are left (the Review tab is always there too) */}
+      {/* the next step after teaching: always open, like the Review tab (14 Nov); the groups not yet ticked as taught are named under it, as a reminder */}
       {(() => {
         const toTeach = GROUP_ORDER.filter((g) => slots.some((x) => x.group === g));
         const left = toTeach.filter((g) => !taught.includes(g));
         return (<>
-          <button type="button" className="btn btn-primary" data-testid="to-review" disabled={left.length > 0} onClick={() => navigate('/review')} style={{ marginTop: 4, marginBottom: left.length ? 4 : 12, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="पढ़ाने के बाद: काम देखें और कल तय करें →" en="Review today's work →" />
+          <button type="button" className="btn btn-primary" data-testid="to-review" onClick={() => navigate('/review')} style={{ marginTop: 4, marginBottom: left.length ? 4 : 12, flexDirection: 'column', gap: 0 }}>
+            <Bi hi="पढ़ाने के बाद: आकलन करें और अगली कक्षा तय करें →" en="Assess today's work →" />
           </button>
           {left.length > 0 && (
             <p data-testid="to-review-left" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 0 12px' }}>
-              <Bi hi="हर समूह के बाद 'इस समूह को पढ़ा दिया' पर ✓ लगाएँ। बाकी:" en="Tick 'Group taught' after each group. Left:" inline />{' '}
+              <Bi hi="अभी ✓ नहीं लगा (पढ़ा दिया):" en="Not yet ticked as taught:" inline />{' '}
               {left.map((g, i) => <span key={g}>{i ? ', ' : ''}<GroupMark group={g} name /></span>)}
             </p>
           )}

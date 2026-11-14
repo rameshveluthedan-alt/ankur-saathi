@@ -621,3 +621,11 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
 
 /* An observed skill's task: materials and what to look for (components/ObservePanel.jsx, 14 Nov) */
 .observe-panel { font-size: 0.8125rem; background: var(--bg); border: 1px solid var(--border); border-left: 4px solid var(--green-dark); border-radius: 8px; padding: 8px 10px; margin: 8px 0; }
+
+/* both languages on: a slot tab or the group table shows the group's name in one language (Hindi), the English is in the tab's title (14 Nov) */
+body:not(.hide-en):not(.lang-en) .slot-tab .gmark .en, body:not(.hide-en):not(.lang-en) .group-table .gmark .en { display: none; }
+
+/* The print page's choice: the one-page summary or the full plan (14 Nov) */
+.print-choice { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.print-choice button { border: none; background: var(--surface); font-family: inherit; font-size: 0.8125rem; padding: 6px 10px; min-height: 40px; cursor: pointer; }
+.print-choice button.on { background: var(--green-dark); color: white; font-weight: 600; }

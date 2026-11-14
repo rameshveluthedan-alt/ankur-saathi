@@ -5,7 +5,7 @@ import Bi from './Bi';
 import { bi } from '../services/language';
 const SOURCE_TAGS = {
   selected: { hi: 'आपका चुना कौशल', en: 'The skill you chose' },
-  review: { hi: 'पिछली समीक्षा में आपके निर्णय से', en: 'From your decision at the review' },
+  review: { hi: 'पिछले आकलन में आपके निर्णय से', en: 'From your decision at the last assessment' },
   recommendation: { hi: 'पिछली जाँच के सुझाव से', en: 'From the evidence of the last review' },
   derived: { hi: 'चुने कौशल से तय', en: 'Follows the skill you chose' },
   teacher: { hi: 'आपकी पसंद', en: 'Your choice' },
@@ -64,7 +64,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
       </div>
       <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 8px' }}>
         {hasHistory
-          ? <Bi hi={`सुझाव ${previousDate ? previousDate + ' की ' : 'पिछली '}योजना, उसकी समीक्षा में आपके निर्णयों और बच्चों की जाँच से भरे गए हैं। जो चाहें बदलें; अंतिम निर्णय आपका है।`}
+          ? <Bi hi={`सुझाव ${previousDate ? previousDate + ' की ' : 'पिछली '}योजना, उसके आकलन में आपके निर्णयों और बच्चों की जाँच से भरे गए हैं। जो चाहें बदलें; अंतिम निर्णय आपका है।`}
               en={`Suggestions come from the plan of ${previousDate || 'the last plan'}, your decisions at its review and the children's evidence. Change anything; the final decision is yours.`} />
           : <Bi hi="पिछली योजना नहीं मिली, इसलिए हर समूह का कौशल आपके चुने कौशल से तय हुआ है। चाहें तो बदलें।" en="No earlier plan was found, so each group follows the skill you chose. Change it if you like." />}
       </div>
@@ -168,7 +168,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                 <Bi hi={tag.hi} en={tag.en} inline />
                 {row.ignored && (
                   <div style={{ marginTop: 2 }} data-testid={`ignored-${label}`}>
-                    <span className="hi">ℹ पिछली समीक्षा के निर्णय से सुझाया कौशल {row.ignored.id} आज के कौशल से मेल नहीं खाता ({label === 'beginner' ? 'शुरुआती समूह आज के कौशल से आगे नहीं जा सकता' : 'दक्ष समूह आज के कौशल से पीछे नहीं जा सकता'}), इसलिए कौशल चुने कौशल से तय हुआ।</span>
+                    <span className="hi">ℹ पिछले आकलन के निर्णय से सुझाया कौशल {row.ignored.id} आज के कौशल से मेल नहीं खाता ({label === 'beginner' ? 'शुरुआती समूह आज के कौशल से आगे नहीं जा सकता' : 'दक्ष समूह आज के कौशल से पीछे नहीं जा सकता'}), इसलिए कौशल चुने कौशल से तय हुआ।</span>
                     <span className="en" lang="en">ℹ The suggestion from the last review, {row.ignored.id}, does not fit today's skill, so this group follows the skill you chose.</span>
                   </div>
                 )}

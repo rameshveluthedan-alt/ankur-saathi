@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../App';
 import { getCachedPlan } from '../services/api';
 import SignalPanel, { hasSignalPanel } from '../components/SignalPanel';
@@ -73,10 +73,84 @@ export function worksheetLine(plan, teachBlocks) {
   return `वर्कशीट: ${parts.join(' · ')}`;
 }
 
+// The FULL plan, printed (14 Nov: the one-page summary was too short to teach from): everything the teacher needs in class, in the order of the session,
+// Hindi only like the summary. No line budget: it runs to as many pages as the plan needs.
+const P = ({ children, testid }) => <p data-testid={testid} style={{ margin: '2px 0', whiteSpace: 'pre-line' }}>{children}</p>;
+function FullBlock({ block, groups, plan }) {
+  const L = GROUP_LABELS[block.teach_group] || { hi: block.teach_group, mark: '' };
+  const skill = (groups.find((g) => g.label === block.teach_group) || {}).target_competency_id;
+  const tp = block.talking_points || {};
+  const ws = ((plan && plan.worksheets) || {})[block.teach_group] || {};
+  const obs = ws.sheet_kind === 'observed' ? ws.observe : null;
+  const lf = (obs && obs.look_for) || {};
+  const ds = ws.sheet_kind === 'dictation' && Array.isArray(ws.dictation_sentences) ? ws.dictation_sentences.filter(Boolean) : [];
+  const drawn = (ws.problems || []).filter((p) => p && p.board_hi);
+  return (
+    <section className={`print-block tier-${block.teach_group}`} data-testid={`full-block-${block.teach_group}`} style={{ breakInside: 'avoid-page' }}>
+      <h3 style={{ margin: '8px 0 2px' }}>{L.mark} {L.hi} पढ़ाएँ{skill ? ` — ${skill}` : ''} · {block.duration_minutes} मि.{block.reteach ? ' · 🔄 पुनः शिक्षण' : ''}</h3>
+      {fmt(block.script_hi) && <P>“{fmt(block.script_hi)}”</P>}
+      {hasSignalPanel(block.signal) && <SignalPanel signal={block.signal} compact />}
+      {tp.i_do_hi && <P><b>मैं करूँगा:</b> {fmt(tp.i_do_hi)}</P>}
+      {tp.we_do_hi && <P><b>हम करेंगे:</b> {fmt(tp.we_do_hi)}</P>}
+      {tp.you_do_hi && <P><b>तुम करोगे:</b> {fmt(tp.you_do_hi)}</P>}
+      {obs && (
+        <div data-testid={`full-observe-${block.teach_group}`}>
+          {obs.task_hi && <P><b>👀 काम:</b> {fmt(obs.task_hi)}</P>}
+          {((obs.kit_materials_hi || []).length > 0 || (obs.local_materials_hi || []).length > 0) && (
+            <P><b>🧺 सामग्री:</b> {[...(obs.kit_materials_hi || []), ...(obs.local_materials_hi || [])].join(', ')}</P>
+          )}
+          {(lf.achieved_hi || lf.partial_hi || lf.not_yet_hi) && <P><b>क्या देखें:</b> A: {fmt(lf.achieved_hi)} · PA: {fmt(lf.partial_hi)} · NA: {fmt(lf.not_yet_hi)}</P>}
+        </div>
+      )}
+      {ds.length > 0 && <P testid={`full-dictation-${block.teach_group}`}><b>🗣️ बोलकर लिखवाएँ:</b> {ds.map((t, k) => `${k + 1}) ${fmt(t)}`).join(' ')}</P>}
+      {drawn.length > 0 && <P><b>📝 चीज़ें न हों तो बोर्ड पर बनाएँ:</b> {drawn.map((d, k) => `${k + 1}) ${fmt(d.problem_hi)}: ${d.board_hi}`).join('  ')}</P>}
+      {Array.isArray(block.cfu) && block.cfu.length > 0 && (
+        <div data-testid={`full-cfu-${block.teach_group}`}>
+          <P><b>समझ की जाँच:</b></P>
+          {block.cfu.map((c, k) => <P key={k}>{k + 1}. {fmt(c.question_hi)} — सही उत्तर: {fmt(c.expected_hi)}{(c.listen_for || []).length ? ` · सुनें: ${(c.listen_for || []).map((l) => fmt(l.wrong_answer_hi)).join(', ')}` : ''}</P>)}
+        </div>
+      )}
+      {fmt(block.other_groups_hi) && <P><b>इस बीच बाकी समूह:</b> {fmt(block.other_groups_hi)}</P>}
+    </section>
+  );
+}
+function FullPlan({ plan, groups, teacher, currentPlan, length, teachBlocks }) {
+  const anchor = plan.anchor || {};
+  const blocks = (plan.rotation_schedule && plan.rotation_schedule.blocks) || [];
+  return (
+    <div data-testid="print-full">
+      <header>
+        <p className="print-title" style={{ margin: 0 }}>{[teacher.employee_code || teacher.school_code || '', classLine(teacher.enrolled_grades), hiDate(currentPlan.plan_date), currentPlan.selected_competency_id].filter(Boolean).join(' · ')}</p>
+        <P>पूरी योजना{length ? ` · योजना समय: ${length.recorded ? '' : 'लगभग '}${length.minutes} मिनट` : ''}</P>
+      </header>
+      <hr />
+      {Array.isArray(plan.prep_hi) && plan.prep_hi.length > 0 && (
+        <div data-testid="full-prep"><P><b>🧰 कक्षा से पहले तैयारी:</b></P>{plan.prep_hi.map((t, i) => <P key={i}>• {fmt(t)}</P>)}</div>
+      )}
+      {(anchor.narration_hi || anchor.title_hi) && (
+        <section data-testid="full-anchor">
+          <h3 style={{ margin: '8px 0 2px' }}>🎯 एंकर गतिविधि{anchor.title_hi ? `: «${fmt(anchor.title_hi)}»` : ''}</h3>
+          {anchor.narration_hi && <P>{fmt(anchor.narration_hi)}</P>}
+          {anchor.opening_question_hi && <P><b>शुरुआती सवाल:</b> {fmt(anchor.opening_question_hi)}</P>}
+          {['beginner', 'progressor', 'proficient'].map((g) => (anchor[`${g}_participation_hi`] ? <P key={g}>{GROUP_LABELS[g].mark} {GROUP_LABELS[g].hi}: {fmt(anchor[`${g}_participation_hi`])}</P> : null))}
+        </section>
+      )}
+      {blocks.map((b, i) => (b && b.type === 'teach' && GROUP_LABELS[b.teach_group]
+        ? <FullBlock key={i} block={b} groups={groups} plan={plan} />
+        : b && (b.type === 'setup' || b.type === 'transition') && fmt(b.script_hi) ? <P key={i}>↔️ {b.duration_minutes ? `${b.duration_minutes} मि.: ` : ''}“{fmt(b.script_hi)}”</P> : null))}
+      <hr />
+      <P testid="full-worksheets">{worksheetLine(plan, teachBlocks)}</P>
+      <p className="print-footer" style={{ margin: 0 }}>🌱 अंकुर साथी · {currentPlan.plan_date} · पूरी योजना {currentPlan.selected_competency_id}</p>
+    </div>
+  );
+}
+
 export default function PlanPrint() {
   const { currentPlan, setCurrentPlan, teacher, selectedDomain } = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(!currentPlan);
+  const location = useLocation();
+  const [full, setFull] = useState(() => !!(location && location.state && location.state.full));          // the one-page summary (as before) or the full plan
 
   // opened directly or reloaded: the plan is not in memory, so load today's stored plan (as the plan screen does)
   useEffect(() => {
@@ -90,6 +164,12 @@ export default function PlanPrint() {
     <div className="no-print" style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
       <button type="button" className="btn btn-secondary btn-small" data-testid="print-back" onClick={() => navigate('/yojana')}>← वापस</button>
       {currentPlan && <button type="button" className="btn btn-primary btn-small" data-testid="print-now" onClick={() => window.print()}>🖨️ प्रिंट करें</button>}
+      {currentPlan && (
+        <div className="print-choice" role="group" aria-label="क्या प्रिंट करें" data-testid="print-choice">
+          <button type="button" data-testid="print-summary" aria-pressed={!full} className={!full ? 'on' : ''} onClick={() => setFull(false)}>📄 सारांश (एक पेज)</button>
+          <button type="button" data-testid="print-full-choice" aria-pressed={full} className={full ? 'on' : ''} onClick={() => setFull(true)}>📄 पूरी योजना</button>
+        </div>
+      )}
     </div>
   );
   if (!currentPlan) {
@@ -108,6 +188,9 @@ export default function PlanPrint() {
   const reading = groups.some((g) => isFluencySkill(g.target_competency_id));
   const code = teacher.employee_code || teacher.school_code || '';
 
+  if (full) {
+    return <div className="screen plan-print" data-testid="plan-print">{bar}<FullPlan plan={plan} groups={groups} teacher={teacher} currentPlan={currentPlan} length={length} teachBlocks={teachBlocks} /></div>;
+  }
   return (
     <div className="screen plan-print" data-testid="plan-print">
       {bar}
@@ -122,8 +205,8 @@ export default function PlanPrint() {
       <div data-testid="print-review">
         {observing && <Line testid="print-review-obs"><b>अवलोकन:</b> स्वतंत्र अभ्यास के दौरान देखकर हर बच्चे के लिए A / PA / NA</Line>}
         {observing && <Line testid="print-abbr" className="print-footer">{ABBR.hi}</Line>}
-        <Line testid="print-review-photo"><b>फ़ोटो:</b> समीक्षा स्क्रीन पर चुने जाएँगे</Line>
-        {reading && <Line testid="print-review-reading"><b>पढ़कर सुनाना:</b> समीक्षा स्क्रीन पर</Line>}
+        <Line testid="print-review-photo"><b>फ़ोटो:</b> आकलन स्क्रीन पर चुने जाएँगे</Line>
+        {reading && <Line testid="print-review-reading"><b>पढ़कर सुनाना:</b> आकलन स्क्रीन पर</Line>}
       </div>
       <Line testid="print-worksheets">{worksheetLine(plan, teachBlocks)}</Line>
       <hr />

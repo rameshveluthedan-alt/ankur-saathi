@@ -108,10 +108,11 @@ check('the setting is applied before the first paint; the pill is on every scree
   assert.ok(/applyLanguage\(\)/.test(read('main.jsx')));
   assert.ok(read('App.jsx').includes('<LangSwitch />'));
   const acc = read('screens/AccountScreen.jsx');
-  for (const id of ['hindi-only', 'lang-opt-en', 'lang-opt-both']) assert.ok(acc.includes(id), id);
+  for (const id of ['hindi-only', 'lang-opt-en']) assert.ok(acc.includes(id), id);
+  assert.ok(!acc.includes('lang-opt-both'), '"both" is no longer offered on Profile (14 Nov: it doubled the text)');
 });
 check('the screen headings use Bi, so "Hindi only" hides their English', () => {
-  for (const [f, hi] of [['screens/PlanScreen.jsx', 'योजना बनाएँ'], ['screens/YojanaScreen.jsx', 'आज की योजना'], ['screens/ReviewScreen.jsx', 'समीक्षा'], ['screens/ProgressScreen.jsx', 'कक्षा की प्रगति'], ['screens/AccountScreen.jsx', 'प्रोफ़ाइल']]) {
+  for (const [f, hi] of [['screens/PlanScreen.jsx', 'योजना बनाएँ'], ['screens/YojanaScreen.jsx', 'पढ़ाएँ: आज की योजना'], ['screens/ReviewScreen.jsx', 'आकलन'], ['screens/ProgressScreen.jsx', 'कक्षा की प्रगति'], ['screens/AccountScreen.jsx', 'प्रोफ़ाइल']]) {
     assert.ok(read(f).includes(`<Bi hi="${hi}"`), f);
   }
 });

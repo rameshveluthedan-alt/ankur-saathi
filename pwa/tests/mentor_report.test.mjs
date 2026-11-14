@@ -72,7 +72,7 @@ const order = ['mentor-points', 'mentor-practice', 'mentor-progress', 'mentor-mi
 check('the order: the talking points first, then how the teacher works, then the children, then the mistakes, then the rules', order.every((i, k) => i >= 0 && (k === 0 || i > order[k - 1])), order.join(','));
 check('the points: 👍 the strength, 🎯 each thing to work on, ❓ the question', txt('[data-testid="point-strength"]') === `👍 ${summary.points.strength}` && txt('[data-testid="point-work-stuck"]').startsWith('🎯 प्रगतिशील समूह में N2.3.2')
   && txt('[data-testid="point-work-judgment"]').startsWith('🎯 12 में से 5') && txt('[data-testid="point-question"]') === `❓ ${summary.points.question}`);
-check('how the teacher works: plans, full reviews (tomorrow’s decision recorded), decisions with evidence; no first-judgment line since 14 Nov', /योजना बनी: 18 दिन · समीक्षा पूरी \(कल का निर्णय दर्ज\): 15 दिन/.test(txt('[data-testid="mentor-practice"]'))
+check('how the teacher works: plans, full assessments (the next class’s decision recorded), decisions with evidence; no first-judgment line since 14 Nov', /योजना बनी: 18 दिन · आकलन पूरा \(अगली कक्षा का निर्णय दर्ज\): 15 दिन/.test(txt('[data-testid="mentor-practice"]'))
   && /50 में से 31 बार/.test(txt('[data-testid="mentor-practice"]')) && !q('[data-testid="practice-match"]') && !/पहला अनुमान/.test(txt('[data-testid="mentor-practice"]')));
 check('the groups at the start and the end of the period, per subject, with the group marks', txt('[data-testid="progress-groups-numeracy"]') === 'गणित, समूह: 2 अक्टू॰ 2026 को ● 12 · ▲ 10 · ■ 8 → 29 अक्टू॰ 2026 को ● 9 · ▲ 12 · ■ 9', txt('[data-testid="progress-groups-numeracy"]'));
 check('a subject with no plans in the period has no line', !q('[data-testid="progress-groups-r1_literacy"]'));

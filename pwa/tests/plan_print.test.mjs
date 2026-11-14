@@ -188,10 +188,10 @@ check('the header: teacher code, class, date in Hindi, main skill; then "लग�
 check('once the plan records its own length, the exact value without "लगभग"', () => {
   assert.equal(doc(render(Print, auth(PLAN({}, { session_minutes: 45 })))).querySelector('[data-testid="print-time"]').textContent, 'योजना समय: 45 मिनट');
 });
-check('the review rows: observing (the general instruction, not the plan\'s AI prompt), photos chosen on the Review screen, and reading aloud only for a reading-speed skill', () => {
-  assert.ok(/अवलोकन: स्वतंत्र अभ्यास के दौरान देखकर हर बच्चे के लिए A \/ PA \/ NA/.test(text) && !text.includes('तीली से गिनती') && /फ़ोटो: समीक्षा स्क्रीन पर चुने जाएँगे/.test(text) && !text.includes('पढ़कर सुनाना'));
+check('the review rows: observing (the general instruction, not the plan\'s AI prompt), photos chosen on the Assess screen, and reading aloud only for a reading-speed skill', () => {
+  assert.ok(/अवलोकन: स्वतंत्र अभ्यास के दौरान देखकर हर बच्चे के लिए A \/ PA \/ NA/.test(text) && !text.includes('तीली से गिनती') && /फ़ोटो: आकलन स्क्रीन पर चुने जाएँगे/.test(text) && !text.includes('पढ़कर सुनाना'));
   const lit = PLAN(); lit.groups[1].target_competency_id = 'L2.5.1';
-  assert.ok(/पढ़कर सुनाना: समीक्षा स्क्रीन पर/.test(printedText(doc(render(Print, auth(lit))))));
+  assert.ok(/पढ़कर सुनाना: आकलन स्क्रीन पर/.test(printedText(doc(render(Print, auth(lit))))));
 });
 check('one worksheet line: the core and extra counts from the signal, the writing prompt, and "वर्कशीट देखें" for a block without a panel', () => {
   assert.equal(d.querySelector('[data-testid="print-worksheets"]').textContent, 'वर्कशीट: ● शुरुआती लेखन कार्य · ▲ प्रगतिशील 3 मुख्य + 2 · ■ दक्ष: वर्कशीट देखें');
@@ -212,6 +212,27 @@ check('the app has the /plan/print route, with no bottom bar there; the back and
   assert.ok(/<Route path="\/plan\/print" element=\{<PlanPrint \/>\} \/>/.test(app) && /if \(path === '\/plan\/print'( \|\| path === '\/plan\/ticks')?( \|\| path === '\/progress\/mentor')?( \|\| path === '\/progress\/class')?( \|\| path === '\/page')?\) return null;/.test(app));
   assert.ok(d.querySelector('.no-print [data-testid="print-back"]') && d.querySelector('.no-print [data-testid="print-now"]'));
   assert.match(css, /@media print\s*\{[\s\S]*?@page\s*\{\s*size:\s*A4/);
+});
+
+console.log('\nthe full plan (14 Nov: the one-page summary was too short to teach from)');
+check('the print page offers both: "📄 सारांश (एक पेज)" (chosen) and "📄 पूरी योजना", outside what is printed', () => {
+  const d = doc(render(Print, auth(PLAN())));
+  const choice = d.querySelector('[data-testid="print-choice"]');
+  assert.ok(choice && choice.closest('.no-print') && /सारांश \(एक पेज\)/.test(choice.textContent) && /पूरी योजना/.test(choice.textContent));
+  assert.equal(d.querySelector('[data-testid="print-summary"]').getAttribute('aria-pressed'), 'true');
+  assert.ok(!d.querySelector('[data-testid="print-full"]'));
+});
+check('the full plan prints the anchor, every group\'s I Do / We Do / You Do, ALL its understanding questions, and what the other groups do', () => {
+  globalThis.__location = { pathname: '/plan/print', state: { full: true } };
+  const d = doc(render(Print, auth(PLAN())));
+  globalThis.__location = undefined;
+  const full = d.querySelector('[data-testid="print-full"]');
+  assert.ok(full && full.querySelector('[data-testid="full-anchor"]') && /लंबी कहानी जो छपनी नहीं चाहिए/.test(full.textContent));
+  assert.deepEqual([...full.querySelectorAll('section[data-testid^="full-block-"]')].map((e) => e.dataset.testid), ['full-block-progressor', 'full-block-beginner', 'full-block-proficient']);
+  assert.ok(/मैं करूँगा:/.test(full.textContent) && /हम करेंगे:/.test(full.textContent) && /तुम करोगे:/.test(full.textContent));
+  assert.ok(/तीसरा प्रश्न/.test(full.querySelector('[data-testid="full-cfu-progressor"]').textContent), 'all the questions, not only the first');
+  assert.ok(/बाकी दोनों समूह पिछला अभ्यास करें/.test(full.textContent) && /पूरी योजना N2\.3\.2/.test(full.textContent));
+  assert.ok(!/सीता देवी|रामू/.test(full.textContent), 'never a child\'s name');
 });
 
 console.log(`\nOK: ${n} checks: the printed plan is one A4 page: the three blocks with the screen's own signal panel, no talking points, no names, every line within its allowance`);

@@ -428,10 +428,13 @@ def inject_independent(plan: dict, independent: dict) -> list[str]:
     prep = plan.setdefault("prep_hi", [])
     for lvl, ps in independent.items():
         qs = ps["questions"][:3]
-        line = (f"{_GROUP_HI.get(lvl, lvl)} समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «{ps['title']}» ({ps['id']}): {ps['text']}"
+        # no passage code ("(RP-006)") in what the teacher reads: it confused teachers (14 Nov); the title is enough, the id stays in the data
+        head = f"{_GROUP_HI.get(lvl, lvl)} समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें:"
+        line = (f"{head} «{ps['title']}»: {ps['text']}"
                 + (" सवाल: " + " ".join(f"{n}) {q['question_hi']}" for n, q in enumerate(qs, 1)) if qs else ""))
-        if line not in prep:
-            prep.append(line)
+        # a recorded plan already carries this group's line (with the code, from before): replace it, never show it twice
+        prep[:] = [x for x in prep if not (isinstance(x, str) and x.startswith(head))]
+        prep.append(line)
         log.append(f"{lvl}: independent practice on {ps['id']} ({ps['match']} match)")
     return log
 

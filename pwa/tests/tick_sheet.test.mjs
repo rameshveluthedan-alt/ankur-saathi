@@ -62,7 +62,7 @@ await show(Ticks);
 const sheet = q('[data-testid="tick-sheet"]');
 check('it asks the server for the review ways of the plan\'s own day and subject', calls.length === 1 && calls[0][0] === 'T1' && calls[0][1] === TODAY && calls[0][2] === 'numeracy', JSON.stringify(calls));
 check('the title: "टिक शीट", the teacher\'s code, the class and the date', q('[data-testid="ticks-title"]').textContent.includes(`टिक शीट · MPT101 · कक्षा 2 · ${TODAY_HI}`), q('[data-testid="ticks-title"]').textContent);
-check('when to fill it and where it goes after class (step 2)', /तुम करोगे/.test(q('[data-testid="ticks-when"]').textContent) && /चरण 2/.test(q('[data-testid="ticks-when"]').textContent));
+check('when to fill it and where it goes after class (Assess, 1/2 today\'s performance)', /तुम करोगे/.test(q('[data-testid="ticks-when"]').textContent) && /आकलन \(1\/2 आज का प्रदर्शन\)/.test(q('[data-testid="ticks-when"]').textContent));
 check('one table per observed or read-aloud group, in group order; none for the photographed Progressors', JSON.stringify(qa('[data-testid^="tick-group-"]').map((e) => e.dataset.testid)) === JSON.stringify(['tick-group-beginner', 'tick-group-proficient']));
 const beg = q('[data-testid="tick-group-beginner"]');
 check('the Beginners: the skill and the way in the heading', /शुरुआती · N0\.1\.1 छाँटना · ✓ देखकर दर्ज करें/.test(beg.querySelector('[data-testid="tick-head"]').textContent), beg.querySelector('[data-testid="tick-head"]').textContent);
