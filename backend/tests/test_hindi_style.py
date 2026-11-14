@@ -124,7 +124,10 @@ for name, original in plans.items():
     counts = hs.soften_plan(plan)
     teacher = fields(plan, hs._SPEECH_RE + hs._NOTES_RE)
     printed = fields(plan, hs._PRINTED_RE)
-    bad = [(p, w) for p, s in teacher for w in ("फालतू", "चुपचाप", "आओ", "जाओ", "सुनो", "खाना", "खाने") if has(w, s)]
+    bad = [(p, w) for p, s in teacher for w in ("फालतू", "चुपचाप", "आओ", "जाओ", "सुनो") if has(w, s)]
+    # "खाना / खाने" only where it means the tens-ones box (a place-value sentence): as food ("खाना बनाते हैं", in a reading passage the teacher
+    # copies to the board: the L2.7.2 plan of 14 Nov) it is the right word, and the softener leaves it alone
+    bad += [(p, "खाना/खाने (box)") for p, s in teacher if frame_left(s)]
     bad += [(p, "बंद करो/को दो") for p, s in teacher if "बंद करो" in s or GIVE_LEFT.search(s)]
     check(f"{name}: no flagged word is left in what the teacher says or reads  ({counts})", not bad, bad[:3])
     left = [(p, frame_left(s)) for p, s in printed if frame_left(s)]

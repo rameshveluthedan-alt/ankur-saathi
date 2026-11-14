@@ -33,7 +33,8 @@ from vision_analysis import build_vision_prompt, rescore
 
 TODAY = date.today()
 failures = []
-SAMPLE = json.load(open(os.path.join(HERE, "..", "..", "db", "seeds", "sample_plans", "L2.7.2.json"), encoding="utf-8"))
+# the L2.7.2 plan as it was recorded before 14 Nov (old shape: comprehension sheets): kept as a fixture, since the recorded plan is now the new one
+SAMPLE = json.load(open(os.path.join(HERE, "fixtures", "L2.7.2_recorded_before_141126.json"), encoding="utf-8"))
 SKILLS = {"beginner": "L2.7.1", "progressor": "L2.7.2", "proficient": "L3.7.1"}
 SENTENCES = ["मोहन ने किताब पढ़ी।", "चिड़िया पेड़ पर बैठी है।", "हम मेले में गए।", "दीदी ने खीर बनाई।"]
 
