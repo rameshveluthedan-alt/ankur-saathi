@@ -41,12 +41,17 @@ const PLAN = (decisions = {}, domain = 'numeracy') => ({ plan_date: TODAY, domai
 const ANALYSIS = { id: 1, worksheet_level: 'progressor', created_at: new Date().toISOString(),
   result: { children_analysed: 3, group_accuracy: 0.6, per_child: [], misconceptions_detected: [], not_assessed: [], unknown_rolls: [], outside_group_rolls: [], skipped_duplicates: [], duplicates_in_batch: [], unreadable_sheets: 0, copy_errors_excluded: 0 } };
 let cached; let saved = []; const decided = [];
+// today's ways: unknown (as an older server or a failed load), or known for the group cards: the Beginners observed, the Progressors photographed
+const NO_CH = { has_plan: false, channels: {} };
+const CH = { has_plan: true, channels: { observed: ['beginner'], photo: ['progressor'] },
+  levels: [{ channel: 'observed', level: 'beginner', competency_id: 'N2.3.1', rolls: [1, 2] }, { channel: 'photo', level: 'progressor', competency_id: 'N2.3.2', rolls: [3, 4] }] };
+let channels = NO_CH;
 const notFound = () => Object.assign(new Error('No plan found for this date'), { status: 404 });
 globalThis.__navs = []; globalThis.__location = { pathname: '/progress', state: null };
 globalThis.__auth = { teacher: { teacher_id: 'T1' }, selectedDomain: 'numeracy', names: {}, currentPlan: null, setCurrentPlan: (p) => { globalThis.__auth.currentPlan = p; } };
 globalThis.__api = {
   getCachedPlan: async (...a) => cached(...a), recordDecisions: async (...a) => { decided.push(a); return {}; },
-  getSavedAnalyses: async () => saved, getReviewCoverage: async () => null, getReviewChannels: async () => ({ has_plan: false, channels: {} }),
+  getSavedAnalyses: async () => saved, getReviewCoverage: async () => null, getReviewChannels: async () => channels,
   recordObserved: async () => ({}), recordORF: async () => ({}), analysePhotos: async () => ({}),
   getProgressDashboard: async () => null, downloadClassReport: async () => {}, downloadOfficerReport: async () => {},
   openAuthedPage: async () => {}, worksheetPath: () => '/w', prepareOfflineCopy: () => {},
@@ -66,12 +71,15 @@ let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${o
 console.log('A. the Review loads today\'s plan and carries on');
 fresh(); cached = async () => PLAN({ beginner: 'advance', progressor: 'reteach' });
 await show(Review);
-check('the app reopened (no plan in memory): the Review loads today\'s plan itself and puts it in place', globalThis.__auth.currentPlan && globalThis.__auth.currentPlan.plan_date === TODAY && qa('.tier-card').length + qa('h2').length > 0);
-check('...every group already has today\'s decision: it carries on at step 2 ("बच्चों का काम देखें"), not step 1', stepNow() === '2' && qa('h2').some((h) => /बच्चों का काम देखें/.test(h.textContent)));
-fresh(); cached = async () => PLAN({ beginner: 'advance' });
+check('the app reopened (no plan in memory): the Review loads today\'s plan itself and puts it in place', globalThis.__auth.currentPlan && globalThis.__auth.currentPlan.plan_date === TODAY && qa('.group-card').length + qa('h2').length > 0);
+check('...it opens at "1/2 आज का प्रदर्शन दर्ज करें" (two steps since 14 Nov: no first judgment, whatever an old record holds)', stepNow() === '2' && qa('h2').some((h) => /आज का प्रदर्शन दर्ज करें/.test(h.textContent))
+  && !q('[data-testid="record-decisions"]'));
+fresh(); cached = async () => ({ ...PLAN({}), final_decisions: { beginner: 'advance', progressor: 'reteach' } });
 await show(Review);
-check('one group decided so far: step 1, with that decision already chosen and only the rest to choose', stepNow() === '1' && /आगे बढ़ें/.test(chosen('beginner')) && !chosen('progressor')
-  && /बाकी: ▲ प्रगतिशील\)/.test(q('[data-testid="decisions-left"]').textContent));
+check('every group already has today\'s FINAL decision: it opens at "2/2 अंतिम निर्णय", showing them', stepNow() === '3' && /आगे बढ़ें/.test(chosen('beginner')) && /दोहराएँ/.test(chosen('progressor')));
+fresh(); cached = async () => ({ ...PLAN({}), final_decisions: { beginner: 'advance' } });
+await show(Review);
+check('only one group decided finally: it stays at 1/2 (the children\'s work first)', stepNow() === '2');
 fresh(); cached = async () => { throw notFound(); };
 await show(Review);
 check('no plan today: "आज इस विषय की योजना नहीं बनी है…" and no steps', !!q('[data-testid="review-no-plan"]') && /योजना नहीं बनी है/.test(q('[data-testid="review-no-plan"]').textContent) && !q('[data-testid="review-steps"]'));
@@ -82,53 +90,51 @@ await show(Review);
 check('the plan could not be loaded: says so in plain words (not "no plan"), with the same way on', /खुल नहीं सकी/.test(q('[data-testid="review-no-plan"]').textContent));
 
 console.log('\nA. leaving and coming back lands in the same place');
-fresh(); cached = async () => PLAN({ beginner: 'advance', progressor: 'reteach' });
+channels = CH;
+fresh(); cached = async () => PLAN({});
 await show(Review);
-await click(q('[data-testid="channel-observed"]'));
-const groupBtn = qa('.tier-option').find((b) => /प्रगतिशील/.test(b.textContent)) || qa('.tier-option')[0];
-if (groupBtn) await click(groupBtn);
-const before = { channel: q('.domain-tab.active') && q('.domain-tab.active').dataset.testid, group: q('.tier-option.selected') && q('.tier-option.selected').textContent };
+check('(today\'s ways known: a card per group, the first group chosen at once)', !!q('[data-testid="group-card-beginner"]') && q('[data-testid="group-card-beginner"]').classList.contains('on'));
+await click(q('[data-testid="group-card-progressor"]'));
+check('the teacher picks the Progressors\' card: the photo way opens for them', q('[data-testid="group-card-progressor"]').classList.contains('on') && !!q('[data-testid="pilot-photo"]'));
 await show(Progress);              // the teacher goes to Progress
 await show(Review);                // ...and comes back
-check('back on the Review: still step 2, the same way of checking and the same group', stepNow() === '2' && q('.domain-tab.active') && q('.domain-tab.active').dataset.testid === before.channel
-  && (!before.group || (q('.tier-option.selected') && q('.tier-option.selected').textContent === before.group)), JSON.stringify(before));
+check('back on the Review: still 1/2, the same group and its way (the Progressors, by photo)', stepNow() === '2' && q('[data-testid="group-card-progressor"]').classList.contains('on')
+  && !q('[data-testid="group-card-beginner"]').classList.contains('on') && !!q('[data-testid="pilot-photo"]'));
 globalThis.__auth.selectedDomain = 'r1_literacy'; cached = async () => PLAN({}, 'r1_literacy');
 await show(Review);
-check('another subject starts its own review (step 1), not the maths one\'s place', stepNow() === '1');
+check('another subject starts its own review (1/2, its first group), not the maths one\'s place', stepNow() === '2' && q('[data-testid="group-card-beginner"]').classList.contains('on'));
 globalThis.__auth.selectedDomain = 'numeracy';
+channels = NO_CH;
 
 console.log('\nA. a choice made on the screen is never overwritten by the server\'s copy');
-fresh(); let release; cached = () => new Promise((r) => { release = () => r(PLAN({ beginner: 'advance', progressor: 'advance' })); });
-globalThis.__auth.currentPlan = PLAN({});           // the plan is in memory, so step 1 shows at once
+fresh(); let release; cached = () => new Promise((r) => { release = () => r({ ...PLAN({}), final_decisions: { beginner: 'advance', progressor: 'advance' } }); });
+globalThis.__auth.currentPlan = PLAN({});           // the plan is in memory, so the Review shows at once
 await show(Review);
-await click(qa('.tier-card.tier-beginner .decision-btn').find((b) => /दोहराएँ/.test(b.textContent)));
+await click(q('[data-testid="to-final"]'));          // the decision step fetches today's record again: still on its way
+await click(q('[data-testid="final-beginner-reteach"]'));
 await act(async () => { release(); }); await flush();
-check('the teacher tapped "दोहराएँ" before the server answered "आगे बढ़ें": her choice stays, and she stays on step 1', /दोहराएँ/.test(chosen('beginner')) && stepNow() === '1');
+check('the teacher tapped "दोहराएँ" before the server answered "आगे बढ़ें": her choice stays, and she stays on the decision', /दोहराएँ/.test(chosen('beginner')) && stepNow() === '3');
 
 console.log('\nB. ways back inside the Review');
 fresh(); cached = async () => PLAN({ beginner: 'advance', progressor: 'reteach' });
 await show(Review);
-check('step 2\'s way back carries step 1\'s badge: "← 1/3 · पहला अनुमान बदलें" (the same "1/3" as step 1\'s heading)',
-  q('[data-testid="back-to-decisions"] .step-count') && q('[data-testid="back-to-decisions"] .step-count').textContent === '1/3' && /पहला अनुमान बदलें/.test(q('[data-testid="back-to-decisions"]').textContent));
-await click(q('[data-testid="back-to-decisions"]'));
-check('step 2 "← पहला अनुमान बदलें": back to step 1 with the first judgments kept, ready to record again; step 1 names the term in bold ("पहला अनुमान")', stepNow() === '1'
-  && q('[data-testid="first-term"]') && q('[data-testid="first-term"]').tagName === 'B' && q('[data-testid="first-term"]').textContent === 'पहला अनुमान' && /आगे बढ़ें/.test(chosen('beginner')) && /दोहराएँ/.test(chosen('progressor')) && !q('[data-testid="record-decisions"]').disabled);
-check('there is no separate step marker: the heading says the step (2/3 · बच्चों का काम देखें), and nothing in it can be tapped', !q('[data-testid="review-steps"]') && !q('[data-testid="review-title"] button'));
-await click(q('[data-testid="record-decisions"]'));
-check('...recording again goes back to the children\'s work', stepNow() === '2');
+check('1/2 has no way back to a first judgment (the step is gone): no "← 1/3 पहला अनुमान बदलें"', !q('[data-testid="back-to-decisions"]') && !/पहला अनुमान/.test(text()));
+check('there is no separate step marker: the heading says the step (1/2 · आज का प्रदर्शन दर्ज करें), and nothing in it can be tapped', !q('[data-testid="review-steps"]') && !q('[data-testid="review-title"] button')
+  && q('[data-testid="review-title"] .step-count').textContent === '1/2');
 check('no photo analysis today: no "फ़ोटो विश्लेषण देखें →" (it would open an empty page)', !q('[data-testid="see-analysis"]'));
 saved = [ANALYSIS, { ...ANALYSIS, id: 0, worksheet_level: 'beginner' }]; await show(Review);
 check('with one today: the button is there', !!q('[data-testid="see-analysis"]') && /फ़ोटो विश्लेषण देखें/.test(q('[data-testid="see-analysis"]').textContent));
 await click(q('[data-testid="see-analysis"]'));
-check('...and opens today\'s newest analysis INSIDE step 2 (the marker stays on 2/3: it is a result, not a step), never the empty "results will appear" page', stepNow() === '2'
+check('...and opens today\'s newest analysis INSIDE 1/2 (it is a result, not a step), never the empty "results will appear" page', stepNow() === '2'
   && !!q('[data-testid="back-to-work"]') && !q('[data-testid="see-analysis"]') && !/फ़ोटो विश्लेषण के बाद परिणाम यहाँ दिखेंगे/.test(document.getElementById('root').textContent));
+check('...its way back says where it goes: "← आज का प्रदर्शन: अगला समूह"', /आज का प्रदर्शन: अगला समूह/.test(q('[data-testid="back-to-work"]').textContent));
 await click(q('[data-testid="back-to-work"]'));
-check('"← बच्चों का काम: अगला समूह या तरीका": back to the ways of checking, nothing reset (judgments kept)', stepNow() === '2' && !!q('[data-testid="see-analysis"]') && decided.length === 1);
+check('"← आज का प्रदर्शन": back to the groups, nothing reset, nothing recorded', stepNow() === '2' && !!q('[data-testid="see-analysis"]') && decided.length === 0);
 await click(q('[data-testid="see-analysis"]'));
 check('..."फ़ोटो विश्लेषण देखें →" goes back to the analysis just left', stepNow() === '2' && !!q('[data-testid="back-to-work"]'));
 await click(q('[data-testid="to-final"]'));
-check('"आगे: अंतिम निर्णय →" (also under the analysis) leads to step 3', stepNow() === '3');
-check('step 3 has no "नई समीक्षा शुरू करें" (removed 29 Oct: every change has its own way, and it suggested the review was thrown away)',
+check('"आगे: अंतिम निर्णय: कल क्या पढ़ाएँ? →" (also under the analysis) leads to 2/2', stepNow() === '3');
+check('the decision step has no "नई समीक्षा शुरू करें" (removed 29 Oct: every change has its own way, and it suggested the review was thrown away)',
   !q('[data-testid="new-review"]') && !/नई समीक्षा/.test(document.getElementById('root').textContent) && !/startNewReview|नई समीक्षा/.test(reviewSrc));
 
 console.log('\nC. Progress, opened from the Review, leads back');
@@ -151,7 +157,7 @@ check('the review button waits until every group is marked taught, and says whic
 for (const box of [...document.querySelectorAll('[data-testid^="taught-"] input')]) await click(box);
 check('...every group ticked "इस समूह को पढ़ा दिया": it opens, and the tabs show ✓', !q('[data-testid="to-review"]').disabled && !q('[data-testid="to-review-left"]'));
 await click(q('[data-testid="to-review"]'));
-check('with a plan: "पढ़ाने के बाद: समीक्षा करें →" goes to the Review', /पढ़ाने के बाद: समीक्षा करें/.test(text()) && JSON.stringify(globalThis.__navs.at(-1)) === '["/review"]');
+check('with a plan: "पढ़ाने के बाद: काम देखें और कल तय करें →" goes to the Review', /पढ़ाने के बाद: काम देखें और कल तय करें/.test(text()) && JSON.stringify(globalThis.__navs.at(-1)) === '["/review"]');
 fresh(); cached = async () => { throw notFound(); };
 await show(Yojana);
 await click(q('[data-testid="yojana-make-plan"]'));

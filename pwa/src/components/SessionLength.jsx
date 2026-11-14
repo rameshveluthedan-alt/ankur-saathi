@@ -9,7 +9,7 @@ import { SESSION_MINUTES } from '../services/preferences';
 export default function SessionLength({ value, onChange, disabled }) {
   return (
     <fieldset data-testid="session-length" disabled={disabled} style={{ border: 'none', padding: 0, margin: '0 0 12px', minWidth: 0 }}>
-      <legend style={{ fontSize: '0.8125rem', fontWeight: 600, padding: 0, marginBottom: 4 }}><Bi hi="आज का समय" en="Today's time" inline /></legend>
+      <legend style={{ fontSize: '0.8125rem', fontWeight: 600, padding: 0, marginBottom: 4 }}><Bi hi="आज का समय" en="Time available today" inline /></legend>
       <div style={{ display: 'flex', gap: 8 }}>
         {SESSION_MINUTES.map((m) => {
           const on = value === m;

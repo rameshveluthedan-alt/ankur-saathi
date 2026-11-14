@@ -72,14 +72,14 @@ const order = ['mentor-points', 'mentor-practice', 'mentor-progress', 'mentor-mi
 check('the order: the talking points first, then how the teacher works, then the children, then the mistakes, then the rules', order.every((i, k) => i >= 0 && (k === 0 || i > order[k - 1])), order.join(','));
 check('the points: 👍 the strength, 🎯 each thing to work on, ❓ the question', txt('[data-testid="point-strength"]') === `👍 ${summary.points.strength}` && txt('[data-testid="point-work-stuck"]').startsWith('🎯 प्रगतिशील समूह में N2.3.2')
   && txt('[data-testid="point-work-judgment"]').startsWith('🎯 12 में से 5') && txt('[data-testid="point-question"]') === `❓ ${summary.points.question}`);
-check('how the teacher works: plans, full reviews, decisions with evidence, the first judgment', /योजना बनी: 18 दिन · समीक्षा पूरी \(तीनों चरण\): 15 दिन/.test(txt('[data-testid="mentor-practice"]'))
-  && /50 में से 31 बार/.test(txt('[data-testid="mentor-practice"]')) && txt('[data-testid="practice-match"]') === 'पहला अनुमान जाँच से मेल खाया: 12 में से 5 बार');
+check('how the teacher works: plans, full reviews (tomorrow’s decision recorded), decisions with evidence; no first-judgment line since 14 Nov', /योजना बनी: 18 दिन · समीक्षा पूरी \(कल का निर्णय दर्ज\): 15 दिन/.test(txt('[data-testid="mentor-practice"]'))
+  && /50 में से 31 बार/.test(txt('[data-testid="mentor-practice"]')) && !q('[data-testid="practice-match"]') && !/पहला अनुमान/.test(txt('[data-testid="mentor-practice"]')));
 check('the groups at the start and the end of the period, per subject, with the group marks', txt('[data-testid="progress-groups-numeracy"]') === 'गणित, समूह: 2 अक्टू॰ 2026 को ● 12 · ▲ 10 · ■ 8 → 29 अक्टू॰ 2026 को ● 9 · ▲ 12 · ■ 9', txt('[data-testid="progress-groups-numeracy"]'));
 check('a subject with no plans in the period has no line', !q('[data-testid="progress-groups-r1_literacy"]'));
 check('the stuck groups and the children not checked (roll numbers)', txt('[data-testid="progress-stuck"]') === '3+ दिन एक ही कौशल: ▲ प्रगतिशील N2.3.2 (4 दिन)' && txt('[data-testid="progress-not-checked"]') === '2 हफ़्ते से नहीं जाँचे: 3 बच्चे (रोल 4, 17, 22)', txt('[data-testid="progress-not-checked"]'));
 check('the mistakes, with the activity when the bank has one', txt('[data-testid="mistake-N2.3.2-M1"]') === 'N2.3.2 “हासिल भूलना”: 7 बच्चे → गतिविधि: “तीलियों के बंडल से हासिल”' && txt('[data-testid="mistake-N2.3.1-M1"]') === 'N2.3.1 “अंक उलटना”: 3 बच्चे');
 check('the rules behind the points, printed with their values', /3\+ दिन/.test(txt('[data-testid="mentor-rules"]')) && /14 दिन/.test(txt('[data-testid="mentor-rules"]')) && /25%/.test(txt('[data-testid="mentor-rules"]'))
-  && /50% से कम हों तो बिंदु \(कम से कम 3 समूह\)/.test(txt('[data-testid="mentor-rules"]')) && /कम से कम 3 तुलना/.test(txt('[data-testid="mentor-rules"]')));
+  && /50% से कम हों तो बिंदु \(कम से कम 3 समूह\)/.test(txt('[data-testid="mentor-rules"]')) && !/पहला अनुमान|तुलना/.test(txt('[data-testid="mentor-rules"]')));
 check('never a child\'s name, though the phone knows them', !/सीता|रामू/.test(page.textContent));
 check('printing shows this page alone (body.print-plan, the .plan-print page), a page of its own (no bottom bar)', document.body.classList.contains('print-plan') && page.classList.contains('plan-print')
   && /path="\/progress\/mentor"/.test(appSrc) && /path === '\/progress\/mentor'/.test(appSrc));
@@ -99,7 +99,7 @@ summary = { ...SUMMARY(), practice: { plan_days: 0, review_days: 0, groups_taugh
   progress: { ...SUMMARY().progress, groups: {}, stuck: [], not_checked: [] }, points: { strength: null, work: [], question: SUMMARY().points.question } };
 await show(Mentor);
 check('no plan in the period: says so instead of a strength; still the question', txt('[data-testid="point-nothing"]') === 'इस अवधि में कोई योजना नहीं बनी।' && !q('[data-testid="point-strength"]') && !!q('[data-testid="point-question"]'));
-check('no comparison possible: says so, not "0 में से 0"', txt('[data-testid="practice-match"]') === 'पहला अनुमान जाँच से मेल खाया: अभी तुलना के लिए पर्याप्त जाँच नहीं');
+check('little to say: still no first-judgment line (the step is gone, 14 Nov)', !q('[data-testid="practice-match"]') && !/पहला अनुमान/.test(txt('[data-testid="mentor-practice"]')));
 check('no stuck group, no mistakes: those lines are not there; nobody unchecked: "कोई नहीं"', !q('[data-testid="progress-stuck"]') && !q('[data-testid="mentor-mistakes"]') && txt('[data-testid="progress-not-checked"]') === '2 हफ़्ते से नहीं जाँचे: कोई नहीं');
 summary = new Error('offline');
 await show(Mentor);

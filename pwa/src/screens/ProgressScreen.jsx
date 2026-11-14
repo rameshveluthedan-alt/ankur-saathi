@@ -115,7 +115,7 @@ export default function ProgressScreen() {
             <ChildToday today={selectedDomain === 'numeracy' ? c.numeracy_today : c.literacy_today} />
             {selectedChild === c.roll_number && (
               <div style={{ marginTop: 8, fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
-                <div><Bi hi="लक्ष्य" en="Target skill" inline />: <strong>{compId}</strong></div>
+                <div><Bi hi="लक्ष्य" en="Current skill" inline />: <strong>{compId}</strong></div>
                 <div>{compName}</div>
                 <div style={{ marginTop: 4 }}>
                   <Bi hi="गणित" en="Num" inline />: <span className={`badge badge-${c.numeracy_bpp || 'beginner'}`}>{BPP[c.numeracy_bpp] ? <Bi hi={BPP[c.numeracy_bpp].hi} en={BPP[c.numeracy_bpp].en} inline /> : '—'}</span>
@@ -143,7 +143,7 @@ export default function ProgressScreen() {
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0 8px' }}>
           <Bi hi="पिछले 4 हफ़्ते: बातचीत के बिंदु, पढ़ाने का तरीका, बच्चों की प्रगति। सिर्फ़ रोल नंबर, कोई नाम नहीं।" en="The last 4 weeks: talking points, how you teach, the children's progress. Roll numbers only, no names." inline />
         </p>
-        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi="डेटा तालिका (CSV के रूप में डाउनलोड भी):" en="Data table (also downloadable as CSV):" inline /></div>
+        <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi="डेटा तालिका (CSV के रूप में डाउनलोड भी):" en="Data tables (CSV):" inline /></div>
         <button type="button" data-testid="class-report" onClick={() => navigate('/report', { state: { kind: 'class' } })}
           style={{ display: 'block', background: 'none', border: 'none', padding: '4px 0', minHeight: 36, fontSize: '0.75rem', color: 'var(--green-dark)', fontFamily: 'inherit', textAlign: 'left' }}>
           📥 <span className="hi">कक्षा रिपोर्ट, नामों के साथ</span><span className="en en-inline" lang="en" style={{ color: 'inherit' }}>Class report, with names</span>

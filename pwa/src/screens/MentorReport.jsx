@@ -64,9 +64,8 @@ export default function MentorReport() {
 
       <section data-testid="mentor-practice">
         <div className="print-block-head">पढ़ाने का तरीका</div>
-        <div>योजना बनी: <b>{p.plan_days}</b> दिन · समीक्षा पूरी (तीनों चरण): <b>{p.review_days}</b> दिन</div>
+        <div>योजना बनी: <b>{p.plan_days}</b> दिन · समीक्षा पूरी (कल का निर्णय दर्ज): <b>{p.review_days}</b> दिन</div>
         <div>बच्चों का काम जाँचकर निर्णय: <b>{p.groups_taught}</b> में से <b>{p.groups_checked}</b> बार</div>
-        <div data-testid="practice-match">पहला अनुमान जाँच से मेल खाया: {p.judgments_compared ? <><b>{p.judgments_compared}</b> में से <b>{p.judgments_matched}</b> बार</> : 'अभी तुलना के लिए पर्याप्त जाँच नहीं'}</div>
       </section>
 
       <section data-testid="mentor-progress">
@@ -100,7 +99,7 @@ export default function MentorReport() {
       <hr />
       <div className="print-footer" data-testid="mentor-rules">
         नियम: एक ही कौशल {R.stuck_days}+ दिन = बात करने लायक · {R.not_checked_days} दिन से कोई नतीजा नहीं = “नहीं जाँचे” (कक्षा के {Math.round(R.not_checked_share * 100)}% या ज़्यादा हों तो बिंदु) ·
-        जाँचकर निर्णय {Math.round(R.evidence_share * 100)}% से कम हों तो बिंदु (कम से कम {R.evidence_min} समूह) · पहला अनुमान {Math.round(R.match_share * 100)}% से कम बार मेल खाए (कम से कम {R.match_min} तुलना) तो बिंदु
+        जाँचकर निर्णय {Math.round(R.evidence_share * 100)}% से कम हों तो बिंदु (कम से कम {R.evidence_min} समूह)
       </div>
       <div className="print-footer" data-testid="mentor-key">{MARKS_NOTE} · {CODE_NOTE}</div>
       <div className="print-footer" data-testid="mentor-footer">🌱 अंकुर साथी · {m.period.end} · सिर्फ़ गिनती और रोल नंबर, कोई नाम नहीं</div>

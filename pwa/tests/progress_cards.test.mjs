@@ -159,7 +159,7 @@ check('a list with nobody in it is left out, and no flags means no section', () 
 
 console.log('\nHindi only');
 check('every new line has its English in a hideable .en span (the "Hindi only" setting hides it)', () => {
-  for (const en of ["In today&#x27;s sample", 'No assessment today', 'No decision recorded today', 'Your decision: Advance', 'assessed', 'Children to look at']) {
+  for (const en of ["In today&#x27;s sample", 'No assessment today', 'No decision recorded today', 'Your decision: Move on', 'assessed', 'Children to look at']) {
     const all = card + look + html(React.createElement(ChildToday, { today: { skill_id: 'N0.1.1', status: 'achieved' } }));
     const i = all.indexOf(en);
     assert.ok(i > 0 && all.lastIndexOf('class="en', i) > all.lastIndexOf('</span>', i), en);

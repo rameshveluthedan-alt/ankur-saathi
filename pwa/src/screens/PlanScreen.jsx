@@ -184,7 +184,7 @@ export default function PlanScreen() {
   return (
     <div className="screen">
       <div className="screen-header">
-        <h1>🎯 <Bi hi="योजना बनाएँ" en="Make plan" inline /></h1>
+        <h1>🎯 <Bi hi="योजना बनाएँ" en="Plan a lesson" inline /></h1>
         {/* Profile is the 👤 tab in the bottom bar, so there is no second Profile button here */}
         <button type="button" className="btn btn-secondary btn-small" onClick={() => navigate('/register')} data-testid="open-register">👥 <Bi hi="कक्षा रजिस्टर" en="Class register" inline /></button>
       </div>
@@ -192,7 +192,7 @@ export default function PlanScreen() {
       {/* after "हाँ, बदलें": the screen is unlocked; nothing has been replaced yet */}
       {unlockHint && (
         <div data-testid="unlock-hint" style={{ display: 'flex', alignItems: 'flex-start', gap: 8, background: 'var(--green-bg)', borderRadius: 8, padding: '6px 10px', marginBottom: 10, fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
-          <span style={{ flex: 1 }}><Bi hi="✓ अब आप बदलाव कर सकते हैं। नई योजना बनाने के लिए '📋 आज की योजना बनाएँ' दबाएँ।" en="You can now make changes. Press 'Make today's plan' to make the new plan." /></span>
+          <span style={{ flex: 1 }}><Bi hi="✓ अब आप बदलाव कर सकते हैं। नई योजना बनाने के लिए '📋 आज की योजना बनाएँ' दबाएँ।" en="Change the skill or the time, then press 'Create today's plan'." /></span>
           <button type="button" data-testid="unlock-hint-close" aria-label="बंद करें" onClick={() => setUnlockHint(false)}
             style={{ background: 'none', border: 'none', fontSize: '1rem', minWidth: 44, minHeight: 44, margin: '-10px -8px', cursor: 'pointer', color: 'inherit' }}>✕</button>
         </div>
@@ -215,19 +215,6 @@ export default function PlanScreen() {
           onClick={() => setSelectedDomain('r1_literacy')}><Bi hi="हिंदी" en="Literacy" inline /></button>
       </div>
 
-      {groups.length > 0 && (
-        <div className="card" style={{ padding: 12 }}>
-          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi="वर्तमान समूह" en="Current Groups" inline /></div>
-          <div style={{ display: 'flex', gap: 8 }}>
-            {groups.map(g => (
-              <div key={g.label} style={{ flex: 1, textAlign: 'center' }}>
-                <span className={`badge badge-${g.label}`}><Bi hi={GROUP_LABELS[g.label]?.hi} en={GROUP_LABELS[g.label]?.en} inline /></span>
-                <div style={{ fontSize: '1.25rem', fontWeight: 700, marginTop: 4 }}>{g.count}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {existing.status === 'checking' && (
         <div className="loading" data-testid="plan-checking"><div className="spinner" /><span><Bi hi="आज की योजना देखी जा रही है…" en="Checking for today's plan" inline /></span></div>
@@ -270,7 +257,7 @@ export default function PlanScreen() {
       {/* unlocked: the plan that a new one would replace is still there until Generate */}
       {existing.status === 'exists' && unlocked && (
         <div data-testid="plan-current" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 10 }}>
-          <span style={{ flex: 1 }}><Bi hi={`अभी की योजना: ${existing.plan.selected_competency_id} — नई योजना बनाने पर यह बदल जाएगी`} en="Today's current plan: a new one will replace it" /></span>
+          <span style={{ flex: 1 }}><Bi hi={`अभी की योजना: ${existing.plan.selected_competency_id} — नई योजना बनाने पर यह बदल जाएगी`} en="A new plan will replace today's plan" /></span>
           <button type="button" className="btn btn-secondary btn-small" data-testid="open-plan" onClick={openPlan}><Bi hi="योजना खोलें →" en="Open the plan" inline /></button>
         </div>
       )}
@@ -281,16 +268,31 @@ export default function PlanScreen() {
       )}
 
       {existing.status !== 'checking' && !locked && (<>
+      {/* the Progressors' skill the last review points to: one tap, instead of searching the list */}
+      {!loading && <SuggestedSkill proposal={proposal} competencies={competencies} selectedId={selectedId}
+        onChoose={(id) => { setDrawerOpen(false); setGradeFilter(null); selectSkill(id); }} />}
+
       {/* how long the teacher has today: just above the skill list, so it is set before a skill is chosen */}
       <SessionLength value={sessionMinutes} onChange={chooseMinutes} disabled={generating} />
+
+      {groups.length > 0 && (
+        <div className="card" style={{ padding: 12 }}>
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi="वर्तमान समूह" en="Your groups" inline /></div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            {groups.map(g => (
+              <div key={g.label} style={{ flex: 1, textAlign: 'center' }}>
+                <span className={`badge badge-${g.label}`}><Bi hi={GROUP_LABELS[g.label]?.hi} en={GROUP_LABELS[g.label]?.en} inline /></span>
+                <div style={{ fontSize: '1.25rem', fontWeight: 700, marginTop: 4 }}>{g.count}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* one honest line instead of a label on every skill: the per-skill labels were out of date (99 of 101 "not yet tested", docs/KNOWN_ISSUES.md) */}
       <PilotFlag testid="pilot-plans" hi="योजनाएँ AI बनाता है और अभी परखी जा रही हैं; छह कौशलों की योजनाएँ टीम ने जाँची हैं। पढ़ाने से पहले योजना एक बार पढ़ लें।"
         en="Plans are written by the AI and still being tested; the team has reviewed the plans of six skills. Read the plan once before teaching." />
 
-      {/* the Progressors' skill the last review points to: one tap, instead of searching the list */}
-      {!loading && <SuggestedSkill proposal={proposal} competencies={competencies} selectedId={selectedId}
-        onChoose={(id) => { setDrawerOpen(false); setGradeFilter(null); selectSkill(id); }} />}
 
       <div style={{ display: 'flex', gap: 4, marginBottom: 12, flexWrap: 'wrap' }}>
         <button style={{ minHeight: 40, minWidth: 48, padding: '4px 12px', fontSize: '0.8125rem', borderRadius: 6, border: '1px solid var(--border)', background: !gradeFilter ? 'var(--green-dark)' : 'var(--surface)', color: !gradeFilter ? 'white' : 'var(--text)', cursor: 'pointer', fontFamily: 'inherit' }}
@@ -308,7 +310,7 @@ export default function PlanScreen() {
       )}
 
       {loading ? (
-        <div className="loading"><div className="spinner" /><span><Bi hi="लक्ष्य लोड हो रहे हैं..." en="Loading competencies" inline /></span></div>
+        <div className="loading"><div className="spinner" /><span><Bi hi="लक्ष्य लोड हो रहे हैं..." en="Loading skills" inline /></span></div>
       ) : (
         <div>
           {GRADE_ORDER.filter(g => grouped[g]).map(grade => (
@@ -367,7 +369,7 @@ export default function PlanScreen() {
             ) : loadingPanel ? (
               <Bi hi="समूहों के कौशल लोड हो रहे हैं…" en="Loading the groups" inline />
             ) : (
-              <>📋 <Bi hi="आज की योजना बनाएँ" en="Make today's plan" inline /> → {selectedId}</>
+              <>📋 <Bi hi="आज की योजना बनाएँ" en="Create today's plan" inline /> → {selectedId}</>
             )}
           </button>
         </div>

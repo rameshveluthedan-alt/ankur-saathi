@@ -68,11 +68,16 @@ check('it sits inside "तुम करोगे" (You Do), after its instructio
   const b = q('[data-testid="record-now-beginner"]'); const f = b && b.closest('details');
   return !!f && f.dataset.testid === 'fold-you-do' && panelOf('beginner').contains(f);
 })());
-check('the observed Beginners: "✓ देखते हुए A / PA / NA दर्ज करें", for this group only', /✓ देखते हुए A \/ PA \/ NA दर्ज करें/.test(q('[data-testid="record-now-beginner"]').textContent)
-  && q('[data-testid="record-now-beginner"]').dataset.channel === 'observed' && /सिर्फ़ इस समूह के लिए/.test(q('[data-testid="record-bar-beginner"]').textContent));
+check('the observed Beginners: "✓ देखते हुए A / PA / NA दर्ज करें" (EN "Mark A / PA / NA"), now or on paper and entered later', /✓ देखते हुए A \/ PA \/ NA दर्ज करें/.test(q('[data-testid="record-now-beginner"]').textContent)
+  && /Mark A \/ PA \/ NA/.test(q('[data-testid="record-now-beginner"]').textContent)
+  && q('[data-testid="record-now-beginner"]').dataset.channel === 'observed' && /अभी, या कागज़ पर लिखकर बाद में/.test(q('[data-testid="record-bar-beginner"]').textContent));
 check('the Proficients, read aloud: "⏱️ बच्चे का पढ़ना सुनकर दर्ज करें"', /⏱️ बच्चे का पढ़ना सुनकर दर्ज करें/.test(q('[data-testid="record-now-proficient"]').textContent));
-check('the photographed Progressors: no button in class, a line saying the photos are taken after teaching, on the Review', !q('[data-testid="record-now-progressor"]') && !q('[data-testid^="record-photo-"]')
-  && /पढ़ाने के बाद, समीक्षा टैब पर/.test(q('[data-testid="record-bar-progressor"]').textContent));
+check('the photographed Progressors: the button is back (14 Nov, no question before it): "📸 वर्कशीट की फ़ोटो लें", now or after teaching on the Review',
+  !!q('[data-testid="record-now-progressor"]') && q('[data-testid="record-now-progressor"]').dataset.channel === 'photo' && /वर्कशीट की फ़ोटो लें/.test(q('[data-testid="record-now-progressor"]').textContent)
+  && /Photograph worksheets/.test(q('[data-testid="record-now-progressor"]').textContent) && /अभी या पढ़ाने के बाद, समीक्षा में/.test(q('[data-testid="record-bar-progressor"]').textContent)
+  && !!q('[data-testid="record-now-progressor"]').closest('[data-testid="fold-you-do"]'));
+await click(q('[data-testid="record-now-progressor"]'));
+check('...tapping it opens the in-class page on the photo way for that group', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/review', { state: { from: 'plan', channel: 'photo', level: 'progressor' } }]), JSON.stringify(globalThis.__navs.at(-1)));
 await click(q('[data-testid="record-now-beginner"]'));
 check('tapping it opens the in-class recording with the way and the group', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/review', { state: { from: 'plan', channel: 'observed', level: 'beginner' } }]), JSON.stringify(globalThis.__navs.at(-1)));
 ch = { has_plan: false, levels: [], channels: {} };
@@ -113,7 +118,16 @@ console.log('\nopened normally (from the tab), nothing changes');
 reply = PLAN(); sessionStorage.clear(); globalThis.__auth.currentPlan = null;
 globalThis.__location = { pathname: '/review', state: null };
 await show(Review);
-check('step 1 asks the first judgment as before, and no banner', stepNow() === '1' && !!q('[data-testid="record-decisions"]') && !q('[data-testid="from-plan"]'));
+check('it opens at "1/2 आज का प्रदर्शन दर्ज करें" with the group cards, no first judgment (gone, 14 Nov), and no in-class bar', stepNow() === '2' && !!q('[data-testid="group-cards"]')
+  && !q('[data-testid="record-decisions"]') && !q('[data-testid="from-plan"]'));
+
+console.log('\nthe photo way in class');
+reply = PLAN(); sessionStorage.clear(); globalThis.__auth.currentPlan = null;
+globalThis.__location = { pathname: '/review', state: { from: 'plan', channel: 'photo', level: 'progressor' } };
+await show(Review);
+check('in class on the photo way: the Progressors\' sheet only, no group buttons or cards, the pilot note, and the way back to teaching', !!q('[data-testid="from-plan"]') && /प्रगतिशील/.test(q('[data-testid="from-plan"]').textContent)
+  && !!q('[data-testid="pilot-photo"]') && !document.querySelector('.tier-option') && !q('[data-testid="group-cards"]') && !!q('[data-testid="done-in-class"]') && !q('[data-testid="to-final"]'));
+globalThis.__location = { pathname: '/review', state: null };
 
 await act(async () => root.unmount());
-console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks: observation and reading aloud can be recorded during the lesson, straight from the plan, without the first judgment first'}`);
+console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks: observation and reading aloud can be recorded during the lesson, straight from the plan, the photo way too; the Review itself has no first judgment'}`);

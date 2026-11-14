@@ -65,15 +65,16 @@ check('opening the Review: roll 3\'s recorded A and roll 4\'s recorded PA are sh
   && !!q('[data-testid="obs-recorded-3"]') && /✓ दर्ज/.test(q('[data-testid="obs-recorded-3"]').textContent) && !q('[data-testid="obs-recorded-5"]')
   && ['achieved', 'partially_achieved', 'not_achieved'].every((st) => btn(5, st).getAttribute('aria-pressed') === 'false'));
 console.log('\nwhy this way (today\'s skills need only observation)');
-check('no plain note "आज के कौशल के लिए यही तरीका चाहिए"; instead a closed "ⓘ यही तरीका क्यों?", and only the needed way is shown', !/यही तरीका चाहिए/.test(document.getElementById('root').textContent)
-  && /यही तरीका क्यों\?/.test(q('[data-testid="hint-why-way"] .hint-btn').textContent) && !q('[data-testid="hint-why-way"] .hint-text') && !!q('[data-testid="channel-observed"]') && !q('[data-testid="channel-photo"]'));
+check('no plain note "आज के कौशल के लिए यही तरीका चाहिए"; instead a closed "ⓘ यही तरीका क्यों?"; no way tabs (the group card chooses the way, 14 Nov), the Progressors’ card chosen', !/यही तरीका चाहिए/.test(document.getElementById('root').textContent)
+  && /यही तरीका क्यों\?/.test(q('[data-testid="hint-why-way"] .hint-btn').textContent) && !q('[data-testid="hint-why-way"] .hint-text') && !q('[data-testid="channel-observed"]') && !q('[data-testid="channel-photo"]')
+  && q('[data-testid="group-card-progressor"]').classList.contains('on'));
 await click(q('[data-testid="hint-why-way"] .hint-btn'));
 check('...open: why ("यह कौशल बच्चे करके या बोलकर दिखाते हैं … देखकर आँका जाता है, लिखकर नहीं") and which group and skill today ("▲ प्रगतिशील N2.3.2")',
   /देखकर आँका जाता है, लिखकर नहीं/.test(q('[data-testid="why-observed"]').textContent) && /आज.*▲ प्रगतिशील N2\.3\.2/.test(q('[data-testid="why-observed"]').textContent) && !q('[data-testid="why-photo"]'));
 await click(q('[data-testid="channel-toggle"]'));
 check('..."दूसरे तरीके भी दिखाएँ" shows all three ways; "सिर्फ़ ज़रूरी तरीके दिखाएँ" goes back', !!q('[data-testid="channel-photo"]') && !!q('[data-testid="channel-orf"]') && /सिर्फ़ ज़रूरी तरीके दिखाएँ/.test(q('[data-testid="channel-toggle"]').textContent));
 await click(q('[data-testid="channel-toggle"]'));
-check('...back to the needed way only', !q('[data-testid="channel-photo"]') && !!q('[data-testid="channel-observed"]'));
+check('...back: no way tabs again, the group card’s way (observation) still open', !q('[data-testid="channel-photo"]') && !q('[data-testid="channel-observed"]') && !!q('[data-testid="observed-list"]'));
 
 console.log('\nthe recorded choices, before any change');
 check('nothing changed yet: Submit says just "✓ जमा करें" and is off', /^✓ जमा करें/.test(submit().textContent) && !/बदलाव|नया/.test(submit().textContent) && submit().disabled);

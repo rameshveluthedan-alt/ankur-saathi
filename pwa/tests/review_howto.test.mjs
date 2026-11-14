@@ -1,6 +1,6 @@
 // How to do each way of checking (29 Oct): on the Review, "▸ कैसे करें?" under the way chosen, with the plan's own review prompts (what to look for in today's
 // skill) for observation, the meanings of A / PA / NA, the photo steps and the reading-aloud steps; reading aloud shows the text to read (one not read in class
-// today) and records THAT passage, never a made-up one; and the plan screen's "☑️ आज की समीक्षा" fold says, before class, how each group will be checked.
+// today) and records THAT passage, never a made-up one; and the plan screen's "☑️ आज कैसे जाँचें" fold says, before class, how each group will be checked.
 // The REAL Review and plan screens in a simulated browser with a fake server. The server's passage choice is tested in backend/tests/test_review_recorded.py.
 //
 //     cd pwa
@@ -59,23 +59,25 @@ const q = (sel) => document.querySelector(sel);
 const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true })); }); await flush(); };
 const type = async (el, v) => { await act(async () => { Object.getOwnPropertyDescriptor(dom.window.HTMLInputElement.prototype, 'value').set.call(el, v); el.dispatchEvent(new dom.window.Event('input', { bubbles: true })); }); await flush(); };
 const how = () => q('[data-testid^="how-"]');
+// each way is opened from its group's card (14 Nov: the card chooses the way; the way tabs show only on request)
+const WAY = { observed: '[data-testid="group-card-beginner"]', photo: '[data-testid="group-card-progressor"]', orf: '[data-testid="group-card-proficient"]' };
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
 
 console.log('"▸ कैसे करें?" on the Review, for each way');
 sessionStorage.clear();
 await show(Review);
-await click(q('[data-testid="channel-observed"]'));
+await click(q(WAY.observed));
 check('observing: a closed "कैसे करें?" fold under the "who does what" line', how() && how().dataset.testid === 'how-observed' && how().tagName === 'DETAILS' && !how().open && /कैसे करें\?/.test(how().querySelector('summary').textContent));
 check('...it starts with the general instruction (watch during independent practice, then A / PA / NA), NOT the plan\'s AI-written prompt (which on 29 Oct asked for a task the plan did not have)',
   /स्वतंत्र अभ्यास \(तुम करोगे\) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A \/ PA \/ NA चुनें/.test(how().textContent) && !how().textContent.includes(LOOK) && !/आज की योजना से/.test(how().textContent));
 check('step 2 names the group and skill being observed: "● शुरुआती · N0.1.1 · छाँटना"', /● शुरुआती(Beginner)? · N0\.1\.1 · छाँटना/.test(q('[data-testid="skill-2"]').textContent), q('[data-testid="skill-2"]') && q('[data-testid="skill-2"]').textContent);
 check('...the Beginners also have a worksheet: "इस कौशल की वर्कशीट अभ्यास के लिए है; जाँच … देखकर होती है, वर्कशीट की फ़ोटो से नहीं"', /इस कौशल की वर्कशीट अभ्यास के लिए है; जाँच बच्चों को करते हुए देखकर होती है, वर्कशीट की फ़ोटो से नहीं/.test(q('[data-testid="worksheet-practice"]').textContent));
 check('...and says what A, PA and NA mean', /A = बिना मदद के करके दिखाया · PA = मदद से या आंशिक रूप से सही · NA = अभी नहीं/.test(how().textContent));
-await click(q('[data-testid="channel-photo"]'));
+await click(q(WAY.photo));
 check('photo: the skill line follows the photographed group ("▲ प्रगतिशील · L2.3.1 · संयुक्त अक्षर"), and no worksheet-is-practice line (photos ARE the check here)', /▲ प्रगतिशील(Progressor)? · L2\.3\.1 · संयुक्त अक्षर/.test(q('[data-testid="skill-2"]').textContent) && !q('[data-testid="worksheet-practice"]'));
 check('photo: the steps (roll number at the top, flat in good light, the suggested sample, up to 6, no names), and no observation prompt',
   how().dataset.testid === 'how-photo' && /रोल नंबर लिखे/.test(how().textContent) && /समतल रखें, अच्छी रोशनी में/.test(how().textContent) && /नमूना/.test(how().textContent) && /बच्चे का नाम न हो/.test(how().textContent) && !how().textContent.includes(LOOK));
-await click(q('[data-testid="channel-orf"]'));
+await click(q(WAY.orf));
 check('reading aloud: the steps (one minute, count the words read correctly, what counts as an error)',
   how().dataset.testid === 'how-orf' && /एक मिनट का समय/.test(how().textContent) && /सही पढ़े गए शब्द गिनें/.test(how().textContent) && /गलत शब्द, छूटा शब्द, या जो शब्द आपको बताना पड़ा/.test(how().textContent));
 
@@ -89,7 +91,7 @@ await click([...document.querySelectorAll('button.btn-primary')].find((b) => b.o
 check('saving records THAT passage (RP-006), not a made-up RP-004', orfSaves.length === 1 && orfSaves[0].passage_id === 'RP-006' && orfSaves[0].roll_number === 9, JSON.stringify(orfSaves[0]));
 ch = channels(null); sessionStorage.clear(); globalThis.__auth.currentPlan = null;
 await show(Review);
-await click(q('[data-testid="channel-orf"]'));
+await click(q(WAY.orf));
 check('no text in the bank for the skill: says so, and how to choose one', /पाठ बैंक में नहीं मिला/.test(q('[data-testid="orf-no-passage"]').textContent));
 await click(q('[data-testid="orf-chip-10"]'));
 await type(document.querySelector('input[aria-label^="सही शब्द प्रति मिनट"]'), '30');
@@ -99,15 +101,17 @@ check('the code no longer has RP-004 anywhere on the Review', !fs.readFileSync(p
 
 const savedSheets = PLAN.plan.worksheets; PLAN.plan.worksheets = {};
 ch = channels(); sessionStorage.clear(); globalThis.__auth.currentPlan = null;
-await show(Review); await click(q('[data-testid="channel-observed"]'));
+await show(Review); await click(q(WAY.observed));
 check('an observed group with NO worksheet: no worksheet-is-practice line', !!how() && !q('[data-testid="worksheet-practice"]'));
 PLAN.plan.worksheets = savedSheets;
 
-console.log('\nthe plan screen: "☑️ आज की समीक्षा"');
+console.log('\nthe plan screen: "☑️ आज कैसे जाँचें"');
 ch = channels(); globalThis.__auth.currentPlan = JSON.parse(JSON.stringify(PLAN));
 await show(Yojana);
 const fold = () => q('[data-testid="review-today"]');
-check('a closed fold "☑️ आज की समीक्षा: कैसे जाँचें"', fold() && !fold().open && /आज की समीक्षा: कैसे जाँचें/.test(fold().querySelector('summary').textContent));
+check('a closed fold "☑️ आज कैसे जाँचें", in the "कक्षा से पहले" (Before class) section, before the session (14 Nov)', fold() && !fold().open && /आज कैसे जाँचें/.test(fold().querySelector('summary').textContent)
+  && !!q('[data-testid="section-before"]') && !!(q('[data-testid="section-before"]').compareDocumentPosition(fold()) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING)
+  && !!(fold().compareDocumentPosition(q('[data-testid="section-during"]')) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING));
 check('...each group, its skill and its way: ● शुरुआती N0.1.1 ✓ देखकर दर्ज करें, ▲ प्रगतिशील L2.3.1 📸 वर्कशीट की फ़ोटो (the AI reads), ■ दक्ष L2.5.1 ⏱️ पढ़कर सुनाना',
   /● शुरुआती(Beginner)? N0\.1\.1: ✓ देखकर दर्ज करें/.test(q('[data-testid="review-way-beginner"]').textContent) && /▲ प्रगतिशील(Progressor)? L2\.3\.1: 📸 वर्कशीट की फ़ोटो/.test(q('[data-testid="review-way-progressor"]').textContent)
   && /AI हर बच्चे का काम पढ़ता है/.test(q('[data-testid="review-way-progressor"]').textContent) && /■ दक्ष(Proficient)? L2\.5\.1: ⏱️ पढ़कर सुनाना/.test(q('[data-testid="review-way-proficient"]').textContent));

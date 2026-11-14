@@ -26,12 +26,12 @@ check('a tap on the tab of the screen we are ON is a "reselect": the screen goes
 });
 check('the signal the screens listen for has a stable name', () => { assert.equal(TAB_RESELECT_EVENT, 'ankur-tab-reselect'); });
 check('the tab names (29 Oct, reviewed by Vaishnavi): what the teacher does there, never two "योजना" alone, and "कक्षा प्रगति" (not "प्रगति", next to the प्रगतिशील group)', () => {
-  assert.deepEqual(TABS.map((t) => [t.id, t.icon, t.hi, t.en]), [['/', '🎯', 'योजना बनाएँ', 'Make plan'], ['/yojana', '📋', 'आज की योजना', "Today's plan"],
-    ['/review', '☑️', 'समीक्षा', 'Review'], ['/progress', '📊', 'कक्षा प्रगति', 'Class progress'], ['/account', '👤', 'प्रोफ़ाइल', 'Profile']]);
+  assert.deepEqual(TABS.map((t) => [t.id, t.icon, t.hi, t.en]), [['/', '🎯', 'योजना बनाएँ', 'Plan a lesson'], ['/yojana', '📋', 'आज की योजना', "Today's plan"],
+    ['/review', '☑️', 'समीक्षा', 'Review'], ['/progress', '📊', 'कक्षा प्रगति', 'Progress'], ['/account', '👤', 'प्रोफ़ाइल', 'Profile']]);
 });
 check('each screen title and "कैसे काम करता है?" use the same names', () => {
   const read = (f) => fs.readFileSync(path.join(here, '..', 'src', f), 'utf8');
-  assert.ok(read('screens/PlanScreen.jsx').includes('<h1>🎯 <Bi hi="योजना बनाएँ" en="Make plan"'));
+  assert.ok(read('screens/PlanScreen.jsx').includes('<h1>🎯 <Bi hi="योजना बनाएँ" en="Plan a lesson"'));
   assert.ok(read('screens/YojanaScreen.jsx').includes(`<h1>📋 <Bi hi="आज की योजना" en="Today's plan"`));
   assert.ok(read('screens/ProgressScreen.jsx').includes('<h1>📊 <Bi hi="कक्षा की प्रगति" en="Class progress"'));
   const how = read('components/HowItWorks.jsx');

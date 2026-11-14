@@ -1,6 +1,6 @@
-// The Review's step 3, the FINAL decision (29 Oct): for each group with children, the teacher's first judgment, today's evidence (A / PA / NA, how many of the
-// group were assessed) and the app's suggestion (re-teach when a third or more made a mistake; nothing when too few were checked), with the choice starting on
-// her first judgment. Recording it sends stage 'final' (the decision tomorrow's plan suggests from); a change from the first judgment is said.
+// The Review's last step, "2/2 · अंतिम निर्णय: कल क्या पढ़ाएँ?" (two steps since 14 Nov; no first judgment): for each group with children, today's evidence
+// (A / PA / NA, how many of the group were assessed) and the app's suggestion (re-teach when a third or more made a mistake; nothing when too few were checked);
+// nothing is chosen for her. Recording it sends stage 'final' (the decision tomorrow's plan suggests from).
 // The REAL Review screen in a simulated browser with a fake server. The server side is in backend/tests/test_plan_routes.py.
 //
 //     cd pwa
@@ -55,52 +55,57 @@ const pressed = (g, d) => q(`[data-testid="final-${g}-${d}"]`).getAttribute('ari
 const fresh = () => { sessionStorage.clear(); globalThis.__auth.currentPlan = null; saves.length = 0; globalThis.__navs.length = 0; };
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
 
-console.log('getting to step 3');
+console.log('getting to the decision (2/2)');
 fresh(); reply = PLAN();
 await show();
-check('first judgments recorded for every group: the Review opens at step 2', stepNow() === '2');
+check('nothing decided finally yet: the Review opens at "1/2 आज का प्रदर्शन" (step 2 inside; an old first judgment in the record changes nothing)', stepNow() === '2'
+  && /^1\/2 आज का प्रदर्शन/.test(q('[data-testid="review-title"]').textContent));
 const before = planCalls;
 await click(q('[data-testid="to-final"]'));
-check('"आगे: अंतिम निर्णय →": step 3 ("3/3 अंतिम निर्णय"), with today\'s evidence fetched again (the children\'s work may have changed it)', stepNow() === '3' && /3\/3 अंतिम निर्णय/.test(q('[data-testid="review-title"]').textContent) && planCalls === before + 1);
+check('"आगे: अंतिम निर्णय: कल क्या पढ़ाएँ? →": "2/2 अंतिम निर्णय: कल क्या पढ़ाएँ?", with today\'s evidence fetched again (the children\'s work may have changed it)',
+  stepNow() === '3' && /2\/2 अंतिम निर्णय: कल क्या पढ़ाएँ\?/.test(q('[data-testid="review-title"]').textContent) && planCalls === before + 1);
 check('one card for each group with children (no card for the empty Proficients)', !!q('[data-testid="final-beginner"]') && !!q('[data-testid="final-progressor"]') && !q('[data-testid="final-proficient"]'));
 
 console.log('\nwhat each card shows');
 check('each card names the skill the decision is about: "N2.3.1 · बिना हासिल के जोड़"', /^N2\.3\.1 · बिना हासिल के जोड़$/.test(q('[data-testid="skill-3-beginner"]').textContent) && /^N2\.3\.2 · हासिल के साथ जोड़$/.test(q('[data-testid="skill-3-progressor"]').textContent));
-check('the Beginners: first judgment "⬆ आगे बढ़ें"', /पहला अनुमान.*⬆ आगे बढ़ें/.test(q('[data-testid="final-first-beginner"]').textContent));
-check('...today\'s evidence "✓ A 2 · ~ PA 1 · ✗ NA 3 (7 में से 6 बच्चों का आकलन)"', /✓ A 2 · ~ PA 1 · ✗ NA 3/.test(q('[data-testid="final-evidence-beginner"]').textContent) && /7 में से 6 बच्चों का आकलन/.test(q('[data-testid="final-evidence-beginner"]').textContent), q('[data-testid="final-evidence-beginner"]').textContent);
+check('no first judgment anywhere (the step is gone, 14 Nov): no "पहला अनुमान" line, even with one in the old record', !q('[data-testid="final-first-beginner"]') && !/पहला अनुमान/.test(document.getElementById('root').textContent));
+check('...today\'s performance "✓ A 2 · ~ PA 1 · ✗ NA 3 (7 में से 6 बच्चों का आकलन)"', /आज का प्रदर्शन/.test(q('[data-testid="final-evidence-beginner"]').textContent)
+  && /✓ A 2 · ~ PA 1 · ✗ NA 3/.test(q('[data-testid="final-evidence-beginner"]').textContent) && /7 में से 6 बच्चों का आकलन/.test(q('[data-testid="final-evidence-beginner"]').textContent), q('[data-testid="final-evidence-beginner"]').textContent);
 check('...the app\'s suggestion, with its rule: "सुझाव: 🔄 दोहराएँ (जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई; कम से कम 4 बच्चों की जाँच)"',
   /सुझाव: 🔄 दोहराएँ \(जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई; कम से कम 4 बच्चों की जाँच\)/.test(q('[data-testid="final-suggest-beginner"]').textContent));
-check('...and the choice starts on her first judgment (⬆ आगे बढ़ें chosen), not on the suggestion', pressed('beginner', 'advance') && !pressed('beginner', 'reteach'));
-check('the Progressors, nobody assessed yet: "अभी किसी का आकलन नहीं", no suggestion, the choice on their first judgment (🔄)',
-  /अभी किसी का आकलन नहीं/.test(q('[data-testid="final-evidence-progressor"]').textContent) && !q('[data-testid="final-suggest-progressor"]') && pressed('progressor', 'reteach'));
+check('...and nothing is chosen for her: not the old first judgment, not the suggestion', !pressed('beginner', 'advance') && !pressed('beginner', 'reteach') && !pressed('beginner', 'not_sure'));
+check('the Progressors, nobody assessed yet: "अभी किसी का आकलन नहीं", no suggestion, nothing chosen',
+  /अभी किसी का आकलन नहीं/.test(q('[data-testid="final-evidence-progressor"]').textContent) && !q('[data-testid="final-suggest-progressor"]') && !pressed('progressor', 'reteach'));
+check('the choices read in English as "Move on / Teach again / Not sure" (the Hindi unchanged)', /⬆ आगे बढ़ें\s*Move on/.test(q('[data-testid="final-beginner-advance"]').textContent)
+  && /🔄 दोहराएँ\s*Teach again/.test(q('[data-testid="final-beginner-reteach"]').textContent) && /❓ पक्का नहीं\s*Not sure/.test(q('[data-testid="final-beginner-not_sure"]').textContent));
 
-console.log('\nchanging and recording');
+console.log('\nchoosing and recording');
 await click(q('[data-testid="final-beginner-reteach"]'));
-check('the Beginners changed to 🔄: "पहला अनुमान ⬆ आगे बढ़ें → अंतिम 🔄 दोहराएँ"', pressed('beginner', 'reteach') && /पहला अनुमान ⬆ आगे बढ़ें → अंतिम 🔄 दोहराएँ/.test(q('[data-testid="final-changed-beginner"]').textContent));
-check('the Progressors unchanged: no change line', !q('[data-testid="final-changed-progressor"]'));
-await click(q('[data-testid="final-progressor-reteach"]'));
-check('a group with no choice: "अंतिम निर्णय दर्ज करें" is off and the line names it', q('[data-testid="record-final"]').disabled && /बाकी: ▲ प्रगतिशील\)/.test(q('[data-testid="finals-left"]').textContent));
+check('the Beginners chosen 🔄: no "first → final" change line (there is no first judgment to compare)', pressed('beginner', 'reteach') && !q('[data-testid="final-changed-beginner"]'));
+check('a group with no choice: the save button is off and the line names it', q('[data-testid="record-final"]').disabled && /बाकी: ▲ प्रगतिशील\)/.test(q('[data-testid="finals-left"]').textContent));
 await click(q('[data-testid="final-progressor-not_sure"]'));
+check('...every group chosen: "कल की योजना के लिए अंतिम निर्णय दर्ज करें" / "Save tomorrow\'s plan" is on', !q('[data-testid="record-final"]').disabled
+  && /कल की योजना के लिए अंतिम निर्णय दर्ज करें/.test(q('[data-testid="record-final"]').textContent) && /Save tomorrow's plan/.test(q('[data-testid="record-final"]').textContent));
 await click(q('[data-testid="record-final"]'));
 check('recording sends the FINAL decisions, stage "final" (what tomorrow\'s plan suggests from)', saves.length === 1 && JSON.stringify(saves[0][3]) === JSON.stringify({ beginner: 'reteach', progressor: 'not_sure' }) && saves[0][4] === 'final', JSON.stringify(saves[0]));
-check('...and says so: "✓ अंतिम निर्णय दर्ज हुए। अगली योजना इन्हीं से सुझाई जाएगी।" (and nothing more: no Progress pointer, the tab does that)', /✓ अंतिम निर्णय दर्ज हुए। अगली योजना इन्हीं से सुझाई जाएगी।/.test(q('[data-testid="final-saved"]').textContent) && !q('[data-testid="record-final"]'));
+check('...and says so: "✓ अंतिम निर्णय दर्ज हुए। कल की योजना इन्हीं से सुझाई जाएगी।" (and nothing more: no Progress pointer, the tab does that)', /✓ अंतिम निर्णय दर्ज हुए। कल की योजना इन्हीं से सुझाई जाएगी।/.test(q('[data-testid="final-saved"]').textContent) && !q('[data-testid="record-final"]'));
 check('...no Progress pointer at the end of the review', !q('[data-testid="final-to-progress"]') && !q('[data-testid="final-saved"] button') && !/प्रगति टैब पर/.test(q('[data-testid="final-saved"]').textContent));
 await click(q('[data-testid="final-beginner-advance"]'));
-check('changing a decision after recording: the record button is back (nothing is changed until recorded again)', !!q('[data-testid="record-final"]') && !q('[data-testid="final-saved"]') && saves.length === 1);
+check('changing a decision after recording: the save button is back (nothing is changed until recorded again)', !!q('[data-testid="record-final"]') && !q('[data-testid="final-saved"]') && saves.length === 1);
 
 console.log('\ncoming back, and the other cases');
 fresh(); reply = PLAN({ final: { beginner: 'reteach', progressor: 'not_sure' } });
 await show();
-check('final decisions recorded for every group: the Review opens at step 3, showing them as recorded', stepNow() === '3' && pressed('beginner', 'reteach') && pressed('progressor', 'not_sure') && !!q('[data-testid="final-saved"]'));
+check('final decisions recorded for every group: the Review opens at 2/2, showing them as recorded', stepNow() === '3' && pressed('beginner', 'reteach') && pressed('progressor', 'not_sure') && !!q('[data-testid="final-saved"]'));
 fresh(); reply = PLAN({ final: { beginner: 'reteach' } });
 await show(); await click(q('[data-testid="to-final"]'));
-check('a final decision already recorded for one group: it starts on that (🔄), the other on its first judgment (🔄 for the Progressors)', pressed('beginner', 'reteach') && pressed('progressor', 'reteach'));
+check('a final decision already recorded for one group: it starts on that (🔄); the other has nothing chosen (its old first judgment is not used)', pressed('beginner', 'reteach') && !pressed('progressor', 'reteach'));
 fresh(); reply = PLAN({ evidence: { ...EV, beginner: { a: 1, pa: 0, na: 2, assessed: 3, group_size: 7, recommend: false, very_small: true } } });
 await show(); await click(q('[data-testid="to-final"]'));
 check('only three checked: "बहुत कम बच्चे जाँचे गए; ऐप कोई सुझाव नहीं देता।" and no suggestion', /बहुत कम बच्चे जाँचे गए/.test(q('[data-testid="final-too-few-beginner"]').textContent) && !q('[data-testid="final-suggest-beginner"]'));
-check('step 3\'s way back carries step 2\'s badge: "← 2/3 · बच्चों का काम"', q('[data-testid="final-back"] .step-count') && q('[data-testid="final-back"] .step-count').textContent === '2/3' && /बच्चों का काम/.test(q('[data-testid="final-back"]').textContent));
+check('the way back carries step 1\'s badge: "← 1/2 · आज का प्रदर्शन"', q('[data-testid="final-back"] .step-count') && q('[data-testid="final-back"] .step-count').textContent === '1/2' && /आज का प्रदर्शन/.test(q('[data-testid="final-back"]').textContent));
 await click(q('[data-testid="final-back"]'));
-check('"← बच्चों का काम" goes back to step 2', stepNow() === '2');
+check('"← आज का प्रदर्शन" goes back to 1/2', stepNow() === '2');
 fresh(); reply = PLAN(); delete reply.today_evidence;          // the 29 Oct case: a server not yet restarted sends no evidence (so could a failed load)
 await show(); await click(q('[data-testid="to-final"]'));
 check('no evidence in the reply: "अभी नहीं दिख रही; पेज दोबारा खोलें", NEVER "अभी किसी का आकलन नहीं" (the teacher had assessed everyone)',
@@ -108,4 +113,4 @@ check('no evidence in the reply: "अभी नहीं दिख रही; �
   && !/अभी किसी का आकलन नहीं/.test(document.getElementById('root').textContent) && !q('[data-testid="final-suggest-beginner"]'));
 
 await act(async () => root.unmount());
-console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks: step 3 shows each group\'s first judgment, today\'s evidence and the suggestion, and records the final decision'}`);
+console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks: the decision for tomorrow shows today\'s performance and the suggestion, starts on nothing, and records the final decision'}`);

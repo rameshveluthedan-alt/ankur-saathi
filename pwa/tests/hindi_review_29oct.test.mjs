@@ -14,7 +14,7 @@ let n = 0; const check = (label, ok) => { n += 1; console.log(`  ${ok ? 'OK  ' :
 check('#39 the meanings of A / PA / NA (the Review and the tick sheet\'s key, one line)', ways.includes("'A = बिना मदद के करके दिखाया · PA = मदद से या आंशिक रूप से सही · NA = अभी नहीं'") && ticks.includes("CHANNELS.find((c) => c.id === 'observed').how[1].hi") && !/आधा सही/.test(ways));
 check('#52 reading aloud, who does what: "सही पढ़े गए शब्द … दर्ज करते हैं"', ways.includes("'बच्चा एक मिनट पढ़ता है; आप सही पढ़े गए शब्द और गलतियाँ दर्ज करते हैं।'"));
 check('#54 reading aloud, why an unseen text: "पढ़ने की रफ़्तार सही पता चलेगी"', ways.includes('इसलिए पढ़ने की रफ़्तार सही पता चलेगी।') && !ways.includes('रफ़्तार सही दिखेगी'));
-check('#64 the step badges in the back buttons are followed by a colon (both)', review.includes('<span className="step-count">1/3</span>: <Bi hi="पहला अनुमान बदलें"') && review.includes('<span className="step-count">2/3</span>: <Bi hi="बच्चों का काम"'));
+check('#64 the step badge in the back button is followed by a colon (the one back button since the review has two steps, 14 Nov)', review.includes('<span className="step-count">1/2</span>: <Bi hi="आज का प्रदर्शन"') && !review.includes('पहला अनुमान बदलें'));
 check('#68 "… में से … बच्चों का आकलन" (Review step 3, and the Progress screen\'s today card)', review.includes('में से {ev.assessed} बच्चों का आकलन') && today.includes('में से {g.assessed} बच्चों का आकलन'));
 check('#71 the suggestion says its rule: of those checked, a third or more; at least 4 checked', review.includes('सुझाव: 🔄 दोहराएँ (जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई; कम से कम 4 बच्चों की जाँच)'));
 check('#88 the tick sheet\'s column: "रोल नंबर" (both tables)', ticks.includes('<th>{L.mark} रोल नंबर</th>'));

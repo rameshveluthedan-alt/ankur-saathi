@@ -15,6 +15,7 @@ import { localToday } from '../services/today';
 import { getFamiliarMode } from '../services/preferences';
 import { planMinutes } from '../services/planMinutes';
 import { planSlots, stripParts } from '../services/planSlots';
+import { pacePlan } from '../services/reteachInfo';
 
 // Generated text may contain line breaks (lists) and stray markdown markers.
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
@@ -158,23 +159,18 @@ export default function YojanaScreen() {
     if (!l) return null;
     const way = channelOf(l.channel);
     if (!way) return null;
-    if (l.channel === 'photo') {
-      return (
-        <div className="record-bar" data-testid={`record-bar-${level}`}>
-          <span className="record-bar-note">📸 <Bi hi="इस समूह की वर्कशीट की फ़ोटो पढ़ाने के बाद, समीक्षा टैब पर लें।" en="Photograph this group's worksheets after teaching, on the Review tab." inline /></span>
-        </div>
-      );
-    }
     const label = l.channel === 'orf'
-      ? <Bi hi="बच्चे का पढ़ना सुनकर दर्ज करें" en="Listen to a child read, then record" inline />
-      : <Bi hi="देखते हुए A / PA / NA दर्ज करें" en="Mark A / PA / NA as you watch" inline />;
+      ? <Bi hi="बच्चे का पढ़ना सुनकर दर्ज करें" en="Record reading" inline />
+      : l.channel === 'photo'
+        ? <Bi hi="वर्कशीट की फ़ोटो लें" en="Photograph worksheets" inline />
+        : <Bi hi="देखते हुए A / PA / NA दर्ज करें" en="Mark A / PA / NA" inline />;
     return (
       <div className="record-bar" data-testid={`record-bar-${level}`}>
         <button type="button" className="btn btn-primary btn-small" data-testid={`record-now-${level}`} data-channel={l.channel}
           onClick={(e) => { e.stopPropagation(); navigate('/review', { state: { from: 'plan', channel: l.channel, level } }); }}>
           {way.icon} {label}
         </button>
-        <span className="record-bar-note"><Bi hi="सिर्फ़ इस समूह के लिए" en="For this group only" inline /></span>
+        <span className="record-bar-note"><Bi hi={l.channel === 'photo' ? 'अभी या पढ़ाने के बाद, समीक्षा में' : 'अभी, या कागज़ पर लिखकर बाद में'} en={l.channel === 'photo' ? 'now, or after teaching on the Review' : 'now, or on paper and enter later'} inline /></span>
       </div>
     );
   };
@@ -194,7 +190,7 @@ export default function YojanaScreen() {
         <h3 style={{ marginBottom: 4 }}>🎯 <Bi hi="एंकर गतिविधि" en="Anchor activity" inline />
           {anchor.title_hi && <span data-testid="anchor-title" style={{ fontWeight: 400 }}>: «{anchor.title_hi}»{anchor.title_en && <span className="en en-inline" lang="en">'{anchor.title_en}'</span>}</span>}
         </h3>
-        <div className="slot-meta"><Bi hi="पूरी कक्षा साथ में" en="Whole class together" inline /> · {slot.minutes || 10} {MIN}</div>
+        <div className="slot-meta"><Bi hi="पूरी कक्षा साथ में" en="Whole class" inline /> · {slot.minutes || 10} {MIN}</div>
         {familiar ? <Fold icon="📖" hi="गतिविधि" en="The activity" testid="anchor-fold">{narration}</Fold> : narration}
         {anchor.opening_question_hi && (
           <div className="talking-point" style={ML}>
@@ -232,6 +228,9 @@ export default function YojanaScreen() {
           {skill && <span data-testid="block-skill" style={{ fontWeight: 400, fontFamily: 'monospace', fontSize: '0.75rem', color: 'var(--text-secondary)' }}> — {skill}</span>}
         </h3>
         <div className="slot-meta">{slot.start && <>{slot.start} · </>}{slot.minutes} {MIN} · {groupOf(level).count ?? '—'} <Bi hi="बच्चे" en="children" inline /></div>
+        {!slot.reteach && pacePlan(slot.minutes) && (
+          <div className="slot-pace" data-testid={`pace-${level}`}>⏱ {pacePlan(slot.minutes).parts.map((p, i) => <span key={p.key}>{i ? ' · ' : ''}<Bi hi={p.hi} en={p.en} inline /> {p.min}</span>)}</div>
+        )}
         {block.type === 'reteach' && block.affected_rolls && block.affected_rolls.length > 0 && (
           <div data-testid="reteach-rolls" style={{ fontSize: '0.75rem', marginTop: 4, ...ML }}>
             👥 <Bi hi="जिन बच्चों के लिए" en="For" inline />: <Bi hi="रोल" en="Roll" inline /> {block.affected_rolls.join(', ')}
@@ -350,6 +349,8 @@ export default function YojanaScreen() {
         )}
       </div>
 
+      {/* The screen follows the teacher's day (14 Nov, the evaluators' "order of sections"): before class, while teaching, after teaching */}
+      <h2 className="day-section" data-testid="section-before">🌅 <Bi hi="कक्षा से पहले" en="Before class" inline /></h2>
       {/* Today's groups: one row per group, its colour and mark, its children, its skill and its worksheet */}
       <table className="group-table" data-testid="group-table">
         <thead>
@@ -390,64 +391,16 @@ export default function YojanaScreen() {
       {/* Preparation before class (DIY TLMs etc.) */}
       {Array.isArray(plan.prep_hi) && plan.prep_hi.length > 0 && (
         <details className="card fold section-fold" data-testid="prep-fold">
-          <summary><span>🧰 <Bi hi="कक्षा से पहले तैयारी" en="Before class" inline /> <span className="count-chip">{plan.prep_hi.length}</span></span></summary>
+          <summary><span>🧰 <Bi hi="कक्षा से पहले तैयारी" en="Things to prepare" inline /> <span className="count-chip">{plan.prep_hi.length}</span></span></summary>
           <ul style={{ paddingLeft: 18, marginTop: 6, fontSize: '0.875rem' }}>
             {plan.prep_hi.map((t, i) => <li key={i} style={{ marginBottom: 4, ...ML }}>{fmt(t)}</li>)}
           </ul>
         </details>
       )}
 
-      {/* Today's session: one tab per slot (the anchor, then each group's teaching), the strip above showing the whole session at a glance */}
-      <h2 style={{ margin: '16px 0 6px' }}>⏱️ <Bi hi="आज का सत्र" en="Today's session" inline /></h2>
-      {slots.length > 0 ? (<>
-        <div className="session-strip" aria-hidden="true">
-          {stripParts(blocks).map((p, k) => (
-            <span key={k} className={`strip-part ${p.type === 'anchor' ? 'strip-anchor' : (p.type === 'teach' || p.type === 'reteach') ? `tier-${p.group}` : 'strip-gap'}`} style={{ flexGrow: p.share }} />
-          ))}
-        </div>
-        <div className="slot-tabs" role="tablist" aria-label="सत्र / Session" data-testid="slot-tabs">
-          {slots.map((s, k) => (
-            <button key={s.key} type="button" role="tab" id={`slot-tab-${k}`} aria-selected={active === s} aria-controls={`slot-panel-${k}`}
-              className={`slot-tab ${s.group ? `tier-${s.group}` : 'slot-anchor'} ${active === s ? 'on' : ''}`} data-testid={`slot-tab-${s.kind === 'anchor' ? 'anchor' : s.group}`}
-              onClick={() => setSlotIndex(k)}>
-              <span className="slot-tab-name">{slotLabel(s)}</span>
-              <span className="slot-tab-time">{s.group && taught.includes(s.group) ? '✓ ' : ''}{s.minutes ? `${s.minutes}′` : ''}</span>
-            </button>
-          ))}
-        </div>
-        {/* every slot's panel is in the page (find-in-page, the offline copy, the tests); only the chosen one shows */}
-        {slots.map((s, k) => (
-          <div key={s.key} className={`slot-panel ${s.group ? `tier-${s.group}` : 'slot-anchor'}${s.reteach ? ' reteach' : ''}`} role="tabpanel" id={`slot-panel-${k}`} aria-labelledby={`slot-tab-${k}`}
-            hidden={active !== s} data-testid={active === s ? 'slot-panel' : 'slot-panel-hidden'} data-slot={s.kind} data-slot-group={s.group || 'anchor'}>
-            {s.kind === 'anchor' ? anchorPanel(s) : teachPanel(s)}
-            {s.group && (
-              <label className={`taught-row ${taught.includes(s.group) ? 'on' : ''}`} data-testid={`taught-${s.group}`}>
-                <input type="checkbox" checked={taught.includes(s.group)} onChange={() => toggleTaught(s.group)} />
-                <span><Bi hi="इस समूह को पढ़ा दिया" en="Done teaching this group" inline /></span>
-              </label>
-            )}
-            <div className="slot-nav">
-              {k > 0 && (
-                <button type="button" className="btn btn-secondary btn-small" data-testid="slot-prev" onClick={() => goSlot(k - 1)}><span>← <Bi hi="पिछला" en="Previous" inline /></span></button>
-              )}
-              <span style={{ flex: 1 }} />
-              {k < slots.length - 1 ? (
-                <button type="button" className="btn btn-secondary btn-small" data-testid="slot-next" onClick={() => goSlot(k + 1)}>
-                  <span><Bi hi="अगला" en="Next" inline />: {slotLabel(slots[k + 1])} →</span>
-                </button>
-              ) : null}
-            </div>
-          </div>
-        ))}
-      </>) : (
-        <div className="card" style={{ textAlign: 'center', color: 'var(--text-secondary)' }}>
-          <p><Bi hi="सत्र की योजना यहाँ दिखेगी।" en="The session will appear here once the plan is made." /></p>
-        </div>
-      )}
-
       {/* today's review, readable before class: how each group is checked, what to look for, the text to read aloud */}
-      <details className="card fold section-fold" data-testid="review-today" style={{ marginTop: 16 }}>
-        <summary><span>☑️ <Bi hi="आज की समीक्षा: कैसे जाँचें" en="Today's review: how to check" inline /></span></summary>
+      <details className="card fold section-fold" data-testid="review-today" style={{ marginTop: 0 }}>
+        <summary><span>☑️ <Bi hi="आज कैसे जाँचें" en="How to check today" inline /></span></summary>
         {ways && ways.has_plan && (ways.levels || []).length > 0 ? (ways.levels || []).map((l) => {
           const way = channelOf(l.channel);
           return (
@@ -477,6 +430,73 @@ export default function YojanaScreen() {
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 6px' }}><Bi hi="हर तरीके के कदम समीक्षा स्क्रीन पर “कैसे करें?” में हैं।" en="The steps for each way are under “How to do it” on the Review." inline /></p>
       </details>
 
+
+      {/* Today's session: one tab per slot (the anchor, then each group's teaching), the strip above showing the whole session at a glance */}
+      <h2 className="day-section" data-testid="section-during">👩‍🏫 <Bi hi="पढ़ाते समय" en="While teaching" inline /></h2>
+      {slots.length > 0 ? (<>
+        <div className="session-strip" aria-hidden="true">
+          {stripParts(blocks).map((p, k) => (
+            <span key={k} className={`strip-part ${p.type === 'anchor' ? 'strip-anchor' : (p.type === 'teach' || p.type === 'reteach') ? `tier-${p.group}` : 'strip-gap'}`} style={{ flexGrow: p.share }} />
+          ))}
+        </div>
+        <div className="slot-tabs" role="tablist" aria-label="सत्र / Session" data-testid="slot-tabs">
+          {slots.map((s, k) => (
+            <button key={s.key} type="button" role="tab" id={`slot-tab-${k}`} aria-selected={active === s} aria-controls={`slot-panel-${k}`}
+              className={`slot-tab ${s.group ? `tier-${s.group}` : 'slot-anchor'} ${active === s ? 'on' : ''}`} data-testid={`slot-tab-${s.kind === 'anchor' ? 'anchor' : s.group}`}
+              onClick={() => setSlotIndex(k)}>
+              <span className="slot-tab-name">{slotLabel(s)}</span>
+              <span className="slot-tab-time">{s.group && taught.includes(s.group) ? '✓ ' : ''}{s.minutes ? `${s.minutes}′` : ''}</span>
+            </button>
+          ))}
+        </div>
+        {/* every slot's panel is in the page (find-in-page, the offline copy, the tests); only the chosen one shows */}
+        {slots.map((s, k) => (
+          <div key={s.key} className={`slot-panel ${s.group ? `tier-${s.group}` : 'slot-anchor'}${s.reteach ? ' reteach' : ''}`} role="tabpanel" id={`slot-panel-${k}`} aria-labelledby={`slot-tab-${k}`}
+            hidden={active !== s} data-testid={active === s ? 'slot-panel' : 'slot-panel-hidden'} data-slot={s.kind} data-slot-group={s.group || 'anchor'}>
+            {s.kind === 'anchor' ? anchorPanel(s) : teachPanel(s)}
+            {s.group && (
+              <label className={`taught-row ${taught.includes(s.group) ? 'on' : ''}`} data-testid={`taught-${s.group}`}>
+                <input type="checkbox" checked={taught.includes(s.group)} onChange={() => toggleTaught(s.group)} />
+                <span><Bi hi="इस समूह को पढ़ा दिया" en="Group taught" inline /></span>
+              </label>
+            )}
+            <div className="slot-nav">
+              {k > 0 && (
+                <button type="button" className="btn btn-secondary btn-small" data-testid="slot-prev" onClick={() => goSlot(k - 1)}><span>← <Bi hi="पिछला" en="Previous" inline /></span></button>
+              )}
+              <span style={{ flex: 1 }} />
+              {k < slots.length - 1 ? (
+                <button type="button" className="btn btn-secondary btn-small" data-testid="slot-next" onClick={() => goSlot(k + 1)}>
+                  <span><Bi hi="अगला" en="Next" inline />: {slotLabel(slots[k + 1])} →</span>
+                </button>
+              ) : null}
+            </div>
+          </div>
+        ))}
+      </>) : (
+        <div className="card" style={{ textAlign: 'center', color: 'var(--text-secondary)' }}>
+          <p><Bi hi="सत्र की योजना यहाँ दिखेगी।" en="The session will appear here once the plan is made." /></p>
+        </div>
+      )}
+
+      <h2 className="day-section" data-testid="section-after">✅ <Bi hi="पढ़ाने के बाद" en="After teaching" inline /></h2>
+      {/* the next step after teaching comes first in this section; "Why this plan?" is for whoever is curious */}
+      {/* the next step after teaching: it opens once every group is marked taught, and says which are left (the Review tab is always there too) */}
+      {(() => {
+        const toTeach = GROUP_ORDER.filter((g) => slots.some((x) => x.group === g));
+        const left = toTeach.filter((g) => !taught.includes(g));
+        return (<>
+          <button type="button" className="btn btn-primary" data-testid="to-review" disabled={left.length > 0} onClick={() => navigate('/review')} style={{ marginTop: 4, marginBottom: left.length ? 4 : 12, flexDirection: 'column', gap: 0 }}>
+            <Bi hi="पढ़ाने के बाद: काम देखें और कल तय करें →" en="Review today's work →" />
+          </button>
+          {left.length > 0 && (
+            <p data-testid="to-review-left" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 0 12px' }}>
+              <Bi hi="हर समूह के बाद 'इस समूह को पढ़ा दिया' पर ✓ लगाएँ। बाकी:" en="Tick 'Group taught' after each group. Left:" inline />{' '}
+              {left.map((g, i) => <span key={g}>{i ? ', ' : ''}<GroupMark group={g} name /></span>)}
+            </p>
+          )}
+        </>);
+      })()}
       {/* Why this plan? */}
       <details className="card fold section-fold" data-testid="why-fold" open={showWhyPanel} onToggle={(e) => setShowWhyPanel(e.currentTarget.open)}>
         <summary data-testid="why-toggle"><span>💡 <Bi hi="यह योजना क्यों?" en="Why this plan?" inline /></span></summary>
@@ -499,23 +519,7 @@ export default function YojanaScreen() {
           </div>
         )}
       </details>
-
-      {/* the next step after teaching: it opens once every group is marked taught, and says which are left (the Review tab is always there too) */}
-      {(() => {
-        const toTeach = GROUP_ORDER.filter((g) => slots.some((x) => x.group === g));
-        const left = toTeach.filter((g) => !taught.includes(g));
-        return (<>
-          <button type="button" className="btn btn-primary" data-testid="to-review" disabled={left.length > 0} onClick={() => navigate('/review')} style={{ marginTop: 12, marginBottom: left.length ? 4 : 80, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="पढ़ाने के बाद: समीक्षा करें →" en="After teaching: review" />
-          </button>
-          {left.length > 0 && (
-            <p data-testid="to-review-left" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 0 80px' }}>
-              <Bi hi="हर समूह के बाद 'इस समूह को पढ़ा दिया' पर ✓ लगाएँ। बाकी:" en="Tick 'Done teaching this group' after each group. Left:" inline />{' '}
-              {left.map((g, i) => <span key={g}>{i ? ', ' : ''}<GroupMark group={g} name /></span>)}
-            </p>
-          )}
-        </>);
-      })()}
+      <div style={{ height: 80 }} aria-hidden="true" />
     </div>
   );
 }

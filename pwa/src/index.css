@@ -604,3 +604,17 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
 .taught-row.on { border-style: solid; border-color: var(--green-dark); background: var(--green-bg); font-weight: 600; }
 .taught-row input { width: 20px; height: 20px; }
 .in-class-bar { background: var(--tier-bg); border-left: 5px solid var(--tier); border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; font-size: 0.875rem; font-weight: 600; }
+
+/* "आज का प्रदर्शन दर्ज करें": one card per group (ReviewScreen GroupCards, 14 Nov) */
+.group-card { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; align-items: center; text-align: left; font-family: inherit; font-size: 0.8125rem; cursor: pointer;
+  background: var(--tier-bg); border: 1px solid var(--border); border-left: 6px solid var(--tier); border-radius: 10px; padding: 8px 10px; min-height: 52px; color: var(--text); }
+.group-card.on { border-color: var(--tier); box-shadow: 0 0 0 2px var(--tier); }
+.group-card-name { font-weight: 600; }
+.group-card-skill { font-family: monospace; font-size: 0.7rem; color: var(--text-secondary); font-weight: 400; }
+.group-card-way { grid-column: 1; font-size: 0.75rem; color: var(--text-secondary); }
+.group-card-count { grid-column: 2; grid-row: 1 / span 2; font-weight: 700; font-size: 0.75rem; white-space: nowrap; }
+.group-card[data-done="true"] .group-card-count { color: var(--green-dark); }
+
+/* Today's plan in the teacher's day (14 Nov) */
+.day-section { font-size: 1rem; margin: 18px 0 8px; padding-top: 10px; border-top: 2px solid var(--border); color: var(--green-dark); }
+.slot-pace { font-size: 0.7rem; color: var(--text-secondary); background: var(--bg); border-radius: 6px; padding: 3px 8px; margin: 0 0 6px; }

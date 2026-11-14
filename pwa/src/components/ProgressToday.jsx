@@ -6,8 +6,8 @@ import { isFluencySkill, paceLabel } from '../services/pace';
 
 // The decision words are the ones the teacher taps at the Review (services/groupSkills.js DECISION_LABELS), so a decision reads the same on both screens.
 export const DECISION_TEXT = {
-  advance: { hi: '⬆ आगे बढ़ें', en: 'Advance' },
-  reteach: { hi: '🔄 दोहराएँ', en: 'Re-teach' },
+  advance: { hi: '⬆ आगे बढ़ें', en: 'Move on' },
+  reteach: { hi: '🔄 दोहराएँ', en: 'Teach again' },
   not_sure: { hi: '❓ पक्का नहीं', en: 'Not sure' },
 };
 // a result recorded for one child: a code, like a skill id (the same neutral badge as the Review)

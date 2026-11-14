@@ -30,13 +30,54 @@ const OBS_CODE = { achieved: 'A', partially_achieved: 'PA', not_achieved: 'NA' }
 
 const En = ({ children }) => <span className="en en-inline" lang="en">{children}</span>;
 
-// Each step's heading says where the teacher is: "1/3 · आज हर समूह कैसा रहा?", "2/3 · बच्चों का काम देखें", "3/3 · अंतिम निर्णय". One set of words: the heading is the step
-// (there is no separate step marker). The ways between steps are buttons where her thumb is.
+// Two steps since 14 Nov (Vaishnavi: "capture evidence -> make one final decision"; the first-judgment step is gone): "1/2 · आज का प्रदर्शन दर्ज करें",
+// "2/2 · अंतिम निर्णय: कल क्या पढ़ाएँ?". Inside, the steps keep their old numbers (2 and 3: data-step, the history marks, the saved place); the heading shows 1/2 and 2/2.
 export function StepTitle({ n, hi, en, icon }) {
   return (
     <h2 data-testid="review-title" data-step={n} style={{ marginBottom: 4 }}>
-      <span className="step-count">{n}/3</span> {icon ? `${icon} ` : ''}<Bi hi={hi} en={en} inline />
+      <span className="step-count">{n === 3 ? 2 : 1}/2</span> {icon ? `${icon} ` : ''}<Bi hi={hi} en={en} inline />
     </h2>
+  );
+}
+
+// "आज का प्रदर्शन दर्ज करें": one card per group, its way of checking and how many children are recorded today; a tap opens that group's recording below.
+// The way follows from the group (today's plan), so there are no way tabs to choose from. Counts come from the same coverage the recording uses.
+function GroupCards({ groups, channelsInfo, teacher, today, domain, tick, selected, onPick }) {
+  const levels = (channelsInfo && channelsInfo.has_plan && channelsInfo.levels) || [];
+  const [counts, setCounts] = useState({});
+  useEffect(() => {
+    let cancelled = false;
+    levels.forEach((l) => {
+      getReviewCoverage(teacher.teacher_id, today, domain, l.level, { channel: l.channel }).then((c) => {
+        if (!cancelled && c) setCounts((prev) => ({ ...prev, [l.level]: c }));
+      }).catch(() => {});
+    });
+    return () => { cancelled = true; };
+  }, [channelsInfo, tick]);
+  const WAY = { observed: { hi: 'देखकर जाँच', en: 'Observation' }, photo: { hi: 'वर्कशीट जाँच', en: 'Worksheet check' }, orf: { hi: 'पठन जाँच', en: 'Reading check' } };
+  const shown = groups.filter((g) => g.count > 0 && levels.some((l) => l.level === g.label));
+  if (!shown.length) return null;
+  return (
+    <div data-testid="group-cards" style={{ display: 'grid', gap: 6, marginBottom: 12 }}>
+      {shown.map((g) => {
+        const l = levels.find((x) => x.level === g.label);
+        const way = channelOf(l.channel);
+        const c = counts[g.label];
+        const done = c ? (c.analysed_rolls || []).length : null;
+        const target = c ? (c.sample && c.sample.mode === 'sample' ? c.sample.size : (c.group_rolls || []).length) : null;
+        const complete = c && target > 0 && done >= target;
+        return (
+          <button key={g.label} type="button" className={`group-card tier-${g.label} ${selected === g.label ? 'on' : ''}`} data-testid={`group-card-${g.label}`} data-done={complete ? 'true' : 'false'}
+            onClick={() => onPick(g.label, l.channel)}>
+            <span className="group-card-name"><GroupMark group={g.label} name /> <span className="group-card-skill">{l.competency_id}</span></span>
+            <span className="group-card-way">{way ? way.icon : ''} <Bi hi={WAY[l.channel]?.hi || ''} en={WAY[l.channel]?.en || ''} inline /></span>
+            <span className="group-card-count" data-testid={`group-card-count-${g.label}`}>
+              {c == null ? '…' : complete ? <>✓ <Bi hi="पूरा" en="done" inline /> ({done}/{target})</> : <>{done}/{target} <Bi hi="दर्ज" en="recorded" inline /></>}
+            </span>
+          </button>
+        );
+      })}
+    </div>
   );
 }
 
@@ -52,7 +93,7 @@ export default function ReviewScreen() {
   // (observing and reading aloud are the teacher's own evidence: nothing to anchor her). Step 1 is still there after class.
   const location = useLocation();
   const [fromPlan] = useState(() => { const st = location && location.state; return st && st.from === 'plan' && st.channel ? st : null; });
-  const [step, setStep] = useState(() => (fromPlan ? 2 : (restored && restored.step) || 1));
+  const [step, setStep] = useState(() => (fromPlan ? 2 : restored && restored.step === 3 ? 3 : 2));      // no step 1 any more: a place saved at step 1 opens at step 2
   const [analysisOpen, setAnalysisOpen] = useState(false);       // step 2: a photo analysis on screen instead of the ways of checking
   const [planInfo, setPlanInfo] = useState(null);                 // the server's plan reply: first judgments, final decisions, today's evidence per group
   const [finals, setFinals] = useState({});                       // step 3: the final decision chosen per group
@@ -118,9 +159,8 @@ export default function ReviewScreen() {
       setFinals((prev) => ({ ...fin, ...prev }));
       if (all(fin)) setFinalDone(true);
       if (touched.current || fromPlan) { setDecisions((prev) => ({ ...first, ...prev })); return; }        // opened from the plan: stay where the teacher asked to be
-      if (!restored && all(fin)) { setDecisions(first); goStep(3); }
-      else if (!restored && all(first)) { setDecisions(first); goStep(2); }
-      else setDecisions((prev) => ({ ...first, ...prev }));
+      setDecisions((prev) => ({ ...first, ...prev }));
+      if (!restored && all(fin)) goStep(3);          // every group decided: the review opens at the decision
     }).catch((e) => { if (!cancelled) setPlanStatus(isToday(currentPlan) ? 'ready' : (e && e.status === 404 ? 'none' : 'error')); });
     return () => { cancelled = true; };
   }, [teacher.teacher_id, selectedDomain]);
@@ -131,6 +171,7 @@ export default function ReviewScreen() {
   const undecided = groups.filter((g) => g.count > 0 && !decisions[g.label]);
   const [savedAnalyses, setSavedAnalyses] = useState([]);
   const [coverage, setCoverage] = useState(null);       // who in this group is done today, and who is left
+  const [coverageTick, setCoverageTick] = useState(0);  // a save happened: the group cards fetch their counts again
   const [dupNotice, setDupNotice] = useState('');       // the same photo picked twice
   const [sampleMode, setSampleMode] = useState('sample');   // a large group: photograph the suggested sample, or everyone
   const [absent, setAbsent] = useState([]);                 // sampled children who are away today
@@ -147,6 +188,8 @@ export default function ReviewScreen() {
     getReviewChannels(teacher.teacher_id, today, selectedDomain).then(setChannelsInfo).catch(() => setChannelsInfo(null));
   }, [teacher?.teacher_id, selectedDomain, today]);
   const ALL_CHANNELS = ['observed', 'photo', 'orf'];
+  // the teacher chooses the way and the group herself: when she asked for the other ways, or when today's ways are not known (no group cards then)
+  const chooseByHand = showAllChannels || !(channelsInfo && channelsInfo.has_plan);
   const relevantChannels = channelsInfo && channelsInfo.has_plan && Object.keys(channelsInfo.channels).length ? Object.keys(channelsInfo.channels) : ALL_CHANNELS;
   const visibleChannels = showAllChannels ? ALL_CHANNELS : relevantChannels;
   const levelsFor = (ch) => (channelsInfo && channelsInfo.has_plan && channelsInfo.channels[ch]) || ['beginner', 'progressor', 'proficient'];
@@ -154,8 +197,11 @@ export default function ReviewScreen() {
   const levelInfo = (ch) => (channelsInfo?.levels || []).find(l => l.channel === ch && l.level === sheetLevel);
   const observedLevel = levelInfo('observed');
   const orfLevel = levelInfo('orf');
-  useEffect(() => {      // a single relevant channel needs no choosing
-    if (step === 2 && !channel && !showAllChannels && relevantChannels.length === 1) setChannel(relevantChannels[0]);
+  useEffect(() => {      // nothing chosen yet: the first group of today's plan, with its own way (the group cards choose after that)
+    if (step !== 2 || channel || showAllChannels) return;
+    const first = (channelsInfo && channelsInfo.has_plan && channelsInfo.levels || [])[0];
+    if (first) { setChannel(first.channel); setSheetLevel(first.level); }
+    else if (relevantChannels.length === 1) setChannel(relevantChannels[0]);
   }, [step, channelsInfo]);
   useEffect(() => {      // keep the selected group one that uses this channel
     if (!channel) return;
@@ -163,6 +209,7 @@ export default function ReviewScreen() {
     if (!allowed.includes(sheetLevel)) setSheetLevel(allowed[0]);
   }, [channel, channelsInfo]);
   const refreshCoverage = () => {
+    setCoverageTick((t) => t + 1);          // the group cards count again
     if (!teacher?.teacher_id || !selectedDomain) return;
     getReviewCoverage(teacher.teacher_id, today, selectedDomain, sheetLevel, { absent, channel: activeChannel }).then(setCoverage).catch(() => setCoverage(null));
   };
@@ -176,8 +223,8 @@ export default function ReviewScreen() {
     try {
       const reply = await getCachedPlan(teacher.teacher_id, today, selectedDomain);
       setPlanInfo(reply);
-      setFinals((prev) => { const out = { ...prev }; groups.forEach((g) => { if (!out[g.label]) out[g.label] = (reply.final_decisions || {})[g.label] || decisions[g.label] || null; }); return out; });
-    } catch { setFinals((prev) => { const out = { ...prev }; groups.forEach((g) => { if (!out[g.label]) out[g.label] = decisions[g.label] || null; }); return out; }); }
+      setFinals((prev) => { const out = { ...prev }; groups.forEach((g) => { if (!out[g.label]) out[g.label] = (reply.final_decisions || {})[g.label] || null; }); return out; });
+    } catch { /* keep the choices on screen */ }
   };
 
   // to Progress from a save's pointer: Progress shows "← समीक्षा पर लौटें", and the review is where it was (reviewPlace)
@@ -236,7 +283,7 @@ export default function ReviewScreen() {
       fd.append('domain_id', selectedDomain);
       fd.append('competency_id', plan.selected_competency_id);
       fd.append('worksheet_level', sheetLevel);
-      fd.append('teacher_pre_judgment', decisions[sheetLevel] || '');
+      fd.append('teacher_pre_judgment', '');                 // no first judgment since 14 Nov
       fd.append('on_duplicate', 'skip');                       // a child already analysed today keeps the earlier result
       if (opts.replaceRolls && opts.replaceRolls.length) fd.append('replace_rolls', opts.replaceRolls.join(','));
       photos.forEach(p => fd.append('photos', p));
@@ -294,7 +341,7 @@ export default function ReviewScreen() {
         {fromPlan ? (
           <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-plan" onClick={backToPlan}>← <Bi hi="योजना" en="Plan" inline /></button>
         ) : null}
-        <h1>{fromPlan ? <>{channelOf(fromPlan.channel)?.icon} <Bi hi="कक्षा में दर्ज करें" en="Record in class" inline /></> : <>☑️ <Bi hi="समीक्षा" en="Review" inline /></>}</h1>
+        <h1>{fromPlan ? <>{channelOf(fromPlan.channel)?.icon} <Bi hi="कक्षा में दर्ज करें" en="In-class record" inline /></> : <>☑️ <Bi hi="समीक्षा" en="Review" inline /></>}</h1>
         {!fromPlan && (
           <button type="button" className="btn btn-secondary btn-small" data-testid="review-to-plan" onClick={() => navigate('/yojana')}>📋 <Bi hi="आज की योजना" en="Today's plan" inline /></button>
         )}
@@ -339,70 +386,20 @@ export default function ReviewScreen() {
       )}
 
 
-      {/* STEP 1: Decisions */}
-      {step === 1 && (
-        <>
-          <StepTitle n={1} hi="आज हर समूह कैसा रहा?" en="How did each group do today?" />
-          <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 16 }} data-testid="first-intro">
-            <span className="hi">बच्चों का काम देखने से पहले, आपका <b data-testid="first-term">पहला अनुमान</b>। अंतिम निर्णय तीसरे चरण में, आज की जाँच देखकर।</span>
-            <span className="en" lang="en">Your <b>first judgment</b>, before looking at the children's work. The final decision comes in step 3, with today's evidence.</span>
-          </p>
-          {/* what each choice does to the next plan, one tap away */}
-          <Hint testid="hint-decisions">
-            <Bi hi="⬆ आगे बढ़ें: अगली योजना में अगला कौशल। 🔄 दोहराएँ या ❓ पक्का नहीं: अगली योजना में वही कौशल, दोबारा समझाकर। यह पहला अनुमान है; अंतिम निर्णय तीसरे चरण में, आज की जाँच देखकर।"
-              en="Advance: the next plan moves to the next skill. Re-teach or Not sure: the next plan keeps the same skill and teaches it again. This is a first judgment; the final decision comes in step 3, with today's evidence." />
-          </Hint>
-
-          {groups.map(g => (
-            <div key={g.label} className={`card tier-card tier-${g.label}`}>
-              <div className="card-header">
-                <div>
-                  <span className={`badge badge-${g.label}`}><Bi hi={GROUP_LABELS[g.label]?.hi} en={GROUP_LABELS[g.label]?.en} inline /></span>
-                </div>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{g.count} <Bi hi="बच्चे" en="children" inline /></span>
-              </div>
-              <SkillLine level={g.label} skillId={g.target_competency_id} name={g.target_competency_name_hi} withGroup={false} testid={`skill-1-${g.label}`} />
-              <div className="decision-row">
-                <button className={`decision-btn advance ${decisions[g.label] === 'advance' ? 'selected' : ''}`}
-                  onClick={() => handleDecision(g.label, 'advance')}>
-                  <Bi hi="⬆ आगे बढ़ें" en="Advance" />
-                </button>
-                <button className={`decision-btn reteach ${decisions[g.label] === 'reteach' ? 'selected' : ''}`}
-                  onClick={() => handleDecision(g.label, 'reteach')}>
-                  <Bi hi="🔄 दोहराएँ" en="Re-teach" />
-                </button>
-                <button className={`decision-btn ${decisions[g.label] === 'not_sure' ? 'selected' : ''}`}
-                  onClick={() => handleDecision(g.label, 'not_sure')}>
-                  <Bi hi="❓ पक्का नहीं" en="Not sure" />
-                </button>
-              </div>
-            </div>
-          ))}
-
-          {undecided.length > 0 && (
-            <p data-testid="decisions-left" style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: '8px 0 0' }}>
-              <Bi hi={`हर समूह के लिए एक विकल्प चुनें (बाकी: ${undecided.map((g) => `${GROUP_LABELS[g.label]?.mark || ''} ${GROUP_LABELS[g.label]?.hi || g.label}`.trim()).join(', ')})`}
-                en={`Choose an option for each group (left: ${undecided.map((g) => GROUP_LABELS[g.label]?.en || g.label).join(', ')})`} />
-            </p>
-          )}
-          <button className="btn btn-primary" data-testid="record-decisions" onClick={submitDecisions} disabled={loading || undecided.length > 0} style={{ marginTop: 8, flexDirection: 'column', gap: 0 }}>
-            {loading ? <Bi hi="दर्ज हो रहा..." en="Recording" /> : <Bi hi="दर्ज करें → बच्चों का काम देखें" en="Record → Look at the children's work" />}
-          </button>
-        </>
-      )}
-
       {/* STEP 2: Evidence capture */}
       {step === 2 && !analysisOpen && (
         <>
           {!fromPlan && (<>
-          <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-decisions" onClick={() => goView('1')} style={{ marginBottom: 8 }}>
-            ← <span className="step-count">1/3</span>: <Bi hi="पहला अनुमान बदलें" en="Change the first judgment" inline />
-          </button>
-          <StepTitle n={2} hi="बच्चों का काम देखें" en="Look at the children's work" />
-          <div style={{ marginBottom: 8 }} />
+          <StepTitle n={2} hi="आज का प्रदर्शन दर्ज करें" en="Record today's performance" />
+          <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: '0 0 10px' }} data-testid="performance-intro">
+            <Bi hi="हर समूह के लिए: कक्षा में दर्ज हो चुका है तो देख लें; कागज़ पर लिखा है तो यहाँ दर्ज करें; वर्कशीट की फ़ोटो लें। किसी भी क्रम में, आज के दिन कभी भी।"
+              en="For each group: check what was recorded in class, enter what you noted on paper, or photograph the worksheets. In any order, any time today." />
+          </p>
+          <GroupCards groups={groups} channelsInfo={channelsInfo} teacher={teacher} today={today} domain={selectedDomain} tick={coverageTick}
+            selected={sheetLevel} onPick={(level, way) => { setChannel(way); setSheetLevel(level); setShowAllChannels(false); }} />
           </>)}
 
-          {!fromPlan && <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+          {!fromPlan && chooseByHand && <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
             {CHANNELS.filter(ch => visibleChannels.includes(ch.id)).map(ch => (
               <button key={ch.id} className={`domain-tab ${channel === ch.id ? 'active' : ''}`} data-testid={`channel-${ch.id}`}
                 onClick={() => setChannel(ch.id)}>
@@ -468,7 +465,7 @@ export default function ReviewScreen() {
             const mode = (on) => ({ flex: 1, minHeight: 40, padding: '5px 4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.75rem', fontWeight: 600, background: on ? 'var(--green-dark)' : 'var(--surface)', color: on ? 'white' : 'var(--text)' });
             return (
               <div className="card" data-testid="observed-list">
-                {!fromPlan && levelsFor('observed').length > 1 && (
+                {!fromPlan && chooseByHand && levelsFor('observed').length > 1 && (
                   <div style={{ display: 'flex', gap: 6, margin: '6px 0' }}>
                     {levelsFor('observed').map(l => <button key={l} type="button" className={`tier-option tier-${l} ${sheetLevel === l ? 'selected' : ''}`} onClick={() => setSheetLevel(l)}>{GROUP_LABELS[l].mark} {LEVEL_HI[l]}</button>)}
                   </div>
@@ -486,7 +483,7 @@ export default function ReviewScreen() {
                 <SaveError message={observedError} testid="observed-error" />
                 {rolls.map(r => (
                   <div key={r} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '6px 0', borderBottom: '1px solid var(--border)' }}>
-                    <b style={{ width: 78, fontSize: '0.8125rem' }}>रोल {r}{names && names[r] && <div style={{ fontSize: '0.7rem', fontWeight: 500 }} data-testid={`name-${r}`}>{names[r]}</div>}{coverage?.labels?.[r] && <div style={{ fontSize: '0.55rem', fontWeight: 400, color: 'var(--text-secondary)' }}>{coverage.labels[r]}</div>}</b>
+                    <b style={{ width: 78, fontSize: '0.8125rem' }}><Bi hi="रोल" en="Roll" inline /> {r}{names && names[r] && <div style={{ fontSize: '0.7rem', fontWeight: 500 }} data-testid={`name-${r}`}>{names[r]}</div>}{coverage?.labels?.[r] && <div style={{ fontSize: '0.55rem', fontWeight: 400, color: 'var(--text-secondary)' }}>{coverage.labels[r]}</div>}</b>
                     {[['achieved', 'A', 'var(--green-dark)'], ['partially_achieved', 'PA', 'var(--info)'], ['not_achieved', 'NA', 'var(--text)']].map(([st, code, color]) => (
                       <button key={st} type="button" data-testid={`obs-${r}-${st}`} aria-pressed={shown(r) === st} data-state={statusOf(r) === st ? (isChange(r) ? 'changing' : 'new') : (!statusOf(r) && recordedOf(r) === st ? 'recorded' : 'off')}
                         style={btn(shown(r) === st, color, isChange(r) && statusOf(r) === st)} onClick={() => tap(r, st)}>{code}</button>
@@ -495,7 +492,7 @@ export default function ReviewScreen() {
                       ? <span data-testid={`obs-change-${r}`} style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--info)' }}>{OBS_CODE[recordedOf(r)]} → {OBS_CODE[statusOf(r)]}</span>
                       : recordedOf(r) && <span data-testid={`obs-recorded-${r}`} style={{ fontSize: '0.7rem', color: 'var(--green-dark)' }}>✓ <Bi hi="दर्ज" en="recorded" inline /></span>}
                     {useSample && !saved.has(r) && <button type="button" data-testid={`obs-absent-${r}`} style={{ marginLeft: 'auto', minHeight: 44, padding: '0 6px', background: 'none', border: 'none', fontSize: '0.75rem', color: 'var(--text-secondary)', textDecoration: 'underline', fontFamily: 'inherit' }}
-                      onClick={() => setAbsent(prev => [...prev, r])}>अनुपस्थित</button>}
+                      onClick={() => setAbsent(prev => [...prev, r])}><Bi hi="अनुपस्थित" en="Absent" inline /></button>}
                   </div>
                 ))}
                 {useSample && <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }} data-testid="sample-note-obs"><span className="hi">नमूना मोटी तस्वीर देता है (लगभग ±{sample.margin_points} अंक)।</span><span className="en" lang="en">A sample gives a rough picture of the group (about ±{sample.margin_points} points).</span></p>}
@@ -547,6 +544,8 @@ export default function ReviewScreen() {
             <div className="card">
               <PilotFlag testid="pilot-photo" hi="AI फ़ोटो से बच्चों का काम पढ़ता है; अब तक कुछ ही शीट पर परखा गया है। नतीजे देखकर आप ही तय करें।"
                 en="The AI reads the children's work from the photo; tested on only a few sheets so far. Look at the results; you decide." />
+              {/* the group comes from the group card above (or from the plan, in class): this choice only with the other ways shown */}
+              {!fromPlan && chooseByHand && (<>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0' }}><Bi hi="किस समूह की वर्कशीट?" en="Which group's sheet?" inline /></div>
               <div style={{ display: 'flex', gap: 6, marginBottom: 8 }}>
                 {GROUP_ORDER.filter((id) => levelsFor('photo').includes(id)).map((id) => (
@@ -555,6 +554,7 @@ export default function ReviewScreen() {
                   </button>
                 ))}
               </div>
+              </>)}
               {(() => { const g = groups.find((x) => x.label === sheetLevel) || {}; return <SkillLine level={sheetLevel} skillId={g.target_competency_id} name={g.target_competency_name_hi} testid="skill-2" />; })()}
               {coverage && coverage.group_rolls && coverage.group_rolls.length > 0 && (() => {
                 const sample = coverage.sample;
@@ -633,6 +633,11 @@ export default function ReviewScreen() {
               {orfLevel && (
                 <div style={{ marginBottom: 8, fontSize: '0.75rem' }} data-testid="orf-chips">
                   <SkillLine level={orfLevel.level} skillId={orfLevel.competency_id} name={orfLevel.name_hi} testid="skill-2" />
+                  {coverage && coverage.sample && coverage.sample.rotation && coverage.sample.later > 0 && (
+                    <div data-testid="orf-today" className="note note-info" style={{ margin: '4px 0 6px' }}>
+                      <Bi hi={`आज ${coverage.sample.size} बच्चे · बाकी ${coverage.sample.later} अगले दिनों में`} en={`Today ${coverage.sample.size} children · the other ${coverage.sample.later} on the next days`} inline />
+                    </div>
+                  )}
                   {orfLevel.passage ? (
                     <div data-testid="orf-passage" style={{ fontSize: '0.8125rem', marginBottom: 6 }}>
                       <Bi hi="पढ़ने का पाठ" en="Text to read" inline />: <b>«{orfLevel.passage.title}»</b> ({orfLevel.passage.word_count} <Bi hi="शब्द" en="words" inline />)
@@ -646,7 +651,7 @@ export default function ReviewScreen() {
                       <Bi hi="इस कौशल का पाठ बैंक में नहीं मिला; अपनी कक्षा के स्तर का कोई ऐसा पाठ लें जो बच्चों ने आज नहीं पढ़ा।" en="No text for this skill in the bank; use a text at your class's level that the children have not read today." inline />
                     </div>
                   )}
-                  {!fromPlan && levelsFor('orf').length > 1 && (
+                  {!fromPlan && chooseByHand && levelsFor('orf').length > 1 && (
                     <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
                       {levelsFor('orf').map(l => <button key={l} type="button" className={`tier-option tier-${l} ${sheetLevel === l ? 'selected' : ''}`} onClick={() => setSheetLevel(l)}>{GROUP_LABELS[l].mark} {LEVEL_HI[l]}</button>)}
                     </div>
@@ -696,7 +701,7 @@ export default function ReviewScreen() {
 
           {!channel && (
             <div className="empty-state">
-              <p><Bi hi="ऊपर से साक्ष्य का तरीका चुनें" en="Select evidence channel above" /></p>
+              <p><Bi hi="ऊपर से एक समूह या तरीका चुनें" en="Choose a group or a way above" /></p>
             </div>
           )}
 
@@ -712,7 +717,7 @@ export default function ReviewScreen() {
           )}
           {!fromPlan && (
           <button type="button" className="btn btn-primary" data-testid="to-final" onClick={enterFinal} style={{ marginTop: 12, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="आगे: अंतिम निर्णय →" en="Next: the final decision" />
+            <Bi hi="आगे: अंतिम निर्णय: कल क्या पढ़ाएँ? →" en="Next: plan for tomorrow →" />
           </button>
           )}
         </>
@@ -833,12 +838,18 @@ export default function ReviewScreen() {
             </div>
           )}
 
+          {fromPlan ? (
+            <button type="button" className="btn btn-primary" data-testid="done-in-class" onClick={backToPlan} style={{ marginTop: 16, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
+              <Bi hi="← पढ़ाना जारी रखें (योजना पर लौटें)" en="Back to teaching" />
+            </button>
+          ) : (<>
           <button type="button" className="btn btn-secondary" data-testid="back-to-work" onClick={() => goView('2')} style={{ marginTop: 16, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="← बच्चों का काम: अगला समूह या तरीका" en="Back to the children's work: the next group or way" />
+            <Bi hi="← आज का प्रदर्शन: अगला समूह" en="Back to today's performance: the next group" />
           </button>
           <button type="button" className="btn btn-primary" data-testid="to-final" onClick={enterFinal} style={{ marginTop: 8, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="आगे: अंतिम निर्णय →" en="Next: the final decision" />
+            <Bi hi="आगे: अंतिम निर्णय: कल क्या पढ़ाएँ? →" en="Next: plan for tomorrow →" />
           </button>
+          </>)}
         </>
       )}
 
@@ -863,16 +874,15 @@ export default function ReviewScreen() {
         return (
           <>
             <button type="button" className="btn btn-secondary btn-small" data-testid="final-back" onClick={() => goView('2')} style={{ marginBottom: 8 }}>
-              ← <span className="step-count">2/3</span>: <Bi hi="बच्चों का काम" en="The children's work" inline />
+              ← <span className="step-count">1/2</span>: <Bi hi="आज का प्रदर्शन" en="Today's performance" inline />
             </button>
-            <StepTitle n={3} hi="अंतिम निर्णय" en="Final decision" />
+            <StepTitle n={3} hi="अंतिम निर्णय: कल क्या पढ़ाएँ?" en="Plan for tomorrow" />
             <p style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
-              <Bi hi="आज की जाँच देखकर हर समूह के लिए निर्णय पक्का करें। अगली योजना इन्हीं निर्णयों से सुझाई जाएगी।"
-                en="With today's evidence in front of you, settle each group's decision. The next plan is suggested from these." />
+              <Bi hi="आज का प्रदर्शन देखकर हर समूह के लिए तय करें: कल आगे बढ़ें, दोबारा पढ़ाएँ, या पक्का नहीं। कल की योजना इसी से सुझाई जाएगी।"
+                en="With today's performance in front of you, decide for each group: move on, teach again, or not sure. Tomorrow's plan is suggested from this." />
             </p>
             {needed.map((g) => {
               const ev = (evidence && evidence[g.label]) || {};
-              const first = decisions[g.label];
               const fin = finals[g.label];
               const L = GROUP_LABELS[g.label] || {};
               return (
@@ -881,11 +891,8 @@ export default function ReviewScreen() {
                     <div><span className={`badge badge-${g.label}`}><Bi hi={L.hi} en={L.en} inline /></span></div>
                   </div>
                   <SkillLine level={g.label} skillId={g.target_competency_id} name={g.target_competency_name_hi} withGroup={false} testid={`skill-3-${g.label}`} />
-                  <div style={{ fontSize: '0.8125rem' }} data-testid={`final-first-${g.label}`}>
-                    <Bi hi="पहला अनुमान" en="First judgment" inline />: {first ? <b>{DECISION_TEXT[first].hi}</b> : '—'}
-                  </div>
                   <div style={{ fontSize: '0.8125rem', marginTop: 2 }} data-testid={`final-evidence-${g.label}`}>
-                    <Bi hi="आज की जाँच" en="Today's evidence" inline />:{' '}
+                    <Bi hi="आज का प्रदर्शन" en="Today's performance" inline />:{' '}
                     {!evidence || typeof ev.assessed !== 'number'
                       ? <span data-testid={`final-evidence-unknown-${g.label}`} style={{ color: 'var(--info)' }}><Bi hi="अभी नहीं दिख रही; पेज दोबारा खोलें" en="cannot be shown right now; reopen the page" inline /></span>
                       : ev.assessed > 0
@@ -910,11 +917,6 @@ export default function ReviewScreen() {
                       </button>
                     ))}
                   </div>
-                  {first && fin && fin !== first && (
-                    <div data-testid={`final-changed-${g.label}`} style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--info)', marginTop: 4 }}>
-                      <Bi hi={`पहला अनुमान ${DECISION_TEXT[first].hi} → अंतिम ${DECISION_TEXT[fin].hi}`} en={`First ${DECISION_TEXT[first].en} → final ${DECISION_TEXT[fin].en}`} inline />
-                    </div>
-                  )}
                 </div>
               );
             })}
@@ -927,11 +929,11 @@ export default function ReviewScreen() {
             )}
             {finalDone ? (
               <div className="saved-block" data-testid="final-saved" role="status" style={{ marginTop: 10, borderLeftColor: 'var(--green-dark)', background: 'var(--green-bg)' }}>
-                <div style={{ fontWeight: 600 }}><Bi hi="✓ अंतिम निर्णय दर्ज हुए। अगली योजना इन्हीं से सुझाई जाएगी।" en="Final decisions recorded. The next plan is suggested from them." /></div>
+                <div style={{ fontWeight: 600 }}><Bi hi="✓ अंतिम निर्णय दर्ज हुए। कल की योजना इन्हीं से सुझाई जाएगी।" en="Saved. Tomorrow's plan is suggested from these." /></div>
               </div>
             ) : (
               <button className="btn btn-primary" data-testid="record-final" onClick={saveFinal} disabled={loading || undecidedFinal.length > 0} style={{ marginTop: 8, flexDirection: 'column', gap: 0 }}>
-                {loading ? <Bi hi="दर्ज हो रहा..." en="Recording" /> : <Bi hi="अंतिम निर्णय दर्ज करें" en="Record the final decisions" />}
+                {loading ? <Bi hi="दर्ज हो रहा..." en="Recording" /> : <Bi hi="कल की योजना के लिए अंतिम निर्णय दर्ज करें" en="Save tomorrow's plan" />}
               </button>
             )}
             {/* the review ends here: every change has its own way (first judgment: step 2's "←", another group: "← बच्चों का काम", a final decision: tap and record again) */}

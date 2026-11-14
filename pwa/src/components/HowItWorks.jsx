@@ -12,10 +12,10 @@ export const HOW_STEPS = [
   { icon: '📋', hi: 'आज की योजना', en: "Today's plan", part: { hi: 'AI + जाँच', en: 'AI + checks' },
     text: { hi: 'AI जाँची-परखी सामग्री (गतिविधियाँ, पाठ, आम गलतियाँ) से हर समूह का पाठ, समझ की जाँच और वर्कशीट लिखता है। ऐप हर योजना को नियमों पर जाँचता है।',
             en: "The AI writes each group's lesson, understanding check and worksheet from checked content (activities, passages, common mistakes). The app checks every plan against rules." } },
-  { icon: '☑️', hi: 'समीक्षा', en: 'Review', part: { hi: 'फ़ोटो, अवलोकन, पढ़कर सुनाना', en: 'photo, observation, reading aloud' },
-    text: { hi: 'तीन चरण: हर समूह का आपका पहला अनुमान; बच्चों का काम देखें (वर्कशीट की फ़ोटो जिसे AI पढ़ता है, अवलोकन, या पढ़कर सुनाना, जो कौशल के लिए ठीक हो); और आज की जाँच देखकर अंतिम निर्णय।',
-            en: "Three steps: your first judgment for each group; the children's work (a worksheet photo read by the AI, observation, or reading aloud: whichever fits the skill); and a final decision with today's evidence in front of you." } },
-  { icon: '📊', hi: 'कक्षा प्रगति', en: 'Class progress', part: { hi: 'आज के नतीजे', en: "today's results" },
+  { icon: '☑️', hi: 'समीक्षा', en: 'Review', part: { hi: 'अवलोकन, पढ़कर सुनाना, फ़ोटो', en: 'observation, reading aloud, photo' },
+    text: { hi: 'पढ़ाते समय: हर समूह का काम ऐप में या कागज़ पर दर्ज करें (देखकर, पढ़कर सुनाना, या वर्कशीट की फ़ोटो जिसे AI पढ़ता है)। पढ़ाने के बाद, उसी दिन: हर समूह का प्रदर्शन देखें या दर्ज करें, और अंतिम निर्णय लें कि कल क्या पढ़ाएँ।',
+            en: "While teaching, record each group's work in the app or on paper (by watching, by listening to reading, or with a worksheet photo the AI reads). After teaching, the same day, check each group's performance and decide what to teach tomorrow." } },
+  { icon: '📊', hi: 'कक्षा प्रगति', en: 'Progress', part: { hi: 'आज के नतीजे', en: "today's results" },
     text: { hi: 'आज के नतीजे, आपके निर्णय, और जिन बच्चों पर एक नज़र डालनी है।', en: "Today's results, your decisions, and the children to look at." } },
 ];
 
