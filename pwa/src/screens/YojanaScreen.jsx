@@ -345,11 +345,7 @@ export default function YojanaScreen() {
       </div>
       <div className="plan-subline" data-testid="plan-group-skills">
         {currentPlan.plan_date} · {currentPlan.selected_competency_id}
-        {plan.coverage && plan.coverage.tier && plan.coverage.tier !== 'tested' && (
-          <span title={plan.coverage.note || ''} className="chip-flag">
-            {({ ai_written: <Bi hi="◐ AI-लिखित सामग्री" en="◐ AI-written content" inline />, experimental: <Bi hi="⚠ प्रयोगात्मक" en="⚠ Experimental" inline />, untested: <Bi hi="○ अभी परखा नहीं" en="○ Not yet tested" inline /> })[plan.coverage.tier]}
-          </span>
-        )}
+        {/* no per-skill test label here (14 Nov): like the Make plan list's, it was out of date (99 of 101 'not yet tested', L2.7.2 too after its real runs and review) */}
       </div>
 
       {/* The screen follows the teacher's day (14 Nov, the evaluators' "order of sections"): before class, while teaching, after teaching */}

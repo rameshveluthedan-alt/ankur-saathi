@@ -109,6 +109,11 @@ check('the plan screen marks groups with the coloured shapes (GroupMark), not th
   assert.ok(y.includes('<GroupMark') && !/🟠|🟡|🟢|\.emoji/.test(y));
 });
 
+check('no per-skill test label on the plan screen either (14 Nov: "अभी परखा नहीं" was out of date, L2.7.2 too after its real runs and review)', () => {
+  const y = read('screens/YojanaScreen.jsx');
+  assert.ok(!/plan\.coverage/.test(y) && !y.includes('अभी परखा नहीं') && !y.includes('chip-flag'));
+});
+
 console.log('\nthe dictation sentences: for the teacher only');
 check('a dictation group\'s slot has a "बोलकर लिखवाएँ" fold with the sheet\'s sentences, and the printed plan a line with them', () => {
   const y = read('screens/YojanaScreen.jsx'); const pp = read('screens/PlanPrint.jsx');
