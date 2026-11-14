@@ -344,7 +344,8 @@ def unit_fluency_you_do():
           "मैं ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनता/सुनती हूँ।" in W.prompt_section({"progressor": "L2.5.1"}, "r1_literacy") and "'प्रश्न 1 से 3'" in W.prompt_section({"progressor": "L2.5.1"}, "r1_literacy"))
 
 
-N0 = json.load(open(os.path.join(HERE, "..", "..", "db", "seeds", "sample_plans", "N0.1.1.json"), encoding="utf-8"))
+# the N0.1.1 plan as it was recorded before 14 Nov (old shape: "4 लाल गेंद… लाल कितनी?"): a fixture, since the recorded plan is now the new one
+N0 = json.load(open(os.path.join(HERE, "fixtures", "N0.1.1_recorded_before_141126.json"), encoding="utf-8"))
 OBS = {"beginner": "N0.1.1", "progressor": "N1.4.1", "proficient": "N1.4.2"}
 LOOK = {"achieved_hi": "एक ही नियम से सारी चीज़ें छाँटता है और नियम बताता है", "partial_hi": "मदद से छाँटता है या बीच में नियम बदलता है",
         "not_yet_hi": "नियम से नहीं छाँट पाता", "achieved_en": "sorts all by one rule and says it", "partial_en": "with help, or changes the rule", "not_yet_en": "cannot sort by a rule"}

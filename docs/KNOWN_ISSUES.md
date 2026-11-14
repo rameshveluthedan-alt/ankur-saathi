@@ -18,7 +18,7 @@
 
 ## The observation prompts can describe a task the plan does not contain
 
-**Update, 14 Nov 2026 (lab):** the deeper cause was that observed skills (48 of 101) had written worksheets and no task to watch. Each observed group now gets a hands-on or spoken task the teacher can watch, its materials (a kit TLM, else everyday objects), what A / PA / NA look like for it (shown where she records), and a back-up sheet that can be drawn on the board (`backend/app/services/writing_sheets.py`, kind "observed"). Three real plans (N0.1.1, N1.4.1, L2.3.1): Vaishnavi confirmed all nine group tasks on 14 Nov (`docs/OBSERVED_TASKS_REVIEWED_141126.csv`). The recorded N0.1.1 plan is still the old one until a new one is recorded and read.
+**Update, 14 Nov 2026 (lab):** the deeper cause was that observed skills (48 of 101) had written worksheets and no task to watch. Each observed group now gets a hands-on or spoken task the teacher can watch, its materials (a kit TLM, else everyday objects), what A / PA / NA look like for it (shown where she records), and a back-up sheet that can be drawn on the board (`backend/app/services/writing_sheets.py`, kind "observed"). Three real plans (N0.1.1, N1.4.1, L2.3.1): Vaishnavi confirmed all nine group tasks on 14 Nov (`docs/OBSERVED_TASKS_REVIEWED_141126.csv`). The recorded N0.1.1 plan was replaced on 14 Nov by a new one (the observed sorting task with pebbles, buttons and bottle caps, and a back-up sheet drawn on the board), read and signed by Vaishnavi; the old one is a test fixture (`backend/tests/fixtures/N0.1.1_recorded_before_141126.json`).
 
 **Found:** 29 October 2026, reviewing a lab plan for N0.1.1 (all three groups on N0.1.1).
 
