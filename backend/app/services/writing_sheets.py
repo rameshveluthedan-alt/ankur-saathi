@@ -18,6 +18,9 @@ Now each group's sheet follows ITS OWN skill:
                a few children one minute each: warm-up words to read to a partner, the group's (bank) passage read aloud three times with a tick each
                time, pair reading, at most 3 short questions; for L2.5.2 and L3.5.2 also 3-4 sentences with । ? ! to read with the right pause or
                expression. The passage is KEPT (unlike the writing kinds). Never marked from a photo: the check is the teacher's one-minute reading.
+  observed     every skill checked by WATCHING (assessment_modality 'observed', maths and Hindi; 14 Nov 2026): an "observe" task (a hands-on or spoken
+               task, its materials: a kit TLM, else everyday objects; what A / PA / NA look like) and a back-up worksheet that can be drawn on the board,
+               with structured items (symbol_grid, compare_boxes, compare_bars) whose answers and board drawings the code computes. Practice.
 The photo analysis marks a composition against its checklist and a dictation against the dictated sentences (vision_spec, prompts/vision_analysis.py).
 
 PURE (no database, no network): tested in backend/tests/test_writing_sheets.py.
@@ -36,12 +39,41 @@ WARMUP_MIN, WARMUP_MAX = 6, 8
 FLUENCY_QUESTIONS_MAX = 3
 TASK_ANSWER = "CHECKLIST"          # the writing task's "answer": the photo analysis uses the checklist instead of a key
 
+# OBSERVED skills (assessment_modality 'observed', both subjects; 14 Nov 2026): the teacher WATCHES the children do the skill (sort, compare, measure,
+# read words aloud, tell the main idea) and marks A / PA / NA. Before, the plan gave these groups an ordinary written sheet ("चित्र: 4 लाल गेंद, 3 पीली
+# गेंद। रंग से छाँटें। लाल कितनी?": no picture, the answer in the question), so there was nothing to watch. Now the sheet carries an "observe" task: a
+# hands-on or spoken task with materials (a kit TLM, else everyday objects; most schools cannot print), what A / PA / NA look like for it, and a
+# back-up worksheet that mirrors the action and can be drawn on the board (structured items whose answers the CODE computes). Practice: never a photo.
+# The set is the database's (plan_service.register_observed at each plan); this default is the 14 Nov list, for the tests and a cold start.
+OBSERVED = {
+    "L0.1.1", "L0.1.2", "L0.1.3", "L0.2.1", "L0.2.2", "L0.2.3", "L0.3.1", "L0.3.2", "L1.2.1", "L1.2.2", "L1.3.1", "L1.3.2", "L1.3.3", "L1.3.4",
+    "L1.4.1", "L1.4.2", "L1.6.1", "L1.6.2", "L2.3.1", "L2.3.2", "L2.3.3", "L2.4.1", "L2.4.2", "L2.6.2", "L2.6.3", "L3.3.1", "L3.4.1", "L3.6.3",
+    "N0.1.1", "N0.1.2", "N0.1.3", "N0.2.1", "N0.2.2", "N0.2.3", "N0.5.1", "N1.2.1", "N1.2.2", "N1.4.1", "N1.4.2", "N1.5.1", "N1.5.2", "N2.2.4",
+    "N2.4.1", "N2.4.2", "N2.4.3", "N3.3.3", "N3.4.2", "N3.4.3",
+}
+SYMBOLS = "○△□◇★●■▲"
+SIZES = {"big": "बड़ा", "small": "छोटा"}
+COLOURS = {"red": "लाल", "blue": "नीला", "green": "हरा", "yellow": "पीला", "black": "काला"}
+GRID_MIN, GRID_MAX = 4, 20
+LOOK_FOR = ("achieved_hi", "partial_hi", "not_yet_hi")
+WATCH_SENTENCE = "मैं ऐप में दिखाए गए बच्चों को काम करते हुए देखता/देखती हूँ।"
+
+
+def register_observed(ids) -> None:
+    """The observed skills as the database has them (plan_service calls this before each plan). An empty answer keeps the known list."""
+    ids = {str(i) for i in (ids or []) if i}
+    if ids:
+        OBSERVED.clear()
+        OBSERVED.update(ids)
+
 
 def sheet_kind(competency_id, domain_id="r1_literacy"):
-    """'reading' | 'fluency' | 'formation' | 'usage' | 'dictation' | 'composition' for a literacy skill; None for numeracy."""
-    if domain_id != "r1_literacy" or not competency_id:
+    """'reading' | 'fluency' | 'formation' | 'usage' | 'dictation' | 'composition' | 'observed' for a literacy skill; 'observed' or None for numeracy."""
+    if not competency_id:
         return None
     cid = str(competency_id)
+    if domain_id != "r1_literacy":
+        return "observed" if cid in OBSERVED else None
     if cid in DICTATION:
         return "dictation"
     if cid in COMPOSITION:
@@ -52,6 +84,8 @@ def sheet_kind(competency_id, domain_id="r1_literacy"):
         return "fluency"
     if _WRITING.match(cid):
         return "formation"
+    if cid in OBSERVED:
+        return "observed"
     return "reading"
 
 
@@ -60,18 +94,36 @@ def group_kinds(group_skill_ids, domain_id) -> dict:
     return {lvl: sheet_kind(cid, domain_id) for lvl, cid in (group_skill_ids or {}).items() if cid and sheet_kind(cid, domain_id)}
 
 
+NOT_WRITING = ("reading", "fluency", "observed")
+
+
+_STRAND6 = re.compile(r"^L\d+\.6\.\d+$")
+
+
+def observed_keeps_passage(competency_id) -> bool:
+    """An observed COMPREHENSION skill (strand 6: tell the main idea, answer aloud) works on a passage; an observed decoding or word-reading skill
+    (L2.3.1 conjuncts, L1.4.2 words) does not: a passage brought the bank's comprehension questions onto its sheet (L2.3.1, 14 Nov)."""
+    return bool(_STRAND6.match(str(competency_id or "")))
+
+
 def writing_levels(group_skill_ids, domain_id) -> set:
-    """The groups whose sheet has NO passage (the writing kinds). A fluency group keeps its bank passage: it reads it aloud."""
-    return {lvl for lvl, k in group_kinds(group_skill_ids, domain_id).items() if k not in ("reading", "fluency")}
+    """The groups whose sheet has NO passage: the writing kinds, and an observed literacy skill that is not about comprehension. A fluency group keeps
+    its bank passage (it reads it aloud), and so does an observed comprehension skill."""
+    out = set()
+    for lvl, k in group_kinds(group_skill_ids, domain_id).items():
+        if k not in NOT_WRITING or (k == "observed" and domain_id == "r1_literacy" and not observed_keeps_passage(group_skill_ids.get(lvl))):
+            out.add(lvl)
+    return out
 
 
 def prompt_section(group_skill_ids, domain_id) -> str:
-    """The prompt's rules for the groups on a writing skill (empty when no group is). They OVERRIDE the passage rules for those groups."""
+    """The prompt's rules for the groups on a writing, reading-aloud or observed skill (empty when none is). They OVERRIDE the general worksheet rules for those groups."""
     kinds = group_kinds(group_skill_ids, domain_id)
-    writing = {lvl: k for lvl, k in kinds.items() if k not in ("reading", "fluency")}
+    writing = {lvl: k for lvl, k in kinds.items() if k not in NOT_WRITING}
     fluency = [lvl for lvl in LEVELS if kinds.get(lvl) == "fluency"]
+    observed = [lvl for lvl in LEVELS if kinds.get(lvl) == "observed"]
     if not writing:
-        return _fluency_section(group_skill_ids, fluency)
+        return _fluency_section(group_skill_ids, fluency) + _observed_section(group_skill_ids, observed, domain_id)
     lines = ["\n### WRITING WORKSHEETS (these groups are taught a WRITING skill: their worksheet checks WRITING, not reading)"]
     for lvl in LEVELS:
         if lvl in writing:
@@ -111,7 +163,51 @@ def prompt_section(group_skill_ids, domain_id) -> str:
             "even for a progressor or proficient group.",
         ]
     lines.append("For every writing sheet: never reuse a topic, sentence or example from the lesson or the anchor story.\n")
-    return "\n".join(lines) + _fluency_section(group_skill_ids, fluency)
+    return "\n".join(lines) + _fluency_section(group_skill_ids, fluency) + _observed_section(group_skill_ids, observed, domain_id)
+
+
+def _observed_section(group_skill_ids, observed_levels, domain_id) -> str:
+    """The prompt's rules for groups whose skill is checked by WATCHING (empty when none is): a task the teacher can watch, its materials, what A / PA / NA
+    look like for it, and a back-up worksheet that can be drawn on the board."""
+    if not observed_levels:
+        return ""
+    lines = ["\n### OBSERVED-SKILL TASKS (these groups' skill is checked by WATCHING the children do it, then marking A / PA / NA: the worksheet is only PRACTICE)"]
+    for lvl in observed_levels:
+        lines.append(f"- {lvl} ({group_skill_ids[lvl]}): sheet_kind \"observed\"")
+    lines += [
+        "Most schools cannot print, but many have kits and everyday objects. For each of these groups the worksheet object carries:",
+        "- \"observe\": {\"task_hi\", \"task_en\": ONE hands-on or spoken task the teacher can WATCH, that is the skill itself (sort the objects by one rule and say "
+        "the rule; put two sticks side by side and say which is longer; read these words aloud to a partner; tell the main idea in one sentence),",
+        "  \"kit_materials_hi\": the TLM(s) from the TLM list above that fit this task, by their Hindi name (an empty list when none fits; never invent a kit item),",
+        "  \"local_materials_hi\": 2-4 everyday objects the class can collect instead (पत्तियाँ, कंकड़, बटन, बोतल के ढक्कन, तीलियाँ, बीज, ...; for a reading task: "
+        "word cards the teacher writes on the board or on paper slips),",
+        "  \"look_for\": what the teacher sees for THIS task: {\"achieved_hi\", \"partial_hi\", \"not_yet_hi\", \"achieved_en\", \"partial_en\", \"not_yet_en\"}: A = does it "
+        "without help, PA = with help or partly right, NA = not yet; each one short, concrete and visible (for example 'एक ही नियम से सारी चीज़ें छाँटता है और नियम बताता है')}.",
+        "- The You Do sets up this task with the materials, in this order: the kit TLM if there is one; else the everyday objects. NAME them in the You Do "
+        "itself, as in 'हर जोड़ी को कंकड़, बटन और ढक्कन मिलाकर दें' (never only 'चीज़ें'), so the teacher knows what to hand out; the worksheet only "
+        "as a back-up when there are no objects. It ends with exactly this sentence: '" + WATCH_SENTENCE + "' Never 'हर बच्चे' or 'सभी बच्चों से' (there is no "
+        "time to watch every child in one lesson), and never a child's name or roll number.",
+        "- The back-up worksheet (\"problems\") mirrors the SAME action and can be drawn on the board or copied into a notebook: no pictures are printed. "
+        "No item may state its own answer (never '4 लाल गेंद, 3 पीली गेंद … लाल कितनी?').",
+    ]
+    if domain_id != "r1_literacy":
+        lines += [
+            "  Use these structured items where they fit (the system computes their answers and the board drawing; leave \"answer\" empty):",
+            "  {\"item_type\": \"symbol_grid\", \"grid\": [{\"s\": one of " + " ".join(SYMBOLS) + ", \"size\": \"big\" or \"small\", \"colour\": "
+            "\"red\"/\"blue\"/\"green\"/\"yellow\"/\"black\" or null}, ... 8-16 cells], \"target\": {\"s\": \"△\"} or {\"size\": \"big\"} or {\"colour\": \"red\"} or "
+            "{\"odd_one_out\": true}, \"problem_hi\": 'सभी △ पर गोला लगाएँ।' or 'जो अलग है उसे काटें।'} for sorting; make the distractors share the other attributes "
+            "(big and small △ when the rule is shape), and for odd_one_out exactly one cell differs.",
+            "  {\"item_type\": \"compare_boxes\", \"a\": {\"s\": \"★\", \"count\": 6}, \"b\": {\"s\": \"★\", \"count\": 4}, \"ask\": \"more\" or \"less\", \"problem_hi\": "
+            "'जिस डिब्बे में ज़्यादा हैं, उस पर ✓ लगाएँ।'} for comparing quantities (counts 1-15, never equal);",
+            "  {\"item_type\": \"compare_bars\", \"a\": 7, \"b\": 4, \"ask\": \"longer\" or \"shorter\", \"problem_hi\": 'जो पट्टी लंबी है, उस पर ✓ लगाएँ।'} for comparing "
+            "lengths (1-15 units, never equal). Other observed maths skills: short items that ask the child to DO the step (draw, match, show), not to read off an answer.",
+        ]
+    else:
+        lines.append("  For a reading or speaking skill: words or short sentences to read to a partner, and a spoken task (tell, retell, answer aloud); each item "
+                     "with one checkable answer where there is one.")
+    lines.append("- \"practice\": true. The sheet is never marked from a photo; the teacher marks A / PA / NA by watching (or by looking at a back-up sheet in "
+                 "class or after class).\n")
+    return "\n".join(lines)
 
 
 def _fluency_section(group_skill_ids, fluency_levels) -> str:
@@ -132,8 +228,9 @@ def _fluency_section(group_skill_ids, fluency_levels) -> str:
         lines.append("- For a pauses or expression skill (L2.5.2, L3.5.2): \"expression_sentences\": 3-4 short sentences that end in । ? or ! (a question, an exclamation), "
                      "to read with the right pause or tone.")
     lines += [
-        "- The You Do sends the group to this worksheet and says the teacher listens to the children shown in the app ('ऐप में दिखाए गए बच्चे'), one minute each, "
-        "while the others practise. Never 'हर बच्चे से' or 'सभी बच्चों से' (there is no time to hear every child in one day), and never a child's name or roll number.\n",
+        "- The You Do sends the group to this worksheet and ends with exactly this sentence: 'मैं ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनता/सुनती हूँ।' "
+        "Never 'हर बच्चे से' or 'सभी बच्चों से' (there is no time to hear every child in one day), and never a child's name or roll number.",
+        "- The sheet has at most 3 questions: the You Do names them as 'प्रश्न 1 से 3' (never a higher number) and mentions no extras.\n",
     ]
     return "\n".join(lines)
 
@@ -178,8 +275,13 @@ def apply_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> l
             # leave questions about a passage that is gone. It is left as it is, and check_writing_sheets reports it until the plan is recorded again.
             log.append(f"{lvl}: an old-shape composition sheet (no writing task, no checklist): left as it is")
             continue
+        if kind == "observed":
+            log += _apply_observed(lvl, ws, group_skill_ids.get(lvl), domain_id)
+            continue
         if kind == "fluency":
             log += _apply_fluency(lvl, ws)
+            if _words_of(ws):          # the sheet was trimmed to its questions: the You Do must not send the group to questions that are gone
+                log += _fit_you_do(plan, lvl, len(ws.get("problems") or []))
             continue
         ws["sheet_kind"] = kind
         if ws.get("passage_block"):
@@ -224,6 +326,186 @@ def apply_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> l
     return log
 
 
+def _str_list(v) -> list:
+    return [_strip(x) for x in (v if isinstance(v, list) else []) if isinstance(x, str) and _strip(x)]
+
+
+def _observe_of(ws: dict):
+    """The sheet's observation task, cleaned; None when the sheet has none (a recorded plan from before 14 Nov)."""
+    o = ws.get("observe")
+    if not isinstance(o, dict) or not _strip(o.get("task_hi")):
+        return None
+    lf = o.get("look_for") if isinstance(o.get("look_for"), dict) else {}
+    return {"task_hi": _strip(o.get("task_hi")), "task_en": _strip(o.get("task_en")),
+            "kit_materials_hi": _str_list(o.get("kit_materials_hi")), "local_materials_hi": _str_list(o.get("local_materials_hi")),
+            "look_for": {k: _strip(lf.get(k)) for k in ("achieved_hi", "partial_hi", "not_yet_hi", "achieved_en", "partial_en", "not_yet_en")}}
+
+
+def _cell(c):
+    """One symbol_grid cell, cleaned: {"s", "size", "colour"}; None when it is not a cell the board can draw."""
+    if not isinstance(c, dict):
+        return None
+    s = str(c.get("s") or "").strip()
+    if len(s) != 1 or s not in SYMBOLS:
+        return None
+    size = c.get("size") if c.get("size") in SIZES else "big"
+    colour = c.get("colour") if c.get("colour") in COLOURS else None
+    return {"s": s, "size": size, "colour": colour}
+
+
+def _cell_text(c: dict, show_size: bool, show_colour: bool) -> str:
+    return " ".join(x for x in ((COLOURS[c["colour"]] if show_colour and c["colour"] else ""), (SIZES[c["size"]] if show_size else ""), c["s"]) if x)
+
+
+def _odd_one_out(cells: list):
+    """The 1-based number of the one cell that differs from all the others in shape, size or colour; None when there is not exactly one such cell."""
+    for attr in ("s", "size", "colour"):
+        values = [c[attr] for c in cells]
+        for v in set(values):
+            if values.count(v) == 1 and len(set(values)) == 2 and len(values) >= 3:
+                return values.index(v) + 1
+    return None
+
+
+def structure_item(p: dict):
+    """A structured back-up item (symbol_grid, compare_boxes, compare_bars) with its answer and its board drawing COMPUTED here, never the model's.
+    Returns the item, or None when it is malformed (it is then dropped). An ordinary item is returned unchanged."""
+    t = p.get("item_type")
+    if t not in ("symbol_grid", "compare_boxes", "compare_bars"):
+        return p
+    q = dict(p)
+    q.update({"row_type": None, "answer_type": "box", "show_letter_grid": False})
+    if t == "symbol_grid":
+        cells = [_cell(c) for c in p.get("grid") or []]
+        if not (GRID_MIN <= len(cells) <= GRID_MAX) or any(c is None for c in cells):
+            return None
+        target = p.get("target") if isinstance(p.get("target"), dict) else {}
+        show_size = len({c["size"] for c in cells}) > 1
+        show_colour = any(c["colour"] for c in cells)
+        if target.get("odd_one_out"):
+            k = _odd_one_out(cells)
+            q["answer"] = f"खाना {k}" if k else ""
+            q["matches"] = [k] if k else []
+        else:
+            key = next((a for a in ("s", "size", "colour") if target.get(a)), None)
+            if key is None or (key == "s" and target["s"] not in SYMBOLS) or (key == "size" and target["size"] not in SIZES) or (key == "colour" and target["colour"] not in COLOURS):
+                return None
+            idx = [i for i, c in enumerate(cells, 1) if c[key] == target[key]]
+            q["matches"] = idx
+            q["answer"] = f"{len(idx)} (खाने {', '.join(str(i) for i in idx)})" if idx else ""
+        q["grid"] = cells
+        q["target"] = target
+        q["board_hi"] = "  ".join(_cell_text(c, show_size, show_colour) for c in cells)
+        return q
+    if t == "compare_boxes":
+        a, b = p.get("a") if isinstance(p.get("a"), dict) else {}, p.get("b") if isinstance(p.get("b"), dict) else {}
+        try:
+            na, nb = int(a.get("count")), int(b.get("count"))
+        except (TypeError, ValueError):
+            return None
+        sa, sb = str(a.get("s") or "★"), str(b.get("s") or "★")
+        if not (1 <= na <= 20 and 1 <= nb <= 20) or na == nb or sa not in SYMBOLS or sb not in SYMBOLS or p.get("ask") not in ("more", "less"):
+            return None
+        more = "क" if na > nb else "ख"
+        q.update({"a": {"s": sa, "count": na}, "b": {"s": sb, "count": nb}, "answer": more if p["ask"] == "more" else ("ख" if more == "क" else "क"),
+                  "board_hi": f"क: {sa * na}   |   ख: {sb * nb}"})
+        return q
+    try:
+        la, lb = int(p.get("a")), int(p.get("b"))
+    except (TypeError, ValueError):
+        return None
+    if not (1 <= la <= 15 and 1 <= lb <= 15) or la == lb or p.get("ask") not in ("longer", "shorter"):
+        return None
+    longer = "क" if la > lb else "ख"
+    q.update({"a": la, "b": lb, "answer": longer if p["ask"] == "longer" else ("ख" if longer == "क" else "क"),
+              "board_hi": f"क: {'▬' * la}   |   ख: {'▬' * lb}"})
+    return q
+
+
+def _apply_observed(lvl: str, ws: dict, competency_id, domain_id) -> list:
+    """An observed group's sheet: practice, its observation task cleaned, structured items computed (malformed ones dropped). A decoding or word-reading
+    skill loses a passage and the bank's comprehension questions; a comprehension skill keeps them. A recorded sheet in the old shape (no "observe")
+    is only marked practice; check_writing_sheets reports it."""
+    ws["sheet_kind"] = "observed"
+    ws["practice"] = True
+    obs = _observe_of(ws)
+    if obs is None:
+        return [f"{lvl}: an old-shape observed sheet (no observation task): marked as practice, left as it is"]
+    ws["observe"] = obs
+    log = []
+    probs = [p for p in ws.get("problems") or [] if isinstance(p, dict)]
+    if domain_id == "r1_literacy" and not observed_keeps_passage(competency_id):
+        if ws.get("passage_block"):
+            ws["passage_block"] = None
+            log.append(f"{lvl}: passage removed (an observed word-reading skill)")
+        bank = [p for p in probs if p.get("from_bank")]
+        if bank:
+            probs = [p for p in probs if not p.get("from_bank")]
+            log.append(f"{lvl}: {len(bank)} bank comprehension question(s) removed")
+    kept, dropped = [], 0
+    for p in probs:
+        q = structure_item(p)
+        if q is None:
+            dropped += 1
+        else:
+            kept.append(q)
+    kept, flipped = _vary_compare_answers(kept)
+    if flipped:
+        log.append(f"{lvl}: {flipped} comparison item(s) flipped so the answer is not always the same box")
+    for n, p in enumerate(kept, 1):
+        p["number"] = n
+    ws["problems"] = kept
+    rc = ws.get("required_count")
+    if not (isinstance(rc, int) and not isinstance(rc, bool) and 1 <= rc <= len(kept)):
+        ws["required_count"] = len(kept) or None
+    n_struct = sum(1 for p in kept if p.get("item_type"))
+    log.append(f"{lvl}: observed task, practice sheet with {len(kept)} item(s) ({n_struct} drawn by the code)" + (f"; {dropped} malformed structured item(s) dropped" if dropped else ""))
+    return log
+
+
+def _vary_compare_answers(items: list):
+    """First real N1.4.1 run (14 Nov): all four bar items had the answer "ख", so a child could guess the pattern. When three or more comparison
+    items share one answer, every second one has its two sides swapped (and is computed again), so the answers alternate."""
+    comp = [i for i, p in enumerate(items) if p.get("item_type") in ("compare_boxes", "compare_bars")]
+    if len(comp) < 3 or len({items[i].get("answer") for i in comp}) > 1:
+        return items, 0
+    flipped = 0
+    for k, i in enumerate(comp):
+        if k % 2 == 1:
+            p = dict(items[i])
+            p["a"], p["b"] = p.get("b"), p.get("a")
+            q = structure_item(p)
+            if q is not None:
+                items[i] = q
+                flipped += 1
+    return items, flipped
+
+
+_MATERIAL_STOP = {"लिखे", "लिखी", "वाले", "वाली", "चीज़ें", "चीज़ों", "अपना", "अपनी", "जैसे", "पंक्तियाँ"}
+
+
+def _material_words(materials) -> set:
+    """The key words of the materials: 'बोतल के ढक्कन' is named by a You Do that says 'ढक्कन' (the exact phrase was too strict, 14 Nov)."""
+    out = set()
+    for m in materials:
+        for w in re.split(r"[\s,()/।]+", str(m or "")):
+            w = w.strip()
+            if len(w) >= 3 and w not in _MATERIAL_STOP:
+                out.add(w)
+    return out
+
+
+def _gives_answer_away(p: dict) -> bool:
+    """An ordinary item whose answer's numbers are all in its own question: 'चित्र: 4 लाल गेंद, 3 पीली गेंद … लाल कितनी? -> लाल 4, पीली 3' (N0.1.1)."""
+    if p.get("item_type"):
+        return False
+    nums = re.findall(r"\d+", str(p.get("answer") or ""))
+    if not nums:
+        return False
+    asked = set(re.findall(r"\d+", str(p.get("problem_hi") or "") + " " + str(p.get("word_problem_text") or "")))
+    return all(n in asked for n in nums)
+
+
 def _words_of(ws: dict) -> list:
     return [_strip(w) for w in ws.get("warmup_words") or [] if isinstance(w, str) and _strip(w)][:WARMUP_MAX]
 
@@ -249,6 +531,32 @@ def _apply_fluency(lvl: str, ws: dict) -> list:
 
 
 _EVERY_CHILD = re.compile(r"हर\s+बच्चे|सभी\s+बच्चों\s+से|हर\s+एक\s+बच्चे")
+# "1 से 6 तक के प्रश्न", "प्रश्न 1-6", and "बाकी (प्रश्न) अतिरिक्त हैं": a range of questions and the extras, in a You Do
+_Q_RANGE = re.compile(r"(\d+)\s*(से|-|–)\s*(\d+)(?=[^।]{0,20}(?:सवाल|प्रश्न|समस्या))|(?:(?<=सवाल\s)|(?<=प्रश्न\s))(\d+)\s*(से|-|–)\s*(\d+)")
+_EXTRAS = re.compile(r"\s*[;,]?\s*बाकी\s+(?:सवाल\s+|प्रश्न\s+)?अतिरिक्त\s+हैं\s*[।]?")
+
+
+def _q_range_ends(text) -> list:
+    return [int(m.group(3) or m.group(6)) for m in _Q_RANGE.finditer(str(text or ""))]
+
+
+def _fit_you_do(plan: dict, level: str, n: int) -> list:
+    """First real fluency run (14 Nov): the model wrote six questions and a You Do saying '1 से 6 तक के प्रश्न पहले करें; बाकी अतिरिक्त हैं'; the code keeps
+    three. The You Do's question range is cut to the sheet, and the extras (there are none) are dropped."""
+    log = []
+    if n < 1:
+        return log
+    for b in (plan.get("rotation_schedule") or {}).get("blocks") or []:
+        if not (isinstance(b, dict) and b.get("teach_group") == level):
+            continue
+        tp = b.get("talking_points") or {}
+        old = str(tp.get("you_do_hi") or "")
+        new = _Q_RANGE.sub(lambda m: (m.group(0).replace(m.group(3) or m.group(6), str(n), 1) if int(m.group(3) or m.group(6)) > n else m.group(0)), old)
+        new = _EXTRAS.sub("।", new).replace("।।", "।").replace("। ।", "।")
+        if new != old:
+            tp["you_do_hi"] = new
+            log.append(f"{level}: You Do fitted to the sheet's {n} question(s)")
+    return log
 
 
 def _lesson_text(plan: dict, level: str, keys=("i_do_hi", "we_do_hi")) -> str:
@@ -308,6 +616,9 @@ def check_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> l
             continue
         ws = (plan.get("worksheets") or {}).get(lvl) or {}
         where = f"worksheets.{lvl} ({kind})"
+        if kind == "observed":
+            issues += _check_observed(plan, lvl, ws, where)
+            continue
         if kind == "fluency":
             words = _words_of(ws)
             if not words:
@@ -324,6 +635,9 @@ def check_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> l
             m = _EVERY_CHILD.search(you_do)
             if m:
                 issues.append(f"{where}: the You Do says the teacher hears «{m.group(0)}»; it should be the children shown in the app (3-4 a day)")
+            n_q = len(ws.get("problems") or [])
+            if n_q and any(e > n_q for e in _q_range_ends(you_do)):
+                issues.append(f"{where}: the You Do sends the group to questions beyond the sheet's {n_q}")
             continue
         if ws.get("passage_block"):
             issues.append(f"{where}: has a reading passage")
@@ -369,6 +683,32 @@ def check_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> l
     return issues
 
 
+def _check_observed(plan: dict, lvl: str, ws: dict, where: str) -> list:
+    issues = []
+    obs = _observe_of(ws)
+    if obs is None:
+        issues.append(f"{where}: no observation task (what the children do while the teacher watches)")
+    else:
+        missing = [k for k in LOOK_FOR if not obs["look_for"].get(k)]
+        if missing:
+            issues.append(f"{where}: what to look for is missing for {', '.join(k.replace('_hi', '') for k in missing)}")
+        you_do = _norm(_lesson_text(plan, lvl, ("you_do_hi",)))
+        materials = obs["kit_materials_hi"] + obs["local_materials_hi"]
+        if not materials:
+            issues.append(f"{where}: no materials for the task (a kit TLM or everyday objects)")
+        elif not any((w[:4] if len(w) > 4 else w) in you_do for w in _material_words(materials)):        # a stem: 'तीलियों' names 'तीलियाँ'
+            issues.append(f"{where}: the You Do names none of the task's materials ({', '.join(materials)})")
+    m = _EVERY_CHILD.search(_lesson_text(plan, lvl, ("you_do_hi",)))
+    if m:
+        issues.append(f"{where}: the You Do says the teacher watches «{m.group(0)}»; it should be the children shown in the app")
+    for p in ws.get("problems") or []:
+        if _gives_answer_away(p):
+            issues.append(f"{where} problem {p.get('number')}: the question states its own answer ({_strip(p.get('answer'))})")
+        if p.get("item_type") == "symbol_grid" and not p.get("matches"):
+            issues.append(f"{where} problem {p.get('number')}: the grid has no cell that matches what it asks")
+    return issues
+
+
 def vision_spec(worksheet: dict):
     """What the photo analysis needs to mark a writing sheet: None for any other sheet."""
     kind = (worksheet or {}).get("sheet_kind")
@@ -381,4 +721,6 @@ def vision_spec(worksheet: dict):
         return {"kind": "formation"}
     if kind == "fluency":
         return {"kind": "fluency", "practice": True}
+    if kind == "observed":
+        return {"kind": "observed", "practice": True}
     return None

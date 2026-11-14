@@ -4,8 +4,15 @@
 const MAX_LEN = 26;       // a sum is short; a word problem is not, and is left to the sheet
 
 export function boardProblems(plan, group, domain) {
-  if (domain !== 'numeracy' || !plan || !group) return null;
+  if (!plan || !group) return null;
   const sheet = plan.worksheets && plan.worksheets[group];
+  // an observed skill's back-up sheet (14 Nov): its symbol grids and boxes, as text the teacher draws on the board (most schools cannot print).
+  // board_hi is written by the code from the item itself, never by the model (backend/app/services/writing_sheets.py).
+  if (sheet && sheet.sheet_kind === 'observed') {
+    const drawn = (Array.isArray(sheet.problems) ? sheet.problems : []).filter((p) => p && typeof p.board_hi === 'string' && p.board_hi.trim());
+    return drawn.length ? { kind: 'observed', items: drawn.map((p) => ({ task: String(p.problem_hi || '').trim(), draw: p.board_hi.trim() })), required: drawn.length } : null;
+  }
+  if (domain !== 'numeracy') return null;
   const all = sheet && Array.isArray(sheet.problems) ? sheet.problems : [];
   if (all.length === 0) return null;
   const required = Number.isInteger(sheet.required_count) && sheet.required_count > 0 ? Math.min(sheet.required_count, all.length) : all.length;

@@ -194,7 +194,7 @@ def render_worksheet(
         for field in ("problem_hi", "word_problem_text"):
             if p.get(field):
                 p[field] = _polite(p[field])
-        enriched = enricher(p, level)
+        enriched = dict(p) if p.get("item_type") else enricher(p, level)      # a structured observed item (writing_sheets.structure_item) draws itself
         # tolerate alternative field names so a slightly different plan still renders
         if "number" not in enriched:
             enriched["number"] = enriched.get("no", i + 1)

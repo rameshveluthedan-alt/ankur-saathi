@@ -465,7 +465,13 @@ async def analyse_worksheet_photos(
             "so the photos can be checked against its answer key."
         )
     if worksheet_data.get("practice"):
-        # a reading-aloud group's sheet is practice (services/writing_sheets.py): its check is the one-minute reading, never a photo. Refused BEFORE any AI call.
+        # a reading-aloud or observed group's sheet is practice (services/writing_sheets.py): its check is the one-minute reading or watching the children,
+        # never a photo. Refused BEFORE any AI call.
+        if worksheet_data.get("sheet_kind") == "observed":
+            raise LookupError(
+                "This group's worksheet is practice: the skill is checked by watching the children do it, not from a photo. "
+                "Mark A / PA / NA instead (Observe and record)."
+            )
         raise LookupError(
             "This group's worksheet is reading-aloud practice: it is not checked from a photo. "
             "Record the one-minute reading instead (Reading aloud)."

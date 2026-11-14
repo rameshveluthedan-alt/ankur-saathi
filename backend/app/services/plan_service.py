@@ -1208,7 +1208,12 @@ async def generate_dainik_yojana(
     ctx.cfu_detected = {r["misconception_id"]: r["affected_count"] for r in reteach_competencies if r.get("misconception_id")}
     
     # ── Reading passages (literacy): chosen in code from the content bank ──
-    # a group taught a WRITING skill gets a writing sheet, never a passage (services/writing_sheets.py)
+    # the observed skills as the database has them (writing_sheets: an observed group gets a task to watch and a back-up sheet)
+    try:
+        writing_sheets.register_observed([r["id"] for r in await db.fetch("SELECT id FROM competencies WHERE assessment_modality = 'observed'")])
+    except Exception as e:          # the known list stays in place
+        print(f"   Observed skills not read from the database: {type(e).__name__}: {e}")
+    # a group taught a WRITING skill (or an observed word-reading skill) gets its own sheet, never a passage (services/writing_sheets.py)
     writing_groups = writing_sheets.writing_levels(ctx.group_skill_ids, domain_id)
     group_passages = await retrieve_group_passages(
         db, domain_id, {lvl: cid for lvl, cid in {"progressor": competency_id, "proficient": proficient_comp.id}.items() if lvl not in writing_groups}, plan_date)

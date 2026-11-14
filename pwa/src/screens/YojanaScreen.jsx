@@ -8,6 +8,7 @@ import { reteachGroupsOf } from '../services/planSummary';
 import ReteachNote from '../components/ReteachNote';
 import SignalPanel from '../components/SignalPanel';
 import BoardWork from '../components/BoardWork';
+import ObservePanel, { observeOf } from '../components/ObservePanel';
 import GroupMark from '../components/GroupMark';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import Bi from '../components/Bi';
@@ -265,6 +266,8 @@ export default function YojanaScreen() {
           <Fold icon="✏️" hi="तुम करोगे" en="You do" testid="fold-you-do" open={!!(location.state && location.state.openYouDo && location.state.slot === level) || undefined}>
             <div style={ML}>{fmt(tp.you_do_hi)}</div>
             <BoardWork plan={plan} group={level} domain={currentPlan.domain_id} />
+            {/* an observed skill: the task, its materials and what A / PA / NA look like, right where the teacher watches */}
+            <ObservePanel observe={observeOf(plan, level)} testid={`observe-${level}`} />
             {recordButton(level)}
           </Fold>
         )}

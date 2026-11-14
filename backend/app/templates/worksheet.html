@@ -108,6 +108,19 @@
   }
 
   /* first-N-required banner and the tag on extra problems */
+  .symbol-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 4px; margin: 6px 0; max-width: 520px; }
+  .symbol-cell { border: 1px solid #CCC; border-radius: 4px; height: 52px; display: flex; align-items: center; justify-content: center; position: relative; }
+  .symbol-n { position: absolute; top: 1px; left: 3px; font-size: 7pt; color: #888; }
+  .symbol.big { font-size: 26pt; line-height: 1; }
+  .symbol.small { font-size: 13pt; line-height: 1; }
+  .compare-row { display: flex; gap: 12px; margin: 6px 0; }
+  .compare-box { flex: 1; border: 1.5px solid #2D6A4F; border-radius: 6px; padding: 6px 8px; min-height: 60px; }
+  .compare-label { font-weight: 700; display: inline-flex; align-items: center; gap: 6px; min-width: 42px; }
+  .compare-items { font-size: 18pt; letter-spacing: 2px; line-height: 1.3; }
+  .compare-bars { margin: 6px 0; }
+  .bar-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+  .bar { display: inline-block; height: 14px; background: #2D6A4F; border-radius: 2px; }
+  .board-line { font-size: 9pt; color: #666; margin-top: 4px; }
   .warmup-box { margin: 8px 0; padding: 8px 12px; border: 1.5px dashed #2D6A4F; border-radius: 6px; font-size: 11pt; break-inside: avoid; }
   .warmup-words { display: flex; flex-wrap: wrap; gap: 6px 14px; }
   .warmup-word { display: inline-flex; align-items: center; gap: 6px; font-size: 13pt; }
@@ -638,6 +651,12 @@
 <div class="required-note"><strong>{% if polite %}शिक्षक जो वाक्य बोलेंगे, उसे सुनकर उसी नंबर की लाइन पर लिखें।{% else %}शिक्षक जो वाक्य बोलेंगे, उसे सुनकर उसी नंबर की लाइन पर लिखो।{% endif %}</strong> (Listen to each sentence and write it on its line.)</div>
 {% endif %}
 
+{% if sheet_kind == 'observed' %}
+<!-- An observed skill's sheet (services/writing_sheets.py, 14 Nov 2026): back-up practice; the check is watching the children do the task. What the teacher
+     looks for (observe.look_for) is for the teacher's screen only: it is never printed here. -->
+<div class="required-note" data-kind="observed-practice"><strong>यह अभ्यास है; जाँच बच्चों को काम करते देखकर होगी।</strong> (Practice: the check is the teacher watching the children do the task.)</div>
+{% endif %}
+
 {% if sheet_kind == 'fluency' %}
 <!-- A reading-aloud group's sheet (services/writing_sheets.py, 14 Nov 2026): practice while the teacher listens to a few children one minute each -->
 <div class="required-note" data-kind="fluency-practice"><strong>यह अभ्यास है; जाँच शिक्षक के साथ एक मिनट पढ़कर होगी।</strong> (Practice: the check is reading aloud to the teacher for one minute.)</div>
@@ -679,6 +698,21 @@
   <span class="problem-number">{{ problem.number }}</span>
   <span class="problem-text">{{ problem.problem_hi }}</span>{% if problem.extra %}<span class="extra-tag">अतिरिक्त</span>{% endif %}
   {% if problem.problem_en %}<span style="font-size:10pt;color:#888;margin-left:4px">({{ problem.problem_en }})</span>{% endif %}
+  {% if problem.item_type == 'symbol_grid' %}
+  <!-- an observed skill's back-up item (services/writing_sheets.py, 14 Nov 2026): numbered cells to circle or cross out -->
+  <div class="symbol-grid">{% for c in problem.grid %}<div class="symbol-cell"><span class="symbol-n">{{ loop.index }}</span><span class="symbol {{ c.size }}"{% if c.colour %} style="color:{{ {'red':'#C62828','blue':'#1565C0','green':'#2E7D32','yellow':'#C9A000','black':'#222'}[c.colour] }}"{% endif %}>{{ c.s }}</span></div>{% endfor %}</div>
+  {% elif problem.item_type == 'compare_boxes' %}
+  <div class="compare-row">
+    <div class="compare-box"><div class="compare-label">क <span class="tick-box"></span></div><div class="compare-items">{% for _ in range(problem.a.count) %}{{ problem.a.s }} {% endfor %}</div></div>
+    <div class="compare-box"><div class="compare-label">ख <span class="tick-box"></span></div><div class="compare-items">{% for _ in range(problem.b.count) %}{{ problem.b.s }} {% endfor %}</div></div>
+  </div>
+  {% elif problem.item_type == 'compare_bars' %}
+  <div class="compare-bars">
+    <div class="bar-row"><span class="compare-label">क <span class="tick-box"></span></span><span class="bar" style="width:{{ problem.a * 1.0 }}cm"></span></div>
+    <div class="bar-row"><span class="compare-label">ख <span class="tick-box"></span></span><span class="bar" style="width:{{ problem.b * 1.0 }}cm"></span></div>
+  </div>
+  {% endif %}
+  {% if problem.board_hi %}<div class="board-line"><b>बोर्ड पर बनाने के लिए:</b> {{ problem.board_hi }}</div>{% endif %}
 
   {% if problem.show_pv_grid %}
   <div class="pv-grid">
@@ -713,7 +747,7 @@
   </div>
   {% endif %}
 
-  {% if problem.answer_type == 'box' and not problem.show_pv_grid %}
+  {% if problem.answer_type == 'box' and not problem.show_pv_grid and not problem.item_type %}
   <div class="answer-area">
     <span class="answer-label">उत्तर (Ans):</span>
     <div class="answer-box"></div>

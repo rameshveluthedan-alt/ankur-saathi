@@ -9,6 +9,7 @@ import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import Bi from '../components/Bi';
 import PilotFlag from '../components/PilotFlag';
 import GroupMark from '../components/GroupMark';
+import ObservePanel, { observeOf } from '../components/ObservePanel';
 import { bi } from '../services/language';
 import { notify } from '../services/notify';
 import { friendlyError } from '../services/errors';
@@ -471,6 +472,8 @@ export default function ReviewScreen() {
                   </div>
                 )}
                 <SkillLine level={observedLevel.level} skillId={observedLevel.competency_id} name={observedLevel.name_hi} testid="skill-2" />
+                {/* what A / PA / NA mean for today's task (in class: the task and materials too; after class: only what to look for) */}
+                <ObservePanel observe={observeOf(plan && plan.plan, observedLevel.level)} testid="observe-review" compact={!fromPlan} />
                 <AbbrKey testid="abbr-observe" />
                 {big && (
                   <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
