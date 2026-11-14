@@ -1,0 +1,674 @@
+{
+  "anchor": {
+    "title_hi": "मात्रा का जादू",
+    "narration_hi": "बोर्ड पर 'कल' लिखें और कहें: देखें, एक ही शब्द में अलग-अलग मात्रा लगाने से अर्थ बदल जाता है! कल, काल, कील, कूल, केला, कैसा। आज हम जादू का एक और रूप देखेंगे: जब दो अक्षर जुड़ जाते हैं।",
+    "closing_question_hi": "किस शब्द का अर्थ बदलकर सबसे मज़ेदार लगा? पास वाले साथी को बताएँ।",
+    "opening_question_hi": "कल में 'ा' लगाते ही शब्द क्या बन गया? क्या मात्रा से अर्थ बदल सकता है?",
+    "beginner_participation_hi": "मेरे साथ हर शब्द पढ़ें: कल, काल, कील, कूल। फिर बताएँ कि कौन सी मात्रा लगी है।",
+    "proficient_participation_hi": "अपना कोई एक आधार शब्द चुनें। कम से कम 4 मात्राएँ लगाकर नए शब्द बनाएँ और एक शब्द को वाक्य में प्रयोग करें।",
+    "progressor_participation_hi": "बोर्ड पर नया शब्द 'सत' लिखा है। उसमें अलग-अलग मात्रा लगाकर नए शब्द बनाएँ और अपनी कॉपी में लिखें। देखें, अर्थ कैसे बदला!"
+  },
+  "prep_hi": [
+    "TLM-008 फ्लैश कार्ड: मोटे कागज़ को काटकर लगभग 20 कार्ड बनाएँ। 10 कार्ड पर संयुक्त अक्षर वाले शब्द (विद्यालय, पत्र, शक्ति, क्षमा, ज्ञान, श्रम, त्रिकोण, मित्र, कक्षा, श्रवण) बड़े अक्षरों में लिखें। 5 कार्ड पर अकेले संयुक्त अक्षर (क्ष, त्र, ज्ञ, श्र, द्य) लिखें। 5 कार्ड पर शुरुआती समूह के मात्रा वाले शब्द (कमल, सीता, पुल, केला, मोर) लिखें।",
+    "बोर्ड पर पहले से लिखकर रखें: 'कल, कल, कल' का आधार शब्द और प्रगतिशील समूह के लिए आधार शब्द 'सत'।",
+    "हर समूह के लिए 8-8 शब्द बोर्ड या कॉपी पर लिखने के लिए तैयार रखें (छपाई की ज़रूरत नहीं)।",
+    "प्रगतिशील समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «मेरा स्कूल»: मेरा स्कूल घर से पास है। मैं रोज़ पैदल जाता हूँ। स्कूल में मेरे बहुत दोस्त हैं। हम साथ में खेलते हैं। हम साथ में पढ़ते हैं। मुझे स्कूल जाना अच्छा लगता है। सवाल: 1) स्कूल कहाँ है? 2) बच्चा स्कूल कैसे जाता है? 3) स्कूल में क्या करते हैं?",
+    "दक्ष समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «पानी बचाओ»: पानी हमारे जीवन के लिए बहुत ज़रूरी है। हम पानी पीते हैं, खाना बनाते हैं और नहाते हैं। किसान खेती के लिए पानी का उपयोग करते हैं। लेकिन धरती पर साफ़ पानी सीमित है। हमें पानी बचाना चाहिए। नल को खुला मत छोड़ो। बारिश का पानी इकट्ठा करो। अगर हम पानी नहीं बचाएँगे तो आने वाले समय में पानी की बहुत कमी होगी। सवाल: 1) पानी किन-किन कामों में लगता है? 2) इस अनुच्छेद का मुख्य संदेश क्या है? 3) लेखक ने बारिश का पानी इकट्ठा करने को क्यों कहा?"
+  ],
+  "coverage": {
+    "note": "Not yet run through the real model: the plan may need more editing.",
+    "tier": "untested"
+  },
+  "cfu_stats": {
+    "beginner": {
+      "kept": 2,
+      "written": 3,
+      "grounded_items": 0,
+      "skill_has_mistakes": false
+    },
+    "proficient": {
+      "kept": 2,
+      "written": 3,
+      "grounded_items": 0,
+      "skill_has_mistakes": false
+    },
+    "progressor": {
+      "kept": 2,
+      "written": 3,
+      "grounded_items": 2,
+      "skill_has_mistakes": true
+    }
+  },
+  "worksheets": {
+    "beginner": {
+      "observe": {
+        "task_en": "Read 5 words from the board aloud to a partner and name the matra in each.",
+        "task_hi": "बोर्ड पर लिखे 5 शब्द साथी को ज़ोर से पढ़कर सुनाएँ। हर शब्द में मात्रा बताएँ।",
+        "look_for": {
+          "not_yet_en": "Reads letters separately and cannot blend",
+          "not_yet_hi": "अक्षर अलग-अलग पढ़ता है, जोड़ नहीं पाता",
+          "partial_en": "Reads some words but stumbles on harder matras",
+          "partial_hi": "कुछ शब्द पढ़ता है, कठिन मात्रा पर अटकता है",
+          "achieved_en": "Reads matra words correctly and blends them without help",
+          "achieved_hi": "बिना मदद के मात्रा वाले शब्द सही जोड़कर पढ़ता है"
+        },
+        "kit_materials_hi": [
+          "फ्लैश कार्ड (अक्षर/शब्द)"
+        ],
+        "local_materials_hi": [
+          "बोर्ड पर लिखे शब्द",
+          "कागज़ की पर्चियों पर लिखे शब्द"
+        ]
+      },
+      "practice": true,
+      "problems": [
+        {
+          "answer": "कमल (कोई मात्रा नहीं, अ अंतर्निहित)",
+          "number": 1,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और मात्रा पर गोला लगाएँ: कमल",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "ी और ा",
+          "number": 2,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और मात्रा पर गोला लगाएँ: सीता",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "ु",
+          "number": 3,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और मात्रा पर गोला लगाएँ: पुल",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "े और ा",
+          "number": 4,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और मात्रा पर गोला लगाएँ: केला",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "ो",
+          "number": 5,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और मात्रा पर गोला लगाएँ: मोर",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "गाजर",
+          "number": 6,
+          "row_type": null,
+          "problem_hi": "पढ़ें और लिखें: गाजर",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "दीया",
+          "number": 7,
+          "row_type": null,
+          "problem_hi": "पढ़ें और लिखें: दीया",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "बैल",
+          "number": 8,
+          "row_type": null,
+          "problem_hi": "पढ़ें और लिखें: बैल",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        }
+      ],
+      "sheet_kind": "observed",
+      "example_block": {
+        "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+        "example_text": "प + ी = पी, पी + ठ = पीठ"
+      },
+      "passage_block": null,
+      "required_count": 5,
+      "instructions_en": "Read each word carefully. Circle the matra. Then write the word in your notebook.",
+      "instructions_hi": "शब्द को ध्यान से पढ़ें। मात्रा पर गोला लगाएँ। फिर शब्द को कॉपी में लिखें।"
+    },
+    "proficient": {
+      "observe": {
+        "task_en": "Read 6 words from the board to a partner and name the chandrabindu, anusvar or visarg in each.",
+        "task_hi": "बोर्ड पर लिखे 6 शब्द साथी को पढ़कर सुनाएँ। हर शब्द में चन्द्रबिन्दु, अनुस्वार या विसर्ग का नाम बताएँ।",
+        "look_for": {
+          "not_yet_en": "Skips or swaps the signs while reading",
+          "not_yet_hi": "चिह्नों को छोड़कर या बदलकर पढ़ता है",
+          "partial_en": "Identifies one or two signs but confuses the third",
+          "partial_hi": "एक-दो चिह्न पहचानता है, तीसरे में गलती करता है",
+          "achieved_en": "Identifies all three signs, reads correctly and names them",
+          "achieved_hi": "तीनों चिह्न पहचानकर शब्द सही पढ़ता है और नाम बताता है"
+        },
+        "kit_materials_hi": [
+          "फ्लैश कार्ड (अक्षर/शब्द)"
+        ],
+        "local_materials_hi": [
+          "बोर्ड पर लिखे शब्द",
+          "कागज़ की पर्चियों पर लिखे शब्द"
+        ]
+      },
+      "practice": true,
+      "problems": [
+        {
+          "answer": "चन्द्रबिन्दु",
+          "number": 1,
+          "row_type": null,
+          "problem_hi": "पढ़ें और चिह्न का नाम लिखें: आँख",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "अनुस्वार",
+          "number": 2,
+          "row_type": null,
+          "problem_hi": "पढ़ें और चिह्न का नाम लिखें: पंखा",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "विसर्ग",
+          "number": 3,
+          "row_type": null,
+          "problem_hi": "पढ़ें और चिह्न का नाम लिखें: दुःख",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "चन्द्रबिन्दु",
+          "number": 4,
+          "row_type": null,
+          "problem_hi": "पढ़ें और चिह्न का नाम लिखें: हँसना",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "अनुस्वार",
+          "number": 5,
+          "row_type": null,
+          "problem_hi": "पढ़ें और चिह्न का नाम लिखें: अंडा",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "विसर्ग",
+          "number": 6,
+          "row_type": null,
+          "problem_hi": "पढ़ें और चिह्न का नाम लिखें: प्रातः",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "आँगन",
+          "number": 7,
+          "row_type": null,
+          "problem_hi": "सही शब्द चुनकर लिखें: 'आँगन' या 'आगन'?",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "बंदर",
+          "number": 8,
+          "row_type": null,
+          "problem_hi": "सही शब्द चुनकर लिखें: 'बंदर' या 'बदर'?",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        }
+      ],
+      "sheet_kind": "observed",
+      "example_block": null,
+      "passage_block": null,
+      "required_count": 8,
+      "instructions_en": "Read each word. Circle the sign and write its name.",
+      "instructions_hi": "शब्द पढ़ें। चिह्न पर गोला लगाएँ और उसका नाम लिखें।"
+    },
+    "progressor": {
+      "observe": {
+        "task_en": "Read 6 conjunct words from the board aloud to a partner, reading each conjunct as one joined sound.",
+        "task_hi": "बोर्ड पर लिखे 6 संयुक्त अक्षर वाले शब्द साथी को ज़ोर से पढ़कर सुनाएँ। संयुक्त अक्षर को एक ध्वनि की तरह पढ़ें।",
+        "look_for": {
+          "not_yet_en": "Breaks the conjunct into separate letters or inserts a schwa",
+          "not_yet_hi": "संयुक्त अक्षर को तोड़कर अलग-अलग अक्षर पढ़ता है या बीच में अ जोड़ता है",
+          "partial_en": "Reads familiar conjuncts like क्ष, त्र but struggles with less common ones",
+          "partial_hi": "क्ष, त्र जैसे जाने-पहचाने संयुक्त अक्षर पढ़ता है, कम प्रचलित पर अटकता है",
+          "achieved_en": "Reads conjunct words smoothly as joined sounds",
+          "achieved_hi": "संयुक्त अक्षर वाले शब्द बिना अटके जोड़कर पढ़ता है"
+        },
+        "kit_materials_hi": [
+          "फ्लैश कार्ड (अक्षर/शब्द)"
+        ],
+        "local_materials_hi": [
+          "बोर्ड पर लिखे शब्द",
+          "कागज़ की पर्चियों पर लिखे शब्द"
+        ]
+      },
+      "practice": true,
+      "problems": [
+        {
+          "answer": "त्र",
+          "number": 1,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और संयुक्त अक्षर पर गोला लगाएँ: पत्र",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": "L2.3.1-M1"
+        },
+        {
+          "answer": "क्त",
+          "number": 2,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और संयुक्त अक्षर पर गोला लगाएँ: शक्ति",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": "L2.3.1-M2"
+        },
+        {
+          "answer": "क्ष",
+          "number": 3,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और संयुक्त अक्षर पर गोला लगाएँ: क्षमा",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": "L2.3.1-M1"
+        },
+        {
+          "answer": "ज्ञ",
+          "number": 4,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और संयुक्त अक्षर पर गोला लगाएँ: ज्ञान",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "श्र",
+          "number": 5,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और संयुक्त अक्षर पर गोला लगाएँ: श्रम",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "द्य",
+          "number": 6,
+          "row_type": "plain",
+          "problem_hi": "पढ़ें और संयुक्त अक्षर पर गोला लगाएँ: विद्या",
+          "answer_type": "box",
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": "L2.3.1-M2"
+        },
+        {
+          "answer": "मित्र",
+          "number": 7,
+          "row_type": null,
+          "problem_hi": "पढ़ें और लिखें: मित्र",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        },
+        {
+          "answer": "चित्र",
+          "number": 8,
+          "row_type": null,
+          "problem_hi": "पढ़ें और लिखें: चित्र",
+          "answer_type": "lines",
+          "answer_lines": 1,
+          "show_letter_grid": false,
+          "diagnostic_for_misconception": null
+        }
+      ],
+      "sheet_kind": "observed",
+      "example_block": null,
+      "passage_block": null,
+      "required_count": 6,
+      "instructions_en": "Read each word. Circle the conjunct. Read the word aloud to a partner.",
+      "instructions_hi": "शब्द पढ़ें। संयुक्त अक्षर पर गोला लगाएँ। शब्द साथी को पढ़कर सुनाएँ।"
+    }
+  },
+  "group_skills": {
+    "beginner": "L1.4.2",
+    "proficient": "L2.3.2",
+    "progressor": "L2.3.1"
+  },
+  "explainability": {
+    "items": [
+      {
+        "body_en": "Beginners work on prerequisite L1.4.2, Progressors on today's target L2.3.1, and Proficients on extension L2.3.2, so each child learns at their own level.",
+        "body_hi": "शुरुआती समूह को पूर्वापेक्षा L1.4.2 पर, प्रगतिशील को आज के लक्ष्य L2.3.1 पर और दक्ष को विस्तार L2.3.2 पर रखा गया है ताकि हर बच्चा अपने स्तर पर सीखे।",
+        "title_en": "Why these three groups",
+        "title_hi": "तीन समूह क्यों"
+      },
+      {
+        "body_en": "Beginners get the first and longest slot (29 min) to build foundations. Progressors and Proficients get 22 min each. Independent work is always on previously mastered skills.",
+        "body_hi": "शुरुआती समूह को पहला और सबसे लंबा समय (29 मिनट) दिया गया ताकि नींव मज़बूत हो। प्रगतिशील और दक्ष को 22-22 मिनट मिले। स्वतंत्र काम हमेशा पहले सीखे हुए कौशल पर है।",
+        "title_en": "Why this rotation order",
+        "title_hi": "घूर्णन का क्रम"
+      },
+      {
+        "body_en": "For Progressors watch L2.3.1-M1 (splitting conjuncts) and L2.3.1-M2 (schwa insertion). Progressor problems 1-3 are designed to reveal these.",
+        "body_hi": "प्रगतिशील समूह में L2.3.1-M1 (संयुक्त अक्षर तोड़कर पढ़ना) और L2.3.1-M2 (बीच में अ जोड़ना) पर नज़र रखें। प्रगतिशील वर्कशीट की समस्याएँ 1-3 इन्हें उजागर करने के लिए बनी हैं।",
+        "title_en": "Misconceptions to watch",
+        "title_hi": "ध्यान देने योग्य गलतियाँ"
+      },
+      {
+        "id": "resources",
+        "body_en": "**Anchor activity (whole class):** 'Matra Magic' was written for a related skill, not this one; it was adapted to today's skill.\n**For each group:**\n• **Beginners** ('Reads simple 2-3 syllable words with matras'): practice on a worksheet at their own level.\n• **Progressors** ('Reads words with conjunct consonants (संयुक्त अक्षर: क्ष, त्र, ज्ञ, श्र, etc.)'): the steps of 'Conjunct Consonant Explicit Teaching' form the basis for I Do and We Do, followed by You Do (worksheet practice) to build conceptual clarity and prevent errors.\n• **Proficients** ('Reads words with chandrabindu (ँ), anusvar (ं), and visarg (ः)'): written practice on the board and the worksheet.\n**Materials (to prepare):** Flash cards (letters/words).\n(Codes: ANC-L-003 · INT-LIT-004 · TLM-008)",
+        "body_hi": "**एंकर गतिविधि (पूरी कक्षा के लिए):** «मात्रा का जादू» किसी जुड़े हुए कौशल के लिए लिखी गई थी, इसी कौशल के लिए नहीं; इसे आज के कौशल के हिसाब से ढाला गया।\n**हर समूह के लिए:**\n• **शुरुआती** («मात्रा सहित सरल 2-3 अक्षरांश शब्द पढ़ता है»): अपने स्तर की वर्कशीट पर अभ्यास।\n• **प्रगतिशील** («संयुक्त अक्षर वाले शब्द पढ़ता है (क्ष, त्र, ज्ञ, श्र आदि)»): «संयुक्त अक्षर स्पष्ट शिक्षण» के चरण I Do और We Do का आधार हैं; इसके बाद You Do में वर्कशीट पर स्वतंत्र अभ्यास होता है, ताकि अवधारणा स्पष्ट हो और गलतियाँ रुकें।\n• **दक्ष** («चन्द्रबिन्दु (ँ), अनुस्वार (ं), विसर्ग (ः) वाले शब्द पढ़ता है»): बोर्ड पर और वर्कशीट पर लिखित अभ्यास।\n**सामग्री (तैयारी):** फ्लैश कार्ड (अक्षर/शब्द)।\n(कोड: ANC-L-003 · INT-LIT-004 · TLM-008)",
+        "title_en": "Teaching and Learning Resources",
+        "title_hi": "शिक्षण और सीखने की सामग्री"
+      },
+      {
+        "body_en": "The curriculum plan is representative, not the state's official weekly plan. There is no printer, so worksheets are drawn on the board or notebook. No mistakes are recorded for the Beginner and Proficient skills, so their questions test the key idea.",
+        "body_hi": "पाठ्यक्रम योजना एक प्रतिनिधि योजना है, राज्य की आधिकारिक साप्ताहिक योजना नहीं। प्रिंटर नहीं है, इसलिए वर्कशीट बोर्ड या कॉपी पर बनेंगी। शुरुआती और दक्ष समूह की गलतियाँ दर्ज नहीं हैं, इसलिए उनके प्रश्न मुख्य विचार जाँचते हैं।",
+        "title_en": "Assumptions and limitations",
+        "title_hi": "मान्यताएँ और सीमाएँ"
+      }
+    ]
+  },
+  "review_prompts": {
+    "photo_sample_rolls": {
+      "beginner": [
+        1,
+        2,
+        9,
+        11,
+        13,
+        23
+      ],
+      "proficient": [
+        7,
+        10,
+        19,
+        20,
+        22,
+        28,
+        29,
+        30
+      ],
+      "progressor": [
+        5,
+        8,
+        15,
+        17,
+        25,
+        27
+      ]
+    },
+    "photo_sample_method": "systematic sampling, the start moves each day",
+    "observation_reminders_hi": [
+      "आज तीनों समूहों की दक्षता अवलोकन से जाँची जाती है। ऐप में दिखाए गए बच्चों को काम करते हुए देखें और A / PA / NA अंकित करें।",
+      "प्रगतिशील समूह में देखें: क्या बच्चा संयुक्त अक्षर को तोड़कर पढ़ता है (L2.3.1-M1) या बीच में अ जोड़ता है (L2.3.1-M2)?"
+    ]
+  },
+  "session_minutes": 90,
+  "rotation_schedule": {
+    "blocks": [
+      {
+        "type": "anchor",
+        "script_hi": null,
+        "time_start": "0:00",
+        "teach_group": null,
+        "talking_points": null,
+        "other_groups_hi": null,
+        "duration_minutes": 10
+      },
+      {
+        "type": "setup",
+        "script_hi": "आज हम तीन समूहों में काम करेंगे। शुरुआती समूह मेरे पास आएँ। प्रगतिशील और दक्ष समूह बोर्ड पर लिखा स्वतंत्र अभ्यास अपनी कॉपी में करें। बिना शोर किए काम करें। अपने मॉनिटर से मदद लें।",
+        "time_start": "0:10",
+        "teach_group": null,
+        "talking_points": null,
+        "other_groups_hi": null,
+        "duration_minutes": 2
+      },
+      {
+        "cfu": [
+          {
+            "kind": "choose",
+            "grounded": false,
+            "shows_hi": "बच्चा छोटी 'ु' मात्रा और बड़ी 'ू' मात्रा में अंतर पहचानता है।",
+            "listen_for": [],
+            "expected_hi": "1",
+            "question_hi": "मैं बोर्ड पर 'पुल' लिखता/लिखती हूँ। यह 1) पुल है या 2) पूल? उँगलियों पर 1 या 2 दिखाएँ।"
+          },
+          {
+            "kind": "answer",
+            "grounded": false,
+            "shows_hi": "बच्चा शब्द में मात्रा को अलग पहचानकर शब्द को सही पढ़ पाता है।",
+            "listen_for": [],
+            "expected_hi": "े",
+            "question_hi": "मैं बोर्ड पर 'केला' लिखता/लिखती हूँ। इसमें पहले अक्षर पर कौन सी मात्रा है? कॉपी में मात्रा का चिह्न बनाएँ।"
+          }
+        ],
+        "type": "teach",
+        "script_hi": null,
+        "time_start": "0:12",
+        "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+        "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+        "teach_group": "beginner",
+        "cfu_grounded": false,
+        "talking_points": {
+          "i_do_hi": "(पाठ में 2 मिनट पुराना दोहराव: मात्रा का नाम बताएँ।) फ्लैश कार्ड 'कमल' दिखाएँ। पहले क-म-ल अलग बोलें, फिर जोड़कर 'कमल' पढ़ें। फिर 'सीता' कार्ड लें: सी-ता, सीता। मात्रा पर उँगली रखकर बताएँ कि 'ी' से 'सी' बना। 3-4 शब्द इसी तरह पढ़कर दिखाएँ।",
+          "we_do_hi": "अब कार्ड दिखाएँ: पुल, केला, मोर, गाजर। पहले सब साथ पढ़ें, फिर एक-एक बच्चे से पढ़वाएँ। अटकने पर अक्षरांश अलग-अलग बोलकर फिर जोड़ने को कहें। मात्रा पर उँगली रखकर पूछें: यह कौन सी मात्रा है?",
+          "you_do_hi": "बोर्ड से 8 शब्द कॉपी में उतारें और मात्रा को गोला करें। 1 से 5 तक पहले करें, बाकी अतिरिक्त हैं। जोड़ी में एक-दूसरे को शब्द पढ़कर सुनाएँ। मैं ऐप में दिखाए गए बच्चों को काम करते हुए देखता/देखती हूँ।"
+        },
+        "other_groups_hi": "प्रगतिशील समूह: बोर्ड पर लिखे मात्रा वाले शब्द कॉपी में लिखकर पढ़ें, जैसे 'कमल, पतंग, सितार, किताब, बंदर, कुआँ'। दक्ष समूह: बोर्ड पर लिखे संयुक्त अक्षर वाले शब्द पढ़ें और कॉपी में लिखें, जैसे 'क्षमा, पत्र, ज्ञान, श्रम, मित्र, विद्या'। जल्दी पूरा करने वाले बच्चे वही अभ्यास और शब्दों पर करें या साथी की कॉपी जाँचें।",
+        "duration_minutes": 29
+      },
+      {
+        "type": "transition",
+        "script_hi": "सब अपना काम रोक दें। कॉपी बंद करें। शुरुआती समूह अपनी जगह जाएँ और स्वतंत्र अभ्यास शुरू करें। प्रगतिशील समूह मेरे पास आएँ। शांति से, बिना शोर किए चलें।",
+        "time_start": "0:41",
+        "teach_group": null,
+        "talking_points": null,
+        "other_groups_hi": null,
+        "duration_minutes": 2
+      },
+      {
+        "cfu": [
+          {
+            "kind": "choose",
+            "grounded": true,
+            "shows_hi": "",
+            "listen_for": [
+              {
+                "detect_en": "Breaks down conjuncts into component letters consistently; reads विद्यालय as \"vi-da-ya-la-ya\" instead of \"vidyalay\"",
+                "wrong_answer_hi": "1 (प-त-र, अलग-अलग)",
+                "misconception_id": "L2.3.1-M1",
+                "misconception_name_hi": "संयुक्त अक्षरों को अलग-अलग पढ़ता है"
+              }
+            ],
+            "expected_hi": "2",
+            "question_hi": "मैं बोर्ड पर 'पत्र' लिखता/लिखती हूँ और 'त्र' पर गोला करता/करती हूँ। यह 1) प-त-र पढ़ा जाएगा या 2) पत्-र (जुड़ी ध्वनि)? उँगलियों पर 1 या 2 दिखाएँ।"
+          },
+          {
+            "kind": "choose",
+            "grounded": true,
+            "shows_hi": "",
+            "listen_for": [
+              {
+                "detect_en": "Reads विद्या as \"vidayaa\" instead of \"vidyaa\" — inserts schwa between द and य",
+                "wrong_answer_hi": "1 (श-क-ति, बीच में अ जोड़ा)",
+                "misconception_id": "L2.3.1-M2",
+                "misconception_name_hi": "संयुक्त अक्षर में जहाँ ध्वनि लुप्त होनी चाहिए वहाँ अ जोड़ता है"
+              }
+            ],
+            "expected_hi": "2",
+            "question_hi": "बोर्ड पर 'शक्ति' लिखा है। इसे 1) श-क-ति पढ़ें या 2) शक्-ति पढ़ें? उँगलियों पर दिखाएँ।"
+          }
+        ],
+        "type": "teach",
+        "script_hi": null,
+        "time_start": "0:43",
+        "teach_group": "progressor",
+        "cfu_grounded": true,
+        "talking_points": {
+          "i_do_hi": "(2 मिनट दोहराव: मात्रा वाले शब्द पढ़वाएँ।) 'विद्यालय' लिखकर 'द्य' पर गोला करें। कहें: यह द और य अलग-अलग नहीं, मिलकर एक ध्वनि है। जब दो व्यंजन जुड़ते हैं, पहले की 'अ' ध्वनि चली जाती है। फ्लैश कार्ड से 5 संयुक्त अक्षर दिखाएँ: क्ष, त्र, ज्ञ, श्र, द्य।",
+          "we_do_hi": "कार्ड से 10 शब्द पढ़वाएँ, जैसे पत्र, शक्ति, क्षमा, ज्ञान, श्रम, मित्र। अगर बच्चा तोड़कर पढ़े तो दूसरा व्यंजन ढकें, पहला बिना 'अ' बोलें, फिर खोलकर दिखाएँ कि ये मिलकर एक ध्वनि बनाते हैं।",
+          "you_do_hi": "बोर्ड से 8 शब्द कॉपी में उतारें, संयुक्त अक्षर पर गोला करें और साथी को पढ़कर सुनाएँ। 1 से 6 तक पहले करें, बाकी अतिरिक्त हैं। मैं ऐप में दिखाए गए बच्चों को काम करते हुए देखता/देखती हूँ।"
+        },
+        "other_groups_hi": "शुरुआती समूह: बोर्ड पर लिखे मात्रा वाले शब्द पढ़ें और कॉपी में लिखें, जैसे 'का, कि, की, कु, कू, के, कै, को, कौ' और 'दिया, पूरा, कैसा, मोती'। दक्ष समूह: बोर्ड के संयुक्त अक्षर वाले शब्द कॉपी में लिखकर साथी को पढ़कर सुनाएँ, जैसे 'क्षमा, पत्र, ज्ञान, श्रम, मित्र, शक्ति'। जल्दी पूरा करने वाले साथी की कॉपी जाँचें।",
+        "duration_minutes": 22
+      },
+      {
+        "type": "transition",
+        "script_hi": "सब अपना काम रोक दें। कॉपी बंद करें। प्रगतिशील समूह अपनी जगह जाएँ और स्वतंत्र अभ्यास शुरू करें। दक्ष समूह मेरे पास आएँ। बिना शोर किए चलें।",
+        "time_start": "1:05",
+        "teach_group": null,
+        "talking_points": null,
+        "other_groups_hi": null,
+        "duration_minutes": 2
+      },
+      {
+        "cfu": [
+          {
+            "kind": "choose",
+            "grounded": false,
+            "shows_hi": "बच्चा चन्द्रबिन्दु और विसर्ग में अंतर पहचानता है।",
+            "listen_for": [],
+            "expected_hi": "1",
+            "question_hi": "मैं बोर्ड पर 'आँख' लिखता/लिखती हूँ। इसमें ऊपर का चिह्न 1) चन्द्रबिन्दु है या 2) विसर्ग? उँगलियों पर दिखाएँ।"
+          },
+          {
+            "kind": "choose",
+            "grounded": false,
+            "shows_hi": "बच्चा अनुस्वार को पहचानकर शब्द सही पढ़ता है।",
+            "listen_for": [],
+            "expected_hi": "1",
+            "question_hi": "मैं बोर्ड पर 'पंखा' लिखता/लिखती हूँ। इसमें 'पं' का चिह्न 1) अनुस्वार है या 2) विसर्ग? उँगलियों पर दिखाएँ।"
+          }
+        ],
+        "type": "teach",
+        "script_hi": null,
+        "time_start": "1:07",
+        "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+        "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+        "teach_group": "proficient",
+        "cfu_grounded": false,
+        "talking_points": {
+          "i_do_hi": "(2 मिनट दोहराव: संयुक्त अक्षर वाले 3 शब्द पढ़ें।) बोर्ड पर 'चाँद' लिखें और ऊपर की बिंदी-चंद्र दिखाएँ: यह चन्द्रबिन्दु है, नाक से बोलते हैं। फिर 'संत' में अनुस्वार (बिंदु) और 'दुःख' में विसर्ग (दो बिंदु) दिखाएँ। तीनों को बोलकर अंतर बताएँ।",
+          "we_do_hi": "बोर्ड पर लिखे शब्द साथ पढ़ें: आँख, पंखा, प्रातः, हँसना, अंडा, छः। हर शब्द में चिह्न को पहचानकर उसका नाम बताएँ। फिर एक-एक बच्चे से पढ़वाएँ।",
+          "you_do_hi": "बोर्ड से 8 शब्द कॉपी में उतारें और चिह्न पर गोला करके उसका नाम लिखें। साथी को शब्द पढ़कर सुनाएँ। मैं ऐप में दिखाए गए बच्चों को काम करते हुए देखता/देखती हूँ।"
+        },
+        "other_groups_hi": "शुरुआती समूह: बोर्ड पर लिखे मात्रा वाले शब्द पढ़ें और कॉपी में लिखें, जैसे 'मोर, कुआँ, बैल, दीया, पौधा, गेहूँ'। प्रगतिशील समूह: संयुक्त अक्षर वाले शब्द अभ्यास करें, जैसे 'क्षमा, पत्र, ज्ञान, श्रम, मित्र, शक्ति, विद्या, चित्र'। जल्दी पूरा करने वाले साथी की कॉपी जाँचें।",
+        "duration_minutes": 22
+      },
+      {
+        "type": "transition",
+        "script_hi": "सब अपना काम रोक दें और कॉपी बंद करें। आज सब बच्चों ने बहुत अच्छा काम किया। अब हम सब मिलकर अंतिम बार एक शब्द पढ़ेंगे।",
+        "time_start": "1:29",
+        "teach_group": null,
+        "talking_points": null,
+        "other_groups_hi": null,
+        "duration_minutes": 1
+      }
+    ],
+    "total_minutes": 90
+  },
+  "group_skills_source": {
+    "beginner": "derived",
+    "proficient": "derived",
+    "progressor": "selected"
+  },
+  "classroom_management": {
+    "peer_monitors": {
+      "beginner": "Roll 2",
+      "proficient": "Roll 7",
+      "progressor": "Roll 3"
+    },
+    "independent_activities_hi": {
+      "beginner": "बोर्ड पर लिखे मात्रा वाले शब्द कॉपी में उतारें और साथी को पढ़कर सुनाएँ, जैसे 'का, कि, की, कु, कू, के, कै, को, कौ' और 'दिया, पूरा, कैसा, मोती, बंदर, कुआँ'। जल्दी पूरा करने वाले साथी की कॉपी जाँचें या यही अभ्यास और शब्दों पर करें। लगभग 22-29 मिनट का काम है।",
+      "proficient": "बोर्ड पर लिखे संयुक्त अक्षर वाले शब्द कॉपी में लिखें और साथी को पढ़कर सुनाएँ, जैसे 'क्षमा, पत्र, ज्ञान, श्रम, मित्र, शक्ति, विद्या, चित्र'। जल्दी पूरा करने वाले साथी की कॉपी जाँचें या यही अभ्यास और शब्दों पर करें। लगभग 22 मिनट का काम है।",
+      "progressor": "बोर्ड पर लिखे मात्रा वाले शब्द कॉपी में लिखें और पढ़ें, जैसे 'कमल, पतंग, सितार, किताब, बंदर, कुआँ, गाजर, मोती'। जल्दी पूरा करने वाले साथी की कॉपी जाँचें या और मात्रा वाले शब्द लिखें। लगभग 22 मिनट का काम है।"
+    }
+  },
+  "independent_passages": {
+    "proficient": {
+      "id": "RP-006",
+      "text": "पानी हमारे जीवन के लिए बहुत ज़रूरी है। हम पानी पीते हैं, खाना बनाते हैं और नहाते हैं। किसान खेती के लिए पानी का उपयोग करते हैं। लेकिन धरती पर साफ़ पानी सीमित है। हमें पानी बचाना चाहिए। नल को खुला मत छोड़ो। बारिश का पानी इकट्ठा करो। अगर हम पानी नहीं बचाएँगे तो आने वाले समय में पानी की बहुत कमी होगी।",
+      "title": "पानी बचाओ",
+      "questions": [
+        {
+          "type": "literal",
+          "answer_hi": "पीने, खाना बनाने, नहाने और खेती में",
+          "question_hi": "पानी किन-किन कामों में लगता है?"
+        },
+        {
+          "type": "main_idea",
+          "answer_hi": "पानी बचाना ज़रूरी है",
+          "question_hi": "इस अनुच्छेद का मुख्य संदेश क्या है?"
+        },
+        {
+          "type": "inferential",
+          "answer_hi": "क्योंकि साफ़ पानी सीमित है और बारिश का पानी काम आ सकता है",
+          "question_hi": "लेखक ने बारिश का पानी इकट्ठा करने को क्यों कहा?"
+        }
+      ]
+    },
+    "progressor": {
+      "id": "RP-003",
+      "text": "मेरा स्कूल घर से पास है। मैं रोज़ पैदल जाता हूँ। स्कूल में मेरे बहुत दोस्त हैं। हम साथ में खेलते हैं। हम साथ में पढ़ते हैं। मुझे स्कूल जाना अच्छा लगता है।",
+      "title": "मेरा स्कूल",
+      "questions": [
+        {
+          "type": "literal",
+          "answer_hi": "घर से पास",
+          "question_hi": "स्कूल कहाँ है?"
+        },
+        {
+          "type": "literal",
+          "answer_hi": "पैदल",
+          "question_hi": "बच्चा स्कूल कैसे जाता है?"
+        },
+        {
+          "type": "literal",
+          "answer_hi": "खेलते और पढ़ते हैं",
+          "question_hi": "स्कूल में क्या करते हैं?"
+        }
+      ]
+    }
+  },
+  "_recorded_warnings": [
+    "the independent-practice passage «पानी बचाओ» for proficient is not mentioned in what the other groups do",
+    "the independent-practice passage «मेरा स्कूल» for progressor is not mentioned in what the other groups do"
+  ],
+  "_reviewed_by": ""
+}
