@@ -1,5 +1,5 @@
--- DRAFT, AI-proposed 13 Nov 2026, NOT LOADED: the writing skills' common mistakes, for Vaishnavi to confirm (docs/drafts/WRITING_MISTAKES_FOR_REVIEW.csv).
--- After her review: apply her changes in scripts/writing_mistakes_draft.py, run it again, and move these rows into db/seeds/literacy/03_misconceptions.sql.
+-- AI-proposed 13 Nov 2026; confirmed by Vaishnavi on 14 Nov 2026 without changes (docs/WRITING_MISTAKES_REVIEWED_141126.csv).
+-- These rows are now in db/seeds/literacy/03_misconceptions.sql; this file loads them into an existing database (ON CONFLICT DO NOTHING).
 INSERT INTO misconceptions (id, competency_id, name_en, name_hi, error_pattern, diagnostic_indicator, example_correct, example_incorrect, intervention_strategy, intervention_template_ids, severity, frequency, sort_order) VALUES
 
 ('L2.7.1-M1', 'L2.7.1',

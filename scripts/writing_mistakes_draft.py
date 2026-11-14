@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 DRAFT common mistakes for the three writing skills that have none in the knowledge base (L2.7.1 dictation, L2.7.2 connected sentences,
-L3.7.1 paragraph), for Vaishnavi to confirm or correct. AI-proposed, 13 Nov 2026: NOTHING here is loaded into the database.
+L3.7.1 paragraph). AI-proposed 13 Nov 2026; Vaishnavi confirmed all nine without changes on 14 Nov 2026 (docs/WRITING_MISTAKES_REVIEWED_141126.csv),
+and the rows are now in db/seeds/literacy/03_misconceptions.sql. This script is kept to show where they came from.
 
     python scripts/writing_mistakes_draft.py            writes docs/drafts/WRITING_MISTAKES_FOR_REVIEW.csv (open in Excel or Google Sheets)
                                                         and docs/drafts/writing_mistakes_draft.sql (the rows, in the seed format, to load AFTER her review)
@@ -116,8 +117,8 @@ def main():
         order[skill] = order.get(skill, 0) + 1
         arr = "ARRAY[" + ", ".join(q(i) for i in ints) + "]" if ints else "ARRAY[]::text[]"
         rows.append(f"({q(mid)}, {q(skill)},\n {q(en)},\n {q(hi)},\n {q(pattern)},\n {q(shows)},\n {q(right)},\n {q(wrong)},\n {q(todo)},\n {arr}, {q(sev)}, {q(freq)}, {order[skill]})")
-    sql = ("-- DRAFT, AI-proposed 13 Nov 2026, NOT LOADED: the writing skills' common mistakes, for Vaishnavi to confirm (docs/drafts/WRITING_MISTAKES_FOR_REVIEW.csv).\n"
-           "-- After her review: apply her changes in scripts/writing_mistakes_draft.py, run it again, and move these rows into db/seeds/literacy/03_misconceptions.sql.\n"
+    sql = ("-- AI-proposed 13 Nov 2026; confirmed by Vaishnavi on 14 Nov 2026 without changes (docs/WRITING_MISTAKES_REVIEWED_141126.csv).\n"
+           "-- These rows are now in db/seeds/literacy/03_misconceptions.sql; this file loads them into an existing database (ON CONFLICT DO NOTHING).\n"
            "INSERT INTO misconceptions (id, competency_id, name_en, name_hi, error_pattern, diagnostic_indicator, example_correct, example_incorrect, "
            "intervention_strategy, intervention_template_ids, severity, frequency, sort_order) VALUES\n\n" + ",\n\n".join(rows) + "\nON CONFLICT (id) DO NOTHING;\n")
     (out / "writing_mistakes_draft.sql").write_text(sql, encoding="utf-8")
