@@ -76,6 +76,21 @@ def margin_points(n: int, group_size: int, sd: float = ASSUMED_SD) -> int:
     return int(round(1.96 * sd / math.sqrt(n) * fpc * 100))
 
 
+READ_ALOUD_PER_DAY = 4        # reading aloud: one child takes about 1.5 minutes, and the You Do is about 6 (14 Nov 2026, decided with Ramesh)
+
+
+def rotation_sample(rolls, last_heard: dict, n: int = READ_ALOUD_PER_DAY, absent=None) -> list:
+    """
+    Reading aloud, a few children a day in turn: the n children heard LEAST recently on the skill (never heard first), ties by roll number.
+    last_heard: {roll: date of the child's latest reading-aloud result on this skill, BEFORE today}. Absent children are skipped and the next in
+    turn is taken. Deterministic, so the plan screen, the Review and the paper agree all day; a group of 12 is fully heard in 3 days.
+    """
+    away = {int(a) for a in absent or []}
+    pool = [r for r in sorted({int(r) for r in rolls}) if r not in away]
+    order = sorted(pool, key=lambda r: (last_heard.get(r) is not None, last_heard.get(r) or 0, r))
+    return sorted(order[:max(0, int(n))])
+
+
 def sample_for_group(rolls, plan_date, level: str, competency_id: str, size: int = None, absent=None) -> dict:
     """The suggested children for one group on one day."""
     rolls = sorted({int(r) for r in rolls})

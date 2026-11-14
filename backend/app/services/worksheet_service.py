@@ -239,6 +239,9 @@ def render_worksheet(
         date=plan_date,
         sheet_kind=worksheet.get("sheet_kind"),                      # a writing sheet (services/writing_sheets.py)
         checklist=[c for c in (worksheet.get("checklist") or []) if isinstance(c, dict) and c.get("item_hi")] if worksheet.get("sheet_kind") == "composition" else [],
+        # a reading-aloud practice sheet: warm-up words, the passage read three times, pair reading, sentences for pauses and expression
+        warmup_words=[w for w in (worksheet.get("warmup_words") or []) if isinstance(w, str) and w.strip()] if worksheet.get("sheet_kind") == "fluency" else [],
+        expression_sentences=[e for e in (worksheet.get("expression_sentences") or []) if isinstance(e, str) and e.strip()] if worksheet.get("sheet_kind") == "fluency" else [],
     )
     
     return html

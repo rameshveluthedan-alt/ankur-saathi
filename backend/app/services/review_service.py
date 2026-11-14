@@ -364,8 +364,22 @@ async def get_review_coverage(db, teacher_id, session_date, domain_id: str, work
             if channel == "orf" and isinstance(data, dict) and data.get("cwpm") is not None:
                 entry.update({"cwpm": data.get("cwpm"), "errors": data.get("error_count", 0)})
             recorded[x["roll_number"]] = entry
-    from app.services.sampling import sample_for_group
+    from app.services.sampling import sample_for_group, rotation_sample, margin_points, READ_ALOUD_PER_DAY
     sug = sample_for_group(group_rolls, session_date, worksheet_level, competency or "", sample_size, absent)
+    rotation = channel == "orf"
+    if rotation:
+        # reading aloud: 3-4 children a day in turn, those heard least recently on this skill first (14 Nov), not the photo sample
+        last = {}
+        if competency and group_rolls:
+            for x in await db.fetch(
+                    """SELECT c.roll_number, max(e.session_date) AS last FROM assessment_evidence e JOIN children c ON c.id = e.child_id
+                       WHERE e.teacher_id = $1 AND e.competency_id = $2 AND e.channel = 'oral_reading' AND e.session_date < $3
+                       GROUP BY c.roll_number""", teacher_id, competency, session_date):
+                last[x["roll_number"]] = x["last"].toordinal()
+        n = min(len(group_rolls), READ_ALOUD_PER_DAY if sample_size is None else max(0, int(sample_size)))
+        chosen = rotation_sample(group_rolls, last, n, absent)
+        sug = {"mode": "all" if n >= len(group_rolls) else "sample", "size": len(chosen), "group_size": len(group_rolls), "rolls": chosen,
+               "margin_points": margin_points(len(chosen), len(group_rolls))}
     labels = {}
     if group_rolls:
         try:
@@ -383,7 +397,9 @@ async def get_review_coverage(db, teacher_id, session_date, domain_id: str, work
             # a large group need not be done in full: these children, spread evenly over the roll list, give a rough picture of the group
             "sample": {"mode": sug["mode"], "size": sug["size"], "group_size": sug["group_size"], "rolls": sug["rolls"],
                        "done": [x for x in sug["rolls"] if x in analysed], "left": [x for x in sug["rolls"] if x not in analysed],
-                       "margin_points": sug["margin_points"], "absent": sorted({int(a) for a in (absent or [])})}}
+                       "margin_points": sug["margin_points"], "absent": sorted({int(a) for a in (absent or [])}),
+                       # reading aloud only: today's children in turn; the rest of the group on later days ("आज 4 बच्चे · बाकी अगले दिनों में")
+                       **({"rotation": True, "later": max(0, sug["group_size"] - sug["size"])} if rotation else {})}}
 
 
 async def analyse_worksheet_photos(
@@ -447,6 +463,12 @@ async def analyse_worksheet_photos(
         raise LookupError(
             "No worksheet found for this date, subject and level. Generate today's plan first, "
             "so the photos can be checked against its answer key."
+        )
+    if worksheet_data.get("practice"):
+        # a reading-aloud group's sheet is practice (services/writing_sheets.py): its check is the one-minute reading, never a photo. Refused BEFORE any AI call.
+        raise LookupError(
+            "This group's worksheet is reading-aloud practice: it is not checked from a photo. "
+            "Record the one-minute reading instead (Reading aloud)."
         )
 
     # Build Vision prompt

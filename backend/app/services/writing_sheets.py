@@ -14,6 +14,10 @@ Now each group's sheet follows ITS OWN skill:
   composition  L2.7.2, L3.7.1, L3.7.3: ONE writing task on the topic the You Do names (never the teacher's own model topic), lined space, a 3-5 point
                checklist instead of an answer key (printed on the sheet, so the child can tick it too), and 2-3 short items on the parts
                (joining two sentences, ending one with ।, putting sentences in order), each with one checkable answer.
+  fluency      L1.5.1, L2.5.1, L2.5.2, L3.5.1, L3.5.2 (reading aloud: pace, accuracy, pauses, expression; 14 Nov 2026): PRACTICE while the teacher listens to
+               a few children one minute each: warm-up words to read to a partner, the group's (bank) passage read aloud three times with a tick each
+               time, pair reading, at most 3 short questions; for L2.5.2 and L3.5.2 also 3-4 sentences with । ? ! to read with the right pause or
+               expression. The passage is KEPT (unlike the writing kinds). Never marked from a photo: the check is the teacher's one-minute reading.
 The photo analysis marks a composition against its checklist and a dictation against the dictated sentences (vision_spec, prompts/vision_analysis.py).
 
 PURE (no database, no network): tested in backend/tests/test_writing_sheets.py.
@@ -26,11 +30,15 @@ DICTATION = {"L2.7.1"}
 COMPOSITION = {"L2.7.2", "L3.7.1", "L3.7.3"}
 USAGE = {"L2.7.3", "L3.7.2"}          # punctuation, and grammar (gender, number, tense): short items with one checkable answer
 CHECKLIST_MIN, CHECKLIST_MAX = 3, 5
+FLUENCY = {"L1.5.1", "L2.5.1", "L2.5.2", "L3.5.1", "L3.5.2"}      # reading aloud (oral_reading)
+EXPRESSION = {"L2.5.2", "L3.5.2"}                                  # pauses at punctuation, expression: also sentences to read with the marks
+WARMUP_MIN, WARMUP_MAX = 6, 8
+FLUENCY_QUESTIONS_MAX = 3
 TASK_ANSWER = "CHECKLIST"          # the writing task's "answer": the photo analysis uses the checklist instead of a key
 
 
 def sheet_kind(competency_id, domain_id="r1_literacy"):
-    """'reading' | 'formation' | 'usage' | 'dictation' | 'composition' for a literacy skill; None for numeracy."""
+    """'reading' | 'fluency' | 'formation' | 'usage' | 'dictation' | 'composition' for a literacy skill; None for numeracy."""
     if domain_id != "r1_literacy" or not competency_id:
         return None
     cid = str(competency_id)
@@ -40,6 +48,8 @@ def sheet_kind(competency_id, domain_id="r1_literacy"):
         return "composition"
     if cid in USAGE:
         return "usage"
+    if cid in FLUENCY:
+        return "fluency"
     if _WRITING.match(cid):
         return "formation"
     return "reading"
@@ -51,15 +61,17 @@ def group_kinds(group_skill_ids, domain_id) -> dict:
 
 
 def writing_levels(group_skill_ids, domain_id) -> set:
-    return {lvl for lvl, k in group_kinds(group_skill_ids, domain_id).items() if k != "reading"}
+    """The groups whose sheet has NO passage (the writing kinds). A fluency group keeps its bank passage: it reads it aloud."""
+    return {lvl for lvl, k in group_kinds(group_skill_ids, domain_id).items() if k not in ("reading", "fluency")}
 
 
 def prompt_section(group_skill_ids, domain_id) -> str:
     """The prompt's rules for the groups on a writing skill (empty when no group is). They OVERRIDE the passage rules for those groups."""
     kinds = group_kinds(group_skill_ids, domain_id)
-    writing = {lvl: k for lvl, k in kinds.items() if k != "reading"}
+    writing = {lvl: k for lvl, k in kinds.items() if k not in ("reading", "fluency")}
+    fluency = [lvl for lvl in LEVELS if kinds.get(lvl) == "fluency"]
     if not writing:
-        return ""
+        return _fluency_section(group_skill_ids, fluency)
     lines = ["\n### WRITING WORKSHEETS (these groups are taught a WRITING skill: their worksheet checks WRITING, not reading)"]
     for lvl in LEVELS:
         if lvl in writing:
@@ -99,6 +111,30 @@ def prompt_section(group_skill_ids, domain_id) -> str:
             "even for a progressor or proficient group.",
         ]
     lines.append("For every writing sheet: never reuse a topic, sentence or example from the lesson or the anchor story.\n")
+    return "\n".join(lines) + _fluency_section(group_skill_ids, fluency)
+
+
+def _fluency_section(group_skill_ids, fluency_levels) -> str:
+    """The prompt's rules for groups taught to READ ALOUD (empty when none is): a practice sheet, and a You Do that names no child."""
+    if not fluency_levels:
+        return ""
+    lines = ["\n### READING-ALOUD WORKSHEETS (these groups are taught to READ ALOUD: their sheet is PRACTICE; the check is the teacher's one-minute reading)"]
+    for lvl in fluency_levels:
+        lines.append(f"- {lvl} ({group_skill_ids[lvl]}): sheet_kind \"fluency\"")
+    lines += [
+        "FLUENCY sheet (\"fluency\"): keep the passage_block (the system puts the bank passage in). Add:",
+        f"- \"warmup_words\": {WARMUP_MIN}-{WARMUP_MAX} harder words FROM the passage (long words, conjuncts, matras the group finds hard), to read aloud to a partner before the passage.",
+        "- The children read the passage aloud THREE times, softly or to a partner (the sheet prints a tick box for each reading), then read in pairs: one reads, "
+        "the partner follows with a finger and marks any word that needed help.",
+        f"- problems: at most {FLUENCY_QUESTIONS_MAX} short comprehension questions about the passage (so the reading is for meaning), each with one checkable answer.",
+    ]
+    if any(group_skill_ids.get(lvl) in EXPRESSION for lvl in fluency_levels):
+        lines.append("- For a pauses or expression skill (L2.5.2, L3.5.2): \"expression_sentences\": 3-4 short sentences that end in । ? or ! (a question, an exclamation), "
+                     "to read with the right pause or tone.")
+    lines += [
+        "- The You Do sends the group to this worksheet and says the teacher listens to the children shown in the app ('ऐप में दिखाए गए बच्चे'), one minute each, "
+        "while the others practise. Never 'हर बच्चे से' or 'सभी बच्चों से' (there is no time to hear every child in one day), and never a child's name or roll number.\n",
+    ]
     return "\n".join(lines)
 
 
@@ -142,6 +178,9 @@ def apply_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> l
             # leave questions about a passage that is gone. It is left as it is, and check_writing_sheets reports it until the plan is recorded again.
             log.append(f"{lvl}: an old-shape composition sheet (no writing task, no checklist): left as it is")
             continue
+        if kind == "fluency":
+            log += _apply_fluency(lvl, ws)
+            continue
         ws["sheet_kind"] = kind
         if ws.get("passage_block"):
             ws["passage_block"] = None
@@ -183,6 +222,33 @@ def apply_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> l
             continue
         ws["problems"] = probs                                         # formation: the model's items, without any passage or bank question
     return log
+
+
+def _words_of(ws: dict) -> list:
+    return [_strip(w) for w in ws.get("warmup_words") or [] if isinstance(w, str) and _strip(w)][:WARMUP_MAX]
+
+
+def _apply_fluency(lvl: str, ws: dict) -> list:
+    """A reading-aloud group's sheet: practice, its passage kept, at most 3 questions (the bank's first). A recorded sheet in the old shape (no warm-up
+    words) keeps its questions: it is only marked as practice, and check_writing_sheets reports it."""
+    ws["sheet_kind"] = "fluency"
+    ws["practice"] = True
+    if not _words_of(ws):
+        return [f"{lvl}: an old-shape reading-aloud sheet (no warm-up words): marked as practice, questions left as they are"]
+    ws["warmup_words"] = _words_of(ws)
+    if isinstance(ws.get("expression_sentences"), list):
+        ws["expression_sentences"] = [_strip(x) for x in ws["expression_sentences"] if isinstance(x, str) and _strip(x)][:4]
+    probs = [p for p in ws.get("problems") or [] if isinstance(p, dict)]
+    keep = ([p for p in probs if p.get("from_bank")] + [p for p in probs if not p.get("from_bank")])[:FLUENCY_QUESTIONS_MAX]
+    dropped = len(probs) - len(keep)
+    for n, p in enumerate(keep, 1):
+        p["number"] = n
+    ws["problems"] = keep
+    ws["required_count"] = len(keep)
+    return [f"{lvl}: reading-aloud practice sheet, {len(ws['warmup_words'])} warm-up words, {len(keep)} question(s)" + (f" ({dropped} dropped)" if dropped else "")]
+
+
+_EVERY_CHILD = re.compile(r"हर\s+बच्चे|सभी\s+बच्चों\s+से|हर\s+एक\s+बच्चे")
 
 
 def _lesson_text(plan: dict, level: str, keys=("i_do_hi", "we_do_hi")) -> str:
@@ -242,6 +308,23 @@ def check_writing_sheets(plan: dict, group_skill_ids: dict, domain_id: str) -> l
             continue
         ws = (plan.get("worksheets") or {}).get(lvl) or {}
         where = f"worksheets.{lvl} ({kind})"
+        if kind == "fluency":
+            words = _words_of(ws)
+            if not words:
+                issues.append(f"{where}: no warm-up words")
+            elif not (WARMUP_MIN <= len(words) <= WARMUP_MAX):
+                issues.append(f"{where}: {len(words)} warm-up word(s), not {WARMUP_MIN}-{WARMUP_MAX}")
+            if not (ws.get("passage_block") or {}).get("text"):
+                issues.append(f"{where}: no passage to read aloud three times")
+            if group_skill_ids.get(lvl) in EXPRESSION and not (3 <= len(ws.get("expression_sentences") or []) <= 4):
+                issues.append(f"{where}: no 3-4 sentences to read with pauses or expression")
+            if len(ws.get("problems") or []) > FLUENCY_QUESTIONS_MAX:
+                issues.append(f"{where}: {len(ws.get('problems') or [])} questions, more than {FLUENCY_QUESTIONS_MAX}")
+            you_do = _lesson_text(plan, lvl, ("you_do_hi",))
+            m = _EVERY_CHILD.search(you_do)
+            if m:
+                issues.append(f"{where}: the You Do says the teacher hears «{m.group(0)}»; it should be the children shown in the app (3-4 a day)")
+            continue
         if ws.get("passage_block"):
             issues.append(f"{where}: has a reading passage")
         probs = ws.get("problems") or []
@@ -296,4 +379,6 @@ def vision_spec(worksheet: dict):
         return {"kind": "dictation", "sentences": list(worksheet.get("dictation_sentences") or [])}
     if kind == "formation":
         return {"kind": "formation"}
+    if kind == "fluency":
+        return {"kind": "fluency", "practice": True}
     return None
