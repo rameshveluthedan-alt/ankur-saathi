@@ -598,3 +598,9 @@ input[type="checkbox"] { width: 22px; height: 22px; flex-shrink: 0; }
 /* A feature still in pilot (components/PilotFlag.jsx) */
 .pilot-flag { font-size: 0.75rem; color: var(--info); background: var(--info-bg); border-radius: 8px; padding: 6px 10px; margin: 0 0 8px; }
 .pilot-chip { display: inline-block; font-weight: 700; background: white; border: 1px solid #C9D6E3; border-radius: 10px; padding: 0 6px; margin-right: 4px; }
+
+/* "Done teaching this group" at the foot of a group's slot, and the in-class recording bar (13 Nov) */
+.taught-row { display: flex; align-items: center; gap: 10px; min-height: 44px; margin-top: 10px; padding: 6px 10px; border: 1px dashed var(--border); border-radius: 8px; font-size: 0.875rem; cursor: pointer; }
+.taught-row.on { border-style: solid; border-color: var(--green-dark); background: var(--green-bg); font-weight: 600; }
+.taught-row input { width: 20px; height: 20px; }
+.in-class-bar { background: var(--tier-bg); border-left: 5px solid var(--tier); border-radius: 8px; padding: 8px 12px; margin-bottom: 10px; font-size: 0.875rem; font-weight: 600; }

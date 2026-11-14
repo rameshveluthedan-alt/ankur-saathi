@@ -120,11 +120,11 @@ globalThis.__location = { pathname: '/review', state: { from: 'plan', channel: '
 enterFrom('record-now');
 const lenC = H.length;
 await show(Review);
-check('from "अभी दर्ज करें": step 2 with no entry of its own, so Back goes straight back to the plan', viewNow() === '2' && H.length === lenC && H.state.key === 'record-now');
-await click(q('[data-testid="back-to-decisions"]'));
-check('"← 1/3 पहला अनुमान बदलें" there: step 1, and Back returns to step 2', viewNow() === '1' && H.length === lenC + 1);
-await back();
-check('...Back → step 2, still the plan\'s group and way', viewNow() === '2' && !!q('[data-testid="from-plan"]'));
+check('from the plan\'s You Do (in class): no entry of its own, so Back goes straight back to the plan', H.length === lenC && H.state.key === 'record-now' && !!q('[data-testid="from-plan"]'));
+check('...locked to that group and way (13 Nov): no step title, no way tabs, no group buttons, no "← 1/3", no "आगे: अंतिम निर्णय"', !q('[data-testid="review-title"]') && !q('[data-testid="channel-observed"]')
+  && !document.querySelector('[data-testid="observed-list"] .tier-option') && !q('[data-testid="back-to-decisions"]') && !q('[data-testid="to-final"]'));
+await click(q('[data-testid="done-in-class"]'));
+check('..."पढ़ाना जारी रखें" goes back to the plan, to the same group\'s slot with You Do open', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/yojana', { state: { slot: 'beginner', openYouDo: true } }]), JSON.stringify(globalThis.__navs.at(-1)));
 globalThis.__location = { pathname: '/review', state: null };
 await act(async () => root.unmount()); root = null;
 H.pushState({ usr: null, key: 'elsewhere', idx: 2 }, '');

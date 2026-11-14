@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../App';
 import { getCachedPlan, worksheetPath, prepareOfflineCopy, getReviewChannels } from '../services/api';
 import { channelOf, OBSERVE, hasObservation, PRACTICE_ONLY, hasWorksheet } from '../services/reviewWays';
@@ -40,7 +40,11 @@ export default function YojanaScreen() {
   const { currentPlan, setCurrentPlan, teacher, selectedDomain } = useAuth();
   const navigate = useNavigate();
   const [showWhyPanel, setShowWhyPanel] = useState(false);
-  const [slotIndex, setSlotIndex] = useState(0);         // the session-slot tab on screen
+  const location = useLocation();
+  // the session-slot tab on screen: kept for this plan in the tab's session, so coming back (from the in-class recording, or the browser's Back) lands on the same slot
+  const slotKey = currentPlan ? `ankur_slot:${currentPlan.plan_date}:${currentPlan.domain_id}` : null;
+  const [slotIndex, setSlotIndexState] = useState(() => { try { return Number(sessionStorage.getItem(slotKey)) || 0; } catch { return 0; } });
+  const setSlotIndex = (k) => { setSlotIndexState(k); try { if (slotKey) sessionStorage.setItem(slotKey, String(k)); } catch { /* private mode */ } };
   // loading from the first frame when the plan in memory is not today's for the chosen subject (see below): never a moment of "no plan" first
   const [loadingStored, setLoadingStored] = useState(() => !(currentPlan && currentPlan.plan_date === localToday() && currentPlan.domain_id === selectedDomain));
   // how each group's skill is checked at the review (and what to look for, the text to read aloud): the "आज की समीक्षा" fold, readable before class
@@ -94,7 +98,12 @@ export default function YojanaScreen() {
       .finally(() => { if (!cancelled) setLoadingStored(false); });
     return () => { cancelled = true; };
   }, [today, selectedDomain, fits, wake]);
-  useEffect(() => { setSlotIndex(0); }, [currentPlan && currentPlan.plan_date, currentPlan && currentPlan.domain_id, currentPlan && currentPlan.selected_competency_id]);
+  useEffect(() => { try { setSlotIndexState(Number(sessionStorage.getItem(slotKey)) || 0); } catch { setSlotIndexState(0); } }, [slotKey, currentPlan && currentPlan.selected_competency_id]);
+  // which groups the teacher has marked "taught" today (this phone): the tabs show ✓, and the review opens once every group is taught
+  const taughtKey = currentPlan ? `ankur_taught:${teacher.teacher_id}:${currentPlan.plan_date}:${currentPlan.domain_id}` : null;
+  const [taught, setTaught] = useState([]);
+  useEffect(() => { try { setTaught(JSON.parse(localStorage.getItem(taughtKey) || '[]')); } catch { setTaught([]); } }, [taughtKey]);
+  const toggleTaught = (g) => setTaught((t) => { const n = t.includes(g) ? t.filter((x) => x !== g) : [...t, g]; try { localStorage.setItem(taughtKey, JSON.stringify(n)); } catch { /* private mode */ } return n; });
 
   if (loadingStored && !isToday(currentPlan)) {
     return (
@@ -142,21 +151,30 @@ export default function YojanaScreen() {
   const wayOf = (level) => (ways && ways.has_plan ? (ways.levels || []).find((x) => x.level === level) : null);
 
   // ── one slot's content ──
+  // Inside You Do, where the teacher watches or listens: one button for THIS group (13 Nov: it opens the in-class recording, locked to this group and way,
+  // and comes back to this slot). A photographed group has no button here: its sheets are photographed after class, on the Review.
   const recordButton = (level) => {
     const l = wayOf(level);
     if (!l) return null;
     const way = channelOf(l.channel);
     if (!way) return null;
-    const during = l.channel === 'photo'
-      ? <Bi hi="वर्कशीट पूरी होने के बाद" en="After the worksheet" inline />
-      : <Bi hi="'तुम करोगे' के दौरान" en="During You Do" inline />;
+    if (l.channel === 'photo') {
+      return (
+        <div className="record-bar" data-testid={`record-bar-${level}`}>
+          <span className="record-bar-note">📸 <Bi hi="इस समूह की वर्कशीट की फ़ोटो पढ़ाने के बाद, समीक्षा टैब पर लें।" en="Photograph this group's worksheets after teaching, on the Review tab." inline /></span>
+        </div>
+      );
+    }
+    const label = l.channel === 'orf'
+      ? <Bi hi="बच्चे का पढ़ना सुनकर दर्ज करें" en="Listen to a child read, then record" inline />
+      : <Bi hi="देखते हुए A / PA / NA दर्ज करें" en="Mark A / PA / NA as you watch" inline />;
     return (
       <div className="record-bar" data-testid={`record-bar-${level}`}>
-        <button type="button" className="btn btn-primary btn-small" data-testid={l.channel === 'photo' ? `record-photo-${level}` : `record-now-${level}`} data-channel={l.channel}
+        <button type="button" className="btn btn-primary btn-small" data-testid={`record-now-${level}`} data-channel={l.channel}
           onClick={(e) => { e.stopPropagation(); navigate('/review', { state: { from: 'plan', channel: l.channel, level } }); }}>
-          {way.icon} {l.channel === 'photo' ? <Bi hi="फ़ोटो से स्तर दर्ज करें" en="Record levels from photos" inline /> : <Bi hi="अभी स्तर दर्ज करें" en="Record levels now" inline />}
+          {way.icon} {label}
         </button>
-        <span className="record-bar-note">{during} · <Bi hi={way.hi} en={way.en} inline /></span>
+        <span className="record-bar-note"><Bi hi="सिर्फ़ इस समूह के लिए" en="For this group only" inline /></span>
       </div>
     );
   };
@@ -214,7 +232,6 @@ export default function YojanaScreen() {
           {skill && <span data-testid="block-skill" style={{ fontWeight: 400, fontFamily: 'monospace', fontSize: '0.75rem', color: 'var(--text-secondary)' }}> — {skill}</span>}
         </h3>
         <div className="slot-meta">{slot.start && <>{slot.start} · </>}{slot.minutes} {MIN} · {groupOf(level).count ?? '—'} <Bi hi="बच्चे" en="children" inline /></div>
-        {recordButton(level)}
         {block.type === 'reteach' && block.affected_rolls && block.affected_rolls.length > 0 && (
           <div data-testid="reteach-rolls" style={{ fontSize: '0.75rem', marginTop: 4, ...ML }}>
             👥 <Bi hi="जिन बच्चों के लिए" en="For" inline />: <Bi hi="रोल" en="Roll" inline /> {block.affected_rolls.join(', ')}
@@ -246,9 +263,10 @@ export default function YojanaScreen() {
         {tp.i_do_hi && <Fold icon="🧑‍🏫" hi="मैं करूँगा" en="I do" testid="fold-i-do"><div style={ML}>{fmt(tp.i_do_hi)}</div></Fold>}
         {tp.we_do_hi && <Fold icon="🤝" hi="हम करेंगे" en="We do" testid="fold-we-do"><div style={ML}>{fmt(tp.we_do_hi)}</div></Fold>}
         {tp.you_do_hi && (
-          <Fold icon="✏️" hi="तुम करोगे" en="You do" testid="fold-you-do">
+          <Fold icon="✏️" hi="तुम करोगे" en="You do" testid="fold-you-do" open={!!(location.state && location.state.openYouDo && location.state.slot === level) || undefined}>
             <div style={ML}>{fmt(tp.you_do_hi)}</div>
             <BoardWork plan={plan} group={level} domain={currentPlan.domain_id} />
+            {recordButton(level)}
           </Fold>
         )}
         {Array.isArray(block.cfu) && block.cfu.length > 0 && (
@@ -393,7 +411,7 @@ export default function YojanaScreen() {
               className={`slot-tab ${s.group ? `tier-${s.group}` : 'slot-anchor'} ${active === s ? 'on' : ''}`} data-testid={`slot-tab-${s.kind === 'anchor' ? 'anchor' : s.group}`}
               onClick={() => setSlotIndex(k)}>
               <span className="slot-tab-name">{slotLabel(s)}</span>
-              <span className="slot-tab-time">{s.minutes ? `${s.minutes}′` : ''}</span>
+              <span className="slot-tab-time">{s.group && taught.includes(s.group) ? '✓ ' : ''}{s.minutes ? `${s.minutes}′` : ''}</span>
             </button>
           ))}
         </div>
@@ -402,6 +420,12 @@ export default function YojanaScreen() {
           <div key={s.key} className={`slot-panel ${s.group ? `tier-${s.group}` : 'slot-anchor'}${s.reteach ? ' reteach' : ''}`} role="tabpanel" id={`slot-panel-${k}`} aria-labelledby={`slot-tab-${k}`}
             hidden={active !== s} data-testid={active === s ? 'slot-panel' : 'slot-panel-hidden'} data-slot={s.kind} data-slot-group={s.group || 'anchor'}>
             {s.kind === 'anchor' ? anchorPanel(s) : teachPanel(s)}
+            {s.group && (
+              <label className={`taught-row ${taught.includes(s.group) ? 'on' : ''}`} data-testid={`taught-${s.group}`}>
+                <input type="checkbox" checked={taught.includes(s.group)} onChange={() => toggleTaught(s.group)} />
+                <span><Bi hi="इस समूह को पढ़ा दिया" en="Done teaching this group" inline /></span>
+              </label>
+            )}
             <div className="slot-nav">
               {k > 0 && (
                 <button type="button" className="btn btn-secondary btn-small" data-testid="slot-prev" onClick={() => goSlot(k - 1)}><span>← <Bi hi="पिछला" en="Previous" inline /></span></button>
@@ -476,10 +500,22 @@ export default function YojanaScreen() {
         )}
       </details>
 
-      {/* the next step after teaching, without having to know which tab it is */}
-      <button type="button" className="btn btn-primary" data-testid="to-review" onClick={() => navigate('/review')} style={{ marginTop: 12, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
-        <Bi hi="पढ़ाने के बाद: समीक्षा करें →" en="After teaching: review" />
-      </button>
+      {/* the next step after teaching: it opens once every group is marked taught, and says which are left (the Review tab is always there too) */}
+      {(() => {
+        const toTeach = GROUP_ORDER.filter((g) => slots.some((x) => x.group === g));
+        const left = toTeach.filter((g) => !taught.includes(g));
+        return (<>
+          <button type="button" className="btn btn-primary" data-testid="to-review" disabled={left.length > 0} onClick={() => navigate('/review')} style={{ marginTop: 12, marginBottom: left.length ? 4 : 80, flexDirection: 'column', gap: 0 }}>
+            <Bi hi="पढ़ाने के बाद: समीक्षा करें →" en="After teaching: review" />
+          </button>
+          {left.length > 0 && (
+            <p data-testid="to-review-left" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 0 80px' }}>
+              <Bi hi="हर समूह के बाद 'इस समूह को पढ़ा दिया' पर ✓ लगाएँ। बाकी:" en="Tick 'Done teaching this group' after each group. Left:" inline />{' '}
+              {left.map((g, i) => <span key={g}>{i ? ', ' : ''}<GroupMark group={g} name /></span>)}
+            </p>
+          )}
+        </>);
+      })()}
     </div>
   );
 }

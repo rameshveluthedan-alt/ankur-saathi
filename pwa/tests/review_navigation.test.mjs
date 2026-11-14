@@ -145,7 +145,11 @@ check('Progress opened from its tab: no such button', !q('[data-testid="back-to-
 
 console.log('\nE. the plan screen leads on');
 fresh(); globalThis.__auth.currentPlan = PLAN({});
+localStorage.clear();
 await show(Yojana);
+check('the review button waits until every group is marked taught, and says which are left (13 Nov)', q('[data-testid="to-review"]').disabled && /बाकी/.test(q('[data-testid="to-review-left"]').textContent));
+for (const box of [...document.querySelectorAll('[data-testid^="taught-"] input')]) await click(box);
+check('...every group ticked "इस समूह को पढ़ा दिया": it opens, and the tabs show ✓', !q('[data-testid="to-review"]').disabled && !q('[data-testid="to-review-left"]'));
 await click(q('[data-testid="to-review"]'));
 check('with a plan: "पढ़ाने के बाद: समीक्षा करें →" goes to the Review', /पढ़ाने के बाद: समीक्षा करें/.test(text()) && JSON.stringify(globalThis.__navs.at(-1)) === '["/review"]');
 fresh(); cached = async () => { throw notFound(); };

@@ -8,6 +8,7 @@ import { useOnline } from '../components/OfflineBanner';
 import { GROUP_LABELS, GROUP_ORDER } from '../tiers';
 import Bi from '../components/Bi';
 import PilotFlag from '../components/PilotFlag';
+import GroupMark from '../components/GroupMark';
 import { bi } from '../services/language';
 import { notify } from '../services/notify';
 import { friendlyError } from '../services/errors';
@@ -88,6 +89,8 @@ export default function ReviewScreen() {
   const [orfEntry, setOrfEntry] = useState({ roll_number: '', cwpm: '', error_count: '' });
   const fileInput = useRef(null);
   const navigate = useNavigate();
+  // in class: back to the plan, on the same group's slot with its You Do open (the browser's Back does the same: the plan is the entry before)
+  const backToPlan = () => navigate('/yojana', { state: { slot: fromPlan && fromPlan.level, openYouDo: true } });
   // what the last save recorded, shown above the list (Observed) or the form (Reading aloud); a failed save shows its error in place instead
   const [observedSaved, setObservedSaved] = useState(null);     // { level, items }
   const [observedError, setObservedError] = useState('');
@@ -121,7 +124,8 @@ export default function ReviewScreen() {
     }).catch((e) => { if (!cancelled) setPlanStatus(isToday(currentPlan) ? 'ready' : (e && e.status === 404 ? 'none' : 'error')); });
     return () => { cancelled = true; };
   }, [teacher.teacher_id, selectedDomain]);
-  useEffect(() => { savePlace(place, { step, decisions, channel, sheetLevel }); }, [place, step, decisions, channel, sheetLevel]);
+  // a visit from the plan during the lesson is not where the review was left: it is never saved as the Review's place (13 Nov: the Review then reopened on that group's list)
+  useEffect(() => { if (!fromPlan) savePlace(place, { step, decisions, channel, sheetLevel }); }, [place, step, decisions, channel, sheetLevel]);
   const groups = plan?.groups || [];
   // step 1 is complete when every group with children has a decision: until then "record" is off, and the screen says which groups are left
   const undecided = groups.filter((g) => g.count > 0 && !decisions[g.label]);
@@ -286,12 +290,21 @@ export default function ReviewScreen() {
   return (
     <div className="screen">
       <div className="screen-header">
-        <h1>☑️ <Bi hi="समीक्षा" en="Review" inline /></h1>
+        {/* in class (opened from a group's You Do): one group, one way, and the way back to that group's slot; nothing else of the Review */}
+        {fromPlan ? (
+          <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-plan" onClick={backToPlan}>← <Bi hi="योजना" en="Plan" inline /></button>
+        ) : null}
+        <h1>{fromPlan ? <>{channelOf(fromPlan.channel)?.icon} <Bi hi="कक्षा में दर्ज करें" en="Record in class" inline /></> : <>☑️ <Bi hi="समीक्षा" en="Review" inline /></>}</h1>
+        {!fromPlan && (
+          <button type="button" className="btn btn-secondary btn-small" data-testid="review-to-plan" onClick={() => navigate('/yojana')}>📋 <Bi hi="आज की योजना" en="Today's plan" inline /></button>
+        )}
       </div>
       {fromPlan && step === 2 && (
-        <div data-testid="from-plan" style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--green-bg)', borderRadius: 8, padding: '6px 10px', marginBottom: 10, fontSize: '0.8125rem' }}>
-          <span style={{ flex: 1 }}><Bi hi="पाठ के दौरान दर्ज कर रहे हैं; पहला अनुमान और अंतिम निर्णय पढ़ाने के बाद।" en="Recording during the lesson; the first judgment and the final decision come after teaching." /></span>
-          <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-plan" onClick={() => navigate('/yojana')}>← <Bi hi="योजना" en="Plan" inline /></button>
+        <div data-testid="from-plan" className={`in-class-bar tier-${fromPlan.level}`}>
+          <GroupMark group={fromPlan.level} name /> · <Bi hi={channelOf(fromPlan.channel)?.hi || ''} en={channelOf(fromPlan.channel)?.en || ''} inline />
+          <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>
+            <Bi hi="सिर्फ़ इसी समूह के बच्चे। पहला अनुमान और अंतिम निर्णय पढ़ाने के बाद, समीक्षा टैब पर।" en="This group's children only. The first judgment and the final decision come after teaching, on the Review tab." />
+          </div>
         </div>
       )}
 
@@ -381,13 +394,15 @@ export default function ReviewScreen() {
       {/* STEP 2: Evidence capture */}
       {step === 2 && !analysisOpen && (
         <>
+          {!fromPlan && (<>
           <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-decisions" onClick={() => goView('1')} style={{ marginBottom: 8 }}>
             ← <span className="step-count">1/3</span>: <Bi hi="पहला अनुमान बदलें" en="Change the first judgment" inline />
           </button>
           <StepTitle n={2} hi="बच्चों का काम देखें" en="Look at the children's work" />
           <div style={{ marginBottom: 8 }} />
+          </>)}
 
-          <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+          {!fromPlan && <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
             {CHANNELS.filter(ch => visibleChannels.includes(ch.id)).map(ch => (
               <button key={ch.id} className={`domain-tab ${channel === ch.id ? 'active' : ''}`} data-testid={`channel-${ch.id}`}
                 onClick={() => setChannel(ch.id)}>
@@ -395,7 +410,7 @@ export default function ReviewScreen() {
                 {channelsInfo?.has_plan && channelsInfo.channels[ch.id] && <div style={{ fontSize: '0.55rem', fontWeight: 400 }}>{channelsInfo.channels[ch.id].map(l => LEVEL_HI[l]).join(', ')}</div>}
               </button>
             ))}
-          </div>
+          </div>}
           {/* who does what, for the way chosen (the photo way is read by the AI) */}
           {CHANNELS.find((ch) => ch.id === channel) && (
             <p data-testid="channel-who" style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)', margin: '-8px 0 12px' }}>
@@ -414,7 +429,7 @@ export default function ReviewScreen() {
             </details>
           )}
           {/* today's skills need only some of the three ways: why, which groups, and the other ways if the teacher wants them */}
-          {channelsInfo?.has_plan && relevantChannels.length < 3 && (
+          {!fromPlan && channelsInfo?.has_plan && relevantChannels.length < 3 && (
             <Hint testid="hint-why-way" label={<Bi hi="यही तरीका क्यों?" en="Why this way?" inline />}>
               {CHANNELS.filter((ch) => relevantChannels.includes(ch.id)).map((ch) => (
                 <div key={ch.id} data-testid={`why-${ch.id}`} style={{ marginBottom: 6 }}>
@@ -453,7 +468,7 @@ export default function ReviewScreen() {
             const mode = (on) => ({ flex: 1, minHeight: 40, padding: '5px 4px', borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.75rem', fontWeight: 600, background: on ? 'var(--green-dark)' : 'var(--surface)', color: on ? 'white' : 'var(--text)' });
             return (
               <div className="card" data-testid="observed-list">
-                {levelsFor('observed').length > 1 && (
+                {!fromPlan && levelsFor('observed').length > 1 && (
                   <div style={{ display: 'flex', gap: 6, margin: '6px 0' }}>
                     {levelsFor('observed').map(l => <button key={l} type="button" className={`tier-option tier-${l} ${sheetLevel === l ? 'selected' : ''}`} onClick={() => setSheetLevel(l)}>{GROUP_LABELS[l].mark} {LEVEL_HI[l]}</button>)}
                   </div>
@@ -631,7 +646,7 @@ export default function ReviewScreen() {
                       <Bi hi="इस कौशल का पाठ बैंक में नहीं मिला; अपनी कक्षा के स्तर का कोई ऐसा पाठ लें जो बच्चों ने आज नहीं पढ़ा।" en="No text for this skill in the bank; use a text at your class's level that the children have not read today." inline />
                     </div>
                   )}
-                  {levelsFor('orf').length > 1 && (
+                  {!fromPlan && levelsFor('orf').length > 1 && (
                     <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
                       {levelsFor('orf').map(l => <button key={l} type="button" className={`tier-option tier-${l} ${sheetLevel === l ? 'selected' : ''}`} onClick={() => setSheetLevel(l)}>{GROUP_LABELS[l].mark} {LEVEL_HI[l]}</button>)}
                     </div>
@@ -685,14 +700,21 @@ export default function ReviewScreen() {
             </div>
           )}
 
-          {(analysisResult || savedAnalyses.length > 0) && (
+          {fromPlan && (
+            <button type="button" className="btn btn-primary" data-testid="done-in-class" onClick={backToPlan} style={{ marginTop: 12, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
+              <Bi hi="← पढ़ाना जारी रखें (योजना पर लौटें)" en="Back to teaching (the plan)" />
+            </button>
+          )}
+          {!fromPlan && (analysisResult || savedAnalyses.length > 0) && (
             <button className="btn btn-secondary" data-testid="see-analysis" onClick={() => (analysisResult ? goView('a') : openSaved(savedAnalyses[0]))} style={{ marginTop: 12 }}>
               <Bi hi="फ़ोटो विश्लेषण देखें" en="See the photo analysis" inline /> →
             </button>
           )}
+          {!fromPlan && (
           <button type="button" className="btn btn-primary" data-testid="to-final" onClick={enterFinal} style={{ marginTop: 12, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
             <Bi hi="आगे: अंतिम निर्णय →" en="Next: the final decision" />
           </button>
+          )}
         </>
       )}
 

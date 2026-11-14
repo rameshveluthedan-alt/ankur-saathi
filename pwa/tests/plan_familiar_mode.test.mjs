@@ -18,7 +18,7 @@ process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));     
 const API = ['adminSchool', 'adminTeachers', 'adminResetPin', 'adminUnlock', 'adminRecordConsent', 'getCachedPlan', 'openAuthedPage', 'worksheetPath', 'prepareOfflineCopy', 'getReviewChannels'];
 const stubs = {
   '../App': 'export const useAuth = () => globalThis.__auth;',
-  'react-router-dom': 'export const useNavigate = () => () => {};',
+  'react-router-dom': 'export const useNavigate = () => () => {}; export const useLocation = () => (globalThis.__location || { pathname: "/yojana", state: null });',
   './ChangePinScreen': 'export const PinChangeForm = () => null;',
   '../services/api': API.map((n) => `export const ${n} = (...a) => globalThis.__api.${n}(...a);`).join('\n'),
 };

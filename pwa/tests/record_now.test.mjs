@@ -60,48 +60,44 @@ const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.w
 const stepNow = () => q('[data-testid="review-title"]') && q('[data-testid="review-title"]').dataset.step;
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
 
-console.log('the plan screen: "अभी स्तर दर्ज करें" at the top of each group\'s slot, where the activity happens (12 Nov: the evaluators asked whether teachers record levels during the activities)');
+console.log('the plan screen: the record button is INSIDE the group\'s You Do, for that group only (13 Nov, after the click-through)');
 globalThis.__auth.currentPlan = PLAN();
 await show(Yojana);
 const panelOf = (g) => q(`[role="tabpanel"][data-slot-group="${g}"]`);
-const tabOf = (g) => q(`[data-testid="slot-tab-${g}"]`);
-check('no tap needed: each group\'s slot has its button at the top, before the folds (I do, We do, You do)', (() => {
-  const p = panelOf('beginner'); const b = p && p.querySelector('[data-testid="record-now-beginner"]'); const f = p && p.querySelector('details');
-  return !!b && !!f && !!(b.compareDocumentPosition(f) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING) && !b.closest('details');
+check('it sits inside "तुम करोगे" (You Do), after its instruction, not at the top of the slot', (() => {
+  const b = q('[data-testid="record-now-beginner"]'); const f = b && b.closest('details');
+  return !!f && f.dataset.testid === 'fold-you-do' && panelOf('beginner').contains(f);
 })());
-check('the observed Beginners: "✓ अभी स्तर दर्ज करें", during You Do, by observing', /✓ अभी स्तर दर्ज करें/.test(q('[data-testid="record-now-beginner"]').textContent) && q('[data-testid="record-now-beginner"]').dataset.channel === 'observed'
-  && /'तुम करोगे' के दौरान.*देखकर दर्ज करें/.test(q('[data-testid="record-bar-beginner"]').textContent));
-check('the Proficients, read aloud: "⏱️ अभी स्तर दर्ज करें · पढ़कर सुनाना"', /⏱️ अभी स्तर दर्ज करें/.test(q('[data-testid="record-now-proficient"]').textContent) && /पढ़कर सुनाना/.test(q('[data-testid="record-bar-proficient"]').textContent));
-check('the photographed Progressors: "📸 फ़ोटो से स्तर दर्ज करें", after the worksheet', !q('[data-testid="record-now-progressor"]') && /📸 फ़ोटो से स्तर दर्ज करें/.test(q('[data-testid="record-photo-progressor"]').textContent)
-  && /वर्कशीट पूरी होने के बाद/.test(q('[data-testid="record-bar-progressor"]').textContent));
-await click(tabOf('proficient'));
-check('a tab shows its own slot only', !panelOf('proficient').hidden && panelOf('beginner').hidden && tabOf('proficient').getAttribute('aria-selected') === 'true');
+check('the observed Beginners: "✓ देखते हुए A / PA / NA दर्ज करें", for this group only', /✓ देखते हुए A \/ PA \/ NA दर्ज करें/.test(q('[data-testid="record-now-beginner"]').textContent)
+  && q('[data-testid="record-now-beginner"]').dataset.channel === 'observed' && /सिर्फ़ इस समूह के लिए/.test(q('[data-testid="record-bar-beginner"]').textContent));
+check('the Proficients, read aloud: "⏱️ बच्चे का पढ़ना सुनकर दर्ज करें"', /⏱️ बच्चे का पढ़ना सुनकर दर्ज करें/.test(q('[data-testid="record-now-proficient"]').textContent));
+check('the photographed Progressors: no button in class, a line saying the photos are taken after teaching, on the Review', !q('[data-testid="record-now-progressor"]') && !q('[data-testid^="record-photo-"]')
+  && /पढ़ाने के बाद, समीक्षा टैब पर/.test(q('[data-testid="record-bar-progressor"]').textContent));
 await click(q('[data-testid="record-now-beginner"]'));
-check('tapping it opens the Review with the way and the group', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/review', { state: { from: 'plan', channel: 'observed', level: 'beginner' } }]), JSON.stringify(globalThis.__navs.at(-1)));
-await click(q('[data-testid="record-photo-progressor"]'));
-check('...and the photo button opens the Review on the photo way for that group', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/review', { state: { from: 'plan', channel: 'photo', level: 'progressor' } }]), JSON.stringify(globalThis.__navs.at(-1)));
+check('tapping it opens the in-class recording with the way and the group', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/review', { state: { from: 'plan', channel: 'observed', level: 'beginner' } }]), JSON.stringify(globalThis.__navs.at(-1)));
 ch = { has_plan: false, levels: [], channels: {} };
 await show(Yojana);
-check('the ways not known: no record button anywhere (never a guess)', !q('[data-testid^="record-now-"]') && !q('[data-testid^="record-photo-"]'));
+check('the ways not known: no record button anywhere (never a guess)', !q('[data-testid^="record-now-"]'));
 ch = CH;
+
 console.log('\nthe Review, opened from the plan during the lesson');
 sessionStorage.clear(); globalThis.__auth.currentPlan = null; reply = PLAN();          // nothing judged yet today
 globalThis.__location = { pathname: '/review', state: { from: 'plan', channel: 'observed', level: 'beginner' } };
 await show(Review);
-check('straight to step 2, no first judgment asked (none recorded today)', stepNow() === '2' && !q('[data-testid="record-decisions"]'));
-check('...with that way and group chosen: "देखकर दर्ज करें", the Beginners\' skill and their list', q('[data-testid="channel-observed"]').classList.contains('active') && /● शुरुआती(Beginner)? · N0\.1\.1/.test(q('[data-testid="skill-2"]').textContent) && !!q('[data-testid="obs-1-achieved"]'));
-check('...and a banner: "पाठ के दौरान दर्ज कर रहे हैं; पहला अनुमान और अंतिम निर्णय पढ़ाने के बाद।"', /पाठ के दौरान दर्ज कर रहे हैं; पहला अनुमान और अंतिम निर्णय पढ़ाने के बाद/.test(q('[data-testid="from-plan"]').textContent));
+check('straight to the recording, no first judgment asked (none recorded today), no step title', !!q('[data-testid="from-plan"]') && !q('[data-testid="record-decisions"]') && !q('[data-testid="review-title"]'));
+check('...with that way and group chosen: "देखकर दर्ज करें", the Beginners\' skill and their list', !q('[data-testid="channel-observed"]') && /● शुरुआती(Beginner)? · N0\.1\.1/.test(q('[data-testid="skill-2"]').textContent) && !!q('[data-testid="obs-1-achieved"]'));
+check('...and a bar naming the group and the way: "सिर्फ़ इसी समूह के बच्चे" (13 Nov)', /शुरुआती/.test(q('[data-testid="from-plan"]').textContent) && /सिर्फ़ इसी समूह के बच्चे/.test(q('[data-testid="from-plan"]').textContent));
 await click(q('[data-testid="back-to-plan"]'));
-check('..."← योजना" goes back to the plan', JSON.stringify(globalThis.__navs.at(-1)) === '["/yojana"]');
+check('..."← योजना" goes back to the plan, to that group\'s slot with You Do open', JSON.stringify(globalThis.__navs.at(-1)) === JSON.stringify(['/yojana', { state: { slot: 'beginner', openYouDo: true } }]));
 globalThis.__location = { pathname: '/review', state: { from: 'plan', channel: 'orf', level: 'proficient' } };
 sessionStorage.clear(); globalThis.__auth.currentPlan = null;
 await show(Review);
-check('from the Proficients\' block: step 2 with "पढ़कर सुनाना" and their skill', stepNow() === '2' && q('[data-testid="channel-orf"]').classList.contains('active') && /■ दक्ष(Proficient)? · L2\.5\.1/.test(q('[data-testid="skill-2"]').textContent));
+check('from the Proficients\' block: step 2 with "पढ़कर सुनाना" and their skill', !!q('[data-testid="orf-chips"]') && /■ दक्ष(Proficient)? · L2\.5\.1/.test(q('[data-testid="skill-2"]').textContent));
 reply = PLAN({ beginner: 'advance', progressor: 'advance', proficient: 'advance' }, { beginner: 'advance', progressor: 'advance', proficient: 'advance' });
 sessionStorage.clear(); globalThis.__auth.currentPlan = null;
 globalThis.__location = { pathname: '/review', state: { from: 'plan', channel: 'observed', level: 'beginner' } };
 await show(Review);
-check('even with today\'s final decisions recorded (which would open step 3), it stays where the teacher asked: step 2', stepNow() === '2' && q('[data-testid="channel-observed"]').classList.contains('active'));
+check('even with today\'s final decisions recorded (which would open step 3), it stays where the teacher asked: the in-class recording', !!q('[data-testid="from-plan"]') && !!q('[data-testid="observed-list"]') && !q('[data-testid="final-back"]'));
 
 ch = { ...CH, channels: { observed: ['beginner', 'proficient'], photo: ['progressor'] },
   levels: [CH.levels[0], CH.levels[1], { channel: 'observed', level: 'proficient', competency_id: 'N3.3.1', name_hi: 'तीन अंकों का जोड़', rolls: [9, 10, 11, 12] }] };

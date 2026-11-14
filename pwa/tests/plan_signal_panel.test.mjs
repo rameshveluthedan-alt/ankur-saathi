@@ -20,7 +20,7 @@ const out = path.join(here, `.tmp-signal-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
 const stubs = {
   '../App': 'export const useAuth = () => globalThis.__auth;',
-  'react-router-dom': 'export const useNavigate = () => () => {};',
+  'react-router-dom': 'export const useNavigate = () => () => {}; export const useLocation = () => (globalThis.__location || { pathname: "/yojana", state: null });',
   '../services/api': 'export const getReviewChannels = async () => globalThis.__channels || ({ has_plan: false, levels: [], channels: {} }); export const getCachedPlan = async () => { throw new Error("none"); }; export const openAuthedPage = async () => {}; export const worksheetPath = (...a) => "/worksheet/" + a.join("/"); export const prepareOfflineCopy = () => {};',
 };
 await build({
