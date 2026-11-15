@@ -3,10 +3,10 @@
 // The pace the teachers called realistic (Vaishnavi, 23 Oct): 2 + 6 + 7 + 4 + 8 = 27 minutes.
 export const PACE = [
   { key: 'recall', hi: 'कल की बात', en: 'Recall', min: 2 },
-  { key: 'i_do', hi: 'मैं करूँगा', en: 'I Do', min: 6 },
-  { key: 'we_do', hi: 'हम करेंगे', en: 'We Do', min: 7 },
+  { key: 'i_do', hi: 'मैं करूँ', en: 'I Do', min: 6 },
+  { key: 'we_do', hi: 'हम करें', en: 'We Do', min: 7 },
   { key: 'show_me', hi: 'जाँच', en: 'Show-me', min: 4 },
-  { key: 'you_do', hi: 'तुम करोगे', en: 'You Do', min: 8 },
+  { key: 'you_do', hi: 'तुम करो', en: 'You Do', min: 8 },
 ];
 const BASE_TOTAL = PACE.reduce((a, p) => a + p.min, 0);
 

@@ -165,14 +165,33 @@ def unit():
     child["problems"][0]["extracted_answer"] = ""
     check("...a blank task earns nothing, and still counts its 4 points", rescore(child, 3)["correct"] == 1 and rescore(child, 3)["total_problems"] == 6)
 
-    print("\nthe teacher's first person")
-    check("'मैं बोलती हूँ' and 'पढ़ा रही हूँ' become the neutral pair, once", hindi_style.neutral_first_person("मैं बोलती हूँ और पढ़ा रही हूँ।")[0] == "मैं बोलता/बोलती हूँ और पढ़ा रहा/रही हूँ।"
-          and hindi_style.neutral_first_person("मैं बोलता/बोलती हूँ।")[0] == "मैं बोलता/बोलती हूँ।")
-    pl = {"rotation_schedule": {"blocks": [{"teach_group": "beginner", "talking_points": {"i_do_hi": "मैं बोलती हूँ।"}}]},
+    print("\nthe teacher's lines as instructions (15 Nov: the paired 'लिखता/लिखती हूँ' was slow to read in class)")
+    ti = lambda s: hindi_style.teacher_instructions(s)[0]
+    live = "मैं बोर्ड पर 'दीदी खेलती है।' सुनकर लिखती/लिखता हूँ और ज़ोर से बोलता/बोलती हूँ: 'दी' में बड़ी ई की मात्रा है। फिर खाली जगह छोड़ता/छोड़ती हूँ और अंत में । लगाता/लगाती हूँ।"
+    check("the live I Do of 15 Nov: every pair, either order, becomes an instruction and 'मैं' goes; the quoted sentence is kept",
+          ti(live) == "बोर्ड पर 'दीदी खेलती है।' सुनकर लिखें और ज़ोर से बोलें: 'दी' में बड़ी ई की मात्रा है। फिर खाली जगह छोड़ें और अंत में । लगाएँ।", ti(live))
+    check("future pairs ('बोलूँगा/बोलूँगी', 'उठाऊँगा/उठाऊँगी'), 'दे' and 'कर', and 'पढ़ा रहा/रही हूँ'",
+          ti("मैं हर वाक्य दो बार बोलूँगा/बोलूँगी। मैं कुछ चीज़ें उठाऊँगा/उठाऊँगी। मैं चीज़ें देती/देता हूँ: कंकड़। गोला करता/करती हूँ। मैं पढ़ा रहा/रही हूँ।")
+          == "हर वाक्य दो बार बोलें। कुछ चीज़ें उठाएँ। चीज़ें दें: कंकड़। गोला करें। पढ़ाएँ।")
+    check("one gender only, with 'मैं' in the clause: 'अब मैं ... छाँटती हूँ' -> 'अब ... छाँटें'; 'सकता/सकती हूँ' -> 'सकते हैं'",
+          ti("अब मैं 'बड़े' और 'छोटे' में छाँटती हूँ।") == "अब 'बड़े' और 'छोटे' में छाँटें।" and ti("अगर मैं जूते छाँटूँ, तो किस नियम से छाँट सकती/सकता हूँ?") == "अगर मैं जूते छाँटूँ, तो किस नियम से छाँट सकते हैं?")
+    check("never inside quotes (a dictation sentence, a girl's letter), never a story line without 'मैं', never a clause spoken to the children; and idempotent",
+          ti("बोलें 'मैं स्कूल जाती हूँ।' और पत्र पढ़ें: 'मैं गाँव में रहती हूँ।'") == "बोलें 'मैं स्कूल जाती हूँ।' और पत्र पढ़ें: 'मैं गाँव में रहती हूँ।'"
+          and ti("रानी गाती हूँ कहती है।") == "रानी गाती हूँ कहती है।" and ti("बच्चो, मैं आपको तीन सुराग दूँगी।") == "बच्चो, मैं आपको तीन सुराग दूँगी।" and ti(ti(live)) == ti(live))
+    pl = {"rotation_schedule": {"blocks": [{"teach_group": "beginner", "talking_points": {"i_do_hi": "मैं बोलती हूँ।"}, "cfu": [{"question_hi": "मैं बोर्ड पर 'पुल' लिखता/लिखती हूँ। यह 1) पुल है या 2) पूल?"}]}]},
           "worksheets": {"beginner": {"problems": [{"problem_hi": "'मैं गाती हूँ', रानी ने कहा।"}]}}}
     hindi_style.soften_plan(pl)
-    check("...in the teacher's speech only: a girl in a worksheet story keeps her words", pl["rotation_schedule"]["blocks"][0]["talking_points"]["i_do_hi"] == "मैं बोलता/बोलती हूँ।"
-          and "गाती हूँ" in pl["worksheets"]["beginner"]["problems"][0]["problem_hi"] and "गाता/" not in pl["worksheets"]["beginner"]["problems"][0]["problem_hi"])
+    blk = pl["rotation_schedule"]["blocks"][0]
+    check("in a plan: the teacher's lines and the CFU question become instructions; a girl in a worksheet story keeps her words",
+          blk["talking_points"]["i_do_hi"] == "बोलें।" and blk["cfu"][0]["question_hi"] == "बोर्ड पर 'पुल' लिखें। यह 1) पुल है या 2) पूल?"
+          and "मैं गाती हूँ" in pl["worksheets"]["beginner"]["problems"][0]["problem_hi"], blk)
+    src = open(os.path.join(HERE, "..", "app", "services", "plan_service.py"), encoding="utf-8").read()
+    check("the style runs again AFTER the CFU step (the first real run's top-up question said 'मैं बोलती/बोलता हूँ'), before the plan check",
+          src.index("CFU check skipped") < src.index("Hindi style after the CFU step") < src.index("hindi_style.check_teacher_text(plan_json)"))
+    warn = hindi_style.check_teacher_text({"anchor": {"narration_hi": "बच्चो, मैं आपको तीन सुराग दूँगी।"},
+                                           "rotation_schedule": {"blocks": [{"talking_points": {"i_do_hi": "'है' पर ऊपर दो बिंदी वाला ै है। 'दुःख' में दो बिंदु वाला विसर्ग ः है।"}}]}})
+    check("the plan check: a gendered 'मैं' left in the teacher's lines, and ै called a बिंदी (the live I Do); the विसर्ग's two dots are right",
+          len(warn) == 2 and "first person" in warn[0] and "named wrongly" in warn[1] and "विसर्ग" not in warn[1].split("«")[1].split("»")[0], warn)
 
 
 async def flow():
@@ -323,8 +342,8 @@ async def flow_orf_sample():
 
 def unit_fluency_you_do():
     print("\nthe first real fluency run (14 Nov): the You Do pointed at questions the code had removed")
-    yd = "प्रगतिशील समूह वर्कशीट पर अनुच्छेद तीन बार पढ़ें और 1 से 6 तक के प्रश्न पहले करें; बाकी अतिरिक्त हैं। मैं ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनता/सुनती हूँ।"
-    plan = {"rotation_schedule": {"blocks": [{"type": "teach", "teach_group": "progressor", "talking_points": {"you_do_hi": yd}}]},
+    yd = "प्रगतिशील समूह वर्कशीट पर अनुच्छेद तीन बार पढ़ें और 1 से 6 तक के प्रश्न पहले करें; बाकी अतिरिक्त हैं। " + W.LISTEN_SENTENCE
+    plan ={"rotation_schedule": {"blocks": [{"type": "teach", "teach_group": "progressor", "talking_points": {"you_do_hi": yd}}]},
             "worksheets": {"progressor": {"passage_block": {"title": "किसान और बारिश", "text": "रामू किसान है।"}, "warmup_words": ["किसान", "फ़सल", "चिंतित", "आसमान", "सूखने", "ख़ुशी"],
                                           "problems": [{"number": i, "problem_hi": f"प्रश्न {i}?", "answer": "x"} for i in range(1, 7)]}}}
     sk = {"progressor": "L2.5.1"}
@@ -334,14 +353,14 @@ def unit_fluency_you_do():
     log = W.apply_writing_sheets(plan, sk, "r1_literacy")
     new = plan["rotation_schedule"]["blocks"][0]["talking_points"]["you_do_hi"]
     check("the code fits it: '1 से 3 तक के प्रश्न पहले करें।', and the extras (there are none) are dropped", "1 से 3 तक के प्रश्न पहले करें।" in new and "अतिरिक्त" not in new and any("You Do fitted" in l for l in log), new)
-    check("...the rest of the You Do is untouched, and the checks then pass", "मैं ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनता/सुनती हूँ।" in new and W.check_writing_sheets(plan, sk, "r1_literacy") == [],
+    check("...the rest of the You Do is untouched, and the checks then pass", W.LISTEN_SENTENCE in new and W.check_writing_sheets(plan, sk, "r1_literacy") == [],
           W.check_writing_sheets(plan, sk, "r1_literacy"))
     other = {"rotation_schedule": {"blocks": [{"teach_group": "progressor", "talking_points": {"you_do_hi": "प्रश्न 1-6 करें, बाकी प्रश्न अतिरिक्त हैं। सवाल 1 से 2 पढ़ें।"}}]}}
     W._fit_you_do(other, "progressor", 3)
     check("'प्रश्न 1-6' becomes 'प्रश्न 1-3'; a range within the sheet ('सवाल 1 से 2') stays", other["rotation_schedule"]["blocks"][0]["talking_points"]["you_do_hi"] == "प्रश्न 1-3 करें। सवाल 1 से 2 पढ़ें।",
           other["rotation_schedule"]["blocks"][0]["talking_points"]["you_do_hi"])
     check("the prompt gives the exact sentence to end the You Do with (the model had copied the quoted phrase into its text)",
-          "मैं ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनता/सुनती हूँ।" in W.prompt_section({"progressor": "L2.5.1"}, "r1_literacy") and "'प्रश्न 1 से 3'" in W.prompt_section({"progressor": "L2.5.1"}, "r1_literacy"))
+          "'ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।'" in W.prompt_section({"progressor": "L2.5.1"}, "r1_literacy") and "'प्रश्न 1 से 3'" in W.prompt_section({"progressor": "L2.5.1"}, "r1_literacy"))
 
 
 # the N0.1.1 plan as it was recorded before 14 Nov (old shape: "4 लाल गेंद… लाल कितनी?"): a fixture, since the recorded plan is now the new one

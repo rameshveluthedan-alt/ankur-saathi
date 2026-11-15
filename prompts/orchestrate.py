@@ -834,7 +834,12 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     cfu_text = render_cfu_section(ctx.cfu_kb, ctx.cfu_detected) if ctx.cfu_kb else ""        # empty when CFU is switched off: the plan is then as before
     hindi_style_text = (
         "\n### HINDI STYLE FOR THE TEACHER'S WORDS\n"
-        "- Write the teacher's first person without gender: use 'पढ़ता/पढ़ती हूँ' or 'हम पढ़ते हैं', never only the feminine forms, and write 'शिक्षक', not 'शिक्षिका'.\n"
+        "- Write the teacher's lines (I Do, We Do, You Do, the script, the CFU questions) as short polite instructions to the teacher, as NCERT's teacher notes do: "
+        "'बोर्ड पर लिखें: ...', 'बच्चों से पूछें', 'हर वाक्य दो बार बोलें'. Never the teacher's first person ('मैं ... लिखता/लिखती हूँ', 'मैं बोलूँगा'): the gender "
+        "is unknown and paired forms are slow to read in class. What the children do: 'बच्चे कॉपी में लिखें'. Words said to the children go in quotes. In the anchor, "
+        "spoken to the children, use 'हम' ('आज हम ... करेंगे'), 'देखो' or 'मेरे पास', never a gendered 'मैं' verb. Write 'शिक्षक', not 'शिक्षिका'.\n"
+        "- Name Hindi marks correctly: ै is 'ऐ की मात्रा' (two strokes), े 'ए की मात्रा' (one stroke), ं 'बिंदी' (अनुस्वार), ँ 'चंद्रबिंदु', ः 'विसर्ग'. "
+        "Never call ै or े a बिंदी.\n"
         "- Use 'स्वतंत्र अभ्यास' for independent practice.\n"
         "- In place-value and number-reading problems, never print the numeral beside its number word: write 'छत्तीस लिखिए', not 'छत्तीस (36) लिखिए'. "
         "The system writes and checks every Hindi number word from its digits, so do not worry about spelling them.\n" + STYLE_PROMPT)

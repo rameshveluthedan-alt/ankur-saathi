@@ -69,7 +69,7 @@ await show(Review);
 await click(q(WAY.observed));
 check('observing: a closed "कैसे करें?" fold under the "who does what" line', how() && how().dataset.testid === 'how-observed' && how().tagName === 'DETAILS' && !how().open && /कैसे करें\?/.test(how().querySelector('summary').textContent));
 check('...it starts with the general instruction (watch during independent practice, then A / PA / NA), NOT the plan\'s AI-written prompt (which on 29 Oct asked for a task the plan did not have)',
-  /स्वतंत्र अभ्यास \(तुम करोगे\) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A \/ PA \/ NA चुनें/.test(how().textContent) && !how().textContent.includes(LOOK) && !/आज की योजना से/.test(how().textContent));
+  /स्वतंत्र अभ्यास \(तुम करो\) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A \/ PA \/ NA चुनें/.test(how().textContent) && !how().textContent.includes(LOOK) && !/आज की योजना से/.test(how().textContent));
 check('step 2 names the group and skill being observed: "● शुरुआती · N0.1.1 · छाँटना"', /● शुरुआती(Beginner)? · N0\.1\.1 · छाँटना/.test(q('[data-testid="skill-2"]').textContent), q('[data-testid="skill-2"]') && q('[data-testid="skill-2"]').textContent);
 check('...the Beginners also have a worksheet: "इस कौशल की वर्कशीट अभ्यास के लिए है; जाँच … देखकर होती है, वर्कशीट की फ़ोटो से नहीं"', /इस कौशल की वर्कशीट अभ्यास के लिए है; जाँच बच्चों को करते हुए देखकर होती है, वर्कशीट की फ़ोटो से नहीं/.test(q('[data-testid="worksheet-practice"]').textContent));
 check('...and says what A, PA and NA mean', /A = बिना मदद के करके दिखाया · PA = मदद से या आंशिक रूप से सही · NA = अभी नहीं/.test(how().textContent));
@@ -117,7 +117,7 @@ check('...each group, its skill and its way: ● शुरुआती N0.1.1 �
   && /AI हर बच्चे का काम पढ़ता है/.test(q('[data-testid="review-way-progressor"]').textContent) && /■ दक्ष(Proficient)? L2\.5\.1: ⏱️ पढ़कर सुनाना/.test(q('[data-testid="review-way-proficient"]').textContent));
 check('...the observed Beginners\' worksheet is marked as practice; the photographed Progressors\' is not', !!q('[data-testid="review-way-practice-beginner"]') && !q('[data-testid="review-way-practice-progressor"]'));
 check('...the text the Proficients will read aloud, and for the group observed the general instruction (not the plan\'s AI prompt)', /«पानी बचाओ»/.test(q('[data-testid="review-way-passage-proficient"]').textContent)
-  && /देखकर दर्ज करना(Observing)?: स्वतंत्र अभ्यास \(तुम करोगे\) के दौरान/.test(q('[data-testid="review-observe"]').textContent) && !fold().textContent.includes(LOOK));
+  && /देखकर दर्ज करना(Observing)?: स्वतंत्र अभ्यास \(तुम करो\) के दौरान/.test(q('[data-testid="review-observe"]').textContent) && !fold().textContent.includes(LOOK));
 ch = { has_plan: false, levels: [], channels: {} };
 await show(Yojana);
 check('the ways not known (no channels): says the Assess screen will show them, and (the plan says something is observed) gives the general instruction', /आकलन स्क्रीन पर हर समूह का तरीका दिखेगा/.test(fold().textContent) && !q('[data-testid="review-way-beginner"]')

@@ -56,7 +56,8 @@ SIZES = {"big": "बड़ा", "small": "छोटा"}
 COLOURS = {"red": "लाल", "blue": "नीला", "green": "हरा", "yellow": "पीला", "black": "काला"}
 GRID_MIN, GRID_MAX = 4, 20
 LOOK_FOR = ("achieved_hi", "partial_hi", "not_yet_hi")
-WATCH_SENTENCE = "मैं ऐप में दिखाए गए बच्चों को काम करते हुए देखता/देखती हूँ।"
+WATCH_SENTENCE = "ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"          # instructions, not the teacher's first person (15 Nov)
+LISTEN_SENTENCE = "ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
 
 
 def register_observed(ids) -> None:
@@ -228,7 +229,7 @@ def _fluency_section(group_skill_ids, fluency_levels) -> str:
         lines.append("- For a pauses or expression skill (L2.5.2, L3.5.2): \"expression_sentences\": 3-4 short sentences that end in । ? or ! (a question, an exclamation), "
                      "to read with the right pause or tone.")
     lines += [
-        "- The You Do sends the group to this worksheet and ends with exactly this sentence: 'मैं ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनता/सुनती हूँ।' "
+        "- The You Do sends the group to this worksheet and ends with exactly this sentence: '" + LISTEN_SENTENCE + "' "
         "Never 'हर बच्चे से' or 'सभी बच्चों से' (there is no time to hear every child in one day), and never a child's name or roll number.",
         "- The sheet has at most 3 questions: the You Do names them as 'प्रश्न 1 से 3' (never a higher number) and mentions no extras.\n",
     ]

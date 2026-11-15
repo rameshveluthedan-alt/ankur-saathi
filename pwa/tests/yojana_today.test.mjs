@@ -38,7 +38,7 @@ const moveClock = (days) => { const shift = days * 864e5; globalThis.Date = clas
 // a plan whose one teach block says which day and subject it is
 const PLAN = (day, domain = 'numeracy', tag = `${day} ${domain}`) => ({ plan_date: day, domain_id: domain, selected_competency_id: domain === 'numeracy' ? 'N2.3.2' : 'L2.5.1', served_from: 'ai',
   groups: [{ label: 'progressor', count: 4, target_competency_id: 'N2.3.2' }],
-  plan: { worksheets: {}, anchor: {}, rotation_schedule: { blocks: [{ type: 'teach', teach_group: 'progressor', duration_minutes: 20, script_hi: `PLAN-OF ${tag}`, talking_points: { you_do_hi: 'तुम करोगे' } }] } } });
+  plan: { worksheets: {}, anchor: {}, rotation_schedule: { blocks: [{ type: 'teach', teach_group: 'progressor', duration_minutes: 20, script_hi: `PLAN-OF ${tag}`, talking_points: { you_do_hi: 'तुम करो' } }] } } });
 let server = {};                                    // `${day} ${domain}` -> plan stored on the server
 let fail = false; let calls = []; let hold = null;
 const notFound = () => Object.assign(new Error('not found'), { status: 404 });

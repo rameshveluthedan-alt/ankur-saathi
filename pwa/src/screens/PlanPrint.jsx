@@ -90,9 +90,9 @@ function FullBlock({ block, groups, plan }) {
       <h3 style={{ margin: '8px 0 2px' }}>{L.mark} {L.hi} पढ़ाएँ{skill ? ` — ${skill}` : ''} · {block.duration_minutes} मि.{block.reteach ? ' · 🔄 पुनः शिक्षण' : ''}</h3>
       {fmt(block.script_hi) && <P>“{fmt(block.script_hi)}”</P>}
       {hasSignalPanel(block.signal) && <SignalPanel signal={block.signal} compact />}
-      {tp.i_do_hi && <P><b>मैं करूँगा:</b> {fmt(tp.i_do_hi)}</P>}
-      {tp.we_do_hi && <P><b>हम करेंगे:</b> {fmt(tp.we_do_hi)}</P>}
-      {tp.you_do_hi && <P><b>तुम करोगे:</b> {fmt(tp.you_do_hi)}</P>}
+      {tp.i_do_hi && <P><b>मैं करूँ:</b> {fmt(tp.i_do_hi)}</P>}
+      {tp.we_do_hi && <P><b>हम करें:</b> {fmt(tp.we_do_hi)}</P>}
+      {tp.you_do_hi && <P><b>तुम करो:</b> {fmt(tp.you_do_hi)}</P>}
       {obs && (
         <div data-testid={`full-observe-${block.teach_group}`}>
           {obs.task_hi && <P><b>👀 काम:</b> {fmt(obs.task_hi)}</P>}

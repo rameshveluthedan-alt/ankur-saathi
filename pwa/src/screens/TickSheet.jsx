@@ -78,7 +78,7 @@ export default function TickSheet() {
     <div className="screen plan-print tick-sheet" data-testid="tick-sheet">
       {bar}
       <div className="print-title" data-testid="ticks-title">{['टिक शीट', code, classLine(teacher.enrolled_grades), hiDate(date)].filter(Boolean).join(' · ')}</div>
-      <div data-testid="ticks-when">स्वतंत्र अभ्यास (तुम करोगे) के दौरान भरें; पढ़ाने के बाद आकलन (1/2 आज का प्रदर्शन) में यही दर्ज करें।</div>
+      <div data-testid="ticks-when">स्वतंत्र अभ्यास (तुम करो) के दौरान भरें; पढ़ाने के बाद आकलन (1/2 आज का प्रदर्शन) में यही दर्ज करें।</div>
       <hr />
       {levels.map((l) => <Group key={l.level} l={l} />)}
       <hr />

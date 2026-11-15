@@ -1393,9 +1393,16 @@ async def generate_dainik_yojana(
     except Exception as e:              # a failed check must never break plan generation, and nothing unchecked is kept
         strip_cfu(plan_json)
         print(f"   CFU check skipped (questions removed): {type(e).__name__}: {e}")
+    try:                                         # the CFU top-up writes its questions after the style step: they get it too (15 Nov: a top-up said "मैं बोलती/बोलता हूँ")
+        style = hindi_style.soften_plan(plan_json)          # idempotent: what was already done is not changed again
+        if style:
+            print(f"   Hindi style after the CFU step: {sum(style.values())} changes ({', '.join(f'{k} x{v}' for k, v in sorted(style.items()))})")
+    except Exception as e:
+        print(f"   Hindi style after the CFU step skipped: {type(e).__name__}: {e}")
 
     validation_warnings = validate_plan_shape(plan_json, domain_id)
     validation_warnings += writing_sheets.check_writing_sheets(plan_json, ctx.group_skill_ids, domain_id)
+    validation_warnings += hindi_style.check_teacher_text(plan_json)          # a gendered "मैं" left in the teacher's lines, a Hindi mark named wrongly (15 Nov)
     if decided_groups is not None and any(b.get("type") == "reteach" for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or []):
         validation_warnings.append("a separate re-teach block was written, but the teacher decided the re-teach is the group's main block")
     plan_json["coverage"] = await get_coverage(db, competency_id)      # shown on the plan screen

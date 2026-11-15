@@ -31,7 +31,7 @@ const Yojana = (await import(pathToFileURL(path.join(out, 'yojana.mjs')).href)).
 
 // ── the fake server: the Beginners observed, the Progressors photographed, the Proficients read aloud ──
 const d0 = new Date(); const TODAY = `${d0.getFullYear()}-${String(d0.getMonth() + 1).padStart(2, '0')}-${String(d0.getDate()).padStart(2, '0')}`;
-const teach = (g) => ({ type: 'teach', teach_group: g, duration_minutes: 20, script_hi: `${g} का काम`, talking_points: { you_do_hi: 'तुम करोगे' } });
+const teach = (g) => ({ type: 'teach', teach_group: g, duration_minutes: 20, script_hi: `${g} का काम`, talking_points: { you_do_hi: 'तुम करो' } });
 const PLAN = (decisions = {}, finals = {}) => ({ plan_date: TODAY, domain_id: 'numeracy', selected_competency_id: 'N2.3.2', served_from: 'ai',
   groups: [{ label: 'beginner', count: 4, target_competency_id: 'N0.1.1', target_competency_name_hi: 'छाँटना' }, { label: 'progressor', count: 4, target_competency_id: 'N2.3.2', target_competency_name_hi: 'जोड़' },
            { label: 'proficient', count: 4, target_competency_id: 'L2.5.1', target_competency_name_hi: 'पढ़ने की रफ़्तार' }],
@@ -64,7 +64,7 @@ console.log('the plan screen: the record button is INSIDE the group\'s You Do, f
 globalThis.__auth.currentPlan = PLAN();
 await show(Yojana);
 const panelOf = (g) => q(`[role="tabpanel"][data-slot-group="${g}"]`);
-check('it sits inside "तुम करोगे" (You Do), after its instruction, not at the top of the slot', (() => {
+check('it sits inside "तुम करो" (You Do), after its instruction, not at the top of the slot', (() => {
   const b = q('[data-testid="record-now-beginner"]'); const f = b && b.closest('details');
   return !!f && f.dataset.testid === 'fold-you-do' && panelOf('beginner').contains(f);
 })());

@@ -260,10 +260,10 @@ export default function YojanaScreen() {
             </Fold>
           ) : null;
         })()}
-        {tp.i_do_hi && <Fold icon="🧑‍🏫" hi="मैं करूँगा" en="I do" testid="fold-i-do"><div style={ML}>{fmt(tp.i_do_hi)}</div></Fold>}
-        {tp.we_do_hi && <Fold icon="🤝" hi="हम करेंगे" en="We do" testid="fold-we-do"><div style={ML}>{fmt(tp.we_do_hi)}</div></Fold>}
+        {tp.i_do_hi && <Fold icon="🧑‍🏫" hi="मैं करूँ" en="I do" testid="fold-i-do"><div style={ML}>{fmt(tp.i_do_hi)}</div></Fold>}
+        {tp.we_do_hi && <Fold icon="🤝" hi="हम करें" en="We do" testid="fold-we-do"><div style={ML}>{fmt(tp.we_do_hi)}</div></Fold>}
         {tp.you_do_hi && (
-          <Fold icon="✏️" hi="तुम करोगे" en="You do" testid="fold-you-do" open={!!(location.state && location.state.openYouDo && location.state.slot === level) || undefined}>
+          <Fold icon="✏️" hi="तुम करो" en="You do" testid="fold-you-do" open={!!(location.state && location.state.openYouDo && location.state.slot === level) || undefined}>
             <div style={ML}>{fmt(tp.you_do_hi)}</div>
             <BoardWork plan={plan} group={level} domain={currentPlan.domain_id} />
             {/* an observed skill: the task, its materials and what A / PA / NA look like, right where the teacher watches */}

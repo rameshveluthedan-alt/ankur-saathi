@@ -12,7 +12,7 @@ export const CHANNELS = [
     who: { hi: 'आप हर बच्चे के लिए A / PA / NA चुनते हैं।', en: 'You choose A / PA / NA for each child.' },
     why: { hi: 'यह कौशल बच्चे करके या बोलकर दिखाते हैं (जैसे छाँटना, गिनना, बताना); इसे देखकर आँका जाता है, लिखकर नहीं।', en: 'Children show this skill by doing or saying (sorting, counting, telling); it is judged by watching, not on paper.' },
     how: [
-      { hi: 'स्वतंत्र अभ्यास (तुम करोगे) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें। ज़रूरत हो तो एक छोटा सवाल पूछें।', en: 'During independent practice (You Do), watch the children at work, then choose A / PA / NA for each child. Ask a short question if needed.' },
+      { hi: 'स्वतंत्र अभ्यास (तुम करो) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें। ज़रूरत हो तो एक छोटा सवाल पूछें।', en: 'During independent practice (You Do), watch the children at work, then choose A / PA / NA for each child. Ask a short question if needed.' },
       ABBR,
       { hi: 'जो बच्चे दिखे, उन्हीं के लिए चुनें; बाकी बाद में।', en: 'Choose only for the children you saw; the others later.' },
     ] },
@@ -46,7 +46,7 @@ export const hasWorksheet = (planReply, level) => {
   return !!(ws && Array.isArray(ws.problems) && ws.problems.length);
 };
 
-export const OBSERVE = { hi: 'स्वतंत्र अभ्यास (तुम करोगे) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें।',
+export const OBSERVE = { hi: 'स्वतंत्र अभ्यास (तुम करो) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें।',
                          en: 'During independent practice (You Do), watch the children at work, then choose A / PA / NA for each child.' };
 
 /** Does the plan say anything is checked by observation today? (Only whether: the plan's own prompt text is not shown.) */

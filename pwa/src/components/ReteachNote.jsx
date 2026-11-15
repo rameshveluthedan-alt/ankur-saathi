@@ -30,8 +30,8 @@ export default function ReteachNote({ block, expanded }) {
             </div>
           )}
           <ul data-testid="reteach-tips" style={{ margin: '4px 0 0', paddingLeft: 18, ...small }}>
-            <li><span className="hi">पहले गलत तरीका दिखाएँ और समझाएँ, फिर सही तरीका। मैं करूँगा के अंत में गलत वाला मिटा दें, ताकि बोर्ड पर केवल सही रहे।</span><span className="en" lang="en">Show the wrong way first, then the right one, and erase the wrong one at the end of I Do.</span></li>
-            <li><span className="hi">तुम करोगे में सबसे पहले इन बच्चों के पास चुपचाप जाएँ, सामान्य चक्कर के भाग की तरह। नाम या रोल नंबर न बोलें।</span><span className="en" lang="en">In You Do visit these children first, quietly, as part of the normal round. Never call out names or roll numbers.</span></li>
+            <li><span className="hi">पहले गलत तरीका दिखाएँ और समझाएँ, फिर सही तरीका। मैं करूँ के अंत में गलत वाला मिटा दें, ताकि बोर्ड पर केवल सही रहे।</span><span className="en" lang="en">Show the wrong way first, then the right one, and erase the wrong one at the end of I Do.</span></li>
+            <li><span className="hi">तुम करो में सबसे पहले इन बच्चों के पास चुपचाप जाएँ, सामान्य चक्कर के भाग की तरह। नाम या रोल नंबर न बोलें।</span><span className="en" lang="en">In You Do visit these children first, quietly, as part of the normal round. Never call out names or roll numbers.</span></li>
             <li><span className="hi">जाँच में समूह के एक-चौथाई से ज़्यादा बच्चे गलत हों, तो आगे बढ़ने से पहले वही कदम अभी दोबारा समझाएँ।</span><span className="en" lang="en">If more than a quarter are wrong in the show-me, re-teach that step at once.</span></li>
           </ul>
         </div>

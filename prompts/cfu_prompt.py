@@ -43,14 +43,14 @@ Rules for the questions:
   use fingers, objects, cards, pointing or drawing. The answer must be quick to show: a number, a word, a mark, "सही / गलत", a shape, or one of two options. Never a sentence.
 - Do not repeat the show-me procedure (hide, wait for the signal, show together) inside a question: the screen says it once.
 - Do NOT tell a story about a child ('एक बच्चे ने ... लिखा'): it adds reading and listening load for Class 1 and 2. Write what is ON THE BOARD, as the teacher would say it: 'बोर्ड पर देखो: 34 + 28 = 52 लिखा है। क्या यह सही है?'
-- No PERSON at all may have 'done' something in a question: not 'एक बच्चे ने', not 'एक पाठक ने', not 'किसी ने'. Either the teacher does it ('मैं ... पढ़ता/पढ़ती हूँ') or it is already ON THE BOARD.
+- No PERSON at all may have 'done' something in a question: not 'एक बच्चे ने', not 'एक पाठक ने', not 'किसी ने'. Either the teacher does it, written as an instruction ('बोर्ड पर ... लिखें', '... पढ़कर सुनाएँ'), or it is already ON THE BOARD. Never the teacher's 'मैं ... लिखता/लिखती हूँ'.
 - expected_hi is the verdict and the right number, word or mark ONLY: no explanation. Explanations are where mistakes hide (one key told the teacher to write the digits in exactly the places its own question called wrong).
 - Never describe a drawing or a table in words (rows, columns, which digit sits where): a Class 2 child cannot follow it, and it tends to give the answer away. Put the numbers on one board line: 'बोर्ड पर देखें: 43 + 25 = 68'.
 - When the choice is between punctuation marks write it as '1) । 2) ?', never 'लगेगा या ?'. A sentence 'different from the topic' is a paragraph-structure question: not allowed.
 - No object is ever handed out for a show-me (no pebbles, buttons or counters: they cause distraction and mess): children use their slate, their fingers, or what is drawn on the board. Objects belong to the I Do and the We Do.
 - A paragraph or writing skill: ask about punctuation, what happened first or next, or a missing full stop. NEVER about the structure or purpose of a paragraph (an introduction, a conclusion, a sentence out of topic): too abstract for Class 2 and 3.
 - A matra skill: use real-word pairs a teacher would use, such as दिन / दीन, कुल / कूल, कल / काल, सिल / सील, पुल / पूल.
-- Plain spoken Hindi: 'इसके बाद' (not 'इसके तुरंत बाद'); to give an oral cue write 'मैं एक संख्या बोलूँगा/बोलूँगी: 14'; for marks on a slate 'अगले दो निशान'.
+- Plain spoken Hindi: 'इसके बाद' (not 'इसके तुरंत बाद'); to give an oral cue write 'एक संख्या बोलें: 14'; for marks on a slate 'अगले दो निशान'.
 - Each question must be SELF-CONTAINED: write into it every letter, word, sentence, number or picture the children need. Never refer to a text, a paragraph, a picture or a passage that is not written in the question itself.
 - A WRONG answer you put on the board (a spot_error) must never be a number the lesson shows as a RIGHT answer: children remember the lesson's numbers and may take the wrong line for right.
 - listen_for.wrong_answer_hi is the EXACT wrong answer a child with that mistake would give for THIS question (the number, the word, the mark), worked out from the mistake's error pattern, and never a description such as 'a random answer'.

@@ -107,7 +107,7 @@ check('...and the print page asks for the compact form (title, then the question
 
 console.log('\nwhat is left out');
 check('3. no I do / We do / You do: neither their headings nor their text', () => {
-  assert.ok(!/मैं करूँगा|हम करेंगे|तुम करोगे|I Do|We Do|You Do|IDO-|WEDO-|YOUDO-/.test(text));
+  assert.ok(!/मैं करूँ|हम करें|तुम करो|I Do|We Do|You Do|IDO-|WEDO-|YOUDO-/.test(text));
 });
 check('the anchor is its title only, not its narration', () => {
   assert.ok(/एंकर गतिविधि: बाज़ार का खेल · 10 मि\./.test(text) && !text.includes('लंबी कहानी'));
@@ -229,7 +229,7 @@ check('the full plan prints the anchor, every group\'s I Do / We Do / You Do, AL
   const full = d.querySelector('[data-testid="print-full"]');
   assert.ok(full && full.querySelector('[data-testid="full-anchor"]') && /लंबी कहानी जो छपनी नहीं चाहिए/.test(full.textContent));
   assert.deepEqual([...full.querySelectorAll('section[data-testid^="full-block-"]')].map((e) => e.dataset.testid), ['full-block-progressor', 'full-block-beginner', 'full-block-proficient']);
-  assert.ok(/मैं करूँगा:/.test(full.textContent) && /हम करेंगे:/.test(full.textContent) && /तुम करोगे:/.test(full.textContent));
+  assert.ok(/मैं करूँ:/.test(full.textContent) && /हम करें:/.test(full.textContent) && /तुम करो:/.test(full.textContent));
   assert.ok(/तीसरा प्रश्न/.test(full.querySelector('[data-testid="full-cfu-progressor"]').textContent), 'all the questions, not only the first');
   assert.ok(/बाकी दोनों समूह पिछला अभ्यास करें/.test(full.textContent) && /पूरी योजना N2\.3\.2/.test(full.textContent));
   assert.ok(!/सीता देवी|रामू/.test(full.textContent), 'never a child\'s name');

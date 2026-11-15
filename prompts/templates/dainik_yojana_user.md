@@ -208,9 +208,9 @@ Structure:
 
 For each TEACH block, generate:
 **3 Talking Points (बात करने के मुद्दे):**
-1. **मैं करूँगा (I Do):** Teacher demonstrates — scripted example in Hindi (2-3 min)
-2. **हम करेंगे (We Do):** Guided practice — teacher and group solve together (3-4 min)  
-3. **तुम करोगे (You Do):** "अब अपनी शीट पर करो" — transition to independent worksheet
+1. **मैं करूँ (I Do):** Teacher demonstrates — scripted example in Hindi (2-3 min), written as instructions to the teacher ("बोर्ड पर लिखें", not "मैं लिखता/लिखती हूँ")
+2. **हम करें (We Do):** Guided practice — teacher and group solve together (3-4 min)  
+3. **तुम करो (You Do):** "अब अपनी शीट पर करो" — transition to independent worksheet
 
 ### PART D: CLASSROOM MANAGEMENT
 

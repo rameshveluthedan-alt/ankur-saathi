@@ -32,7 +32,7 @@ const appSrc = fs.readFileSync(path.join(src, 'App.jsx'), 'utf8');
 const css = fs.readFileSync(path.join(src, 'index.css'), 'utf8');
 
 // ── the fake server: the Beginners observed, the Progressors photographed, the Proficients read aloud ──
-const teach = (g) => ({ type: 'teach', teach_group: g, duration_minutes: 20, script_hi: `${g} का काम`, talking_points: { you_do_hi: 'तुम करोगे' } });
+const teach = (g) => ({ type: 'teach', teach_group: g, duration_minutes: 20, script_hi: `${g} का काम`, talking_points: { you_do_hi: 'तुम करो' } });
 // the plan screen shows TODAY's plan only, so the fixture plan is dated today, on the phone's own calendar
 const TODAY = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
 const HI_MONTHS = ['जन॰', 'फ़र॰', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अग॰', 'सित॰', 'अक्टू॰', 'नव॰', 'दिस॰'];
@@ -62,7 +62,7 @@ await show(Ticks);
 const sheet = q('[data-testid="tick-sheet"]');
 check('it asks the server for the review ways of the plan\'s own day and subject', calls.length === 1 && calls[0][0] === 'T1' && calls[0][1] === TODAY && calls[0][2] === 'numeracy', JSON.stringify(calls));
 check('the title: "टिक शीट", the teacher\'s code, the class and the date', q('[data-testid="ticks-title"]').textContent.includes(`टिक शीट · MPT101 · कक्षा 2 · ${TODAY_HI}`), q('[data-testid="ticks-title"]').textContent);
-check('when to fill it and where it goes after class (Assess, 1/2 today\'s performance)', /तुम करोगे/.test(q('[data-testid="ticks-when"]').textContent) && /आकलन \(1\/2 आज का प्रदर्शन\)/.test(q('[data-testid="ticks-when"]').textContent));
+check('when to fill it and where it goes after class (Assess, 1/2 today\'s performance)', /तुम करो/.test(q('[data-testid="ticks-when"]').textContent) && /आकलन \(1\/2 आज का प्रदर्शन\)/.test(q('[data-testid="ticks-when"]').textContent));
 check('one table per observed or read-aloud group, in group order; none for the photographed Progressors', JSON.stringify(qa('[data-testid^="tick-group-"]').map((e) => e.dataset.testid)) === JSON.stringify(['tick-group-beginner', 'tick-group-proficient']));
 const beg = q('[data-testid="tick-group-beginner"]');
 check('the Beginners: the skill and the way in the heading', /शुरुआती · N0\.1\.1 छाँटना · ✓ देखकर दर्ज करें/.test(beg.querySelector('[data-testid="tick-head"]').textContent), beg.querySelector('[data-testid="tick-head"]').textContent);

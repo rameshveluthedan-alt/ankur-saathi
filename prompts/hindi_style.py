@@ -143,18 +143,124 @@ _NOTES_RE = [re.compile(p) for p in _TEACHER_NOTES]
 _PRINTED_RE = [re.compile(p) for p in _PRINTED]
 
 
-# The teacher's own first person, feminine only ("मैं बोलती हूँ"): written as the neutral pair, as the prompt asks ("बोलता/बोलती हूँ").
-# Only in the teacher's speech (a story character on a worksheet may be a girl). Idempotent: a word already after "/" is left alone.
-_FIRST_PERSON_F = re.compile(r"(?<![/ऀ-ॿ])([ऀ-ॿ]+?)ती हूँ")
+# The teacher's lines as short polite instructions, the way NCERT's teacher notes write them ("बोर्ड पर लिखें", "बच्चों से पूछें"), never the
+# teacher's first person. Until 15 Nov the app wrote "मैं बोर्ड पर लिखता/लिखती हूँ" (the app cannot know the teacher's gender), and the user found
+# the paired forms slow to read in a busy classroom. Quoted words (what is said to the children, a dictation sentence, a letter) are never changed:
+# the old code also paired a girl's words inside a quoted letter ("मैं गाँव में रहता/रहती हूँ"). Idempotent.
+_D = "ऀ-ॣॱ-ॿ"          # Devanagari letters and marks: not । ॥ (a word before a full stop still ends there), not the digits
+_QUOTE_SPAN = re.compile(r"'[^']*'|‘[^’]*’|\"[^\"]*\"|“[^”]*”|«[^»]*»")
+_IMP_SPECIAL = {"दे": "दें", "ले": "लें", "कर": "करें", "हो": "हों", "पी": "पिएँ", "द": "दें", "ल": "लें"}
+# a clause spoken TO the children ("मैं आपको तीन सुराग दूँगी"): an instruction to the teacher would not fit, so it is left (and reported by the check)
+_ADDRESS = re.compile(rf"(?<![{_D}])(?:आप|आपको|आपके|आपकी|तुम|तुम्हें|तुम्हारे|तुम्हारी|बच्चो)(?![{_D}])")
+_ME = re.compile(rf"(?<![{_D}])मैं(?![{_D}])\s*")
 
 
-_FIRST_PERSON_RAHI = re.compile(r"(?<![/ऀ-ॿ])रही हूँ")         # "पढ़ा रही हूँ" -> "पढ़ा रहा/रही हूँ"
+def _imperative(stem: str) -> str:
+    if stem in _IMP_SPECIAL:
+        return _IMP_SPECIAL[stem]
+    return stem + ("एँ" if stem.endswith(("ा", "ो", "आ")) else "ें")
 
 
-def neutral_first_person(text: str) -> tuple:
-    new, n = _FIRST_PERSON_F.subn(lambda m: f"{m.group(1)}ता/{m.group(1)}ती हूँ", text)
-    new, n2 = _FIRST_PERSON_RAHI.subn("रहा/रही हूँ", new)
-    return new, ["grammar"] * (n + n2)
+_SAKNA = re.compile(rf"(?<![{_D}/])सक(?:ता/सकती|ती/सकता) हूँ")                                       # "छाँट सकता/सकती हूँ" -> "छाँट सकते हैं"
+_RAHA = re.compile(rf"(?<![{_D}/])([{_D}]+) रह(?:ा/रही|ी/रहा) हूँ")                                   # "पढ़ा रहा/रही हूँ" -> "पढ़ाएँ"
+_PAIR_NOW = re.compile(rf"(?<![{_D}/])([{_D}]+?)(?:ता/\1ती|ती/\1ता) हूँ")                            # "लिखता/लिखती हूँ" -> "लिखें"
+_PAIR_FUT = re.compile(rf"(?<![{_D}/])([{_D}]+?)(ूँ|ऊँ)(?:गा/\1\2गी|गी/\1\2गा)(?![{_D}])")           # "बोलूँगा/बोलूँगी" -> "बोलें", "दिखाऊँगा/दिखाऊँगी" -> "दिखाएँ"
+# one gender only: changed only when "मैं" is in the same clause (a line of a story without "मैं" is left alone)
+_ONE_SAKNA = re.compile(rf"(?<![{_D}/])सक(?:ता|ती) हूँ")
+_ONE_RAHA = re.compile(rf"(?<![{_D}/])([{_D}]+) रह(?:ा|ी) हूँ")
+_ONE_NOW = re.compile(rf"(?<![{_D}/])([{_D}]+?)(?:ता|ती) हूँ")
+_ONE_FUT = re.compile(rf"(?<![{_D}/])([{_D}]+?)(ूँ|ऊँ)(?:गा|गी)(?![{_D}/])")
+
+
+def _fut(m) -> str:
+    return _imperative(m.group(1))
+
+
+def _clause_to_instruction(c: str) -> tuple:
+    if _ADDRESS.search(c):
+        return c, 0
+    n = 0
+    for pat, rep in ((_SAKNA, "सकते हैं"), (_RAHA, lambda m: _imperative(m.group(1))), (_PAIR_NOW, lambda m: _imperative(m.group(1))), (_PAIR_FUT, _fut)):
+        c, k = pat.subn(rep, c)
+        n += k
+    if _ME.search(c):
+        for pat, rep in ((_ONE_SAKNA, "सकते हैं"), (_ONE_RAHA, lambda m: _imperative(m.group(1))), (_ONE_NOW, lambda m: _imperative(m.group(1))), (_ONE_FUT, _fut)):
+            c, k = pat.subn(rep, c)
+            n += k
+    return c, n
+
+
+_SENTENCE_SPLIT = re.compile(r"([।?!:;\n])")
+_COMMA_SPLIT = re.compile(r"(,)")
+_OTHER_ME_VERB = re.compile(rf"[{_D}](?:ूँ|ऊँ)(?![{_D}])|(?<![{_D}])हूँ")           # "अगर मैं जूते छाँटूँ": that "मैं" stays
+
+
+def _drop_me(c: str) -> str:
+    if not _ME.search(c) or _OTHER_ME_VERB.search(c):
+        return c
+    lead = c[:len(c) - len(c.lstrip())]
+    return lead + _ME.sub("", c.lstrip())
+
+
+def _sentence_to_instruction(s: str) -> tuple:
+    """Converted clause by clause (a comma may separate a clause spoken to the children); "मैं" goes from every clause of a sentence that had a
+    verb converted ("मैं बीज, कंकड़ और बटन मिलाकर दिखाऊँगा/दिखाऊँगी" -> "बीज, कंकड़ और बटन मिलाकर दिखाएँ")."""
+    parts = _COMMA_SPLIT.split(s)
+    n = 0
+    for i in range(0, len(parts), 2):
+        parts[i], k = _clause_to_instruction(parts[i])
+        n += k
+    if n:
+        parts = [p if i % 2 else _drop_me(p) for i, p in enumerate(parts)]
+    return "".join(parts), n
+
+
+def teacher_instructions(text: str) -> tuple:
+    """(new text, changes): the teacher's first person outside quotes as a polite instruction. "मैं बोर्ड पर 'पुल' लिखता/लिखती हूँ।" ->
+    "बोर्ड पर 'पुल' लिखें।"; "फिर मैं पूछूँगा/पूछूँगी:" -> "फिर पूछें:". Quoted text is kept exactly."""
+    spans = []
+
+    def mask(m):
+        spans.append(m.group(0))
+        return f"\x00{len(spans) - 1}\x01"
+
+    masked = _QUOTE_SPAN.sub(mask, text)
+    parts = _SENTENCE_SPLIT.split(masked)
+    n = 0
+    for i in range(0, len(parts), 2):
+        parts[i], k = _sentence_to_instruction(parts[i])
+        n += k
+    new = re.sub(r"\x00(\d+)\x01", lambda m: spans[int(m.group(1))], "".join(parts))
+    return new, ["instruction"] * n
+
+
+# the gendered first person that teacher_instructions leaves (a clause spoken to the children), for the plan check
+_GENDERED_ME = re.compile(rf"(?<![{_D}])(?:[{_D}]+(?:ता|ती)(?:/[{_D}]+)? हूँ|[{_D}]+(?:ूँ|ऊँ)(?:गा|गी))(?![{_D}])")
+# Hindi marks named wrongly (15 Nov, a live plan: "'है' पर ऊपर दो बिंदी वाला ै"): ै is the ऐ की मात्रा (two strokes); a बिंदी is ं
+# (the mark ै or े written on its own, not inside a word; "दो बिंदु वाला विसर्ग ः" is right and is not flagged)
+_WRONG_MARK = re.compile(rf"(?:बिंदी|बिंदियों|बिंदु|बिन्दी|बिन्दु)(?:\s*(?:वाला|वाली|वाले|का|की))?\s*['‘(]?(?<![{_D}])[ैे](?!ं)")
+
+
+def check_teacher_text(plan: dict) -> list:
+    """Warnings for the plan check: a gendered first person left in the teacher's lines (outside quotes), and a Hindi mark named wrongly."""
+    out = []
+
+    def visit(o, path=""):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                visit(v, f"{path}.{k}")
+        elif isinstance(o, list):
+            for v in o:
+                visit(v, f"{path}[]")
+        elif isinstance(o, str):
+            teacher = any(r.match(path) for r in _SPEECH_RE) or path.endswith(".question_hi")
+            if teacher and _GENDERED_ME.search(_QUOTE_SPAN.sub("", o)):
+                out.append(f"{path}: the teacher's first person with a gender («{_GENDERED_ME.search(_QUOTE_SPAN.sub('', o)).group(0)}»); write it as an instruction (बोलें, लिखें)")
+            if (teacher or any(r.match(path) for r in _PRINTED_RE)) and _WRONG_MARK.search(o):
+                out.append(f"{path}: a Hindi mark named wrongly («{_WRONG_MARK.search(o).group(0)}»): ै is the ऐ की मात्रा, े the ए की मात्रा, ं a बिंदी, ँ a चंद्रबिंदु")
+
+    visit(plan)
+    return out
 
 
 def soften_plan(plan: dict) -> dict:
@@ -184,8 +290,8 @@ def soften_plan(plan: dict) -> dict:
         if not (speech or notes or printed):
             return
         new, changes = soften_text(text, polite=speech or (printed and POLITE_IN_WORKSHEETS), frame=True, protect_quotes=printed)
-        if speech:
-            new, ch = neutral_first_person(new)
+        if speech or path.endswith(".cfu[].question_hi"):
+            new, ch = teacher_instructions(new)
             changes += ch
         if new != text:
             container[key] = new

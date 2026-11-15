@@ -90,7 +90,7 @@ check('collapsed: the pace and the tips are NOT shown yet (they come when the bl
 const open = render(rt, true);
 check('opened: the pace for THIS block (29 minutes), in Hindi and English', () => {
   assert.ok(open.includes('सुझाया समय (29 मि.)'));
-  assert.ok(open.includes('कल की बात 2 · मैं करूँगा 6 · हम करेंगे 8 · जाँच 4 · तुम करोगे 9'));
+  assert.ok(open.includes('कल की बात 2 · मैं करूँ 6 · हम करें 8 · जाँच 4 · तुम करो 9'));
   assert.ok(open.includes('Recall 2 · I Do 6 · We Do 8 · Show-me 4 · You Do 9'));
 });
 check('opened: what the teachers asked for: the wrong way first and erased, a quiet visit with no names or roll numbers, the quarter rule', () => {
