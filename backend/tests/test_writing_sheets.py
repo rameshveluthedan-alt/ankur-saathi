@@ -214,7 +214,7 @@ async def flow():
         await db.close()
 
 
-FLUENCY_SAMPLE = json.load(open(os.path.join(HERE, "..", "..", "db", "seeds", "sample_plans", "L2.5.1.json"), encoding="utf-8"))
+FLUENCY_SAMPLE = json.load(open(os.path.join(HERE, "fixtures", "L2.5.1_recorded_before_141126.json"), encoding="utf-8"))
 FL_SKILLS = {"beginner": "L3.6.2", "progressor": "L2.5.1", "proficient": "L2.6.1"}
 WORDS = ["बरसात", "इकट्ठा", "ज़रूरी", "सीमित", "किसान", "उपयोग"]
 
