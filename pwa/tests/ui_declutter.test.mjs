@@ -120,6 +120,16 @@ check('the photo result shows what each mistake means beside its code, and "time
   assert.ok(r.includes('<Bi hi="गलती" en="Mistake" inline />') && !r.includes('en="Misconceptions Detected"'));
 });
 
+check('the class summary prints "पढ़ाए गए कौशल" with a key for ⬆ / 🔄 / ❓, and "हर बच्चा कहाँ है" (A / PA / NA per child and skill, – not checked); "आकलन", not "समीक्षा" (15 Nov)', () => {
+  const c = read('screens/ClassSummary.jsx');
+  assert.ok(c.includes('<b>पढ़ाए गए कौशल</b>') && c.includes('⬆ आगे बढ़ें · 🔄 दोहराएँ · ❓ पक्का नहीं') && c.includes('<b>हर बच्चा कहाँ है</b>'));
+  assert.ok(c.includes('className="where-table"') && c.includes("({ a: 'A', pa: 'PA', na: 'NA' })[r.results[k]] || '–'") && !c.includes('समीक्षा'));
+});
+check('the mentor report prints "कौशल के नतीजे": A / PA / NA counts and "not yet checked" per skill taught (15 Nov)', () => {
+  const m = read('screens/MentorReport.jsx');
+  assert.ok(m.includes('कौशल के नतीजे') && m.includes('A {k.a} · PA {k.pa} · NA {k.na} · अभी नहीं जाँचे {k.not_checked}'));
+});
+
 console.log('\nthe dictation sentences: for the teacher only');
 check('a dictation group\'s slot has a "बोलकर लिखवाएँ" fold with the sheet\'s sentences, and the printed plan a line with them', () => {
   const y = read('screens/YojanaScreen.jsx'); const pp = read('screens/PlanPrint.jsx');

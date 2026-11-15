@@ -78,6 +78,41 @@ async def get_children_progress(db, teacher_id: str) -> list[dict]:
 
 
 SUBJECTS = ("numeracy", "r1_literacy")
+LEVEL_EN = {"beginner": "Beginner", "progressor": "Progressor", "proficient": "Proficient"}
+RESULT_CODE = {"achieved": "A", "partially_achieved": "PA", "not_achieved": "NA"}
+
+
+def _grade(g) -> str:
+    """'grade_1' -> 'Grade 1', 'balvatika' -> 'Balvatika' (the CSVs, 15 Nov: stored codes were shown as they are)."""
+    g = str(g or "")
+    return f"Grade {g.split('_', 1)[1]}" if g.startswith("grade_") else g.replace("_", " ").title()
+
+
+async def latest_results(db, teacher_id: str, start=None, end=None) -> dict:
+    """Each child's NEWEST result per skill (in the period, when given): {roll: {skill: {"status": ..., "date": ..., "domain": ...}}}.
+    Roll numbers only: no names are read here."""
+    q = """SELECT DISTINCT ON (c.roll_number, e.competency_id) c.roll_number, e.competency_id, e.status, e.session_date, s.domain_id
+           FROM assessment_evidence e JOIN children c ON c.id = e.child_id
+           JOIN competencies k ON k.id = e.competency_id JOIN subdomains s ON s.id = k.subdomain_id
+           WHERE e.teacher_id = $1 AND c.is_active"""
+    args = [teacher_id]
+    if start is not None and end is not None:
+        q += " AND e.session_date BETWEEN $2 AND $3"
+        args += [start, end]
+    q += " ORDER BY c.roll_number, e.competency_id, e.session_date DESC, e.created_at DESC"
+    out = {}
+    for r in await db.fetch(q, *args):
+        out.setdefault(r["roll_number"], {})[r["competency_id"]] = {"status": r["status"], "date": r["session_date"].isoformat(), "domain": r["domain_id"]}
+    return out
+
+
+def _latest_in(results: dict, domain: str):
+    """A child's newest result in one subject: (skill, status, date) or None."""
+    best = None
+    for skill, v in (results or {}).items():
+        if v["domain"] == domain and (best is None or v["date"] > best[2]):
+            best = (skill, v["status"], v["date"])
+    return best
 STATUS_KEY = {"achieved": "a", "partially_achieved": "pa", "not_achieved": "na"}
 
 
@@ -171,41 +206,37 @@ async def get_reassessment_flags(db, teacher_id: str) -> dict:
 
 
 async def export_mlo_report_csv(db, teacher_id: str) -> str:
-    """Generate CSV export for MLO (Block/District officer) reporting."""
+    """The officer (MLO) CSV: roll numbers only. 15 Nov: readable values ("Grade 1", "Beginner"), a report date, and each subject's
+    latest checked skill with its result: the ladder position alone was the same for a whole grade."""
     children = await get_children_progress(db, teacher_id)
-    
     teacher = await db.fetchrow("""
         SELECT s.school_code, s.block_name, s.district_name
         FROM teachers t JOIN schools s ON t.school_id = s.id
         WHERE t.id = $1
     """, teacher_id)
-    
+    latest = await latest_results(db, teacher_id)
+    today = date.today().isoformat()
     output = io.StringIO()
     writer = csv.writer(output)
-    
-    # Header
     writer.writerow([
-        'School Code', 'Block', 'District',
-        'Roll No', 'Enrolled Grade',
-        'Numeracy Level', 'Numeracy Competency',
-        'Literacy Level', 'Literacy Competency',
+        'Report Date', 'School Code', 'Block', 'District', 'Roll No', 'Grade',
+        'Numeracy Group', 'Numeracy Position on Skill Ladder', 'Numeracy Latest Skill Checked', 'Numeracy Latest Result (A/PA/NA)', 'Numeracy Checked On',
+        'Literacy Group', 'Literacy Position on Skill Ladder', 'Literacy Latest Skill Checked', 'Literacy Latest Result (A/PA/NA)', 'Literacy Checked On',
     ])
-    
     for c in children:
-        writer.writerow([
-            teacher['school_code'] if teacher else '',
-            teacher['block_name'] if teacher else '',
-            teacher['district_name'] if teacher else '',
-            c['roll_number'], c['enrolled_grade'],
-            c['numeracy_bpp'] or '', c['numeracy_competency_id'] or '',
-            c['literacy_bpp'] or '', c['literacy_competency_id'] or '',
-        ])
-    
+        row = [today, teacher['school_code'] if teacher else '', teacher['block_name'] if teacher else '', teacher['district_name'] if teacher else '',
+               c['roll_number'], _grade(c['enrolled_grade'])]
+        for dom, key in (("numeracy", "numeracy"), ("r1_literacy", "literacy")):
+            last = _latest_in(latest.get(c['roll_number']), dom)
+            row += [LEVEL_EN.get(c[f'{key}_bpp'], c[f'{key}_bpp'] or ''), c[f'{key}_competency_id'] or '',
+                    last[0] if last else '', RESULT_CODE.get(last[1], '') if last else '', last[2] if last else '']
+        writer.writerow(row)
     return output.getvalue()
 
 
 async def export_class_report_csv(db, teacher_id: str) -> str:
-    """The teacher's OWN class report, with names. It is separate from the officer (MLO) report, which has roll numbers only."""
+    """The teacher's OWN class report, with names. It is separate from the officer (MLO) report, which has roll numbers only. 15 Nov: the same tidy
+    columns as the officer's, plus the class number, school roll and name."""
     from app.services import names_service
     children = await get_children_progress(db, teacher_id)
     names = await names_service.names_for_teacher(db, teacher_id)
@@ -215,13 +246,20 @@ async def export_class_report_csv(db, teacher_id: str) -> str:
     except Exception as e:
         if e.__class__.__name__ != "UndefinedColumnError":
             raise
+    latest = await latest_results(db, teacher_id)
+    today = date.today().isoformat()
     out = io.StringIO()
     w = csv.writer(out)
-    w.writerow(['Class No', 'Grade', 'School Roll', 'Name', 'Numeracy Level', 'Numeracy Skill', 'Literacy Level', 'Literacy Skill'])
+    w.writerow(['Report Date', 'Class No', 'Grade', 'School Roll', 'Name',
+                'Numeracy Group', 'Numeracy Position on Skill Ladder', 'Numeracy Latest Skill Checked', 'Numeracy Latest Result (A/PA/NA)', 'Numeracy Checked On',
+                'Literacy Group', 'Literacy Position on Skill Ladder', 'Literacy Latest Skill Checked', 'Literacy Latest Result (A/PA/NA)', 'Literacy Checked On'])
     for c in children:
-        w.writerow([c['roll_number'], c['enrolled_grade'], school_rolls.get(c['roll_number']) or '', names.get(c['roll_number'], ''),
-                    c['numeracy_bpp'] or '', (c['numeracy_competency_id'] or '') + ' ' + (c['numeracy_competency_name_hi'] or ''),
-                    c['literacy_bpp'] or '', (c['literacy_competency_id'] or '') + ' ' + (c['literacy_competency_name_hi'] or '')])
+        row = [today, c['roll_number'], _grade(c['enrolled_grade']), school_rolls.get(c['roll_number']) or '', names.get(c['roll_number'], '')]
+        for dom, key in (("numeracy", "numeracy"), ("r1_literacy", "literacy")):
+            last = _latest_in(latest.get(c['roll_number']), dom)
+            row += [LEVEL_EN.get(c[f'{key}_bpp'], c[f'{key}_bpp'] or ''), ((c[f'{key}_competency_id'] or '') + ' ' + (c[f'{key}_competency_name_hi'] or '')).strip(),
+                    last[0] if last else '', RESULT_CODE.get(last[1], '') if last else '', last[2] if last else '']
+        w.writerow(row)
     return out.getvalue()
 
 
@@ -297,9 +335,29 @@ async def get_mentor_summary(db, teacher_id: str, end: date) -> dict:
 
     mistakes = await _common_mistakes(db, teacher_id, start, end)
 
+    # results by skill taught in the period (15 Nov): for each skill, the children's newest result in the period, as counts; and how many of the
+    # children it was taught to have no result on it yet
+    period_results = await latest_results(db, teacher_id, start, end)
+    taught_to = {}
+    for r in plans:
+        snap = _obj(r["groups_snapshot"])
+        for l in gs.LABELS:
+            g = snap.get(l) or {}
+            if g.get("target") and g.get("rolls"):
+                taught_to.setdefault((r["domain_id"], g["target"]), set()).update(int(x) for x in g["rolls"])
+    skill_results = []
+    for (dom, k), rolls in sorted(taught_to.items(), key=lambda kv: (kv[0][0], kv[0][1])):
+        counts = {"a": 0, "pa": 0, "na": 0}
+        for roll, res in period_results.items():
+            st = STATUS_KEY.get((res.get(k) or {}).get("status"))
+            if st:
+                counts[st] += 1
+        unchecked = sum(1 for roll in rolls if k not in (period_results.get(roll) or {}))
+        skill_results.append({"domain_id": dom, "skill_id": k, "skill_name_hi": names.get(k), **counts, "not_checked": unchecked})
+
     practice = {"plan_days": len(plan_days), "review_days": len(review_days), "groups_taught": taught, "groups_checked": checked,
                 "judgments_compared": compared, "judgments_matched": matched}
-    progress = {"class_size": class_size, "groups": groups_at, "skills_achieved": achieved, "stuck": stuck, "not_checked": not_checked}
+    progress = {"class_size": class_size, "groups": groups_at, "skills_achieved": achieved, "stuck": stuck, "not_checked": not_checked, "skill_results": skill_results}
     return {"period": {"start": start.isoformat(), "end": end.isoformat(), "days": R["window_days"]},
             "school": {"school_code": school["school_code"], "block": school["block_name"], "district": school["district_name"]} if school else None,
             "practice": practice, "progress": progress, "mistakes": mistakes, "rules": dict(R),
@@ -365,6 +423,8 @@ async def get_class_summary(db, teacher_id: str, end: date) -> dict:
     names = {r["id"]: r["name_hi"] for r in await db.fetch("SELECT id, name_hi FROM competencies WHERE id = ANY($1::text[])", list({k[2] for k in runs}))} if runs else {}
 
     subjects = {}
+    period_results = await latest_results(db, teacher_id, start, end)
+    class_rolls = [r["roll_number"] for r in await db.fetch("SELECT roll_number FROM children WHERE teacher_id = $1 AND is_active ORDER BY roll_number", teacher_id)]
     for domain in SUBJECTS:
         taught, stuck = [], []
         for (d, l, k), run in runs.items():
@@ -388,8 +448,16 @@ async def get_class_summary(db, teacher_id: str, end: date) -> dict:
                                      teacher_id, start, end, domain)
         prop = (await gs.propose(db, teacher_id, domain, end + timedelta(days=1)))["groups"]
         nxt = {l: {"skill_id": (g.get("proposed") or {}).get("id"), "skill_name_hi": (g.get("proposed") or {}).get("name_hi"), "reason": g.get("reason")} for l, g in prop.items()}
+        # where each child is (15 Nov): the newest result in the period on each skill taught, per child of the class (roll numbers; the page adds names)
+        skills_taught = []
+        for t in taught:
+            if t["skill_id"] not in skills_taught:
+                skills_taught.append(t["skill_id"])
+        rows = [{"roll": roll, "results": {k: STATUS_KEY.get((period_results.get(roll) or {}).get(k, {}).get("status"), "") for k in skills_taught}}
+                for roll in class_rolls] if skills_taught else []
         if taught or any((now.get(domain) or {}).values()):
-            subjects[domain] = {"groups_now": now.get(domain) or {}, "skills_achieved": achieved, "taught": taught, "stuck": stuck, "next": nxt}
+            subjects[domain] = {"groups_now": now.get(domain) or {}, "skills_achieved": achieved, "taught": taught, "stuck": stuck, "next": nxt,
+                                "children": {"skills": skills_taught, "skill_names_hi": {k: names.get(k) for k in skills_taught}, "rows": rows}}
 
     na = await db.fetch("""SELECT c.roll_number, COUNT(DISTINCT e.session_date) AS days, ARRAY_AGG(DISTINCT e.competency_id ORDER BY e.competency_id) AS skills
                            FROM assessment_evidence e JOIN children c ON c.id = e.child_id

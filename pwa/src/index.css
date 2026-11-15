@@ -632,3 +632,11 @@ body:not(.hide-en):not(.lang-en) .slot-tab .gmark .en, body:not(.hide-en):not(.l
 
 /* which group's worksheet the photos are for (15 Nov) */
 .photo-for { background: var(--tier-bg); border-left: 5px solid var(--tier); border-radius: 8px; padding: 8px 10px; margin: 0 0 8px; font-size: 0.875rem; }
+
+/* the class summary's "where each child is" table (15 Nov): small, prints on A4 */
+.where-table { border-collapse: collapse; font-size: 0.8rem; margin-top: 2px; }
+.where-table th, .where-table td { border: 1px solid #ccc; padding: 1px 6px; text-align: center; }
+.where-table td:first-child { text-align: left; white-space: nowrap; }
+.where-table .res-a { font-weight: 700; }
+.where-table .res-none { color: #999; }
+@media print { .where-table { break-inside: auto; } .where-table tr { break-inside: avoid; } }

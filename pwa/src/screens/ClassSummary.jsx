@@ -66,6 +66,7 @@ export default function ClassSummary() {
           <section key={d} data-testid={`class-subject-${d}`}>
             <div className="print-block-head">{SUBJECT[d]}</div>
             <div data-testid={`now-${d}`}>कक्षा अभी: {groupsLine(x.groups_now)} · कौशल हासिल किए: <b>{x.skills_achieved}</b></div>
+            {x.taught.length > 0 && <div style={{ marginTop: 4 }}><b>पढ़ाए गए कौशल</b> <span style={{ fontWeight: 400, fontSize: '0.85em' }}>(दिन · अंतिम निर्णय: ⬆ आगे बढ़ें · 🔄 दोहराएँ · ❓ पक्का नहीं)</span></div>}
             {x.taught.length ? x.taught.map((t) => (
               <div key={`${t.level}-${t.skill_id}`} data-testid={`taught-${d}-${t.level}-${t.skill_id}`}>
                 {G(t.level)}: {t.skill_id}{t.skill_name_hi ? ` ${t.skill_name_hi}` : ''} · {t.days} दिन · ⬆ {t.finals.advance} · 🔄 {t.finals.reteach} · ❓ {t.finals.not_sure}
@@ -75,8 +76,23 @@ export default function ClassSummary() {
               <div data-testid={`next-${d}`}>
                 <b>अगला कदम:</b> {GROUP_ORDER.filter((l) => x.next[l]).map((l) => {
                   const n = x.next[l];
-                  return <span key={l} data-testid={`next-${d}-${l}`}>{' '}{G(l)}: {n.skill_id ? `${n.skill_id}${n.skill_name_hi ? ` ${n.skill_name_hi}` : ''} (${NEXT_WHY[n.reason] || n.reason})` : 'पिछली समीक्षा में निर्णय नहीं; योजना बनाते समय चुनें'};</span>;
+                  return <span key={l} data-testid={`next-${d}-${l}`}>{' '}{G(l)}: {n.skill_id ? `${n.skill_id}${n.skill_name_hi ? ` ${n.skill_name_hi}` : ''} (${NEXT_WHY[n.reason] || n.reason})` : 'पिछले आकलन में निर्णय नहीं; योजना बनाते समय चुनें'};</span>;
                 })}
+              </div>
+            )}
+            {/* where each child is (15 Nov): the newest result in the period on each skill taught; "–" not checked yet */}
+            {x.children && x.children.skills && x.children.skills.length > 0 && (
+              <div data-testid={`where-${d}`} style={{ marginTop: 6 }}>
+                <b>हर बच्चा कहाँ है</b> <span style={{ fontWeight: 400, fontSize: '0.85em' }}>(पिछले {weeks} हफ़्तों का सबसे नया नतीजा; – = अभी नहीं जाँचा)</span>
+                <table className="where-table">
+                  <thead><tr><th>बच्चा</th>{x.children.skills.map((k) => <th key={k} title={x.children.skill_names_hi[k] || ''}>{k}</th>)}</tr></thead>
+                  <tbody>{x.children.rows.map((r) => (
+                    <tr key={r.roll} data-testid={`where-${d}-${r.roll}`}>
+                      <td>{kid(r.roll)}</td>
+                      {x.children.skills.map((k) => <td key={k} className={`res-${r.results[k] || 'none'}`}>{({ a: 'A', pa: 'PA', na: 'NA' })[r.results[k]] || '–'}</td>)}
+                    </tr>
+                  ))}</tbody>
+                </table>
               </div>
             )}
           </section>

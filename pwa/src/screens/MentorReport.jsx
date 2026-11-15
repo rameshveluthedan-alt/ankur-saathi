@@ -85,6 +85,18 @@ export default function MentorReport() {
         <div data-testid="progress-not-checked">{Math.round(R.not_checked_days / 7)} हफ़्ते से नहीं जाँचे: {g.not_checked.length ? `${g.not_checked.length} बच्चे (रोल ${g.not_checked.join(', ')})` : 'कोई नहीं'}</div>
       </section>
 
+      {/* results by skill taught (15 Nov): the children's newest result in the period, as counts; and how many it was taught to have none yet */}
+      {(g.skill_results || []).length > 0 && (
+        <section data-testid="mentor-skill-results">
+          <div className="print-block-head">कौशल के नतीजे</div>
+          {g.skill_results.map((k) => (
+            <div key={`${k.domain_id}-${k.skill_id}`} data-testid={`skill-result-${k.skill_id}`}>
+              {k.skill_id}{k.skill_name_hi ? ` ${k.skill_name_hi}` : ''}: A {k.a} · PA {k.pa} · NA {k.na} · अभी नहीं जाँचे {k.not_checked}
+            </div>
+          ))}
+        </section>
+      )}
+
       {m.mistakes.length > 0 && (
         <section data-testid="mentor-mistakes">
           <div className="print-block-head">आम गलतियाँ</div>
