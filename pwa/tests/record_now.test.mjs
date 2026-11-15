@@ -127,6 +127,8 @@ globalThis.__location = { pathname: '/review', state: { from: 'plan', channel: '
 await show(Review);
 check('in class on the photo way: the Progressors\' sheet only, no group buttons or cards, the pilot note, and the way back to teaching', !!q('[data-testid="from-plan"]') && /प्रगतिशील/.test(q('[data-testid="from-plan"]').textContent)
   && !!q('[data-testid="pilot-photo"]') && !document.querySelector('.tier-option') && !q('[data-testid="group-cards"]') && !!q('[data-testid="done-in-class"]') && !q('[data-testid="to-final"]'));
+check('...and right above the photos it says whose worksheet they are taken as: "▲ प्रगतिशील" (15 Nov: a test batch went in as the Beginners\' sheet unnoticed)',
+  !!q('[data-testid="photo-for"]') && /इन फ़ोटो को इस समूह की वर्कशीट माना जाएगा/.test(q('[data-testid="photo-for"]').textContent) && /प्रगतिशील/.test(q('[data-testid="photo-for"]').textContent));
 globalThis.__location = { pathname: '/review', state: null };
 
 await act(async () => root.unmount());

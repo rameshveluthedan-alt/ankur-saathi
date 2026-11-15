@@ -510,7 +510,63 @@ def unit_observed_real_runs():
     check("the prompt asks for the materials to be NAMED in the You Do", "NAME them in the You Do" in W.prompt_section({"progressor": "N1.4.1"}, "numeracy"))
 
 
+def unit_photo_pre_judgment():
+    print("\nthe photo test of 15 Nov: no first judgment any more")
+    from app.services.review_service import pre_judgment_or_none
+    check("an empty or unknown first judgment is stored as none (the database accepts only advance / reteach / not_sure / NULL: '' broke the save after the AI call)",
+          pre_judgment_or_none("") is None and pre_judgment_or_none(None) is None and pre_judgment_or_none("x") is None and pre_judgment_or_none("reteach") == "reteach")
+
+
+def unit_wrong_group():
+    print("\nphotos sent under the wrong group's card (15 Nov: Progressor sheets as the Beginners' gave '0%' and 'Re-teach')")
+    from app.services.review_service import wrong_group
+    groups = [{"label": "beginner", "roll_numbers": [1, 2, 101, 102]}, {"label": "progressor", "roll_numbers": [103, 107, 201, 205, 301, 302]},
+              {"label": "proficient", "roll_numbers": [303, 304]}]
+    check("all five rolls are Progressors' (the test of 15 Nov) -> the Progressors, with those rolls", wrong_group([301, 201, 107, 205, 103], "beginner", groups) == ("progressor", [103, 107, 201, 205, 301]))
+    check("the right group -> no guard", wrong_group([301, 201, 107], "progressor", groups) is None)
+    check("one stray sheet among the group's own -> no guard (it is only flagged, as before)", wrong_group([103, 107, 201, 1], "progressor", groups) is None)
+    check("rolls not in the class or unreadable -> no guard (the existing notices say so)", wrong_group([999, "?", None], "beginner", groups) is None)
+    import vision_analysis
+    src = open(os.path.join(HERE, "..", "..", "prompts", "vision_analysis.py"), encoding="utf-8").read()
+    check("with nobody assessed, no group accuracy and no recommendation (it said 0% and Re-teach)", "if group_problem_total == 0:" in src and "ai_rec, group_accuracy = None, None" in src)
+
+
+def unit_photo_topic_and_names():
+    print("\nthe photo test of 15 Nov: the task's topic reaches the AI; the mistakes are shown by name")
+    from vision_analysis import build_vision_prompt
+    rec = json.load(open(os.path.join(HERE, "..", "..", "db", "seeds", "sample_plans", "L2.7.2.json"), encoding="utf-8"))
+    w = rec["worksheets"]["progressor"]
+    spec = W.vision_spec(w)
+    check("the main task carries the sheet's topic; the extra task only its own words (it named 'मनपसंद खेल', not 'मेरा गाँव')",
+          spec["tasks"][0]["topic_hi"] == "मेरा गाँव" and all(t["topic_hi"] == "" for t in spec["tasks"][1:]), spec["tasks"])
+    vp = build_vision_prompt("progressor", "L2.7.2", "x", w["problems"], [], [1], domain_id="r1_literacy", writing=spec)
+    check("the AI is told what the task asks and that 'on the topic' means THIS topic (it had marked a cricket sentence as on topic)",
+          "Problem 1 asks: «अपने गाँव या मोहल्ले पर" in vp and "the topic is «मेरा गाँव»" in vp and "on the topic\" means about THIS topic" in vp)
+    src = open(os.path.join(HERE, "..", "app", "services", "review_service.py"), encoding="utf-8").read()
+    check("the result carries what each mistake means (the knowledge base's names), for the screen to show beside the code",
+          'summary["misconception_names"] = {m["id"]: {"hi": m.get("name_hi")' in src)
+
+
+def unit_writing_task_caps_level():
+    print("\nrule (b), 15 Nov: on a writing sheet the main writing task caps the level")
+    from vision_analysis import cap_by_writing_task as cap
+    sheet = lambda met, text="x": [{"number": 1, "checklist_met": met, "extracted_answer": text}, {"number": 2, "is_correct": True}]
+    check("sheet E of the photo test: one off-topic sentence (1 of 5 points), three short items right: 'partly' becomes 'not yet'",
+          cap("partially_achieved", sheet([False, False, True, False, False])) == "not_achieved")
+    check("half or more of the points but not all: at most 'partly' (even when the short items would make it 'achieved')",
+          cap("achieved", sheet([True, True, True, False, False])) == "partially_achieved" and cap("partially_achieved", sheet([True, True, False, False, True])) == "partially_achieved")
+    check("every point met: no cap", cap("achieved", sheet([True] * 5)) == "achieved")
+    check("a blank task: 'not yet'", cap("partially_achieved", sheet([False] * 5, "")) == "not_achieved")
+    check("a sheet with no writing task (maths, reading): the level as it was", cap("achieved", [{"number": 1, "is_correct": True}]) == "achieved")
+    src = open(os.path.join(HERE, "..", "..", "prompts", "vision_analysis.py"), encoding="utf-8").read()
+    check("...and it is applied to every child's level", "status = cap_by_writing_task(status, child_result.get('problems') or [])" in src)
+
+
 if __name__ == "__main__":
+    unit_writing_task_caps_level()
+    unit_photo_topic_and_names()
+    unit_wrong_group()
+    unit_photo_pre_judgment()
     unit()
     unit_fluency()
     unit_fluency_you_do()

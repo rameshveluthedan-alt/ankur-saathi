@@ -713,8 +713,14 @@ def vision_spec(worksheet: dict):
     """What the photo analysis needs to mark a writing sheet: None for any other sheet."""
     kind = (worksheet or {}).get("sheet_kind")
     if kind == "composition":
-        tasks = [p.get("number") for p in worksheet.get("problems") or [] if p.get("writing_task") or _strip(p.get("answer")).upper() == TASK_ANSWER]
-        return {"kind": "composition", "checklist": [c.get("item_hi") for c in worksheet.get("checklist") or [] if c.get("item_hi")], "task_numbers": tasks}
+        task_items = [p for p in worksheet.get("problems") or [] if p.get("writing_task") or _strip(p.get("answer")).upper() == TASK_ANSWER]
+        topic = _strip((worksheet.get("writing_task") or {}).get("topic_hi"))
+        # the task's own words and its topic (15 Nov photo test: without them the AI marked "सभी वाक्य विषय पर" as met for a sentence about cricket)
+        return {"kind": "composition", "checklist": [c.get("item_hi") for c in worksheet.get("checklist") or [] if c.get("item_hi")],
+                "task_numbers": [p.get("number") for p in task_items], "topic_hi": topic,
+                # the sheet's topic belongs to the MAIN task only (the first); an extra task names its own topic in its words ("अपने मनपसंद खेल पर")
+                "tasks": [{"number": p.get("number"), "problem_hi": _strip(p.get("problem_hi")), "topic_hi": _strip(p.get("topic_hi")) or (topic if k == 0 else "")}
+                          for k, p in enumerate(task_items)]}
     if kind == "dictation":
         return {"kind": "dictation", "sentences": list(worksheet.get("dictation_sentences") or [])}
     if kind == "formation":

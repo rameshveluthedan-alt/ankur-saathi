@@ -284,7 +284,7 @@ export default function ReviewScreen() {
       fd.append('domain_id', selectedDomain);
       fd.append('competency_id', plan.selected_competency_id);
       fd.append('worksheet_level', sheetLevel);
-      fd.append('teacher_pre_judgment', '');                 // no first judgment since 14 Nov
+      // no first judgment since 14 Nov: the field is not sent (an empty one broke the save after the AI call, 15 Nov)
       fd.append('on_duplicate', 'skip');                       // a child already analysed today keeps the earlier result
       if (opts.replaceRolls && opts.replaceRolls.length) fd.append('replace_rolls', opts.replaceRolls.join(','));
       photos.forEach(p => fd.append('photos', p));
@@ -293,7 +293,18 @@ export default function ReviewScreen() {
       goView('a');
       refreshSaved();
       refreshCoverage();
-    } catch (e) { notify(friendlyError(e, { hi: 'फ़ोटो का विश्लेषण नहीं हो सका', en: 'The photos could not be analysed' }, { 400: { hi: 'फ़ोटो पढ़ी नहीं जा सकी। वर्कशीट की साफ़ फ़ोटो चुनें।', en: "The photo couldn't be read. Choose a clear photo of the worksheet." } }), 'error'); }
+    } catch (e) {
+      if (e && e.code === 'wrong_group') {          // the sheets are another group's: say so, move to that group's card, keep the photos to send again
+        const lv = (e.detail && e.detail.suggested_level) || '';
+        const L = GROUP_LABELS[lv] || { hi: lv, en: lv, mark: '' };
+        const rolls = ((e.detail && e.detail.rolls) || []).join(', ');
+        notify(bi(`ये वर्कशीट ${L.mark} ${L.hi} समूह के बच्चों की लगती हैं (रोल ${rolls})। कुछ भी दर्ज नहीं हुआ। ऊपर ${L.mark} ${L.hi} का कार्ड चुनकर यही फ़ोटो दोबारा भेजें।`,
+          `These sheets look like the ${L.en} group's (roll ${rolls}). Nothing was saved. Choose the ${L.en} card above and send the same photos again.`), 'error');
+        if (!fromPlan && lv) setSheetLevel(lv);
+        setLoading(false);
+        return;
+      }
+      notify(friendlyError(e, { hi: 'फ़ोटो का विश्लेषण नहीं हो सका', en: 'The photos could not be analysed' }, { 400: { hi: 'फ़ोटो पढ़ी नहीं जा सकी। वर्कशीट की साफ़ फ़ोटो चुनें।', en: "The photo couldn't be read. Choose a clear photo of the worksheet." } }), 'error'); }
     setLoading(false);
   };
 
@@ -379,7 +390,7 @@ export default function ReviewScreen() {
           {savedAnalyses.map(a => (
             <button key={a.id} type="button" className="btn btn-secondary" onClick={() => openSaved(a)}
               style={{ width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.8125rem' }}>
-              <span>{LEVEL_HI[a.worksheet_level] || a.worksheet_level} · {a.result.children_analysed} बच्चे · {Math.round((a.result.group_accuracy || 0) * 100)}%</span>
+              <span>{LEVEL_HI[a.worksheet_level] || a.worksheet_level} · {a.result.children_analysed} बच्चे · {a.result.group_accuracy == null ? '—' : `${Math.round(a.result.group_accuracy * 100)}%`}</span>
               <span style={{ color: 'var(--text-secondary)' }}>{new Date(a.created_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })} देखें →</span>
             </button>
           ))}
@@ -545,6 +556,11 @@ export default function ReviewScreen() {
           {/* Photo */}
           {channel === 'photo' && (
             <div className="card">
+              {/* which group's sheet these photos are taken as: said plainly, right above the photos (15 Nov: a test batch went in as the Beginners' sheet unnoticed) */}
+              <div className={`photo-for tier-${sheetLevel}`} data-testid="photo-for">
+                <Bi hi="इन फ़ोटो को इस समूह की वर्कशीट माना जाएगा" en="These photos are taken as this group's worksheet" inline />: <b><GroupMark group={sheetLevel} name /></b>
+                {!fromPlan && <span style={{ fontWeight: 400 }}> · <Bi hi="दूसरा समूह? ऊपर उसका कार्ड चुनें" en="Another group? Choose its card above" inline /></span>}
+              </div>
               <PilotFlag testid="pilot-photo" hi="AI फ़ोटो से बच्चों का काम पढ़ता है; अब तक कुछ ही शीट पर परखा गया है। नतीजे देखकर आप ही तय करें।"
                 en="The AI reads the children's work from the photo; tested on only a few sheets so far. Look at the results; you decide." />
               {/* the group comes from the group card above (or from the plan, in class): this choice only with the other ways shown */}
@@ -741,7 +757,7 @@ export default function ReviewScreen() {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                   <span><Bi hi="समूह शुद्धता" en="Group accuracy" /></span>
-                  <strong>{Math.round(analysisResult.group_accuracy * 100)}%</strong>
+                  <strong data-testid="group-accuracy">{analysisResult.group_accuracy == null ? '—' : `${Math.round(analysisResult.group_accuracy * 100)}%`}</strong>
                 </div>
                 {analysisResult.copy_errors_excluded > 0 && (
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}>
@@ -751,7 +767,7 @@ export default function ReviewScreen() {
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                   <span><Bi hi="AI सुझाव" en="AI recommendation" /></span>
                   <strong style={{ color: analysisResult.ai_recommendation === 'advance' ? 'var(--green-dark)' : 'var(--reteach)', textAlign: 'right' }}>
-                    {analysisResult.ai_recommendation === 'advance' ? <Bi hi="⬆ आगे बढ़ें" en="Advance" /> : <Bi hi="🔄 दोहराएँ" en="Re-teach" />}
+                    {analysisResult.ai_recommendation == null ? <Bi hi="— (किसी बच्चे का आकलन नहीं हुआ)" en="— (no child assessed)" /> : analysisResult.ai_recommendation === 'advance' ? <Bi hi="⬆ आगे बढ़ें" en="Move on" /> : <Bi hi="🔄 दोहराएँ" en="Teach again" />}
                   </strong>
                 </div>
               </div>
@@ -789,10 +805,14 @@ export default function ReviewScreen() {
 
               {analysisResult.misconceptions_detected?.length > 0 && (
                 <div className="card">
-                  <h3 style={{ marginBottom: 8 }}><Bi hi="पाई गई गलतियाँ" en="Misconceptions Detected" inline /></h3>
+                  <h3 style={{ marginBottom: 8 }}><Bi hi="पाई गई गलतियाँ" en="Mistakes found" inline /></h3>
                   {analysisResult.misconceptions_detected.map(m => (
                     <div key={m.id} style={{ padding: '6px 0', borderBottom: '1px solid var(--border)', fontSize: '0.875rem' }}>
-                      <strong>{m.id}</strong> — {m.total_occurrences} <Bi hi="बार" en="occurrences" inline />
+                      {/* what the mistake means first, the code after it (15 Nov: codes alone meant nothing to a teacher) */}
+                      {(analysisResult.misconception_names || {})[m.id]
+                        ? <><strong data-testid={`mistake-name-${m.id}`}><Bi hi={analysisResult.misconception_names[m.id].hi} en={analysisResult.misconception_names[m.id].en} inline /></strong> <span style={{ fontFamily: 'monospace', fontSize: '0.7rem', color: 'var(--text-secondary)' }}>({m.id})</span></>
+                        : <strong>{m.id}</strong>}
+                      {' '}— {m.total_occurrences} <Bi hi="बार" en={m.total_occurrences === 1 ? 'time' : 'times'} inline />
                     </div>
                   ))}
                 </div>
@@ -817,7 +837,7 @@ export default function ReviewScreen() {
                     {c.accuracy == null
                       ? <><Bi hi="आँका नहीं गया" en="Not assessed" inline /></>
                       : <><Bi hi="शुद्धता" en="Accuracy" inline />: {Math.round(c.accuracy * 100)}%{c.assessed_problems ? <> · <span className="hi">{c.assessed_problems} सवालों में से</span><En>of {c.assessed_problems}</En></> : null}</>}
-                    {c.misconceptions?.length > 0 && <> · <Bi hi="गलती" en="Error" inline />: {c.misconceptions.join(', ')}</>}
+                    {c.misconceptions?.length > 0 && <> · <Bi hi="गलती" en="Mistake" inline />: {c.misconceptions.map((id) => { const nm = (analysisResult.misconception_names || {})[id]; return nm ? (bi(nm.hi, nm.en) || id) : id; }).join('; ')}</>}
                   </div>
                   {c.copy_errors?.length > 0 && (
                     <div style={{ fontSize: '0.75rem', color: 'var(--info)', marginTop: 4 }} data-testid="copy-errors">

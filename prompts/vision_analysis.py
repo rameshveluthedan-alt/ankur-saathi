@@ -88,10 +88,13 @@ def build_vision_prompt(
     if writing and writing.get("kind") == "composition":
         tasks = ", ".join(str(n) for n in writing.get("task_numbers") or []) or "1"
         items = "\n".join(f"  {i}. {t}" for i, t in enumerate(writing.get("checklist") or [], 1))
+        asked = "".join(f"- Problem {t.get('number')} asks: «{t.get('problem_hi')}»" + (f" — the topic is «{t.get('topic_hi')}»" if t.get('topic_hi') else "") + "\n"
+                        for t in writing.get("tasks") or [] if t.get("problem_hi"))
         literacy_block += (
             "## THE WRITING TASK (a composition sheet)\n\n"
             f"Problem(s) {tasks} ask the child to WRITE on a topic; their answer key says CHECKLIST. Do not look for one right answer: mark the writing against this checklist:\n"
             f"{items}\n"
+            + (f"What the task asks (\"on the topic\" means about THIS topic; writing about anything else does not meet it, however good):\n{asked}" if asked else "") +
             "- For each such problem add \"checklist_met\": a list with one entry per checklist item, in order: true (clearly met), false (not met) or null (cannot tell).\n"
             "- is_correct is true only when EVERY item is met. When at least half are met, set is_correct false and \"partially_correct\": true. Fewer than half, or blank: is_correct false.\n"
             "- extracted_answer: the child's text, copied exactly as written (spelling and matra mistakes kept).\n"
@@ -395,6 +398,25 @@ def _dedupe_batch(entries: list):
     return [best[k] if t == "r" else k for t, k in order], dups
 
 
+_LEVEL_ORDER = {"not_achieved": 0, "partially_achieved": 1, "achieved": 2}
+
+
+def cap_by_writing_task(status: Optional[str], problems: list) -> Optional[str]:
+    """
+    On a writing sheet the MAIN writing task decides how high the level can go (15 Nov, the user's rule: the task is the skill; the short items are
+    its parts). The main task is the first problem marked against a checklist (checklist_met). Fewer than half its points met (or blank): at most
+    not_achieved; half or more but not all: at most partially_achieved; all: no cap. Any other sheet: the status as it was. PURE.
+    Found in the photo test: one off-topic sentence, with three short items right, came out "partly achieved".
+    """
+    task = next((p for p in problems if isinstance(p, dict) and isinstance(p.get("checklist_met"), list) and p.get("checklist_met")), None)
+    if task is None or status not in _LEVEL_ORDER:
+        return status
+    met = sum(1 for x in task["checklist_met"] if x is True)
+    blank = str(task.get("extracted_answer") or "").strip() == ""
+    cap = "not_achieved" if blank or met * 2 < len(task["checklist_met"]) else ("partially_achieved" if met < len(task["checklist_met"]) else "achieved")
+    return cap if _LEVEL_ORDER[cap] < _LEVEL_ORDER[status] else status
+
+
 def derive_status(summary: dict, criteria, detected: list) -> Optional[str]:
     """
     Decide achieved / partially_achieved / not_achieved IN CODE from the competency's own criteria
@@ -531,6 +553,7 @@ async def process_vision_results(
         accuracy = summary.get('accuracy', 0)
         model_status = summary.get('overall_status', 'not_achieved')
         status = derive_status(summary, criteria, detected) or model_status
+        status = cap_by_writing_task(status, child_result.get('problems') or [])
 
         group_correct_total += summary.get('correct', 0)
         group_problem_total += summary.get('total_problems', 0)
@@ -621,8 +644,10 @@ async def process_vision_results(
     else:
         ai_rec = "advance"  # borderline — lean toward advancing
 
+    if group_problem_total == 0:          # nobody assessed (15 Nov: it said "0%" and "Re-teach" for sheets that were not this group's)
+        ai_rec, group_accuracy = None, None
     results_summary['ai_recommendation'] = ai_rec
-    results_summary['group_accuracy'] = round(group_accuracy, 2)
+    results_summary['group_accuracy'] = round(group_accuracy, 2) if group_accuracy is not None else None
     results_summary['misconceptions_detected'] = [
         {"id": mid, "total_occurrences": count}
         for mid, count in sorted(misconception_counts.items(), key=lambda x: -x[1])

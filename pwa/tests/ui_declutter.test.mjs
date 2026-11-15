@@ -114,6 +114,12 @@ check('no per-skill test label on the plan screen either (14 Nov: "अभी प
   assert.ok(!/plan\.coverage/.test(y) && !y.includes('अभी परखा नहीं') && !y.includes('chip-flag'));
 });
 
+check('the photo result shows what each mistake means beside its code, and "time/times" (15 Nov: "L2.7.2-M1 — 3 occurrences" meant nothing to a teacher)', () => {
+  const r = read('screens/ReviewScreen.jsx');
+  assert.ok(r.includes('analysisResult.misconception_names') && r.includes('data-testid={`mistake-name-${m.id}`}') && r.includes("en={m.total_occurrences === 1 ? 'time' : 'times'}"));
+  assert.ok(r.includes('<Bi hi="गलती" en="Mistake" inline />') && !r.includes('en="Misconceptions Detected"'));
+});
+
 console.log('\nthe dictation sentences: for the teacher only');
 check('a dictation group\'s slot has a "बोलकर लिखवाएँ" fold with the sheet\'s sentences, and the printed plan a line with them', () => {
   const y = read('screens/YojanaScreen.jsx'); const pp = read('screens/PlanPrint.jsx');

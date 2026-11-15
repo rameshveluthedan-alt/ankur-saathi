@@ -331,6 +331,8 @@ async def analyse_photos(
             )
         except LookupError as e:
             raise HTTPException(404, str(e))
+        except review_service.WrongGroupError as e:
+            raise HTTPException(409, {"message": e.message, "code": "wrong_group", "suggested_level": e.suggested_level, "rolls": e.rolls})
         except review_service.BadImageError as e:
             raise HTTPException(400, f"{e}. Please choose a photo of the worksheet.")
         except ai_budget.AICapReached as e:

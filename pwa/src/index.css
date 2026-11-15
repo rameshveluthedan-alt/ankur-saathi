@@ -629,3 +629,6 @@ body:not(.hide-en):not(.lang-en) .slot-tab .gmark .en, body:not(.hide-en):not(.l
 .print-choice { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
 .print-choice button { border: none; background: var(--surface); font-family: inherit; font-size: 0.8125rem; padding: 6px 10px; min-height: 40px; cursor: pointer; }
 .print-choice button.on { background: var(--green-dark); color: white; font-weight: 600; }
+
+/* which group's worksheet the photos are for (15 Nov) */
+.photo-for { background: var(--tier-bg); border-left: 5px solid var(--tier); border-radius: 8px; padding: 8px 10px; margin: 0 0 8px; font-size: 0.875rem; }

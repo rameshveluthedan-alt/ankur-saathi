@@ -206,6 +206,32 @@ def _extract_json_array(text: str):
     raise ValueError("The Vision reply did not contain a JSON array")
 
 
+class WrongGroupError(ValueError):
+    """The photographed sheets belong to another group (their roll numbers say so): nothing is stored."""
+    def __init__(self, message: str, suggested_level, rolls: list):
+        super().__init__(message)
+        self.message, self.suggested_level, self.rolls = message, suggested_level, rolls
+
+
+GROUP_NAMES_HI = {"beginner": "● शुरुआती", "progressor": "▲ प्रगतिशील", "proficient": "■ दक्ष"}
+
+
+def wrong_group(read_rolls, worksheet_level: str, groups: list):
+    """PURE. The rolls read from the sheets, the group chosen, the class's groups -> (the group they belong to, those rolls) when MOST of the rolls
+    read are another group's (15 Nov: Progressor sheets sent as the Beginners'); else None. A sheet or two from another group is only flagged, as before."""
+    rolls = [int(r) for r in read_rolls if str(r).strip().lstrip("-").isdigit()]
+    member = {int(r): g["label"] for g in groups for r in g.get("roll_numbers") or []}
+    known = [r for r in rolls if r in member]
+    outside = [r for r in known if member[r] != worksheet_level]
+    if not known or len(outside) * 2 <= len(known):
+        return None
+    counts = {}
+    for r in outside:
+        counts[member[r]] = counts.get(member[r], 0) + 1
+    best = max(counts, key=lambda k: counts[k])
+    return best, sorted(r for r in outside if member[r] == best)
+
+
 class BadImageError(ValueError):
     """The upload is not an image we can read."""
 
@@ -402,6 +428,15 @@ async def get_review_coverage(db, teacher_id, session_date, domain_id: str, work
                        **({"rotation": True, "later": max(0, sug["group_size"] - sug["size"])} if rotation else {})}}
 
 
+PRE_JUDGMENTS = ("advance", "reteach", "not_sure")
+
+
+def pre_judgment_or_none(value):
+    """The teacher's first judgment for a photographed group, or None. Since 14 Nov there is no first-judgment step, and the screen sent '': the database
+    accepts only advance / reteach / not_sure or NULL, so the save failed AFTER the AI call had been paid for (found in the photo test, 15 Nov)."""
+    return value if value in PRE_JUDGMENTS else None
+
+
 async def analyse_worksheet_photos(
     db,
     teacher_id: str,
@@ -421,6 +456,7 @@ async def analyse_worksheet_photos(
     3. Process results into DB updates
     4. Check for discrepancies with teacher's judgment
     """
+    teacher_pre_judgment = pre_judgment_or_none(teacher_pre_judgment)
     settings = get_settings()
     
     # Get worksheet problems (from today's plan)
@@ -508,11 +544,27 @@ async def analyse_worksheet_photos(
     except Exception as e:
         print(f"   (name scrub skipped: {type(e).__name__})")
     
+    # Sheets of another group (most of the roll numbers say so): nothing is stored, and the teacher is told which group's card to choose
+    try:
+        from vision_analysis import _dedupe_batch
+        entries, _ = _dedupe_batch(vision_results)
+    except Exception:
+        entries = vision_results.get("children", []) if isinstance(vision_results, dict) else []
+    wg = wrong_group([e.get("roll_number") for e in entries if isinstance(e, dict)], worksheet_level, groups)
+    if wg:
+        level, rolls = wg
+        raise WrongGroupError(
+            f"ये वर्कशीट {GROUP_NAMES_HI.get(level, level)} समूह के बच्चों की लगती हैं (रोल {', '.join(str(r) for r in rolls)}), आपने {GROUP_NAMES_HI.get(worksheet_level, worksheet_level)} चुना था। "
+            f"कुछ भी दर्ज नहीं हुआ। ऊपर {GROUP_NAMES_HI.get(level, level)} का कार्ड चुनकर यही फ़ोटो दोबारा भेजें। "
+            f"(These sheets look like the {level} group's; nothing was saved. Choose that group's card and send the photos again.)", level, rolls)
+
     # Process into DB updates
     summary = await process_vision_results(
         db, teacher_id, session_date, competency_id,
         vision_results, teacher_pre_judgment, required_count=required_count,
         problems=problems, on_duplicate=on_duplicate, replace_rolls=replace_rolls, expected_rolls=group_rolls,
     )
+    # what each mistake means (the knowledge base's names, reviewed): the screen shows it beside the code
+    summary["misconception_names"] = {m["id"]: {"hi": m.get("name_hi") or "", "en": m.get("name_en") or ""} for m in misconceptions if m.get("id")}
     
     return summary

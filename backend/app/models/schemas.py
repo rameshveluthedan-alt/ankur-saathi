@@ -161,8 +161,8 @@ class ChildAnalysisResult(BaseModel):
 
 class PhotoAnalysisResponse(BaseModel):
     children_analysed: int
-    group_accuracy: float
-    ai_recommendation: str  # 'advance' or 'reteach'
+    group_accuracy: Optional[float] = None          # None: nobody assessed
+    ai_recommendation: Optional[str] = None  # 'advance' or 'reteach'; None: nobody assessed
     misconceptions_detected: list[dict]
     discrepancy: Optional[dict] = None
     per_child: list[ChildAnalysisResult]
@@ -173,6 +173,7 @@ class PhotoAnalysisResponse(BaseModel):
     not_assessed: list[int] = []             # nothing on the sheet could be scored
     unreadable_sheets: int = 0               # sheets whose roll number could not be read
     copy_errors_excluded: int = 0            # problems left out of the scores because they were copied differently
+    misconception_names: dict = {}           # {id: {"hi": ..., "en": ...}}: what each mistake means, shown beside its code (15 Nov)
 
 
 # ============================================================================

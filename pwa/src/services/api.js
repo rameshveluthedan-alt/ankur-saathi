@@ -229,7 +229,9 @@ export const analysePhotos = async (teacherId, formData) => {
   if (!res.ok) {
     // show the server's reason (for example: no plan generated for today) instead of a generic message
     const err = await res.json().catch(() => ({}));
-    throw new Error(detailText(err, 'Photo analysis failed'));
+    const e = new Error(detailText(err, 'Photo analysis failed'));
+    e.status = res.status; e.code = err && err.detail && err.detail.code; e.detail = err && err.detail;
+    throw e;
   }
   return res.json();
 };
