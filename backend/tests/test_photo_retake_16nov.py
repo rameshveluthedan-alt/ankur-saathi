@@ -121,6 +121,38 @@ async def flow():
         saved2 = {x["roll_number"] for x in await db.fetch("""SELECT c.roll_number FROM assessment_evidence e JOIN children c ON c.id = e.child_id
                                                               WHERE e.teacher_id = $1 AND e.session_date = $2""", teacher_id, TODAY)}
         check("...only roll 3 is saved", saved2 == {3}, saved2)
+
+        print("\nreplacing children already marked today, several at once, with NO new AI call (16 Nov: each replacement sent all photos again)")
+        from app.services import review_service as RS
+        await db.execute("DELETE FROM assessment_evidence WHERE teacher_id = $1", teacher_id)
+        await db.execute("DELETE FROM child_competency_status WHERE child_id IN (SELECT id FROM children WHERE teacher_id = $1)", teacher_id)
+        await db.execute("""INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id, plan_content, groups_snapshot, explainability)
+                            VALUES ($1, $2, 'numeracy', 'N2.3.2', $3::jsonb, '{}'::jsonb, '{}'::jsonb)""", teacher_id, TODAY,
+                         __import__("json").dumps({"worksheets": {"progressor": {"problems": KEY, "required_count": 6}}}))
+        first = await V.process_vision_results(db, teacher_id, TODAY, "N2.3.2", [todays_sheet(r, 2) for r in (3, 6, 14)], None, required_count=6, problems=KEY)
+        second = await V.process_vision_results(db, teacher_id, TODAY, "N2.3.2", [todays_sheet(r, 6) for r in (3, 6, 14, 16, 19)], None, required_count=6, problems=KEY)
+        check("round 1: three children at 2 of 6; round 2: the two new ones marked, the three repeats skipped AND their new readings kept",
+              first["children_scored"] == 3 and second["children_scored"] == 2 and sorted(int(k) for k in second["pending"]) == [3, 6, 14], (second["children_scored"], list(second["pending"])))
+        aid = await RS.save_analysis(db, teacher_id, TODAY, "numeracy", "progressor", "N2.3.2", second)
+        out = await RS.replace_from_saved(db, teacher_id, aid, [3, 6, 14])
+        acc = {x["roll_number"]: x["evidence_data"] for x in await db.fetch("""SELECT c.roll_number, e.evidence_data FROM assessment_evidence e JOIN children c ON c.id = e.child_id
+                                                                               WHERE e.teacher_id = $1 AND e.session_date = $2""", teacher_id, TODAY)}
+        import json as _j
+        new_acc = {r: (_j.loads(v) if isinstance(v, str) else v)["scoring"]["accuracy"] for r, v in acc.items()}
+        check("all three replaced in one go: their new sheets (6 of 6) now count, one result each", out["children_scored"] == 3 and all(new_acc[r] == 1.0 for r in (3, 6, 14))
+              and len(acc) == 5, new_acc)
+        check("the result shows the WHOLE group today: 5 children, all right, Move on (before: '1 child')", out["today_group"]["children"] == 5 and out["today_group"]["group_accuracy"] == 1.0
+              and out["today_group"]["ai_recommendation"] == "advance" and out["today_group"]["rolls"] == [3, 6, 14, 16, 19], out["today_group"])
+        left = await db.fetchval("SELECT result FROM review_analyses WHERE id = $1", aid)
+        left = _j.loads(left) if isinstance(left, str) else left
+        check("the earlier round stops offering them (no pending, no 'already checked')", not left.get("pending") and not left.get("skipped_duplicates"), (left.get("pending"), left.get("skipped_duplicates")))
+        try:
+            await RS.replace_from_saved(db, teacher_id, aid, [3])
+            check("replacing again with nothing kept says so", False)
+        except LookupError as e:
+            check("replacing again with nothing kept says so", "no longer available" in str(e))
+        await db.execute("DELETE FROM review_analyses WHERE teacher_id = $1", teacher_id)
+        await db.execute("DELETE FROM daily_plans WHERE teacher_id = $1", teacher_id)
     finally:
         await db.execute("DELETE FROM child_competency_status WHERE child_id IN (SELECT id FROM children WHERE teacher_id = $1)", teacher_id)
         await db.execute("DELETE FROM assessment_evidence WHERE teacher_id = $1", teacher_id)

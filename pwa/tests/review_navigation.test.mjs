@@ -14,7 +14,7 @@ let JSDOM;
 try { ({ JSDOM } = await import('jsdom')); } catch (e) { console.log('SKIPPED: jsdom is not installed. To run this test: cd pwa; npm install --save-dev jsdom@24'); process.exit(0); }
 const here = path.dirname(fileURLToPath(import.meta.url)); const src = path.join(here, '..', 'src'); const out = path.join(here, `.tmp-nav-${process.pid}`);
 process.on('exit', () => fs.rmSync(out, { recursive: true, force: true }));      // the temporary build folder is always removed, even if a check fails
-const API = ['recordDecisions', 'recordObserved', 'recordORF', 'analysePhotos', 'getSavedAnalyses', 'getReviewCoverage', 'getReviewChannels', 'getCachedPlan',
+const API = ['recordDecisions', 'recordObserved', 'recordORF', 'analysePhotos', 'replaceResults', 'getSavedAnalyses', 'getReviewCoverage', 'getReviewChannels', 'getCachedPlan',
   'getProgressDashboard', 'downloadClassReport', 'downloadOfficerReport', 'openAuthedPage', 'worksheetPath', 'prepareOfflineCopy'];
 const stubs = { '../App': 'export const useAuth = () => globalThis.__auth;',
   'react-router-dom': 'export const useNavigate = () => (...a) => globalThis.__navs.push(a); export const useLocation = () => globalThis.__location;',
@@ -40,7 +40,7 @@ const PLAN = (decisions = {}, domain = 'numeracy') => ({ plan_date: TODAY, domai
   has_evidence: false, evidence_by_group: {}, decisions });
 const ANALYSIS = { id: 1, worksheet_level: 'progressor', created_at: new Date().toISOString(),
   result: { children_analysed: 3, group_accuracy: 0.6, per_child: [], misconceptions_detected: [], not_assessed: [], unknown_rolls: [], outside_group_rolls: [], skipped_duplicates: [], duplicates_in_batch: [], unreadable_sheets: 0, copy_errors_excluded: 0 } };
-let cached; let saved = []; const decided = [];
+let cached; let saved = []; const decided = []; const replaced = []; let replaceAnswer = null;
 // today's ways: unknown (as an older server or a failed load), or known for the group cards: the Beginners observed, the Progressors photographed
 const NO_CH = { has_plan: false, channels: {} };
 const CH = { has_plan: true, channels: { observed: ['beginner'], photo: ['progressor'] },
@@ -53,6 +53,7 @@ globalThis.__api = {
   getCachedPlan: async (...a) => cached(...a), recordDecisions: async (...a) => { decided.push(a); return {}; },
   getSavedAnalyses: async () => saved, getReviewCoverage: async () => null, getReviewChannels: async () => channels,
   recordObserved: async () => ({}), recordORF: async () => ({}), analysePhotos: async () => ({}),
+  replaceResults: async (...a) => { replaced.push(a); return replaceAnswer; },
   getProgressDashboard: async () => null, downloadClassReport: async () => {}, downloadOfficerReport: async () => {},
   openAuthedPage: async () => {}, worksheetPath: () => '/w', prepareOfflineCopy: () => {},
 };
@@ -155,6 +156,31 @@ check('each child: "Photograph again", only 1 of 6 marked, no level saved; the c
   && /#1 written 36 \+ 27 → 63 ✓ \(right for the sum written\)/.test(view(root2, '.hi')) && /दोबारा फ़ोटो लें/.test(view(q('[data-testid="retake-notice"]'), '.en')));
 check('...and no Hindi left in the English view of the result (names of mistakes aside, there are none here)', !/[ऀ-ॿ]/.test(view(q('[data-testid="sheet-mismatch"]'), '.hi') + view(q('[data-testid="retake-notice"]'), '.hi')
   + [...document.querySelectorAll('[data-testid="today-result"], [data-testid="copy-errors"]')].map((e) => view(e, '.hi')).join(' ')));
+saved = [];
+
+console.log('\nB3. children already checked today: tick whose new photo counts, one button, no new AI call; the WHOLE group\'s day on top (16 Nov)');
+const ROUND = { ...ANALYSIS, id: 41, result: { ...ANALYSIS.result, children_analysed: 3, children_scored: 3, group_accuracy: 1.0, ai_recommendation: 'advance',
+  per_child: [21, 22, 27].map((r) => ({ roll_number: r, accuracy: 1, status: 'achieved', misconceptions: [], assessed_problems: 6, copy_errors: [], needs_check: [] })),
+  skipped_duplicates: [6, 14, 16].map((r) => ({ roll_number: r, earlier_accuracy: 0, earlier_at: new Date().toISOString() })),
+  pending: { 6: { roll_number: 6 }, 14: { roll_number: 14 }, 16: { roll_number: 16 } },
+  today_group: { children: 6, rolls: [6, 14, 16, 21, 22, 27], group_accuracy: 0.5, ai_recommendation: 'advance' } } };
+replaceAnswer = { ...ROUND.result, analysis_id: 42, skipped_duplicates: [], pending: {}, children_scored: 2, per_child: ROUND.result.per_child.slice(0, 2),
+  today_group: { children: 6, rolls: [6, 14, 16, 21, 22, 27], group_accuracy: 0.92, ai_recommendation: 'advance' } };
+fresh(); cached = async () => PLAN({ beginner: 'advance', progressor: 'reteach' });
+saved = [ROUND]; await show(Review); await click(q('[data-testid="see-analysis"]'));
+check('the top numbers are the whole group today (6 children, 50%), and "This round: 3 marked" under them', /^6/.test(q('[data-testid="children-scored"]').textContent)
+  && q('[data-testid="group-accuracy"]').textContent === '50%' && /This round: 3 marked/.test(view(q('[data-testid="this-round"]'), '.hi')) && /Today, all photos for/.test(view(q('[data-testid="day-heading"]'), '.hi')));
+check('each child already checked has a tick box, ticked; one button "Use the new photos for the ticked children (3)" and "Keep all the earlier results"',
+  [6, 14, 16].every((r) => q(`[data-testid="replace-tick-${r}"]`) && q(`[data-testid="replace-tick-${r}"]`).checked) && /ticked children \(3\)/.test(view(q('[data-testid="use-new-photos"]'), '.hi'))
+  && !!q('[data-testid="keep-earlier"]'));
+await click(q('[data-testid="replace-tick-16"]'));
+check('...unticking roll 16 makes it (2)', /\(2\)/.test(view(q('[data-testid="use-new-photos"]'), '.hi')) && !q('[data-testid="replace-tick-16"]').checked);
+await click(q('[data-testid="use-new-photos"]'));
+check('one call, with this round and the two ticked rolls; no photos sent again', replaced.length === 1 && replaced[0][1] === 41 && JSON.stringify(replaced[0][2]) === '[6,14]', JSON.stringify(replaced));
+check('...and the screen shows the new day: 92%, the "already checked" card gone', q('[data-testid="group-accuracy"]').textContent === '92%' && !q('[data-testid="dup-skipped"]'));
+saved = [ROUND]; await show(Review); await click(q('[data-testid="see-analysis"]'));
+await click(q('[data-testid="keep-earlier"]'));
+check('"Keep all the earlier results" closes the card, and nothing is sent', !q('[data-testid="dup-skipped"]') && replaced.length === 1);
 saved = [];
 
 console.log('\nC. Progress, opened from the Review, leads back');

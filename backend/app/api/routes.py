@@ -15,7 +15,7 @@ from app.models.schemas import (
     RegisterCommitRequest,
     GeneratePlanRequest, GeneratePlanResponse,
     AdvanceReteachRequest, ObservedAssessmentRequest, ORFEntryRequest,
-    PhotoAnalysisResponse,
+    PhotoAnalysisResponse, ReplaceResultsRequest,
     ProgressDashboardResponse,
     StartBaselineRequest, SubmitBaselineRequest,
 )
@@ -339,9 +339,29 @@ async def analyse_photos(
             raise HTTPException(429, {"message": e.message, "code": "ai_cap", "reason": e.reason})
         # keep what the teacher is about to see, so Back or a reload does not lose it (a run that found only
         # children already analysed has nothing new to keep, and must not hide the earlier analysis)
+        # (a round with only children already marked is kept too when it holds their new readings: "use the new photo" needs them, 16 Nov)
+        if result.get("children_analysed") or result.get("pending"):
+            result["analysis_id"] = await review_service.save_analysis(db, teacher_id, session_date, domain_id, worksheet_level, competency_id,
+                                                                       PhotoAnalysisResponse(**result).model_dump(mode="json"))
+        return result
+
+
+@router.post("/review/replace-results", response_model=PhotoAnalysisResponse, tags=["Review"])
+async def replace_results(request: Request, req: ReplaceResultsRequest):
+    """
+    "Use the new photos" for children already marked today (16 Nov): the AI's readings of their new sheets, kept by an earlier round, replace
+    their earlier results. No photos are sent and the AI is NOT called again, so it takes a moment and costs nothing. Several children at once.
+    """
+    ensure_owner(request, req.teacher_id)
+    async with get_db() as db:
+        try:
+            result = await review_service.replace_from_saved(db, req.teacher_id, req.analysis_id, req.rolls)
+        except LookupError as e:
+            raise HTTPException(404, str(e))
+        where = result.pop("_where")
         if result.get("children_analysed"):
-            await review_service.save_analysis(db, teacher_id, session_date, domain_id, worksheet_level, competency_id,
-                                               PhotoAnalysisResponse(**result).model_dump(mode="json"))
+            result["analysis_id"] = await review_service.save_analysis(db, req.teacher_id, where["session_date"], where["domain_id"], where["worksheet_level"],
+                                                                       where["competency_id"], PhotoAnalysisResponse(**result).model_dump(mode="json"))
         return result
 
 

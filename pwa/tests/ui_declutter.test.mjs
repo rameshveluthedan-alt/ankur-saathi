@@ -133,7 +133,7 @@ check('the mentor report prints "कौशल के नतीजे": A / PA / 
 check('a photo result on a sample says what it rests on and who is left (16 Nov): "Based on X of the Y sample children. Photograph the other N … roll …"', () => {
   const r = read('screens/ReviewScreen.jsx');
   assert.ok(r.includes('data-testid="based-on"') && r.includes('Based on ${done.length} of the ${total} ${who[1]}children. Photograph the other ${left.length} for a firmer result: roll ${left.join')
-    && r.includes('analysisResult.group_accuracy != null && coverage && coverage.group_rolls'));
+    && r.includes('acc != null && coverage && coverage.group_rolls') && r.includes('const acc = day ? day.group_accuracy : analysisResult.group_accuracy'));
 });
 
 console.log('\nthe dictation sentences: for the teacher only');

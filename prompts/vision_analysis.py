@@ -512,6 +512,7 @@ async def process_vision_results(
         "copy_errors_excluded": 0,
         "retake": [],
         "sheet_mismatch": None,
+        "pending": {},              # roll -> the AI's reading of a new sheet for a child already marked today (kept for "use the new photo")
     }
 
     group_correct_total = 0
@@ -552,6 +553,9 @@ async def process_vision_results(
                 "earlier_accuracy": (ed.get("scoring") or {}).get("accuracy"),
                 "earlier_at": existing['created_at'].isoformat(),
             })
+            # the AI has already read this new sheet: keep its reading, so "use the new photo" needs no second AI call (16 Nov: each
+            # replacement sent the whole batch to the AI again, slowly, and showed only the one child replaced)
+            results_summary["pending"][str(roll)] = json.loads(json.dumps(child_result, default=str))
             continue
 
         copy_errors = apply_copy_checks(child_result, problems)
@@ -662,14 +666,7 @@ async def process_vision_results(
     # Group-level analysis
     group_accuracy = group_correct_total / max(group_problem_total, 1)
 
-    # AI recommendation
-    if group_accuracy >= 0.80 and not misconception_counts:
-        ai_rec = "advance"
-    elif group_accuracy < 0.50 or any(c >= 3 for c in misconception_counts.values()):
-        ai_rec = "reteach"
-    else:
-        ai_rec = "advance"  # borderline — lean toward advancing
-
+    ai_rec = group_recommendation(group_accuracy, misconception_counts)
     if group_problem_total == 0:          # nobody assessed (15 Nov: it said "0%" and "Re-teach" for sheets that were not this group's)
         ai_rec, group_accuracy = None, None
     results_summary['ai_recommendation'] = ai_rec
@@ -688,6 +685,42 @@ async def process_vision_results(
         }
 
     return results_summary
+
+
+def group_recommendation(group_accuracy: float, misconception_counts: dict) -> str:
+    """The AI's suggestion for a group from its score and mistakes (one rule for a round and for the whole day, 16 Nov)."""
+    if group_accuracy >= 0.80 and not misconception_counts:
+        return "advance"
+    if group_accuracy < 0.50 or any(c >= 3 for c in misconception_counts.values()):
+        return "reteach"
+    return "advance"  # borderline — lean toward advancing
+
+
+async def today_group_result(db, teacher_id: str, session_date, competency_id: str, group_rolls: list) -> dict:
+    """Every photo result saved today for this group and skill (16 Nov: the results card showed only the latest round, so a group of six read
+    "1 child" after a replacement). The same rule as a round: the children with a level, the score over their marked questions, the suggestion."""
+    rows = await db.fetch("""SELECT c.roll_number, e.evidence_data FROM assessment_evidence e JOIN children c ON c.id = e.child_id
+                             WHERE e.teacher_id = $1 AND e.session_date = $2 AND e.competency_id = $3 AND e.channel = 'written_photo'
+                             ORDER BY c.roll_number""", teacher_id, session_date, competency_id)
+    rolls, correct, total, counts = [], 0, 0, {}
+    wanted = {int(r) for r in (group_rolls or [])}
+    for r in rows:
+        if wanted and r["roll_number"] not in wanted:
+            continue
+        ed = r["evidence_data"]
+        ed = json.loads(ed) if isinstance(ed, str) else (ed or {})
+        s = ed.get("summary") or {}
+        if not s.get("total_problems"):
+            continue
+        rolls.append(r["roll_number"])
+        correct += s.get("correct") or 0
+        total += s.get("total_problems") or 0
+        for m in s.get("detected_misconceptions") or []:
+            counts[m["misconception_id"]] = counts.get(m["misconception_id"], 0) + m.get("occurrences", 1)
+    if not total:
+        return {"children": 0, "rolls": [], "group_accuracy": None, "ai_recommendation": None}
+    acc = correct / total
+    return {"children": len(rolls), "rolls": rolls, "group_accuracy": round(acc, 2), "ai_recommendation": group_recommendation(acc, counts)}
 
 
 def _explain_discrepancy(teacher: str, ai: str, accuracy: float, misconceptions: dict) -> str:

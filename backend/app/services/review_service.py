@@ -18,8 +18,8 @@ from app.services.plan_service import get_current_groups, _pick_passage
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
 from vision_analysis import (
-    VISION_SYSTEM_PROMPT, build_vision_prompt, 
-    process_vision_results,
+    VISION_SYSTEM_PROMPT, build_vision_prompt,
+    process_vision_results, today_group_result,
 )
 
 
@@ -289,15 +289,17 @@ async def call_vision(photo_bytes_list: list, vision_prompt: str, on_usage=None)
     return _extract_json_array(response_text), usage
 
 
-async def save_analysis(db, teacher_id, session_date, domain_id: str, worksheet_level: str, competency_id: str, payload: dict) -> None:
-    """Keep the analysis a teacher just saw, so it can be opened again. Never lets a storage problem break the analysis itself."""
+async def save_analysis(db, teacher_id, session_date, domain_id: str, worksheet_level: str, competency_id: str, payload: dict) -> Optional[int]:
+    """Keep the analysis a teacher just saw, so it can be opened again; returns its id (the screen uses it to "use the new photos").
+    Never lets a storage problem break the analysis itself."""
     try:
-        await db.execute(
+        return await db.fetchval(
             """INSERT INTO review_analyses (teacher_id, session_date, domain_id, worksheet_level, competency_id, result)
-               VALUES ($1, $2, $3, $4, $5, $6::jsonb)""",
+               VALUES ($1, $2, $3, $4, $5, $6::jsonb) RETURNING id""",
             teacher_id, session_date, domain_id, worksheet_level, competency_id, json.dumps(payload, ensure_ascii=False, default=str))
     except Exception as e:                       # a database that has not loaded db/schema/06_review_analyses.sql yet
         print(f"   (analysis not saved for later: {type(e).__name__})")
+        return None
 
 
 async def get_latest_analyses(db, teacher_id, session_date, domain_id: str) -> list:
@@ -566,5 +568,46 @@ async def analyse_worksheet_photos(
     )
     # what each mistake means (the knowledge base's names, reviewed): the screen shows it beside the code
     summary["misconception_names"] = {m["id"]: {"hi": m.get("name_hi") or "", "en": m.get("name_en") or ""} for m in misconceptions if m.get("id")}
-    
+    summary["today_group"] = await today_group_result(db, teacher_id, session_date, competency_id, group_rolls)     # the whole group today, not only this round
+    return summary
+
+
+async def replace_from_saved(db, teacher_id: str, analysis_id: int, rolls: list) -> dict:
+    """
+    "Use the new photos" for children already marked today (16 Nov): the AI read their new sheets in an earlier round, which kept the readings
+    (result.pending) when it skipped them. They replace the earlier results now, with NO new AI call. The earlier round's card stops offering them.
+    Returns a result like a photo round's, with the whole group's day (today_group).
+    """
+    row = await db.fetchrow("""SELECT id, session_date, domain_id, worksheet_level, competency_id, result FROM review_analyses
+                               WHERE id = $1 AND teacher_id = $2""", int(analysis_id), teacher_id)
+    if not row:
+        raise LookupError("That photo analysis was not found. Open today's analysis again.")
+    res = row["result"]
+    res = json.loads(res) if isinstance(res, str) else dict(res or {})
+    pending = res.get("pending") or {}
+    wanted = [int(r) for r in rolls or []]
+    entries = [pending[str(r)] for r in wanted if str(r) in pending]
+    if not entries:
+        raise LookupError("The new photos of these children are no longer available. Take their photos again.")
+    plan = await db.fetchrow("SELECT plan_content FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3",
+                             teacher_id, row["session_date"], row["domain_id"])
+    plan_data = (plan["plan_content"] if isinstance(plan["plan_content"], dict) else json.loads(plan["plan_content"])) if plan and plan["plan_content"] else {}
+    ws = (plan_data.get("worksheets") or {}).get(row["worksheet_level"]) or {}
+    try:
+        required_count = int(ws["required_count"]) if ws.get("required_count") else None
+    except (TypeError, ValueError):
+        required_count = None
+    groups = await get_current_groups(db, teacher_id, row["domain_id"])
+    group_rolls = next((g['roll_numbers'] for g in groups if g['label'] == row["worksheet_level"]), [])
+    summary = await process_vision_results(db, teacher_id, row["session_date"], row["competency_id"], entries, None, required_count=required_count,
+                                           problems=ws.get("problems") or [], on_duplicate="replace", expected_rolls=group_rolls)
+    names = await db.fetch("SELECT id, name_hi, name_en FROM misconceptions WHERE competency_id = $1", row["competency_id"])
+    summary["misconception_names"] = {m["id"]: {"hi": m["name_hi"] or "", "en": m["name_en"] or ""} for m in names}
+    summary["today_group"] = await today_group_result(db, teacher_id, row["session_date"], row["competency_id"], group_rolls)
+    # the earlier round no longer offers these children
+    done = {str(r) for r in wanted}
+    res["pending"] = {k: v for k, v in pending.items() if k not in done}
+    res["skipped_duplicates"] = [d for d in res.get("skipped_duplicates") or [] if str(d.get("roll_number")) not in done]
+    await db.execute("UPDATE review_analyses SET result = $1::jsonb WHERE id = $2", json.dumps(res, ensure_ascii=False, default=str), row["id"])
+    summary["_where"] = {"session_date": row["session_date"], "domain_id": row["domain_id"], "worksheet_level": row["worksheet_level"], "competency_id": row["competency_id"]}
     return summary

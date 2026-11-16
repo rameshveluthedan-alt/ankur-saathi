@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../App';
-import { recordDecisions, recordObserved, recordORF, analysePhotos, getSavedAnalyses, getReviewCoverage, getReviewChannels, getCachedPlan } from '../services/api';
+import { recordDecisions, recordObserved, recordORF, analysePhotos, replaceResults, getSavedAnalyses, getReviewCoverage, getReviewChannels, getCachedPlan } from '../services/api';
 import { placeKey, loadPlace, savePlace } from '../services/reviewPlace';
 import { historyState, pushMarks, replaceMarks } from '../services/backHistory';
 import { compressImage } from '../utils/imageCompress';
@@ -126,6 +126,8 @@ export default function ReviewScreen() {
   }, []);
   const touched = useRef(false);                     // the teacher has changed a decision on this screen: the server's copy never overwrites it
   const [loading, setLoading] = useState(false);
+  const [replaceOff, setReplaceOff] = useState([]);     // "already checked today": the rolls the teacher UNticked (all ticked by default, 16 Nov)
+  const [keptEarlier, setKeptEarlier] = useState(false); // she chose to keep all the earlier results: the card closes
   const online = useOnline();            // sending photos for analysis needs the internet (they go to the AI); the chosen photos stay on the screen
   const [observedItems, setObservedItems] = useState([]);
   const [orfEntry, setOrfEntry] = useState({ roll_number: '', cwpm: '', error_count: '' });
@@ -216,7 +218,20 @@ export default function ReviewScreen() {
   };
   useEffect(() => { setAbsent([]); }, [sheetLevel]);
   useEffect(refreshCoverage, [teacher?.teacher_id, selectedDomain, today, sheetLevel, savedAnalyses.length, absent.join(','), activeChannel]);
-  const openSaved = (a) => { setAnalysisResult(a.result); setSheetLevel(a.worksheet_level); goView('a'); };
+  const openSaved = (a) => { setAnalysisResult({ ...a.result, analysis_id: a.id }); setReplaceOff([]); setKeptEarlier(false); setSheetLevel(a.worksheet_level); goView('a'); };
+  // "Use the new photos" (16 Nov): the AI already read these sheets in this round; their readings replace the earlier results, no new AI call
+  const useNewPhotos = async (rolls) => {
+    if (!rolls.length || !analysisResult || !analysisResult.analysis_id) return;
+    setLoading(true);
+    try {
+      const result = await replaceResults(teacher.teacher_id, analysisResult.analysis_id, rolls);
+      setAnalysisResult(result); setReplaceOff([]); setKeptEarlier(false);
+      refreshSaved(); refreshCoverage();
+    } catch (e) {
+      notify(friendlyError(e, { hi: 'नई फ़ोटो से नतीजे नहीं बदले जा सके', en: 'The new photos could not be used' }), 'error');
+    }
+    setLoading(false);
+  };
   // step 3: today's evidence fetched again (the children's work may have changed it), and each group's choice starts on her final decision if one
   // was recorded, else on her first judgment
   const enterFinal = async () => {
@@ -289,7 +304,7 @@ export default function ReviewScreen() {
       if (opts.replaceRolls && opts.replaceRolls.length) fd.append('replace_rolls', opts.replaceRolls.join(','));
       photos.forEach(p => fd.append('photos', p));
       const result = await analysePhotos(teacher.teacher_id, fd);
-      setAnalysisResult(result);
+      setAnalysisResult(result); setReplaceOff([]); setKeptEarlier(false);
       goView('a');
       refreshSaved();
       refreshCoverage();
@@ -750,18 +765,31 @@ export default function ReviewScreen() {
 
           {analysisResult ? (
             <>
+              {(() => {
+                // 16 Nov: the main numbers are the WHOLE group's day (every photo saved today for it), not only this round: after "use the new photo"
+                // a group of six read "1 child". This round's own count is the line under them. An older saved round without today_group shows its own.
+                const day = analysisResult.today_group;
+                const n = day ? day.children : (analysisResult.children_scored ?? analysisResult.children_analysed);
+                const acc = day ? day.group_accuracy : analysisResult.group_accuracy;
+                const rec = day ? day.ai_recommendation : analysisResult.ai_recommendation;
+                const G = GROUP_LABELS[sheetLevel] || { hi: '', en: '', mark: '' };
+                return (
               <div className="card">
+                {loading && <div data-testid="saving" role="status" style={{ fontSize: '0.8125rem', color: 'var(--info)', background: 'var(--info-bg)', borderRadius: 6, padding: '4px 8px', marginBottom: 8 }}>
+                  ⏳ <Bi hi="सहेजा जा रहा है…" en="Saving…" inline /></div>}
+                {day && <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }} data-testid="day-heading">
+                  <Bi hi={`आज ${G.mark} ${G.hi} की सभी फ़ोटो`} en={`Today, all photos for ${G.mark} ${G.en}`} inline /></div>}
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                   <span><Bi hi="जाँचे गए बच्चे" en="Children marked" /></span>
-                  <strong data-testid="children-scored">{analysisResult.children_scored ?? analysisResult.children_analysed}
+                  <strong data-testid="children-scored">{n}
                     {analysisResult.retake?.length > 0 && <span style={{ fontWeight: 400, fontSize: '0.75rem' }}> · {analysisResult.retake.length} <Bi hi="की फ़ोटो दोबारा" en="to photograph again" inline /></span>}</strong>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                   <span><Bi hi="समूह शुद्धता" en="Group score" /></span>
-                  <strong data-testid="group-accuracy">{analysisResult.group_accuracy == null ? '—' : `${Math.round(analysisResult.group_accuracy * 100)}%`}</strong>
+                  <strong data-testid="group-accuracy">{acc == null ? '—' : `${Math.round(acc * 100)}%`}</strong>
                 </div>
                 {/* a sample (16 Nov): the result stands, but says what it rests on and who is left, so the teacher can decide now or photograph more */}
-                {analysisResult.group_accuracy != null && coverage && coverage.group_rolls && (() => {
+                {acc != null && coverage && coverage.group_rolls && (() => {
                   const s = coverage.sample, useSample = coverage.group_rolls.length > 8 && s && sampleMode === 'sample';
                   const done = useSample ? s.done : coverage.analysed_rolls, left = useSample ? s.left : coverage.pending_rolls, total = useSample ? s.size : coverage.group_rolls.length;
                   if (!left || left.length === 0) return null;
@@ -773,18 +801,23 @@ export default function ReviewScreen() {
                     </div>
                   );
                 })()}
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span><Bi hi="AI सुझाव" en="AI suggests" /></span>
+                  <strong data-testid="ai-suggests" style={{ color: rec === 'advance' ? 'var(--green-dark)' : 'var(--reteach)', textAlign: 'right' }}>
+                    {rec == null ? <Bi hi="— (किसी बच्चे का आकलन नहीं हुआ)" en="— (no child assessed)" /> : rec === 'advance' ? <Bi hi="⬆ आगे बढ़ें" en="Move on" /> : <Bi hi="🔄 दोहराएँ" en="Teach again" />}
+                  </strong>
+                </div>
+                {day && <div data-testid="this-round" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 8, borderTop: '1px solid var(--border)', paddingTop: 6 }}>
+                  <Bi hi={`इस बार: ${analysisResult.children_scored ?? analysisResult.children_analysed} बच्चे जाँचे गए`} en={`This round: ${analysisResult.children_scored ?? analysisResult.children_analysed} marked`} inline />
+                  {analysisResult.group_accuracy != null && <> · {Math.round(analysisResult.group_accuracy * 100)}%</>}</div>}
                 {analysisResult.copy_errors_excluded > 0 && (
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }}>
                     ✏️ {analysisResult.copy_errors_excluded} <Bi hi="सवाल गिने नहीं गए: बच्चों ने उन्हें अलग उतारा" en="questions not marked: copied wrongly" inline />
                   </div>
                 )}
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span><Bi hi="AI सुझाव" en="AI suggests" /></span>
-                  <strong style={{ color: analysisResult.ai_recommendation === 'advance' ? 'var(--green-dark)' : 'var(--reteach)', textAlign: 'right' }}>
-                    {analysisResult.ai_recommendation == null ? <Bi hi="— (किसी बच्चे का आकलन नहीं हुआ)" en="— (no child assessed)" /> : analysisResult.ai_recommendation === 'advance' ? <Bi hi="⬆ आगे बढ़ें" en="Move on" /> : <Bi hi="🔄 दोहराएँ" en="Teach again" />}
-                  </strong>
-                </div>
               </div>
+                );
+              })()}
 
               {/* several sheets with the SAME different numbers (16 Nov): most likely not today's worksheet, e.g. the plan was made again after printing */}
               {analysisResult.sheet_mismatch && (
@@ -794,19 +827,43 @@ export default function ReviewScreen() {
                     en={`The sheets of roll ${analysisResult.sheet_mismatch.rolls.join(', ')} have the same different numbers on question ${analysisResult.sheet_mismatch.problems.join(', ')}. Was today's plan made again after the sheets were printed? Photograph sheets made from today's worksheet.`} />
                 </div>
               )}
-              {analysisResult.skipped_duplicates?.length > 0 && (
-                <div className="card" style={{ borderLeft: '4px solid var(--info)', background: 'var(--info-bg)' }} data-testid="dup-skipped">
-                  <h3 style={{ marginBottom: 4 }}>⚠️ <Bi hi="पहले से विश्लेषित" en="Already checked today" inline /></h3>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi="इनका पहले का परिणाम रखा गया" en="the earlier result is kept" inline /></p>
-                  {analysisResult.skipped_duplicates.map(d => (
-                    <div key={d.roll_number} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 0', fontSize: '0.8125rem' }}>
-                      <span><Bi hi="रोल" en="Roll" inline /> {d.roll_number} ·{d.earlier_accuracy == null ? '—' : Math.round(d.earlier_accuracy * 100) + '%'} · {new Date(d.earlier_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })}</span>
-                      {photos.length > 0 && <button type="button" className="btn btn-secondary btn-small" style={{ fontSize: '0.8125rem' }} disabled={loading || !online}
-                        onClick={() => submitPhotos({ replaceRolls: [d.roll_number] })}><Bi hi="नई फ़ोटो से बदलें" en="Use the new photo" inline /></button>}
-                    </div>
-                  ))}
-                </div>
-              )}
+              {analysisResult.skipped_duplicates?.length > 0 && !keptEarlier && (() => {
+                // 16 Nov: tick the children whose NEW photo should count (all ticked), then one button. The AI already read these sheets in this round,
+                // so nothing is sent again. (An older saved round without the readings falls back to sending the photos again, one child at a time.)
+                const pend = analysisResult.pending || {};
+                const canSwap = !!analysisResult.analysis_id && analysisResult.skipped_duplicates.some((d) => pend[String(d.roll_number)]);
+                const ticked = analysisResult.skipped_duplicates.map((d) => d.roll_number).filter((r) => pend[String(r)] && !replaceOff.includes(r));
+                return (
+                  <div className="card" style={{ borderLeft: '4px solid var(--info)', background: 'var(--info-bg)' }} data-testid="dup-skipped">
+                    <h3 style={{ marginBottom: 4 }}>⚠️ <Bi hi="आज पहले ही जाँचे जा चुके" en="Already checked today" inline /></h3>
+                    <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}>
+                      {canSwap ? <Bi hi="पहले का नतीजा रखा गया है। जिनकी नई फ़ोटो गिननी है, उन्हें चुनें:" en="Their earlier results are kept. Tick the children whose new photo should count:" inline />
+                        : <Bi hi="इनका पहले का परिणाम रखा गया" en="the earlier result is kept" inline />}
+                    </p>
+                    {analysisResult.skipped_duplicates.map(d => (
+                      <label key={d.roll_number} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 0', fontSize: '0.8125rem', gap: 8 }}>
+                        <span>
+                          {canSwap && pend[String(d.roll_number)] && <input type="checkbox" data-testid={`replace-tick-${d.roll_number}`} checked={!replaceOff.includes(d.roll_number)}
+                            onChange={() => setReplaceOff((p) => (p.includes(d.roll_number) ? p.filter((x) => x !== d.roll_number) : [...p, d.roll_number]))} style={{ marginRight: 6 }} />}
+                          <Bi hi="रोल" en="Roll" inline /> {d.roll_number} · <Bi hi="पहले" en="earlier" inline /> {d.earlier_accuracy == null ? '—' : Math.round(d.earlier_accuracy * 100) + '%'} · {new Date(d.earlier_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })}
+                        </span>
+                        {!canSwap && photos.length > 0 && <button type="button" className="btn btn-secondary btn-small" style={{ fontSize: '0.8125rem' }} disabled={loading || !online}
+                          onClick={() => submitPhotos({ replaceRolls: [d.roll_number] })}><Bi hi="नई फ़ोटो से बदलें" en="Use the new photo" inline /></button>}
+                      </label>
+                    ))}
+                    {canSwap && (
+                      <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap' }}>
+                        <button type="button" className="btn btn-primary btn-small" data-testid="use-new-photos" disabled={loading || !online || ticked.length === 0} onClick={() => useNewPhotos(ticked)}>
+                          <Bi hi={`चुने गए बच्चों की नई फ़ोटो गिनें (${ticked.length})`} en={`Use the new photos for the ticked children (${ticked.length})`} inline />
+                        </button>
+                        <button type="button" className="btn btn-secondary btn-small" data-testid="keep-earlier" disabled={loading} onClick={() => setKeptEarlier(true)}>
+                          <Bi hi="सबके पहले के नतीजे रखें" en="Keep all the earlier results" inline />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
               {(analysisResult.duplicates_in_batch?.length > 0 || analysisResult.unknown_rolls?.length > 0 || analysisResult.outside_group_rolls?.length > 0 ||
                 analysisResult.unreadable_sheets > 0 || analysisResult.not_assessed?.length > 0 || analysisResult.retake?.length > 0) && (
                 <div className="card" style={{ background: 'var(--info-bg)', fontSize: '0.8125rem' }} data-testid="roll-notices">

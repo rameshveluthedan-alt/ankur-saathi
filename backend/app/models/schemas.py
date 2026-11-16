@@ -162,11 +162,20 @@ class ChildAnalysisResult(BaseModel):
     marked_points: Optional[int] = None      # the sheet's required points that could be marked (copied-wrongly ones are not)
     sheet_points: Optional[int] = None       # the sheet's required points (a writing task: one per checklist item)
 
+class ReplaceResultsRequest(BaseModel):
+    """"Use the new photos" (16 Nov): the children whose new sheets, read by the AI in that saved analysis, replace their earlier results."""
+    teacher_id: str
+    analysis_id: int
+    rolls: list[int]
+
 class PhotoAnalysisResponse(BaseModel):
     children_analysed: int
     children_scored: Optional[int] = None    # children given a level in this run (the others: retake or nothing to mark)
     retake: list[int] = []                   # too few questions could be marked: photograph again (16 Nov)
     sheet_mismatch: Optional[dict] = None    # several sheets with the SAME different numbers: likely not today's worksheet (16 Nov)
+    pending: dict = {}                       # roll -> the AI's reading of a new sheet for a child already marked today: "use the new photo", no new AI call
+    today_group: Optional[dict] = None       # every photo result saved today for this group: children, rolls, group_accuracy, ai_recommendation
+    analysis_id: Optional[int] = None        # the saved analysis (review_analyses.id), to replace from it
     group_accuracy: Optional[float] = None          # None: nobody assessed
     ai_recommendation: Optional[str] = None  # 'advance' or 'reteach'; None: nobody assessed
     misconceptions_detected: list[dict]

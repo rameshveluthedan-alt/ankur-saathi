@@ -236,6 +236,11 @@ export const analysePhotos = async (teacherId, formData) => {
   return res.json();
 };
 
+// "Use the new photos" for children already marked today (16 Nov): the AI's readings kept by that analysis replace their earlier results.
+// No photos are sent and the AI is not called again.
+export const replaceResults = (teacherId, analysisId, rolls) =>
+  request('/review/replace-results', { method: 'POST', body: JSON.stringify({ teacher_id: teacherId, analysis_id: analysisId, rolls }) });
+
 // ── Progress ──
 // on: the phone's own date (services/today.js), so "today" on the Progress screen is the same day the Review saved under.
 // The answer also carries today[subject].by_level (each group's counts and decision today) and numeracy_today / literacy_today on each child.
