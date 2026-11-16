@@ -157,6 +157,10 @@ async def flow():
         check("the result shows the WHOLE group today: 5 children, all right (before: '1 child'); the object-shaped mistake on 3 replaced sheets is COUNTED "
               "(3 times: the rule suggests teaching again), not a crash", out["today_group"]["children"] == 5 and out["today_group"]["group_accuracy"] == 1.0
               and out["today_group"]["ai_recommendation"] == "reteach" and out["today_group"]["rolls"] == [3, 6, 14, 16, 19], out["today_group"])
+        pc = {c["roll_number"]: c for c in out["today_group"]["per_child"]}
+        check("...and each child's latest card for the page's \"All children today\" (17 Nov): five, the replaced ones with their NEW result, mistakes by code",
+              sorted(pc) == [3, 6, 14, 16, 19] and pc[3]["accuracy"] == 1.0 and pc[3]["assessed_problems"] == 6 and pc[3]["misconceptions"] == ["N2.3.2-M1"]
+              and pc[16]["misconceptions"] == [] and all(set(c) >= {"status", "copy_errors", "needs_check"} for c in pc.values()), pc.get(3))
         left = await db.fetchval("SELECT result FROM review_analyses WHERE id = $1", aid)
         left = _j.loads(left) if isinstance(left, str) else left
         check("the earlier round stops offering them (no pending, no 'already checked')", not left.get("pending") and not left.get("skipped_duplicates"), (left.get("pending"), left.get("skipped_duplicates")))

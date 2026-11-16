@@ -197,6 +197,19 @@ check('the two earlier Progressor rounds sit in a closed fold, "Earlier rounds t
 check('...and the English view of the list has no Hindi', !/[ऀ-ॿ]/.test(listEn), listEn);
 saved = [];
 
+console.log('\nB5. every child with a result today, not only this round (17 Nov: after "use the new photos" the page showed one child)');
+const card = (r, acc) => ({ roll_number: r, accuracy: acc, status: acc === 1 ? 'achieved' : 'not_achieved', misconceptions: [], assessed_problems: 6, copy_errors: [], needs_check: [] });
+const DAY = { ...ANALYSIS, id: 60, result: { ...ANALYSIS.result, children_analysed: 1, children_scored: 1, group_accuracy: 1, per_child: [card(27, 1)],
+  today_group: { children: 6, rolls: [6, 14, 16, 19, 25, 27], group_accuracy: 0.47, ai_recommendation: 'reteach', per_child: [6, 14, 16, 19, 25, 27].map((r) => card(r, r === 16 || r === 27 ? 1 : 0.33)) } } };
+fresh(); cached = async () => PLAN({ beginner: 'advance', progressor: 'reteach' });
+saved = [DAY]; await show(Review); await click(q('[data-testid="see-analysis"]'));
+const cards = () => qa('[data-testid^="child-card-"]').map((e) => Number(e.dataset.testid.replace('child-card-', '')));
+check('it opens on "All children today (6)": six cards, the one from this round marked "new"', /All children today \(6\)/.test(view(q('[data-testid="view-day"]'), '.hi'))
+  && JSON.stringify(cards()) === '[6,14,16,19,25,27]' && !!q('[data-testid="new-27"]') && !q('[data-testid="new-6"]'), JSON.stringify(cards()));
+await click(q('[data-testid="view-round"]'));
+check('"This round (1)" shows only the child just sent, with no "new" mark', JSON.stringify(cards()) === '[27]' && !q('[data-testid="new-27"]'));
+saved = [];
+
 console.log('\nC. Progress, opened from the Review, leads back');
 check('every "see it on Progress" pointer on the Review says it came from the Review', (reviewSrc.match(/onOpenProgress=\{toProgress\}/g) || []).length === 3 && !/navigate\('\/progress'\)/.test(reviewSrc)
   && /const toProgress = \(\) => navigate\('\/progress', \{ state: \{ from: 'review' \} \}\)/.test(reviewSrc));

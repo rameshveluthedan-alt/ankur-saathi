@@ -128,6 +128,7 @@ export default function ReviewScreen() {
   const [loading, setLoading] = useState(false);
   const [replaceOff, setReplaceOff] = useState([]);     // "already checked today": the rolls the teacher UNticked (all ticked by default, 16 Nov)
   const [keptEarlier, setKeptEarlier] = useState(false); // she chose to keep all the earlier results: the card closes
+  const [childView, setChildView] = useState('day');      // the children's cards: 'day' = everyone with a result today (17 Nov), 'round' = this round
   const online = useOnline();            // sending photos for analysis needs the internet (they go to the AI); the chosen photos stay on the screen
   const [observedItems, setObservedItems] = useState([]);
   const [orfEntry, setOrfEntry] = useState({ roll_number: '', cwpm: '', error_count: '' });
@@ -218,14 +219,14 @@ export default function ReviewScreen() {
   };
   useEffect(() => { setAbsent([]); }, [sheetLevel]);
   useEffect(refreshCoverage, [teacher?.teacher_id, selectedDomain, today, sheetLevel, savedAnalyses.length, absent.join(','), activeChannel]);
-  const openSaved = (a) => { setAnalysisResult({ ...a.result, analysis_id: a.id }); setReplaceOff([]); setKeptEarlier(false); setSheetLevel(a.worksheet_level); goView('a'); };
+  const openSaved = (a) => { setAnalysisResult({ ...a.result, analysis_id: a.id }); setReplaceOff([]); setKeptEarlier(false); setChildView('day'); setSheetLevel(a.worksheet_level); goView('a'); };
   // "Use the new photos" (16 Nov): the AI already read these sheets in this round; their readings replace the earlier results, no new AI call
   const useNewPhotos = async (rolls) => {
     if (!rolls.length || !analysisResult || !analysisResult.analysis_id) return;
     setLoading(true);
     try {
       const result = await replaceResults(teacher.teacher_id, analysisResult.analysis_id, rolls);
-      setAnalysisResult(result); setReplaceOff([]); setKeptEarlier(false);
+      setAnalysisResult(result); setReplaceOff([]); setKeptEarlier(false); setChildView('day');
       refreshSaved(); refreshCoverage();
     } catch (e) {
       notify(friendlyError(e, { hi: 'नई फ़ोटो से नतीजे नहीं बदले जा सके', en: 'The new photos could not be used' }), 'error');
@@ -304,7 +305,7 @@ export default function ReviewScreen() {
       if (opts.replaceRolls && opts.replaceRolls.length) fd.append('replace_rolls', opts.replaceRolls.join(','));
       photos.forEach(p => fd.append('photos', p));
       const result = await analysePhotos(teacher.teacher_id, fd);
-      setAnalysisResult(result); setReplaceOff([]); setKeptEarlier(false);
+      setAnalysisResult(result); setReplaceOff([]); setKeptEarlier(false); setChildView('day');
       goView('a');
       refreshSaved();
       refreshCoverage();
@@ -360,6 +361,13 @@ export default function ReviewScreen() {
     } catch (e) { setOrfSaved(null); setOrfError(friendlyError(e, SAVE_FAILED, { 404: { hi: 'यह रोल नंबर इस कक्षा में नहीं है।', en: "This roll number isn't in this class." } })); }
     setLoading(false);
   };
+
+  // the photo result's children (17 Nov): everyone with a result today (each child's latest card), or this round only; "photograph again" cards always stay
+  const dayKids = (analysisResult && analysisResult.today_group && analysisResult.today_group.per_child) || null;
+  const roundKids = (analysisResult && analysisResult.per_child) || [];
+  const showDayKids = !!dayKids && childView === 'day';
+  const freshRolls = new Set(roundKids.filter((c) => c.accuracy != null).map((c) => c.roll_number));
+  const cardList = showDayKids ? [...dayKids, ...roundKids.filter((c) => c.accuracy == null)] : roundKids;
 
   return (
     <div className="screen">
@@ -925,10 +933,21 @@ export default function ReviewScreen() {
                 </div>
               )}
 
-              {analysisResult.per_child?.map(c => (
-                <div key={c.roll_number} className="card" style={{ padding: 10 }}>
+              {(() => {
+                // 17 Nov: the cards of EVERY child with a result today (each child's latest), or of this round only; this round's children are marked "new"
+                const mode = (on) => ({ flex: 1, minHeight: 36, borderRadius: 8, border: '1px solid var(--border)', fontSize: '0.75rem', fontWeight: 600,
+                                        background: on ? 'var(--green-dark)' : 'var(--surface)', color: on ? 'white' : 'var(--text)' });
+                return dayKids ? (
+                  <div style={{ display: 'flex', gap: 6, margin: '4px 0 8px' }} data-testid="child-view">
+                    <button type="button" data-testid="view-day" style={mode(showDayKids)} onClick={() => setChildView('day')}><Bi hi={`आज के सभी बच्चे (${dayKids.length})`} en={`All children today (${dayKids.length})`} inline /></button>
+                    <button type="button" data-testid="view-round" style={mode(!showDayKids)} onClick={() => setChildView('round')}><Bi hi={`इस बार (${roundKids.length})`} en={`This round (${roundKids.length})`} inline /></button>
+                  </div>
+                ) : null;
+              })()}
+              {cardList.map(c => (
+                <div key={c.roll_number} className="card" style={{ padding: 10 }} data-testid={`child-card-${c.roll_number}`}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <strong><Bi hi="रोल" en="Roll" inline /> {c.roll_number}</strong>
+                    <strong><Bi hi="रोल" en="Roll" inline /> {c.roll_number}{showDayKids && freshRolls.has(c.roll_number) ? <span className="badge" style={{ marginLeft: 6, fontSize: '0.65rem' }} data-testid={`new-${c.roll_number}`}><Bi hi="नया" en="new" inline /></span> : null}</strong>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                       {/* the result of THIS check, in words: one day on a sample says nothing about mastery of the skill */}
                       <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }} data-testid="today-result">

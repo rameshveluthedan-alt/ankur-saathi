@@ -398,8 +398,11 @@ def recompute_misconceptions(child_result: dict) -> list:
 
 
 def _needs_check(child_result: dict) -> list:
-    flagged = set((child_result.get("summary") or {}).get("needs_verification") or [])
-    flagged |= {p.get("number") for p in child_result.get("problems") or [] if p.get("confidence") in ("needs_verification", "low")}
+    raw = (child_result.get("summary") or {}).get("needs_verification") or []
+    # question numbers only: the AI may write an object here too (17 Nov: an object in a set is "unhashable type: 'dict'")
+    flagged = {(x.get("number") or x.get("problem")) if isinstance(x, dict) else x for x in (raw if isinstance(raw, list) else [])}
+    flagged = {x for x in flagged if isinstance(x, (int, str))}
+    flagged |= {p.get("number") for p in child_result.get("problems") or [] if p.get("confidence") in ("needs_verification", "low") and isinstance(p.get("number"), (int, str))}
     return sorted(n for n in flagged if isinstance(n, int))
 
 
@@ -714,10 +717,10 @@ def group_recommendation(group_accuracy: float, misconception_counts: dict) -> s
 async def today_group_result(db, teacher_id: str, session_date, competency_id: str, group_rolls: list) -> dict:
     """Every photo result saved today for this group and skill (16 Nov: the results card showed only the latest round, so a group of six read
     "1 child" after a replacement). The same rule as a round: the children with a level, the score over their marked questions, the suggestion."""
-    rows = await db.fetch("""SELECT c.roll_number, e.evidence_data FROM assessment_evidence e JOIN children c ON c.id = e.child_id
+    rows = await db.fetch("""SELECT c.roll_number, e.status, e.evidence_data FROM assessment_evidence e JOIN children c ON c.id = e.child_id
                              WHERE e.teacher_id = $1 AND e.session_date = $2 AND e.competency_id = $3 AND e.channel = 'written_photo'
                              ORDER BY c.roll_number""", teacher_id, session_date, competency_id)
-    rolls, correct, total, counts = [], 0, 0, {}
+    rolls, correct, total, counts, per_child = [], 0, 0, {}, []
     wanted = {int(r) for r in (group_rolls or [])}
     for r in rows:
         if wanted and r["roll_number"] not in wanted:
@@ -730,14 +733,21 @@ async def today_group_result(db, teacher_id: str, session_date, competency_id: s
         rolls.append(r["roll_number"])
         correct += s.get("correct") or 0
         total += s.get("total_problems") or 0
+        mids = []
         for m in s.get("detected_misconceptions") or []:
             mid = _mistake_id(m.get("misconception_id") if isinstance(m, dict) else m)
             if mid:
                 counts[mid] = counts.get(mid, 0) + (m.get("occurrences", 1) if isinstance(m, dict) else 1)
+                mids.append(mid)
+        # each child's latest card, as a round shows it (17 Nov: after "use the new photos" the page showed only the child replaced)
+        per_child.append({"roll_number": r["roll_number"], "accuracy": (ed.get("scoring") or {}).get("accuracy", s.get("accuracy")),
+                          "status": r["status"], "misconceptions": mids, "assessed_problems": s.get("total_problems"),
+                          "copy_errors": ed.get("copy_errors") or [], "needs_check": _needs_check(ed)})
     if not total:
-        return {"children": 0, "rolls": [], "group_accuracy": None, "ai_recommendation": None}
+        return {"children": 0, "rolls": [], "group_accuracy": None, "ai_recommendation": None, "per_child": []}
     acc = correct / total
-    return {"children": len(rolls), "rolls": rolls, "group_accuracy": round(acc, 2), "ai_recommendation": group_recommendation(acc, counts)}
+    return {"children": len(rolls), "rolls": rolls, "group_accuracy": round(acc, 2), "ai_recommendation": group_recommendation(acc, counts),
+            "per_child": per_child}
 
 
 def _explain_discrepancy(teacher: str, ai: str, accuracy: float, misconceptions: dict) -> str:
