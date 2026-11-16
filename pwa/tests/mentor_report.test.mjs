@@ -42,9 +42,10 @@ const SUMMARY = () => ({
   mistakes: [{ misconception_id: 'N2.3.2-M1', skill_id: 'N2.3.2', name_hi: 'हासिल भूलना', children: 7, activity: { id: 'INT-OP-005', title_hi: 'तीलियों के बंडल से हासिल' } },
              { misconception_id: 'N2.3.1-M1', skill_id: 'N2.3.1', name_hi: 'अंक उलटना', children: 3, activity: null }],
   rules: RULES,
-  points: { strength: 'पिछले 4 हफ़्तों में 18 दिन योजना बनी और 15 दिन समीक्षा पूरी हुई।',
-    work: [{ kind: 'stuck', hi: 'प्रगतिशील समूह में N2.3.2 4 दिन पढ़ाया गया।' }, { kind: 'judgment', hi: '12 में से 5 बार ही पहला अनुमान जाँच से मेल खाया।' }],
-    question: 'किन बच्चों को अभी सबसे ज़्यादा मदद चाहिए, और आपको किस बात में मदद चाहिए?' },
+  points: { strength: 'पिछले 4 हफ़्तों में 15 दिन आकलन पूरा हुआ और 18 दिन योजना बनी।', strength_en: 'In the last 4 weeks, the assessment was completed on 15 days and a plan was made on 18 days.',
+    work: [{ kind: 'stuck', hi: 'प्रगतिशील समूह में N2.3.2 4 दिन पढ़ाया गया।', en: 'The Progressor group was taught N2.3.2 on 4 days.' },
+           { kind: 'evidence', hi: '50 में से 31 बार ही समूह के बच्चों का काम जाँचा गया।', en: "The children's work was checked for only 31 of 50 groups taught." }],
+    question: 'किन बच्चों को अभी सबसे ज़्यादा मदद चाहिए, और आपको किस बात में मदद चाहिए?', question_en: 'Which children need the most help now, and what do you need help with?' },
 });
 let summary = SUMMARY(); let calls = [];
 globalThis.__navs = [];
@@ -57,7 +58,10 @@ let root;
 const flush = async () => { for (let i = 0; i < 5; i += 1) await act(async () => { await new Promise((r) => setTimeout(r, 0)); }); };
 const show = async (C) => { if (root) await act(async () => root.unmount()); root = createRoot(document.getElementById('root')); await act(async () => { root.render(React.createElement(C)); }); await flush(); };
 const q = (sel) => document.querySelector(sel);
-const txt = (sel) => (q(sel) ? q(sel).textContent.replace(/\s+/g, ' ').trim() : '');
+// what a reader sees: in Hindi (the default) the English spans are hidden; in English the Hindi spans are (components/Bi.jsx, 16 Nov)
+const seenIn = (el, hide) => { const c = el.cloneNode(true); c.querySelectorAll(hide).forEach((x) => x.remove()); return c.textContent.replace(/\s+/g, ' ').trim(); };
+const txt = (sel) => (q(sel) ? seenIn(q(sel), '.en') : '');
+const txtEn = (sel) => (q(sel) ? seenIn(q(sel), '.hi') : '');
 const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true })); }); await flush(); };
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
 
@@ -71,7 +75,7 @@ check('the period, in Hindi dates', txt('[data-testid="mentor-period"]') === '�
 const order = ['mentor-points', 'mentor-practice', 'mentor-progress', 'mentor-mistakes', 'mentor-rules'].map((id) => [...page.querySelectorAll('[data-testid]')].findIndex((e) => e.dataset.testid === id));
 check('the order: the talking points first, then how the teacher works, then the children, then the mistakes, then the rules', order.every((i, k) => i >= 0 && (k === 0 || i > order[k - 1])), order.join(','));
 check('the points: 👍 the strength, 🎯 each thing to work on, ❓ the question', txt('[data-testid="point-strength"]') === `👍 ${summary.points.strength}` && txt('[data-testid="point-work-stuck"]').startsWith('🎯 प्रगतिशील समूह में N2.3.2')
-  && txt('[data-testid="point-work-judgment"]').startsWith('🎯 12 में से 5') && txt('[data-testid="point-question"]') === `❓ ${summary.points.question}`);
+  && txt('[data-testid="point-work-evidence"]').startsWith('🎯 50 में से 31') &&txt('[data-testid="point-question"]') === `❓ ${summary.points.question}`);
 check('how the teacher works: plans, full assessments (the next class’s decision recorded), decisions with evidence; no first-judgment line since 14 Nov', /योजना बनी: 18 दिन · आकलन पूरा \(अगली कक्षा का निर्णय दर्ज\): 15 दिन/.test(txt('[data-testid="mentor-practice"]'))
   && /50 में से 31 बार/.test(txt('[data-testid="mentor-practice"]')) && !q('[data-testid="practice-match"]') && !/पहला अनुमान/.test(txt('[data-testid="mentor-practice"]')));
 check('the groups at the start and the end of the period, per subject, with the group marks', txt('[data-testid="progress-groups-numeracy"]') === 'गणित, समूह: 2 अक्टू॰ 2026 को ● 12 · ▲ 10 · ■ 8 → 29 अक्टू॰ 2026 को ● 9 · ▲ 12 · ■ 9', txt('[data-testid="progress-groups-numeracy"]'));
@@ -93,6 +97,19 @@ check('printing shows this page alone (body.print-plan, the .plan-print page), a
 }
 
 check('the footnote: what the letters, marks and codes mean', txt('[data-testid="mentor-key"]') === '● शुरुआती · ▲ प्रगतिशील · ■ दक्ष · N2.3.2 जैसे कोड कौशल-सीढ़ी में दिए गए कौशलों की पहचान करते हैं।', txt('[data-testid="mentor-key"]'));
+
+console.log('\nin English (16 Nov: the report was Hindi only, even with English chosen)');
+check('the title and the period, with English dates', txtEn('[data-testid="mentor-title"]') === 'Mentor report · S-23 · सीहोर, सीहोर · Teacher MPT101 · Grade 2'
+  && txtEn('[data-testid="mentor-period"]') === 'Period: 2 Oct 2026 – 29 Oct 2026 (the last 4 weeks)', txtEn('[data-testid="mentor-title"]'));
+check('the talking points from the server\'s English', txtEn('[data-testid="point-strength"]') === `👍 ${summary.points.strength_en}` && txtEn('[data-testid="point-work-stuck"]') === '🎯 The Progressor group was taught N2.3.2 on 4 days.'
+  && txtEn('[data-testid="point-question"]') === `❓ ${summary.points.question_en}`, txtEn('[data-testid="point-strength"]'));
+check('how the teacher works, the groups, the stuck group and the children not checked', /^Plans made: 18 days · Assessment completed \(the next class's decision recorded\): 15 days/.test(txtEn('[data-testid="mentor-practice"]').replace(/^How the teacher works ?/, ''))
+  && txtEn('[data-testid="progress-groups-numeracy"]') === 'Maths, groups: on 2 Oct 2026 ● 12 · ▲ 10 · ■ 8 → on 29 Oct 2026 ● 9 · ▲ 12 · ■ 9'
+  && txtEn('[data-testid="progress-stuck"]') === 'The same skill on 3+ days: ▲ Progressor N2.3.2 (4 days)' && txtEn('[data-testid="progress-not-checked"]') === 'Not checked for 2 weeks: 3 children (roll 4, 17, 22)',
+  txtEn('[data-testid="mentor-practice"]'));
+check('a mistake with no English name keeps its Hindi name; the footnotes and every heading in English', txtEn('[data-testid="mistake-N2.3.1-M1"]') === 'N2.3.1 “अंक उलटना”: 3 children'
+  && txtEn('[data-testid="mentor-key"]') === '● Beginner · ▲ Progressor · ■ Proficient · Codes such as N2.3.2 identify the skills on the skill ladder.' && /^Rules:/.test(txtEn('[data-testid="mentor-rules"]'))
+  && [...document.querySelectorAll('.print-block-head')].every((h) => !/[ऀ-ॿ]/.test(seenIn(h, '.hi'))), [...document.querySelectorAll('.print-block-head')].map((h) => seenIn(h, '.hi')).join(' | '));
 
 console.log('\nwhen there is little to say');
 summary = { ...SUMMARY(), practice: { plan_days: 0, review_days: 0, groups_taught: 0, groups_checked: 0, judgments_compared: 0, judgments_matched: 0 }, mistakes: [],

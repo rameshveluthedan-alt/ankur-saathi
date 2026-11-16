@@ -324,9 +324,9 @@ async def get_mentor_summary(db, teacher_id: str, end: date) -> dict:
                 compared += 1
                 matched += 1 if (first == "advance") != bool(ev.get("recommend")) else 0       # advance and no re-teach suggested, or re-teach/not sure and suggested
 
-    names = {r["id"]: r["name_hi"] for r in await db.fetch("SELECT id, name_hi FROM competencies WHERE id = ANY($1::text[])", list({k[2] for k in runs}))} if runs else {}
-    stuck = sorted(({"domain_id": d, "level": l, "skill_id": k, "skill_name_hi": names.get(k), "days": n} for (d, l, k), n in runs.items() if n >= R["stuck_days"]),
-                   key=lambda x: (-x["days"], x["skill_id"]))
+    names, names_en = await _skill_names(db, {k[2] for k in runs})
+    stuck = sorted(({"domain_id": d, "level": l, "skill_id": k, "skill_name_hi": names.get(k), "skill_name_en": names_en.get(k), "days": n}
+                    for (d, l, k), n in runs.items() if n >= R["stuck_days"]), key=lambda x: (-x["days"], x["skill_id"]))
 
     achieved = await db.fetchval("""SELECT COUNT(*) FROM (SELECT DISTINCT e.child_id, e.competency_id FROM assessment_evidence e JOIN children c ON c.id = e.child_id
                                     WHERE e.teacher_id = $1 AND e.status = 'achieved' AND e.session_date BETWEEN $2 AND $3 AND c.is_active) x""", teacher_id, start, end)
@@ -353,7 +353,7 @@ async def get_mentor_summary(db, teacher_id: str, end: date) -> dict:
             if st:
                 counts[st] += 1
         unchecked = sum(1 for roll in rolls if k not in (period_results.get(roll) or {}))
-        skill_results.append({"domain_id": dom, "skill_id": k, "skill_name_hi": names.get(k), **counts, "not_checked": unchecked})
+        skill_results.append({"domain_id": dom, "skill_id": k, "skill_name_hi": names.get(k), "skill_name_en": names_en.get(k), **counts, "not_checked": unchecked})
 
     practice = {"plan_days": len(plan_days), "review_days": len(review_days), "groups_taught": taught, "groups_checked": checked,
                 "judgments_compared": compared, "judgments_matched": matched}
@@ -362,6 +362,15 @@ async def get_mentor_summary(db, teacher_id: str, end: date) -> dict:
             "school": {"school_code": school["school_code"], "block": school["block_name"], "district": school["district_name"]} if school else None,
             "practice": practice, "progress": progress, "mistakes": mistakes, "rules": dict(R),
             "points": mentor_points(practice, progress, mistakes)}
+
+
+async def _skill_names(db, ids) -> tuple:
+    """({id: Hindi name}, {id: English name}) for the skills: the reports show the English when the teacher has chosen English (16 Nov)."""
+    ids = [i for i in ids if i]
+    if not ids:
+        return {}, {}
+    rows = await db.fetch("SELECT id, name_hi, name_en FROM competencies WHERE id = ANY($1::text[])", ids)
+    return {r["id"]: r["name_hi"] for r in rows}, {r["id"]: r["name_en"] for r in rows}
 
 
 async def _not_checked(db, teacher_id: str, end: date, days: int) -> list:
@@ -379,13 +388,13 @@ async def _common_mistakes(db, teacher_id: str, start: date, end: date, limit: i
                              WHERE e.teacher_id = $1 AND e.session_date BETWEEN $2 AND $3 AND c.is_active GROUP BY m_id ORDER BY n DESC, m_id LIMIT $4""", teacher_id, start, end, limit)
     out = []
     for r in rows:
-        m = await db.fetchrow("SELECT id, competency_id, name_hi, intervention_template_ids FROM misconceptions WHERE id = $1", r["m_id"])
+        m = await db.fetchrow("SELECT id, competency_id, name_hi, name_en, intervention_template_ids FROM misconceptions WHERE id = $1", r["m_id"])
         if not m:
             continue
-        act = await db.fetchrow("""SELECT id, title_hi FROM intervention_templates WHERE is_active IS NOT FALSE AND (id = ANY($1::text[]) OR $2 = ANY(misconception_ids))
+        act = await db.fetchrow("""SELECT id, title_hi, title_en FROM intervention_templates WHERE is_active IS NOT FALSE AND (id = ANY($1::text[]) OR $2 = ANY(misconception_ids))
                                    ORDER BY (id = ANY($1::text[])) DESC, id LIMIT 1""", list(m["intervention_template_ids"] or []), m["id"])
-        out.append({"misconception_id": m["id"], "skill_id": m["competency_id"], "name_hi": m["name_hi"], "children": r["n"], "rolls": list(r["rolls"]),
-                    "activity": {"id": act["id"], "title_hi": act["title_hi"]} if act else None})
+        out.append({"misconception_id": m["id"], "skill_id": m["competency_id"], "name_hi": m["name_hi"], "name_en": m["name_en"], "children": r["n"], "rolls": list(r["rolls"]),
+                    "activity": {"id": act["id"], "title_hi": act["title_hi"], "title_en": act["title_en"]} if act else None})
     return out
 
 
@@ -420,7 +429,7 @@ async def get_class_summary(db, teacher_id: str, end: date) -> dict:
             final = expl.get(f"teacher_final_{l}") or expl.get(f"teacher_decision_{l}")          # older records have only teacher_decision_
             if final in run["finals"]:
                 run["finals"][final] += 1
-    names = {r["id"]: r["name_hi"] for r in await db.fetch("SELECT id, name_hi FROM competencies WHERE id = ANY($1::text[])", list({k[2] for k in runs}))} if runs else {}
+    names, names_en = await _skill_names(db, {k[2] for k in runs})
 
     subjects = {}
     period_results = await latest_results(db, teacher_id, start, end)
@@ -430,7 +439,7 @@ async def get_class_summary(db, teacher_id: str, end: date) -> dict:
         for (d, l, k), run in runs.items():
             if d != domain:
                 continue
-            taught.append({"level": l, "skill_id": k, "skill_name_hi": names.get(k), "days": run["days"], "finals": run["finals"]})
+            taught.append({"level": l, "skill_id": k, "skill_name_hi": names.get(k), "skill_name_en": names_en.get(k), "days": run["days"], "finals": run["finals"]})
             if run["days"] >= R["stuck_days"]:
                 # the children of the group (on its last day with this skill) whose newest result on the skill in the period is not "achieved", or who have none
                 done = {x["roll_number"] for x in await db.fetch("""SELECT DISTINCT ON (c.roll_number) c.roll_number, e.status FROM assessment_evidence e JOIN children c ON c.id = e.child_id
@@ -438,7 +447,7 @@ async def get_class_summary(db, teacher_id: str, end: date) -> dict:
                                                                     ORDER BY c.roll_number, e.session_date DESC, e.created_at DESC""", teacher_id, k, start, end) if x["status"] == "achieved"}
                 rolls = [x for x in run["rolls"] if x not in done]
                 if rolls:
-                    stuck.append({"level": l, "skill_id": k, "skill_name_hi": names.get(k), "days": run["days"], "rolls": rolls})
+                    stuck.append({"level": l, "skill_id": k, "skill_name_hi": names.get(k), "skill_name_en": names_en.get(k), "days": run["days"], "rolls": rolls})
         order = {l: i for i, l in enumerate(gs.LABELS)}
         taught.sort(key=lambda x: (order[x["level"]], -x["days"], x["skill_id"]))
         stuck.sort(key=lambda x: (order[x["level"]], x["skill_id"]))
@@ -447,7 +456,8 @@ async def get_class_summary(db, teacher_id: str, end: date) -> dict:
                                         WHERE e.teacher_id = $1 AND e.status = 'achieved' AND e.session_date BETWEEN $2 AND $3 AND c.is_active AND s.domain_id = $4) x""",
                                      teacher_id, start, end, domain)
         prop = (await gs.propose(db, teacher_id, domain, end + timedelta(days=1)))["groups"]
-        nxt = {l: {"skill_id": (g.get("proposed") or {}).get("id"), "skill_name_hi": (g.get("proposed") or {}).get("name_hi"), "reason": g.get("reason")} for l, g in prop.items()}
+        nxt = {l: {"skill_id": (g.get("proposed") or {}).get("id"), "skill_name_hi": (g.get("proposed") or {}).get("name_hi"), "skill_name_en": (g.get("proposed") or {}).get("name_en"),
+                   "reason": g.get("reason")} for l, g in prop.items()}
         # where each child is (15 Nov): the newest result in the period on each skill taught, per child of the class (roll numbers; the page adds names)
         skills_taught = []
         for t in taught:
@@ -457,7 +467,8 @@ async def get_class_summary(db, teacher_id: str, end: date) -> dict:
                 for roll in class_rolls] if skills_taught else []
         if taught or any((now.get(domain) or {}).values()):
             subjects[domain] = {"groups_now": now.get(domain) or {}, "skills_achieved": achieved, "taught": taught, "stuck": stuck, "next": nxt,
-                                "children": {"skills": skills_taught, "skill_names_hi": {k: names.get(k) for k in skills_taught}, "rows": rows}}
+                                "children": {"skills": skills_taught, "skill_names_hi": {k: names.get(k) for k in skills_taught},
+                                             "skill_names_en": {k: names_en.get(k) for k in skills_taught}, "rows": rows}}
 
     na = await db.fetch("""SELECT c.roll_number, COUNT(DISTINCT e.session_date) AS days, ARRAY_AGG(DISTINCT e.competency_id ORDER BY e.competency_id) AS skills
                            FROM assessment_evidence e JOIN children c ON c.id = e.child_id
@@ -476,26 +487,40 @@ def mentor_points(practice: dict, progress: dict, mistakes: list) -> dict:
     """The talking points, from fixed rules (MENTOR_RULES): the same numbers always give the same points. The strength, always first: one line naming
     what went well, each part only when it is not zero, in this order: days with a complete review, skills the children achieved, days with a plan (Vaishnavi,
     29 Oct: all of it, not only the first). Then up to two
-    things to work on, in this order of priority: a group stuck on a skill (with its most common mistake and an activity), the first judgment often
-    differing from the evidence, groups decided without evidence, many children not checked; then one question for the teacher.
+    things to work on, in this order of priority: a group stuck on a skill (with its most common mistake and an activity), groups
+    decided without evidence, many children not checked; then one question for the teacher. (No first-judgment point since 16 Nov: the step was removed on 14 Nov.)
     NOTE: the wording is the app's working wording, for Vaishnavi's review (with the rule values)."""
     R = MENTOR_RULES
     p, g = practice, progress
-    parts = [x for x in (p["review_days"] and f"{p['review_days']} दिन समीक्षा पूरी हुई", g["skills_achieved"] and f"बच्चों ने {g['skills_achieved']} कौशल हासिल किए",
-                         p["plan_days"] and f"{p['plan_days']} दिन योजना बनी") if x]
+    # each point in Hindi and in English (16 Nov: the report shows English when the teacher has chosen English); "आकलन", not "समीक्षा", since 15 Nov
+    parts = [x for x in (p["review_days"] and (f"{p['review_days']} दिन आकलन पूरा हुआ", f"the assessment was completed on {p['review_days']} days"),
+                         g["skills_achieved"] and (f"बच्चों ने {g['skills_achieved']} कौशल हासिल किए", f"the children achieved {g['skills_achieved']} skills"),
+                         p["plan_days"] and (f"{p['plan_days']} दिन योजना बनी", f"a plan was made on {p['plan_days']} days")) if x]
+    weeks = R['window_days'] // 7
+
+    def joined(xs, word):
+        return ', '.join(xs[:-1]) + f' {word} ' + xs[-1] if len(xs) > 1 else xs[0]
     # "A, B और C": nothing in the period gives no strength (the page says so instead of a point)
-    strength = f"पिछले {R['window_days'] // 7} हफ़्तों में {', '.join(parts[:-1]) + ' और ' + parts[-1] if len(parts) > 1 else parts[0]}।" if parts else None
+    strength = f"पिछले {weeks} हफ़्तों में {joined([h for h, _ in parts], 'और')}।" if parts else None
+    strength_en = f"In the last {weeks} weeks, {joined([e for _, e in parts], 'and')}." if parts else None
     work = []
     for st in g["stuck"][:1]:
         m = next((x for x in mistakes if x["skill_id"] == st["skill_id"]), None)
         line = f"{GROUP_HI.get(st['level'], st['level'])} समूह में {st['skill_id']} {st['days']} दिन पढ़ाया गया।"
+        line_en = f"The {LEVEL_EN.get(st['level'], st['level'])} group was taught {st['skill_id']} on {st['days']} days."
         if m:
             line += f" सबसे आम गलती: “{m['name_hi']}”" + (f"; सुझाई गई गतिविधि: “{m['activity']['title_hi']}”।" if m["activity"] else "।")
-        work.append({"kind": "stuck", "hi": line})
-    if p["judgments_compared"] >= R["match_min"] and p["judgments_matched"] / p["judgments_compared"] < R["match_share"]:
-        work.append({"kind": "judgment", "hi": f"{p['judgments_compared']} में से {p['judgments_matched']} बार ही पहला अनुमान जाँच से मेल खाया: बात करें कि बच्चों का काम देखने से पहले वे समूह को कैसे आँकते हैं।"})
+            line_en += f" The most common mistake: “{m.get('name_en') or m['name_hi']}”" + (
+                f"; a suggested activity: “{m['activity'].get('title_en') or m['activity']['title_hi']}”." if m["activity"] else ".")
+        work.append({"kind": "stuck", "hi": line, "en": line_en})
+    # No "first judgment matched the evidence" point since 16 Nov: the first-judgment step was removed on 14 Nov (Vaishnavi: capture evidence, then one
+    # decision), so the point could only come from old records. (match_share and match_min stay in MENTOR_RULES, unused, for the old records' numbers.)
     if p["groups_taught"] >= R["evidence_min"] and p["groups_checked"] / p["groups_taught"] < R["evidence_share"]:
-        work.append({"kind": "evidence", "hi": f"{p['groups_taught']} में से {p['groups_checked']} बार ही समूह के बच्चों का काम जाँचा गया: हर समूह के कुछ बच्चों का काम देखकर निर्णय लेने पर बात करें।"})
+        work.append({"kind": "evidence", "hi": f"{p['groups_taught']} में से {p['groups_checked']} बार ही समूह के बच्चों का काम जाँचा गया: हर समूह के कुछ बच्चों का काम देखकर निर्णय लेने पर बात करें।",
+                     "en": f"The children's work was checked for only {p['groups_checked']} of {p['groups_taught']} groups taught: talk about deciding after looking at a few children's work in each group."})
     if g["class_size"] and len(g["not_checked"]) / g["class_size"] >= R["not_checked_share"]:
-        work.append({"kind": "not_checked", "hi": f"{len(g['not_checked'])} बच्चों का काम {R['not_checked_days'] // 7} हफ़्ते से नहीं जाँचा गया।"})
-    return {"strength": strength, "work": work[:2], "question": "किन बच्चों को अभी सबसे ज़्यादा मदद चाहिए, और आपको किस बात में मदद चाहिए?"}
+        work.append({"kind": "not_checked", "hi": f"{len(g['not_checked'])} बच्चों का काम {R['not_checked_days'] // 7} हफ़्ते से नहीं जाँचा गया।",
+                     "en": f"{len(g['not_checked'])} children's work has not been checked for {R['not_checked_days'] // 7} weeks."})
+    return {"strength": strength, "strength_en": strength_en, "work": work[:2],
+            "question": "किन बच्चों को अभी सबसे ज़्यादा मदद चाहिए, और आपको किस बात में मदद चाहिए?",
+            "question_en": "Which children need the most help now, and what do you need help with?"}

@@ -36,7 +36,7 @@ const SUMMARY = () => ({
   subjects: {
     numeracy: { groups_now: { beginner: 9, progressor: 12, proficient: 9 }, skills_achieved: 22,
       taught: [{ level: 'beginner', skill_id: 'N2.3.1', skill_name_hi: 'बिना हासिल जोड़', days: 3, finals: { advance: 1, reteach: 1, not_sure: 0 } },
-               { level: 'progressor', skill_id: 'N2.3.2', skill_name_hi: 'हासिल वाला जोड़', days: 4, finals: { advance: 1, reteach: 2, not_sure: 1 } }],
+               { level: 'progressor', skill_id: 'N2.3.2', skill_name_hi: 'हासिल वाला जोड़', skill_name_en: 'Adds with regrouping', days: 4, finals: { advance: 1, reteach: 2, not_sure: 1 } }],
       stuck: [{ level: 'progressor', skill_id: 'N2.3.2', skill_name_hi: 'हासिल वाला जोड़', days: 4, rolls: [5, 6, 8] }],
       next: { beginner: { skill_id: 'N2.3.2', skill_name_hi: 'हासिल वाला जोड़', reason: 'advance' }, progressor: { skill_id: 'N2.3.2', skill_name_hi: 'हासिल वाला जोड़', reason: 'reteach' },
               proficient: { skill_id: null, skill_name_hi: null, reason: 'no_decision' } } },
@@ -44,7 +44,7 @@ const SUMMARY = () => ({
   },
   not_checked: [3, 12],
   not_achieved_again: [{ roll: 5, days: 2, skills: ['N2.3.2'] }],
-  mistakes: [{ misconception_id: 'N2.3.2-M1', skill_id: 'N2.3.2', name_hi: 'हासिल भूलना', children: 2, rolls: [5, 6], activity: { id: 'INT-OP-005', title_hi: 'तीलियों के बंडल से हासिल' } }],
+  mistakes: [{ misconception_id: 'N2.3.2-M1', skill_id: 'N2.3.2', name_hi: 'हासिल भूलना', name_en: 'Forgets the carry', children: 2, rolls: [5, 6], activity: { id: 'INT-OP-005', title_hi: 'तीलियों के बंडल से हासिल', title_en: 'Carrying with bundles of sticks' } }],
   rules: RULES,
 });
 let summary = SUMMARY(); let calls = [];
@@ -58,7 +58,10 @@ let root;
 const flush = async () => { for (let i = 0; i < 5; i += 1) await act(async () => { await new Promise((r) => setTimeout(r, 0)); }); };
 const show = async (C) => { if (root) await act(async () => root.unmount()); root = createRoot(document.getElementById('root')); await act(async () => { root.render(React.createElement(C)); }); await flush(); };
 const q = (sel) => document.querySelector(sel);
-const txt = (sel) => (q(sel) ? q(sel).textContent.replace(/\s+/g, ' ').trim() : '');
+// what a reader sees: in Hindi (the default) the English spans are hidden; in English the Hindi spans are (components/Bi.jsx, 16 Nov)
+const seenIn = (el, hide) => { const c = el.cloneNode(true); c.querySelectorAll(hide).forEach((x) => x.remove()); return c.textContent.replace(/\s+/g, ' ').trim(); };
+const txt = (sel) => (q(sel) ? seenIn(q(sel), '.en') : '');
+const txtEn = (sel) => (q(sel) ? seenIn(q(sel), '.hi') : '');
 const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true })); }); await flush(); };
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
 
@@ -84,6 +87,18 @@ await click(q('[data-testid="class-back"]'));
 check('"← वापस", opened straight here: to Class progress', JSON.stringify(globalThis.__navs.pop()) === JSON.stringify(['/progress']));
 
 check('the footnote: what the letters, marks and codes mean', txt('[data-testid="class-key"]') === 'A = बिना मदद के करके दिखाया · PA = मदद से या आंशिक रूप से सही · NA = अभी नहीं · N2.3.2 जैसे कोड कौशल-सीढ़ी में दिए गए कौशलों की पहचान करते हैं।', txt('[data-testid="class-key"]'));
+
+console.log('\nin English (16 Nov: the page was Hindi only, even with English chosen)');
+check('the title, the period and the class now', txtEn('[data-testid="class-title"]') === 'Class summary · MPT101 · Grade 2' && txtEn('[data-testid="class-period"]') === 'Period: 2 Oct 2026 – 29 Oct 2026 (the last 4 weeks)'
+  && txtEn('[data-testid="now-numeracy"]') === 'Class now: ● Beginner 9 · ▲ Progressor 12 · ■ Proficient 9 · Skills achieved: 22', txtEn('[data-testid="now-numeracy"]'));
+check('a skill with an English name shows it; one without keeps its Hindi name', txtEn('[data-testid="taught-numeracy-progressor-N2.3.2"]') === '▲ Progressor: N2.3.2 Adds with regrouping · 4 days · ⬆ 1 · 🔄 2 · ❓ 1'
+  && txtEn('[data-testid="taught-numeracy-beginner-N2.3.1"]') === '● Beginner: N2.3.1 बिना हासिल जोड़ · 3 days · ⬆ 1 · 🔄 1 · ❓ 0', txtEn('[data-testid="taught-numeracy-beginner-N2.3.1"]'));
+check('the next step, the children to look at (names as the phone has them), the mistake and its activity', txtEn('[data-testid="next-numeracy-progressor"]') === '▲ Progressor: N2.3.2 हासिल वाला जोड़ (🔄 Teach again);'
+  && txtEn('[data-testid="stuck-progressor-N2.3.2"]') === '▲ Progressor, N2.3.2 (taught on 4 days, not achieved yet): 5 सीता, 6 रामू, Roll 8'
+  && txtEn('[data-testid="class-mistake-N2.3.2-M1"]') === 'N2.3.2 “Forgets the carry”: 5 सीता, 6 रामू → activity: “Carrying with bundles of sticks”', txtEn('[data-testid="class-mistake-N2.3.2-M1"]'));
+check('the footnotes in English, and every heading', txtEn('[data-testid="class-key"]').startsWith('A = did it without help') && /Codes such as N2\.3\.2/.test(txtEn('[data-testid="class-key"]'))
+  && /keep it safe/.test(txtEn('[data-testid="class-footer"]')) && /^Rules:/.test(txtEn('[data-testid="class-rules"]'))
+  && [...document.querySelectorAll('.print-block-head')].every((h) => !/[ऀ-ॿ]/.test(seenIn(h, '.hi'))), [...document.querySelectorAll('.print-block-head')].map((h) => seenIn(h, '.hi')).join(' | '));
 
 console.log('\nwhen there is little to say');
 summary = { ...SUMMARY(), not_checked: [], not_achieved_again: [], mistakes: [], subjects: { numeracy: { ...SUMMARY().subjects.numeracy, stuck: [] } } };
