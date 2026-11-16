@@ -183,6 +183,20 @@ await click(q('[data-testid="keep-earlier"]'));
 check('"Keep all the earlier results" closes the card, and nothing is sent', !q('[data-testid="dup-skipped"]') && replaced.length === 1);
 saved = [];
 
+console.log('\nB4. today\'s photo results: one card per group (its newest round, the group\'s day), the earlier rounds folded, in English too (16 Nov: eight cards)');
+const at = (m) => new Date(Date.now() - m * 60000).toISOString();
+fresh(); cached = async () => PLAN({ beginner: 'advance', progressor: 'reteach' });          // (fresh() empties `saved`: set it after)
+saved = [{ ...ROUND, id: 50, created_at: at(1) }, { ...ANALYSIS, id: 49, created_at: at(5), result: { ...ANALYSIS.result, children_analysed: 0, group_accuracy: null } },
+  { ...ANALYSIS, id: 48, created_at: at(30) }, { ...ANALYSIS, id: 47, worksheet_level: 'beginner', created_at: at(40), result: { ...ANALYSIS.result, children_analysed: 1, group_accuracy: 1 } }];
+await show(Review);
+const listEn = view(q('[data-testid="saved-analyses"]'), '.hi');
+check('two cards on top, one per group: the Progressors\' newest counts the whole day (6 children, 50%), the Beginners\' its round', !!q('[data-testid="saved-latest-progressor"]') && !!q('[data-testid="saved-latest-beginner"]')
+  && /Progressor · 6 children · 50%/.test(view(q('[data-testid="saved-latest-progressor"]'), '.hi')) && /Beginner · 1 child · 100%/.test(view(q('[data-testid="saved-latest-beginner"]'), '.hi')), listEn);
+check('the two earlier Progressor rounds sit in a closed fold, "Earlier rounds today (2)"', q('[data-testid="saved-earlier"]') && !q('[data-testid="saved-earlier"]').open
+  && /Earlier rounds today \(2\)/.test(view(q('[data-testid="saved-earlier"] summary'), '.hi')) && !!q('[data-testid="saved-earlier-49"]') && !!q('[data-testid="saved-earlier-48"]'));
+check('...and the English view of the list has no Hindi', !/[ऀ-ॿ]/.test(listEn), listEn);
+saved = [];
+
 console.log('\nC. Progress, opened from the Review, leads back');
 check('every "see it on Progress" pointer on the Review says it came from the Review', (reviewSrc.match(/onOpenProgress=\{toProgress\}/g) || []).length === 3 && !/navigate\('\/progress'\)/.test(reviewSrc)
   && /const toProgress = \(\) => navigate\('\/progress', \{ state: \{ from: 'review' \} \}\)/.test(reviewSrc));

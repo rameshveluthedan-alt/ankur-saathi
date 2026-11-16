@@ -402,13 +402,34 @@ export default function ReviewScreen() {
       {step !== 3 && !analysisOpen && savedAnalyses.length > 0 && (
         <div className="card" style={{ background: '#EAF6EE', borderColor: '#BFE3CC' }} data-testid="saved-analyses">
           <div style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: 6 }}>🔍 <Bi hi="आज का विश्लेषण उपलब्ध है" en="Today's photo results, tap to open" inline /></div>
-          {savedAnalyses.map(a => (
-            <button key={a.id} type="button" className="btn btn-secondary" onClick={() => openSaved(a)}
-              style={{ width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.8125rem' }}>
-              <span>{LEVEL_HI[a.worksheet_level] || a.worksheet_level} · {a.result.children_analysed} बच्चे · {a.result.group_accuracy == null ? '—' : `${Math.round(a.result.group_accuracy * 100)}%`}</span>
-              <span style={{ color: 'var(--text-secondary)' }}>{new Date(a.created_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })} देखें →</span>
-            </button>
-          ))}
+          {(() => {
+            // 16 Nov: one card per group, its NEWEST round (which opens with the whole group's day on top); the earlier rounds under a fold.
+            // Each card counts the group's day when the round has it (today_group), else the round's own children. In both languages.
+            const card = (a, testid) => {
+              const day = a.result.today_group;
+              const n = day ? day.children : (a.result.children_scored ?? a.result.children_analysed);
+              const acc = day ? day.group_accuracy : a.result.group_accuracy;
+              const L = GROUP_LABELS[a.worksheet_level] || { hi: a.worksheet_level, en: a.worksheet_level, mark: '' };
+              return (
+                <button key={a.id} type="button" className="btn btn-secondary" onClick={() => openSaved(a)} data-testid={testid}
+                  style={{ width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.8125rem' }}>
+                  <span>{L.mark} <Bi hi={`${L.hi} · ${n} बच्चे`} en={`${L.en} · ${n} ${n === 1 ? 'child' : 'children'}`} inline /> · {acc == null ? '—' : `${Math.round(acc * 100)}%`}</span>
+                  <span style={{ color: 'var(--text-secondary)' }}>{new Date(a.created_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })} <Bi hi="देखें" en="Open" inline /> →</span>
+                </button>
+              );
+            };
+            const newest = [], earlier = [], seen = new Set();
+            savedAnalyses.forEach((a) => { if (seen.has(a.worksheet_level)) earlier.push(a); else { seen.add(a.worksheet_level); newest.push(a); } });
+            return <>
+              {newest.map((a) => card(a, `saved-latest-${a.worksheet_level}`))}
+              {earlier.length > 0 && (
+                <details data-testid="saved-earlier" style={{ fontSize: '0.8125rem' }}>
+                  <summary style={{ cursor: 'pointer', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi={`आज के पहले के दौर (${earlier.length})`} en={`Earlier rounds today (${earlier.length})`} inline /></summary>
+                  {earlier.map((a) => card(a, `saved-earlier-${a.id}`))}
+                </details>
+              )}
+            </>;
+          })()}
         </div>
       )}
 
