@@ -83,19 +83,32 @@ export default function ClassSummary() {
         return (
           <section key={d} data-testid={`class-subject-${d}`}>
             <div className="print-block-head">{T(SUBJECT[d], SUBJECT_EN[d])}</div>
-            <div data-testid={`now-${d}`}>{T(<>कक्षा अभी: {groupsLine(x.groups_now)} · कौशल हासिल किए: <b>{x.skills_achieved}</b></>,
-              <>Class now: {groupsLine(x.groups_now, 'en')} · Skills achieved: <b>{x.skills_achieved}</b></>)}</div>
-            {x.taught.length > 0 && <div style={{ marginTop: 4 }}>{T(<><b>पढ़ाए गए कौशल</b> <span style={{ fontWeight: 400, fontSize: '0.85em' }}>(दिन · अंतिम निर्णय: ⬆ आगे बढ़ें · 🔄 दोहराएँ · ❓ पक्का नहीं)</span></>,
-              <><b>Skills taught</b> <span style={{ fontWeight: 400, fontSize: '0.85em' }}>(days · final decision: ⬆ Move on · 🔄 Teach again · ❓ Not sure)</span></>)}</div>}
-            {x.taught.length ? x.taught.map((t) => {
-              const [kh, ke] = skill(t.skill_id, t.skill_name_hi, t.skill_name_en);
-              const marks = `⬆ ${t.finals.advance} · 🔄 ${t.finals.reteach} · ❓ ${t.finals.not_sure}`;
-              return (
-                <div key={`${t.level}-${t.skill_id}`} data-testid={`taught-${d}-${t.level}-${t.skill_id}`}>
-                  {T(`${G(t.level)}: ${kh} · ${t.days} दिन · ${marks}`, `${GE(t.level)}: ${ke} · ${pl(t.days, 'day', 'days')} · ${marks}`)}
-                </div>
-              );
-            }) : <div data-testid={`taught-none-${d}`}>{T('इस अवधि में कोई योजना नहीं बनी।', 'No plan was made in this period.')}</div>}
+            <div data-testid={`now-${d}`}>{T(<>कक्षा अभी: {groupsLine(x.groups_now)} · हासिल (A) नतीजे: <b>{x.skills_achieved}</b></>,
+              <>Class now: {groupsLine(x.groups_now, 'en')} · Achieved results (A): <b>{x.skills_achieved}</b></>)}</div>
+            {/* the skills taught as a TABLE (16 Nov): one row per group and skill; the days taught and the decisions recorded, and the days with none */}
+            {x.taught.length ? (
+              <div style={{ marginTop: 4 }} data-testid={`taught-${d}`}>
+                <b>{T('पढ़ाए गए कौशल', 'Skills taught')}</b>
+                <table className="where-table sum-table">
+                  <thead><tr>
+                    <th>{T('समूह', 'Group')}</th><th className="skill-cell">{T('कौशल', 'Skill')}</th><th>{T('पढ़ाए गए दिन', 'Days taught')}</th>
+                    <th>⬆ {T('आगे बढ़ें', 'Move on')}</th><th>🔄 {T('दोहराएँ', 'Teach again')}</th><th>❓ {T('पक्का नहीं', 'Not sure')}</th><th>{T('निर्णय नहीं', 'No decision')}</th>
+                  </tr></thead>
+                  <tbody>{x.taught.map((t) => {
+                    const [kh, ke] = skill(t.skill_id, t.skill_name_hi, t.skill_name_en);
+                    const f = t.finals || {};
+                    const none = Math.max(t.days - (f.advance || 0) - (f.reteach || 0) - (f.not_sure || 0), 0);
+                    const n = (v) => (v ? v : '–');
+                    return (
+                      <tr key={`${t.level}-${t.skill_id}`} data-testid={`taught-${d}-${t.level}-${t.skill_id}`}>
+                        <td>{T(G(t.level), GE(t.level))}</td><td className="skill-cell">{T(kh, ke)}</td><td>{t.days}</td>
+                        <td>{n(f.advance)}</td><td>{n(f.reteach)}</td><td>{n(f.not_sure)}</td><td>{n(none)}</td>
+                      </tr>
+                    );
+                  })}</tbody>
+                </table>
+              </div>
+            ) : <div data-testid={`taught-none-${d}`}>{T('इस अवधि में कोई योजना नहीं बनी।', 'No plan was made in this period.')}</div>}
             {Object.keys(x.next).length > 0 && (
               <div data-testid={`next-${d}`}>
                 <b>{T('अगला कदम:', 'Next step:')}</b> {GROUP_ORDER.filter((l) => x.next[l]).map((l) => {

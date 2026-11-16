@@ -640,3 +640,13 @@ body:not(.hide-en):not(.lang-en) .slot-tab .gmark .en, body:not(.hide-en):not(.l
 .where-table .res-a { font-weight: 700; }
 .where-table .res-none { color: #999; }
 @media print { .where-table { break-inside: auto; } .where-table tr { break-inside: avoid; } }
+
+/* the reports' other tables (16 Nov): the same look as "where each child is"; a skill or mistake name may wrap, the numbers stay centred */
+.sum-table { width: 100%; }
+.sum-table td.skill-cell, .sum-table td.text-cell { text-align: left; white-space: normal; }
+.sum-table th { font-weight: 600; }
+/* the number columns as narrow as their content; the skill or mistake name takes the rest of the width */
+.sum-table th, .sum-table td { width: 1%; white-space: normal; }
+.sum-table th.skill-cell, .sum-table td.skill-cell, .sum-table th.text-cell, .sum-table td.text-cell { width: auto; min-width: 9em; }
+.sum-table td.num-cell { white-space: nowrap; }     /* "0 of 5" on one line */
+.report-scroll { overflow-x: auto; }

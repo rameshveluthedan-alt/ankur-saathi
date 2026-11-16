@@ -76,12 +76,18 @@ const order = ['mentor-points', 'mentor-practice', 'mentor-progress', 'mentor-mi
 check('the order: the talking points first, then how the teacher works, then the children, then the mistakes, then the rules', order.every((i, k) => i >= 0 && (k === 0 || i > order[k - 1])), order.join(','));
 check('the points: 👍 the strength, 🎯 each thing to work on, ❓ the question', txt('[data-testid="point-strength"]') === `👍 ${summary.points.strength}` && txt('[data-testid="point-work-stuck"]').startsWith('🎯 प्रगतिशील समूह में N2.3.2')
   && txt('[data-testid="point-work-evidence"]').startsWith('🎯 50 में से 31') &&txt('[data-testid="point-question"]') === `❓ ${summary.points.question}`);
-check('how the teacher works: plans, full assessments (the next class’s decision recorded), decisions with evidence; no first-judgment line since 14 Nov', /योजना बनी: 18 दिन · आकलन पूरा \(अगली कक्षा का निर्णय दर्ज\): 15 दिन/.test(txt('[data-testid="mentor-practice"]'))
-  && /50 में से 31 बार/.test(txt('[data-testid="mentor-practice"]')) && !q('[data-testid="practice-match"]') && !/पहला अनुमान/.test(txt('[data-testid="mentor-practice"]')));
-check('the groups at the start and the end of the period, per subject, with the group marks', txt('[data-testid="progress-groups-numeracy"]') === 'गणित, समूह: 2 अक्टू॰ 2026 को ● 12 · ▲ 10 · ■ 8 → 29 अक्टू॰ 2026 को ● 9 · ▲ 12 · ■ 9', txt('[data-testid="progress-groups-numeracy"]'));
+const cells = (sel, hide = '.en') => (q(sel) ? [...q(sel).querySelectorAll('td')].map((td) => seenIn(td, hide)) : []);     // a table row, cell by cell (16 Nov: tables)
+check('how the teacher works, as a table that says what is counted: days with a plan, days with a decision for EVERY group "15 / 18", group lessons checked "31 / 50"; no first-judgment line',
+  JSON.stringify(cells('[data-testid="practice-plans"]')) === JSON.stringify(['योजना बनी (दिन)', '18']) && cells('[data-testid="practice-decided"]')[1] === '15 / 18'
+  && cells('[data-testid="practice-checked"]')[1] === '31 / 50' && !q('[data-testid="practice-match"]') && !/पहला अनुमान/.test(txt('[data-testid="mentor-practice"]')), JSON.stringify(cells('[data-testid="practice-decided"]')));
+check('the groups at the start and the end of the period, per subject, as a table with the group marks', /गणित: समूहों में बच्चे/.test(txt('[data-testid="progress-groups-numeracy"]'))
+  && JSON.stringify([...q('[data-testid="progress-groups-numeracy"]').querySelectorAll('tbody tr')].map((tr) => [...tr.querySelectorAll('td')].map((td) => seenIn(td, '.en'))))
+     === JSON.stringify([['● शुरुआती', '12', '9'], ['▲ प्रगतिशील', '10', '12'], ['■ दक्ष', '8', '9']]), txt('[data-testid="progress-groups-numeracy"]'));
+check('"achieved RESULTS (A)", not "skills achieved" (a result is a child × a skill)', /हासिल \(A\) नतीजे: 22 · कक्षा में 30 बच्चे/.test(txt('[data-testid="progress-achieved"]')) && /Achieved results \(A\): 22/.test(txtEn('[data-testid="progress-achieved"]')));
 check('a subject with no plans in the period has no line', !q('[data-testid="progress-groups-r1_literacy"]'));
-check('the stuck groups and the children not checked (roll numbers)', txt('[data-testid="progress-stuck"]') === '3+ दिन एक ही कौशल: ▲ प्रगतिशील N2.3.2 (4 दिन)' && txt('[data-testid="progress-not-checked"]') === '2 हफ़्ते से नहीं जाँचे: 3 बच्चे (रोल 4, 17, 22)', txt('[data-testid="progress-not-checked"]'));
-check('the mistakes, with the activity when the bank has one', txt('[data-testid="mistake-N2.3.2-M1"]') === 'N2.3.2 “हासिल भूलना”: 7 बच्चे → गतिविधि: “तीलियों के बंडल से हासिल”' && txt('[data-testid="mistake-N2.3.1-M1"]') === 'N2.3.1 “अंक उलटना”: 3 बच्चे');
+check('the stuck groups and the children not checked (roll numbers)', txt('[data-testid="progress-stuck"]') === '3+ दिन एक ही कौशल: ▲ प्रगतिशील N2.3.2 (4 दिन)' && txt('[data-testid="progress-not-checked"]') === '2 हफ़्ते से नहीं जाँचे: 30 में से 3 बच्चे (रोल 4, 17, 22)', txt('[data-testid="progress-not-checked"]'));
+check('the mistakes as a table: the mistake, the children, the activity ("–" when the bank has none)', JSON.stringify(cells('[data-testid="mistake-N2.3.2-M1"]')) === JSON.stringify(['N2.3.2 “हासिल भूलना”', '7', 'तीलियों के बंडल से हासिल'])
+  && JSON.stringify(cells('[data-testid="mistake-N2.3.1-M1"]')) === JSON.stringify(['N2.3.1 “अंक उलटना”', '3', '–']), JSON.stringify(cells('[data-testid="mistake-N2.3.1-M1"]')));
 check('the rules behind the points, printed with their values', /3\+ दिन/.test(txt('[data-testid="mentor-rules"]')) && /14 दिन/.test(txt('[data-testid="mentor-rules"]')) && /25%/.test(txt('[data-testid="mentor-rules"]'))
   && /50% से कम हों तो बिंदु \(कम से कम 3 समूह\)/.test(txt('[data-testid="mentor-rules"]')) && !/पहला अनुमान|तुलना/.test(txt('[data-testid="mentor-rules"]')));
 check('never a child\'s name, though the phone knows them', !/सीता|रामू/.test(page.textContent));
@@ -103,11 +109,12 @@ check('the title and the period, with English dates', txtEn('[data-testid="mento
   && txtEn('[data-testid="mentor-period"]') === 'Period: 2 Oct 2026 – 29 Oct 2026 (the last 4 weeks)', txtEn('[data-testid="mentor-title"]'));
 check('the talking points from the server\'s English', txtEn('[data-testid="point-strength"]') === `👍 ${summary.points.strength_en}` && txtEn('[data-testid="point-work-stuck"]') === '🎯 The Progressor group was taught N2.3.2 on 4 days.'
   && txtEn('[data-testid="point-question"]') === `❓ ${summary.points.question_en}`, txtEn('[data-testid="point-strength"]'));
-check('how the teacher works, the groups, the stuck group and the children not checked', /^Plans made: 18 days · Assessment completed \(the next class's decision recorded\): 15 days/.test(txtEn('[data-testid="mentor-practice"]').replace(/^How the teacher works ?/, ''))
-  && txtEn('[data-testid="progress-groups-numeracy"]') === 'Maths, groups: on 2 Oct 2026 ● 12 · ▲ 10 · ■ 8 → on 29 Oct 2026 ● 9 · ▲ 12 · ■ 9'
-  && txtEn('[data-testid="progress-stuck"]') === 'The same skill on 3+ days: ▲ Progressor N2.3.2 (4 days)' && txtEn('[data-testid="progress-not-checked"]') === 'Not checked for 2 weeks: 3 children (roll 4, 17, 22)',
-  txtEn('[data-testid="mentor-practice"]'));
-check('a mistake with no English name keeps its Hindi name; the footnotes and every heading in English', txtEn('[data-testid="mistake-N2.3.1-M1"]') === 'N2.3.1 “अंक उलटना”: 3 children'
+check('how the teacher works, the groups, the stuck group and the children not checked', JSON.stringify(cells('[data-testid="practice-decided"]', '.hi')) === JSON.stringify(['Days with a next-class decision for every group', '15 of 18'])
+  && cells('[data-testid="practice-checked"]', '.hi')[0] === "Group lessons where children's work was checked"
+  && /Maths: children in each group.*2 Oct 2026.*29 Oct 2026/.test(txtEn('[data-testid="progress-groups-numeracy"]'))
+  && txtEn('[data-testid="progress-stuck"]') === 'The same skill on 3+ days: ▲ Progressor N2.3.2 (4 days)' && txtEn('[data-testid="progress-not-checked"]') === 'Not checked for 2 weeks: 3 of 30 children (roll 4, 17, 22)',
+  txtEn('[data-testid="progress-not-checked"]'));
+check('a mistake with no English name keeps its Hindi name; the footnotes and every heading in English', cells('[data-testid="mistake-N2.3.1-M1"]', '.hi')[0] === 'N2.3.1 “अंक उलटना”'
   && txtEn('[data-testid="mentor-key"]') === '● Beginner · ▲ Progressor · ■ Proficient · Codes such as N2.3.2 identify the skills on the skill ladder.' && /^Rules:/.test(txtEn('[data-testid="mentor-rules"]'))
   && [...document.querySelectorAll('.print-block-head')].every((h) => !/[ऀ-ॿ]/.test(seenIn(h, '.hi'))), [...document.querySelectorAll('.print-block-head')].map((h) => seenIn(h, '.hi')).join(' | '));
 

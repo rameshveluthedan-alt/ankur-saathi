@@ -62,6 +62,7 @@ const q = (sel) => document.querySelector(sel);
 const seenIn = (el, hide) => { const c = el.cloneNode(true); c.querySelectorAll(hide).forEach((x) => x.remove()); return c.textContent.replace(/\s+/g, ' ').trim(); };
 const txt = (sel) => (q(sel) ? seenIn(q(sel), '.en') : '');
 const txtEn = (sel) => (q(sel) ? seenIn(q(sel), '.hi') : '');
+const cells = (sel, hide = '.en') => (q(sel) ? [...q(sel).querySelectorAll('td')].map((td) => seenIn(td, hide)) : []);     // a table row, cell by cell
 const click = async (el) => { await act(async () => { el.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true })); }); await flush(); };
 let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${label}${ok ? '' : '  ' + extra}`); if (!ok) process.exitCode = 1; };
 
@@ -71,8 +72,10 @@ const page = q('[data-testid="class-summary"]');
 const today = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
 check('it asks the server for the last 4 weeks up to the phone\'s date', calls.length === 1 && calls[0][0] === 'T1' && calls[0][1] === today, JSON.stringify(calls));
 check('the title and the period', txt('[data-testid="class-title"]') === 'कक्षा सारांश · MPT101 · कक्षा 2' && txt('[data-testid="class-period"]') === 'अवधि: 2 अक्टू॰ 2026 – 29 अक्टू॰ 2026 (पिछले 4 हफ़्ते)', txt('[data-testid="class-title"]'));
-check('per subject, the class now: the groups and the skills achieved', txt('[data-testid="now-numeracy"]') === 'कक्षा अभी: ● शुरुआती 9 · ▲ प्रगतिशील 12 · ■ दक्ष 9 · कौशल हासिल किए: 22', txt('[data-testid="now-numeracy"]'));
-check('what each group was taught: the skill, the days, the final decisions', txt('[data-testid="taught-numeracy-progressor-N2.3.2"]') === '▲ प्रगतिशील: N2.3.2 हासिल वाला जोड़ · 4 दिन · ⬆ 1 · 🔄 2 · ❓ 1', txt('[data-testid="taught-numeracy-progressor-N2.3.2"]'));
+check('per subject, the class now: the groups and the skills achieved', txt('[data-testid="now-numeracy"]') === 'कक्षा अभी: ● शुरुआती 9 · ▲ प्रगतिशील 12 · ■ दक्ष 9 · हासिल (A) नतीजे: 22', txt('[data-testid="now-numeracy"]'));
+check('what each group was taught, as a TABLE (16 Nov): group, skill, days, the decisions, and the days with none ("–" for nothing)', JSON.stringify(cells('[data-testid="taught-numeracy-progressor-N2.3.2"]')) === JSON.stringify(['▲ प्रगतिशील', 'N2.3.2 हासिल वाला जोड़', '4', '1', '2', '1', '–'])
+  && JSON.stringify(cells('[data-testid="taught-numeracy-beginner-N2.3.1"]')) === JSON.stringify(['● शुरुआती', 'N2.3.1 बिना हासिल जोड़', '3', '1', '1', '–', '1'])
+  && /पढ़ाए गए दिन.*निर्णय नहीं/.test(txt('[data-testid="taught-numeracy"] thead')), JSON.stringify(cells('[data-testid="taught-numeracy-beginner-N2.3.1"]')));
 check('a subject with no plans: says so', txt('[data-testid="taught-none-r1_literacy"]') === 'इस अवधि में कोई योजना नहीं बनी।' && !q('[data-testid="next-r1_literacy"]'));
 check('the next step per group, with why; a group with no decision says to choose when planning', txt('[data-testid="next-numeracy-beginner"]') === '● शुरुआती: N2.3.2 हासिल वाला जोड़ (⬆ आगे बढ़ें);'
   && txt('[data-testid="next-numeracy-progressor"]') === '▲ प्रगतिशील: N2.3.2 हासिल वाला जोड़ (🔄 दोहराएँ);' && /पिछले आकलन में निर्णय नहीं; योजना बनाते समय चुनें/.test(txt('[data-testid="next-numeracy-proficient"]')), txt('[data-testid="next-numeracy-beginner"]'));
@@ -90,9 +93,9 @@ check('the footnote: what the letters, marks and codes mean', txt('[data-testid=
 
 console.log('\nin English (16 Nov: the page was Hindi only, even with English chosen)');
 check('the title, the period and the class now', txtEn('[data-testid="class-title"]') === 'Class summary · MPT101 · Grade 2' && txtEn('[data-testid="class-period"]') === 'Period: 2 Oct 2026 – 29 Oct 2026 (the last 4 weeks)'
-  && txtEn('[data-testid="now-numeracy"]') === 'Class now: ● Beginner 9 · ▲ Progressor 12 · ■ Proficient 9 · Skills achieved: 22', txtEn('[data-testid="now-numeracy"]'));
-check('a skill with an English name shows it; one without keeps its Hindi name', txtEn('[data-testid="taught-numeracy-progressor-N2.3.2"]') === '▲ Progressor: N2.3.2 Adds with regrouping · 4 days · ⬆ 1 · 🔄 2 · ❓ 1'
-  && txtEn('[data-testid="taught-numeracy-beginner-N2.3.1"]') === '● Beginner: N2.3.1 बिना हासिल जोड़ · 3 days · ⬆ 1 · 🔄 1 · ❓ 0', txtEn('[data-testid="taught-numeracy-beginner-N2.3.1"]'));
+  && txtEn('[data-testid="now-numeracy"]') === 'Class now: ● Beginner 9 · ▲ Progressor 12 · ■ Proficient 9 · Achieved results (A): 22', txtEn('[data-testid="now-numeracy"]'));
+check('a skill with an English name shows it; one without keeps its Hindi name; English headings', cells('[data-testid="taught-numeracy-progressor-N2.3.2"]', '.hi')[1] === 'N2.3.2 Adds with regrouping'
+  && cells('[data-testid="taught-numeracy-beginner-N2.3.1"]', '.hi')[1] === 'N2.3.1 बिना हासिल जोड़' && /Days taught.*Move on.*Teach again.*Not sure.*No decision/.test(txtEn('[data-testid="taught-numeracy"] thead')), txtEn('[data-testid="taught-numeracy"] thead'));
 check('the next step, the children to look at (names as the phone has them), the mistake and its activity', txtEn('[data-testid="next-numeracy-progressor"]') === '▲ Progressor: N2.3.2 हासिल वाला जोड़ (🔄 Teach again);'
   && txtEn('[data-testid="stuck-progressor-N2.3.2"]') === '▲ Progressor, N2.3.2 (taught on 4 days, not achieved yet): 5 सीता, 6 रामू, Roll 8'
   && txtEn('[data-testid="class-mistake-N2.3.2-M1"]') === 'N2.3.2 “Forgets the carry”: 5 सीता, 6 रामू → activity: “Carrying with bundles of sticks”', txtEn('[data-testid="class-mistake-N2.3.2-M1"]'));

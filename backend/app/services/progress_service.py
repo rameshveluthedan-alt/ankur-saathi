@@ -496,7 +496,7 @@ def mentor_points(practice: dict, progress: dict, mistakes: list) -> dict:
     p, g = practice, progress
     # each point in Hindi and in English (16 Nov: the report shows English when the teacher has chosen English); "आकलन", not "समीक्षा", since 15 Nov
     parts = [x for x in (p["review_days"] and (f"{p['review_days']} दिन आकलन पूरा हुआ", f"the assessment was completed on {p['review_days']} days"),
-                         g["skills_achieved"] and (f"बच्चों ने {g['skills_achieved']} कौशल हासिल किए", f"the children achieved {g['skills_achieved']} skills"),
+                         g["skills_achieved"] and (f"{g['skills_achieved']} नतीजे हासिल (A) रहे", f"{g['skills_achieved']} achieved results (A) were recorded"),     # results, not skills (16 Nov)
                          p["plan_days"] and (f"{p['plan_days']} दिन योजना बनी", f"a plan was made on {p['plan_days']} days")) if x]
     weeks = R['window_days'] // 7
 

@@ -72,12 +72,18 @@ export default function MentorReport() {
         <div data-testid="point-question">❓ {T(points.question, points.question_en)}</div>
       </section>
 
+      {/* 16 Nov: tables, and labels that say what is counted ("0 days completed" next to "5 of 12 checked" read as a contradiction) */}
       <section data-testid="mentor-practice">
         <div className="print-block-head">{T('पढ़ाने का तरीका', 'How the teacher works')}</div>
-        <div>{T(<>योजना बनी: <b>{p.plan_days}</b> दिन · आकलन पूरा (अगली कक्षा का निर्णय दर्ज): <b>{p.review_days}</b> दिन</>,
-          <>Plans made: <b>{p.plan_days}</b> {p.plan_days === 1 ? 'day' : 'days'} · Assessment completed (the next class's decision recorded): <b>{p.review_days}</b> {p.review_days === 1 ? 'day' : 'days'}</>)}</div>
-        <div>{T(<>बच्चों का काम जाँचकर निर्णय: <b>{p.groups_taught}</b> में से <b>{p.groups_checked}</b> बार</>,
-          <>Decisions after checking the children's work: <b>{p.groups_checked}</b> of <b>{p.groups_taught}</b> times</>)}</div>
+        <table className="where-table sum-table">
+          <tbody>
+            <tr data-testid="practice-plans"><td className="text-cell">{T('योजना बनी (दिन)', 'Days with a plan')}</td><td className="num-cell"><b>{p.plan_days}</b></td></tr>
+            <tr data-testid="practice-decided"><td className="text-cell">{T('हर समूह के लिए अगली कक्षा का निर्णय दर्ज (दिन)', "Days with a next-class decision for every group")}</td>
+              <td className="num-cell"><b>{p.review_days}</b> {T(`/ ${p.plan_days}`, `of ${p.plan_days}`)}</td></tr>
+            <tr data-testid="practice-checked"><td className="text-cell">{T('समूह-पाठ जिनमें बच्चों का काम जाँचा गया', "Group lessons where children's work was checked")}</td>
+              <td className="num-cell"><b>{p.groups_checked}</b> {T(`/ ${p.groups_taught}`, `of ${p.groups_taught}`)}</td></tr>
+          </tbody>
+        </table>
       </section>
 
       <section data-testid="mentor-progress">
@@ -85,44 +91,58 @@ export default function MentorReport() {
         {subjects.map((d) => {
           const at = g.groups[d];
           return (
-            <div key={d} data-testid={`progress-groups-${d}`}>
-              {T(`${SUBJECT[d]}, समूह: ${hiDate(at.start_date)} को ${groupsLine(at.start)} → ${hiDate(at.end_date)} को ${groupsLine(at.end)}`,
-                `${SUBJECT_EN[d]}, groups: on ${enDate(at.start_date)} ${groupsLine(at.start)} → on ${enDate(at.end_date)} ${groupsLine(at.end)}`)}
+            <div key={d} data-testid={`progress-groups-${d}`} style={{ marginBottom: 4 }}>
+              {T(`${SUBJECT[d]}: समूहों में बच्चे`, `${SUBJECT_EN[d]}: children in each group`)}
+              <table className="where-table sum-table">
+                <thead><tr><th>{T('समूह', 'Group')}</th><th>{T(hiDate(at.start_date), enDate(at.start_date))}</th><th>{T(hiDate(at.end_date), enDate(at.end_date))}</th></tr></thead>
+                <tbody>{GROUP_ORDER.filter((l) => (at.start || {})[l] != null || (at.end || {})[l] != null).map((l) => (
+                  <tr key={l}><td>{GROUP_LABELS[l].mark} {T(GROUP_LABELS[l].hi, GROUP_LABELS[l].en)}</td><td>{(at.start || {})[l] ?? '–'}</td><td>{(at.end || {})[l] ?? '–'}</td></tr>
+                ))}</tbody>
+              </table>
             </div>
           );
         })}
-        <div>{T(<>कौशल हासिल किए: <b>{g.skills_achieved}</b> (कक्षा में {g.class_size} बच्चे)</>,
-          <>Skills achieved: <b>{g.skills_achieved}</b> ({g.class_size} children in the class)</>)}</div>
+        {/* an achieved RESULT (a child x a skill marked A), not a skill: "18 skills achieved" read as 18 skills */}
+        <div data-testid="progress-achieved">{T(<>हासिल (A) नतीजे: <b>{g.skills_achieved}</b> · कक्षा में {g.class_size} बच्चे</>,
+          <>Achieved results (A): <b>{g.skills_achieved}</b> · {g.class_size} children in the class</>)}</div>
         {g.stuck.length > 0 && (
           <div data-testid="progress-stuck">{T(`${R.stuck_days}+ दिन एक ही कौशल: ${g.stuck.map((s) => `${GROUP_LABELS[s.level]?.mark || ''} ${GROUP_LABELS[s.level]?.hi || s.level} ${s.skill_id} (${s.days} दिन)`).join(' · ')}`,
             `The same skill on ${R.stuck_days}+ days: ${g.stuck.map((s) => `${GROUP_LABELS[s.level]?.mark || ''} ${GROUP_LABELS[s.level]?.en || s.level} ${s.skill_id} (${pl(s.days, 'day', 'days')})`).join(' · ')}`)}</div>
         )}
-        <div data-testid="progress-not-checked">{T(`${Math.round(R.not_checked_days / 7)} हफ़्ते से नहीं जाँचे: ${notChecked ? `${notChecked} बच्चे (रोल ${g.not_checked.join(', ')})` : 'कोई नहीं'}`,
-          `Not checked for ${Math.round(R.not_checked_days / 7)} weeks: ${notChecked ? `${pl(notChecked, 'child', 'children')} (roll ${g.not_checked.join(', ')})` : 'none'}`)}</div>
+        {/* the size of it, for an officer; the roll numbers only when there are a few */}
+        <div data-testid="progress-not-checked">{T(`${Math.round(R.not_checked_days / 7)} हफ़्ते से नहीं जाँचे: ${notChecked ? `${g.class_size} में से ${notChecked} बच्चे${notChecked <= 8 ? ` (रोल ${g.not_checked.join(', ')})` : ''}` : 'कोई नहीं'}`,
+          `Not checked for ${Math.round(R.not_checked_days / 7)} weeks: ${notChecked ? `${notChecked} of ${pl(g.class_size, 'child', 'children')}${notChecked <= 8 ? ` (roll ${g.not_checked.join(', ')})` : ''}` : 'none'}`)}</div>
       </section>
 
       {/* results by skill taught (15 Nov): the children's newest result in the period, as counts; and how many it was taught to have none yet */}
       {(g.skill_results || []).length > 0 && (
         <section data-testid="mentor-skill-results">
           <div className="print-block-head">{T('कौशल के नतीजे', 'Results by skill')}</div>
-          {g.skill_results.map((k) => (
-            <div key={`${k.domain_id}-${k.skill_id}`} data-testid={`skill-result-${k.skill_id}`}>
-              {T(<>{k.skill_id}{k.skill_name_hi ? ` ${k.skill_name_hi}` : ''}: A {k.a} · PA {k.pa} · NA {k.na} · अभी नहीं जाँचे {k.not_checked}</>,
-                <>{k.skill_id}{(k.skill_name_en || k.skill_name_hi) ? ` ${k.skill_name_en || k.skill_name_hi}` : ''}: A {k.a} · PA {k.pa} · NA {k.na} · not checked yet {k.not_checked}</>)}
-            </div>
-          ))}
+          <table className="where-table sum-table">
+            <thead><tr><th className="skill-cell">{T('कौशल', 'Skill')}</th><th>A</th><th>PA</th><th>NA</th><th>{T('अभी नहीं जाँचे', 'Not checked yet')}</th></tr></thead>
+            <tbody>{g.skill_results.map((k) => (
+              <tr key={`${k.domain_id}-${k.skill_id}`} data-testid={`skill-result-${k.skill_id}`}>
+                <td className="skill-cell">{T(`${k.skill_id}${k.skill_name_hi ? ` ${k.skill_name_hi}` : ''}`, `${k.skill_id}${(k.skill_name_en || k.skill_name_hi) ? ` ${k.skill_name_en || k.skill_name_hi}` : ''}`)}</td>
+                <td>{k.a}</td><td>{k.pa}</td><td>{k.na}</td><td>{k.not_checked}</td>
+              </tr>
+            ))}</tbody>
+          </table>
         </section>
       )}
 
       {m.mistakes.length > 0 && (
         <section data-testid="mentor-mistakes">
           <div className="print-block-head">{T('आम गलतियाँ', 'Common mistakes')}</div>
-          {m.mistakes.map((x) => (
-            <div key={x.misconception_id} data-testid={`mistake-${x.misconception_id}`}>
-              {T(`${x.skill_id} “${x.name_hi}”: ${x.children} बच्चे${x.activity ? ` → गतिविधि: “${x.activity.title_hi}”` : ''}`,
-                `${x.skill_id} “${x.name_en || x.name_hi}”: ${pl(x.children, 'child', 'children')}${x.activity ? ` → activity: “${x.activity.title_en || x.activity.title_hi}”` : ''}`)}
-            </div>
-          ))}
+          <table className="where-table sum-table">
+            <thead><tr><th className="text-cell">{T('गलती', 'Mistake')}</th><th>{T('बच्चे', 'Children')}</th><th className="text-cell">{T('सुझाई गई गतिविधि', 'Suggested activity')}</th></tr></thead>
+            <tbody>{m.mistakes.map((x) => (
+              <tr key={x.misconception_id} data-testid={`mistake-${x.misconception_id}`}>
+                <td className="text-cell">{T(`${x.skill_id} “${x.name_hi}”`, `${x.skill_id} “${x.name_en || x.name_hi}”`)}</td>
+                <td>{x.children}</td>
+                <td className="text-cell">{x.activity ? T(x.activity.title_hi, x.activity.title_en || x.activity.title_hi) : '–'}</td>
+              </tr>
+            ))}</tbody>
+          </table>
         </section>
       )}
 

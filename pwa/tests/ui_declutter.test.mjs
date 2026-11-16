@@ -120,14 +120,14 @@ check('the photo result shows what each mistake means beside its code, and "time
   assert.ok(r.includes('<Bi hi="गलती" en="Mistake" inline />') && !r.includes('en="Misconceptions Detected"'));
 });
 
-check('the class summary prints "पढ़ाए गए कौशल" with a key for ⬆ / 🔄 / ❓, and "हर बच्चा कहाँ है" (A / PA / NA per child and skill, – not checked); "आकलन", not "समीक्षा" (15 Nov)', () => {
+check('the class summary prints "पढ़ाए गए कौशल" as a table (16 Nov: days, ⬆ / 🔄 / ❓, no decision), and "हर बच्चा कहाँ है" (A / PA / NA per child and skill, – not checked); "आकलन", not "समीक्षा" (15 Nov)', () => {
   const c = read('screens/ClassSummary.jsx');
-  assert.ok(c.includes('<b>पढ़ाए गए कौशल</b>') && c.includes('⬆ आगे बढ़ें · 🔄 दोहराएँ · ❓ पक्का नहीं') && c.includes('<b>हर बच्चा कहाँ है</b>'));
-  assert.ok(c.includes('className="where-table"') && c.includes("({ a: 'A', pa: 'PA', na: 'NA' })[r.results[k]] || '–'") && !c.includes('समीक्षा'));
+  assert.ok(c.includes("T('पढ़ाए गए कौशल', 'Skills taught')") && c.includes("T('पढ़ाए गए दिन', 'Days taught')") && c.includes("T('निर्णय नहीं', 'No decision')") && c.includes('<b>हर बच्चा कहाँ है</b>'));
+  assert.ok(c.includes('className="where-table"') && c.includes('className="where-table sum-table"') && c.includes("({ a: 'A', pa: 'PA', na: 'NA' })[r.results[k]] || '–'") && !c.includes('समीक्षा'));
 });
-check('the mentor report prints "कौशल के नतीजे": A / PA / NA counts and "not yet checked" per skill taught (15 Nov)', () => {
+check('the mentor report prints "कौशल के नतीजे" as a table: A / PA / NA counts and "not yet checked" per skill taught (15 Nov; a table since 16 Nov)', () => {
   const m = read('screens/MentorReport.jsx');
-  assert.ok(m.includes('कौशल के नतीजे') && m.includes('A {k.a} · PA {k.pa} · NA {k.na} · अभी नहीं जाँचे {k.not_checked}'));
+  assert.ok(m.includes('कौशल के नतीजे') && m.includes('<td>{k.a}</td><td>{k.pa}</td><td>{k.na}</td><td>{k.not_checked}</td>') && m.includes("T('अभी नहीं जाँचे', 'Not checked yet')"));
 });
 
 check('a photo result on a sample says what it rests on and who is left (16 Nov): "Based on X of the Y sample children. Photograph the other N … roll …"', () => {
