@@ -168,13 +168,14 @@ export default function ClassSummary() {
       )}
 
       <hr />
+      {/* 16 Nov: the rules say WHAT they are for (the "Children to look at" lists), each with its own name; a readable date; no "(from this phone)" */}
       <div className="print-footer" data-testid="class-rules">
-        {T(`नियम: “अभी हासिल नहीं” = समूह को ${R.stuck_days}+ दिन वही कौशल पढ़ाया और बच्चे का सबसे नया नतीजा A नहीं · “नहीं जाँचे” = ${R.not_checked_days} दिन से कोई नतीजा नहीं · NA ${R.na_days} या ज़्यादा दिन`,
-          `Rules: “not achieved yet” = the group was taught the same skill on ${R.stuck_days}+ days and the child's newest result is not A · “not checked” = no result for ${R.not_checked_days} days · NA on ${R.na_days} or more days`)}
+        {T(`“इन बच्चों पर ध्यान दें” में कौन आता है: अभी हासिल नहीं = समूह को वही कौशल ${R.stuck_days} या ज़्यादा दिन पढ़ाया और बच्चे का सबसे नया नतीजा A नहीं · नहीं जाँचे = पिछले ${R.not_checked_days} दिन में कोई नतीजा नहीं · फिर “अभी नहीं” = ${R.na_days} या ज़्यादा दिन NA`,
+          `Who is listed under “Children to look at”: not achieved yet = the group was taught the same skill on ${R.stuck_days} or more days, and the child's newest result is not A · not checked = no result in the last ${R.not_checked_days} days · “not yet” again = marked NA on ${R.na_days} or more days`)}
       </div>
       <div className="print-footer" data-testid="class-key">{T(`${ABBR.hi} · ${CODE_NOTE}`, `${ABBR.en} · ${CODE_NOTE_EN}`)}</div>
-      <div className="print-footer" data-testid="class-footer">{T(`🌱 अंकुर साथी · ${s.period.end} · इस पन्ने पर बच्चों के नाम हैं (इसी फ़ोन से): इसे सँभालकर रखें`,
-        `🌱 Ankur Saathi · ${s.period.end} · This page shows children's names (from this phone): keep it safe`)}</div>
+      <div className="print-footer" data-testid="class-footer">{T(`🌱 अंकुर साथी · ${hiDate(s.period.end)} · इस पन्ने पर बच्चों के नाम हैं: छपी कॉपी सँभालकर रखें`,
+        `🌱 Ankur Saathi · ${enDate(s.period.end)} · This page shows children's names: keep the printout safe`)}</div>
     </div>
   );
 }

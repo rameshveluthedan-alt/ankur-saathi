@@ -82,8 +82,9 @@ check('the next step per group, with why; a group with no decision says to choos
 check('the children to look at, BY NAME where the phone has it (roll 8: the roll number alone)', txt('[data-testid="stuck-progressor-N2.3.2"]') === '▲ प्रगतिशील, N2.3.2 (4 दिन पढ़ाया, अभी हासिल नहीं): 5 सीता, 6 रामू, रोल 8', txt('[data-testid="stuck-progressor-N2.3.2"]'));
 check('not checked for 2 weeks, and "not achieved" again and again (with the skill)', txt('[data-testid="look-not-checked"]') === '2 हफ़्ते से नहीं जाँचे: 3 गीता, रोल 12' && txt('[data-testid="look-na"]') === '2+ दिन “अभी नहीं” (NA): 5 सीता (N2.3.2)', txt('[data-testid="look-na"]'));
 check('the mistakes with the children who made them and an activity', txt('[data-testid="class-mistake-N2.3.2-M1"]') === 'N2.3.2 “हासिल भूलना”: 5 सीता, 6 रामू → गतिविधि: “तीलियों के बंडल से हासिल”', txt('[data-testid="class-mistake-N2.3.2-M1"]'));
-check('the rules at the foot, and that the page carries names (keep it safe)', /3\+ दिन/.test(txt('[data-testid="class-rules"]')) && /14 दिन/.test(txt('[data-testid="class-rules"]')) && /NA 2 या ज़्यादा दिन/.test(txt('[data-testid="class-rules"]'))
-  && /बच्चों के नाम हैं/.test(txt('[data-testid="class-footer"]')));
+check('the rules at the foot say what they are for, each named; the page carries names (keep the printout safe), with a readable date (16 Nov)', /^“इन बच्चों पर ध्यान दें” में कौन आता है/.test(txt('[data-testid="class-rules"]'))
+  && /3 या ज़्यादा दिन पढ़ाया/.test(txt('[data-testid="class-rules"]')) && /पिछले 14 दिन में कोई नतीजा नहीं/.test(txt('[data-testid="class-rules"]')) && /2 या ज़्यादा दिन NA/.test(txt('[data-testid="class-rules"]'))
+  && /29 अक्टू॰ 2026 · इस पन्ने पर बच्चों के नाम हैं: छपी कॉपी सँभालकर रखें/.test(txt('[data-testid="class-footer"]')), txt('[data-testid="class-rules"]'));
 check('printing shows this page alone, a page of its own (no bottom bar)', document.body.classList.contains('print-plan') && page.classList.contains('plan-print') && /path="\/progress\/class"/.test(appSrc) && /path === '\/progress\/class'/.test(appSrc));
 dom.window.history.replaceState({ idx: 0 }, '');
 await click(q('[data-testid="class-back"]'));
@@ -100,7 +101,7 @@ check('the next step, the children to look at (names as the phone has them), the
   && txtEn('[data-testid="stuck-progressor-N2.3.2"]') === '▲ Progressor, N2.3.2 (taught on 4 days, not achieved yet): 5 सीता, 6 रामू, Roll 8'
   && txtEn('[data-testid="class-mistake-N2.3.2-M1"]') === 'N2.3.2 “Forgets the carry”: 5 सीता, 6 रामू → activity: “Carrying with bundles of sticks”', txtEn('[data-testid="class-mistake-N2.3.2-M1"]'));
 check('the footnotes in English, and every heading', txtEn('[data-testid="class-key"]').startsWith('A = did it without help') && /Codes such as N2\.3\.2/.test(txtEn('[data-testid="class-key"]'))
-  && /keep it safe/.test(txtEn('[data-testid="class-footer"]')) && /^Rules:/.test(txtEn('[data-testid="class-rules"]'))
+  && /29 Oct 2026 · This page shows children's names: keep the printout safe/.test(txtEn('[data-testid="class-footer"]')) && /^Who is listed under “Children to look at”/.test(txtEn('[data-testid="class-rules"]'))
   && [...document.querySelectorAll('.print-block-head')].every((h) => !/[ऀ-ॿ]/.test(seenIn(h, '.hi'))), [...document.querySelectorAll('.print-block-head')].map((h) => seenIn(h, '.hi')).join(' | '));
 
 console.log('\nwhen there is little to say');

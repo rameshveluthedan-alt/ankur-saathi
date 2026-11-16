@@ -147,15 +147,16 @@ export default function MentorReport() {
       )}
 
       <hr />
+      {/* 16 Nov: the rules say what they are for (how the talking points are chosen); a readable date */}
       <div className="print-footer" data-testid="mentor-rules">
-        {T(<>नियम: एक ही कौशल {R.stuck_days}+ दिन = बात करने लायक · {R.not_checked_days} दिन से कोई नतीजा नहीं = “नहीं जाँचे” (कक्षा के {Math.round(R.not_checked_share * 100)}% या ज़्यादा हों तो बिंदु) ·
-          जाँचकर निर्णय {Math.round(R.evidence_share * 100)}% से कम हों तो बिंदु (कम से कम {R.evidence_min} समूह)</>,
-        <>Rules: the same skill on {R.stuck_days}+ days = worth talking about · no result for {R.not_checked_days} days = “not checked” (a point if {Math.round(R.not_checked_share * 100)}% of the class or more) ·
-          a point if under {Math.round(R.evidence_share * 100)}% of decisions follow a check (at least {R.evidence_min} groups)</>)}
+        {T(<>बातचीत के बिंदु कैसे चुने जाते हैं: कोई समूह {R.stuck_days} या ज़्यादा दिन एक ही कौशल पर · कक्षा के {Math.round(R.not_checked_share * 100)}% या ज़्यादा बच्चों का {R.not_checked_days} दिन से कोई नतीजा नहीं ·
+          {Math.round(R.evidence_share * 100)}% से कम समूह-पाठों में निर्णय से पहले बच्चों का काम जाँचा गया (कम से कम {R.evidence_min} समूह-पाठ)</>,
+        <>How the talking points are chosen: a group on the same skill for {R.stuck_days} or more days · {Math.round(R.not_checked_share * 100)}% or more of the class with no result in {R.not_checked_days} days ·
+          under {Math.round(R.evidence_share * 100)}% of group lessons checked before deciding (at least {R.evidence_min} lessons)</>)}
       </div>
       <div className="print-footer" data-testid="mentor-key">{T(`${MARKS_NOTE} · ${CODE_NOTE}`, `${MARKS_NOTE_EN} · ${CODE_NOTE_EN}`)}</div>
-      <div className="print-footer" data-testid="mentor-footer">{T(`🌱 अंकुर साथी · ${m.period.end} · सिर्फ़ गिनती और रोल नंबर, कोई नाम नहीं`,
-        `🌱 Ankur Saathi · ${m.period.end} · Counts and roll numbers only, no names`)}</div>
+      <div className="print-footer" data-testid="mentor-footer">{T(`🌱 अंकुर साथी · ${hiDate(m.period.end)} · सिर्फ़ गिनती और रोल नंबर, कोई नाम नहीं`,
+        `🌱 Ankur Saathi · ${enDate(m.period.end)} · Counts and roll numbers only, no names`)}</div>
     </div>
   );
 }

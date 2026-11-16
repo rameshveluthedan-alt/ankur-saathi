@@ -88,8 +88,10 @@ check('a subject with no plans in the period has no line', !q('[data-testid="pro
 check('the stuck groups and the children not checked (roll numbers)', txt('[data-testid="progress-stuck"]') === '3+ दिन एक ही कौशल: ▲ प्रगतिशील N2.3.2 (4 दिन)' && txt('[data-testid="progress-not-checked"]') === '2 हफ़्ते से नहीं जाँचे: 30 में से 3 बच्चे (रोल 4, 17, 22)', txt('[data-testid="progress-not-checked"]'));
 check('the mistakes as a table: the mistake, the children, the activity ("–" when the bank has none)', JSON.stringify(cells('[data-testid="mistake-N2.3.2-M1"]')) === JSON.stringify(['N2.3.2 “हासिल भूलना”', '7', 'तीलियों के बंडल से हासिल'])
   && JSON.stringify(cells('[data-testid="mistake-N2.3.1-M1"]')) === JSON.stringify(['N2.3.1 “अंक उलटना”', '3', '–']), JSON.stringify(cells('[data-testid="mistake-N2.3.1-M1"]')));
-check('the rules behind the points, printed with their values', /3\+ दिन/.test(txt('[data-testid="mentor-rules"]')) && /14 दिन/.test(txt('[data-testid="mentor-rules"]')) && /25%/.test(txt('[data-testid="mentor-rules"]'))
-  && /50% से कम हों तो बिंदु \(कम से कम 3 समूह\)/.test(txt('[data-testid="mentor-rules"]')) && !/पहला अनुमान|तुलना/.test(txt('[data-testid="mentor-rules"]')));
+check('the rules behind the points, printed with their values, saying what they are for (16 Nov)', /^बातचीत के बिंदु कैसे चुने जाते हैं/.test(txt('[data-testid="mentor-rules"]')) && /3 या ज़्यादा दिन/.test(txt('[data-testid="mentor-rules"]'))
+  && /14 दिन/.test(txt('[data-testid="mentor-rules"]')) && /25%/.test(txt('[data-testid="mentor-rules"]'))
+  && /50% से कम समूह-पाठों में .*\(कम से कम 3 समूह-पाठ\)/.test(txt('[data-testid="mentor-rules"]')) && !/पहला अनुमान|तुलना/.test(txt('[data-testid="mentor-rules"]'))
+  && /29 अक्टू॰ 2026 · सिर्फ़ गिनती और रोल नंबर/.test(txt('[data-testid="mentor-footer"]')), txt('[data-testid="mentor-rules"]'));
 check('never a child\'s name, though the phone knows them', !/सीता|रामू/.test(page.textContent));
 check('printing shows this page alone (body.print-plan, the .plan-print page), a page of its own (no bottom bar)', document.body.classList.contains('print-plan') && page.classList.contains('plan-print')
   && /path="\/progress\/mentor"/.test(appSrc) && /path === '\/progress\/mentor'/.test(appSrc));
@@ -115,7 +117,7 @@ check('how the teacher works, the groups, the stuck group and the children not c
   && txtEn('[data-testid="progress-stuck"]') === 'The same skill on 3+ days: ▲ Progressor N2.3.2 (4 days)' && txtEn('[data-testid="progress-not-checked"]') === 'Not checked for 2 weeks: 3 of 30 children (roll 4, 17, 22)',
   txtEn('[data-testid="progress-not-checked"]'));
 check('a mistake with no English name keeps its Hindi name; the footnotes and every heading in English', cells('[data-testid="mistake-N2.3.1-M1"]', '.hi')[0] === 'N2.3.1 “अंक उलटना”'
-  && txtEn('[data-testid="mentor-key"]') === '● Beginner · ▲ Progressor · ■ Proficient · Codes such as N2.3.2 identify the skills on the skill ladder.' && /^Rules:/.test(txtEn('[data-testid="mentor-rules"]'))
+  && txtEn('[data-testid="mentor-key"]') === '● Beginner · ▲ Progressor · ■ Proficient · Codes such as N2.3.2 identify the skills on the skill ladder.' && /^How the talking points are chosen: .*under 50% of group lessons checked before deciding \(at least 3 lessons\)/.test(txtEn('[data-testid="mentor-rules"]'))
   && [...document.querySelectorAll('.print-block-head')].every((h) => !/[ऀ-ॿ]/.test(seenIn(h, '.hi'))), [...document.querySelectorAll('.print-block-head')].map((h) => seenIn(h, '.hi')).join(' | '));
 
 console.log('\nwhen there is little to say');

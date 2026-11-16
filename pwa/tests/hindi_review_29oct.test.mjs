@@ -21,7 +21,7 @@ check('#88 the tick sheet\'s column: "रोल नंबर" (both tables)', ti
 check('#99 "जाँची-परखी सामग्री" ("अंकुर साथी कैसे काम करता है?"; the Plan screen\'s coverage note that also used it was removed on 30 Oct)', how.includes('AI जाँची-परखी सामग्री') && !how.includes('जाँची हुई') && !plan.includes('जाँची हुई सामग्री'));
 check('#167 the class summary\'s reasons: "❓ पक्का नहीं: यही कौशल फिर", "कई बच्चों से गलती हुई: यही फिर"', summary.includes("not_sure: '❓ पक्का नहीं: यही कौशल फिर'") && summary.includes("recommended: 'कई बच्चों से गलती हुई: यही फिर'"));
 check('#136 the mentor report\'s strength: one line naming each part that is not zero (assessments, skills, plans; "आकलन", not "समीक्षा", since 15 Nov; achieved RESULTS, not skills, since 16 Nov)', /parts = \[x for x in \(p\["review_days"\] and .*दिन आकलन पूरा हुआ.*नतीजे हासिल \(A\) रहे.*दिन योजना बनी/s.test(service));
-check('#142 the evidence point needs at least 3 groups taught, printed with the rules', /"evidence_min": 3/.test(service) && /p\["groups_taught"\] >= R\["evidence_min"\]/.test(service) && mentor.includes('(कम से कम {R.evidence_min} समूह)'));
+check('#142 the evidence point needs at least 3 groups taught, printed with the rules', /"evidence_min": 3/.test(service) && /p\["groups_taught"\] >= R\["evidence_min"\]/.test(service) && mentor.includes('(कम से कम {R.evidence_min} समूह-पाठ)'));
 check('#10, #133 the names stay: "टिक शीट", "मेंटर रिपोर्ट"', ticks.includes("'टिक शीट'") && mentor.includes("'मेंटर रिपोर्ट'"));
 
 
