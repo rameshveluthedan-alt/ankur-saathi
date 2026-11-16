@@ -545,10 +545,10 @@ export default function ReviewScreen() {
                       onClick={() => setAbsent(prev => [...prev, r])}><Bi hi="अनुपस्थित" en="Absent" inline /></button>}
                   </div>
                 ))}
-                {useSample && <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }} data-testid="sample-note-obs"><span className="hi">नमूना मोटी तस्वीर देता है (लगभग ±{sample.margin_points} अंक)।</span><span className="en" lang="en">A sample gives a rough picture of the group (about ±{sample.margin_points} points).</span></p>}
+                {useSample && <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 6 }} data-testid="sample-note-obs"><span className="hi">नमूना समूह की मोटी तस्वीर देता है।</span><span className="en" lang="en">A sample gives a rough picture of the group.</span></p>}
                 <button className="btn btn-primary" onClick={submitObserved} disabled={loading || !observedItems.length} style={{ marginTop: 8 }} data-testid="obs-submit">
-                  {loading ? 'दर्ज हो रहा...' : <><span className="hi">✓ जमा करें{observedItems.length > 0 && <> · {[newCount && `${newCount} ${newCount === 1 ? 'नया' : 'नए'}`, changeCount && `${changeCount} बदलाव`].filter(Boolean).join(', ')}</>}</span>
-                    <En>✓ Submit{observedItems.length > 0 ? ` · ${[newCount && `${newCount} new`, changeCount && `${changeCount} ${changeCount === 1 ? 'change' : 'changes'}`].filter(Boolean).join(', ')}` : ''}</En></>}
+                  {loading ? <Bi hi="दर्ज हो रहा..." en="Saving…" inline /> : <><span className="hi">✓ जमा करें{observedItems.length > 0 && <> · {[newCount && `${newCount} ${newCount === 1 ? 'नया' : 'नए'}`, changeCount && `${changeCount} बदलाव`].filter(Boolean).join(', ')}</>}</span>
+                    <En>✓ Save{observedItems.length > 0 ? ` · ${[newCount && `${newCount} new`, changeCount && `${changeCount} ${changeCount === 1 ? 'change' : 'changes'}`].filter(Boolean).join(', ')}` : ''}</En></>}
                 </button>
               </div>
             );
@@ -630,20 +630,21 @@ export default function ReviewScreen() {
                       </div>
                     )}
                     <div><b>✓ <Bi hi="हो चुके" en="Done" inline />: {done.length}/{total}</b>{done.length > 0 && <> · <Bi hi="रोल" en="roll" inline /> {done.join(', ')}</>}</div>
+                    {left.length === 0 ? <div style={{ marginTop: 2 }} data-testid="all-done"><b>✓ <Bi hi="सब हो गए" en="All done" inline /></b></div> : (
                     <div style={{ marginTop: 2 }}>
                       ⏳ {useSample ? <><Bi hi="इन बच्चों की फ़ोटो लें" en="Photograph these children's sheets" inline /></> : <><Bi hi="बाकी" en="Left" inline /></>}:{' '}
                       {left.length === 0 ? <><Bi hi="कोई नहीं" en="none" inline /></> : useSample
                         ? left.map(r => <button key={r} type="button" data-testid={`chip-${r}`} title={[names && names[r], coverage.labels?.[r]].filter(Boolean).join(' · ')} className="chip" onClick={() => toggleAbsent(r)}>{r}{coverage.labels?.[r] ? <span style={{ fontSize: '0.55rem', color: 'var(--text-secondary)' }}> {coverage.labels[r]}</span> : null}</button>)
                         : left.join(', ')}
-                    </div>
+                    </div>)}
                     {useSample && left.length > 0 && <div style={{ color: 'var(--text-secondary)' }}><Bi hi="कोई बच्चा अनुपस्थित है? उसके रोल पर दबाएँ, उसकी जगह दूसरा बच्चा सुझाया जाएगा।" en="Child absent? Tap their roll number to get another child." /></div>}
                     {useSample && sample.absent.length > 0 && (
                       <div style={{ marginTop: 4 }}><Bi hi="अनुपस्थित" en="Absent" inline />: {sample.absent.map(r => <button key={r} type="button" data-testid={`absent-${r}`} className="chip" onClick={() => toggleAbsent(r)}>{r} ✕</button>)}</div>
                     )}
                     {useSample && (
                       <div data-testid="sample-note" style={{ color: 'var(--text-secondary)', marginTop: 4 }}>
-                        <span className="hi">नमूना समूह की मोटी तस्वीर देता है (औसत लगभग ±{sample.margin_points} अंक तक अलग हो सकता है)। स्तर सिर्फ़ आकलन से बदलते हैं, दैनिक नमूने से नहीं।</span>
-                        <span className="en" lang="en">A sample gives a rough picture of the group (the average could be off by about ±{sample.margin_points} points). Levels change only through an assessment, never from daily results.</span>
+                        <span className="hi">नमूना समूह की मोटी तस्वीर देता है। स्तर सिर्फ़ आकलन से बदलते हैं, दैनिक नमूने से नहीं।</span>
+                        <span className="en" lang="en">A sample gives a rough picture of the group. Levels change only through an assessment, never from daily results.</span>
                       </div>
                     )}
                     {!useSample && done.length > 0 && <div style={{ color: 'var(--text-secondary)', marginTop: 2 }}><Bi hi="जो हो चुके हैं उनकी दोबारा फ़ोटो न लें।" en="Already done: no need to photograph these again." /></div>}

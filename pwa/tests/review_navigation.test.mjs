@@ -213,9 +213,9 @@ console.log('\nE. the plan screen leads on');
 fresh(); globalThis.__auth.currentPlan = PLAN({});
 localStorage.clear();
 await show(Yojana);
-check('the review button is always open, like the Review tab (14 Nov), and names the groups not yet ticked as taught', !q('[data-testid="to-review"]').disabled && /अभी ✓ नहीं लगा/.test(q('[data-testid="to-review-left"]').textContent));
-for (const box of [...document.querySelectorAll('[data-testid^="taught-"] input')]) await click(box);
-check('...every group ticked "इस समूह को पढ़ा दिया": the reminder line goes', !q('[data-testid="to-review"]').disabled && !q('[data-testid="to-review-left"]'));
+check('the review button is always open, like the Review tab (14 Nov)', !q('[data-testid="to-review"]').disabled);
+check('no "Mark as taught" tick and no "not yet marked" reminder (16 Nov: since 14 Nov they controlled nothing)', !document.querySelector('[data-testid^="taught-"]') && !q('[data-testid="to-review-left"]')
+  && !/पढ़ा दिया|Mark as taught|Not yet marked/.test(document.getElementById('root').textContent));
 await click(q('[data-testid="to-review"]'));
 check('with a plan: "पढ़ाने के बाद: आकलन करें और अगली कक्षा तय करें →" goes to Assess', /पढ़ाने के बाद: आकलन करें और अगली कक्षा तय करें/.test(text()) && JSON.stringify(globalThis.__navs.at(-1)) === '["/review"]');
 fresh(); cached = async () => { throw notFound(); };

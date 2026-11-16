@@ -136,6 +136,11 @@ check('a photo result on a sample says what it rests on and who is left (16 Nov)
     && r.includes('acc != null && coverage && coverage.group_rolls') && r.includes('const acc = day ? day.group_accuracy : analysisResult.group_accuracy'));
 });
 
+check('the photo list says "✓ All done" when nobody is left (not "Photograph these children\'s sheets: none"), and the sample note has no "±… points" (16 Nov)', () => {
+  const r = read('screens/ReviewScreen.jsx');
+  assert.ok(r.includes('data-testid="all-done"') && r.includes('en="All done"') && !r.includes('margin_points') && r.includes('A sample gives a rough picture of the group. Levels'));
+});
+
 console.log('\nthe dictation sentences: for the teacher only');
 check('a dictation group\'s slot has a "बोलकर लिखवाएँ" fold with the sheet\'s sentences, and the printed plan a line with them', () => {
   const y = read('screens/YojanaScreen.jsx'); const pp = read('screens/PlanPrint.jsx');

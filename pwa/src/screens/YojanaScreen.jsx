@@ -101,11 +101,7 @@ export default function YojanaScreen() {
     return () => { cancelled = true; };
   }, [today, selectedDomain, fits, wake]);
   useEffect(() => { try { setSlotIndexState(Number(sessionStorage.getItem(slotKey)) || 0); } catch { setSlotIndexState(0); } }, [slotKey, currentPlan && currentPlan.selected_competency_id]);
-  // which groups the teacher has marked "taught" today (this phone): the tabs show ✓, and the review opens once every group is taught
-  const taughtKey = currentPlan ? `ankur_taught:${teacher.teacher_id}:${currentPlan.plan_date}:${currentPlan.domain_id}` : null;
-  const [taught, setTaught] = useState([]);
-  useEffect(() => { try { setTaught(JSON.parse(localStorage.getItem(taughtKey) || '[]')); } catch { setTaught([]); } }, [taughtKey]);
-  const toggleTaught = (g) => setTaught((t) => { const n = t.includes(g) ? t.filter((x) => x !== g) : [...t, g]; try { localStorage.setItem(taughtKey, JSON.stringify(n)); } catch { /* private mode */ } return n; });
+  // (no "Mark as taught" tick since 16 Nov: since 14 Nov it controlled nothing; it only added a ✓ on the tabs and a "not yet marked" reminder)
 
   if (loadingStored && !isToday(currentPlan)) {
     return (
@@ -444,7 +440,7 @@ export default function YojanaScreen() {
               className={`slot-tab ${s.group ? `tier-${s.group}` : 'slot-anchor'} ${active === s ? 'on' : ''}`} data-testid={`slot-tab-${s.kind === 'anchor' ? 'anchor' : s.group}`}
               onClick={() => setSlotIndex(k)}>
               <span className="slot-tab-name">{slotLabel(s)}</span>
-              <span className="slot-tab-time">{s.group && taught.includes(s.group) ? '✓ ' : ''}{s.minutes ? <>{s.minutes} {MIN}</> : ''}</span>
+              <span className="slot-tab-time">{s.minutes ? <>{s.minutes} {MIN}</> : ''}</span>
             </button>
           ))}
         </div>
@@ -453,12 +449,6 @@ export default function YojanaScreen() {
           <div key={s.key} className={`slot-panel ${s.group ? `tier-${s.group}` : 'slot-anchor'}${s.reteach ? ' reteach' : ''}`} role="tabpanel" id={`slot-panel-${k}`} aria-labelledby={`slot-tab-${k}`}
             hidden={active !== s} data-testid={active === s ? 'slot-panel' : 'slot-panel-hidden'} data-slot={s.kind} data-slot-group={s.group || 'anchor'}>
             {s.kind === 'anchor' ? anchorPanel(s) : teachPanel(s)}
-            {s.group && (
-              <label className={`taught-row ${taught.includes(s.group) ? 'on' : ''}`} data-testid={`taught-${s.group}`}>
-                <input type="checkbox" checked={taught.includes(s.group)} onChange={() => toggleTaught(s.group)} />
-                <span><Bi hi="इस समूह को पढ़ा दिया" en="Mark as taught" inline /></span>
-              </label>
-            )}
             <div className="slot-nav">
               {k > 0 && (
                 <button type="button" className="btn btn-secondary btn-small" data-testid="slot-prev" onClick={() => goSlot(k - 1)}><span>← <Bi hi="पिछला" en="Previous" inline /></span></button>
@@ -480,22 +470,10 @@ export default function YojanaScreen() {
 
       <h2 className="day-section" data-testid="section-after">✅ <Bi hi="पढ़ाने के बाद" en="After teaching" inline /></h2>
       {/* the next step after teaching comes first in this section; "Why this plan?" is for whoever is curious */}
-      {/* the next step after teaching: always open, like the Review tab (14 Nov); the groups not yet ticked as taught are named under it, as a reminder */}
-      {(() => {
-        const toTeach = GROUP_ORDER.filter((g) => slots.some((x) => x.group === g));
-        const left = toTeach.filter((g) => !taught.includes(g));
-        return (<>
-          <button type="button" className="btn btn-primary" data-testid="to-review" onClick={() => navigate('/review')} style={{ marginTop: 4, marginBottom: left.length ? 4 : 12, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="पढ़ाने के बाद: आकलन करें और अगली कक्षा तय करें →" en="Assess and decide the next class →" />
-          </button>
-          {left.length > 0 && (
-            <p data-testid="to-review-left" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 0 12px' }}>
-              <Bi hi="अभी ✓ नहीं लगा (पढ़ा दिया):" en="Not yet marked as taught:" inline />{' '}
-              {left.map((g, i) => <span key={g}>{i ? ', ' : ''}<GroupMark group={g} name /></span>)}
-            </p>
-          )}
-        </>);
-      })()}
+      {/* the next step after teaching: always open, like the Review tab (14 Nov) */}
+      <button type="button" className="btn btn-primary" data-testid="to-review" onClick={() => navigate('/review')} style={{ marginTop: 4, marginBottom: 12, flexDirection: 'column', gap: 0 }}>
+        <Bi hi="पढ़ाने के बाद: आकलन करें और अगली कक्षा तय करें →" en="Assess and decide the next class →" />
+      </button>
       {/* Why this plan? */}
       <details className="card fold section-fold" data-testid="why-fold" open={showWhyPanel} onToggle={(e) => setShowWhyPanel(e.currentTarget.open)}>
         <summary data-testid="why-toggle"><span>💡 <Bi hi="यह योजना क्यों?" en="Why this plan?" inline /></span></summary>
