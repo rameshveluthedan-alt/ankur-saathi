@@ -744,10 +744,12 @@ async def today_group_result(db, teacher_id: str, session_date, competency_id: s
                           "status": r["status"], "misconceptions": mids, "assessed_problems": s.get("total_problems"),
                           "copy_errors": ed.get("copy_errors") or [], "needs_check": _needs_check(ed)})
     if not total:
-        return {"children": 0, "rolls": [], "group_accuracy": None, "ai_recommendation": None, "per_child": []}
+        return {"children": 0, "rolls": [], "group_accuracy": None, "ai_recommendation": None, "per_child": [], "misconceptions_detected": []}
     acc = correct / total
     return {"children": len(rolls), "rolls": rolls, "group_accuracy": round(acc, 2), "ai_recommendation": group_recommendation(acc, counts),
-            "per_child": per_child}
+            "per_child": per_child,
+            # the day's mistakes too, as a round lists them (17 Nov: "Mistakes found" counted only the latest round)
+            "misconceptions_detected": [{"id": k, "total_occurrences": v} for k, v in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))]}
 
 
 def _explain_discrepancy(teacher: str, ai: str, accuracy: float, misconceptions: dict) -> str:

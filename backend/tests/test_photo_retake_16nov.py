@@ -161,6 +161,8 @@ async def flow():
         check("...and each child's latest card for the page's \"All children today\" (17 Nov): five, the replaced ones with their NEW result, mistakes by code",
               sorted(pc) == [3, 6, 14, 16, 19] and pc[3]["accuracy"] == 1.0 and pc[3]["assessed_problems"] == 6 and pc[3]["misconceptions"] == ["N2.3.2-M1"]
               and pc[16]["misconceptions"] == [] and all(set(c) >= {"status", "copy_errors", "needs_check"} for c in pc.values()), pc.get(3))
+        check("...and the day's mistakes, as a round lists them: N2.3.2-M1 three times (the three replaced sheets)",
+              out["today_group"]["misconceptions_detected"] == [{"id": "N2.3.2-M1", "total_occurrences": 3}], out["today_group"]["misconceptions_detected"])
         left = await db.fetchval("SELECT result FROM review_analyses WHERE id = $1", aid)
         left = _j.loads(left) if isinstance(left, str) else left
         check("the earlier round stops offering them (no pending, no 'already checked')", not left.get("pending") and not left.get("skipped_duplicates"), (left.get("pending"), left.get("skipped_duplicates")))

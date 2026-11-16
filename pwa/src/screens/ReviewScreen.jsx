@@ -368,6 +368,9 @@ export default function ReviewScreen() {
   const showDayKids = !!dayKids && childView === 'day';
   const freshRolls = new Set(roundKids.filter((c) => c.accuracy != null).map((c) => c.roll_number));
   const cardList = showDayKids ? [...dayKids, ...roundKids.filter((c) => c.accuracy == null)] : roundKids;
+  // the mistakes follow the same switch (17 Nov: "Mistakes found" counted only the latest round while the rest showed the day)
+  const dayMistakes = analysisResult && analysisResult.today_group && analysisResult.today_group.misconceptions_detected;
+  const mistakeList = (showDayKids && dayMistakes) ? dayMistakes : ((analysisResult && analysisResult.misconceptions_detected) || []);
 
   return (
     <div className="screen">
@@ -918,10 +921,11 @@ export default function ReviewScreen() {
                 </div>
               )}
 
-              {analysisResult.misconceptions_detected?.length > 0 && (
-                <div className="card">
-                  <h3 style={{ marginBottom: 8 }}><Bi hi="पाई गई गलतियाँ" en="Mistakes found" inline /></h3>
-                  {analysisResult.misconceptions_detected.map(m => (
+              {mistakeList.length > 0 && (
+                <div className="card" data-testid="mistakes-found">
+                  <h3 style={{ marginBottom: 8 }}><Bi hi="पाई गई गलतियाँ" en="Mistakes found" inline />
+                    {dayKids && <span style={{ fontWeight: 400, fontSize: '0.75rem', color: 'var(--text-secondary)' }}> · {showDayKids && dayMistakes ? <Bi hi="आज के सभी बच्चे" en="all children today" inline /> : <Bi hi="इस बार" en="this round" inline />}</span>}</h3>
+                  {mistakeList.map(m => (
                     <div key={m.id} style={{ padding: '6px 0', borderBottom: '1px solid var(--border)', fontSize: '0.875rem' }}>
                       {/* what the mistake means first, the code after it (15 Nov: codes alone meant nothing to a teacher) */}
                       {(analysisResult.misconception_names || {})[m.id]
