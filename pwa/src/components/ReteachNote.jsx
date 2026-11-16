@@ -15,7 +15,7 @@ export default function ReteachNote({ block, expanded }) {
     <div data-testid="reteach-note" style={{ marginTop: 6, background: 'var(--green-bg)', borderRadius: 8, padding: '6px 8px', fontSize: '0.75rem' }}>
       <div><b>🔄 <span className="hi">पुनः शिक्षण</span><span className="en en-inline" lang="en">Re-teach</span></b>: <span className="hi">पिछली जाँच की गलतियों पर, कौशल दोबारा समझाना</span><span className="en en-inline" lang="en">the skill taught again, on the mistakes from the last check</span></div>
       {s.rolls.length > 0 && (
-        <div data-testid="reteach-children">👥 <span className="hi">पिछली जाँच में गलती करने वाले बच्चे</span><span className="en en-inline" lang="en">Children who made the mistake at the last review</span>: <span className="hi">रोल</span><span className="en en-inline" lang="en">Roll</span> {s.rolls.join(', ')}</div>
+        <div data-testid="reteach-children">👥 <span className="hi">पिछली जाँच में गलती करने वाले बच्चे</span><span className="en en-inline" lang="en">Children who made the mistake at the last check</span>: <span className="hi">रोल</span><span className="en en-inline" lang="en">Roll</span> {s.rolls.join(', ')}</div>
       )}
       {s.mistakes.length > 0 ? (
         <div data-testid="reteach-mistakes"><span className="hi">गलतियाँ</span><span className="en en-inline" lang="en">Mistakes</span>: <Bi hi={s.mistakes.map((m) => `${m.name_hi || m.misconception_id} (${m.children} बच्चे)`).join('; ')} en={s.mistakes.map((m) => `${m.name_en || m.name_hi || m.misconception_id} (${m.children} ${m.children === 1 ? 'child' : 'children'})`).join('; ')} inline /></div>
