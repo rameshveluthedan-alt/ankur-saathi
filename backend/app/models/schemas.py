@@ -101,6 +101,7 @@ class GroupSnapshot(BaseModel):
     roll_numbers: list[int]
     target_competency_id: str
     target_competency_name_hi: str
+    target_competency_name_en: Optional[str] = None    # the English name, shown when the teacher has chosen English (16 Nov)
 
 class GeneratePlanResponse(BaseModel):
     plan_date: str
@@ -201,9 +202,11 @@ class ChildProgressEntry(BaseModel):
     numeracy_bpp: Optional[str] = None
     numeracy_competency_id: Optional[str] = None
     numeracy_competency_name_hi: Optional[str] = None
+    numeracy_competency_name_en: Optional[str] = None
     literacy_bpp: Optional[str] = None
     literacy_competency_id: Optional[str] = None
     literacy_competency_name_hi: Optional[str] = None
+    literacy_competency_name_en: Optional[str] = None
     numeracy_level_as_of: Optional[str] = None
     numeracy_level_source: Optional[str] = None
     literacy_level_as_of: Optional[str] = None

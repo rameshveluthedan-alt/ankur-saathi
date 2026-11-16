@@ -287,7 +287,7 @@ export default function YojanaScreen() {
                 <div style={{ fontSize: '0.8125rem' }}>✓ <Bi hi="सही उत्तर" en="Right answer" inline />: {fmt(q.expected_hi)}</div>
                 {(q.listen_for || []).map((l, j) => (
                   <div key={j} style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
-                    👂 <Bi hi="सुनें" en="Listen for" inline />: {fmt(l.wrong_answer_hi)} → <em>{fmt(l.misconception_name_hi)}</em>
+                    👂 <Bi hi="सुनें" en="Listen for" inline />: {fmt(l.wrong_answer_hi)} → <em>{l.misconception_name_en ? <Bi hi={fmt(l.misconception_name_hi)} en={l.misconception_name_en} inline /> : fmt(l.misconception_name_hi)}</em>
                   </div>
                 ))}
                 {q.shows_hi && !(q.listen_for || []).length && (
@@ -370,7 +370,7 @@ export default function YojanaScreen() {
                 </td>
                 <td style={{ textAlign: 'center', fontWeight: 700 }}>{g.count}</td>
                 <td><span style={{ fontFamily: 'monospace', fontSize: '0.75rem' }} data-testid={`plan-skill-${level}`}>{g.target_competency_id}</span>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{g.target_competency_name_hi}</div></td>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi={g.target_competency_name_hi} en={g.target_competency_name_en || g.target_competency_name_hi} inline /></div></td>
                 <td style={{ textAlign: 'center' }}>
                   {sheet ? (
                     <button type="button" className="btn btn-secondary btn-small sheet-btn" data-testid={`worksheet-${level}`}

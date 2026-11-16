@@ -1,5 +1,6 @@
 import React from 'react';
 import { reteachSummary } from '../services/reteachInfo';
+import Bi from './Bi';
 
 /**
  * The note on a re-teach block of the lesson plan.
@@ -17,7 +18,7 @@ export default function ReteachNote({ block, expanded }) {
         <div data-testid="reteach-children">👥 <span className="hi">पिछली जाँच में गलती करने वाले बच्चे</span><span className="en en-inline" lang="en">Children who made the mistake at the last review</span>: <span className="hi">रोल</span><span className="en en-inline" lang="en">Roll</span> {s.rolls.join(', ')}</div>
       )}
       {s.mistakes.length > 0 ? (
-        <div data-testid="reteach-mistakes"><span className="hi">गलतियाँ</span><span className="en en-inline" lang="en">Mistakes</span>: {s.mistakes.map((m) => `${m.name_hi || m.misconception_id} (${m.children} बच्चे)`).join('; ')}</div>
+        <div data-testid="reteach-mistakes"><span className="hi">गलतियाँ</span><span className="en en-inline" lang="en">Mistakes</span>: <Bi hi={s.mistakes.map((m) => `${m.name_hi || m.misconception_id} (${m.children} बच्चे)`).join('; ')} en={s.mistakes.map((m) => `${m.name_en || m.name_hi || m.misconception_id} (${m.children} ${m.children === 1 ? 'child' : 'children'})`).join('; ')} inline /></div>
       ) : (
         <div data-testid="reteach-no-mistake" style={small}><span className="hi">कोई खास गलती दर्ज नहीं हुई: इस कौशल की आम गलतियाँ दोबारा समझाई जाएँगी।</span><span className="en" lang="en">No specific mistake was recorded: the skill's usual mistakes are re-taught.</span></div>
       )}

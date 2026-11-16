@@ -202,12 +202,13 @@ async def get_cached_plan(teacher_id: str, plan_date: date, domain_id: str):
         snapshot = as_obj(row['groups_snapshot']) or {}
 
         target_ids = [g.get('target') for g in snapshot.values() if g.get('target')]
-        names = {}
+        names, names_en = {}, {}
         if target_ids:
             rows = await db.fetch(
-                "SELECT id, name_hi FROM competencies WHERE id = ANY($1::text[])", target_ids
+                "SELECT id, name_hi, name_en FROM competencies WHERE id = ANY($1::text[])", target_ids
             )
             names = {r['id']: r['name_hi'] for r in rows}
+            names_en = {r['id']: r['name_en'] for r in rows}
 
         groups = []
         for label in ('beginner', 'progressor', 'proficient'):
@@ -219,6 +220,7 @@ async def get_cached_plan(teacher_id: str, plan_date: date, domain_id: str):
                     "roll_numbers": g.get('rolls', []),
                     "target_competency_id": g.get('target'),
                     "target_competency_name_hi": names.get(g.get('target'), ''),
+                    "target_competency_name_en": names_en.get(g.get('target'), ''),
                 })
 
         return {

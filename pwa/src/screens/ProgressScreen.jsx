@@ -96,6 +96,7 @@ export default function ProgressScreen() {
         const bpp = selectedDomain === 'numeracy' ? c.numeracy_bpp : c.literacy_bpp;
         const compId = selectedDomain === 'numeracy' ? c.numeracy_competency_id : c.literacy_competency_id;
         const compName = selectedDomain === 'numeracy' ? c.numeracy_competency_name_hi : c.literacy_competency_name_hi;
+        const compNameEn = selectedDomain === 'numeracy' ? c.numeracy_competency_name_en : c.literacy_competency_name_en;
         return (
           <div key={c.roll_number} className="card" style={{ padding: 10, cursor: 'pointer' }}
             onClick={() => setSelectedChild(selectedChild === c.roll_number ? null : c.roll_number)}>
@@ -116,7 +117,7 @@ export default function ProgressScreen() {
             {selectedChild === c.roll_number && (
               <div style={{ marginTop: 8, fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
                 <div><Bi hi="लक्ष्य" en="Current skill" inline />: <strong>{compId}</strong></div>
-                <div>{compName}</div>
+                <div>{compName ? <Bi hi={compName} en={compNameEn || compName} inline /> : null}</div>
                 <div style={{ marginTop: 4 }}>
                   <Bi hi="गणित" en="Maths" inline />: <span className={`badge badge-${c.numeracy_bpp || 'beginner'}`}>{BPP[c.numeracy_bpp] ? <Bi hi={BPP[c.numeracy_bpp].hi} en={BPP[c.numeracy_bpp].en} inline /> : '—'}</span>
                   {' · '}

@@ -34,7 +34,7 @@ export default function SuggestedSkill({ proposal, competencies, selectedId, onC
     <div className="card" data-testid="suggested-skill" data-skill={s.skill.id} data-reason={s.reason} style={{ padding: 12, borderLeft: '4px solid var(--green-dark)' }}>
       <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-secondary)' }}>⭐ <Bi hi="सुझाया गया" en="Suggested" inline /></div>
       <div style={{ marginTop: 4 }}>
-        <b style={{ fontFamily: 'monospace' }}>{s.skill.id}</b> — {s.skill.name_hi || s.skill.name_en}
+        <b style={{ fontFamily: 'monospace' }}>{s.skill.id}</b> — <Bi hi={s.skill.name_hi || s.skill.name_en} en={s.skill.name_en || s.skill.name_hi} inline />
       </div>
       <div data-testid="suggested-why" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>
         <Bi hi={`${where.hi}${day ? ` (${day})` : ''}: ${r.hi}`} en={`${where.en}: ${r.en}`} />

@@ -232,7 +232,7 @@ export default function PlanScreen() {
             </div>
             <div data-testid="locked-skill" data-locked="true" aria-disabled="true" style={{ marginTop: 6, fontSize: '0.9375rem' }}>
               <Bi hi="कौशल" en="Skill" inline />: <b style={{ fontFamily: 'monospace' }}>{p.selected_competency_id}</b> <span aria-label="locked">🔒</span>
-              {skill && skill.name_hi && <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>{skill.name_hi}</div>}
+              {skill && skill.name_hi && <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}><Bi hi={skill.name_hi} en={skill.name_en || skill.name_hi} inline /></div>}
             </div>
             {m && (
               <div data-testid="locked-time" data-locked="true" aria-disabled="true" style={{ marginTop: 4, fontSize: '0.9375rem' }}>

@@ -665,7 +665,7 @@ def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
             for x in item.get("listen_for") or []:
                 mid, wrong = (x or {}).get("misconception_id"), str((x or {}).get("wrong_answer_hi") or "").strip()
                 if mid in mistakes and wrong:
-                    listen.append({"misconception_id": mid, "misconception_name_hi": mistakes[mid]["name_hi"], "detect_en": mistakes[mid]["diagnostic_indicator"], "wrong_answer_hi": wrong})
+                    listen.append({"misconception_id": mid, "misconception_name_hi": mistakes[mid]["name_hi"], **({"misconception_name_en": mistakes[mid]["name_en"]} if mistakes[mid].get("name_en") else {}), "detect_en": mistakes[mid]["diagnostic_indicator"], "wrong_answer_hi": wrong})
                 else:
                     lines.append(f"{g} question {n}: removed a listen-for entry ({mid!r}: not a mistake listed for this skill, or no wrong answer given)")
             kept.append({"kind": item["kind"], "question_hi": item["question_hi"].strip(), "expected_hi": item["expected_hi"].strip(), "listen_for": listen,

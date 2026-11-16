@@ -41,10 +41,10 @@ async def get_children_progress(db, teacher_id: str) -> list[dict]:
         SELECT 
             c.roll_number, c.enrolled_grade,
             num.bpp_level as num_bpp, num.current_competency_id as num_comp,
-            num_c.name_hi as num_comp_hi,
+            num_c.name_hi as num_comp_hi, num_c.name_en as num_comp_en,
             COALESCE(GREATEST(num.last_assessed, num.level_changed_at), num.created_at)::date as num_as_of, num.source as num_source,
             lit.bpp_level as lit_bpp, lit.current_competency_id as lit_comp,
-            lit_c.name_hi as lit_comp_hi,
+            lit_c.name_hi as lit_comp_hi, lit_c.name_en as lit_comp_en,
             COALESCE(GREATEST(lit.last_assessed, lit.level_changed_at), lit.created_at)::date as lit_as_of, lit.source as lit_source
         FROM children c
         LEFT JOIN child_lakshya_positions num 
@@ -64,9 +64,11 @@ async def get_children_progress(db, teacher_id: str) -> list[dict]:
             "numeracy_bpp": r['num_bpp'],
             "numeracy_competency_id": r['num_comp'],
             "numeracy_competency_name_hi": r['num_comp_hi'],
+            "numeracy_competency_name_en": r['num_comp_en'],
             "literacy_bpp": r['lit_bpp'],
             "literacy_competency_id": r['lit_comp'],
             "literacy_competency_name_hi": r['lit_comp_hi'],
+            "literacy_competency_name_en": r['lit_comp_en'],
             # when the level was last set (registration, baseline or a periodic round), so the teacher can see how old it is
             "numeracy_level_as_of": r['num_as_of'].isoformat() if r['num_as_of'] else None,
             "numeracy_level_source": r['num_source'],

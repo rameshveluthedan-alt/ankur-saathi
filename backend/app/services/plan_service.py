@@ -869,7 +869,7 @@ async def build_reteach_items(db, teacher_id: str, misc_ids: list, feedback_date
     roll_group = {str(r): g["label"] for g in groups for r in g.get("roll_numbers", [])}
     items = []
     for mid in misc_ids:
-        detail = await db.fetchrow("SELECT name_hi, competency_id FROM misconceptions WHERE id = $1", mid)
+        detail = await db.fetchrow("SELECT name_hi, name_en, competency_id FROM misconceptions WHERE id = $1", mid)
         if not detail:
             continue
         rolls = await db.fetch("""SELECT DISTINCT ch.roll_number FROM assessment_evidence e JOIN children ch ON ch.id = e.child_id
@@ -880,7 +880,7 @@ async def build_reteach_items(db, teacher_id: str, misc_ids: list, feedback_date
             if g:
                 by_group[g] = by_group.get(g, 0) + 1
                 rolls_by_group.setdefault(g, []).append(r["roll_number"])
-        items.append({"misconception_id": mid, "competency_id": detail["competency_id"], "misconception_name_hi": detail["name_hi"], "affected_count": len(rolls),
+        items.append({"misconception_id": mid, "competency_id": detail["competency_id"], "misconception_name_hi": detail["name_hi"], "misconception_name_en": detail["name_en"], "affected_count": len(rolls),
                       "group": choose_reteach_group(by_group), "affected_by_group": by_group,
                       "rolls_by_group": {g: sorted(v) for g, v in rolls_by_group.items()}})        # roll numbers go to the plan, never to the AI
     return items
@@ -920,7 +920,7 @@ def stamp_reteach_main(blocks: list, reteach_groups: list, reteach_items: list, 
             n = (item.get("affected_by_group") or {}).get(g, 0)
             if item.get("competency_id") == skill and n > 0:
                 rolls |= set((item.get("rolls_by_group") or {}).get(g, []))
-                mistakes.append({"misconception_id": item.get("misconception_id"), "name_hi": item.get("misconception_name_hi"), "children": n})
+                mistakes.append({"misconception_id": item.get("misconception_id"), "name_hi": item.get("misconception_name_hi"), "name_en": item.get("misconception_name_en"), "children": n})
         blk["reteach"] = True
         blk["affected_rolls"] = sorted(rolls)
         blk["reteach_mistakes"] = mistakes
@@ -1464,11 +1464,11 @@ async def generate_dainik_yojana(
         "selected_competency_id": competency_id,
         "groups": [
             {"label": "beginner", "count": ctx.beginner.count, "roll_numbers": ctx.beginner.roll_numbers,
-             "target_competency_id": beginner_target_id, "target_competency_name_hi": beginner_comp.name_hi},
+             "target_competency_id": beginner_target_id, "target_competency_name_hi": beginner_comp.name_hi, "target_competency_name_en": beginner_comp.name_en},
             {"label": "progressor", "count": ctx.progressor.count, "roll_numbers": ctx.progressor.roll_numbers,
-             "target_competency_id": competency_id, "target_competency_name_hi": selected.name_hi},
+             "target_competency_id": competency_id, "target_competency_name_hi": selected.name_hi, "target_competency_name_en": selected.name_en},
             {"label": "proficient", "count": ctx.proficient.count, "roll_numbers": ctx.proficient.roll_numbers,
-             "target_competency_id": proficient_comp.id, "target_competency_name_hi": proficient_comp.name_hi},
+             "target_competency_id": proficient_comp.id, "target_competency_name_hi": proficient_comp.name_hi, "target_competency_name_en": proficient_comp.name_en},
         ],
         "plan": plan_json,
         "explainability": explainability,

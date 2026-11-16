@@ -119,9 +119,11 @@ async def review_evidence(db, teacher_id: str, review_date, groups: dict) -> dic
         for c in wrong:
             for i in c["ids"]:
                 counts[i] = counts.get(i, 0) + 1
-        names = {r["id"]: r["name_hi"] for r in await db.fetch("SELECT id, name_hi FROM misconceptions WHERE id = ANY($1::text[])", list(counts))} if counts else {}
+        mrows = await db.fetch("SELECT id, name_hi, name_en FROM misconceptions WHERE id = ANY($1::text[])", list(counts)) if counts else []
+        names = {r["id"]: r["name_hi"] for r in mrows}
+        names_en = {r["id"]: r["name_en"] for r in mrows}            # English too (16 Nov)
         out[label] = {**recommend(len(children), len(wrong)), "rolls": sorted(c["roll"] for c in wrong),
-                      "mistakes": sorted(({"misconception_id": i, "name_hi": names.get(i), "children": n} for i, n in counts.items()), key=lambda m: (-m["children"], m["misconception_id"]))}
+                      "mistakes": sorted(({"misconception_id": i, "name_hi": names.get(i), "name_en": names_en.get(i), "children": n} for i, n in counts.items()), key=lambda m: (-m["children"], m["misconception_id"]))}
     return out
 
 

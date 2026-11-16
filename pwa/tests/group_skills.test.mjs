@@ -121,14 +121,18 @@ check('the Beginners\' choice is on the suggested skill, N2.3.2, and the Profici
   assert.match(html, /<option value="N3\.5\.2" selected="">/);
 });
 check('the last plan\'s skill and the teacher\'s decision are shown in the review screen\'s own words', () => {
-  assert.ok(html.includes('पिछली योजना: N2.3.1') && html.includes('पिछली योजना: N2.3.2') && html.includes('पिछली योजना: N3.3.1'));
+  const hiOnly = (h) => h.replace(/<span class="en[^"]*"[^>]*>[^<]*<\/span>/g, '').replace(/<[^>]+>/g, '');      // what a reader sees in Hindi (16 Nov: the labels are bilingual spans)
+  const t = hiOnly(html);
+  assert.ok(t.includes('पिछली योजना: N2.3.1') && t.includes('पिछली योजना: N2.3.2') && t.includes('पिछली योजना: N3.3.1'));
+  assert.ok(html.includes('>Last plan: </span>N2.3.1'), 'and in English');
   assert.ok(!/(^|[\s>(])कल[\s:]/.test(html), 'never "yesterday" (कल): the last plan can be days ago');
   assert.ok(html.includes('⬆ आगे बढ़ें') && html.includes('🔄 दोहराएँ'));
 });
 check('the last plan is named by its date, which is often not yesterday', () => {
   const dated = render(ex.rows, ex.reteach, true, { previousDate: '2026-10-24' });
   const shown = new Date('2026-10-24T00:00:00').toLocaleDateString('hi-IN', { day: 'numeric', month: 'short' });
-  assert.ok(dated.includes(`पिछली योजना (${shown}): N2.3.2`), shown);
+  const plain = dated.replace(/<span class="en[^"]*"[^>]*>[^<]*<\/span>/g, '').replace(/<[^>]+>/g, '');
+  assert.ok(plain.includes(`पिछली योजना (${shown}): N2.3.2`), shown);
 });
 check('the Progressors keep a re-teach BOX (ticked, with what it means); the Beginners and Proficients have NO box: their list holds the decision', () => {
   assert.match(html, /data-testid="reteach-toggle-progressor"[^>]*checked=""|checked=""[^>]*data-testid="reteach-toggle-progressor"/);
@@ -201,12 +205,13 @@ check('what is sent when a recommended re-teach is kept: the group stays on yest
 
 console.log('what the panel shows of the evidence');
 const hRec = render(rec.rows, rec.reteach);
+const hRecHi = hRec.replace(/<span class="en[^"]*"[^>]*>[^<]*<\/span>/g, '').replace(/<[^>]+>/g, '');     // the Hindi reading
 check('what the last review found: how many of those assessed made a mistake, which children (the teacher\'s own screen) and which mistake', () => {
   assert.ok(hRec.includes('पिछली जाँच में: 6 में से <b>2</b> बच्चों ने गलती की') || /6 में से <!-- -->\s*<b>2<\/b>/.test(hRec) || hRec.includes('6 में से'), 'evidence line');
-  assert.ok(hRec.includes('(रोल 5, 6)') && hRec.includes('हासिल भूलना (2)'));
+  assert.ok(hRecHi.includes('(रोल 5, 6)') && hRecHi.includes('हासिल भूलना (2)'));
 });
 check('the recommendation says how many are needed, and a very small group says it is too small to suggest anything', () => {
-  assert.ok(hRec.includes('data-testid="recommendation-progressor"') && hRec.includes('कम से कम 2 बच्चों ने गलती की'));
+  assert.ok(hRec.includes('data-testid="recommendation-progressor"') && hRec.includes('जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई') && hRec.includes('a third or more of the children assessed made a mistake') && !hRec.includes('कम से कम 2'));
   assert.ok(hRec.includes('बहुत छोटा समूह: केवल 2 बच्चे जाँचे गए'));
 });
 check('the source is named when the suggestion comes from the evidence', () => { assert.ok(hRec.includes('पिछली जाँच के सुझाव से')); });

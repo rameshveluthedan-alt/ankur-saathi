@@ -518,7 +518,7 @@ export default function ReviewScreen() {
                     {levelsFor('observed').map(l => <button key={l} type="button" className={`tier-option tier-${l} ${sheetLevel === l ? 'selected' : ''}`} onClick={() => setSheetLevel(l)}>{GROUP_LABELS[l].mark} {LEVEL_HI[l]}</button>)}
                   </div>
                 )}
-                <SkillLine level={observedLevel.level} skillId={observedLevel.competency_id} name={observedLevel.name_hi} testid="skill-2" />
+                <SkillLine level={observedLevel.level} skillId={observedLevel.competency_id} name={observedLevel.name_hi} nameEn={observedLevel.name_en} testid="skill-2" />
                 {/* what A / PA / NA mean for today's task (in class: the task and materials too; after class: only what to look for) */}
                 <ObservePanel observe={observeOf(plan && plan.plan, observedLevel.level)} testid="observe-review" compact={!fromPlan} />
                 <AbbrKey testid="abbr-observe" />
@@ -610,7 +610,7 @@ export default function ReviewScreen() {
                 ))}
               </div>
               </>)}
-              {(() => { const g = groups.find((x) => x.label === sheetLevel) || {}; return <SkillLine level={sheetLevel} skillId={g.target_competency_id} name={g.target_competency_name_hi} testid="skill-2" />; })()}
+              {(() => { const g = groups.find((x) => x.label === sheetLevel) || {}; return <SkillLine level={sheetLevel} skillId={g.target_competency_id} name={g.target_competency_name_hi} nameEn={g.target_competency_name_en} testid="skill-2" />; })()}
               {coverage && coverage.group_rolls && coverage.group_rolls.length > 0 && (() => {
                 const sample = coverage.sample;
                 const big = coverage.group_rolls.length > 8 && sample;
@@ -687,7 +687,7 @@ export default function ReviewScreen() {
               </p>
               {orfLevel && (
                 <div style={{ marginBottom: 8, fontSize: '0.75rem' }} data-testid="orf-chips">
-                  <SkillLine level={orfLevel.level} skillId={orfLevel.competency_id} name={orfLevel.name_hi} testid="skill-2" />
+                  <SkillLine level={orfLevel.level} skillId={orfLevel.competency_id} name={orfLevel.name_hi} nameEn={orfLevel.name_en} testid="skill-2" />
                   {coverage && coverage.sample && coverage.sample.rotation && coverage.sample.later > 0 && (
                     <div data-testid="orf-today" className="note note-info" style={{ margin: '4px 0 6px' }}>
                       <Bi hi={`आज ${coverage.sample.size} बच्चे · बाकी ${coverage.sample.later} अगले दिनों में`} en={`Today ${coverage.sample.size} children · the other ${coverage.sample.later} on the next days`} inline />
@@ -1024,7 +1024,7 @@ export default function ReviewScreen() {
                   <div className="card-header">
                     <div><span className={`badge badge-${g.label}`}><Bi hi={L.hi} en={L.en} inline /></span></div>
                   </div>
-                  <SkillLine level={g.label} skillId={g.target_competency_id} name={g.target_competency_name_hi} withGroup={false} testid={`skill-3-${g.label}`} />
+                  <SkillLine level={g.label} skillId={g.target_competency_id} name={g.target_competency_name_hi} nameEn={g.target_competency_name_en} withGroup={false} testid={`skill-3-${g.label}`} />
                   <div style={{ fontSize: '0.8125rem', marginTop: 2 }} data-testid={`final-evidence-${g.label}`}>
                     <Bi hi="आज का प्रदर्शन" en="Today's performance" inline />:{' '}
                     {!evidence || typeof ev.assessed !== 'number'

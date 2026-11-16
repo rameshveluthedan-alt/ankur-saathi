@@ -3,6 +3,7 @@ import { GROUPS, DECISION_LABELS, staysOnYesterdaysSkill, withSkill, acceptRetea
 import { GROUP_LABELS } from '../tiers';
 import Bi from './Bi';
 import { bi } from '../services/language';
+import { useLang } from './LangSwitch';
 const SOURCE_TAGS = {
   selected: { hi: 'आपका चुना कौशल', en: 'The skill you chose' },
   review: { hi: 'पिछले आकलन में आपके निर्णय से', en: 'From your decision at the last assessment' },
@@ -20,10 +21,11 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
   const byId = {};
   competencies.forEach((c) => { byId[c.id] = c; });
   ['beginner', 'proficient'].forEach((l) => ((ladder && ladder.options && ladder.options[l]) || []).forEach((c) => { if (!byId[c.id]) byId[c.id] = c; }));
-  const name = (id) => { const c = byId[id]; return c ? (c.name_hi || c.name_en) : id; };
+  const lang = useLang();            // the skill names in the drop-down are text, not spans: they follow the language here (16 Nov)
+  const name = (id) => { const c = byId[id]; return c ? (lang === 'en' ? (c.name_en || c.name_hi) : (c.name_hi || c.name_en)) : id; };
   // the last plan is often NOT yesterday (a weekend, a holiday): name its date, e.g. "24 अक्टू॰"
   const previousLabel = previousDate && !Number.isNaN(new Date(`${previousDate}T00:00:00`).getTime())
-    ? new Date(`${previousDate}T00:00:00`).toLocaleDateString('hi-IN', { day: 'numeric', month: 'short' }) : '';
+    ? new Date(`${previousDate}T00:00:00`).toLocaleDateString(lang === 'en' ? 'en-IN' : 'hi-IN', { day: 'numeric', month: 'short' }) : '';
 
   // ONE LIST holds both decisions for the Beginners and the Proficients: which skill, and whether to re-teach it (see chooseOption)
   const choose = (label, value) => {
@@ -86,26 +88,29 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
             </div>
             {row.previous && (
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}>
-                पिछली योजना{previousLabel ? ` (${previousLabel})` : ''}: {row.previous.id} · {name(row.previous.id)}
-                {dec && <span> · आपका निर्णय: <b>{dec.hi}</b></span>}
+                <Bi hi={`पिछली योजना${previousLabel ? ` (${previousLabel})` : ''}: `} en={`Last plan${previousLabel ? ` (${previousLabel})` : ''}: `} inline />{row.previous.id} · {name(row.previous.id)}
+                {dec && <span> · <Bi hi="आपका निर्णय" en="Your decision" inline />: <b><Bi hi={dec.hi} en={dec.en} inline /></b></span>}
                 {row.previousReteach && <span data-testid={`previous-reteach-${label}`}> · 🔄 <b className="hi">पिछली योजना में पुनः शिक्षण हुआ</b><span className="en en-inline" lang="en">Re-taught in the last plan</span></span>}
               </div>
             )}
             {row.evidence && row.evidence.assessed > 0 && (
               <div style={{ marginTop: 4, fontSize: '0.75rem' }} data-testid={`evidence-${label}`}>
                 <div>
-                  पिछली जाँच में: {row.evidence.assessed} में से <b>{row.evidence.with_mistakes}</b> बच्चों ने गलती की
-                  {row.evidence.rolls.length > 0 && <span> (रोल {row.evidence.rolls.join(', ')})</span>}
+                  <Bi hi={<>पिछली जाँच में: {row.evidence.assessed} में से <b>{row.evidence.with_mistakes}</b> बच्चों ने गलती की</>}
+                    en={<>At the last check: <b>{row.evidence.with_mistakes}</b> of {row.evidence.assessed} children made a mistake</>} inline />
+                  {row.evidence.rolls.length > 0 && <span> (<Bi hi="रोल" en="roll" inline /> {row.evidence.rolls.join(', ')})</span>}
                 </div>
                 {row.evidence.mistakes.length > 0 && (
                   <div style={{ color: 'var(--text-secondary)' }}>
-                    गलतियाँ: {row.evidence.mistakes.map((m) => `${m.name_hi || m.misconception_id} (${m.children})`).join('; ')}
+                    <Bi hi={`गलतियाँ: ${row.evidence.mistakes.map((m) => `${m.name_hi || m.misconception_id} (${m.children})`).join('; ')}`}
+                      en={`Mistakes: ${row.evidence.mistakes.map((m) => `${m.name_en || m.name_hi || m.misconception_id} (${m.children})`).join('; ')}`} inline />
                   </div>
                 )}
                 {row.recommendation === 'reteach' && (
                   <div style={{ color: 'var(--reteach)', fontWeight: 600 }} data-testid={`recommendation-${label}`}>
-                    <span className="hi">✔ सुझाव: 🔄 दोहराएँ — कम से कम {row.evidence.needed} बच्चों ने गलती की।</span>
-                    <span className="en" lang="en">✔ A re-teach is suggested: at least {row.evidence.needed} children made a mistake.</span>
+                    {/* the rule, not one case of it (16 Nov: "at least 5" read as a fixed number; it is a third of those assessed, rounded up) */}
+                    <span className="hi">✔ सुझाव: 🔄 दोहराएँ — जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई।</span>
+                    <span className="en" lang="en">✔ A re-teach is suggested: a third or more of the children assessed made a mistake.</span>
                   </div>
                 )}
                 {row.recommendation === 'very_small' && (
@@ -122,9 +127,9 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                 {row.conflict && !reteach[label] && canReturn && (
                   <div style={{ marginTop: 4, background: 'var(--green-bg)', borderRadius: 6, padding: '4px 8px' }} data-testid={`conflict-${label}`}>
                     <span className="hi">आपने आगे बढ़ना चुना था, पर {row.evidence.with_mistakes}/{row.evidence.assessed} बच्चों ने गलती की। क्या दोहराना चाहेंगे?</span>
-                    <span className="en" lang="en">You chose to advance, but {row.evidence.with_mistakes} of {row.evidence.assessed} made a mistake. Re-teach instead?</span>
+                    <span className="en" lang="en">You chose to move on, but {row.evidence.with_mistakes} of {row.evidence.assessed} made a mistake. Teach again instead?</span>
                     <button type="button" className="btn btn-secondary btn-small" style={{ marginLeft: 6, fontSize: '0.8125rem' }}
-                      onClick={() => accept(label)} disabled={disabled} data-testid={`accept-reteach-${label}`}>🔄 दोहराएँ</button>
+                      onClick={() => accept(label)} disabled={disabled} data-testid={`accept-reteach-${label}`}>🔄 <Bi hi="दोहराएँ" en="Teach again" inline /></button>
                   </div>
                 )}
               </div>
@@ -148,7 +153,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                     const plain = (grp) => (
                       <optgroup key={grp.key} label={bi(grp.hi, grp.en)}>
                         {grp.ids.map((id) => (
-                          <option key={id} value={id}>{id} · {name(id)}{reteachOption && id === row.previous.id ? ' — नया पाठ (दोहराव नहीं)' : ''}</option>
+                          <option key={id} value={id}>{id} · {name(id)}{reteachOption && id === row.previous.id ? bi(' — नया पाठ (दोहराव नहीं)', ' — a new lesson (not a re-teach)') : ''}</option>
                         ))}
                       </optgroup>
                     );
@@ -156,7 +161,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                       ...groupsOfSkills.slice(0, 1).map(plain),
                       reteachOption && (
                         <optgroup key="reteach" label={bi('🔄 पिछली योजना का कौशल दोहराएँ', "Teach the last plan's skill again")}>
-                          <option value={reteachOption.value}>🔄 दोहराएँ: {reteachOption.id} · {name(reteachOption.id)}</option>
+                          <option value={reteachOption.value}>{bi('🔄 दोहराएँ: ', '🔄 Teach again: ')}{reteachOption.id} · {name(reteachOption.id)}</option>
                         </optgroup>
                       ),
                       ...groupsOfSkills.slice(1).map(plain),
@@ -169,12 +174,12 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                 {row.ignored && (
                   <div style={{ marginTop: 2 }} data-testid={`ignored-${label}`}>
                     <span className="hi">ℹ पिछले आकलन के निर्णय से सुझाया कौशल {row.ignored.id} आज के कौशल से मेल नहीं खाता ({label === 'beginner' ? 'शुरुआती समूह आज के कौशल से आगे नहीं जा सकता' : 'दक्ष समूह आज के कौशल से पीछे नहीं जा सकता'}), इसलिए कौशल चुने कौशल से तय हुआ।</span>
-                    <span className="en" lang="en">ℹ The suggestion from the last review, {row.ignored.id}, does not fit today's skill, so this group follows the skill you chose.</span>
+                    <span className="en" lang="en">ℹ The suggestion from the last assessment, {row.ignored.id}, does not fit today's skill, so this group follows the skill you chose.</span>
                   </div>
                 )}
                 {label !== 'progressor' && (row.skillId !== row.initialId || !!reteach[label] !== !!row.initialReteach) && (
                   <button type="button" className="btn btn-secondary btn-small" style={{ marginLeft: 6, marginTop: 4, fontSize: '0.8125rem' }}
-                    onClick={() => restoreSuggestion(label)} disabled={disabled} data-testid={`restore-suggestion-${label}`}>↺ सुझाव पर लौटें</button>
+                    onClick={() => restoreSuggestion(label)} disabled={disabled} data-testid={`restore-suggestion-${label}`}>↺ <Bi hi="सुझाव पर लौटें" en="Back to the suggestion" inline /></button>
                 )}
               </div>
             </div>
@@ -206,7 +211,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                     <span className="hi">दोहराने के लिए आज का कौशल पिछली योजना वाला {row.previous.id} होना चाहिए।</span>
                     <span className="en" lang="en">To re-teach, today's skill must be the last plan's, {row.previous.id}.</span>
                     <button type="button" className="btn btn-secondary btn-small" style={{ margin: '4px 0 4px 6px', fontSize: '0.8125rem' }}
-                      onClick={() => accept(label)} disabled={disabled} data-testid="go-back-reteach-progressor">🔄 {row.previous.id} चुनकर दोहराएँ</button>
+                      onClick={() => accept(label)} disabled={disabled} data-testid="go-back-reteach-progressor">🔄 <Bi hi={`${row.previous.id} चुनकर दोहराएँ`} en={`Choose ${row.previous.id} and teach again`} inline /></button>
                     <div><Bi hi="यह आज का कौशल बदलता है, इसलिए दूसरे समूहों के कौशल भी बदल सकते हैं।" en="This changes today's skill, so the other groups' skills can change too." /></div>
                   </div>
                 )}
