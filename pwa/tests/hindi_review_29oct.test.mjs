@@ -34,6 +34,6 @@ check('...shown wherever the letters stand alone: Review step 2 (observing) and 
 check('the skill codes, in her wording: "N2.3.2 जैसे कोड कौशल-सीढ़ी में दिए गए कौशलों की पहचान करते हैं।" (the class summary and the mentor report)',
   fmt.includes("export const CODE_NOTE = 'N2.3.2 जैसे कोड कौशल-सीढ़ी में दिए गए कौशलों की पहचान करते हैं।';") && mentor.includes('data-testid="mentor-key">{T(`${MARKS_NOTE} · ${CODE_NOTE}`, `${MARKS_NOTE_EN} · ${CODE_NOTE_EN}`)}'));
 check('the group marks where they stand alone (the mentor report\'s groups line): "● शुरुआती · ▲ प्रगतिशील · ■ दक्ष"', fmt.includes("export const MARKS_NOTE = '● शुरुआती · ▲ प्रगतिशील · ■ दक्ष';"));
-check('"CWPM" is never shown to the teacher: "सही शब्द/मिनट" instead (the saved box and the "पढ़ चुके" list)', !/\} CWPM|CWPM` :/.test(confirm + review) && confirm.includes('{r.cwpm} सही शब्द/मिनट') && review.includes('${rec.cwpm} सही शब्द/मिनट'));
+check('"CWPM" is never shown to the teacher: "सही शब्द/मिनट" instead (the saved box and the "पढ़ चुके" list)', !/\} CWPM|CWPM` :/.test(confirm + review) && confirm.includes('{r.cwpm} सही शब्द/मिनट') && review.includes('{rec.cwpm} <Bi hi="सही शब्द/मिनट" en="correct words a minute" inline />'));
 
 console.log(process.exitCode ? `\nFAILED (${n} checks)` : `\nAll ${n} checks passed.`);

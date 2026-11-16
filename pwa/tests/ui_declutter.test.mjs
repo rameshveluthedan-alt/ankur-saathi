@@ -130,6 +130,12 @@ check('the mentor report prints "कौशल के नतीजे": A / PA / 
   assert.ok(m.includes('कौशल के नतीजे') && m.includes('A {k.a} · PA {k.pa} · NA {k.na} · अभी नहीं जाँचे {k.not_checked}'));
 });
 
+check('a photo result on a sample says what it rests on and who is left (16 Nov): "Based on X of the Y sample children. Photograph the other N … roll …"', () => {
+  const r = read('screens/ReviewScreen.jsx');
+  assert.ok(r.includes('data-testid="based-on"') && r.includes('Based on ${done.length} of the ${total} ${who[1]}children. Photograph the other ${left.length} for a firmer result: roll ${left.join')
+    && r.includes('analysisResult.group_accuracy != null && coverage && coverage.group_rolls'));
+});
+
 console.log('\nthe dictation sentences: for the teacher only');
 check('a dictation group\'s slot has a "बोलकर लिखवाएँ" fold with the sheet\'s sentences, and the printed plan a line with them', () => {
   const y = read('screens/YojanaScreen.jsx'); const pp = read('screens/PlanPrint.jsx');

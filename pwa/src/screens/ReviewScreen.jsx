@@ -593,7 +593,7 @@ export default function ReviewScreen() {
                         <button type="button" data-testid="mode-all" style={mode(!useSample)} onClick={() => setSampleMode('all')}><Bi hi="सभी" en="Everyone" inline /> {coverage.group_rolls.length}</button>
                       </div>
                     )}
-                    <div><b>✓ <Bi hi="हो चुके" en="Done" inline />: {done.length}/{total}</b>{done.length > 0 && ` · रोल ${done.join(', ')}`}</div>
+                    <div><b>✓ <Bi hi="हो चुके" en="Done" inline />: {done.length}/{total}</b>{done.length > 0 && <> · <Bi hi="रोल" en="roll" inline /> {done.join(', ')}</>}</div>
                     <div style={{ marginTop: 2 }}>
                       ⏳ {useSample ? <><Bi hi="इन बच्चों की फ़ोटो लें" en="Photograph these children's sheets" inline /></> : <><Bi hi="बाकी" en="Left" inline /></>}:{' '}
                       {left.length === 0 ? <><Bi hi="कोई नहीं" en="none" inline /></> : useSample
@@ -691,7 +691,7 @@ export default function ReviewScreen() {
                     <div key={roll} data-testid={`orf-recorded-${roll}`} style={{ fontSize: '0.8125rem', padding: '3px 0' }}>
                       {rec.cwpm != null && isFluencySkill(orfLevel?.competency_id)
                         ? <FluencyLine roll={Number(roll)} correct={rec.cwpm} errors={rec.errors ?? 0} classification={rec.status} />
-                        : <>✓ रोल {roll}{rec.cwpm != null ? `: ${rec.cwpm} सही शब्द/मिनट` : ''} · <span className="badge badge-result">{RESULT_MARK[rec.status] || '—'}</span></>}
+                        : <>✓ <Bi hi="रोल" en="Roll" inline /> {roll}{rec.cwpm != null ? <>: {rec.cwpm} <Bi hi="सही शब्द/मिनट" en="correct words a minute" inline /></> : ''} · <span className="badge badge-result">{RESULT_MARK[rec.status] || '—'}</span></>}
                     </div>
                   ))}
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}>
@@ -752,13 +752,27 @@ export default function ReviewScreen() {
             <>
               <div className="card">
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span><Bi hi="विश्लेषित बच्चे" en="Children analysed" /></span>
-                  <strong>{analysisResult.children_analysed}</strong>
+                  <span><Bi hi="जाँचे गए बच्चे" en="Children marked" /></span>
+                  <strong data-testid="children-scored">{analysisResult.children_scored ?? analysisResult.children_analysed}
+                    {analysisResult.retake?.length > 0 && <span style={{ fontWeight: 400, fontSize: '0.75rem' }}> · {analysisResult.retake.length} <Bi hi="की फ़ोटो दोबारा" en="to photograph again" inline /></span>}</strong>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                   <span><Bi hi="समूह शुद्धता" en="Group score" /></span>
                   <strong data-testid="group-accuracy">{analysisResult.group_accuracy == null ? '—' : `${Math.round(analysisResult.group_accuracy * 100)}%`}</strong>
                 </div>
+                {/* a sample (16 Nov): the result stands, but says what it rests on and who is left, so the teacher can decide now or photograph more */}
+                {analysisResult.group_accuracy != null && coverage && coverage.group_rolls && (() => {
+                  const s = coverage.sample, useSample = coverage.group_rolls.length > 8 && s && sampleMode === 'sample';
+                  const done = useSample ? s.done : coverage.analysed_rolls, left = useSample ? s.left : coverage.pending_rolls, total = useSample ? s.size : coverage.group_rolls.length;
+                  if (!left || left.length === 0) return null;
+                  const who = useSample ? ['नमूने के', 'sample '] : ['समूह के', 'group '];
+                  return (
+                    <div data-testid="based-on" style={{ fontSize: '0.75rem', color: 'var(--info)', background: 'var(--info-bg)', borderRadius: 6, padding: '4px 8px', marginBottom: 8 }}>
+                      <Bi hi={`${who[0]} ${total} में से ${done.length} बच्चों पर आधारित। पक्के नतीजे के लिए बाकी ${left.length} की फ़ोटो लें: रोल ${left.join(', ')}`}
+                        en={`Based on ${done.length} of the ${total} ${who[1]}children. Photograph the other ${left.length} for a firmer result: roll ${left.join(', ')}`} />
+                    </div>
+                  );
+                })()}
                 {analysisResult.copy_errors_excluded > 0 && (
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}>
                     ✏️ {analysisResult.copy_errors_excluded} <Bi hi="सवाल गिने नहीं गए: बच्चों ने उन्हें अलग उतारा" en="questions not marked: copied wrongly" inline />
@@ -772,13 +786,21 @@ export default function ReviewScreen() {
                 </div>
               </div>
 
+              {/* several sheets with the SAME different numbers (16 Nov): most likely not today's worksheet, e.g. the plan was made again after printing */}
+              {analysisResult.sheet_mismatch && (
+                <div className="card" style={{ borderLeft: '4px solid var(--danger)', background: 'var(--danger-bg)', fontSize: '0.8125rem' }} data-testid="sheet-mismatch">
+                  <h3 style={{ color: 'var(--danger)', marginBottom: 4 }}>⚠️ <Bi hi="ये शीट आज की वर्कशीट से मेल नहीं खातीं" en="These sheets don't match today's worksheet" inline /></h3>
+                  <Bi hi={`रोल ${analysisResult.sheet_mismatch.rolls.join(', ')} की शीट में सवाल ${analysisResult.sheet_mismatch.problems.join(', ')} पर एक जैसी अलग संख्याएँ हैं। क्या शीट छपने के बाद आज की योजना फिर से बनाई गई? आज की वर्कशीट से बनी शीट की फ़ोटो लें।`}
+                    en={`The sheets of roll ${analysisResult.sheet_mismatch.rolls.join(', ')} have the same different numbers on question ${analysisResult.sheet_mismatch.problems.join(', ')}. Was today's plan made again after the sheets were printed? Photograph sheets made from today's worksheet.`} />
+                </div>
+              )}
               {analysisResult.skipped_duplicates?.length > 0 && (
                 <div className="card" style={{ borderLeft: '4px solid var(--info)', background: 'var(--info-bg)' }} data-testid="dup-skipped">
                   <h3 style={{ marginBottom: 4 }}>⚠️ <Bi hi="पहले से विश्लेषित" en="Already checked today" inline /></h3>
                   <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi="इनका पहले का परिणाम रखा गया" en="the earlier result is kept" inline /></p>
                   {analysisResult.skipped_duplicates.map(d => (
                     <div key={d.roll_number} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 0', fontSize: '0.8125rem' }}>
-                      <span>रोल {d.roll_number} ·{d.earlier_accuracy == null ? '—' : Math.round(d.earlier_accuracy * 100) + '%'} · {new Date(d.earlier_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })}</span>
+                      <span><Bi hi="रोल" en="Roll" inline /> {d.roll_number} ·{d.earlier_accuracy == null ? '—' : Math.round(d.earlier_accuracy * 100) + '%'} · {new Date(d.earlier_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })}</span>
                       {photos.length > 0 && <button type="button" className="btn btn-secondary btn-small" style={{ fontSize: '0.8125rem' }} disabled={loading || !online}
                         onClick={() => submitPhotos({ replaceRolls: [d.roll_number] })}><Bi hi="नई फ़ोटो से बदलें" en="Use the new photo" inline /></button>}
                     </div>
@@ -786,13 +808,19 @@ export default function ReviewScreen() {
                 </div>
               )}
               {(analysisResult.duplicates_in_batch?.length > 0 || analysisResult.unknown_rolls?.length > 0 || analysisResult.outside_group_rolls?.length > 0 ||
-                analysisResult.unreadable_sheets > 0 || analysisResult.not_assessed?.length > 0) && (
+                analysisResult.unreadable_sheets > 0 || analysisResult.not_assessed?.length > 0 || analysisResult.retake?.length > 0) && (
                 <div className="card" style={{ background: 'var(--info-bg)', fontSize: '0.8125rem' }} data-testid="roll-notices">
-                  {analysisResult.duplicates_in_batch?.length > 0 && <div>🔁 <Bi hi="एक ही बच्चे की दो फ़ोटो, साफ़ वाली इस्तेमाल हुई" en="Two photos of the same child, the clearer one was used" inline />: रोल {analysisResult.duplicates_in_batch.join(', ')}</div>}
+                  {analysisResult.duplicates_in_batch?.length > 0 && <div>🔁 <Bi hi="एक ही बच्चे की दो फ़ोटो, साफ़ वाली इस्तेमाल हुई" en="Two photos of the same child, the clearer one was used" inline />: <Bi hi="रोल" en="roll" inline /> {analysisResult.duplicates_in_batch.join(', ')}</div>}
                   {analysisResult.unknown_rolls?.length > 0 && <div>❓ <Bi hi="ये रोल नंबर इस कक्षा में नहीं हैं, गिने नहीं गए" en="Roll number not in this class, skipped" inline />: {analysisResult.unknown_rolls.join(', ')}</div>}
-                  {analysisResult.outside_group_rolls?.length > 0 && <div>↔️ <Bi hi="दूसरे समूह की शीट" en="A sheet from another group" inline />: रोल {analysisResult.outside_group_rolls.join(', ')}</div>}
+                  {analysisResult.outside_group_rolls?.length > 0 && <div>↔️ <Bi hi="दूसरे समूह की शीट" en="A sheet from another group" inline />: <Bi hi="रोल" en="roll" inline /> {analysisResult.outside_group_rolls.join(', ')}</div>}
                   {analysisResult.unreadable_sheets > 0 && <div>🔍 {analysisResult.unreadable_sheets} <Bi hi="शीट का रोल नंबर पढ़ा नहीं गया, दोबारा फ़ोटो लें" en="Roll number unreadable, please retake" inline /></div>}
-                  {analysisResult.not_assessed?.length > 0 && <div>📝 <Bi hi="कुछ आँका नहीं जा सका" en="Could not mark these" inline />: रोल {analysisResult.not_assessed.join(', ')}</div>}
+                  {(() => {
+                    const retake = analysisResult.retake || [], other = (analysisResult.not_assessed || []).filter((r) => !retake.includes(r));
+                    return <>
+                      {retake.length > 0 && <div data-testid="retake-notice">↺ <Bi hi="बहुत कम सवाल जाँचे जा सके, कोई स्तर दर्ज नहीं हुआ; दोबारा फ़ोटो लें" en="Too few questions could be marked, so no level was saved; photograph again" inline />: <Bi hi="रोल" en="roll" inline /> {retake.join(', ')}</div>}
+                      {other.length > 0 && <div>📝 <Bi hi="कुछ आँका नहीं जा सका" en="Could not mark these" inline />: <Bi hi="रोल" en="roll" inline /> {other.join(', ')}</div>}
+                    </>;
+                  })()}
                 </div>
               )}
 
@@ -821,11 +849,12 @@ export default function ReviewScreen() {
               {analysisResult.per_child?.map(c => (
                 <div key={c.roll_number} className="card" style={{ padding: 10 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <strong>रोल {c.roll_number}</strong>
+                    <strong><Bi hi="रोल" en="Roll" inline /> {c.roll_number}</strong>
                     <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                       {/* the result of THIS check, in words: one day on a sample says nothing about mastery of the skill */}
                       <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }} data-testid="today-result">
-                        आज की जाँच में: {c.status === 'achieved' ? 'प्राप्त' : c.status === 'partially_achieved' ? 'आंशिक' : c.status === 'not_assessed' ? 'आँका नहीं गया' : 'प्राप्त नहीं'}
+                        <Bi hi={`आज की जाँच में: ${c.status === 'achieved' ? 'प्राप्त' : c.status === 'partially_achieved' ? 'आंशिक' : c.status === 'not_assessed' ? (c.reason === 'too_few_marked' ? 'दोबारा फ़ोटो लें' : 'आँका नहीं गया') : 'प्राप्त नहीं'}`}
+                          en={`Today: ${c.status === 'achieved' ? 'Achieved' : c.status === 'partially_achieved' ? 'Partial' : c.status === 'not_assessed' ? (c.reason === 'too_few_marked' ? 'Photograph again' : 'Not marked') : 'Not achieved'}`} inline />
                       </span>
                       {/* a neutral badge with a symbol: a tier colour here would make "NA" look like the Beginner group */}
                       <span className="badge badge-result">
@@ -835,19 +864,23 @@ export default function ReviewScreen() {
                   </div>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                     {c.accuracy == null
-                      ? <><Bi hi="आँका नहीं गया" en="Not assessed" inline /></>
-                      : <><Bi hi="शुद्धता" en="Score" inline />: {Math.round(c.accuracy * 100)}%{c.assessed_problems ? <> · <span className="hi">{c.assessed_problems} सवालों में से</span><En>of {c.assessed_problems}</En></> : null}</>}
+                      ? (c.reason === 'too_few_marked'
+                        ? <span data-testid={`too-few-${c.roll_number}`}><Bi hi={`${c.sheet_points} में से सिर्फ़ ${c.marked_points} सवाल जाँचे जा सके (बाकी अलग उतारे गए), इसलिए कोई स्तर दर्ज नहीं हुआ। आज की वर्कशीट की शीट की दोबारा फ़ोटो लें।`}
+                            en={`Only ${c.marked_points} of ${c.sheet_points} questions could be marked (the others were copied wrongly), so no level was saved. Photograph a sheet from today's worksheet again.`} inline /></span>
+                        : <Bi hi="आँका नहीं गया" en="Not marked" inline />)
+                      : <><Bi hi="शुद्धता" en="Score" inline />: {Math.round(c.accuracy * 100)}%{c.assessed_problems ? <> <Bi hi={`(${c.assessed_problems} में से ${Math.round(c.accuracy * c.assessed_problems)} सही)`} en={`(${Math.round(c.accuracy * c.assessed_problems)} of ${c.assessed_problems} right)`} inline /></> : null}</>}
                     {c.misconceptions?.length > 0 && <> · <Bi hi="गलती" en="Mistake" inline />: {c.misconceptions.map((id) => { const nm = (analysisResult.misconception_names || {})[id]; return nm ? (bi(nm.hi, nm.en) || id) : id; }).join('; ')}</>}
                   </div>
                   {c.copy_errors?.length > 0 && (
                     <div style={{ fontSize: '0.75rem', color: 'var(--info)', marginTop: 4 }} data-testid="copy-errors">
                       ✏️ <Bi hi="अलग उतारा, गिना नहीं गया" en="Copied wrongly from the sheet, not marked" inline />:{' '}
-                      {c.copy_errors.map(e => `#${e.problem}${e.written ? ` लिखा ${e.written}` : ''} → ${e.answer}${e.correct_for_written === true ? ' ✓ (उस सवाल के लिए सही)' : e.correct_for_written === false ? ' ✗' : ''}`).join(' · ')}
+                      <Bi hi={c.copy_errors.map(e => `#${e.problem}${e.written ? ` लिखा ${e.written}` : ''} → ${e.answer}${e.correct_for_written === true ? ' ✓ (उस सवाल के लिए सही)' : e.correct_for_written === false ? ' ✗' : ''}`).join(' · ')}
+                        en={c.copy_errors.map(e => `#${e.problem}${e.written ? ` written ${e.written}` : ''} → ${e.answer}${e.correct_for_written === true ? ' ✓ (right for the sum written)' : e.correct_for_written === false ? ' ✗' : ''}`).join(' · ')} inline />
                     </div>
                   )}
                   {c.needs_check?.length > 0 && (
                     <div style={{ fontSize: '0.75rem', color: '#555', marginTop: 4 }} data-testid="needs-check">
-                      👀 <Bi hi="नोटबुक में जाँचें" en="Check in the notebook" inline />: सवाल {c.needs_check.join(', ')}
+                      👀 <Bi hi="नोटबुक में जाँचें" en="Check in the notebook" inline />: <Bi hi="सवाल" en="question" inline /> {c.needs_check.join(', ')}
                     </div>
                   )}
                 </div>

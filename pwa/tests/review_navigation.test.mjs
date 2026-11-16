@@ -137,6 +137,26 @@ check('"आगे: अंतिम निर्णय: कल क्या प�
 check('the decision step has no "नई समीक्षा शुरू करें" (removed 29 Oct: every change has its own way, and it suggested the review was thrown away)',
   !q('[data-testid="new-review"]') && !/नई समीक्षा/.test(document.getElementById('root').textContent) && !/startNewReview|नई समीक्षा/.test(reviewSrc));
 
+console.log('\nB2. too little of a sheet could be marked (16 Nov, photo_analysis_2.png): photograph again, nothing scored; the sheets are not today\'s worksheet');
+const RETAKE = { ...ANALYSIS, id: 7, result: { ...ANALYSIS.result, children_analysed: 3, children_scored: 0, group_accuracy: null, ai_recommendation: null, copy_errors_excluded: 15,
+  retake: [6, 14, 16], not_assessed: [6, 14, 16], sheet_mismatch: { problems: [1, 2, 3, 5, 6], rolls: [6, 14, 16] },
+  per_child: [6, 14, 16].map((r) => ({ roll_number: r, accuracy: null, status: 'not_assessed', misconceptions: [], assessed_problems: 0, reason: 'too_few_marked', marked_points: 1, sheet_points: 6,
+    copy_errors: [{ problem: 1, written: '36 + 27', answer: '63', correct_for_written: true }, { problem: 2, written: '48 + 25', answer: '91', correct_for_written: false }], needs_check: [] })) } };
+fresh(); cached = async () => PLAN({ beginner: 'advance', progressor: 'reteach' });
+saved = [RETAKE]; await show(Review); await click(q('[data-testid="see-analysis"]'));
+const view = (el, hide) => { const c = el.cloneNode(true); c.querySelectorAll(hide).forEach((x) => x.remove()); return c.textContent.replace(/\s+/g, ' ').trim(); };
+const root2 = document.getElementById('root');
+check('no group score and no suggestion; "0 · 3 to photograph again"', q('[data-testid="group-accuracy"]').textContent === '—' && /^0 · 3/.test(view(q('[data-testid="children-scored"]'), '.hi'))
+  && /to photograph again/.test(view(q('[data-testid="children-scored"]'), '.hi')));
+check('the wrong-worksheet warning names the rolls and the questions, in Hindi and in English', /आज की वर्कशीट से मेल नहीं/.test(view(q('[data-testid="sheet-mismatch"]'), '.en'))
+  && /don't match today's worksheet.*roll 6, 14, 16.*question 1, 2, 3, 5, 6.*made again after the sheets were printed/.test(view(q('[data-testid="sheet-mismatch"]'), '.hi')));
+check('each child: "Photograph again", only 1 of 6 marked, no level saved; the copied sums in English ("written", "right for the sum written")',
+  /Roll 14/.test(view(root2, '.hi')) && /Today: Photograph again/.test(view(root2, '.hi')) && /Only 1 of 6 questions could be marked.*no level was saved/.test(view(q('[data-testid="too-few-14"]'), '.hi'))
+  && /#1 written 36 \+ 27 → 63 ✓ \(right for the sum written\)/.test(view(root2, '.hi')) && /दोबारा फ़ोटो लें/.test(view(q('[data-testid="retake-notice"]'), '.en')));
+check('...and no Hindi left in the English view of the result (names of mistakes aside, there are none here)', !/[ऀ-ॿ]/.test(view(q('[data-testid="sheet-mismatch"]'), '.hi') + view(q('[data-testid="retake-notice"]'), '.hi')
+  + [...document.querySelectorAll('[data-testid="today-result"], [data-testid="copy-errors"]')].map((e) => view(e, '.hi')).join(' ')));
+saved = [];
+
 console.log('\nC. Progress, opened from the Review, leads back');
 check('every "see it on Progress" pointer on the Review says it came from the Review', (reviewSrc.match(/onOpenProgress=\{toProgress\}/g) || []).length === 3 && !/navigate\('\/progress'\)/.test(reviewSrc)
   && /const toProgress = \(\) => navigate\('\/progress', \{ state: \{ from: 'review' \} \}\)/.test(reviewSrc));

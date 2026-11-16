@@ -158,9 +158,15 @@ class ChildAnalysisResult(BaseModel):
     assessed_problems: Optional[int] = None  # how many problems the accuracy is out of
     copy_errors: list[dict] = []             # problems the child copied differently: shown to the teacher, not scored
     needs_check: list[int] = []              # problems the AI was not sure it read: check them in the notebook
+    reason: Optional[str] = None             # 'too_few_marked': under half the sheet's points could be marked; no level saved, photograph again (16 Nov)
+    marked_points: Optional[int] = None      # the sheet's required points that could be marked (copied-wrongly ones are not)
+    sheet_points: Optional[int] = None       # the sheet's required points (a writing task: one per checklist item)
 
 class PhotoAnalysisResponse(BaseModel):
     children_analysed: int
+    children_scored: Optional[int] = None    # children given a level in this run (the others: retake or nothing to mark)
+    retake: list[int] = []                   # too few questions could be marked: photograph again (16 Nov)
+    sheet_mismatch: Optional[dict] = None    # several sheets with the SAME different numbers: likely not today's worksheet (16 Nov)
     group_accuracy: Optional[float] = None          # None: nobody assessed
     ai_recommendation: Optional[str] = None  # 'advance' or 'reteach'; None: nobody assessed
     misconceptions_detected: list[dict]

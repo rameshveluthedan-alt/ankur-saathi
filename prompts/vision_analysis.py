@@ -292,6 +292,9 @@ def rescore(child_result: dict, required_count: Optional[int]) -> dict:
     # extras can only help: take whichever basis gives the child the better score (the required problems alone win a tie)
     use_all = extras_attempted > 0 and all_total > 0 and (req_total <= 0 or all_correct * req_total > req_correct * all_total)
     correct, total = (all_correct, all_total) if use_all else (req_correct, req_total)
+    # the sheet's required points and how many of them could be marked (a copied-wrongly problem cannot): under half marked, the child is not
+    # given a level from this photo (16 Nov: three sheets with 1 of 6 sums marked each became three "not achieved" and a "Teach again")
+    summary.update(sheet_points=required_count + extra_weight, marked_points=req_total)
     summary.update(correct=correct, total_problems=total, incorrect=max(total - correct, 0), copy_excluded=copy_excluded,
                    accuracy=round(correct / total, 3) if total > 0 else None,
                    extras_attempted=extras_attempted, extras_correct=extras_correct, score_basis="required+extras" if use_all else "required")
@@ -334,6 +337,21 @@ def apply_copy_checks(child_result: dict, key_problems: Optional[list]) -> list:
             p["correct_for_written"] = None
             found.append({"problem": n, "written": written or None, "answer": ans, "correct_for_written": None})
     return found
+
+
+def sheet_mismatch(per_child: list) -> Optional[dict]:
+    """Several sheets with the SAME different numbers on the same questions: children copying carelessly do not all make the same slip, so these
+    sheets are most likely from another version of the worksheet (16 Nov, MPT101: three sheets with 36 + 27, 48 + 25, 54 + 36, 28 + 39, 45 + 29,
+    after the shared plan was made again). At least 2 questions, each written the same way on at least 2 sheets."""
+    seen = {}
+    for c in per_child or []:
+        for e in c.get("copy_errors") or []:
+            if e.get("written"):
+                seen.setdefault((e.get("problem"), e["written"]), set()).add(c.get("roll_number"))
+    shared = {k: rolls for k, rolls in seen.items() if len(rolls) >= 2}
+    if len({p for p, _ in shared}) < 2:
+        return None
+    return {"problems": sorted({p for p, _ in shared}), "rolls": sorted({r for rolls in shared.values() for r in rolls})}
 
 
 def recompute_misconceptions(child_result: dict) -> list:
@@ -492,6 +510,8 @@ async def process_vision_results(
         "not_assessed": [],
         "unreadable_sheets": 0,
         "copy_errors_excluded": 0,
+        "retake": [],
+        "sheet_mismatch": None,
     }
 
     group_correct_total = 0
@@ -543,11 +563,15 @@ async def process_vision_results(
         if roll not in expected and expected:
             results_summary["outside_group_rolls"].append(roll)
 
-        # nothing left to score: every problem was copied differently or left blank
-        if required_count and summary.get('total_problems') == 0:
+        # too little left to score: under half of the sheet's required points could be marked (copied wrongly), or nothing at all.
+        # No level is saved: the child stays "to do" and the teacher photographs the sheet again (a sheet from TODAY's worksheet).
+        sheet_pts, marked_pts = summary.get("sheet_points"), summary.get("marked_points")
+        if required_count and (summary.get('total_problems') == 0 or (sheet_pts and marked_pts is not None and marked_pts * 2 < sheet_pts)):
             results_summary["not_assessed"].append(roll)
+            results_summary["retake"].append(roll)
             results_summary['per_child'].append({"roll_number": roll, "accuracy": None, "status": "not_assessed", "misconceptions": [],
-                                                 "assessed_problems": 0, "copy_errors": copy_errors, "needs_check": needs_check})
+                                                 "assessed_problems": 0, "copy_errors": copy_errors, "needs_check": needs_check,
+                                                 "reason": "too_few_marked", "marked_points": marked_pts, "sheet_points": sheet_pts})
             continue
 
         accuracy = summary.get('accuracy', 0)
@@ -632,6 +656,8 @@ async def process_vision_results(
         })
 
     results_summary["children_analysed"] = len(results_summary["per_child"])
+    results_summary["children_scored"] = sum(1 for c in results_summary["per_child"] if c.get("accuracy") is not None)
+    results_summary["sheet_mismatch"] = sheet_mismatch(results_summary["per_child"])
 
     # Group-level analysis
     group_accuracy = group_correct_total / max(group_problem_total, 1)
