@@ -85,6 +85,16 @@ def unit():
     s4 = V.rescore(writing, 1)
     check("a one-paragraph writing sheet: its 4 checklist items are its points, all marked", (s4["sheet_points"], s4["marked_points"]) == (4, 4), s4)
 
+    print("\na mistake written as an object, not a code (17 Nov, live: \"unhashable type: 'dict'\" when kept sheets were counted)")
+    odd = {"problems": [{"number": 1, "diagnosed_misconception": {"id": "N2.3.2-M1", "name": "drops the carry"}, "confidence": "high"},
+                        {"number": 2, "diagnosed_misconception": [{"misconception_id": "N2.3.2-M1"}]},
+                        {"number": 3, "diagnosed_misconception": "N2.3.2-M2"}, {"number": 4, "diagnosed_misconception": None}]}
+    got = V.recompute_misconceptions(odd)
+    check("an object {id: ...}, a list of objects and a plain code are all counted by their code", {m["misconception_id"]: m["occurrences"] for m in got} == {"N2.3.2-M1": 2, "N2.3.2-M2": 1}, got)
+    only_summary = {"problems": [{"number": 1}], "summary": {"detected_misconceptions": [{"misconception_id": {"id": "N2.3.2-M1"}, "occurrences": 2}, "N2.3.2-M2", {"id": "N2.3.2-M3"}]}}
+    got2 = V.recompute_misconceptions(only_summary)
+    check("...and in the AI's own summary list (an object id, a bare code, an 'id' key)", [m["misconception_id"] for m in got2] == ["N2.3.2-M1", "N2.3.2-M2", "N2.3.2-M3"], got2)
+
     print("\nthe wrong-worksheet signal")
     per = [{"roll_number": r, "copy_errors": [{"problem": n, "written": w} for n, w in WRITTEN.items()]} for r in (6, 14, 16)]
     m = V.sheet_mismatch(per)
@@ -130,7 +140,10 @@ async def flow():
                             VALUES ($1, $2, 'numeracy', 'N2.3.2', $3::jsonb, '{}'::jsonb, '{}'::jsonb)""", teacher_id, TODAY,
                          __import__("json").dumps({"worksheets": {"progressor": {"problems": KEY, "required_count": 6}}}))
         first = await V.process_vision_results(db, teacher_id, TODAY, "N2.3.2", [todays_sheet(r, 2) for r in (3, 6, 14)], None, required_count=6, problems=KEY)
-        second = await V.process_vision_results(db, teacher_id, TODAY, "N2.3.2", [todays_sheet(r, 6) for r in (3, 6, 14, 16, 19)], None, required_count=6, problems=KEY)
+        newer = [todays_sheet(r, 6) for r in (3, 6, 14, 16, 19)]
+        for sheet in newer[:3]:                    # the kept readings carry a mistake written as an object (what broke on live, 17 Nov)
+            sheet["problems"][0]["diagnosed_misconception"] = {"id": "N2.3.2-M1", "name": "drops the carry"}
+        second = await V.process_vision_results(db, teacher_id, TODAY, "N2.3.2", newer, None, required_count=6, problems=KEY)
         check("round 1: three children at 2 of 6; round 2: the two new ones marked, the three repeats skipped AND their new readings kept",
               first["children_scored"] == 3 and second["children_scored"] == 2 and sorted(int(k) for k in second["pending"]) == [3, 6, 14], (second["children_scored"], list(second["pending"])))
         aid = await RS.save_analysis(db, teacher_id, TODAY, "numeracy", "progressor", "N2.3.2", second)
@@ -141,8 +154,9 @@ async def flow():
         new_acc = {r: (_j.loads(v) if isinstance(v, str) else v)["scoring"]["accuracy"] for r, v in acc.items()}
         check("all three replaced in one go: their new sheets (6 of 6) now count, one result each", out["children_scored"] == 3 and all(new_acc[r] == 1.0 for r in (3, 6, 14))
               and len(acc) == 5, new_acc)
-        check("the result shows the WHOLE group today: 5 children, all right, Move on (before: '1 child')", out["today_group"]["children"] == 5 and out["today_group"]["group_accuracy"] == 1.0
-              and out["today_group"]["ai_recommendation"] == "advance" and out["today_group"]["rolls"] == [3, 6, 14, 16, 19], out["today_group"])
+        check("the result shows the WHOLE group today: 5 children, all right (before: '1 child'); the object-shaped mistake on 3 replaced sheets is COUNTED "
+              "(3 times: the rule suggests teaching again), not a crash", out["today_group"]["children"] == 5 and out["today_group"]["group_accuracy"] == 1.0
+              and out["today_group"]["ai_recommendation"] == "reteach" and out["today_group"]["rolls"] == [3, 6, 14, 16, 19], out["today_group"])
         left = await db.fetchval("SELECT result FROM review_analyses WHERE id = $1", aid)
         left = _j.loads(left) if isinstance(left, str) else left
         check("the earlier round stops offering them (no pending, no 'already checked')", not left.get("pending") and not left.get("skipped_duplicates"), (left.get("pending"), left.get("skipped_duplicates")))

@@ -354,17 +354,27 @@ def sheet_mismatch(per_child: list) -> Optional[dict]:
     return {"problems": sorted({p for p, _ in shared}), "rolls": sorted({r for rolls in shared.values() for r in rolls})}
 
 
+def _mistake_id(x):
+    """A mistake's code, whatever shape the AI wrote it in: "N2.3.2-M1", {"id": "N2.3.2-M1", ...}, {"misconception_id": ...}, or a list of those
+    (17 Nov, live: "unhashable type: 'dict'" when sheets kept from an earlier round were counted for the first time). None when there is none."""
+    if isinstance(x, list):
+        x = next((y for y in x if y), None)
+    if isinstance(x, dict):
+        x = x.get("misconception_id") or x.get("id") or x.get("code")
+    return str(x).strip() if x not in (None, "") else None
+
+
 def recompute_misconceptions(child_result: dict) -> list:
     """
     Mistake patterns are counted from the per-problem diagnoses, WITHOUT the problems the child copied differently, so a
     copying slip can never become a misconception. Falls back to the model's own list when it gave no per-problem diagnoses.
     """
     probs = child_result.get("problems") or []
-    copied = {p.get("number") for p in probs if p.get("copy_error") is True}
-    if any(p.get("diagnosed_misconception") for p in probs):
+    copied = {p.get("number") for p in probs if p.get("copy_error") is True and isinstance(p.get("number"), (int, str))}
+    if any(_mistake_id(p.get("diagnosed_misconception")) for p in probs):
         agg = {}
         for p in probs:
-            mid = p.get("diagnosed_misconception")
+            mid = _mistake_id(p.get("diagnosed_misconception"))
             if not mid or p.get("copy_error") is True:
                 continue
             a = agg.setdefault(mid, {"misconception_id": mid, "occurrences": 0, "evidence_problems": [], "_hi": False})
@@ -375,10 +385,15 @@ def recompute_misconceptions(child_result: dict) -> list:
                  "evidence_problems": a["evidence_problems"]} for a in sorted(agg.values(), key=lambda a: -a["occurrences"])]
     out = []
     for m in (child_result.get("summary") or {}).get("detected_misconceptions") or []:
-        ev = [n for n in (m.get("evidence_problems") or []) if n not in copied]
+        if not isinstance(m, dict):
+            m = {"misconception_id": m}
+        mid = _mistake_id(m.get("misconception_id") or m.get("id"))
+        if not mid:
+            continue
+        ev = [n for n in (m.get("evidence_problems") or []) if isinstance(n, (int, str)) and n not in copied]
         occ = len(ev) if m.get("evidence_problems") else m.get("occurrences", 1)
         if occ > 0:
-            out.append({**m, "occurrences": occ, **({"evidence_problems": ev} if m.get("evidence_problems") else {})})
+            out.append({**m, "misconception_id": mid, "occurrences": occ, **({"evidence_problems": ev} if m.get("evidence_problems") else {})})
     return out
 
 
@@ -716,7 +731,9 @@ async def today_group_result(db, teacher_id: str, session_date, competency_id: s
         correct += s.get("correct") or 0
         total += s.get("total_problems") or 0
         for m in s.get("detected_misconceptions") or []:
-            counts[m["misconception_id"]] = counts.get(m["misconception_id"], 0) + m.get("occurrences", 1)
+            mid = _mistake_id(m.get("misconception_id") if isinstance(m, dict) else m)
+            if mid:
+                counts[mid] = counts.get(mid, 0) + (m.get("occurrences", 1) if isinstance(m, dict) else 1)
     if not total:
         return {"children": 0, "rolls": [], "group_accuracy": None, "ai_recommendation": None}
     acc = correct / total
