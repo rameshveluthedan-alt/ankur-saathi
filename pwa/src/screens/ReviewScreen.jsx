@@ -353,7 +353,7 @@ export default function ReviewScreen() {
         {fromPlan ? (
           <button type="button" className="btn btn-secondary btn-small" data-testid="back-to-plan" onClick={backToPlan}>← <Bi hi="योजना" en="Plan" inline /></button>
         ) : null}
-        <h1>{fromPlan ? <>{channelOf(fromPlan.channel)?.icon} <Bi hi="कक्षा में दर्ज करें" en="In-class record" inline /></> : <>☑️ <Bi hi="आकलन" en="Assess" inline /></>}</h1>
+        <h1>{fromPlan ? <>{channelOf(fromPlan.channel)?.icon} <Bi hi="कक्षा में दर्ज करें" en="Record in class" inline /></> : <>☑️ <Bi hi="आकलन" en="Assess" inline /></>}</h1>
         {!fromPlan && (
           <button type="button" className="btn btn-secondary btn-small" data-testid="review-to-plan" onClick={() => navigate('/yojana')}>📋 <Bi hi="आज की योजना" en="Today's plan" inline /></button>
         )}
@@ -362,7 +362,7 @@ export default function ReviewScreen() {
         <div data-testid="from-plan" className={`in-class-bar tier-${fromPlan.level}`}>
           <GroupMark group={fromPlan.level} name /> · <Bi hi={channelOf(fromPlan.channel)?.hi || ''} en={channelOf(fromPlan.channel)?.en || ''} inline />
           <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>
-            <Bi hi="सिर्फ़ इसी समूह के बच्चे। अभी दर्ज करें, या कागज़ पर लिखकर पढ़ाने के बाद आकलन में। अगली कक्षा में क्या पढ़ाना है, यह पढ़ाने के बाद तय होगा।" en="Only this group's children. Record now, or on paper and enter it in Assess after teaching. What to teach in the next class is decided after teaching." />
+            <Bi hi="सिर्फ़ इसी समूह के बच्चे। अभी दर्ज करें, या कागज़ पर लिखकर पढ़ाने के बाद आकलन में। अगली कक्षा में क्या पढ़ाना है, यह पढ़ाने के बाद तय होगा।" en="Only this group's children. Record now, or note it on paper and enter it later in Assess. You decide the next class after teaching." />
           </div>
         </div>
       )}
@@ -386,7 +386,7 @@ export default function ReviewScreen() {
       {/* An analysis already done today can always be reopened, even after pressing Back or reloading */}
       {step !== 3 && !analysisOpen && savedAnalyses.length > 0 && (
         <div className="card" style={{ background: '#EAF6EE', borderColor: '#BFE3CC' }} data-testid="saved-analyses">
-          <div style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: 6 }}>🔍 <Bi hi="आज का विश्लेषण उपलब्ध है" en="Today's analysis, tap to open" inline /></div>
+          <div style={{ fontWeight: 600, fontSize: '0.875rem', marginBottom: 6 }}>🔍 <Bi hi="आज का विश्लेषण उपलब्ध है" en="Today's photo results, tap to open" inline /></div>
           {savedAnalyses.map(a => (
             <button key={a.id} type="button" className="btn btn-secondary" onClick={() => openSaved(a)}
               style={{ width: '100%', display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: '0.8125rem' }}>
@@ -450,7 +450,7 @@ export default function ReviewScreen() {
               ))}
               <button type="button" data-testid="channel-toggle" onClick={() => setShowAllChannels(v => !v)}
                 style={{ background: 'none', border: 'none', color: 'var(--green-dark)', textDecoration: 'underline', fontSize: '0.8125rem', padding: '4px 0', minHeight: 36, cursor: 'pointer', fontFamily: 'inherit' }}>
-                {showAllChannels ? <Bi hi="सिर्फ़ ज़रूरी तरीके दिखाएँ" en="Show only the ways needed" inline /> : <Bi hi="दूसरे तरीके भी दिखाएँ" en="Show the other ways too" inline />}
+                {showAllChannels ? <Bi hi="सिर्फ़ ज़रूरी तरीके दिखाएँ" en="Show fewer ways" inline /> : <Bi hi="दूसरे तरीके भी दिखाएँ" en="Show all ways to record" inline />}
               </button>
             </Hint>
           )}
@@ -548,7 +548,7 @@ export default function ReviewScreen() {
                 </div>
               )}
               <button className="btn btn-primary" onClick={submitObserved} disabled={loading || !observedItems.length} style={{ marginTop: 8 }}>
-                {loading ? 'दर्ज हो रहा...' : <>✓ {observedItems.length} <Bi hi="अवलोकन जमा करें" en="Submit" inline /></>}
+                {loading ? 'दर्ज हो रहा...' : <>✓ {observedItems.length} <Bi hi="अवलोकन जमा करें" en="Save" inline /></>}
               </button>
             </div>
           )}
@@ -558,11 +558,11 @@ export default function ReviewScreen() {
             <div className="card">
               {/* which group's sheet these photos are taken as: said plainly, right above the photos (15 Nov: a test batch went in as the Beginners' sheet unnoticed) */}
               <div className={`photo-for tier-${sheetLevel}`} data-testid="photo-for">
-                <Bi hi="इन फ़ोटो को इस समूह की वर्कशीट माना जाएगा" en="These photos are taken as this group's worksheet" inline />: <b><GroupMark group={sheetLevel} name /></b>
-                {!fromPlan && <span style={{ fontWeight: 400 }}> · <Bi hi="दूसरा समूह? ऊपर उसका कार्ड चुनें" en="Another group? Choose its card above" inline /></span>}
+                <Bi hi="इन फ़ोटो को इस समूह की वर्कशीट माना जाएगा" en="Photos for" inline />: <b><GroupMark group={sheetLevel} name /></b>
+                {!fromPlan && <span style={{ fontWeight: 400 }}> · <Bi hi="दूसरा समूह? ऊपर उसका कार्ड चुनें" en="Wrong group? Choose the right card above" inline /></span>}
               </div>
-              <PilotFlag testid="pilot-photo" hi="AI फ़ोटो से बच्चों का काम पढ़ता है; अब तक कुछ ही शीट पर परखा गया है। नतीजे देखकर आप ही तय करें।"
-                en="The AI reads the children's work from the photo; tested on only a few sheets so far. Look at the results; you decide." />
+              <PilotFlag testid="pilot-photo" chip={{ icon: '🤖', hi: 'AI जाँच', en: 'AI marking' }} hi="नतीजे देखें; निर्णय आपका है।"
+                en="Check the results; the decision is yours." />
               {/* the group comes from the group card above (or from the plan, in class): this choice only with the other ways shown */}
               {!fromPlan && chooseByHand && (<>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0' }}><Bi hi="किस समूह की वर्कशीट?" en="Which group's sheet?" inline /></div>
@@ -595,12 +595,12 @@ export default function ReviewScreen() {
                     )}
                     <div><b>✓ <Bi hi="हो चुके" en="Done" inline />: {done.length}/{total}</b>{done.length > 0 && ` · रोल ${done.join(', ')}`}</div>
                     <div style={{ marginTop: 2 }}>
-                      ⏳ {useSample ? <><Bi hi="इन बच्चों की फ़ोटो लें" en="Photograph these" inline /></> : <><Bi hi="बाकी" en="Left" inline /></>}:{' '}
+                      ⏳ {useSample ? <><Bi hi="इन बच्चों की फ़ोटो लें" en="Photograph these children's sheets" inline /></> : <><Bi hi="बाकी" en="Left" inline /></>}:{' '}
                       {left.length === 0 ? <><Bi hi="कोई नहीं" en="none" inline /></> : useSample
                         ? left.map(r => <button key={r} type="button" data-testid={`chip-${r}`} title={[names && names[r], coverage.labels?.[r]].filter(Boolean).join(' · ')} className="chip" onClick={() => toggleAbsent(r)}>{r}{coverage.labels?.[r] ? <span style={{ fontSize: '0.55rem', color: 'var(--text-secondary)' }}> {coverage.labels[r]}</span> : null}</button>)
                         : left.join(', ')}
                     </div>
-                    {useSample && left.length > 0 && <div style={{ color: 'var(--text-secondary)' }}><Bi hi="कोई बच्चा अनुपस्थित है? उसके रोल पर दबाएँ, उसकी जगह दूसरा बच्चा सुझाया जाएगा।" en="Absent? Tap the roll and another child is suggested." /></div>}
+                    {useSample && left.length > 0 && <div style={{ color: 'var(--text-secondary)' }}><Bi hi="कोई बच्चा अनुपस्थित है? उसके रोल पर दबाएँ, उसकी जगह दूसरा बच्चा सुझाया जाएगा।" en="Child absent? Tap their roll number to get another child." /></div>}
                     {useSample && sample.absent.length > 0 && (
                       <div style={{ marginTop: 4 }}><Bi hi="अनुपस्थित" en="Absent" inline />: {sample.absent.map(r => <button key={r} type="button" data-testid={`absent-${r}`} className="chip" onClick={() => toggleAbsent(r)}>{r} ✕</button>)}</div>
                     )}
@@ -610,7 +610,7 @@ export default function ReviewScreen() {
                         <span className="en" lang="en">A sample gives a rough picture of the group (the average could be off by about ±{sample.margin_points} points). Levels change only through an assessment, never from daily results.</span>
                       </div>
                     )}
-                    {!useSample && done.length > 0 && <div style={{ color: 'var(--text-secondary)', marginTop: 2 }}><Bi hi="जो हो चुके हैं उनकी दोबारा फ़ोटो न लें।" en="No need to photograph the done ones again." /></div>}
+                    {!useSample && done.length > 0 && <div style={{ color: 'var(--text-secondary)', marginTop: 2 }}><Bi hi="जो हो चुके हैं उनकी दोबारा फ़ोटो न लें।" en="Already done: no need to photograph these again." /></div>}
                   </div>
                 );
               })()}
@@ -623,7 +623,7 @@ export default function ReviewScreen() {
               </div>
               {dupNotice && <div style={{ fontSize: '0.75rem', color: 'var(--info)', background: 'var(--info-bg)', borderRadius: 8, padding: '4px 10px', marginTop: 6 }} data-testid="dup-notice">⚠ {dupNotice}</div>}
               <p style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', marginTop: 6 }} data-testid="photo-name-hint">
-<Bi hi="फ़ोटो में बच्चे का नाम न आने दें। नाम AI को कभी नहीं भेजे जाते, पर फ़ोटो में लिखा नाम चला जाएगा।" en="Keep names out of the photo: names are never sent to the AI, but a name written on the page would be." />
+<Bi hi="फ़ोटो में बच्चे का नाम न आने दें। नाम AI को कभी नहीं भेजे जाते, पर फ़ोटो में लिखा नाम चला जाएगा।" en="Keep names off the sheet: the app never sends names to the AI, but a name in the photo would be sent." />
               </p>
               {photos.length > 0 && (
                 <div style={{ marginTop: 8 }}>
@@ -659,9 +659,9 @@ export default function ReviewScreen() {
                   )}
                   {orfLevel.passage ? (
                     <div data-testid="orf-passage" style={{ fontSize: '0.8125rem', marginBottom: 6 }}>
-                      <Bi hi="पढ़ने का पाठ" en="Text to read" inline />: <b>«{orfLevel.passage.title}»</b> ({orfLevel.passage.word_count} <Bi hi="शब्द" en="words" inline />)
+                      <Bi hi="पढ़ने का पाठ" en="Passage to read" inline />: <b>«{orfLevel.passage.title}»</b> ({orfLevel.passage.word_count} <Bi hi="शब्द" en="words" inline />)
                       <details className="fold" data-testid="orf-passage-text" style={{ marginTop: 2 }}>
-                        <summary><span><Bi hi="पाठ दिखाएँ (बच्चा यहीं से पढ़ सकता है)" en="Show the text (the child can read it here)" inline /></span></summary>
+                        <summary><span><Bi hi="पाठ दिखाएँ (बच्चा यहीं से पढ़ सकता है)" en="Show the passage (the child reads from the phone)" inline /></span></summary>
                         <p lang="hi" style={{ fontSize: '1.125rem', lineHeight: 1.7, whiteSpace: 'pre-line', margin: '4px 0' }}>{orfLevel.passage.text}</p>
                       </details>
                     </div>
@@ -695,7 +695,7 @@ export default function ReviewScreen() {
                     </div>
                   ))}
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}>
-                    <Bi hi="गलत दर्ज हुआ हो तो वही रोल नंबर फिर दर्ज करें; नया नतीजा गिना जाएगा।" en="If one was entered wrongly, enter the same roll number again; the newest counts." />
+                    <Bi hi="गलत दर्ज हुआ हो तो वही रोल नंबर फिर दर्ज करें; नया नतीजा गिना जाएगा।" en="Entered a wrong score? Enter the same roll number again; the latest counts." />
                   </div>
                 </details>
               )}
@@ -704,10 +704,10 @@ export default function ReviewScreen() {
                 <input type="number" inputMode="numeric" placeholder="रोल नं." aria-label="रोल नंबर (Roll number)" value={orfEntry.roll_number}
                   onChange={e => setOrfEntry(o => ({ ...o, roll_number: e.target.value }))}
                   style={{ padding: 10, borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', fontFamily: 'inherit' }} />
-                <input type="number" inputMode="numeric" placeholder={bi('सही शब्द/मिनट', 'CWPM')} aria-label="सही शब्द प्रति मिनट (Correct Words Per Minute)" value={orfEntry.cwpm}
+                <input type="number" inputMode="numeric" placeholder={bi('सही शब्द/मिनट', 'Correct words per minute')} aria-label="सही शब्द प्रति मिनट (Correct Words Per Minute)" value={orfEntry.cwpm}
                   onChange={e => setOrfEntry(o => ({ ...o, cwpm: e.target.value }))}
                   style={{ padding: 10, borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', fontFamily: 'inherit' }} />
-                <input type="number" inputMode="numeric" placeholder={bi('गलतियाँ', 'Errors')} aria-label="गलतियाँ (Errors)" value={orfEntry.error_count}
+                <input type="number" inputMode="numeric" placeholder={bi('गलतियाँ', 'Mistakes')} aria-label="गलतियाँ (Errors)" value={orfEntry.error_count}
                   onChange={e => setOrfEntry(o => ({ ...o, error_count: e.target.value }))}
                   style={{ padding: 10, borderRadius: 8, border: '1px solid var(--border)', fontSize: '1rem', fontFamily: 'inherit' }} />
               </div>
@@ -720,18 +720,18 @@ export default function ReviewScreen() {
 
           {!channel && (
             <div className="empty-state">
-              <p><Bi hi="ऊपर से एक समूह या तरीका चुनें" en="Choose a group or a way above" /></p>
+              <p><Bi hi="ऊपर से एक समूह या तरीका चुनें" en="Choose a group above to start" /></p>
             </div>
           )}
 
           {fromPlan && (
             <button type="button" className="btn btn-primary" data-testid="done-in-class" onClick={backToPlan} style={{ marginTop: 12, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
-              <Bi hi="← पढ़ाना जारी रखें (योजना पर लौटें)" en="Back to teaching (the plan)" />
+              <Bi hi="← पढ़ाना जारी रखें (योजना पर लौटें)" en="Back to today's plan" />
             </button>
           )}
           {!fromPlan && (analysisResult || savedAnalyses.length > 0) && (
             <button className="btn btn-secondary" data-testid="see-analysis" onClick={() => (analysisResult ? goView('a') : openSaved(savedAnalyses[0]))} style={{ marginTop: 12 }}>
-              <Bi hi="फ़ोटो विश्लेषण देखें" en="See the photo analysis" inline /> →
+              <Bi hi="फ़ोटो विश्लेषण देखें" en="See the photo results" inline /> →
             </button>
           )}
           {!fromPlan && (
@@ -756,16 +756,16 @@ export default function ReviewScreen() {
                   <strong>{analysisResult.children_analysed}</strong>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span><Bi hi="समूह शुद्धता" en="Group accuracy" /></span>
+                  <span><Bi hi="समूह शुद्धता" en="Group score" /></span>
                   <strong data-testid="group-accuracy">{analysisResult.group_accuracy == null ? '—' : `${Math.round(analysisResult.group_accuracy * 100)}%`}</strong>
                 </div>
                 {analysisResult.copy_errors_excluded > 0 && (
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 8 }}>
-                    ✏️ {analysisResult.copy_errors_excluded} <Bi hi="सवाल गिने नहीं गए: बच्चों ने उन्हें अलग उतारा" en="problems not scored: copied differently" inline />
+                    ✏️ {analysisResult.copy_errors_excluded} <Bi hi="सवाल गिने नहीं गए: बच्चों ने उन्हें अलग उतारा" en="questions not marked: copied wrongly" inline />
                   </div>
                 )}
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span><Bi hi="AI सुझाव" en="AI recommendation" /></span>
+                  <span><Bi hi="AI सुझाव" en="AI suggests" /></span>
                   <strong style={{ color: analysisResult.ai_recommendation === 'advance' ? 'var(--green-dark)' : 'var(--reteach)', textAlign: 'right' }}>
                     {analysisResult.ai_recommendation == null ? <Bi hi="— (किसी बच्चे का आकलन नहीं हुआ)" en="— (no child assessed)" /> : analysisResult.ai_recommendation === 'advance' ? <Bi hi="⬆ आगे बढ़ें" en="Move on" /> : <Bi hi="🔄 दोहराएँ" en="Teach again" />}
                   </strong>
@@ -774,13 +774,13 @@ export default function ReviewScreen() {
 
               {analysisResult.skipped_duplicates?.length > 0 && (
                 <div className="card" style={{ borderLeft: '4px solid var(--info)', background: 'var(--info-bg)' }} data-testid="dup-skipped">
-                  <h3 style={{ marginBottom: 4 }}>⚠️ <Bi hi="पहले से विश्लेषित" en="Already analysed today" inline /></h3>
-                  <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi="इनका पहले का परिणाम रखा गया" en="the earlier result was kept" inline /></p>
+                  <h3 style={{ marginBottom: 4 }}>⚠️ <Bi hi="पहले से विश्लेषित" en="Already checked today" inline /></h3>
+                  <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginBottom: 6 }}><Bi hi="इनका पहले का परिणाम रखा गया" en="the earlier result is kept" inline /></p>
                   {analysisResult.skipped_duplicates.map(d => (
                     <div key={d.roll_number} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 0', fontSize: '0.8125rem' }}>
                       <span>रोल {d.roll_number} ·{d.earlier_accuracy == null ? '—' : Math.round(d.earlier_accuracy * 100) + '%'} · {new Date(d.earlier_at).toLocaleTimeString('hi-IN', { hour: '2-digit', minute: '2-digit' })}</span>
                       {photos.length > 0 && <button type="button" className="btn btn-secondary btn-small" style={{ fontSize: '0.8125rem' }} disabled={loading || !online}
-                        onClick={() => submitPhotos({ replaceRolls: [d.roll_number] })}><Bi hi="नई फ़ोटो से बदलें" en="Replace" inline /></button>}
+                        onClick={() => submitPhotos({ replaceRolls: [d.roll_number] })}><Bi hi="नई फ़ोटो से बदलें" en="Use the new photo" inline /></button>}
                     </div>
                   ))}
                 </div>
@@ -789,16 +789,16 @@ export default function ReviewScreen() {
                 analysisResult.unreadable_sheets > 0 || analysisResult.not_assessed?.length > 0) && (
                 <div className="card" style={{ background: 'var(--info-bg)', fontSize: '0.8125rem' }} data-testid="roll-notices">
                   {analysisResult.duplicates_in_batch?.length > 0 && <div>🔁 <Bi hi="एक ही बच्चे की दो फ़ोटो, साफ़ वाली इस्तेमाल हुई" en="Two photos of the same child, the clearer one was used" inline />: रोल {analysisResult.duplicates_in_batch.join(', ')}</div>}
-                  {analysisResult.unknown_rolls?.length > 0 && <div>❓ <Bi hi="ये रोल नंबर इस कक्षा में नहीं हैं, गिने नहीं गए" en="Not in this class, not counted" inline />: {analysisResult.unknown_rolls.join(', ')}</div>}
+                  {analysisResult.unknown_rolls?.length > 0 && <div>❓ <Bi hi="ये रोल नंबर इस कक्षा में नहीं हैं, गिने नहीं गए" en="Roll number not in this class, skipped" inline />: {analysisResult.unknown_rolls.join(', ')}</div>}
                   {analysisResult.outside_group_rolls?.length > 0 && <div>↔️ <Bi hi="दूसरे समूह की शीट" en="A sheet from another group" inline />: रोल {analysisResult.outside_group_rolls.join(', ')}</div>}
                   {analysisResult.unreadable_sheets > 0 && <div>🔍 {analysisResult.unreadable_sheets} <Bi hi="शीट का रोल नंबर पढ़ा नहीं गया, दोबारा फ़ोटो लें" en="Roll number unreadable, please retake" inline /></div>}
-                  {analysisResult.not_assessed?.length > 0 && <div>📝 <Bi hi="कुछ आँका नहीं जा सका" en="Nothing could be scored" inline />: रोल {analysisResult.not_assessed.join(', ')}</div>}
+                  {analysisResult.not_assessed?.length > 0 && <div>📝 <Bi hi="कुछ आँका नहीं जा सका" en="Could not mark these" inline />: रोल {analysisResult.not_assessed.join(', ')}</div>}
                 </div>
               )}
 
               {analysisResult.discrepancy && (
                 <div className="card" style={{ borderLeft: '4px solid var(--danger)', background: 'var(--danger-bg)' }}>
-                  <h3 style={{ color: 'var(--danger)', marginBottom: 4 }}>⚠️ <Bi hi="विसंगति" en="Discrepancy" inline /></h3>
+                  <h3 style={{ color: 'var(--danger)', marginBottom: 4 }}>⚠️ <Bi hi="विसंगति" en="Your decision differs from the evidence" inline /></h3>
                   <p style={{ fontSize: '0.875rem' }}>{analysisResult.discrepancy.reason}</p>
                 </div>
               )}
@@ -836,12 +836,12 @@ export default function ReviewScreen() {
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                     {c.accuracy == null
                       ? <><Bi hi="आँका नहीं गया" en="Not assessed" inline /></>
-                      : <><Bi hi="शुद्धता" en="Accuracy" inline />: {Math.round(c.accuracy * 100)}%{c.assessed_problems ? <> · <span className="hi">{c.assessed_problems} सवालों में से</span><En>of {c.assessed_problems}</En></> : null}</>}
+                      : <><Bi hi="शुद्धता" en="Score" inline />: {Math.round(c.accuracy * 100)}%{c.assessed_problems ? <> · <span className="hi">{c.assessed_problems} सवालों में से</span><En>of {c.assessed_problems}</En></> : null}</>}
                     {c.misconceptions?.length > 0 && <> · <Bi hi="गलती" en="Mistake" inline />: {c.misconceptions.map((id) => { const nm = (analysisResult.misconception_names || {})[id]; return nm ? (bi(nm.hi, nm.en) || id) : id; }).join('; ')}</>}
                   </div>
                   {c.copy_errors?.length > 0 && (
                     <div style={{ fontSize: '0.75rem', color: 'var(--info)', marginTop: 4 }} data-testid="copy-errors">
-                      ✏️ <Bi hi="अलग उतारा, गिना नहीं गया" en="Copied differently, not scored" inline />:{' '}
+                      ✏️ <Bi hi="अलग उतारा, गिना नहीं गया" en="Copied wrongly from the sheet, not marked" inline />:{' '}
                       {c.copy_errors.map(e => `#${e.problem}${e.written ? ` लिखा ${e.written}` : ''} → ${e.answer}${e.correct_for_written === true ? ' ✓ (उस सवाल के लिए सही)' : e.correct_for_written === false ? ' ✗' : ''}`).join(' · ')}
                     </div>
                   )}
@@ -863,11 +863,11 @@ export default function ReviewScreen() {
 
           {fromPlan ? (
             <button type="button" className="btn btn-primary" data-testid="done-in-class" onClick={backToPlan} style={{ marginTop: 16, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
-              <Bi hi="← पढ़ाना जारी रखें (योजना पर लौटें)" en="Back to teaching" />
+              <Bi hi="← पढ़ाना जारी रखें (योजना पर लौटें)" en="Back to today's plan" />
             </button>
           ) : (<>
           <button type="button" className="btn btn-secondary" data-testid="back-to-work" onClick={() => goView('2')} style={{ marginTop: 16, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="← आज का प्रदर्शन: अगला समूह" en="Back to today's performance: the next group" />
+            <Bi hi="← आज का प्रदर्शन: अगला समूह" en="Back to the groups (next group)" />
           </button>
           <button type="button" className="btn btn-primary" data-testid="to-final" onClick={enterFinal} style={{ marginTop: 8, marginBottom: 80, flexDirection: 'column', gap: 0 }}>
             <Bi hi="आगे: अगली कक्षा में क्या पढ़ाएँ, तय करें →" en="Next: decide for the next class →" />
@@ -924,12 +924,12 @@ export default function ReviewScreen() {
                   </div>
                   {ev.recommend && (
                     <div data-testid={`final-suggest-${g.label}`} style={{ fontSize: '0.8125rem', color: 'var(--info)', fontWeight: 600, marginTop: 2 }}>
-                      <Bi hi="सुझाव: 🔄 दोहराएँ (जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई; कम से कम 4 बच्चों की जाँच)" en="Suggestion: re-teach (a third or more of the children checked made a mistake; at least 4 checked)" inline />
+                      <Bi hi="सुझाव: 🔄 दोहराएँ (जाँचे गए बच्चों में से एक-तिहाई या ज़्यादा से गलती हुई; कम से कम 4 बच्चों की जाँच)" en="Suggested: teach again (a third or more of the children checked made a mistake; at least 4 checked)" inline />
                     </div>
                   )}
                   {!ev.recommend && ev.very_small && (
                     <div data-testid={`final-too-few-${g.label}`} style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }}>
-                      <Bi hi="बहुत कम बच्चे जाँचे गए; ऐप कोई सुझाव नहीं देता।" en="Too few children checked for the app to suggest anything." inline />
+                      <Bi hi="बहुत कम बच्चे जाँचे गए; ऐप कोई सुझाव नहीं देता।" en="Too few children checked for a suggestion." inline />
                     </div>
                   )}
                   <div className="decision-row" style={{ marginTop: 6 }}>

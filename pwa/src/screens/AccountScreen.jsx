@@ -84,10 +84,10 @@ export default function AccountScreen() {
         </p>
         <label style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 44, fontSize: '0.9375rem', cursor: 'pointer', marginTop: 6 }}>
           <input type="checkbox" checked={shorter} onChange={(e) => toggleShorter(e.target.checked)} data-testid="shorter-screen" />
-          <span><Bi hi="छोटी स्क्रीन" en="Shorter screen" inline /></span>
+          <span><Bi hi="छोटी स्क्रीन" en="Compact plan view" inline /></span>
         </label>
         <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 2 }} data-testid="shorter-screen-hint">
-          <Bi hi="योजना की स्क्रीन छोटी हो जाती है; एक टैप पर सब कुछ खुलता है।" en="The plan screen gets shorter; one tap opens everything." />
+          <Bi hi="योजना की स्क्रीन छोटी हो जाती है; एक टैप पर सब कुछ खुलता है।" en="Shows a shorter plan; tap to open each part." />
         </p>
       </div>
 
@@ -140,7 +140,7 @@ export default function AccountScreen() {
                 <b data-testid="teacher-code" style={{ letterSpacing: 1 }}>{t.code}</b> {t.is_you && <>(<Bi hi="आप" en="you" inline />)</>}<br />
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                   {t.role === 'school_admin' ? <Bi hi="स्कूल लीडर" en="School leader" inline /> : <Bi hi="शिक्षक" en="Teacher" inline />} · {t.children} <Bi hi="बच्चे" en="children" inline />
-                  {t.locked && <> · 🔒 <Bi hi="बंद" en="locked" inline /></>}{t.must_change_pin && <> · <Bi hi="नया पासवर्ड बाकी" en="new password pending" inline /></>}{!t.has_pin && <> · <Bi hi="पासवर्ड नहीं" en="no password" inline /></>}
+                  {t.locked && <> · 🔒 <Bi hi="बंद" en="locked" inline /></>}{t.must_change_pin && <> · <Bi hi="नया पासवर्ड बाकी" en="waiting for a new password" inline /></>}{!t.has_pin && <> · <Bi hi="पासवर्ड नहीं" en="no password" inline /></>}
                 </span>
               </div>
               {t.locked && <button type="button" className="btn btn-secondary btn-small" data-testid={`unlock-${t.teacher_id}`} onClick={() => unlock(t)}><Bi hi="खोलें" en="Unlock" inline /></button>}

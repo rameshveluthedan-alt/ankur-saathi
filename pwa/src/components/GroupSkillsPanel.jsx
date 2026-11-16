@@ -6,7 +6,7 @@ import { bi } from '../services/language';
 const SOURCE_TAGS = {
   selected: { hi: 'आपका चुना कौशल', en: 'The skill you chose' },
   review: { hi: 'पिछले आकलन में आपके निर्णय से', en: 'From your decision at the last assessment' },
-  recommendation: { hi: 'पिछली जाँच के सुझाव से', en: 'From the evidence of the last review' },
+  recommendation: { hi: 'पिछली जाँच के सुझाव से', en: 'Based on the last assessment' },
   derived: { hi: 'चुने कौशल से तय', en: 'Follows the skill you chose' },
   teacher: { hi: 'आपकी पसंद', en: 'Your choice' },
 };
@@ -65,7 +65,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
       <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 8px' }}>
         {hasHistory
           ? <Bi hi={`सुझाव ${previousDate ? previousDate + ' की ' : 'पिछली '}योजना, उसके आकलन में आपके निर्णयों और बच्चों की जाँच से भरे गए हैं। जो चाहें बदलें; अंतिम निर्णय आपका है।`}
-              en={`Suggestions come from the plan of ${previousDate || 'the last plan'}, your decisions at its review and the children's evidence. Change anything; the final decision is yours.`} />
+              en={`Suggestions come from the plan of ${previousDate || 'the last plan'}, your decisions at its assessment and the children's results. Change anything; the final decision is yours.`} />
           : <Bi hi="पिछली योजना नहीं मिली, इसलिए हर समूह का कौशल आपके चुने कौशल से तय हुआ है। चाहें तो बदलें।" en="No earlier plan was found, so each group follows the skill you chose. Change it if you like." />}
       </div>
       {GROUPS.map((label) => {
@@ -155,7 +155,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                     return [
                       ...groupsOfSkills.slice(0, 1).map(plain),
                       reteachOption && (
-                        <optgroup key="reteach" label={bi('🔄 पिछली योजना का कौशल दोहराएँ', "Re-teach the last plan's skill")}>
+                        <optgroup key="reteach" label={bi('🔄 पिछली योजना का कौशल दोहराएँ', "Teach the last plan's skill again")}>
                           <option value={reteachOption.value}>🔄 दोहराएँ: {reteachOption.id} · {name(reteachOption.id)}</option>
                         </optgroup>
                       ),
@@ -180,7 +180,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
             </div>
             {label !== 'progressor' && canReteach && reteach[label] && (
               <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }} data-testid={`reteach-on-${label}`}>
-                <Bi hi="🔄 इस समूह का मुख्य ब्लॉक पिछली जाँच की गलतियों को दोबारा समझाएगा।" en="This group's main block re-teaches the mistakes from the last review." />
+                <Bi hi="🔄 इस समूह का मुख्य ब्लॉक पिछली जाँच की गलतियों को दोबारा समझाएगा।" en="This group's lesson re-teaches the mistakes from the last assessment." />
               </div>
             )}
             {label !== 'progressor' && canReteach && !canReturn && (
@@ -198,7 +198,7 @@ export default function GroupSkillsPanel({ groups, competencies, ladder, selecte
                 </label>
                 {reteach[label] && (
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 30 }}>
-                    <Bi hi="इस समूह का मुख्य ब्लॉक पिछली जाँच की गलतियों को दोबारा समझाएगा।" en="This group's main block will re-teach the mistakes from the last review." />
+                    <Bi hi="इस समूह का मुख्य ब्लॉक पिछली जाँच की गलतियों को दोबारा समझाएगा।" en="This group's lesson will re-teach the mistakes from the last assessment." />
                   </div>
                 )}
                 {!canTick && (

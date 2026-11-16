@@ -72,7 +72,7 @@ check('the result shown is the SERVER\'s: 45 CWPM that the server called partly 
 });
 check('a speed skill: the pace label comes from the mapping, never "reader" words: grade_level at 42 CWPM says "रफ़्तार कक्षा-स्तर पर", not "ग्रेड-स्तरीय पाठक"', () => {
   const h = pace('grade_level', 42, 3);
-  assert.ok(h.includes('रफ़्तार कक्षा-स्तर पर') && h.includes('Pace at grade level'));
+  assert.ok(h.includes('रफ़्तार कक्षा-स्तर पर') && h.includes('Reading speed: at grade level'));
   assert.ok(!/पाठक|reader/i.test(h.replace(/data-classification="[^"]*"/g, '')), 'no reader wording anywhere');
 });
 check('the three bands map to the three pace labels, from the band names and from the A/PA/NA codes the server sends today alike', () => {

@@ -46,7 +46,7 @@ check('ONE card with a row per group, in the order Beginner, Progressor, Profici
   assert.equal((card.match(/data-testid="today-card"/g) || []).length, 1);
   const order = ['beginner', 'progressor', 'proficient'].map((l) => card.indexOf(`data-testid="today-${l}"`));
   assert.ok(order.every((i, k) => i > 0 && (k === 0 || i > order[k - 1])), order.join(','));
-  assert.ok(card.includes('आज के नमूने में') && card.includes("In today&#x27;s sample"));
+  assert.ok(card.includes('आज के नमूने में') && card.includes('Checked today'));
 });
 check('each row carries its group\'s colour edge and shape (tier class and the shaped badge)', () => {
   for (const l of ['beginner', 'progressor', 'proficient']) assert.ok(row(l).includes(`today-row tier-${l}`) && row(l).includes(`badge badge-${l}`), l);
@@ -159,7 +159,7 @@ check('a list with nobody in it is left out, and no flags means no section', () 
 
 console.log('\nHindi only');
 check('every new line has its English in a hideable .en span (the "Hindi only" setting hides it)', () => {
-  for (const en of ["In today&#x27;s sample", 'No assessment today', 'No decision recorded today', 'Your decision: Move on', 'assessed', 'Children to look at']) {
+  for (const en of ['Checked today', 'No assessment today', 'No decision recorded today', 'Your decision: Move on', 'assessed', 'Children to look at']) {
     const all = card + look + html(React.createElement(ChildToday, { today: { skill_id: 'N0.1.1', status: 'achieved' } }));
     const i = all.indexOf(en);
     assert.ok(i > 0 && all.lastIndexOf('class="en', i) > all.lastIndexOf('</span>', i), en);

@@ -252,7 +252,7 @@ export default function YojanaScreen() {
           const ws = plan.worksheets?.[level];
           const ds = ws && ws.sheet_kind === 'dictation' && Array.isArray(ws.dictation_sentences) ? ws.dictation_sentences.filter(Boolean) : [];
           return ds.length > 0 ? (
-            <Fold icon="🗣️" hi="बोलकर लिखवाएँ: वर्कशीट के वाक्य" en="Dictate: the worksheet's sentences" testid={`dictation-${level}`}>
+            <Fold icon="🗣️" hi="बोलकर लिखवाएँ: वर्कशीट के वाक्य" en="Dictation: the sentences to read aloud" testid={`dictation-${level}`}>
               <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '0 0 4px' }}>
                 <Bi hi="हर वाक्य दो बार साफ़ बोलें; बच्चे उसी नंबर की लाइन पर लिखें। ये वाक्य बोर्ड पर न लिखें।" en="Read each sentence clearly twice; the children write it on the line with its number. Do not write these on the board." />
               </p>
@@ -272,7 +272,7 @@ export default function YojanaScreen() {
           </Fold>
         )}
         {Array.isArray(block.cfu) && block.cfu.length > 0 && (
-          <Fold icon="✅" hi="समझ की जाँच" en="Check for understanding" testid="cfu">
+          <Fold icon="✅" hi="समझ की जाँच" en="Quick check (show me)" testid="cfu">
             {/* the heading names the purpose (a check for understanding), not one technique; the text under "कैसे करें?" says how (today: the show-me). Sticks are named only in a maths plan. */}
             <details className="fold" data-testid="cfu-how" onClick={(e) => e.stopPropagation()} style={{ margin: '2px 0 4px' }}>
               <summary><span><Bi hi="कैसे करें?" en="How to do it" inline /></span></summary>
@@ -291,7 +291,7 @@ export default function YojanaScreen() {
                   </div>
                 ))}
                 {q.shows_hi && !(q.listen_for || []).length && (
-                  <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}><Bi hi="सही उत्तर से पता चलता है" en="A right answer shows" inline />: {fmt(q.shows_hi)}</div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}><Bi hi="सही उत्तर से पता चलता है" en="A correct answer shows" inline />: {fmt(q.shows_hi)}</div>
                 )}
               </div>
             ))}
@@ -303,7 +303,7 @@ export default function YojanaScreen() {
           </Fold>
         )}
         {block.other_groups_hi && (
-          <Fold icon="👥" hi="इस बीच बाकी समूह" en="Meanwhile, the other groups" testid="other-groups">
+          <Fold icon="👥" hi="इस बीच बाकी समूह" en="Meanwhile, the other groups do" testid="other-groups">
             <div style={{ fontSize: '0.8125rem', ...ML }}>{fmt(block.other_groups_hi)}</div>
           </Fold>
         )}
@@ -327,7 +327,7 @@ export default function YojanaScreen() {
       {currentPlan.served_from === 'sample' && (
         <div data-testid="sample-banner" className="note note-info">
           📄 <b><Bi hi="नमूना योजना" en="Sample plan" inline /></b>: <Bi hi="AI की सीमा पूरी होने से यह इसी कौशल की पहले से बनी योजना है। समूह और वर्कशीट आपकी कक्षा के हिसाब से जाँचे गए हैं।"
-            en="The AI limit was reached, so this is a recorded plan for the same skill. The groups and worksheets are checked for your class." inline />
+            en="Today's AI limit was reached, so this is a ready-made plan for the same skill, fitted to your class's groups." inline />
         </div>
       )}
       <div className="screen-header plan-title">
@@ -356,7 +356,7 @@ export default function YojanaScreen() {
             <th><Bi hi="समूह" en="Group" inline /></th>
             <th style={{ textAlign: 'center' }}>👥</th>
             <th><Bi hi="आज का कौशल" en="Today's skill" inline /></th>
-            <th style={{ textAlign: 'center' }}><Bi hi="वर्कशीट" en="Sheet" inline /></th>
+            <th style={{ textAlign: 'center' }}><Bi hi="वर्कशीट" en="Worksheet" inline /></th>
           </tr>
         </thead>
         <tbody>
@@ -409,7 +409,7 @@ export default function YojanaScreen() {
               {l.channel === 'observed' && hasWorksheet(currentPlan, l.level) && (
                 <div data-testid={`review-way-practice-${l.level}`} style={{ color: 'var(--text-secondary)' }}>ℹ️ <Bi hi={PRACTICE_ONLY.hi} en={PRACTICE_ONLY.en} inline /></div>
               )}
-              {l.passage && <div data-testid={`review-way-passage-${l.level}`}><Bi hi="पढ़ने का पाठ" en="Text to read" inline />: «{l.passage.title}» ({l.passage.word_count} <Bi hi="शब्द" en="words" inline />)</div>}
+              {l.passage && <div data-testid={`review-way-passage-${l.level}`}><Bi hi="पढ़ने का पाठ" en="Passage to read" inline />: «{l.passage.title}» ({l.passage.word_count} <Bi hi="शब्द" en="words" inline />)</div>}
             </div>
           );
         }) : (
@@ -456,7 +456,7 @@ export default function YojanaScreen() {
             {s.group && (
               <label className={`taught-row ${taught.includes(s.group) ? 'on' : ''}`} data-testid={`taught-${s.group}`}>
                 <input type="checkbox" checked={taught.includes(s.group)} onChange={() => toggleTaught(s.group)} />
-                <span><Bi hi="इस समूह को पढ़ा दिया" en="Group taught" inline /></span>
+                <span><Bi hi="इस समूह को पढ़ा दिया" en="Mark as taught" inline /></span>
               </label>
             )}
             <div className="slot-nav">
@@ -486,11 +486,11 @@ export default function YojanaScreen() {
         const left = toTeach.filter((g) => !taught.includes(g));
         return (<>
           <button type="button" className="btn btn-primary" data-testid="to-review" onClick={() => navigate('/review')} style={{ marginTop: 4, marginBottom: left.length ? 4 : 12, flexDirection: 'column', gap: 0 }}>
-            <Bi hi="पढ़ाने के बाद: आकलन करें और अगली कक्षा तय करें →" en="Assess today's work →" />
+            <Bi hi="पढ़ाने के बाद: आकलन करें और अगली कक्षा तय करें →" en="Assess and decide the next class →" />
           </button>
           {left.length > 0 && (
             <p data-testid="to-review-left" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', textAlign: 'center', margin: '0 0 12px' }}>
-              <Bi hi="अभी ✓ नहीं लगा (पढ़ा दिया):" en="Not yet ticked as taught:" inline />{' '}
+              <Bi hi="अभी ✓ नहीं लगा (पढ़ा दिया):" en="Not yet marked as taught:" inline />{' '}
               {left.map((g, i) => <span key={g}>{i ? ', ' : ''}<GroupMark group={g} name /></span>)}
             </p>
           )}
@@ -513,7 +513,7 @@ export default function YojanaScreen() {
               </div>
             ))}
             {Object.keys(explainability).length === 0 && (
-              <p style={{ color: 'var(--text-secondary)' }}><Bi hi="व्याख्या डेटा उपलब्ध नहीं।" en="Explainability data not available." inline /></p>
+              <p style={{ color: 'var(--text-secondary)' }}><Bi hi="व्याख्या डेटा उपलब्ध नहीं।" en="No explanation is available for this plan." inline /></p>
             )}
           </div>
         )}

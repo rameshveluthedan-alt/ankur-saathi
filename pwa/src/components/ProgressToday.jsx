@@ -25,7 +25,7 @@ export function TodayCard({ today }) {
   return (
     <div className="card" data-testid="today-card" style={{ padding: '10px 12px' }}>
       <div style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: 4 }}>
-        <Bi hi="आज के नमूने में" en="In today's sample" inline />
+        <Bi hi="आज के नमूने में" en="Checked today" inline />
       </div>
       {!today.has_plan && <div style={grey} data-testid="today-no-plan"><Bi hi="आज इस विषय की योजना नहीं बनी।" en="No plan for this subject today." /></div>}
       {GROUP_ORDER.map((label) => <TodayRow key={label} label={label} g={(today.by_level || {})[label]} />)}
@@ -63,12 +63,12 @@ function TodayRow({ label, g }) {
           )}
           {g.conflict && (
             <div style={{ fontSize: '0.75rem', color: 'var(--info)', marginTop: 2 }} data-testid={`today-conflict-${label}`}>
-              <Bi hi="⚠ आपका निर्णय और आज की जाँच मेल नहीं खाते" en="Your decision disagrees with today's evidence" />
+              <Bi hi="⚠ आपका निर्णय और आज की जाँच मेल नहीं खाते" en="Your decision differs from today's results" />
             </div>
           )}
           {g.advance_no_next && (
             <div style={{ ...grey, marginTop: 2 }} data-testid={`today-no-next-${label}`}>
-              <Bi hi="⬆ आगे बढ़ाया; अगला कौशल अभी नहीं है, इसलिए यही कौशल फिर सिखाया जाएगा" en="Advanced; no next skill yet, so the same one will be taught again" />
+              <Bi hi="⬆ आगे बढ़ाया; अगला कौशल अभी नहीं है, इसलिए यही कौशल फिर सिखाया जाएगा" en="Moved on, but there's no next skill yet; the same skill continues." />
             </div>
           )}
         </>
@@ -103,7 +103,7 @@ export function ChildToday({ today }) {
 export function LookAtChildren({ flags, nameOf = () => '' }) {
   if (!flags || !flags.length) return null;
   const parts = [
-    { dir: 'higher', hi: '⬆ अच्छा प्रदर्शन कर रहे हैं — एक छोटा दोबारा आकलन?', en: 'Doing well — a short re-assessment?', edge: 'var(--green-dark)' },
+    { dir: 'higher', hi: '⬆ अच्छा प्रदर्शन कर रहे हैं — एक छोटा दोबारा आकलन?', en: 'Doing well — check again soon?', edge: 'var(--green-dark)' },
     { dir: 'lower', hi: '⬇ कठिनाई में हैं — थोड़ी मदद की ज़रूरत?', en: 'Struggling — needs a bit of help?', edge: '#C9A227' },
   ];
   return (

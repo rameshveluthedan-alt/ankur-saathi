@@ -72,11 +72,11 @@ console.log('the toggle on Profile');
 localStorage.clear();
 await show(Account);
 const box = () => q('[data-testid="shorter-screen"]');
-check('it reads "छोटी स्क्रीन" with "Shorter screen" hideable, and never the old "अनुभवी शिक्षक मोड"', box() && /छोटी स्क्रीन\s*Shorter screen/.test(box().closest('label').textContent) && !!box().closest('label').querySelector('.en')
+check('it reads "छोटी स्क्रीन" with "Shorter screen" hideable, and never the old "अनुभवी शिक्षक मोड"', box() && /छोटी स्क्रीन\s*Compact plan view/.test(box().closest('label').textContent) && !!box().closest('label').querySelector('.en')
   && !document.body.textContent.includes('अनुभवी') && !fs.readFileSync(path.join(src, 'screens/AccountScreen.jsx'), 'utf8').includes('अनुभवी'), box() && box().closest('label').textContent);
 check('it sits under the "सिर्फ़ हिंदी दिखाएँ" toggle, with its one-line explanation in Hindi and English', (() => {
   const hindi = q('[data-testid="hindi-only"]'); const hint = q('[data-testid="shorter-screen-hint"]');
-  return hindi && (hindi.compareDocumentPosition(box()) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING) && hint && /योजना की स्क्रीन छोटी हो जाती है; एक टैप पर सब कुछ खुलता है।/.test(hint.textContent) && /The plan screen gets shorter; one tap opens everything\./.test(hint.textContent);
+  return hindi && (hindi.compareDocumentPosition(box()) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING) && hint && /योजना की स्क्रीन छोटी हो जाती है; एक टैप पर सब कुछ खुलता है।/.test(hint.textContent) && /Shows a shorter plan; tap to open each part\./.test(hint.textContent);
 })());
 check('off by default (nothing stored), and a 44 px row like the Hindi-only toggle', !box().checked && parseInt(box().closest('label').style.minHeight, 10) >= 44);
 

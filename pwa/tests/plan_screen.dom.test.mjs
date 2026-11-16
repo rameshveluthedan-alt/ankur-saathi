@@ -93,7 +93,7 @@ check('a skill can be chosen again straight away, and its groups load', /शु 
 const gen = deferred(); globalThis.__api.generatePlan = (...a) => { generateCalls.push(a); return gen.promise; };
 await click(generateBtn());
 await fire('/');
-check('while a plan is being generated the tab does NOT interrupt it: the bar is still there, still generating', !!qa('button.btn-primary').find((b) => /Generating/.test(b.textContent)));
+check('while a plan is being generated the tab does NOT interrupt it: the bar is still there, still generating', !!qa('button.btn-primary').find((b) => /Making the plan/.test(b.textContent)));
 await act(async () => { gen.resolve({ plan: {} }); await new Promise((r) => setTimeout(r, 0)); });
 globalThis.__api.generatePlan = async (...a) => { generateCalls.push(a); return { plan: {} }; };
 await fire('/');      // back to choosing, so the next scenario starts from a clean list

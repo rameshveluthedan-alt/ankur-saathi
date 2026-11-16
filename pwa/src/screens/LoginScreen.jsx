@@ -87,7 +87,7 @@ export default function LoginScreen() {
           </button>
         </div>
         {error && <p data-testid="login-error" role="alert" style={{ color: 'var(--danger)', fontSize: '0.875rem', marginBottom: 8 }}>{error}</p>}
-        <button className="btn btn-primary" onClick={handleLogin} disabled={loading} data-testid="login-submit">{loading ? <Bi hi="लॉगिन हो रहा है..." en="Logging in" inline /> : <Bi hi="लॉगिन करें" en="Login" inline />}</button>
+        <button className="btn btn-primary" onClick={handleLogin} disabled={loading} data-testid="login-submit">{loading ? <Bi hi="लॉगिन हो रहा है..." en="Signing in" inline /> : <Bi hi="लॉगिन करें" en="Sign in" inline />}</button>
         <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 10 }}><Bi hi="पासवर्ड भूल गए? अपने स्कूल लीडर से कहें।" en="Forgot your password? Ask your school leader." /></p>
         <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--text-secondary)', marginTop: 4 }}><Bi hi="आपका खाता आपके स्कूल लीडर द्वारा बनाया जाता है।" en="Your account is created by your school leader." /></p>
       </div>
@@ -99,9 +99,9 @@ export default function LoginScreen() {
 
           {/* 1. Five minutes: the shared demo teacher and the recorded story (the biggest card, first). Each card is a button and looks like one: hover lift, a "भरें ›" cue, a tick once filled. */}
           <DemoCard acct={STORY} code={code} fill={fill} main icon="⏱"
-            title={<Bi hi="5 मिनट: तैयार कहानी देखें" en="5 minutes: see the recorded story" />}
+            title={<Bi hi="5 मिनट: तैयार कहानी देखें" en="5 minutes: see a ready-made class" />}
             lines={[
-              <Bi key="w" hi="👩‍🏫 डेमो शिक्षक · 30 बच्चे · N2.3.2 की कहानी" en="Demo teacher · 30 children · the N2.3.2 story" />,
+              <Bi key="w" hi="👩‍🏫 डेमो शिक्षक · 30 बच्चे · N2.3.2 की कहानी" en="Demo teacher · 30 children · sample history (N2.3.2)" />,
               <Bi key="s" hi="सबके लिए एक साझा कक्षा, हर रात फिर से सेट होती है" en="One class shared by everyone, reset every night" />,
             ]} />
 

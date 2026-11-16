@@ -23,8 +23,8 @@ export function fitsDay(label, skillGrade, dayGrade) {
 
 // The same words the Review screen uses for the three decisions
 export const DECISION_LABELS = {
-  advance: { hi: '⬆ आगे बढ़ें', en: 'Advance' },          // ⬆, not ▲: ▲ is the Progressors' shape
-  reteach: { hi: '🔄 दोहराएँ', en: 'Re-teach' },
+  advance: { hi: '⬆ आगे बढ़ें', en: 'Move on' },          // ⬆, not ▲: ▲ is the Progressors' shape
+  reteach: { hi: '🔄 दोहराएँ', en: 'Teach again' },
   not_sure: { hi: '❓ पक्का नहीं', en: 'Not sure' },
 };
 
@@ -144,9 +144,9 @@ export function skillChoices({ label, ladder, row, selectedId }) {
   const groups = [
     { key: 'today', hi: 'आज का कौशल', en: "Today's skill", ids: take([selectedId]) },
     label === 'beginner'
-      ? { key: 'foundation', hi: 'आधार कौशल', en: 'Foundations', ids: take(related) }
-      : { key: 'next', hi: 'आगे के कौशल', en: 'What builds on it', ids: take(related) },
-    { key: 'kept', hi: 'पिछली योजना का / सुझाया कौशल', en: "Last plan's / suggested", ids: take([yesterdayOk && row.previous.id, row && row.initialId, row && row.skillId]) },
+      ? { key: 'foundation', hi: 'आधार कौशल', en: 'Earlier skills', ids: take(related) }
+      : { key: 'next', hi: 'आगे के कौशल', en: 'Next skills', ids: take(related) },
+    { key: 'kept', hi: 'पिछली योजना का / सुझाया कौशल', en: 'Last plan / suggested', ids: take([yesterdayOk && row.previous.id, row && row.initialId, row && row.skillId]) },
   ];
   return groups.filter((g) => g.ids.length);
 }

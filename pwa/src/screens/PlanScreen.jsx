@@ -167,7 +167,7 @@ export default function PlanScreen() {
         } catch (e2) { notify(friendlyError(e2, PLAN_FAILED), 'error'); }
       } else if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
         const samples = (e.detail && e.detail.sample_skills) || [];
-        notify(e.message + (samples.length ? `\n\n${bi('इन कौशलों की नमूना योजना उपलब्ध है', 'Sample plans are available for')}: ${samples.join(', ')}` : ''), 'error');
+        notify(e.message + (samples.length ? `\n\n${bi('इन कौशलों की नमूना योजना उपलब्ध है', 'Ready-made plans are available for')}: ${samples.join(', ')}` : ''), 'error');
       } else {
         notify(friendlyError(e, PLAN_FAILED), 'error');
       }
@@ -210,9 +210,9 @@ export default function PlanScreen() {
 
       <div className="domain-tabs">
         <button className={`domain-tab ${selectedDomain === 'numeracy' ? 'active' : ''}`}
-          onClick={() => setSelectedDomain('numeracy')}><Bi hi="गणित" en="Numeracy" inline /></button>
+          onClick={() => setSelectedDomain('numeracy')}><Bi hi="गणित" en="Maths" inline /></button>
         <button className={`domain-tab ${selectedDomain === 'r1_literacy' ? 'active' : ''}`}
-          onClick={() => setSelectedDomain('r1_literacy')}><Bi hi="हिंदी" en="Literacy" inline /></button>
+          onClick={() => setSelectedDomain('r1_literacy')}><Bi hi="हिंदी" en="Hindi" inline /></button>
       </div>
 
 
@@ -228,7 +228,7 @@ export default function PlanScreen() {
         return (
           <div className="card" data-testid="plan-status" style={{ padding: 12 }}>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-              <Bi hi="विषय" en="Subject" inline />: {selectedDomain === 'numeracy' ? <Bi hi="गणित" en="Maths" inline /> : <Bi hi="हिंदी" en="Literacy" inline />}
+              <Bi hi="विषय" en="Subject" inline />: {selectedDomain === 'numeracy' ? <Bi hi="गणित" en="Maths" inline /> : <Bi hi="हिंदी" en="Hindi" inline />}
             </div>
             <div data-testid="locked-skill" data-locked="true" aria-disabled="true" style={{ marginTop: 6, fontSize: '0.9375rem' }}>
               <Bi hi="कौशल" en="Skill" inline />: <b style={{ fontFamily: 'monospace' }}>{p.selected_competency_id}</b> <span aria-label="locked">🔒</span>
@@ -365,7 +365,7 @@ export default function PlanScreen() {
           <button className="btn btn-primary" onClick={handleGenerate} disabled={generating || loadingPanel || !online}
             style={generating ? { opacity: 1, cursor: 'wait' } : undefined}>
             {generating ? (
-              <><div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }} /> <Bi hi="योजना बन रही है..." en="Generating…" inline /> {fmtClock(elapsed)}</>
+              <><div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }} /> <Bi hi="योजना बन रही है..." en="Making the plan…" inline /> {fmtClock(elapsed)}</>
             ) : loadingPanel ? (
               <Bi hi="समूहों के कौशल लोड हो रहे हैं…" en="Loading the groups" inline />
             ) : (

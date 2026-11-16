@@ -110,7 +110,7 @@ export default function RegisterScreen() {
           <h3>✅ {done.added} <Bi hi="बच्चे जुड़ गए" en="children enrolled" inline /></h3>
           <p style={{ fontSize: '0.8125rem', margin: '6px 0' }}><Bi hi="कक्षा में कुल" en="Total in class" inline />: <b>{done.total_children}</b></p>
           {done.names_saved > 0 && <p style={{ fontSize: '0.8125rem' }}>🔒 {done.names_saved} <Bi hi="नाम सहेजे गए" en="names saved, private" inline /></p>}
-          {done.numbering === 'composite' && <p style={{ fontSize: '0.8125rem', color: 'var(--info)' }}><Bi hi="कक्षा नंबर में कक्षा शामिल है: कक्षा 3 रोल 5 = 305। बच्चे वर्कशीट पर यही नंबर लिखेंगे।" en="Class numbers carry the grade; children write this number on worksheets." /></p>}
+          {done.numbering === 'composite' && <p style={{ fontSize: '0.8125rem', color: 'var(--info)' }}><Bi hi="कक्षा नंबर में कक्षा शामिल है: कक्षा 3 रोल 5 = 305। बच्चे वर्कशीट पर यही नंबर लिखेंगे।" en="The class number includes the grade; children write it on their worksheets." /></p>}
           <button type="button" className="btn btn-primary" onClick={() => navigate('/')} style={{ marginTop: 8 }}><Bi hi="योजना पर जाएँ" en="Go to Plan" inline /></button>
         </div>
       )}

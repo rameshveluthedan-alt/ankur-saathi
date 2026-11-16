@@ -58,9 +58,9 @@ export default function ProgressScreen() {
 
       <div className="domain-tabs">
         <button className={`domain-tab ${selectedDomain === 'numeracy' ? 'active' : ''}`}
-          onClick={() => setSelectedDomain('numeracy')}><Bi hi="गणित" en="Numeracy" inline /></button>
+          onClick={() => setSelectedDomain('numeracy')}><Bi hi="गणित" en="Maths" inline /></button>
         <button className={`domain-tab ${selectedDomain === 'r1_literacy' ? 'active' : ''}`}
-          onClick={() => setSelectedDomain('r1_literacy')}><Bi hi="हिंदी" en="Literacy" inline /></button>
+          onClick={() => setSelectedDomain('r1_literacy')}><Bi hi="हिंदी" en="Hindi" inline /></button>
       </div>
 
       {/* B/P/P bar */}
@@ -105,7 +105,7 @@ export default function ProgressScreen() {
                 <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 6 }}>
                   <Bi hi="कक्षा" en="Grade" inline /> {c.enrolled_grade === 'grade_1' ? '1' : c.enrolled_grade === 'grade_2' ? '2' : '3'}
                 </span>
-                {asOf(c) && <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 6 }} data-testid={`as-of-${c.roll_number}`} title="level as of">· <Bi hi="स्तर" en="level as of" inline />: {asOf(c)}</span>}
+                {asOf(c) && <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', marginLeft: 6 }} data-testid={`as-of-${c.roll_number}`} title="level as of">· <Bi hi="स्तर" en="level on" inline />: {asOf(c)}</span>}
               </div>
               <span className={`badge badge-${bpp || 'beginner'}`}>
                 {BPP[bpp] ? <span className="hi">{BPP[bpp].hi}</span> : '—'}{BPP[bpp] && <span className="en en-inline" lang="en" style={{ fontSize: '0.625rem' }}>{BPP[bpp].en}</span>}
@@ -118,9 +118,9 @@ export default function ProgressScreen() {
                 <div><Bi hi="लक्ष्य" en="Current skill" inline />: <strong>{compId}</strong></div>
                 <div>{compName}</div>
                 <div style={{ marginTop: 4 }}>
-                  <Bi hi="गणित" en="Num" inline />: <span className={`badge badge-${c.numeracy_bpp || 'beginner'}`}>{BPP[c.numeracy_bpp] ? <Bi hi={BPP[c.numeracy_bpp].hi} en={BPP[c.numeracy_bpp].en} inline /> : '—'}</span>
+                  <Bi hi="गणित" en="Maths" inline />: <span className={`badge badge-${c.numeracy_bpp || 'beginner'}`}>{BPP[c.numeracy_bpp] ? <Bi hi={BPP[c.numeracy_bpp].hi} en={BPP[c.numeracy_bpp].en} inline /> : '—'}</span>
                   {' · '}
-                  <Bi hi="हिंदी" en="Lit" inline />: <span className={`badge badge-${c.literacy_bpp || 'beginner'}`}>{BPP[c.literacy_bpp] ? <Bi hi={BPP[c.literacy_bpp].hi} en={BPP[c.literacy_bpp].en} inline /> : '—'}</span>
+                  <Bi hi="हिंदी" en="Hindi" inline />: <span className={`badge badge-${c.literacy_bpp || 'beginner'}`}>{BPP[c.literacy_bpp] ? <Bi hi={BPP[c.literacy_bpp].hi} en={BPP[c.literacy_bpp].en} inline /> : '—'}</span>
                 </div>
               </div>
             )}

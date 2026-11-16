@@ -3,8 +3,8 @@ import Bi from './Bi';
 
 // Why this skill is suggested, from the teacher's decision for the Progressors at the last review (services: GET /plan/proposal, group_skills.propose)
 const REASON = {
-  advance: { hi: 'प्रगतिशील: ⬆ आगे बढ़ें', en: 'Progressors: ⬆ Advance' },
-  advance_no_next: { hi: 'प्रगतिशील: ⬆ आगे बढ़ें; अगला कौशल नहीं है, इसलिए यही फिर', en: 'Progressors: ⬆ Advance; there is no next skill, so the same one again' },
+  advance: { hi: 'प्रगतिशील: ⬆ आगे बढ़ें', en: 'Progressors: ⬆ Move on' },
+  advance_no_next: { hi: 'प्रगतिशील: ⬆ आगे बढ़ें; अगला कौशल नहीं है, इसलिए यही फिर', en: 'Progressors: ⬆ Move on; there is no next skill, so the same one again' },
   reteach: { hi: 'प्रगतिशील: 🔄 दोहराएँ', en: 'Progressors: 🔄 Re-teach' },
   not_sure: { hi: 'प्रगतिशील: ❓ पक्का नहीं', en: 'Progressors: ❓ Not sure' },
   recommended: { hi: 'प्रगतिशील के कई बच्चों से गलती हुई', en: 'many Progressors made a mistake' },

@@ -25,7 +25,7 @@ check('sticks are named only in a maths plan: "(छड़ियों से)" a
 check('the heading "समझ की जाँच" (Check for understanding) is the fold line of the section, outside the method’s own fold', () => {
   const heading = cfu.indexOf('hi="समझ की जाँच"');
   assert.ok(heading > -1 && heading < cfu.indexOf('<details'));
-  assert.ok(cfu.includes('en="Check for understanding"'));
+  assert.ok(cfu.includes('en="Quick check (show me)"'));
 });
 check('the heading and the fold name the PURPOSE, not one technique: no "शो-मी" (show-me is one way to check, the text says how)', () => {
   assert.ok(!/hi="[^"]*शो-मी[^"]*"/.test(cfu) && !/en="[^"]*show-me[^"]*"/i.test(cfu));

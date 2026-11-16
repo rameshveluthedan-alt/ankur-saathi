@@ -5,9 +5,9 @@
 // The server returns the A/PA/NA code from the skill's own CWPM thresholds (achieved | partially_achieved | not_achieved); the band names
 // (grade_level | developing | early_reader) mean the same three bands and are accepted too, so a later rename on the server changes nothing on screen.
 export const PACE_LABEL = {
-  grade_level: { hi: 'रफ़्तार कक्षा-स्तर पर', en: 'Pace at grade level' },
-  developing: { hi: 'रफ़्तार विकसित हो रही', en: 'Pace developing' },
-  early_reader: { hi: 'रफ़्तार धीमी', en: 'Pace slow' },
+  grade_level: { hi: 'रफ़्तार कक्षा-स्तर पर', en: 'Reading speed: at grade level' },
+  developing: { hi: 'रफ़्तार विकसित हो रही', en: 'Reading speed: developing' },
+  early_reader: { hi: 'रफ़्तार धीमी', en: 'Reading speed: slow' },
 };
 const BAND_OF = {
   grade_level: 'grade_level', achieved: 'grade_level',
