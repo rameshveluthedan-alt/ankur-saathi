@@ -169,3 +169,9 @@ The proposal promised an admin dashboard (usage, level mix, misconception patter
 5. Scope is checked in one place (`require_auth`), never per screen (§3).
 
 **Order:** the school leader's report (§8); then the hierarchy tree and the block, cluster and district roll-ups; then the history of rounds (§14), which unlocks progress over time; then the state view, with the AI-quality panel.
+
+## 17. Next, not built: compare a second open-weights embedding model (EmbeddingGemma)
+The L2 semantic retrieval (`docs/SEMANTIC_RETRIEVAL.md`) uses BGE-M3 (BAAI, MIT licence, 1024 dimensions), run offline on a laptop. It works (it picks the curated anchor first 75% of the time, against 25% by chance), but it is switched off because the blind review was split. Google's **EmbeddingGemma** is a smaller open-weights embedding model (about 300M parameters, 768 dimensions, 100+ languages including Hindi). Its licence is the Gemma Terms of Use, not MIT: check the current terms and the model card before choosing it.
+- **The test:** make the vectors with each model from the same texts and run the same evidence (`scripts/eval_semantic.py`: the recovery test against chance, then a fresh blind A/B for the education lead). Keep the model that scores better; if neither is clearly better, keep BGE-M3 (simpler licence).
+- **What changes in code:** the model and vector length in `scripts/embed_content.py` (today `DIMS = 1024`), the `vector(1024)` columns (`db/schema/12_embeddings_1024.sql`) and the 1024 check in `scripts/load_embeddings.py`, and EmbeddingGemma's task labels on the query and document texts (`scripts/embedding_texts.py`). The running app is unchanged: it still compares stored vectors in pgvector, with no embedding call.
+- **Size:** about half a day of code, plus the evaluation. Best run together with the content expansion (§9): with 14 anchors a difference between two good models may not show.
