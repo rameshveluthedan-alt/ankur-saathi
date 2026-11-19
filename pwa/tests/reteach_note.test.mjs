@@ -18,7 +18,7 @@ await build({
   entryPoints: { logic: path.join(src, 'services/reteachInfo.js'), view: path.join(src, 'components/ReteachNote.jsx') },
   bundle: true, format: 'esm', platform: 'node', outdir: out, outExtension: { '.js': '.mjs' }, loader: { '.js': 'jsx', '.jsx': 'jsx' }, external: ['react', 'react-dom'], logLevel: 'error',
 });
-const { pacePlan, isReteachMain, reteachTitle, reteachSummary, PACE } = await import(pathToFileURL(path.join(out, 'logic.mjs')).href);
+const { pacePlan, blockPace, isReteachMain, reteachTitle, reteachSummary, PACE } = await import(pathToFileURL(path.join(out, 'logic.mjs')).href);
 const { default: Note } = await import(pathToFileURL(path.join(out, 'view.mjs')).href);
 
 let n = 0;
@@ -110,6 +110,18 @@ check('a plain teach block, and the old separate re-teach block, get NO note fro
   assert.equal(render({ type: 'teach', teach_group: 'beginner', duration_minutes: 22 }, true), '');
   assert.equal(render({ type: 'reteach', teach_group: 'beginner', affected_rolls: [1] }, true), '');
   assert.equal(render({ type: 'anchor' }, true), '');
+});
+
+check('a block that carries its own pace (the 45-minute table) shows it as given: no recall, no We Do in a 7-minute block', () => {
+  const p = blockPace({ type: 'teach', duration_minutes: 7, pace: [{ key: 'i_do', min: 2 }, { key: 'show_me', min: 2 }, { key: 'you_do', min: 3 }] });
+  assert.deepEqual(p.parts.map((x) => [x.key, x.min]), [['i_do', 2], ['show_me', 2], ['you_do', 3]]);
+  assert.equal(p.total, 7);
+  assert.equal(p.parts[0].hi, PACE.find((x) => x.key === 'i_do').hi);
+});
+check('a block without its own pace scales the 27-minute pace, as before; a 7-minute block without one shows none', () => {
+  assert.deepEqual(blockPace({ duration_minutes: 27 }).parts.map((x) => x.min), [2, 6, 7, 4, 8]);
+  assert.equal(blockPace({ duration_minutes: 7 }), null);
+  assert.deepEqual(blockPace({ duration_minutes: 27, pace: [{ key: 'nonsense', min: 3 }] }).parts.map((x) => x.min), [2, 6, 7, 4, 8]);
 });
 
 fs.rmSync(out, { recursive: true, force: true });

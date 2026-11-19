@@ -67,6 +67,8 @@ check("the wrong number of problems: warned", any("not 3 core + 2 extra" in w fo
 check("a diagnostic on an extra: warned", any("is an extra (only the core 1-3 may)" in w for w in warn(sheet(5, 3, (4,)))))
 check("a composition sheet is not held to 3 + N", warn(sheet(2, 2), kinds={"beginner": "composition"}) == [])
 check("a recorded plan (extras unknown) keeps the old rules", warn(sheet(8, 5), extras=None) == [])
+fs = dict(sheet(6, 3), sheet_kind="formation")
+check("a formation (writing) sheet gets neither count rule, even in a recorded plan (found in the first real run, 19 Nov)", warn(fs) == [] and warn(fs, extras=None) == [], (warn(fs), warn(fs, extras=None)))
 
 
 class Fake:

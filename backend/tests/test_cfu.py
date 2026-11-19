@@ -217,7 +217,7 @@ check("an invented mistake id is removed from listen_for, the rest of the questi
 check("a skill with recorded mistakes is marked grounded, and every kept question names one", prog["cfu_grounded"] is True and all(q["grounded"] for q in prog["cfu"]) and "cfu_note_hi" not in prog)
 check("a skill with NO recorded mistakes is kept only through 'what a right answer shows', marked, and the screen note is set by the code", beg["cfu_grounded"] is False and len(beg["cfu"]) == 1 and beg["cfu"][0]["grounded"] is False and "दर्ज नहीं" in beg["cfu_note_hi"] and beg["cfu_note_en"])
 check("a block where the model wrote no CFU gets an empty list and is logged", prof["cfu"] == [] and any("proficient: no CFU written" in l for l in lines))
-check("the stats say what was written and kept", stats["progressor"] == {"written": 8, "kept": cfu.MAX_ITEMS, "grounded_items": cfu.MAX_ITEMS, "skill_has_mistakes": True} and stats["beginner"]["kept"] == 1, stats)
+check("the stats say what was written and kept", stats["progressor"] == {"wanted": 2, "written": 8, "kept": cfu.MAX_ITEMS, "grounded_items": cfu.MAX_ITEMS, "skill_has_mistakes": True} and stats["beginner"]["kept"] == 1, stats)
 lines2, _ = cfu.clean_plan_cfu({"rotation_schedule": {"blocks": [
     {"type": "teach", "teach_group": "progressor", "talking_points": {"i_do_hi": "x", "cfu": [good("58 + 27 कितना होगा?", "85", "X-M1", "75"), good("68 + 17 कितना होगा?", "85", "X-M1", "75")]}},
     {"type": "teach", "teach_group": "beginner", "talking_points": {"i_do_hi": "x"}, "mystery_key": 1}]}}, KB)

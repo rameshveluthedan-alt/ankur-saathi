@@ -36,7 +36,7 @@ from session_shape import session_shape
 from orchestrate import (
     OrchestrationContext, Competency, GroupInfo, Prerequisite,
     Misconception, AnchorTemplate, InterventionTemplate, TLMRef,
-    build_system_prompt, build_system_blocks, build_user_prompt,
+    build_system_prompt, build_system_blocks, build_user_prompt, group_layout,
     fetch_competency, fetch_prerequisite_chain, fetch_misconceptions,
     fetch_anchor_activity, fetch_intervention, fetch_tlms, fetch_tlms_for_competencies,
     STICK_PAIR_KIT_TOTAL, STICK_TEACHER_KIT_TOTAL,
@@ -667,6 +667,8 @@ def validate_plan_shape(plan: dict, domain_id: str = None, extras: int = None, s
                 n = p.get("number")
                 if p.get("diagnostic_for_misconception") and isinstance(n, int) and n > 3:
                     issues.append(f"worksheets.{level} problem {n} reveals a misconception but is an extra (only the core 1-3 may)")
+        elif ws.get("sheet_kind") or kind not in (None, "reading"):
+            pass                                    # a writing, fluency or observed sheet: its own rules (writing_sheets.check_writing_sheets)
         else:
             if level == "beginner" and len(problems) > 5 and rc != 5:
                 issues.append(f"worksheets.beginner has {len(problems)} problems but required_count is {rc} (should be 5)")
@@ -1421,12 +1423,13 @@ async def generate_dainik_yojana(
     # Check for understanding: the model writes the questions, the CODE decides which a teacher may use (arithmetic, mistake IDs, no reuse, the skill's own rule)
     try:
         if getattr(settings, "cfu_enabled", True) and served_from == "ai" and ctx.cfu_kb:
-            cfu_lines, cfu_stats = clean_plan_cfu(plan_json, ctx.cfu_kb)
-            deficient = [g for g, st in cfu_stats.items() if st["kept"] < MIN_ITEMS]
+            cfu_keep = {g: v["cfu"] for g, v in group_layout(ctx)[2].items()}         # 2 per block, or 1 in a short session (prompt v2, step 3)
+            cfu_lines, cfu_stats = clean_plan_cfu(plan_json, ctx.cfu_kb, cfu_keep)
+            deficient = [g for g, st in cfu_stats.items() if st["kept"] < st.get("wanted", MIN_ITEMS)]
             if deficient and os.environ.get("CFU_TOPUP", "1") != "0":         # CFU_TOPUP=0 switches the extra call off
                 added = await topup_cfu(client, settings.claude_model, plan_json, ctx.cfu_kb, deficient, cfu_lines, ctx.cfu_detected)
                 if added:
-                    lines2, stats2 = clean_plan_cfu(plan_json, ctx.cfu_kb)       # the new questions are judged by the same checks
+                    lines2, stats2 = clean_plan_cfu(plan_json, ctx.cfu_kb, cfu_keep)       # the new questions are judged by the same checks
                     cfu_lines += [f"top-up: {l}" for l in lines2 if any(l.startswith((g + " ", g + ":")) for g in added)]
                     for g in added:
                         stats2[g]["written"] = cfu_stats[g]["written"] + added[g]
@@ -1481,6 +1484,16 @@ async def generate_dainik_yojana(
         if not isinstance(rp, dict):
             rp = plan_json["review_prompts"] = {}
         rp["observation_reminders_hi"] = observation_reminders(ctx.sheet_kinds)
+        # each teach block carries its pace from the layout (prompt v2, step 3), so the screen shows the reviewed minutes (45 minutes: the team's
+        # table) instead of scaling the 27-minute pace. Only where the block has the layout's length: otherwise the screen scales, as before.
+        try:
+            lay = group_layout(ctx)[2]
+            for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or []:
+                g = b.get("teach_group") if b.get("type") == "teach" else None
+                if g in lay and lay[g]["pace"] and int(b.get("duration_minutes") or 0) == lay[g]["minutes"]:
+                    b["pace"] = [{"key": k, "min": m} for k, m in lay[g]["pace"].items() if m]
+        except Exception as e:
+            print(f"   Pace stamp skipped: {type(e).__name__}: {e}")
 
     # ── Store plan ──
     explainability = plan_json.get('explainability', {})

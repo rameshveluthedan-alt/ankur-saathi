@@ -16,7 +16,7 @@ import { localToday } from '../services/today';
 import { getFamiliarMode } from '../services/preferences';
 import { planMinutes } from '../services/planMinutes';
 import { planSlots, stripParts } from '../services/planSlots';
-import { pacePlan } from '../services/reteachInfo';
+import { blockPace } from '../services/reteachInfo';
 
 // Generated text may contain line breaks (lists) and stray markdown markers.
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
@@ -225,8 +225,8 @@ export default function YojanaScreen() {
           {skill && <span data-testid="block-skill" style={{ fontWeight: 400, fontFamily: 'monospace', fontSize: '0.75rem', color: 'var(--text-secondary)' }}> — {skill}</span>}
         </h3>
         <div className="slot-meta">{slot.start && <>{slot.start} · </>}{slot.minutes} {MIN} · {groupOf(level).count ?? '—'} <Bi hi="बच्चे" en="children" inline /></div>
-        {!slot.reteach && pacePlan(slot.minutes) && (
-          <div className="slot-pace" data-testid={`pace-${level}`}>⏱ {pacePlan(slot.minutes).parts.map((p, i) => <span key={p.key}>{i ? ' · ' : ''}<Bi hi={p.hi} en={p.en} inline /> {p.min} {MIN}</span>)}</div>
+        {!slot.reteach && blockPace(slot.block) && (
+          <div className="slot-pace" data-testid={`pace-${level}`}>⏱ {blockPace(slot.block).parts.map((p, i) => <span key={p.key}>{i ? ' · ' : ''}<Bi hi={p.hi} en={p.en} inline /> {p.min} {MIN}</span>)}</div>
         )}
         {block.type === 'reteach' && block.affected_rolls && block.affected_rolls.length > 0 && (
           <div data-testid="reteach-rolls" style={{ fontSize: '0.75rem', marginTop: 4, ...ML }}>

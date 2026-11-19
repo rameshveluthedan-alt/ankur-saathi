@@ -29,7 +29,7 @@ CFU_RULES = """
 ## CHECK FOR UNDERSTANDING (CFU): add the key "cfu" to EVERY teach block (type "teach") and to no other block.
 A CFU is a SHOW-ME: the teacher asks, every child writes the answer on a slate or a notebook page and hides it, and on one signal all children hold it up at the same moment. The teacher
 scans the room, then asks two children to explain why. Never choral answering (the teacher could not tell who was right).
-Write 3 questions for each teach block, MOST IMPORTANT FIRST: the app uses the first 2 that pass its checks (two show-me questions per group is what a lesson has time for). This holds for EVERY skill, including the early counting, pattern and comparing skills: never leave a teach block without them. Each question is one object:
+Write 3 questions for each teach block, MOST IMPORTANT FIRST: the app uses the first ones that pass its checks, as many as PART C keeps for the block (two in most sessions, one in a short one: that is what a lesson has time for). This holds for EVERY skill, including the early counting, pattern and comparing skills: never leave a teach block without them. Each question is one object:
   {"kind": "compute|choose|spot_error|answer",
    "question_hi": "what the teacher asks, one or two short sentences",
    "expected_hi": "the right answer, short",

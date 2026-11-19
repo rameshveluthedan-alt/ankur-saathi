@@ -26,6 +26,19 @@ export function pacePlan(duration) {
   return { total: d, scaled: d !== BASE_TOTAL, parts: PACE.map((p, i) => ({ ...p, min: mins[i] })) };
 }
 
+/**
+ * A block's pace: the plan's own (the server stamps it from the session's layout, e.g. the team's 45-minute table, with no recall part and,
+ * in a 7-minute block, no We Do), else the 27-minute pace scaled to the block's length. Same shape as pacePlan, or null.
+ */
+export function blockPace(block) {
+  if (block && Array.isArray(block.pace) && block.pace.length) {
+    const byKey = Object.fromEntries(PACE.map((p) => [p.key, p]));
+    const parts = block.pace.filter((p) => p && byKey[p.key] && Number(p.min) > 0).map((p) => ({ ...byKey[p.key], min: Number(p.min) }));
+    if (parts.length) return { total: parts.reduce((t, p) => t + p.min, 0), scaled: false, parts };
+  }
+  return pacePlan(block && block.duration_minutes);
+}
+
 /** Is this a re-teach block of the new kind (a teach block marked by the plan)? The old separate block (type 'reteach') has its own display. */
 export const isReteachMain = (block) => !!(block && block.type === 'teach' && block.reteach === true);
 
@@ -48,6 +61,6 @@ export function reteachSummary(block) {
     isReteach: true,
     rolls: Array.isArray(block.affected_rolls) ? block.affected_rolls : [],
     mistakes: Array.isArray(block.reteach_mistakes) ? block.reteach_mistakes : [],
-    pace: pacePlan(block.duration_minutes),
+    pace: blockPace(block),
   };
 }

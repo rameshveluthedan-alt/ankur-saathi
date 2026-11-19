@@ -598,7 +598,7 @@ def _is_wrong_line(item) -> bool:
     return isinstance(item, dict) and item.get("kind") == "spot_error" and _prep(str(item.get("expected_hi") or "")).strip().startswith("गलत")
 
 
-def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
+def clean_plan_cfu(plan: dict, cfu_kb: dict, keep: dict = None) -> tuple:
     """Keep only valid CFU questions in every teach block, add what the code knows (the mistakes' Hindi names, whether the skill has recorded mistakes), and say what was dropped.
     Returns (log lines, stats per group). Never raises for bad model output: a block with nothing valid simply gets an empty list."""
     lines, stats = [], {}
@@ -607,6 +607,7 @@ def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
             block.pop("cfu", None)
             continue
         g = block.get("teach_group")
+        n_keep = max(1, int((keep or {}).get(g) or MAX_ITEMS))      # show-me questions kept in this block: 2, or 1 in a short session (prompt v2, step 3)
         kb = (cfu_kb or {}).get(g) or {}
         mistakes = {m["id"]: m for m in kb.get("mistakes") or []}
         (avoid, ws_ops), rules = _avoid_for(plan, g, block), skill_rules(kb.get("name_en"))
@@ -653,7 +654,7 @@ def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
                 if ra is not None and ra in answers_kept:
                     lines.append(f"{g} question {n} dropped: its right answer {ra} is the same as question {answers_kept[ra]}'s (a child who knows one knows the other) | «{str(item.get('question_hi') or '')[:70]}»")
                     continue
-                if _is_wrong_line(item) and kept and len(kept) == MAX_ITEMS - 1 and all(_is_wrong_line(k) for k in kept):
+                if _is_wrong_line(item) and kept and len(kept) == n_keep - 1 and all(_is_wrong_line(k) for k in kept):
                     # found on the fourth real block: BOTH show-me questions were 'right or wrong?' lines with a WRONG line (answers 'गलत, 83' and 'गलत, 63'): a child guesses 'wrong' twice and passes
                     lines.append(f"{g} question {n} dropped: both show-me questions would be wrong 'right or wrong?' lines, so a child can guess 'wrong'. Write a question where the child WORKS OUT an answer (compute or choose) | «{str(item.get('question_hi') or '')[:70]}»")
                     continue
@@ -670,14 +671,14 @@ def clean_plan_cfu(plan: dict, cfu_kb: dict) -> tuple:
                     lines.append(f"{g} question {n}: removed a listen-for entry ({mid!r}: not a mistake listed for this skill, or no wrong answer given)")
             kept.append({"kind": item["kind"], "question_hi": item["question_hi"].strip(), "expected_hi": item["expected_hi"].strip(), "listen_for": listen,
                          "shows_hi": str(item.get("shows_hi") or "").strip(), "grounded": bool(listen)})
-        if len(kept) > MAX_ITEMS:
-            lines.append(f"{g}: {len(kept) - MAX_ITEMS} question(s) beyond the {MAX_ITEMS} allowed were left out")
-        block["cfu"], block["cfu_grounded"] = kept[:MAX_ITEMS], bool(mistakes)
+        if len(kept) > n_keep:
+            lines.append(f"{g}: {len(kept) - n_keep} question(s) beyond the {n_keep} allowed were left out")
+        block["cfu"], block["cfu_grounded"] = kept[:n_keep], bool(mistakes)
         if not mistakes:
             block["cfu_note_hi"], block["cfu_note_en"] = NOTE_NO_MISTAKES_HI, NOTE_NO_MISTAKES_EN
-        if len(block["cfu"]) < MIN_ITEMS:
-            lines.append(f"{g}: only {len(block['cfu'])} valid question(s) (wanted {MIN_ITEMS} or more)")
-        stats[g] = {"written": written, "kept": len(block["cfu"]), "grounded_items": sum(1 for i in block["cfu"] if i["grounded"]), "skill_has_mistakes": bool(mistakes)}
+        if len(block["cfu"]) < min(MIN_ITEMS, n_keep):
+            lines.append(f"{g}: only {len(block['cfu'])} valid question(s) (wanted {min(MIN_ITEMS, n_keep)} or more)")
+        stats[g] = {"wanted": min(MIN_ITEMS, n_keep), "written": written, "kept": len(block["cfu"]), "grounded_items": sum(1 for i in block["cfu"] if i["grounded"]), "skill_has_mistakes": bool(mistakes)}
     return lines, stats
 
 

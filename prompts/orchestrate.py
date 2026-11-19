@@ -13,7 +13,7 @@ from typing import Optional
 
 from hindi_style import STYLE_PROMPT          # the Hindi tone rules from Vaishnavi's review (prompts/hindi_style.py)
 from cfu_prompt import render_cfu_section, rank_mistakes, CFU_RULES   # check-for-understanding show-me questions in every lesson (prompts/cfu_prompt.py, docs/CFU.md)
-from session_shape import session_shape        # how the session's minutes are shared out (prompts/session_shape.py)
+from session_shape import session_shape, group_slots, pace_text   # how the session's minutes are shared out (prompts/session_shape.py)
 
 
 # ============================================================================
@@ -534,8 +534,8 @@ Keep every talking point to at most 3 short sentences. Be concise; do not repeat
 }
 
 Rules:
-- "blocks" must list EVERY segment in time order: anchor, setup, a reteach block ONLY if PART C lists one, then the three teach blocks with a transition between them. Use the durations given in PART C.
-- Pace of EVERY teach block (not only a re-teach), for a block of about 27 minutes: recall 2, I Do 6, We Do 7, the show-me questions 4, You Do 8. Scale it to the block's length (a 22-minute block: about 2, 5, 6, 3, 6) and write the talking points to fit: an I Do the teacher can finish in that time, not a second lesson. The app shows these minutes on the plan.
+- "blocks" must list EVERY segment in time order: anchor, setup ONLY if PART C lists one, a reteach block ONLY if PART C lists one, then the three teach blocks with a transition between them. Use EXACTLY the durations given in PART C: they add up to the session.
+- Pace of EVERY teach block (not only a re-teach): PART C gives each block its parts and their minutes. Write the talking points to fit them: an I Do the teacher can finish in its minutes, not a second lesson. A part PART C does not list is left out (with no recall part, say yesterday's point in one sentence at the start of the I Do; with no We Do, the I Do ends with one quick question to the group). The app shows these minutes on the plan.
 - "explainability.items" must have 3-4 items covering: why these three groups; why this rotation order; which mistakes to watch; and any assumption specific to today's plan. Do NOT write an item about the retrieved content (anchor, intervention, TLMs) or about the weekly plan: the system adds that item itself, from the facts.
 - Independent stations must follow the INDEPENDENT-WORK RULES above. For numeracy, other_groups_hi and every independent activity must NAME the actual practice: two or three example problems at that group's own level (for example 'जैसे 47 + 28, 56 + 35'), never just 'the problems on the board' without saying which; every example obeys the number range of its skill.
 - Numbers, prices and names in every group's anchor task must match the board you describe in narration_hi (same item, same price). If a group needs larger numbers, add new items to the board.
@@ -553,7 +553,7 @@ Rules:
 - A 3 + N sheet has exactly 3 + the extras PART B gives (at most 6 problems, so each sheet fits ONE A4 page); any other sheet at most 8.
 - Every problem must have ONE checkable answer (the photo analysis compares against the answer key). Do NOT include open-ended items such as "make your own problem".
 - Compute every answer. State which columns carry only after verifying by computing, and never ask for something impossible (e.g. a carry in every column of a 3-digit sum). In a skill whose number range ends at 99, the TOTAL of every sum on the sheet also stays at 99 or less.
-- Size each independent activity to the length of the teach blocks (22-29 minutes), and say what fast finishers do. Do not label an activity shorter than the block.
+- Size each independent activity to the length of the teach block it runs beside (PART C gives the minutes), and say what fast finishers do. Do not label an activity shorter than the block.
 """
 
 _SCHEMA_WORKSHEET_NUMERACY = """
@@ -738,7 +738,7 @@ RETEACH_MAIN_RULES = """For a RE-TEACH group the group's own teach block IS the 
 - Never repeat a sum between the PARTS of the block: 47 + 36 and 36 + 47 are the SAME sum. The one sum an I Do uses twice is its own: the right working is of the SAME sum as the wrong working. The I Do, each wrong example in We Do and the new example in We Do use a sum of their own and, as far as you can, a different answer from each other, so that a child cannot answer by remembering a number from the board.
 - Begin i_do_hi with a very short recall: 'कल हमने क्या सीखा था' (one or two sentences): it is NOT a second lecture. Use NEW numbers, never yesterday's script.
 - When the wrong working has been shown and explained, ERASE it at the end of i_do_hi, so that only the right way stays on the board (no big red cross: children remember what they see most). Say so in the talking point.
-- Pace for a block of about 27 minutes: recall 2, I Do 6, We Do 7, the show-me questions 4, You Do 8. Scale it to this block's length.
+- Pace for a block of about 27 minutes: recall 2, I Do 6, We Do 7, the show-me questions 4, You Do 8. Follow the pace PART C gives for this block; where it has no recall part, the recall is one sentence at the start of the I Do.
 - In you_do_hi the teacher visits FIRST the children who made the mistake, quietly, as part of the normal round: never call out their names or roll numbers.
 - If more than a quarter of the group shows a wrong answer in the show-me, the teacher re-teaches that step at once, with sticks, before You Do: it is not a few children's slip.
 - Name no child. The check-for-understanding questions of this block aim at the listed mistakes.
@@ -778,6 +778,18 @@ def range_note(number_range) -> str:
         return ""
     extra = f" A two-digit skill never reaches 100: three-digit numbers belong to the Proficients' later skill, so 79 + 21 = 100 is NOT allowed here." if mx <= 99 else ""
     return f"(Today's skill stays inside this range: every number you write for it, and the TOTAL of every addition, is at most {mx}.{extra})"
+
+
+def group_layout(ctx: OrchestrationContext) -> tuple:
+    """(shape, rotation_order, {group: {minutes, pace, cfu, note}}): the session's layout for THIS plan, so the prompt, the show-me
+    check and the screen's pace use the same numbers. The rotation starts with the priority group (a re-teach group first); at 45 minutes
+    the block LENGTHS go by need, a re-taught group taking the longest (prompts/session_shape.py)."""
+    shape = session_shape(ctx.available_minutes, separate_reteach=ctx.reteach_groups is None and bool(ctx.reteach_competencies))   # a teacher's decision: no separate block, so no 5 minutes taken from the teaching time
+    priority_group, _ = pick_priority_group(ctx.reteach_competencies, ctx.reteach_groups)
+    rotation_order = [priority_group] + [g for g in ("beginner", "progressor", "proficient") if g != priority_group]
+    slot_of = group_slots(shape, rotation_order, ctx.reteach_groups)
+    lay = {g: {"minutes": shape["blocks"][i], "pace": shape["pace"][i], "cfu": shape["cfu"][i], "note": shape["notes"][i]} for g, i in slot_of.items()}
+    return shape, rotation_order, lay
 
 
 def build_user_prompt(ctx: OrchestrationContext) -> str:
@@ -895,16 +907,16 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
 
     passages_text += ctx.writing_rules or ""          # writing groups: their sheet rules override the passage rules above
 
-    # Rotation timing: one function (prompts/session_shape.py), shared with the plan checks
-    shape = session_shape(ctx.available_minutes, separate_reteach=ctx.reteach_groups is None and bool(ctx.reteach_competencies))   # a teacher's decision: no separate block, so no 5 minutes taken from the teaching time
+    # Rotation timing: one function (prompts/session_shape.py), shared with the show-me check and the screen (group_layout)
+    shape, rotation_order, lay = group_layout(ctx)
     anchor_duration, setup_duration, reteach_duration = shape["anchor"], shape["setup"], shape["reteach"]
     rt_marks = {g: (" — RE-TEACH (see YESTERDAY'S FEEDBACK)" if ctx.reteach_groups and g in ctx.reteach_groups else "") for g in ("beginner", "progressor", "proficient")}
-    priority_duration, standard_duration = shape["blocks"][0], shape["blocks"][1]
-    
-    # Determine group rotation order
-    groups = ['beginner', 'progressor', 'proficient']
-    groups.remove(priority_group)
-    rotation_order = [priority_group] + groups
+    part_c_blocks = "\n".join(
+        f"- Block {n}: TEACH {g} ({lay[g]['minutes']} min){rt_marks[g]}{(' — ' + priority_reason) if n == 1 else ''}\n"
+        f"  pace: {pace_text(lay[g]['pace'])}; keep {lay[g]['cfu']} show-me question(s)" + (f"; {lay[g]['note']}" if lay[g]['note'] else "")
+        for n, g in enumerate(rotation_order, 1))
+    transitions_line = ("- Transitions: " + " min, then ".join(str(t) for t in shape["transition_list"]) + " min"
+                        if len(set(shape["transition_list"])) > 1 else f"- Transitions: {shape['transition_list'][0]} min each")
     
     # Top misconception IDs for worksheet design
     anchor_section = _anchor_prompt_section(ctx)
@@ -986,13 +998,11 @@ Include answer keys and, on the core problems, the mistake each one reveals.
 
 ### PART C: ROTATION SCHEDULE ({ctx.available_minutes} min total)
 - Anchor: {anchor_duration} min
-- Setup: {setup_duration} min
+{f'- Setup: {setup_duration} min' if setup_duration else '- No setup block today: go straight from the anchor to Block 1.'}
 {f'- Re-teach: {reteach_duration} min' if reteach_duration else ''}
-- Block 1: TEACH {rotation_order[0]} ({priority_duration} min){rt_marks[rotation_order[0]]} — {priority_reason}
-- Block 2: TEACH {rotation_order[1]} ({standard_duration} min){rt_marks[rotation_order[1]]}
-- Block 3: TEACH {rotation_order[2]} ({standard_duration} min){rt_marks[rotation_order[2]]}
-- Transitions: 2 min each
-Each block: I Do → We Do → You Do with Hindi talking points.
+{part_c_blocks}
+{transitions_line}
+Each block: the parts its pace lists, in that order, with Hindi talking points. The minutes above add up to the session.
 
 ### PART D: CLASSROOM MANAGEMENT
 Rotation chart, transition scripts (Hindi), independent station activities (on PREVIOUSLY MASTERED content only).

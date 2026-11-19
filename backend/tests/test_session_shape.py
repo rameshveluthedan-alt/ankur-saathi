@@ -14,7 +14,7 @@ import sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
 sys.path[:0] = [os.path.join(ROOT, "prompts")]
-from session_shape import pace_plan, session_shape, PACE
+from session_shape import pace_plan, session_shape, group_slots, pace_text, PACE, FIXED_LAYOUTS
 
 failures = []
 
@@ -33,22 +33,41 @@ def v1_layout(minutes, reteach):
     return teaching, first, other
 
 
-print("the layout is v1's, for every length and both kinds of re-teach")
+print("a computed layout is v1's, except that the minute v1 left to no block goes to the first (step 3)")
 same = True
-for minutes in range(40, 121):
+for minutes in [m for m in range(40, 121) if m not in FIXED_LAYOUTS]:
     for sep in (False, True):
         s = session_shape(minutes, separate_reteach=sep)
         teaching, first, other = v1_layout(minutes, 5 if sep else 0)
-        if (s["teaching"], s["blocks"]) != (teaching, [first, other, other]) or (s["anchor"], s["setup"], s["transition_total"]) != (10, 2, 4):
+        first += teaching - first - 2 * other
+        if (s["teaching"], s["blocks"], s["unassigned"]) != (teaching, [first, other, other], 0) or (s["anchor"], s["setup"], s["transition_total"]) != (10, 2, 4):
             same = False
             print("   differs at", minutes, sep, s)
-check("40 to 120 minutes, with and without a separate re-teach block", same)
+check("40 to 120 minutes (not 45), with and without a separate re-teach block: every minute assigned", same)
 s45, s60, s90 = session_shape(45), session_shape(60), session_shape(90)
-check("45 minutes: 15, 7, 7 (the known short blocks)", s45["blocks"] == [15, 7, 7], s45["blocks"])
-check("60 minutes: 17, 13, 13 and one minute nobody gets (v1's rounding, fixed in step 3)", s60["blocks"] == [17, 13, 13] and s60["unassigned"] == 1, s60)
-check("90 minutes: 29, 22, 22", s90["blocks"] == [29, 22, 22], s90["blocks"])
+check("60 minutes: 18, 13, 13 (v1 gave 17 and lost a minute)", s60["blocks"] == [18, 13, 13] and s60["unassigned"] == 0, s60)
+check("90 minutes: 30, 22, 22 (v1 gave 29 and lost a minute)", s90["blocks"] == [30, 22, 22] and s90["unassigned"] == 0, s90["blocks"])
 check("a separate re-teach block takes 5 minutes", session_shape(90, separate_reteach=True)["reteach"] == 5 and s90["reteach"] == 0)
-check("two show-me questions kept in every block (v1)", all(s["cfu"] == [2, 2, 2] for s in (s45, s60, s90)))
+check("two show-me questions kept in every block at 60 and 90", all(s["cfu"] == [2, 2, 2] for s in (s60, s90)))
+check("every session adds up: anchor + setup + re-teach + blocks + transitions",
+      all(s["anchor"] + s["setup"] + s["reteach"] + sum(s["blocks"]) + s["transition_total"] == s["total"] for s in (session_shape(m, sep) for m in (45, 60, 90) for sep in (False, True))))
+
+print("45 minutes: the team's table (19 Nov), used exactly")
+check("anchor 5, no setup, transitions 2 + 1, slots 16 / 14 / 7: 45 in all",
+      (s45["anchor"], s45["setup"], s45["transition_list"], s45["blocks"], s45["unassigned"]) == (5, 0, [2, 1], [16, 14, 7], 0), s45)
+check("the slots' pace: 4/5/2/5, 3/4/2/5, and 2 + 2 + 3 with no We Do; no recall part",
+      s45["pace"] == [{"i_do": 4, "we_do": 5, "show_me": 2, "you_do": 5}, {"i_do": 3, "we_do": 4, "show_me": 2, "you_do": 5}, {"i_do": 2, "show_me": 2, "you_do": 3}])
+check("each slot's pace adds up to the slot", all(sum(p.values()) == m for p, m in zip(s45["pace"], s45["blocks"])))
+check("one show-me question per block; the 7-minute slot says what it is", s45["cfu"] == [1, 1, 1] and "stretch task or a peer check" in s45["notes"][2])
+check("a separate re-teach block is not added at 45 (no time for it)", session_shape(45, separate_reteach=True)["reteach"] == 0)
+ROT = ["progressor", "beginner", "proficient"]
+check("slots go by need: Beginners 16, Progressors 14, Proficients 7, whatever the rotation", group_slots(s45, ROT) == {"beginner": 0, "progressor": 1, "proficient": 2})
+check("a re-taught group takes the longest: re-teach the Proficients -> 16, then Beginners 14, Progressors 7",
+      group_slots(s45, ["proficient", "beginner", "progressor"], ["proficient"]) == {"proficient": 0, "beginner": 1, "progressor": 2})
+check("two re-taught groups take the two longest, in rotation order",
+      group_slots(s45, ["progressor", "proficient", "beginner"], ["progressor", "proficient"]) == {"progressor": 0, "proficient": 1, "beginner": 2})
+check("a computed layout (90): the rotation's first group gets the long block, as v1", group_slots(s90, ROT) == {"progressor": 0, "beginner": 1, "proficient": 2})
+check("the pace in words for the prompt", pace_text(s45["pace"][2]) == "I Do 2, the show-me questions 2, You Do 3" and pace_text(None).startswith("too short"))
 
 print("the pace is the screen's")
 # pacePlan() in pwa/src/services/reteachInfo.js, run with node on 19 Nov 2026 for these durations
@@ -61,7 +80,7 @@ for d, want in SCREEN.items():
 check("every pace adds up to its block", all(sum(pace_plan(d).values()) == d for d in range(10, 61)))
 check("every part is at least one minute", all(min(pace_plan(d).values()) >= 1 for d in range(10, 61)))
 check("nonsense gives no pace rather than an error", pace_plan(None) is None and pace_plan("x") is None)
-check("the shape carries each block's pace (none for a 7-minute block)", s45["pace"][1] is None and s90["pace"][0] == pace_plan(29))
+check("a computed shape carries each block's scaled pace", s90["pace"][0] == pace_plan(30) and s90["pace"][1] == pace_plan(22))
 
 print("the prompt uses it")
 src = open(os.path.join(ROOT, "prompts", "orchestrate.py"), encoding="utf-8").read()
