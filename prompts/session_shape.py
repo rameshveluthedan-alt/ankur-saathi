@@ -22,6 +22,20 @@ PRIORITY_SHARE = 0.4             # the first teach block gets about 40% of the t
 PRIORITY_MIN = 15                # ... and at least 15 minutes
 CFU_PER_BLOCK = 2                # show-me questions the app keeps in each teach block
 
+# The 3 + N worksheet (prompt v2, step 5; docs/drafts/PROMPT_DRAFT_3N_WORKSHEET.md): 3 CORE problems every child does (the signal), then N
+# EXTRAS for children who finish early, N by the session's length. PROVISIONAL until the education lead confirms (rebuild plan, F3).
+CORE_PROBLEMS = 3
+EXTRAS_BY_MINUTES = {45: 1, 60: 2, 90: 3}
+
+
+def worksheet_extras(minutes) -> int:
+    """The extras for a session of this length: the nearest length in EXTRAS_BY_MINUTES (ties go to the shorter)."""
+    try:
+        m = int(minutes)
+    except (TypeError, ValueError):
+        m = 90
+    return EXTRAS_BY_MINUTES[min(sorted(EXTRAS_BY_MINUTES), key=lambda k: abs(k - m))]
+
 
 def pace_plan(duration):
     """The pace scaled to a block's length, in whole minutes that add up to exactly the block's duration (largest remainder, each part at
@@ -70,4 +84,5 @@ def session_shape(minutes: int, separate_reteach: bool = False) -> dict:
         "transitions": transitions, "transition_total": transition_total, "teaching": teaching,
         "blocks": blocks, "unassigned": teaching - sum(blocks),
         "pace": [pace_plan(b) for b in blocks], "cfu": [CFU_PER_BLOCK for _ in blocks],
+        "core": CORE_PROBLEMS, "extras": worksheet_extras(total), "sheet_total": CORE_PROBLEMS + worksheet_extras(total),
     }

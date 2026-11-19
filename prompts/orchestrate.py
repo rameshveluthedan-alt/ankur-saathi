@@ -161,6 +161,8 @@ class OrchestrationContext:
     cfu_detected: Optional[dict] = None
     # {group: {competency_id, name_hi, name_en, mistakes: [dict]}}: each group's OWN skill and its recorded mistakes, for the show-me questions AND the worksheets (always set by the server; cfu_kb is the same dict, or None when CFU is off)
     group_mistakes: Optional[dict] = None
+    # {group: 'reading' | 'fluency' | 'formation' | 'usage' | 'dictation' | 'composition' | 'observed'} (backend writing_sheets.group_kinds): a group whose kind is not 'reading' (or absent: maths) follows its own sheet section, not the 3 + N sheet
+    sheet_kinds: Optional[dict] = None
     # {'beginner_children': n, 'pair_kits': k} when TLM-001 (bundling sticks) is in today's content
     stick_policy: Optional[dict] = None
 
@@ -546,13 +548,16 @@ Rules:
 - Numbers, prices and names in every group's anchor task must match the board you describe in narration_hi (same item, same price). If a group needs larger numbers, add new items to the board.
 - Each group's anchor task must use ONLY that group's own skills (see INDEPENDENT-WORK RULES): no other operations (for example no subtraction or 'how much is left' in an addition lesson). Do not repeat the group's name at the start of the task text, because the screen already shows it.
 - MATERIALS other than the TLM-001 sticks: for any hands-on activity, work out the largest total used and make "prep_hi" match it. Give a kit to every group that uses it, size each kit to the largest example, and count the kits from the group sizes above (children divided by children per kit, rounded up). Kits are reused between groups taught at different times, so prepare for the largest need, not the sum. If a STICK-BUNDLE POLICY section is present, it governs the sticks.
-- "required_count": children must do problems 1 to required_count; later problems are extras for fast finishers. Beginner sheet with more than 5 problems: required_count 5. Progressor sheet with more than 6 problems: required_count 6. Proficient: required_count = the number of problems. Every problem with a "diagnostic_for_misconception" must be among the required ones. The Beginner You Do talking point must say to copy and solve problems 1-5 first, and the Progressor You Do problems 1-6 first, and that the rest are extras; every statement about a sheet must match its required_count.
+- THE 3 + N SHEET (maths sheets, and reading sheets; a sheet whose group has its own section in the context, WRITING WORKSHEETS or a fluency or observed sheet, follows that section instead). Every such worksheet has exactly 3 CORE problems (numbers 1, 2, 3), then exactly the number of EXTRA problems that PART B gives, for children who finish early: never more. "required_count" is 3 on every such sheet, for every group.
+- The 3 core problems are the SIGNAL: from them alone the teacher (and the photo analysis) must be able to tell who has the skill and which mistake the others make. Design them in this order: problem 1, the skill in its plainest form; problem 2, built to reveal the FIRST mistake listed for this group's skill (set its diagnostic_for_misconception); problem 3, built to reveal the SECOND listed mistake or, if the skill has only one, the hardest case the skill allows (for a carry sheet: a ones-column sum of exactly 10, or of 15 or more where the range allows). When the group's skill has recorded mistakes, at least 2 of the 3 core problems carry a diagnostic_for_misconception, and NO extra problem does.
+- The extras practise the same skill with new numbers (no new difficulty, no new kind of problem).
+- The You Do talking point of every group with a 3 + N sheet says to copy and solve problems 1-3 first, and that the rest are extras for those who finish (for example 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।'). Every statement about a sheet must match: 3 core, then its extras.
 - WORKSHEET PROBLEMS MUST BE NEW: none may repeat an example solved in the I Do or We Do talking points (use different numbers). On one sheet no two problems may have the same answer, and the sums must vary: for carry sheets vary the ones-column sum (include one that is exactly 10 and, where the skill allows, one of 15 or more).
 - In explainability, refer to worksheet problems by their NUMBER (for example "Progressor problems 1-3"), never by the numbers inside them: the system may replace a problem's numbers after you write.
 - instructions_hi and instructions_en must NOT say how many problems are required: the sheet prints that banner itself. Put a word problem's full text in problem_hi only and leave word_problem_text null. On the Progressor sheet the grid problems get a carry cell automatically, so you may tell children to write the carry there.
 - All text fields are PLAIN TEXT: no markdown (no **bold**, no # headings). To show a list inside one field, put each item on its own line starting with "• ".
 - Every worksheet problem needs an "answer". Use "diagnostic_for_misconception" (an ID listed for THAT sheet's group in MISTAKES PER GROUP, or null) on problems designed to reveal that error. Never put one group's mistake on another group's sheet: each group is checked against its own skill's mistakes.
-- At most 8 problems per worksheet, so each sheet fits ONE A4 page. Fewer than 8 is fine.
+- A 3 + N sheet has exactly 3 + the extras PART B gives (at most 6 problems, so each sheet fits ONE A4 page); any other sheet at most 8.
 - Every problem must have ONE checkable answer (the photo analysis compares against the answer key). Do NOT include open-ended items such as "make your own problem".
 - Compute every answer. State which columns carry only after verifying by computing, and never ask for something impossible (e.g. a carry in every column of a 3-digit sum). In a skill whose number range ends at 99, the TOTAL of every sum on the sheet also stays at 99 or less.
 - Size each independent activity to the length of the teach blocks (22-29 minutes), and say what fast finishers do. Do not label an activity shorter than the block.
@@ -561,7 +566,7 @@ Rules:
 _SCHEMA_WORKSHEET_NUMERACY = """
 <WORKSHEET> for numeracy:
 {
-  "instructions_hi": "...", "instructions_en": "...", "required_count": 5,
+  "instructions_hi": "...", "instructions_en": "...", "required_count": 3,
   "example_block": {"problem_hi": "21 + 15 = ___", "answer": "36", "show_pv_grid": true, "pv_columns": 2,
                     "row1_t": "2", "row1_o": "1", "row2_t": "1", "row2_o": "5", "answer_t": "3", "answer_o": "6"}
                    or null,
@@ -571,17 +576,16 @@ _SCHEMA_WORKSHEET_NUMERACY = """
   ]
 }
 Numeracy worksheet rules (scaffolding fades with level):
-- beginner: example_block REQUIRED (a worked example of the prerequisite skill). All problems row_type "grid" with show_pv_grid true, pv_columns 2, pv_row2 true. problem_hi has NO "= ___" (the grid is the answer). Up to 8 problems.
-- progressor: example_block REQUIRED, and it must show the carry (e.g. 27 + 15 = 42). Problems 1-3 row_type "grid" (same fields as above); problems 4-6 row_type "plain" with problem_hi like "19 + 43 = ___"; then 1-2 word problems with row_type null, "answer_type": "wide", and "word_problem_text" repeating the problem text.
-- proficient: example_block null. Problems 1-6 row_type "plain" (problem_hi like "57 + 36 = ___"); then 2 word problems with row_type null, "answer_type": "wide", "word_problem_text".
+- beginner: example_block REQUIRED (a worked example of the prerequisite skill). The core 1-3 and every extra: row_type "grid" with show_pv_grid true, pv_columns 2, pv_row2 true. problem_hi has NO "= ___" (the grid is the answer).
+- progressor: example_block REQUIRED, and it must show the carry (e.g. 27 + 15 = 42). Core 1-2 row_type "grid" (same fields as above); core 3 row_type "plain" with problem_hi like "19 + 43 = ___", so the group moves off the grid within the core. Extras row_type "plain"; when there are 3 extras the last may be a word problem (row_type null, "answer_type": "wide").
+- proficient: example_block null. Core 1-3 row_type "plain" (problem_hi like "57 + 36 = ___"), each with a different carry pattern. Extras: at least one word problem (row_type null, "answer_type": "wide"), the rest "plain".
 - Stay inside the number range given in the context. If a number has 3 digits, use pv_columns 3 and add row1_h, row2_h, answer_h to example_block.
-- On each sheet, place at least 2 problems that reveal that group's top listed mistakes (when its skill has any), and set diagnostic_for_misconception on them.
 """
 
 _SCHEMA_WORKSHEET_LITERACY = """
 <WORKSHEET> for literacy:
 {
-  "instructions_hi": "...", "instructions_en": "...", "required_count": 5,
+  "instructions_hi": "...", "instructions_en": "...", "required_count": 3,
   "example_block": {"problem_hi": "मात्रा जोड़ने का उदाहरण:", "example_text": "क + ो = को"} or null,
   "passage_block": {"title": "...", "text": "short passage at grade level"} or null,
   "sheet_kind": "reading|formation|dictation|composition" (only when the WRITING WORKSHEETS section names this group),
@@ -595,6 +599,7 @@ _SCHEMA_WORKSHEET_LITERACY = """
 }
 Literacy worksheet rules:
 - beginner: example_block REQUIRED, passage_block null. Q1 may be a letter-tracing item: show_letter_grid true, target_letter "क", letter_grid_cells [{"prefilled": true, "text": "क"}, {"prefilled": false}, ...]. Short-answer items use row_type "plain" (grouped three per row); writing items use row_type null with answer_type "lines".
+- A READING sheet is a 3 + N sheet: the first 3 questions are the core (required_count 3), then the extras PART B gives. When BANK QUESTIONS are given for the group's passage, the system places them first, word for word, and they ARE the core: write only the extras.
 - progressor (a READING skill): passage_block REQUIRED, example_block null. Short comprehension or matra items row_type "plain"; longer answers row_type null with answer_type "lines".
 - proficient (a READING skill): passage_block REQUIRED, example_block null. All items row_type null with answer_type "lines".
 - Do not number the passage as a question.
@@ -736,7 +741,7 @@ def pick_priority_group(reteach_items: list, reteach_groups: Optional[list] = No
 RETEACH_MAIN_RULES = """For a RE-TEACH group the group's own teach block IS the re-teach: it is NOT the first lesson again, and there is NO separate re-teach block. Write its talking_points like this:
 - i_do_hi: show the mistake FIRST, then the right way. Do one worked example the way a child with the mistake would do it (the wrong working or the wrong answer), say aloud what is wrong with it, then do the SAME sum again correctly (the same numbers, first the way the mistake does it, then the right way: that is the contrast).
 - we_do_hi: the children FIND AND FIX the mistake: give them one or two wrong examples (the mistakes listed for the group) to correct with you, then one new example together.
-- you_do_hi: do NOT write problems of your own. The group's worksheet IS its try on its own: send the group to the worksheet problems by NUMBER (for example 'वर्कशीट के सवाल 1 से 6 पहले हल करें', using the worksheet's own required count) and say where the teacher visits first. The system writes those problems under the You Do for the teacher, so a list of sums here would be a second, competing list with its own numbering.
+- you_do_hi: do NOT write problems of your own. The group's worksheet IS its try on its own: send the group to the worksheet problems by NUMBER (for example 'वर्कशीट के सवाल 1 से 3 पहले हल करें', using the worksheet's own required count) and say where the teacher visits first. The system writes those problems under the You Do for the teacher, so a list of sums here would be a second, competing list with its own numbering.
 - Never repeat a sum between the PARTS of the block: 47 + 36 and 36 + 47 are the SAME sum. The one sum an I Do uses twice is its own: the right working is of the SAME sum as the wrong working. The I Do, each wrong example in We Do and the new example in We Do use a sum of their own and, as far as you can, a different answer from each other, so that a child cannot answer by remembering a number from the board.
 - Begin i_do_hi with a very short recall: 'कल हमने क्या सीखा था' (one or two sentences): it is NOT a second lecture. Use NEW numbers, never yesterday's script.
 - When the wrong working has been shown and explained, ERASE it at the end of i_do_hi, so that only the right way stays on the board (no big red cross: children remember what they see most). Say so in the talking point.
@@ -795,10 +800,19 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     mistakes_text = render_cfu_section(group_mistakes, ctx.cfu_detected, rules=False)
     top_ids = {g: [m["id"] for m in rank_mistakes(kb.get("mistakes") or [], ctx.cfu_detected or {})[:3]] for g, kb in group_mistakes.items()}
 
+    def _sheet_line(g, how):
+        kind = (ctx.sheet_kinds or {}).get(g)
+        if kind and kind != "reading":
+            return f"a {kind.upper()} sheet: follow its own section in this context (not the 3 + N sheet)"
+        return f"3 core + {shape['extras']} extra, {how}; {_diag_line(g)}"
+
     def _diag_line(g):
-        ids = top_ids.get(g) or []
-        return (f"mistake-revealing problems for this group's OWN mistakes {', '.join(ids)}" if ids
-                else "no mistakes are recorded for this group's skill: diagnostic_for_misconception stays null")
+        ids = (top_ids.get(g) or [])[:2]
+        if len(ids) == 2:
+            return f"core problem 2 reveals this group's OWN mistake {ids[0]}, core problem 3 reveals {ids[1]}"
+        if ids:
+            return f"core problem 2 reveals this group's OWN mistake {ids[0]}; core problem 3 is the hardest case the skill allows"
+        return "no mistakes are recorded for this group's skill: diagnostic_for_misconception stays null"
 
     # Build prerequisite chain
     prereq_text = ""
@@ -977,11 +991,11 @@ Working on EXTENSION: {ctx.proficient.target_competency.id} — {ctx.proficient.
 ### PART A: ANCHOR ({anchor_duration} min, whole class)
 Adapt the anchor template. Hindi narration, differentiated participation, closing question.
 
-### PART B: THREE WORKSHEETS
-- शुरुआती: {ctx.beginner.target_competency.name_hi} — 8-10 problems with visual scaffolding; {_diag_line("beginner")}
-- प्रगतिशील: {ctx.selected_competency.name_hi} — 8-10 problems, scaffolding faded; {_diag_line("progressor")}
-- दक्ष: {ctx.proficient.target_competency.name_hi} — 8-10 extension problems + word problems; {_diag_line("proficient")}
-Include answer keys and misconception diagnostic maps.
+### PART B: THREE WORKSHEETS (a 3 + N sheet today: 3 core + {shape["extras"]} extra = {shape["sheet_total"]} problems, for a {ctx.available_minutes}-minute session)
+- शुरुआती: {ctx.beginner.target_competency.name_hi} — {_sheet_line("beginner", "with visual scaffolding")}
+- प्रगतिशील: {ctx.selected_competency.name_hi} — {_sheet_line("progressor", "scaffolding faded")}
+- दक्ष: {ctx.proficient.target_competency.name_hi} — {_sheet_line("proficient", "extension, including a word problem among the extras")}
+Include answer keys and, on the core problems, the mistake each one reveals.
 
 ### PART C: ROTATION SCHEDULE ({ctx.available_minutes} min total)
 - Anchor: {anchor_duration} min

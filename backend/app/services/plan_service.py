@@ -32,6 +32,7 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', '..', 'prompts'))
 import hindi_style
 from orchestrate import choose_reteach_group, pick_priority_group
+from session_shape import session_shape
 from orchestrate import (
     OrchestrationContext, Competency, GroupInfo, Prerequisite,
     Misconception, AnchorTemplate, InterventionTemplate, TLMRef,
@@ -600,7 +601,7 @@ async def repair_stick_overflows(client, model: str, plan: dict) -> tuple[dict, 
     return plan, log
 
 
-def validate_plan_shape(plan: dict, domain_id: str = None) -> list[str]:
+def validate_plan_shape(plan: dict, domain_id: str = None, extras: int = None, sheet_kinds: dict = None) -> list[str]:
     """
     Check Claude's plan against the shape the PWA, worksheet renderer and Vision
     analysis read. Returns human-readable problems (empty list = good).
@@ -642,12 +643,23 @@ def validate_plan_shape(plan: dict, domain_id: str = None) -> list[str]:
         if not problems:
             issues.append(f"worksheets.{level}.problems missing or empty")
             continue
+        ws = (plan.get("worksheets") or {}).get(level) or {}
+        kind = (sheet_kinds or {}).get(level)
+        three_n = extras is not None and kind in (None, "reading") and not ws.get("sheet_kind")    # prompt v2: maths and reading sheets are 3 + N
         if len(problems) > 8:
             issues.append(f"worksheets.{level} has {len(problems)} problems (max 8 for one page)")
-        ws = (plan.get("worksheets") or {}).get(level) or {}
         rc = ws.get("required_count")
         if not isinstance(rc, int) or isinstance(rc, bool) or not 1 <= rc <= len(problems):
             issues.append(f"worksheets.{level}.required_count missing or invalid: {rc!r}")
+        elif three_n:
+            if rc != 3:
+                issues.append(f"worksheets.{level}.required_count is {rc}, not 3 (the 3 core problems)")
+            if len(problems) != 3 + extras:
+                issues.append(f"worksheets.{level} has {len(problems)} problems, not 3 core + {extras} extra")
+            for p in problems:
+                n = p.get("number")
+                if p.get("diagnostic_for_misconception") and isinstance(n, int) and n > 3:
+                    issues.append(f"worksheets.{level} problem {n} reveals a misconception but is an extra (only the core 1-3 may)")
         else:
             if level == "beginner" and len(problems) > 5 and rc != 5:
                 issues.append(f"worksheets.beginner has {len(problems)} problems but required_count is {rc} (should be 5)")
@@ -1242,6 +1254,7 @@ async def generate_dainik_yojana(
         db, domain_id, {lvl: cid for lvl, cid in {"progressor": competency_id, "proficient": proficient_comp.id}.items() if lvl not in writing_groups}, plan_date)
     ctx.group_passages = group_passages
     ctx.writing_rules = writing_sheets.prompt_section(ctx.group_skill_ids, domain_id)
+    ctx.sheet_kinds = writing_sheets.group_kinds(ctx.group_skill_ids, domain_id)
     independent_passages = await retrieve_independent_passages(
         db, domain_id, {"progressor": beginner_target_id, "proficient": competency_id}, plan_date,
         {ps["id"] for ps in group_passages.values()})
@@ -1428,7 +1441,8 @@ async def generate_dainik_yojana(
     except Exception as e:
         print(f"   Hindi style after the CFU step skipped: {type(e).__name__}: {e}")
 
-    validation_warnings = validate_plan_shape(plan_json, domain_id)
+    validation_warnings = validate_plan_shape(plan_json, domain_id,                  # an AI plan is checked for the 3 + N sheet; a recorded plan keeps its older shape
+                                              extras=session_shape(ctx.available_minutes)["extras"] if served_from == "ai" else None, sheet_kinds=ctx.sheet_kinds)
     validation_warnings += writing_sheets.check_writing_sheets(plan_json, ctx.group_skill_ids, domain_id)
     validation_warnings += hindi_style.check_teacher_text(plan_json)          # a gendered "मैं" left in the teacher's lines, a Hindi mark named wrongly (15 Nov)
     if decided_groups is not None and any(b.get("type") == "reteach" for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or []):
