@@ -32,6 +32,13 @@ from app.services import group_skills as gs, plan_service
 from app.services.plan_service import stamp_reteach_main
 
 TODAY = date.today()
+
+def _full_prompt(kw):
+    """What the model reads: the system instructions (since prompt v2 the fixed rules travel there, as cached blocks) and the user message."""
+    sysv = kw.get("system") or ""
+    sysv = "\n".join(b.get("text", "") for b in sysv) if isinstance(sysv, list) else str(sysv)
+    return sysv + "\n" + kw["messages"][0]["content"]
+
 failures = []
 SAMPLE = json.load(open(os.path.join(HERE, "..", "..", "db", "seeds", "sample_plans", "N2.3.2.json"), encoding="utf-8"))
 
@@ -91,7 +98,7 @@ class FakeMessages:
         self.prompts, self.stray = [], False
 
     async def create(self, **kw):
-        self.prompts.append(kw["messages"][0]["content"])
+        self.prompts.append(_full_prompt(kw))
         plan = copy.deepcopy(SAMPLE)
         if self.stray:                                           # the model writes a separate re-teach block although it was told not to
             plan["rotation_schedule"]["blocks"].insert(2, {"type": "reteach", "script_hi": None, "time_start": "0:12", "teach_group": None, "talking_points": None, "other_groups_hi": None, "duration_minutes": 5})

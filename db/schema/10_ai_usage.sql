@@ -15,3 +15,6 @@ CREATE TABLE IF NOT EXISTS ai_usage (
 CREATE INDEX IF NOT EXISTS idx_ai_usage_created ON ai_usage (created_at);
 CREATE INDEX IF NOT EXISTS idx_ai_usage_teacher ON ai_usage (teacher_id, created_at);
 CREATE INDEX IF NOT EXISTS idx_ai_usage_school ON ai_usage (school_id, created_at);
+-- Prompt caching (prompt v2): the cached tokens are reported apart from input_tokens and priced differently (AI_PRICE_CACHE_*).
+ALTER TABLE ai_usage ADD COLUMN IF NOT EXISTS cache_read_tokens INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE ai_usage ADD COLUMN IF NOT EXISTS cache_write_tokens INTEGER NOT NULL DEFAULT 0;

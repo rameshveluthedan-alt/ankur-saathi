@@ -84,12 +84,14 @@ Rules for the questions:
 """
 
 
-def render_cfu_section(cfu_kb: dict, detected: dict = None) -> str:
-    """The rules plus, for each group, the group's skill and its recorded mistakes (most important first). cfu_kb[group] = {competency_id, name_hi, name_en, mistakes: [dict]}."""
+def render_cfu_section(cfu_kb: dict, detected: dict = None, rules: bool = True) -> str:
+    """The rules plus, for each group, the group's skill and its recorded mistakes (most important first). cfu_kb[group] = {competency_id, name_hi, name_en, mistakes: [dict]}.
+    rules=False: only the per-group list (the plan prompt sends CFU_RULES in its cached system block; prompt v2, step 2)."""
     if not cfu_kb:
         return ""
     detected = detected or {}
-    out = [CFU_RULES, "### MISTAKES TO TARGET, PER GROUP (from L1; use only these IDs)"]
+    out = ([CFU_RULES, "### MISTAKES TO TARGET, PER GROUP (from L1; use only these IDs)"] if rules else
+           ["### MISTAKES TO TARGET, PER GROUP (from L1; use only these IDs; the CHECK FOR UNDERSTANDING rules are in the system instructions)"])
     for g in GROUP_ORDER:
         kb = cfu_kb.get(g)
         if not kb:

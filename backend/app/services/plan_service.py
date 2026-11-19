@@ -35,7 +35,7 @@ from orchestrate import choose_reteach_group, pick_priority_group
 from orchestrate import (
     OrchestrationContext, Competency, GroupInfo, Prerequisite,
     Misconception, AnchorTemplate, InterventionTemplate, TLMRef,
-    build_system_prompt, build_user_prompt,
+    build_system_prompt, build_system_blocks, build_user_prompt,
     fetch_competency, fetch_prerequisite_chain, fetch_misconceptions,
     fetch_anchor_activity, fetch_intervention, fetch_tlms, fetch_tlms_for_competencies,
     STICK_PAIR_KIT_TOTAL, STICK_TEACHER_KIT_TOTAL,
@@ -1242,7 +1242,7 @@ async def generate_dainik_yojana(
         plan_json = copy.deepcopy(recorded)
         print("   AI limit reached: serving a recorded sample plan for this skill")
     else:
-        system_prompt = build_system_prompt()
+        system_prompt = build_system_blocks(ctx.domain_id, cfu=bool(ctx.cfu_kb))     # the fixed rules, cached between plans (prompt v2, step 2)
         user_prompt = build_user_prompt(ctx)
     
         client = anthropic.AsyncAnthropic(api_key=settings.anthropic_api_key)

@@ -106,8 +106,8 @@ async def cmd_calibrate(db, args):
     where, params = "TRUE", []
     if args.since:
         where, params = "created_at >= $1", [datetime.fromisoformat(args.since).replace(tzinfo=ab._tz())]
-    row = await db.fetchrow(f"SELECT COALESCE(sum(input_tokens),0) AS i, COALESCE(sum(output_tokens),0) AS o, count(*) AS n FROM ai_usage WHERE {where}", *params)
-    metered = ab.cost_usd(row["i"], row["o"])
+    row = await db.fetchrow(f"SELECT {await ab._sums(db)}, count(*) AS n FROM ai_usage WHERE {where}", *params)
+    metered = ab._row_cost(row)
     print(f"The meter counted {row['n']} calls: {row['i']:,} input and {row['o']:,} output tokens.")
     print(f"At the prices in the settings (${s.ai_price_input_per_mtok}/M in, ${s.ai_price_output_per_mtok}/M out) that is {money(metered)}.")
     if metered <= 0:

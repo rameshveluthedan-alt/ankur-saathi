@@ -53,6 +53,8 @@ class Settings(BaseSettings):
     ai_cap_shared_demo_daily_usd: float = 8.0   # a shared demo account (fixed PIN) is used by many reviewers
     ai_price_input_per_mtok: float = 2.0        # USD per million input tokens. CHECK Anthropic's pricing page for the model you use
     ai_price_output_per_mtok: float = 10.0      # USD per million output tokens (thinking tokens count as output)
+    ai_price_cache_read_per_mtok: float = 0.10   # USD per million tokens read from the prompt cache (Sonnet 5.5: $0.10)
+    ai_price_cache_write_per_mtok: float = 2.5   # USD per million tokens written to the cache: 1.25x the input price, the usual convention (an assumption: on the safe side for the caps)
     ai_timezone: str = "Asia/Kolkata"           # a "day" for the daily caps
     sample_plans_dir: str = ""                  # recorded plans served when the AI limit is reached; default db/seeds/sample_plans
 

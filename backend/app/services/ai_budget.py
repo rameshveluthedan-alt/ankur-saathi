@@ -72,9 +72,43 @@ def tokens_of(usage) -> tuple:
     return get("input_tokens"), get("output_tokens")
 
 
-def cost_usd(tokens_in: int, tokens_out: int) -> float:
+def cache_tokens_of(usage) -> tuple:
+    """(cache read, cache write) tokens: prompt caching (prompt v2) reports them APART from input_tokens, which then counts only the
+    uncached part. Zero for a call without caching, an old SDK, a fake or a dict without them."""
+    def get(name):
+        v = usage.get(name) if isinstance(usage, dict) else getattr(usage, name, None)
+        return int(v) if isinstance(v, (int, float)) else 0
+    return get("cache_read_input_tokens"), get("cache_creation_input_tokens")
+
+
+def cost_usd(tokens_in: int, tokens_out: int, cache_read: int = 0, cache_write: int = 0) -> float:
     s = get_settings()
-    return (tokens_in * s.ai_price_input_per_mtok + tokens_out * s.ai_price_output_per_mtok) / 1_000_000
+    return (tokens_in * s.ai_price_input_per_mtok + tokens_out * s.ai_price_output_per_mtok
+            + (cache_read or 0) * s.ai_price_cache_read_per_mtok + (cache_write or 0) * s.ai_price_cache_write_per_mtok) / 1_000_000
+
+
+def _row_cost(r) -> float:
+    return cost_usd(r["i"], r["o"], r["cr"], r["cw"])
+
+
+# The cache columns (db/schema/10_ai_usage.sql) may be missing in a database made before prompt v2: then the sums read 0 for them, and
+# record() adds them the first time it meters a call with caching. Checked once per process.
+_cache_cols = None
+
+
+async def _has_cache_cols(db) -> bool:
+    global _cache_cols
+    if _cache_cols is None:
+        _cache_cols = bool(await db.fetchval("""SELECT count(*) = 2 FROM information_schema.columns WHERE table_name = 'ai_usage'
+                                                AND column_name IN ('cache_read_tokens', 'cache_write_tokens')"""))
+    return _cache_cols
+
+
+async def _sums(db) -> str:
+    """The SELECT list for summed tokens: i, o, cr, cw."""
+    cache = ("COALESCE(sum(cache_read_tokens), 0) AS cr, COALESCE(sum(cache_write_tokens), 0) AS cw" if await _has_cache_cols(db)
+             else "0 AS cr, 0 AS cw")
+    return f"COALESCE(sum(input_tokens), 0) AS i, COALESCE(sum(output_tokens), 0) AS o, {cache}"
 
 
 _IST = timezone(timedelta(hours=5, minutes=30), "IST")        # India has no daylight saving, so a fixed offset is exact
@@ -117,8 +151,8 @@ def available_usd(spent_total: float, today: date) -> float:
 # ── the meter ───────────────────────────────────────────────────────────────
 
 async def _spent(db, where: str = "TRUE", *args) -> float:
-    row = await db.fetchrow(f"SELECT COALESCE(sum(input_tokens), 0) AS i, COALESCE(sum(output_tokens), 0) AS o FROM ai_usage WHERE {where}", *args)
-    return cost_usd(row["i"], row["o"])
+    row = await db.fetchrow(f"SELECT {await _sums(db)} FROM ai_usage WHERE {where}", *args)
+    return _row_cost(row)
 
 
 def _warn_missing():
@@ -165,11 +199,25 @@ async def check(db, teacher_id, kind: str = "plan"):
 
 async def record(db, teacher_id, kind: str, model: str, usage):
     """Meter a call that was made. Never lets a metering problem break the request that was already paid for."""
+    global _cache_cols
     tin, tout = tokens_of(usage)
+    cread, cwrite = cache_tokens_of(usage)
+    est = round(cost_usd(tin, tout, cread, cwrite), 4)
     try:
         school_id = await db.fetchval("SELECT school_id FROM teachers WHERE id = $1", teacher_id) if teacher_id else None
-        await db.execute("INSERT INTO ai_usage (teacher_id, school_id, kind, model, input_tokens, output_tokens, est_cost_usd) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-                         teacher_id, school_id, kind, model, tin, tout, round(cost_usd(tin, tout), 4))
+        if (cread or cwrite) and not await _has_cache_cols(db):
+            try:                                   # a database made before prompt v2: add the two columns (the same statements as db/schema/10_ai_usage.sql)
+                await db.execute("ALTER TABLE ai_usage ADD COLUMN IF NOT EXISTS cache_read_tokens INTEGER NOT NULL DEFAULT 0")
+                await db.execute("ALTER TABLE ai_usage ADD COLUMN IF NOT EXISTS cache_write_tokens INTEGER NOT NULL DEFAULT 0")
+                _cache_cols = True
+            except Exception as e:
+                print(f"   (AI meter: could not add the cache columns ({type(e).__name__}); the cached tokens are counted in est_cost_usd only, NOT in the caps)")
+        if await _has_cache_cols(db):
+            await db.execute("""INSERT INTO ai_usage (teacher_id, school_id, kind, model, input_tokens, output_tokens, cache_read_tokens, cache_write_tokens, est_cost_usd)
+                                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)""", teacher_id, school_id, kind, model, tin, tout, cread, cwrite, est)
+        else:
+            await db.execute("INSERT INTO ai_usage (teacher_id, school_id, kind, model, input_tokens, output_tokens, est_cost_usd) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+                             teacher_id, school_id, kind, model, tin, tout, est)
     except Exception as e:
         if e.__class__.__name__ in ("UndefinedTableError", "UndefinedColumnError"):
             _warn_missing()
@@ -251,14 +299,14 @@ async def status(db) -> dict:
     metered = await _spent(db)
     spent = s.ai_spend_offset_usd + metered
     since = day_start()
-    by_kind = {r["kind"]: (r["n"], cost_usd(r["i"], r["o"])) for r in await db.fetch(
-        "SELECT kind, count(*) AS n, COALESCE(sum(input_tokens), 0) AS i, COALESCE(sum(output_tokens), 0) AS o FROM ai_usage GROUP BY kind")}
-    days = [(r["d"], r["n"], cost_usd(r["i"], r["o"])) for r in await db.fetch(
-        """SELECT (created_at AT TIME ZONE $1)::date AS d, count(*) AS n, sum(input_tokens) AS i, sum(output_tokens) AS o
+    sums = await _sums(db)
+    by_kind = {r["kind"]: (r["n"], _row_cost(r)) for r in await db.fetch(f"SELECT kind, count(*) AS n, {sums} FROM ai_usage GROUP BY kind")}
+    days = [(r["d"], r["n"], _row_cost(r)) for r in await db.fetch(
+        f"""SELECT (created_at AT TIME ZONE $1)::date AS d, count(*) AS n, {sums}
            FROM ai_usage GROUP BY 1 ORDER BY 1 DESC LIMIT 10""", s.ai_timezone)]
-    top = [(str(r["teacher_id"])[:8], r["n"], cost_usd(r["i"], r["o"])) for r in await db.fetch(
-        """SELECT teacher_id, count(*) AS n, sum(input_tokens) AS i, sum(output_tokens) AS o FROM ai_usage WHERE created_at >= $1
-           GROUP BY teacher_id ORDER BY sum(input_tokens) * $2 + sum(output_tokens) * $3 DESC LIMIT 5""", since, s.ai_price_input_per_mtok, s.ai_price_output_per_mtok)]
+    top = sorted(((str(r["teacher_id"])[:8], r["n"], _row_cost(r)) for r in await db.fetch(
+        f"""SELECT teacher_id, count(*) AS n, {sums} FROM ai_usage WHERE created_at >= $1 GROUP BY teacher_id""", since)),
+        key=lambda t: -t[2])[:5]
     return {"allocation": s.ai_allocation_usd, "offset": s.ai_spend_offset_usd, "metered": metered, "spent": spent, "remaining": s.ai_allocation_usd - spent,
             "pct": 100 * spent / s.ai_allocation_usd if s.ai_allocation_usd else 0, "available_now": available_usd(metered, today),
             "reserve_active": today < date.fromisoformat(s.ai_reserve_from), "today": await _spent(db, "created_at >= $1", since),

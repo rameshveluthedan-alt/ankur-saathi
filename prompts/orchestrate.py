@@ -12,7 +12,8 @@ from datetime import date
 from typing import Optional
 
 from hindi_style import STYLE_PROMPT          # the Hindi tone rules from Vaishnavi's review (prompts/hindi_style.py)
-from cfu_prompt import render_cfu_section      # check-for-understanding show-me questions in every lesson (prompts/cfu_prompt.py, docs/CFU.md)
+from cfu_prompt import render_cfu_section, CFU_RULES   # check-for-understanding show-me questions in every lesson (prompts/cfu_prompt.py, docs/CFU.md)
+from session_shape import session_shape        # how the session's minutes are shared out (prompts/session_shape.py)
 
 
 # ============================================================================
@@ -441,9 +442,41 @@ async def fetch_tlms_for_competencies(db, competency_ids: list[str]) -> list[TLM
 # PROMPT ASSEMBLY — builds the complete Claude prompt from context
 # ============================================================================
 
-def build_system_prompt() -> str:
-    """Returns the static system prompt."""
-    return """You are the Ankur Saathi orchestration engine. You generate a complete Dainik Yojana (daily teaching plan) for an Indian FLN classroom using a station rotation model.
+def build_system_prompt(domain_id: Optional[str] = None, cfu: bool = False) -> str:
+    """The system prompt. With a domain_id (what the server sends since prompt v2, step 2) it carries EVERYTHING that is the same from plan
+    to plan for that subject: the role, the Hindi style, the show-me rules (when CFU is on), the re-teach rules and the output format. The
+    server marks it for prompt caching (build_system_blocks), so repeated plans read it from the cache. The per-plan facts stay in the
+    user prompt (build_user_prompt). Without a domain_id: the role only (v1)."""
+    if not domain_id:
+        return _SYSTEM_ROLE
+    parts = [_SYSTEM_ROLE, HINDI_STYLE_SECTION]
+    if cfu:
+        parts.append(CFU_RULES)
+    parts.append("\n## RE-TEACH RULES (use them only when YESTERDAY'S FEEDBACK in the context says the teacher decided to RE-TEACH a group)\n" + RETEACH_MAIN_RULES)
+    parts.append(_output_schema(domain_id))
+    return "\n".join(parts)
+
+
+def build_system_blocks(domain_id: str, cfu: bool = False) -> list:
+    """The system prompt as the Messages API's list of blocks, the fixed text marked for prompt caching (it must be byte-identical between
+    plans to be read from the cache: nothing per-plan may go in it)."""
+    return [{"type": "text", "text": build_system_prompt(domain_id, cfu), "cache_control": {"type": "ephemeral"}}]
+
+
+HINDI_STYLE_SECTION = (
+    "\n### HINDI STYLE FOR THE TEACHER'S WORDS\n"
+    "- Write the teacher's lines (I Do, We Do, You Do, the script, the CFU questions) as short polite instructions to the teacher, as NCERT's teacher notes do: "
+    "'बोर्ड पर लिखें: ...', 'बच्चों से पूछें', 'हर वाक्य दो बार बोलें'. Never the teacher's first person ('मैं ... लिखता/लिखती हूँ', 'मैं बोलूँगा'): the gender "
+    "is unknown and paired forms are slow to read in class. What the children do: 'बच्चे कॉपी में लिखें'. Words said to the children go in quotes. In the anchor, "
+    "spoken to the children, use 'हम' ('आज हम ... करेंगे'), 'देखो' or 'मेरे पास', never a gendered 'मैं' verb. Write 'शिक्षक', not 'शिक्षिका'.\n"
+    "- Name Hindi marks correctly: ै is 'ऐ की मात्रा' (two strokes), े 'ए की मात्रा' (one stroke), ं 'बिंदी' (अनुस्वार), ँ 'चंद्रबिंदु', ः 'विसर्ग'. "
+    "Never call ै or े a बिंदी.\n"
+    "- Use 'स्वतंत्र अभ्यास' for independent practice.\n"
+    "- In place-value and number-reading problems, never print the numeral beside its number word: write 'छत्तीस लिखिए', not 'छत्तीस (36) लिखिए'. "
+    "The system writes and checks every Hindi number word from its digits, so do not worry about spelling them.\n" + STYLE_PROMPT)
+
+
+_SYSTEM_ROLE = """You are the Ankur Saathi orchestration engine. You generate a complete Dainik Yojana (daily teaching plan) for an Indian FLN classroom using a station rotation model.
 
 Your role: Generate structured, differentiated teaching plans. Every competency, prerequisite, misconception, and assessment criterion you reference MUST come from the structured context provided. Do not invent curriculum content from training data.
 
@@ -455,7 +488,7 @@ Design principles:
 5. Hindi-first. All teacher-facing content in Hindi. English only for metadata.
 6. Offline-friendly. Plan must work once cached.
 
-Output format: Return a JSON object with the structure specified in the user prompt."""
+Output format: Return a JSON object with the structure specified in the OUTPUT FORMAT section below. The facts for today's plan (the class, the skills, the groups, the retrieved content, PART A to PART E) are in the user message: wherever these instructions name a section of the context (PART C, the INDEPENDENT-WORK RULES, YESTERDAY'S FEEDBACK, a STICK-BUNDLE POLICY, the WRITING WORKSHEETS section), it is there."""
 
 
 
@@ -732,7 +765,7 @@ def render_reteach_main(ctx) -> str:
         else:
             out.append("No specific mistake was recorded for this group: re-teach the skill's commonest mistakes from the MISCONCEPTION TAXONOMY above.")
         out.append("")
-    out.append(RETEACH_MAIN_RULES)
+    out.append("Write these groups' blocks by the RE-TEACH RULES in the system instructions.")
     return "\n".join(out)
 
 
@@ -831,18 +864,7 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
             obs_text += f"  - {oc['id']}: {oc['name_hi']} — for Roll Nos. {oc['target_roll_numbers']}\n"
     
     # Passages chosen in code from the content bank: the model must use them, not invent its own
-    cfu_text = render_cfu_section(ctx.cfu_kb, ctx.cfu_detected) if ctx.cfu_kb else ""        # empty when CFU is switched off: the plan is then as before
-    hindi_style_text = (
-        "\n### HINDI STYLE FOR THE TEACHER'S WORDS\n"
-        "- Write the teacher's lines (I Do, We Do, You Do, the script, the CFU questions) as short polite instructions to the teacher, as NCERT's teacher notes do: "
-        "'बोर्ड पर लिखें: ...', 'बच्चों से पूछें', 'हर वाक्य दो बार बोलें'. Never the teacher's first person ('मैं ... लिखता/लिखती हूँ', 'मैं बोलूँगा'): the gender "
-        "is unknown and paired forms are slow to read in class. What the children do: 'बच्चे कॉपी में लिखें'. Words said to the children go in quotes. In the anchor, "
-        "spoken to the children, use 'हम' ('आज हम ... करेंगे'), 'देखो' or 'मेरे पास', never a gendered 'मैं' verb. Write 'शिक्षक', not 'शिक्षिका'.\n"
-        "- Name Hindi marks correctly: ै is 'ऐ की मात्रा' (two strokes), े 'ए की मात्रा' (one stroke), ं 'बिंदी' (अनुस्वार), ँ 'चंद्रबिंदु', ः 'विसर्ग'. "
-        "Never call ै or े a बिंदी.\n"
-        "- Use 'स्वतंत्र अभ्यास' for independent practice.\n"
-        "- In place-value and number-reading problems, never print the numeral beside its number word: write 'छत्तीस लिखिए', not 'छत्तीस (36) लिखिए'. "
-        "The system writes and checks every Hindi number word from its digits, so do not worry about spelling them.\n" + STYLE_PROMPT)
+    cfu_text = render_cfu_section(ctx.cfu_kb, ctx.cfu_detected, rules=False) if ctx.cfu_kb else ""   # the per-group list; the rules are in the system block. Empty when CFU is switched off
     passages_text = ""
     if ctx.group_passages:
         passages_text = "\n### FIXED READING PASSAGES (from the content bank: do NOT invent or change a passage)\n"
@@ -871,15 +893,11 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
 
     passages_text += ctx.writing_rules or ""          # writing groups: their sheet rules override the passage rules above
 
-    # Compute rotation timing
-    anchor_duration = 10
-    setup_duration = 2
-    reteach_duration = 0 if ctx.reteach_groups is not None else (5 if ctx.reteach_competencies else 0)      # a teacher's decision: no separate block, so no 5 minutes taken from the teaching time
+    # Rotation timing: one function (prompts/session_shape.py), shared with the plan checks
+    shape = session_shape(ctx.available_minutes, separate_reteach=ctx.reteach_groups is None and bool(ctx.reteach_competencies))   # a teacher's decision: no separate block, so no 5 minutes taken from the teaching time
+    anchor_duration, setup_duration, reteach_duration = shape["anchor"], shape["setup"], shape["reteach"]
     rt_marks = {g: (" — RE-TEACH (see YESTERDAY'S FEEDBACK)" if ctx.reteach_groups and g in ctx.reteach_groups else "") for g in ("beginner", "progressor", "proficient")}
-    transition_total = 4  # 2 transitions × 2 min each
-    teaching_time = ctx.available_minutes - anchor_duration - setup_duration - reteach_duration - transition_total
-    priority_duration = max(teaching_time * 4 // 10, 15)  # ~40% of teaching time
-    standard_duration = (teaching_time - priority_duration) // 2
+    priority_duration, standard_duration = shape["blocks"][0], shape["blocks"][1]
     
     # Determine group rotation order
     groups = ['beginner', 'progressor', 'proficient']
@@ -894,7 +912,6 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     week_notes_line = (f"**Curriculum note for this topic (state plan):** {ctx.week_notes}\n"
                        if ctx.week_notes else "")
     
-    output_schema = _output_schema(ctx.domain_id)
 
     prompt = f"""Generate today's Dainik Yojana using ONLY the structured context below.
 
@@ -985,9 +1002,8 @@ Rotation chart, peer monitors, transition scripts (Hindi), independent station a
 - Observation: {obs_text if obs_text else 'No observed-modality competencies today.'}
 {'- ORF: Roll Nos. ' + str(ctx.orf_roll_numbers) + ' on passage ' + ctx.orf_passage_id if ctx.orf_scheduled else ''}
 {passages_text}
-{hindi_style_text}
 {cfu_text}
-{output_schema}
+Return ONE JSON object in the OUTPUT FORMAT given in the system instructions, following every rule there.
 """
     
     return prompt
@@ -1193,7 +1209,7 @@ async def generate_dainik_yojana(
 def preview_prompt(ctx: OrchestrationContext) -> dict:
     """Returns both prompts for inspection without calling Claude."""
     return {
-        "system_prompt": build_system_prompt(),
+        "system_prompt": build_system_prompt(ctx.domain_id, cfu=bool(ctx.cfu_kb)),
         "user_prompt": build_user_prompt(ctx),
         "estimated_tokens": len(build_user_prompt(ctx).split()) * 1.3,  # rough estimate
     }
