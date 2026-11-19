@@ -377,6 +377,13 @@ def _problem_from_bank(q: dict, number: int) -> dict:
     return p
 
 
+def observation_reminders(sheet_kinds: dict) -> list:
+    """One line per group whose skill is checked by watching (sheet kind 'observed'), in group order; [] when none is."""
+    hi = {"beginner": "शुरुआती", "progressor": "प्रगतिशील", "proficient": "दक्ष"}
+    return [f"{hi[g]} समूह: स्वतंत्र अभ्यास (तुम करो) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें।"   # the screen's own line (pwa/src/services/reviewWays.js OBSERVE)
+            for g in ("beginner", "progressor", "proficient") if (sheet_kinds or {}).get(g) == "observed"]
+
+
 def clean_worksheet_diagnostics(plan: dict, group_kb: dict) -> list[str]:
     """Clear a worksheet problem's diagnostic_for_misconception when the ID is not a recorded mistake of THAT group's own skill (group_kb[group]
     = {competency_id, mistakes: [{id, ...}]}). The problem stays; only the label goes. Returns one line per cleared label. A group missing from
@@ -1466,6 +1473,14 @@ async def generate_dainik_yojana(
         print(f"   Resources item: {put_resources_item(plan_json, build_resources_item(ctx, STICK_TEACHER_KIT_TOTAL))}")
     except Exception as e:      # never let this break plan generation
         print(f"   Resources item skipped: {type(e).__name__}: {e}")
+
+    # The observation reminders are written by code from the groups' sheet kinds (prompt v2, step 6): the screens only ask WHETHER a
+    # group is observed today, and the observed sheet's own task says what to watch. A recorded plan keeps its reviewed reminders.
+    if served_from == "ai":
+        rp = plan_json.get("review_prompts")
+        if not isinstance(rp, dict):
+            rp = plan_json["review_prompts"] = {}
+        rp["observation_reminders_hi"] = observation_reminders(ctx.sheet_kinds)
 
     # ── Store plan ──
     explainability = plan_json.get('explainability', {})

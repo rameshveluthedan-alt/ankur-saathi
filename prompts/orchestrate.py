@@ -137,12 +137,6 @@ class OrchestrationContext:
     group_skill_ids: dict = field(default_factory=dict)      # {'beginner': id, 'progressor': id, 'proficient': id}: the skill each group is taught today
     yesterday_analysis: Optional[dict] = None
     
-    # Assessment prompts
-    observed_competencies: list[dict] = field(default_factory=list)
-    orf_scheduled: bool = False
-    orf_roll_numbers: list[int] = field(default_factory=list)
-    orf_passage_id: Optional[str] = None
-    orf_target_cwpm: Optional[int] = None
     # Reading passages chosen in code from the content bank, per group (literacy only): {level: {id, title, text, attribution}}
     group_passages: dict = field(default_factory=dict)
     # Texts for each group's independent practice, from the bank: {level: {id, title, text, questions}}
@@ -484,13 +478,14 @@ _SYSTEM_ROLE = """You are the Ankur Saathi orchestration engine. You generate a 
 
 Your role: Generate structured, differentiated teaching plans. Every competency, prerequisite, misconception, and assessment criterion you reference MUST come from the structured context provided. Do not invent curriculum content from training data.
 
-Design principles:
-1. AI proposes, teacher decides. Tone is supportive, never prescriptive.
-2. Level-matched instruction. Beginners get prerequisite content. Progressors get target with scaffolding. Proficients get extensions.
-3. Station rotation. Two groups work independently (on previously mastered content) while teacher teaches one group. No group does new content independently before teacher has taught it.
-4. Noise-robust assessment. Use the competency's modality tag for assessment channel.
-5. Hindi-first. All teacher-facing content in Hindi. English only for metadata.
-6. Offline-friendly. Plan must work once cached.
+HOW TO WRITE THE PLAN:
+1. The teacher decides. Write suggestions a teacher can follow, warmly; never orders about the teacher's own judgment.
+2. Each group at its own level: the Beginners work on their prerequisite skill, the Progressors on today's skill with scaffolding, the Proficients go further. Each group's skill and its own mistakes are listed in MISTAKES PER GROUP.
+3. A group is taught a NEW skill only in its own teach block. Before that, its independent work is on skills it has already mastered (INDEPENDENT-WORK RULES).
+4. How a skill is checked follows its assessment modality: "written" → the worksheet's 3 core problems (photographed after class); "observed" → the teacher watches the group's You Do task (its sheet's own section says what to watch); "oral_reading" → reading aloud, heard and scored by the teacher. Never ask for a photo of an observed skill's practice sheet.
+5. All teacher-facing text in Hindi, in the style below. English only where the format asks for it (the *_en fields).
+6. The plan must work offline once it is on the phone: never send the teacher to a website, a video or a file.
+7. Children are named nowhere: the context gives only counts, and the system adds the roll numbers the teacher needs.
 
 Output format: Return a JSON object with the structure specified in the OUTPUT FORMAT section below. The facts for today's plan (the class, the skills, the groups, the retrieved content, PART A to PART E) are in the user message: wherever these instructions name a section of the context (PART C, the INDEPENDENT-WORK RULES, YESTERDAY'S FEEDBACK, a STICK-BUNDLE POLICY, the WRITING WORKSHEETS section), it is there."""
 
@@ -526,12 +521,10 @@ Keep every talking point to at most 3 short sentences. Be concise; do not repeat
   },
   "worksheets": { "beginner": <WORKSHEET>, "progressor": <WORKSHEET>, "proficient": <WORKSHEET> },
   "classroom_management": {
-    "peer_monitors": {"beginner": "Roll N", "progressor": "Roll N", "proficient": "Roll N"},
     "independent_activities_hi": {"beginner": "...", "progressor": "...", "proficient": "..."}
   },
   "review_prompts": {
-    "photo_sample_rolls": {"beginner": [], "progressor": [], "proficient": []},
-    "observation_reminders_hi": ["..."]
+    "photo_sample_rolls": {"beginner": [], "progressor": [], "proficient": []}
   },
   "explainability": {
     "items": [
@@ -543,7 +536,7 @@ Keep every talking point to at most 3 short sentences. Be concise; do not repeat
 Rules:
 - "blocks" must list EVERY segment in time order: anchor, setup, a reteach block ONLY if PART C lists one, then the three teach blocks with a transition between them. Use the durations given in PART C.
 - Pace of EVERY teach block (not only a re-teach), for a block of about 27 minutes: recall 2, I Do 6, We Do 7, the show-me questions 4, You Do 8. Scale it to the block's length (a 22-minute block: about 2, 5, 6, 3, 6) and write the talking points to fit: an I Do the teacher can finish in that time, not a second lesson. The app shows these minutes on the plan.
-- "explainability.items" must have 5-6 items covering: why these three groups; why this rotation order; which misconceptions to watch; WHICH RETRIEVED CONTENT you used and how (name the anchor ID and whether it was an exact, related, topic-area or loose match (or original, if none), the intervention ID, each TLM ID, and the curriculum note); and the assumptions and limitations (the curriculum plan is a representative plan, not the state's official weekly plan). Only say a resource was unavailable if it is genuinely absent from the context above.
+- "explainability.items" must have 3-4 items covering: why these three groups; why this rotation order; which mistakes to watch; and any assumption specific to today's plan. Do NOT write an item about the retrieved content (anchor, intervention, TLMs) or about the weekly plan: the system adds that item itself, from the facts.
 - Independent stations must follow the INDEPENDENT-WORK RULES above. For numeracy, other_groups_hi and every independent activity must NAME the actual practice: two or three example problems at that group's own level (for example 'जैसे 47 + 28, 56 + 35'), never just 'the problems on the board' without saying which; every example obeys the number range of its skill.
 - Numbers, prices and names in every group's anchor task must match the board you describe in narration_hi (same item, same price). If a group needs larger numbers, add new items to the board.
 - Each group's anchor task must use ONLY that group's own skills (see INDEPENDENT-WORK RULES): no other operations (for example no subtraction or 'how much is left' in an addition lesson). Do not repeat the group's name at the start of the task text, because the screen already shows it.
@@ -873,12 +866,6 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
                      "and for every 'diy' TLM add a one-line preparation note to \"prep_hi\" "
                      "(what to make before class and how many).\n")
     
-    # Build observation reminders
-    obs_text = ""
-    if ctx.observed_competencies:
-        for oc in ctx.observed_competencies:
-            obs_text += f"  - {oc['id']}: {oc['name_hi']} — for Roll Nos. {oc['target_roll_numbers']}\n"
-    
     # Passages chosen in code from the content bank: the model must use them, not invent its own
     passages_text = ""
     if ctx.group_passages:
@@ -958,13 +945,13 @@ Problem types: {', '.join(ctx.selected_competency.problem_types) if ctx.selected
 
 ## THREE GROUPS
 
-### शुरुआती (Beginner) — {ctx.beginner.count} children (Roll: {ctx.beginner.roll_numbers})
+### शुरुआती (Beginner) — {ctx.beginner.count} children
 Working on PREREQUISITE: {ctx.beginner.target_competency.id} — {ctx.beginner.target_competency.name_hi}
 
-### प्रगतिशील (Progressor) — {ctx.progressor.count} children (Roll: {ctx.progressor.roll_numbers})
+### प्रगतिशील (Progressor) — {ctx.progressor.count} children
 Working on TODAY'S LAKSHYA with scaffolding: {ctx.progressor.target_competency.id} — {ctx.progressor.target_competency.name_hi}
 
-### दक्ष (Proficient) — {ctx.proficient.count} children (Roll: {ctx.proficient.roll_numbers})
+### दक्ष (Proficient) — {ctx.proficient.count} children
 Working on EXTENSION: {ctx.proficient.target_competency.id} — {ctx.proficient.target_competency.name_hi}
 
 {independent_rules}
@@ -1008,210 +995,15 @@ Include answer keys and, on the core problems, the mistake each one reveals.
 Each block: I Do → We Do → You Do with Hindi talking points.
 
 ### PART D: CLASSROOM MANAGEMENT
-Rotation chart, peer monitors, transition scripts (Hindi), independent station activities (on PREVIOUSLY MASTERED content only).
+Rotation chart, transition scripts (Hindi), independent station activities (on PREVIOUSLY MASTERED content only).
 
 ### PART E: REVIEW PROMPTS
-- Photo sample: leave photo_sample_rolls as empty lists. The system chooses which children to photograph
-- Observation: {obs_text if obs_text else 'No observed-modality competencies today.'}
-{'- ORF: Roll Nos. ' + str(ctx.orf_roll_numbers) + ' on passage ' + ctx.orf_passage_id if ctx.orf_scheduled else ''}
+- Photo sample: leave photo_sample_rolls as empty lists. The system chooses which children to photograph and which children read aloud, and writes the observation reminders.
 {passages_text}
 Return ONE JSON object in the OUTPUT FORMAT given in the system instructions, following every rule there.
 """
     
     return prompt
-
-
-# ============================================================================
-# MAIN ORCHESTRATION FUNCTION — called by the FastAPI endpoint
-# ============================================================================
-
-async def generate_dainik_yojana(
-    db,
-    anthropic_client,
-    teacher_id: str,
-    selected_competency_id: str,
-    plan_date: date,
-):
-    """
-    Full orchestration pipeline:
-    1. Query L1 for competency + prerequisites + misconceptions
-    2. Query L2 for anchor activity + intervention (if needed)
-    3. Assemble prompt with all context
-    4. Call Claude API
-    5. Parse and validate response
-    6. Store plan in daily_plans table
-    7. Return structured Dainik Yojana
-    """
-    
-    # ── Step 1: L1 Queries ──
-    competency = await fetch_competency(db, selected_competency_id)
-    
-    # Get the direct hard prerequisite (= Beginner group's target)
-    hard_prereqs = await db.fetch("""
-        SELECT prerequisite_id FROM competency_prerequisites
-        WHERE competency_id = $1 AND prerequisite_type = 'hard'
-        ORDER BY prerequisite_id
-        LIMIT 1
-    """, selected_competency_id)
-    
-    beginner_target_id = hard_prereqs[0]['prerequisite_id'] if hard_prereqs else selected_competency_id
-    beginner_competency = await fetch_competency(db, beginner_target_id)
-    
-    # Get next competency for Proficient extension
-    proficient_extension = await db.fetchrow("""
-        SELECT cp.competency_id as id FROM competency_prerequisites cp
-        JOIN competencies c ON c.id = cp.competency_id
-        WHERE cp.prerequisite_id = $1 AND cp.prerequisite_type = 'hard'
-        ORDER BY c.sort_order LIMIT 1
-    """, selected_competency_id)
-    
-    if proficient_extension:
-        proficient_competency = await fetch_competency(db, proficient_extension['id'])
-    else:
-        proficient_competency = competency  # Same competency, extension problems
-    
-    prerequisite_chain = await fetch_prerequisite_chain(db, selected_competency_id, beginner_target_id)
-    misconceptions = await fetch_misconceptions(db, selected_competency_id)
-    
-    # ── Step 2: Get classroom context ──
-    teacher = await db.fetchrow("""
-        SELECT t.id, t.phone_hash, t.enrolled_grades, t.available_minutes,
-               s.school_code, s.has_printer
-        FROM teachers t JOIN schools s ON t.school_id = s.id
-        WHERE t.id = $1
-    """, teacher_id)
-    
-    # Get current groups
-    groups = await db.fetch("""
-        SELECT group_label, child_count, child_ids, target_competency_id, priority_rank
-        FROM teaching_groups
-        WHERE teacher_id = $1 AND domain_id = $2
-          AND effective_until IS NULL
-        ORDER BY priority_rank
-    """, teacher_id, competency.id.split('.')[0] == 'N' and 'numeracy' or 'r1_literacy')
-    
-    # Get children's roll numbers for each group
-    # (simplified — production would join child table)
-    total_children = sum(g['child_count'] for g in groups) if groups else 30
-    
-    domain_id = 'numeracy' if selected_competency_id.startswith('N') else 'r1_literacy'
-    domain_name_hi = 'गणित' if domain_id == 'numeracy' else 'R1 साक्षरता (हिंदी)'
-    
-    # ── Step 3: L2 Queries ──
-    anchor = await fetch_anchor_activity(
-        db, domain_id, competency.grade_level, selected_competency_id
-    )
-    
-    # Check if re-teaching needed (from yesterday's evidence)
-    reteach_competencies = []
-    yesterday_misconception_ids = []
-    yesterday = await db.fetch("""
-        SELECT DISTINCT unnest(detected_misconception_ids) as misc_id
-        FROM assessment_evidence
-        WHERE teacher_id = $1 
-          AND session_date = $2::date - interval '1 day'
-          AND detected_misconception_ids IS NOT NULL
-    """, teacher_id, plan_date)
-    
-    if yesterday:
-        yesterday_misconception_ids = [r['misc_id'] for r in yesterday]
-    
-    intervention = await fetch_intervention(db, yesterday_misconception_ids)
-    
-    # Get TLMs
-    tlm_ids = []
-    if intervention and intervention.tlm_ids:
-        tlm_ids.extend(intervention.tlm_ids)
-    available_tlms = await fetch_tlms(db, tlm_ids)
-    
-    # Get curriculum week
-    week_info = await db.fetchrow("""
-        SELECT week_number, topic_title_hi FROM curriculum_weeks
-        WHERE plan_id = (SELECT id FROM curriculum_plans WHERE state_id = 'mp' AND is_active = TRUE LIMIT 1)
-          AND grade_level = $1 AND domain_id = $2
-          AND week_number = EXTRACT(WEEK FROM $3::date) - 26
-    """, competency.grade_level, domain_id, plan_date)
-    
-    # ── Step 4: Assemble context ──
-    ctx = OrchestrationContext(
-        teacher_name="Teacher",  # Name never sent to Claude (privacy)
-        school_code=teacher['school_code'] if teacher else 'DEMO-001',
-        enrolled_grades=teacher['enrolled_grades'] if teacher else ['grade_1','grade_2','grade_3'],
-        total_children=total_children,
-        available_minutes=teacher['available_minutes'] if teacher else 90,
-        has_printer=teacher['has_printer'] if teacher else False,
-        plan_date=str(plan_date),
-        week_number=week_info['week_number'] if week_info else 10,
-        week_topic_hi=week_info['topic_title_hi'] if week_info else competency.name_hi,
-        selected_competency=competency,
-        domain_id=domain_id,
-        domain_name_hi=domain_name_hi,
-        beginner=GroupInfo(
-            label='beginner', count=8,
-            roll_numbers=[1,4,7,12,15,18,22,25],
-            target_competency=beginner_competency,
-        ),
-        progressor=GroupInfo(
-            label='progressor', count=12,
-            roll_numbers=[2,3,5,8,9,13,16,19,20,23,26,28],
-            target_competency=competency,
-        ),
-        proficient=GroupInfo(
-            label='proficient', count=10,
-            roll_numbers=[6,10,11,14,17,21,24,27,29,30],
-            target_competency=proficient_competency,
-        ),
-        prerequisite_chain=prerequisite_chain,
-        misconceptions=misconceptions,
-        anchor=anchor,
-        intervention=intervention,
-        available_tlms=available_tlms,
-        reteach_competencies=reteach_competencies,
-    )
-    
-    # ── Step 5: Build prompt and call Claude ──
-    system_prompt = build_system_prompt()
-    user_prompt = build_user_prompt(ctx)
-    
-    response = await anthropic_client.messages.create(
-        model="claude-sonnet-4-6",
-        max_tokens=8000,
-        system=system_prompt,
-        messages=[{"role": "user", "content": user_prompt}]
-    )
-    
-    # ── Step 6: Parse response ──
-    response_text = response.content[0].text
-    
-    # Strip markdown code fences if present
-    if response_text.startswith("```"):
-        response_text = response_text.split("\n", 1)[1]
-    if response_text.endswith("```"):
-        response_text = response_text.rsplit("\n", 1)[0]
-    
-    plan_json = json.loads(response_text)
-    
-    # ── Step 7: Store in daily_plans ──
-    await db.execute("""
-        INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
-                                 plan_content, explainability, groups_snapshot, claude_model)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-        ON CONFLICT (teacher_id, plan_date, domain_id) 
-        DO UPDATE SET plan_content = $5, explainability = $6, 
-                      groups_snapshot = $7, updated_at = NOW()
-    """, 
-        teacher_id, plan_date, domain_id, selected_competency_id,
-        json.dumps(plan_json, ensure_ascii=False),
-        json.dumps(plan_json.get('explainability', {}), ensure_ascii=False),
-        json.dumps({
-            'beginner': {'count': ctx.beginner.count, 'rolls': ctx.beginner.roll_numbers, 'target': ctx.beginner.target_competency.id},
-            'progressor': {'count': ctx.progressor.count, 'rolls': ctx.progressor.roll_numbers, 'target': ctx.progressor.target_competency.id},
-            'proficient': {'count': ctx.proficient.count, 'rolls': ctx.proficient.roll_numbers, 'target': ctx.proficient.target_competency.id},
-        }),
-        "claude-sonnet-4-6"
-    )
-    
-    return plan_json
 
 
 # ============================================================================

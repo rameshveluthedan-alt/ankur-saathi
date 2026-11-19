@@ -84,16 +84,18 @@ def unit():
     import re as _re
     labels = lambda lang: sorted(m for l in lines(it, lang) for m in _re.findall(r"\*\*(.+?)\*\*", l))
     check("the labels are wrapped in ** for bold: the lead-ins and the three group names, and nothing else (skill names, the codes and the body stay plain)",
-          labels("hi") == sorted(["एंकर गतिविधि (पूरी कक्षा के लिए):", "हर समूह के लिए:", "शुरुआती", "प्रगतिशील", "दक्ष", "सामग्री (तैयारी):"])
-          and labels("en") == sorted(["Anchor activity (whole class):", "For each group:", "Beginners", "Progressors", "Proficients", "Materials (to prepare):"]), (labels("hi"), labels("en")))
+          labels("hi") == sorted(["एंकर गतिविधि (पूरी कक्षा के लिए):", "हर समूह के लिए:", "शुरुआती", "प्रगतिशील", "दक्ष", "सामग्री (तैयारी):", "साप्ताहिक योजना:"])
+          and labels("en") == sorted(["Anchor activity (whole class):", "For each group:", "Beginners", "Progressors", "Proficients", "Materials (to prepare):", "Weekly plan:"]), (labels("hi"), labels("en")))
     check("no state plan note, no line for it", not any("State plan note" in l for l in en))
+    check("the weekly plan is said to be representative, by code, just before the codes (prompt v2: no longer asked of the model)",
+          hi[-2] == "**साप्ताहिक योजना:** ऐप में अभी एक नमूना साप्ताहिक योजना है, राज्य की आधिकारिक योजना नहीं।" and en[-2] == "**Weekly plan:** the app uses a representative weekly plan for now, not the state's official one.", (hi[-2], en[-2]))
 
     n = build_resources_item(ctx(stick_policy={"beginner_children": 0, "pair_kits": 0}), 99)
     check("sticks but no Beginner child: only the teacher kit is listed (no '0 pair kits')", "जोड़ी-किट" not in "\n".join(l for l in lines(n, "hi") if l.startswith("सामग्री")) and "0 pair kits" not in n["body_en"])
 
     print("\nthe state plan's note")
     en_note = build_resources_item(ctx(week_notes="Use concrete objects before symbols."), 99)
-    check("an English note: in the English text only, as a line before the codes", lines(en_note, "en")[-2] == "**State plan note:** Use concrete objects before symbols." and "Use concrete objects" not in en_note["body_hi"])
+    check("an English note: in the English text only, as a line before the codes", lines(en_note, "en")[-3] == "**State plan note:** Use concrete objects before symbols." and "Use concrete objects" not in en_note["body_hi"])
     hi_note = build_resources_item(ctx(week_notes="ठोस वस्तुओं से शुरू करें।"), 99)
     check("a note already in Hindi is not copied into the English text", "State plan note" not in hi_note["body_en"] and "ठोस वस्तुओं" not in hi_note["body_en"])
 

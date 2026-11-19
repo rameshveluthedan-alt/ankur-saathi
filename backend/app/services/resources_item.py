@@ -11,7 +11,9 @@ ITEM_ID = "resources"
 _CODE = re.compile(r"\b(?:ANC|INT|TLM)-[A-Z0-9-]+")
 _DEVANAGARI = re.compile(r"[ऀ-ॿ]")
 STICKS_ID = "TLM-001"
-TEACHER_KIT_STICKS = 99          # orchestrate.STICK_TEACHER_KIT_TOTAL; passed in so this module stays free of imports
+WEEKLY_PLAN_NOTE_HI = "ऐप में अभी एक नमूना साप्ताहिक योजना है, राज्य की आधिकारिक योजना नहीं।"     # new Hindi (19 Nov): for the education lead to check
+WEEKLY_PLAN_NOTE_EN = "the app uses a representative weekly plan for now, not the state's official one."
+TEACHER_KIT_STICKS = 99         # orchestrate.STICK_TEACHER_KIT_TOTAL; passed in so this module stays free of imports
 
 
 def _anchor_line(anchor, numeracy: bool):
@@ -82,6 +84,8 @@ def build_resources_item(ctx, teacher_kit_sticks: int = TEACHER_KIT_STICKS):
     note = (ctx.week_notes or "").strip()
     if note and not _DEVANAGARI.search(note):          # the state plan's note is English in most weeks: shown in the English text only
         en.append(f"**State plan note:** {note}")
+    # the weekly plan in the database is a representative one (docs/KNOWN_ISSUES.md): said here by code, no longer asked of the model (prompt v2, step 6)
+    hi.append(f"**साप्ताहिक योजना:** {WEEKLY_PLAN_NOTE_HI}"); en.append(f"**Weekly plan:** {WEEKLY_PLAN_NOTE_EN}")
 
     codes = [x for x in (ctx.anchor.id if ctx.anchor else None, itv.id if itv else None) if x]
     codes += [t.id for t in ([t for t in (ctx.available_tlms or []) if t.id == STICKS_ID] if sticks else []) + others]
