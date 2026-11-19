@@ -12,7 +12,7 @@ from datetime import date
 from typing import Optional
 
 from hindi_style import STYLE_PROMPT          # the Hindi tone rules from Vaishnavi's review (prompts/hindi_style.py)
-from cfu_prompt import render_cfu_section, CFU_RULES   # check-for-understanding show-me questions in every lesson (prompts/cfu_prompt.py, docs/CFU.md)
+from cfu_prompt import render_cfu_section, rank_mistakes, CFU_RULES   # check-for-understanding show-me questions in every lesson (prompts/cfu_prompt.py, docs/CFU.md)
 from session_shape import session_shape        # how the session's minutes are shared out (prompts/session_shape.py)
 
 
@@ -159,6 +159,8 @@ class OrchestrationContext:
     # check for understanding: {group: {competency_id, name_hi, name_en, mistakes: [dict]}} for each group's OWN skill (None = CFU switched off), and {mistake id: children} detected at the last review
     cfu_kb: Optional[dict] = None
     cfu_detected: Optional[dict] = None
+    # {group: {competency_id, name_hi, name_en, mistakes: [dict]}}: each group's OWN skill and its recorded mistakes, for the show-me questions AND the worksheets (always set by the server; cfu_kb is the same dict, or None when CFU is off)
+    group_mistakes: Optional[dict] = None
     # {'beginner_children': n, 'pair_kits': k} when TLM-001 (bundling sticks) is in today's content
     stick_policy: Optional[dict] = None
 
@@ -549,7 +551,7 @@ Rules:
 - In explainability, refer to worksheet problems by their NUMBER (for example "Progressor problems 1-3"), never by the numbers inside them: the system may replace a problem's numbers after you write.
 - instructions_hi and instructions_en must NOT say how many problems are required: the sheet prints that banner itself. Put a word problem's full text in problem_hi only and leave word_problem_text null. On the Progressor sheet the grid problems get a carry cell automatically, so you may tell children to write the carry there.
 - All text fields are PLAIN TEXT: no markdown (no **bold**, no # headings). To show a list inside one field, put each item on its own line starting with "• ".
-- Every worksheet problem needs an "answer". Use "diagnostic_for_misconception" (an ID from the misconception list, or null) on problems designed to reveal that error.
+- Every worksheet problem needs an "answer". Use "diagnostic_for_misconception" (an ID listed for THAT sheet's group in MISTAKES PER GROUP, or null) on problems designed to reveal that error. Never put one group's mistake on another group's sheet: each group is checked against its own skill's mistakes.
 - At most 8 problems per worksheet, so each sheet fits ONE A4 page. Fewer than 8 is fine.
 - Every problem must have ONE checkable answer (the photo analysis compares against the answer key). Do NOT include open-ended items such as "make your own problem".
 - Compute every answer. State which columns carry only after verifying by computing, and never ask for something impossible (e.g. a carry in every column of a 3-digit sum). In a skill whose number range ends at 99, the TOTAL of every sum on the sheet also stays at 99 or less.
@@ -573,7 +575,7 @@ Numeracy worksheet rules (scaffolding fades with level):
 - progressor: example_block REQUIRED, and it must show the carry (e.g. 27 + 15 = 42). Problems 1-3 row_type "grid" (same fields as above); problems 4-6 row_type "plain" with problem_hi like "19 + 43 = ___"; then 1-2 word problems with row_type null, "answer_type": "wide", and "word_problem_text" repeating the problem text.
 - proficient: example_block null. Problems 1-6 row_type "plain" (problem_hi like "57 + 36 = ___"); then 2 word problems with row_type null, "answer_type": "wide", "word_problem_text".
 - Stay inside the number range given in the context. If a number has 3 digits, use pv_columns 3 and add row1_h, row2_h, answer_h to example_block.
-- Place at least 2 problems that reveal the top misconceptions, and set diagnostic_for_misconception on them.
+- On each sheet, place at least 2 problems that reveal that group's top listed mistakes (when its skill has any), and set diagnostic_for_misconception on them.
 """
 
 _SCHEMA_WORKSHEET_LITERACY = """
@@ -763,7 +765,7 @@ def render_reteach_main(ctx) -> str:
             out.append("Mistakes found at the last review in this group:")
             out.extend(f"- {r['misconception_id']}: {r['misconception_name_hi']} ({n} children)" for r, n in found)
         else:
-            out.append("No specific mistake was recorded for this group: re-teach the skill's commonest mistakes from the MISCONCEPTION TAXONOMY above.")
+            out.append("No specific mistake was recorded for this group: re-teach the skill's commonest mistakes from this group's list in MISTAKES PER GROUP above.")
         out.append("")
     out.append("Write these groups' blocks by the RE-TEACH RULES in the system instructions.")
     return "\n".join(out)
@@ -786,18 +788,18 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     # Priority group logic
     priority_group, priority_reason = pick_priority_group(ctx.reteach_competencies, ctx.reteach_groups)
     
-    # Build misconception section
-    misconception_text = ""
-    for m in ctx.misconceptions:
-        misconception_text += f"""
-### {m.id}: {m.name_hi}
-- **Error pattern:** {m.error_pattern}
-- **How to detect:** {m.diagnostic_indicator}
-- **Example correct:** {m.example_correct or 'N/A'}
-- **Example incorrect:** {m.example_incorrect or 'N/A'}
-- **Severity:** {m.severity} | **Frequency:** {m.frequency}
-"""
-    
+    # Each group's OWN mistakes, ONE list for the show-me questions and the worksheets (prompt v2, step 4; it replaces the MISCONCEPTION
+    # TAXONOMY, which listed only the Progressors' skill). A context made without group_mistakes (an old caller) falls back to that one list.
+    group_mistakes = ctx.group_mistakes or {"progressor": {"competency_id": ctx.selected_competency.id, "name_hi": ctx.selected_competency.name_hi,
+                                                           "name_en": ctx.selected_competency.name_en, "mistakes": [asdict(m) for m in ctx.misconceptions]}}
+    mistakes_text = render_cfu_section(group_mistakes, ctx.cfu_detected, rules=False)
+    top_ids = {g: [m["id"] for m in rank_mistakes(kb.get("mistakes") or [], ctx.cfu_detected or {})[:3]] for g, kb in group_mistakes.items()}
+
+    def _diag_line(g):
+        ids = top_ids.get(g) or []
+        return (f"mistake-revealing problems for this group's OWN mistakes {', '.join(ids)}" if ids
+                else "no mistakes are recorded for this group's skill: diagnostic_for_misconception stays null")
+
     # Build prerequisite chain
     prereq_text = ""
     for p in ctx.prerequisite_chain:
@@ -864,7 +866,6 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
             obs_text += f"  - {oc['id']}: {oc['name_hi']} — for Roll Nos. {oc['target_roll_numbers']}\n"
     
     # Passages chosen in code from the content bank: the model must use them, not invent its own
-    cfu_text = render_cfu_section(ctx.cfu_kb, ctx.cfu_detected, rules=False) if ctx.cfu_kb else ""   # the per-group list; the rules are in the system block. Empty when CFU is switched off
     passages_text = ""
     if ctx.group_passages:
         passages_text = "\n### FIXED READING PASSAGES (from the content bank: do NOT invent or change a passage)\n"
@@ -905,7 +906,6 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     rotation_order = [priority_group] + groups
     
     # Top misconception IDs for worksheet design
-    top_misconception_ids = [m.id for m in ctx.misconceptions[:3]]
     anchor_section = _anchor_prompt_section(ctx)
     independent_rules = _independent_rules_section(ctx)
     materials_policy = _materials_policy_section(ctx)
@@ -957,8 +957,7 @@ Working on EXTENSION: {ctx.proficient.target_competency.id} — {ctx.proficient.
 ## PREREQUISITE CHAIN (from L1)
 {prereq_text}
 
-## MISCONCEPTION TAXONOMY (from L1)
-{misconception_text}
+{mistakes_text}
 
 ## YESTERDAY'S FEEDBACK
 {reteach_text}
@@ -979,9 +978,9 @@ Working on EXTENSION: {ctx.proficient.target_competency.id} — {ctx.proficient.
 Adapt the anchor template. Hindi narration, differentiated participation, closing question.
 
 ### PART B: THREE WORKSHEETS
-- शुरुआती: {ctx.beginner.target_competency.name_hi} — 8-10 problems with visual scaffolding
-- प्रगतिशील: {ctx.selected_competency.name_hi} — 8-10 problems, scaffolding faded, misconception-revealing problems for {', '.join(top_misconception_ids)}
-- दक्ष: {ctx.proficient.target_competency.name_hi} — 8-10 extension problems + word problems
+- शुरुआती: {ctx.beginner.target_competency.name_hi} — 8-10 problems with visual scaffolding; {_diag_line("beginner")}
+- प्रगतिशील: {ctx.selected_competency.name_hi} — 8-10 problems, scaffolding faded; {_diag_line("progressor")}
+- दक्ष: {ctx.proficient.target_competency.name_hi} — 8-10 extension problems + word problems; {_diag_line("proficient")}
 Include answer keys and misconception diagnostic maps.
 
 ### PART C: ROTATION SCHEDULE ({ctx.available_minutes} min total)
@@ -1002,7 +1001,6 @@ Rotation chart, peer monitors, transition scripts (Hindi), independent station a
 - Observation: {obs_text if obs_text else 'No observed-modality competencies today.'}
 {'- ORF: Roll Nos. ' + str(ctx.orf_roll_numbers) + ' on passage ' + ctx.orf_passage_id if ctx.orf_scheduled else ''}
 {passages_text}
-{cfu_text}
 Return ONE JSON object in the OUTPUT FORMAT given in the system instructions, following every rule there.
 """
     

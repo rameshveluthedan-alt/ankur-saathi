@@ -376,6 +376,24 @@ def _problem_from_bank(q: dict, number: int) -> dict:
     return p
 
 
+def clean_worksheet_diagnostics(plan: dict, group_kb: dict) -> list[str]:
+    """Clear a worksheet problem's diagnostic_for_misconception when the ID is not a recorded mistake of THAT group's own skill (group_kb[group]
+    = {competency_id, mistakes: [{id, ...}]}). The problem stays; only the label goes. Returns one line per cleared label. A group missing from
+    group_kb is left alone (nothing to check against)."""
+    log = []
+    for g, ws in ((plan or {}).get("worksheets") or {}).items():
+        kb = (group_kb or {}).get(g)
+        if not isinstance(ws, dict) or not kb:
+            continue
+        own = {m.get("id") for m in kb.get("mistakes") or [] if isinstance(m, dict)}
+        for p in ws.get("problems") or []:
+            mid = p.get("diagnostic_for_misconception") if isinstance(p, dict) else None
+            if mid and (not isinstance(mid, str) or mid not in own):
+                p["diagnostic_for_misconception"] = None
+                log.append(f"{g} problem {p.get('number')}: {mid} is not a mistake of {kb.get('competency_id')}, the group's skill: label cleared")
+    return log
+
+
 def apply_bank_questions(plan: dict, group_passages: dict) -> list[str]:
     """
     The bank's questions for the passage go FIRST, word for word, with the bank's answers. The model's own questions
@@ -1079,12 +1097,13 @@ async def generate_dainik_yojana(
     prereq_chain = await fetch_prerequisite_chain(db, competency_id, beginner_target_id)
 
     # Check for understanding: the recorded mistakes of EACH group's own skill (only the selected skill's reached the prompt before)
-    cfu_kb = None
-    if getattr(settings, "cfu_enabled", True):
-        cfu_kb = {}
-        for _g, _comp in (("beginner", beginner_comp), ("progressor", selected), ("proficient", proficient_comp)):
-            _ms = misconceptions if _comp.id == competency_id else await fetch_misconceptions(db, _comp.id)
-            cfu_kb[_g] = {"competency_id": _comp.id, "name_hi": _comp.name_hi, "name_en": getattr(_comp, "name_en", ""), "criteria_type": _cfu_criteria_type(_comp, domain_id), "mistakes": [asdict(m) for m in _ms]}
+    # Each group's OWN skill and its recorded mistakes: the prompt's one list, for the show-me questions AND the worksheet diagnostics
+    # (prompt v2, step 4: before, the worksheets saw only the Progressors' mistakes, so the Beginner and Proficient sheets borrowed them)
+    group_kb = {}
+    for _g, _comp in (("beginner", beginner_comp), ("progressor", selected), ("proficient", proficient_comp)):
+        _ms = misconceptions if _comp.id == competency_id else await fetch_misconceptions(db, _comp.id)
+        group_kb[_g] = {"competency_id": _comp.id, "name_hi": _comp.name_hi, "name_en": getattr(_comp, "name_en", ""), "criteria_type": _cfu_criteria_type(_comp, domain_id), "mistakes": [asdict(m) for m in _ms]}
+    cfu_kb = group_kb if getattr(settings, "cfu_enabled", True) else None
 
     # What each group may safely practise on its own, and the new skill it is taught today
     safe_beginner = []
@@ -1207,6 +1226,7 @@ async def generate_dainik_yojana(
         group_skills=group_skills,
         stick_policy=stick_policy,
         cfu_kb=cfu_kb,
+        group_mistakes=group_kb,
     )
     ctx.cfu_detected = {r["misconception_id"]: r["affected_count"] for r in reteach_competencies if r.get("misconception_id")}
     
@@ -1348,6 +1368,14 @@ async def generate_dainik_yojana(
             print(f"   Worksheet repair: {line}")
     except Exception as e:      # never let a repair break plan generation
         print(f"   Worksheet repair skipped: {type(e).__name__}: {e}")
+
+    # Each sheet's diagnostic mistake IDs must be its OWN group's: photo marking classifies a child's errors against the mistakes of the
+    # group's skill, so an ID borrowed from another group (the v1 prompt listed only the Progressors' mistakes) would mislead it
+    try:
+        for line in clean_worksheet_diagnostics(plan_json, group_kb):
+            print(f"   Diagnostic IDs: {line}")
+    except Exception as e:      # never let a repair break plan generation
+        print(f"   Diagnostic ID check skipped: {type(e).__name__}: {e}")
 
     # Place-value and number-reading worksheets: number words written from the digits, answers not printed in the question,
     # numbers the lesson already used replaced, and the flash-card list built from the cards the lesson shows

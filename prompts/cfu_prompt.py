@@ -84,6 +84,9 @@ Rules for the questions:
 """
 
 
+GROUP_MISTAKES_HEADING = "MISTAKES PER GROUP"       # the plan prompt's one list of each group's mistakes (prompt v2, step 4); the rules name it
+
+
 def render_cfu_section(cfu_kb: dict, detected: dict = None, rules: bool = True) -> str:
     """The rules plus, for each group, the group's skill and its recorded mistakes (most important first). cfu_kb[group] = {competency_id, name_hi, name_en, mistakes: [dict]}.
     rules=False: only the per-group list (the plan prompt sends CFU_RULES in its cached system block; prompt v2, step 2)."""
@@ -91,7 +94,7 @@ def render_cfu_section(cfu_kb: dict, detected: dict = None, rules: bool = True) 
         return ""
     detected = detected or {}
     out = ([CFU_RULES, "### MISTAKES TO TARGET, PER GROUP (from L1; use only these IDs)"] if rules else
-           ["### MISTAKES TO TARGET, PER GROUP (from L1; use only these IDs; the CHECK FOR UNDERSTANDING rules are in the system instructions)"])
+           [f"## {GROUP_MISTAKES_HEADING} (from L1; each group's OWN skill. Use only these IDs, and only for that group: in its show-me questions AND in its worksheet's diagnostic_for_misconception)"])
     for g in GROUP_ORDER:
         kb = cfu_kb.get(g)
         if not kb:

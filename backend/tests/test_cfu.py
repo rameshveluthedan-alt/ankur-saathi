@@ -465,7 +465,8 @@ async def main():
                 await plan_service.generate_dainik_yojana(db, teacher_id, "N2.3.2", "numeracy", TODAY + timedelta(days=2))
             row = await db.fetchrow("SELECT plan_content FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2", teacher_id, TODAY + timedelta(days=2))
             pc3 = json.loads(row["plan_content"]) if isinstance(row["plan_content"], str) else row["plan_content"]
-            check("switched off: the prompt has no CFU section", "CHECK FOR UNDERSTANDING" not in fake3.prompts[-1] and "GROUP BEGINNER" not in fake3.prompts[-1])
+            check("switched off: the prompt has no CFU rules", "CHECK FOR UNDERSTANDING" not in fake3.prompts[-1])
+            check("...but each group's mistakes are still listed: the worksheets use them too (prompt v2, step 4)", "MISTAKES PER GROUP" in fake3.prompts[-1] and "GROUP BEGINNER" in fake3.prompts[-1])
             check("switched off: nothing the model wrote reaches the plan", not any(k in b for b in pc3["rotation_schedule"]["blocks"] for k in ("cfu", "cfu_grounded", "cfu_note_hi")) and "cfu_stats" not in pc3)
         finally:
             settings.cfu_enabled = True

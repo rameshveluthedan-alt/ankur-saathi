@@ -96,7 +96,7 @@ async def main():
                   all(w in user for w in ("**Available teaching time:** 90 minutes", "PART C: ROTATION SCHEDULE (90 min total)", "## THREE GROUPS", "N2.3.2")))
             check("...and no longer repeats the fixed rules", CFU_RULES not in user and HINDI_STYLE_SECTION not in user and orchestrate._SCHEMA_COMMON not in user and RETEACH_MAIN_RULES not in user)
             check("...and it points at the rules in the system instructions", "OUTPUT FORMAT given in the system instructions" in user)
-            check("the show-me list per group is still in the user message (it is per plan)", "MISTAKES TO TARGET, PER GROUP" in user)
+            check("the show-me list per group is still in the user message (it is per plan)", "MISTAKES PER GROUP" in user)
         rows = await db.fetch("""SELECT input_tokens, output_tokens, cache_read_tokens, cache_write_tokens, est_cost_usd FROM ai_usage
                                  WHERE school_id = (SELECT id FROM schools WHERE school_code = $1) AND kind = 'plan' ORDER BY id""", school)
         check("the meter stored both calls with their cached tokens", [(r["cache_read_tokens"], r["cache_write_tokens"]) for r in rows] == [(0, 12000), (12000, 0)], [dict(r) for r in rows])
