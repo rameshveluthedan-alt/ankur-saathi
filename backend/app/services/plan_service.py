@@ -636,7 +636,8 @@ def validate_plan_shape(plan: dict, domain_id: str = None, extras: int = None, s
         if b.get("type") == "teach":
             teach_groups.append(b.get("teach_group"))
             tp = b.get("talking_points") or {}
-            for k in ("i_do_hi", "we_do_hi", "you_do_hi"):
+            short = 0 < int(b.get("duration_minutes") or 0) < 10           # a short block (45 minutes: the Proficients' 7) has no We Do
+            for k in (("i_do_hi", "you_do_hi") if short else ("i_do_hi", "we_do_hi", "you_do_hi")):
                 if not tp.get(k):
                     issues.append(f"blocks[{i}].talking_points.{k} missing")
     if sorted(g for g in teach_groups if g) != sorted(levels):

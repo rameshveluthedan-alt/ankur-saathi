@@ -72,12 +72,14 @@ async def main():
         check("the blocks by need: Beginners 16, Progressors 14, Proficients 7",
               "TEACH beginner (16 min)" in pc_ and "TEACH progressor (14 min)" in pc_ and "TEACH proficient (7 min)" in pc_, pc_)
         check("each block's own pace, one show-me question each",
-              "pace: I Do 4, We Do 5, the show-me questions 2, You Do 5; keep 1 show-me question(s)" in pc_
-              and "pace: I Do 2, the show-me questions 2, You Do 3; keep 1 show-me question(s); a short block" in pc_, pc_)
+              'pace: I Do 4, We Do 5, the show-me questions 2, You Do 5; write 3 show-me questions in the block\'s "cfu" list (the app keeps 1)' in pc_
+              and 'pace: I Do 2, the show-me questions 2, You Do 3; write 3 show-me questions in the block\'s "cfu" list (the app keeps 1); a short block' in pc_, pc_)
         check("the worksheets are 3 + 1", "3 core + 1 extra = 4 problems" in fake.prompts[0])
         row = await db.fetchrow("SELECT plan_content FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2", teacher_id, TODAY)
         pc = json.loads(row["plan_content"]) if isinstance(row["plan_content"], str) else row["plan_content"]
         teach = {b["teach_group"]: b for b in pc["rotation_schedule"]["blocks"] if b.get("type") == "teach"}
+        w = plan_service.validate_plan_shape(pc, "numeracy")
+        check("the 7-minute block without a We Do is not warned about (found in the real 45-minute run)", not any("we_do_hi missing" in x for x in w), w)
         check("the show-me check keeps ONE question per block", all(len(teach[g].get("cfu") or []) <= 1 for g in teach), {g: len(teach[g].get("cfu") or []) for g in teach})
         check("each block carries its pace for the screen: the Proficients' 2 + 2 + 3, no We Do",
               teach["proficient"].get("pace") == [{"key": "i_do", "min": 2}, {"key": "show_me", "min": 2}, {"key": "you_do", "min": 3}]
@@ -99,7 +101,7 @@ async def main():
             await plan_service.generate_dainik_yojana(db, teacher_id, "N2.3.2", "numeracy", TODAY + timedelta(days=2), session_minutes=60)
         pc3 = fake3.prompts[0].split("### PART C")[1].split("### PART D")[0]
         check("anchor 10, setup 2, blocks 18 / 13 / 13, transitions 2 each, with the scaled pace and 2 show-me questions",
-              "- Setup: 2 min" in pc3 and "(18 min)" in pc3 and pc3.count("(13 min)") == 2 and "- Transitions: 2 min each" in pc3 and "keep 2 show-me question(s)" in pc3, pc3)
+              "- Setup: 2 min" in pc3 and "(18 min)" in pc3 and pc3.count("(13 min)") == 2 and "- Transitions: 2 min each" in pc3 and "(the app keeps 2)" in pc3, pc3)
     finally:
         anthropic.AsyncAnthropic = real
         await _scratch.remove_class(db, teacher_id, school)

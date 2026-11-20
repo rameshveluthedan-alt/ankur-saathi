@@ -913,7 +913,7 @@ def build_user_prompt(ctx: OrchestrationContext) -> str:
     rt_marks = {g: (" — RE-TEACH (see YESTERDAY'S FEEDBACK)" if ctx.reteach_groups and g in ctx.reteach_groups else "") for g in ("beginner", "progressor", "proficient")}
     part_c_blocks = "\n".join(
         f"- Block {n}: TEACH {g} ({lay[g]['minutes']} min){rt_marks[g]}{(' — ' + priority_reason) if n == 1 else ''}\n"
-        f"  pace: {pace_text(lay[g]['pace'])}; keep {lay[g]['cfu']} show-me question(s)" + (f"; {lay[g]['note']}" if lay[g]['note'] else "")
+        f"  pace: {pace_text(lay[g]['pace'])}; write 3 show-me questions in the block's \"cfu\" list (the app keeps {lay[g]['cfu']})" + (f"; {lay[g]['note']}" if lay[g]['note'] else "")
         for n, g in enumerate(rotation_order, 1))
     transitions_line = ("- Transitions: " + " min, then ".join(str(t) for t in shape["transition_list"]) + " min"
                         if len(set(shape["transition_list"])) > 1 else f"- Transitions: {shape['transition_list'][0]} min each")

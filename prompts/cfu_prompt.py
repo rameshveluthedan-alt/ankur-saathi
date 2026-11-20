@@ -102,7 +102,7 @@ def render_cfu_section(cfu_kb: dict, detected: dict = None, rules: bool = True) 
         out.append(f"\nGROUP {g.upper()} ({GROUP_HI[g]}): skill {kb['competency_id']}: {kb.get('name_en') or ''} / {kb.get('name_hi') or ''}")
         mistakes = rank_mistakes(kb.get("mistakes") or [], detected)[:MAX_MISTAKES_PER_GROUP]
         if not mistakes:
-            out.append("  No mistakes are recorded for this skill: test its key idea, leave listen_for as [] and fill shows_hi.")
+            out.append("  No mistakes are recorded for this skill: STILL write this group's show-me questions in its block's \"cfu\" list, testing the skill's key idea; in each question leave listen_for as [] and fill shows_hi.")
             continue
         for n, m in enumerate(mistakes, 1):
             flag = f"   DETECTED at the last review in {detected[m['id']]} child(ren): put this first." if m["id"] in detected else ""
