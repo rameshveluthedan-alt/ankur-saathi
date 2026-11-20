@@ -467,6 +467,10 @@ HINDI_STYLE_SECTION = (
     "'बोर्ड पर लिखें: ...', 'बच्चों से पूछें', 'हर वाक्य दो बार बोलें'. Never the teacher's first person ('मैं ... लिखता/लिखती हूँ', 'मैं बोलूँगा'): the gender "
     "is unknown and paired forms are slow to read in class. What the children do: 'बच्चे कॉपी में लिखें'. Words said to the children go in quotes. In the anchor, "
     "spoken to the children, use 'हम' ('आज हम ... करेंगे'), 'देखो' or 'मेरे पास', never a gendered 'मैं' verb. Write 'शिक्षक', not 'शिक्षिका'.\n"
+    "- This holds INSIDE QUOTES too: when the teacher demonstrates aloud, write 'देखिए, अब हम रंग से छाँटते हैं', never 'मैं ... छाँटूँगा', "
+    "'मैं ... छाँटूँगी' or 'मैं ... छाँट रही हूँ'. (A sentence written on the board for the children to read may have 'मैं'.)\n"
+    "- Write each line once, in its final form: never correct yourself inside a script ('चुपके से... यानी शांति से'): write only 'शांति से'. "
+    "Plain Hindi words, not English ones in Devanagari (not 'टंग ट्विस्टर': 'जीभ घुमाने वाला वाक्य').\n"
     "- Name Hindi marks correctly: ै is 'ऐ की मात्रा' (two strokes), े 'ए की मात्रा' (one stroke), ं 'बिंदी' (अनुस्वार), ँ 'चंद्रबिंदु', ः 'विसर्ग'. "
     "Never call ै or े a बिंदी.\n"
     "- Use 'स्वतंत्र अभ्यास' for independent practice.\n"
@@ -553,7 +557,8 @@ Rules:
 - A 3 + N sheet has exactly 3 + the extras PART B gives (at most 6 problems, so each sheet fits ONE A4 page); any other sheet at most 8.
 - Every problem must have ONE checkable answer (the photo analysis compares against the answer key). Do NOT include open-ended items such as "make your own problem".
 - Compute every answer. State which columns carry only after verifying by computing, and never ask for something impossible (e.g. a carry in every column of a 3-digit sum). In a skill whose number range ends at 99, the TOTAL of every sum on the sheet also stays at 99 or less.
-- Size each independent activity to the length of the teach block it runs beside (PART C gives the minutes), and say what fast finishers do. Do not label an activity shorter than the block.
+- Size each independent activity to the length of the teach block it runs beside (PART C gives the minutes), and say what fast finishers do. Never write a length other than PART C's (no 'about 25 minutes' in a 13-minute block).
+- A You Do of 5 minutes or less STARTS the group's task: ask only for what fits (for example the first sentence of the writing task, or one reading of the passage and problem 1), and say that the group finishes the rest at its own place in the next block. Never pack several tasks into a short You Do. Do not label an activity shorter than the block.
 """
 
 _SCHEMA_WORKSHEET_NUMERACY = """

@@ -235,10 +235,71 @@ def teacher_instructions(text: str) -> tuple:
 
 
 # the gendered first person that teacher_instructions leaves (a clause spoken to the children), for the plan check
-_GENDERED_ME = re.compile(rf"(?<![{_D}])(?:[{_D}]+(?:ता|ती)(?:/[{_D}]+)? हूँ|[{_D}]+(?:ूँ|ऊँ)(?:गा|गी))(?![{_D}])")
+_GENDERED_ME = re.compile(rf"(?<![{_D}])(?:[{_D}]+(?:ता|ती)(?:/[{_D}]+)? हूँ|(?:रहा|रही|चुका|चुकी) हूँ|[{_D}]+(?:ूँ|ऊँ)(?:गा|गी))(?![{_D}])")
+# the teacher's own words in quotes ('देखें, मैं रंग से छाँट रही हूँ', found in the v2 review, 20 Nov): a quote with मैं and a gendered verb, unless it
+# is text WRITTEN for the children (बोर्ड पर लिखें: 'मैं स्कूल जाता हूँ।' is a sentence to read, and is fine)
+_QUOTED = re.compile(r"(['‘\"“])(.+?)(['’\"”])")
+_WRITTEN_BEFORE = re.compile(r"(लिख|बोर्ड|वाक्य|पढ़|उदाहरण|कॉपी)[^'‘\"“]{0,25}$")
+
+
+def _gendered_in_quotes(text: str):
+    for m in _QUOTED.finditer(text):
+        inner = m.group(2)
+        if "मैं" in inner and _GENDERED_ME.search(inner) and not _WRITTEN_BEFORE.search(text[:m.start()]):
+            return _GENDERED_ME.search(inner).group(0)
+    return None
 # Hindi marks named wrongly (15 Nov, a live plan: "'है' पर ऊपर दो बिंदी वाला ै"): ै is the ऐ की मात्रा (two strokes); a बिंदी is ं
 # (the mark ै or े written on its own, not inside a word; "दो बिंदु वाला विसर्ग ः" is right and is not flagged)
 _WRONG_MARK = re.compile(rf"(?:बिंदी|बिंदियों|बिंदु|बिन्दी|बिन्दु)(?:\s*(?:वाला|वाली|वाले|का|की))?\s*['‘(]?(?<![{_D}])[ैे](?!ं)")
+
+
+_ME_VERBS = [(re.compile(rf"([{_D}]+)(?:ता|ती) हूँ(?![{_D}])"), r"\1ते हैं"),         # छाँटता/छाँटती हूँ -> छाँटते हैं
+             (re.compile(rf"([{_D}]+)(?:ूँगा|ूँगी)(?![{_D}])"), r"\1ेंगे"),            # छाँटूँगा/छाँटूँगी -> छाँटेंगे
+             (re.compile(r"(?:रहा|रही) हूँ"), "रहे हैं"), (re.compile(r"(?:चुका|चुकी) हूँ"), "चुके हैं")]
+
+
+def neutral_quotes(text: str) -> tuple:
+    """(text, n): in the teacher's own quoted speech (not text written for the children), a gendered 'मैं' sentence becomes the neutral 'हम'
+    form: 'मैं रंग से छाँटूँगी' -> 'हम रंग से छाँटेंगे', 'मैं छाँट रही हूँ' -> 'हम छाँट रहे हैं'. Only a quote that has 'मैं' and a gendered
+    verb is touched (20 Nov, the v2 review: the model still wrote some after the rule)."""
+    n = 0
+
+    def fix(m):
+        nonlocal n
+        inner = m.group(2)
+        if "मैं" not in inner or not _GENDERED_ME.search(inner) or _WRITTEN_BEFORE.search(m.string[:m.start()]):
+            return m.group(0)
+        new = re.sub(rf"(?<![{_D}])मैं(?![{_D}])", "हम", inner)
+        for pat, rep in _ME_VERBS:
+            new = pat.sub(rep, new)
+        if new != inner:
+            n += 1
+        return m.group(1) + new + m.group(3)
+
+    return _QUOTED.sub(fix, text), n
+
+
+def neutral_quotes_in_plan(plan: dict) -> int:
+    """neutral_quotes on every teacher-speech field of a plan, in place. Returns how many quotes were changed."""
+    total = 0
+
+    def visit(o, path=""):
+        nonlocal total
+        if isinstance(o, dict):
+            for k in list(o):
+                v = o[k]
+                p = f"{path}.{k}"
+                if isinstance(v, str) and (any(r.match(p) for r in _SPEECH_RE) or p.endswith(".question_hi")):
+                    o[k], n = neutral_quotes(v)
+                    total += n
+                else:
+                    visit(v, p)
+        elif isinstance(o, list):
+            for v in o:
+                visit(v, f"{path}[]")
+
+    visit(plan)
+    return total
 
 
 def check_teacher_text(plan: dict) -> list:
@@ -256,6 +317,8 @@ def check_teacher_text(plan: dict) -> list:
             teacher = any(r.match(path) for r in _SPEECH_RE) or path.endswith(".question_hi")
             if teacher and _GENDERED_ME.search(_QUOTE_SPAN.sub("", o)):
                 out.append(f"{path}: the teacher's first person with a gender («{_GENDERED_ME.search(_QUOTE_SPAN.sub('', o)).group(0)}»); write it as an instruction (बोलें, लिखें)")
+            elif teacher and _gendered_in_quotes(o):
+                out.append(f"{path}: the teacher's own words in quotes have a gendered first person («{_gendered_in_quotes(o)}»); write 'देखिए, अब हम ... करते हैं'")
             if (teacher or any(r.match(path) for r in _PRINTED_RE)) and _WRONG_MARK.search(o):
                 out.append(f"{path}: a Hindi mark named wrongly («{_WRONG_MARK.search(o).group(0)}»): ै is the ऐ की मात्रा, े the ए की मात्रा, ं a बिंदी, ँ a चंद्रबिंदु")
 

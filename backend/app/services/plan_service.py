@@ -377,6 +377,25 @@ def _problem_from_bank(q: dict, number: int) -> dict:
     return p
 
 
+def tidy_plan_structure(plan: dict) -> list[str]:
+    """Remove what the model sometimes adds that nothing reads (found in the v2 review, 20 Nov): a 0-minute block, and a group key other than
+    beginner / progressor / proficient in the independent activities (e.g. 'dakshta', repeating the Proficients' text). Returns log lines."""
+    log = []
+    rs = (plan or {}).get("rotation_schedule") or {}
+    blocks = rs.get("blocks")
+    if isinstance(blocks, list):
+        keep = [b for b in blocks if not (isinstance(b, dict) and b.get("type") != "teach" and "duration_minutes" in b and not int(b.get("duration_minutes") or 0))]
+        if len(keep) != len(blocks):
+            log.append(f"{len(blocks) - len(keep)} block(s) of 0 minutes removed")
+            rs["blocks"] = keep
+    ia = ((plan or {}).get("classroom_management") or {}).get("independent_activities_hi")
+    if isinstance(ia, dict):
+        for k in [k for k in ia if k not in ("beginner", "progressor", "proficient")]:
+            ia.pop(k)
+            log.append(f"independent_activities_hi: an unknown group key '{k}' removed")
+    return log
+
+
 def observation_reminders(sheet_kinds: dict) -> list:
     """One line per group whose skill is checked by watching (sheet kind 'observed'), in group order; [] when none is."""
     hi = {"beginner": "शुरुआती", "progressor": "प्रगतिशील", "proficient": "दक्ष"}
@@ -1373,6 +1392,9 @@ async def generate_dainik_yojana(
         print(f"   Re-teach group step skipped: {type(e).__name__}: {e}")
     try:                                         # the Hindi tone rules, as a safety net: whole-word swaps in what the teacher says and reads
         style = hindi_style.soften_plan(plan_json)
+        nq = hindi_style.neutral_quotes_in_plan(plan_json)        # the teacher's own quoted words: 'मैं ... छाँटूँगी' -> 'हम ... छाँटेंगे'
+        if nq:
+            style["neutral first person in quotes"] = nq
         if style:
             print(f"   Hindi style: {sum(style.values())} wording changes ({', '.join(f'{k} x{v}' for k, v in sorted(style.items()))})")
     except Exception as e:
@@ -1394,6 +1416,11 @@ async def generate_dainik_yojana(
 
     # Each sheet's diagnostic mistake IDs must be its OWN group's: photo marking classifies a child's errors against the mistakes of the
     # group's skill, so an ID borrowed from another group (the v1 prompt listed only the Progressors' mistakes) would mislead it
+    try:
+        for line in tidy_plan_structure(plan_json):
+            print(f"   Structure: {line}")
+    except Exception as e:      # never let a repair break plan generation
+        print(f"   Structure tidy skipped: {type(e).__name__}: {e}")
     try:
         for line in clean_worksheet_diagnostics(plan_json, group_kb):
             print(f"   Diagnostic IDs: {line}")
@@ -1447,6 +1474,9 @@ async def generate_dainik_yojana(
         print(f"   CFU check skipped (questions removed): {type(e).__name__}: {e}")
     try:                                         # the CFU top-up writes its questions after the style step: they get it too (15 Nov: a top-up said "मैं बोलती/बोलता हूँ")
         style = hindi_style.soften_plan(plan_json)          # idempotent: what was already done is not changed again
+        nq = hindi_style.neutral_quotes_in_plan(plan_json)        # the top-up's show-me questions too
+        if nq:
+            style["neutral first person in quotes"] = nq
         if style:
             print(f"   Hindi style after the CFU step: {sum(style.values())} changes ({', '.join(f'{k} x{v}' for k, v in sorted(style.items()))})")
     except Exception as e:

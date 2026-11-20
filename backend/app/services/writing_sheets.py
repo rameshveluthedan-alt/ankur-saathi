@@ -231,6 +231,9 @@ def _fluency_section(group_skill_ids, fluency_levels) -> str:
     lines += [
         "- The You Do sends the group to this worksheet and ends with exactly this sentence: '" + LISTEN_SENTENCE + "' "
         "Never 'हर बच्चे से' or 'सभी बच्चों से' (there is no time to hear every child in one day), and never a child's name or roll number.",
+        "- A SHORT block (PART C gives its You Do 5 minutes or less, as in a 45-minute session): the You Do asks in the block only for the warm-up words "
+        "and ONE reading of the passage, and says that the group does the other readings, the pair reading and the questions at its own place in the "
+        "next block. It still ends with the sentence above.",
         "- The sheet has at most 3 questions: the You Do names them as 'प्रश्न 1 से 3' (never a higher number) and mentions no extras.\n",
     ]
     return "\n".join(lines)

@@ -46,6 +46,35 @@ check("the generic principles the model could not act on are gone", "Noise-robus
 check("no peer monitors and no observation reminders asked for", "peer_monitors" not in num and "observation_reminders_hi" not in num)
 check("the model is no longer asked for the content item or the weekly-plan note", "Do NOT write an item about the retrieved content" in num and "representative plan" not in num)
 
+print("from the review of the 12 real plans (20 Nov)")
+import hindi_style as hs
+check("the rules: no gendered 'मैं' even inside quotes, no self-corrections, plain Hindi words",
+      all(w in num for w in ("This holds INSIDE QUOTES too", "'देखिए, अब हम रंग से छाँटते हैं'", "never correct yourself inside a script", "जीभ घुमाने वाला वाक्य")))
+check("the rules: no length but PART C's, and a short You Do only STARTS the task",
+      "Never write a length other than PART C's" in num and "A You Do of 5 minutes or less STARTS the group's task" in num)
+def tw(text, key="i_do_hi"):
+    return hs.check_teacher_text({"rotation_schedule": {"blocks": [{"type": "teach", "talking_points": {key: text}}]}})
+check("the teacher's own demonstration in quotes is flagged: छाँटूँगा, छाँटूँगी, छाँट रही हूँ, रखता हूँ",
+      all(tw(t) for t in ("कहें: 'मैं पहले आकार से छाँटूँगा।'", "'देखें, मैं रंग के आधार पर छाँट रही हूँ।'", "'मैं आकृति से छाँटूँगी।'", "'मैं इसे यहाँ रखता हूँ।'")))
+check("a sentence WRITTEN on the board for the children is not flagged", not tw("बोर्ड पर लिखें: 'मैं रोज़ पैदल जाता हूँ।'") and not tw("वाक्य पढ़ें: 'मैं स्कूल जाता हूँ।'"))
+check("the reviewed form is not flagged", not tw("'देखिए, अब हम रंग से छाँटते हैं।'"))
+check("the teacher's own quoted words are rewritten to the neutral 'हम' form (the model still wrote some after the rule)",
+      [hs.neutral_quotes(t)[0] for t in ("कहें: 'अब मैं रंग से छाँटता हूँ, फिर आकृति से।'", "'देखें, मैं छाँट रही हूँ।'", "'मैं आकृति से छाँटूँगी।'")]
+      == ["कहें: 'अब हम रंग से छाँटते हैं, फिर आकृति से।'", "'देखें, हम छाँट रहे हैं।'", "'हम आकृति से छाँटेंगे।'"])
+check("...but not a sentence written on the board for the children", hs.neutral_quotes("बोर्ड पर लिखें: 'मैं रोज़ पैदल जाता हूँ।'") == ("बोर्ड पर लिखें: 'मैं रोज़ पैदल जाता हूँ।'", 0))
+pl = {"rotation_schedule": {"blocks": [{"type": "teach", "talking_points": {"i_do_hi": "कहें: 'मैं रंग से छाँटूँगा।'"}}]}, "worksheets": {"beginner": {"passage_block": {"text": "मैं स्कूल जाता हूँ।"}}}}
+check("...in a whole plan: the teacher's lines only, never a passage", hs.neutral_quotes_in_plan(pl) == 1 and "हम रंग से छाँटेंगे" in pl["rotation_schedule"]["blocks"][0]["talking_points"]["i_do_hi"]
+      and pl["worksheets"]["beginner"]["passage_block"]["text"] == "मैं स्कूल जाता हूँ।" and not hs.check_teacher_text(pl))
+from app.services import writing_sheets as wsx
+fl = wsx.prompt_section({"progressor": "L2.5.1"}, "r1_literacy")
+check("the fluency section: a short block asks only for the warm-up words and ONE reading, the rest at the group's place next block", "A SHORT block" in fl and "ONE reading" in fl)
+plan = {"rotation_schedule": {"blocks": [{"type": "teach", "duration_minutes": 22}, {"type": "transition", "duration_minutes": 0}, {"type": "transition", "duration_minutes": 2}]},
+        "classroom_management": {"independent_activities_hi": {"beginner": "a", "proficient": "c", "dakshta": "c"}}}
+log = plan_service.tidy_plan_structure(plan)
+check("a 0-minute block and an unknown group key ('dakshta') are removed, and logged",
+      [b["duration_minutes"] for b in plan["rotation_schedule"]["blocks"]] == [22, 2] and "dakshta" not in plan["classroom_management"]["independent_activities_hi"] and len(log) == 2, log)
+check("an odd plan does nothing", plan_service.tidy_plan_structure({}) == [] and plan_service.tidy_plan_structure(None) == [])
+
 print("the observation reminders, by code")
 check("one line per observed group, in group order, in the screen's words",
       plan_service.observation_reminders({"progressor": "observed", "beginner": "observed", "proficient": "reading"})
