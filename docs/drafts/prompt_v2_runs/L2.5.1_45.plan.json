@@ -1,0 +1,513 @@
+{
+ "anchor": {
+  "title_hi": "जीभ की कसरत",
+  "narration_hi": "देखें, आज हम अपनी जीभ की कसरत करेंगे। बोर्ड पर एक मज़ेदार वाक्य लिखा है: 'कच्चा पापड़ पक्का पापड़'। पहले धीरे पढ़ें, फिर आप सब दोहराएँगे। फिर हम इसे तेज़ बोलेंगे।",
+  "closing_question_hi": "आज का सबसे कठिन जीभ घुमाने वाला वाक्य कौन सा लगा? हाथ उठाकर बताएँ।",
+  "opening_question_hi": "इस वाक्य में कौन सी आवाज़ बार-बार आ रही है?",
+  "beginner_participation_hi": "शुरुआती बच्चे वाक्य को सुनकर दोहराएँ। फिर बताएँ कि कौन सी आवाज़ बार-बार आ रही है।",
+  "proficient_participation_hi": "दक्ष बच्चे 'प' या 'क' की आवाज़ से अपना एक छोटा जीभ घुमाने वाला वाक्य बनाएँ और पूरी कक्षा को पढ़कर सुनाएँ।",
+  "progressor_participation_hi": "प्रगतिशील बच्चे वाक्य को बोर्ड से पढ़ें। बार-बार आने वाले अक्षर पर गोला लगाएँ और वाक्य को तीन बार तेज़ बोलने की कोशिश करें।"
+ },
+ "prep_hi": [
+  "बोर्ड पर जीभ घुमाने वाला वाक्य लिख लें: 'कच्चा पापड़ पक्का पापड़'।",
+  "प्रगतिशील समूह के स्वतंत्र अभ्यास के लिए 'बिल्ली और दूध' (RP-002) और उसके 3 प्रश्न बोर्ड पर लिख लें।",
+  "दक्ष समूह के स्वतंत्र अभ्यास के लिए 'किसान और बारिश' (RP-004) और उसके 3 प्रश्न बोर्ड पर लिख लें।",
+  "शुरुआती समूह के लिए 6 से 8 दृष्टि शब्द बोर्ड पर लिख लें, स्वतंत्र अभ्यास के लिए।",
+  "घड़ी या स्टॉपवॉच पास रखें, एक-एक मिनट का पठन सुनने के लिए।",
+  "प्रगतिशील समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «बिल्ली और दूध»: एक बिल्ली थी। उसका नाम मोती था। मोती को दूध बहुत पसंद था। एक दिन मोती ने दूध का कटोरा देखा। मोती ने सारा दूध पी लिया। मोती बहुत खुश हुई। सवाल: 1) बिल्ली का नाम क्या था? 2) मोती को क्या पसंद था? 3) मोती खुश क्यों हुई?",
+  "दक्ष समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «किसान और बारिश»: रामू एक किसान है। वह रोज़ सुबह खेत में जाता है। इस साल बारिश बहुत कम हुई। रामू की फ़सल सूखने लगी। रामू बहुत चिंतित था। एक दिन आसमान में काले बादल आए। ज़ोर की बारिश हुई। रामू ने ख़ुशी से नाचना शुरू किया। अब उसकी फ़सल बच जाएगी। सवाल: 1) रामू क्या काम करता है? 2) बारिश कैसी हुई इस साल? 3) रामू ने नाचना क्यों शुरू किया?"
+ ],
+ "coverage": {
+  "note": "Not yet run through the real model: the plan may need more editing.",
+  "tier": "untested"
+ },
+ "cfu_stats": {
+  "beginner": {
+   "kept": 1,
+   "wanted": 1,
+   "written": 3,
+   "grounded_items": 0,
+   "skill_has_mistakes": false
+  },
+  "proficient": {
+   "kept": 1,
+   "wanted": 1,
+   "written": 3,
+   "grounded_items": 0,
+   "skill_has_mistakes": false
+  },
+  "progressor": {
+   "kept": 1,
+   "wanted": 1,
+   "written": 3,
+   "grounded_items": 1,
+   "skill_has_mistakes": true
+  }
+ },
+ "worksheets": {
+  "beginner": {
+   "practice": true,
+   "problems": [
+    {
+     "answer": "उठता है",
+     "number": 1,
+     "row_type": null,
+     "problem_hi": "मोहन सुबह क्या करता है?",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "दूध",
+     "number": 2,
+     "row_type": null,
+     "problem_hi": "माँ मोहन को क्या देती है?",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "स्कूल",
+     "number": 3,
+     "row_type": null,
+     "problem_hi": "मोहन दूध पीकर कहाँ जाता है?",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "fluency",
+   "warmup_words": [
+    "सुबह",
+    "उठता",
+    "मुँह",
+    "धोता",
+    "दूध",
+    "स्कूल"
+   ],
+   "example_block": null,
+   "passage_block": {
+    "text": "मोहन सुबह उठता है। वह मुँह धोता है। माँ उसे दूध देती है। मोहन दूध पीता है। फिर वह स्कूल जाता है।",
+    "title": "मोहन की सुबह"
+   },
+   "required_count": 3,
+   "instructions_en": "Read the warm-up words to a partner. Read the passage aloud three times and tick a box each time. Then read in pairs: one reads, the partner follows with a finger and marks any word that needed help. Finally answer the questions.",
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद को तीन बार धीरे-धीरे पढ़ें और हर बार डिब्बे में सही का निशान लगाएँ। फिर साथी के साथ पढ़ें: एक पढ़े, दूसरा उँगली रखकर सुने और अटके शब्द पर निशान लगाए। अंत में प्रश्नों के उत्तर बोलें या लिखें।"
+  },
+  "proficient": {
+   "practice": true,
+   "problems": [
+    {
+     "answer": "मधुमक्खियों का जीवन और उनका महत्व",
+     "number": 1,
+     "row_type": null,
+     "from_bank": true,
+     "problem_hi": "इस अनुच्छेद का मुख्य विषय क्या है?",
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "राय — मेहनती एक गुण/विशेषण है जो लेखक ने दिया",
+     "number": 2,
+     "row_type": null,
+     "from_bank": true,
+     "problem_hi": "क्या यह तथ्य है या राय: मधुमक्खियाँ मेहनती कीड़े हैं?",
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "छत्ते में",
+     "number": 3,
+     "row_type": null,
+     "problem_hi": "मधुमक्खियाँ कहाँ रहती हैं?",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "fluency",
+   "warmup_words": [
+    "मधुमक्खियाँ",
+    "मेहनती",
+    "श्रमिक",
+    "इकट्ठा",
+    "सैनिक",
+    "रक्षा",
+    "परागण",
+    "फ़सलें"
+   ],
+   "example_block": null,
+   "passage_block": {
+    "text": "मधुमक्खियाँ बहुत मेहनती कीड़े हैं। वे छत्ते में रहती हैं। एक छत्ते में हज़ारों मधुमक्खियाँ होती हैं। हर मधुमक्खी का अपना काम होता है। रानी मधुमक्खी अंडे देती है। श्रमिक मधुमक्खियाँ फूलों से रस इकट्ठा करती हैं और शहद बनाती हैं। सैनिक मधुमक्खियाँ छत्ते की रक्षा करती हैं। मधुमक्खियाँ फूलों का परागण भी करती हैं जिससे नई फ़सलें और फल उगते हैं। बिना मधुमक्खियों के हमारा खाना बहुत कम हो जाएगा।",
+    "title": "मधुमक्खियों का संसार",
+    "passage_id": "RP-008"
+   },
+   "required_count": 3,
+   "instructions_en": "Read the warm-up words to a partner. Read the passage aloud three times at a brisk pace with correct pronunciation and tick a box each time. Then read in pairs: one reads, the partner follows with a finger and marks any word that needed help. Finally answer the questions.",
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद को तेज़ गति और सही उच्चारण से तीन बार पढ़ें और हर बार डिब्बे में सही का निशान लगाएँ। फिर साथी के साथ पढ़ें: एक पढ़े, दूसरा उँगली रखकर सुने और अटके शब्द पर निशान लगाए। अंत में प्रश्नों के उत्तर लिखें।"
+  },
+  "progressor": {
+   "practice": true,
+   "problems": [
+    {
+     "answer": "शेर की दहाड़ सुनकर",
+     "number": 1,
+     "row_type": null,
+     "from_bank": true,
+     "problem_hi": "सब डर क्यों गए?",
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "चिड़ियाघर",
+     "number": 2,
+     "row_type": null,
+     "problem_hi": "बच्चे कहाँ गए?",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "सूँड से पानी फेंक रहा था",
+     "number": 3,
+     "row_type": null,
+     "problem_hi": "हाथी क्या कर रहा था?",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "fluency",
+   "warmup_words": [
+    "चिड़ियाघर",
+    "जानवर",
+    "दहाड़",
+    "सूँड",
+    "फेंक",
+    "मज़ा"
+   ],
+   "example_block": null,
+   "passage_block": {
+    "text": "कल हम स्कूल से चिड़ियाघर गए। वहाँ बहुत सारे जानवर थे। हमने शेर देखा। शेर बहुत बड़ा था। उसकी दहाड़ सुनकर सब डर गए। फिर हमने हाथी देखा। हाथी सूँड से पानी फेंक रहा था। बंदर पेड़ पर कूद रहे थे। सबसे अच्छा मुझे तोता लगा। तोता हरे रंग का था और बोलता भी था। चिड़ियाघर में बहुत मज़ा आया।",
+    "title": "चिड़ियाघर की सैर",
+    "passage_id": "RP-005"
+   },
+   "required_count": 3,
+   "instructions_en": "Read the warm-up words to a partner. Read the passage aloud three times in phrases and tick a box each time. Then read in pairs: one reads, the partner follows with a finger and marks any word that needed help. Finally answer the questions.",
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद को वाक्यांशों में तीन बार पढ़ें और हर बार डिब्बे में सही का निशान लगाएँ। फिर साथी के साथ पढ़ें: एक पढ़े, दूसरा उँगली रखकर सुने और अटके शब्द पर निशान लगाए। अंत में प्रश्नों के उत्तर लिखें।"
+  }
+ },
+ "served_from": "ai",
+ "group_skills": {
+  "beginner": "L1.5.1",
+  "proficient": "L3.5.1",
+  "progressor": "L2.5.1"
+ },
+ "passages_used": {
+  "proficient": "RP-008",
+  "progressor": "RP-005"
+ },
+ "explainability": {
+  "items": [
+   {
+    "body_en": "Beginners work on the prerequisite simple sentence reading (L1.5.1). Progressors work on today's competency (L2.5.1). Proficients extend to L3.5.1.",
+    "body_hi": "शुरुआती बच्चे अभी सरल वाक्य पढ़ना सीख रहे हैं, इसलिए उन्हें पिछला कौशल (L1.5.1) मिला। प्रगतिशील बच्चे आज का लक्ष्य (L2.5.1) सीख रहे हैं। दक्ष बच्चे आगे का कौशल (L3.5.1) कर रहे हैं।",
+    "title_en": "Why these three groups",
+    "title_hi": "तीन समूह क्यों"
+   },
+   {
+    "body_en": "Beginners go first with the longest block as they need the foundation. Progressors, working on today's target, get the second-longest block. Proficients read independently well, so they get the shortest block.",
+    "body_hi": "शुरुआती समूह को सबसे पहले और सबसे लंबा समय मिला क्योंकि उन्हें बुनियाद की ज़रूरत है। प्रगतिशील समूह आज के लक्ष्य पर है, इसलिए उसे दूसरा लंबा ब्लॉक मिला। दक्ष समूह स्वतंत्र पठन में सक्षम है, इसलिए उसे सबसे छोटा ब्लॉक मिला।",
+    "title_en": "Why this rotation order",
+    "title_hi": "घुमाव का क्रम"
+   },
+   {
+    "body_en": "In the Progressor group, word-by-word reading (L2.5.1-M1) is the most common. Also watch for fast reading with skipped words (L2.5.1-M3). While listening, focus on phrasing.",
+    "body_hi": "प्रगतिशील समूह में शब्द-दर-शब्द रुक-रुककर पढ़ना (L2.5.1-M1) सबसे आम है। साथ ही तेज़ पढ़ते हुए शब्द छोड़ देना (L2.5.1-M3) भी देखें। पठन सुनते समय वाक्यांशों में पढ़ने पर ध्यान दें।",
+    "title_en": "Mistakes to watch",
+    "title_hi": "किन गलतियों पर नज़र रखें"
+   },
+   {
+    "body_en": "Today's check is the teacher's one-minute oral reading, so worksheets are practice only. There is no time to hear every child, so only the children shown in the app are heard.",
+    "body_hi": "आज का आकलन शिक्षक का एक-एक मिनट का मौखिक पठन है, इसलिए वर्कशीट सिर्फ़ अभ्यास है। हर बच्चे को सुनने का समय नहीं है, इसलिए ऐप में दिखाए गए बच्चों को ही सुना जाएगा।",
+    "title_en": "Assumption for today's plan",
+    "title_hi": "आज की मान्यता"
+   },
+   {
+    "id": "resources",
+    "body_en": "**Anchor activity (whole class):** 'Tongue Twister Challenge' was written for this very skill; it was adapted to today's skill.\n**For each group:**\n• **Beginners** ('Reads simple sentences (3-5 words) with appropriate pace'): practice on a worksheet at their own level.\n• **Progressors** ('Reads grade-level passages at ≥40 CWPM with ≥90% accuracy'): the steps of 'Fluency Builder: Repeated Reading' form the basis for I Do and We Do, followed by You Do (worksheet practice) to build conceptual clarity and prevent errors.\n• **Proficients** ('Reads grade-level passages at ≥60 CWPM with ≥95% accuracy'): written practice on the board and the worksheet.\n**State plan note:** Teacher stopwatch + manual entry. Target: 40 CWPM.\n**Weekly plan:** the app uses a representative weekly plan for now, not the state's official one.\n(Codes: ANC-L-006 · INT-LIT-005)",
+    "body_hi": "**एंकर गतिविधि (पूरी कक्षा के लिए):** «जीभ का कसरत» इसी कौशल के लिए लिखी गई थी; इसे आज के कौशल के हिसाब से ढाला गया।\n**हर समूह के लिए:**\n• **शुरुआती** («सरल वाक्य (3-5 शब्द) उचित गति से पढ़ता है»): अपने स्तर की वर्कशीट पर अभ्यास।\n• **प्रगतिशील** («कक्षा-स्तरीय अनुच्छेद ≥40 CWPM और ≥90% शुद्धता से पढ़ता है»): «प्रवाह निर्माण: बार-बार पठन» के चरण I Do और We Do का आधार हैं; इसके बाद You Do में वर्कशीट पर स्वतंत्र अभ्यास होता है, ताकि अवधारणा स्पष्ट हो और गलतियाँ रुकें।\n• **दक्ष** («कक्षा-स्तरीय अनुच्छेद ≥60 CWPM और ≥95% शुद्धता से पढ़ता है»): बोर्ड पर और वर्कशीट पर लिखित अभ्यास।\n**साप्ताहिक योजना:** ऐप में अभी एक नमूना साप्ताहिक योजना है, राज्य की आधिकारिक योजना नहीं।\n(कोड: ANC-L-006 · INT-LIT-005)",
+    "title_en": "Teaching and Learning Resources",
+    "title_hi": "शिक्षण और सीखने की सामग्री"
+   }
+  ]
+ },
+ "review_prompts": {
+  "photo_sample_rolls": {
+   "beginner": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "proficient": [
+    21,
+    22,
+    24,
+    26,
+    27,
+    29
+   ],
+   "progressor": [
+    9,
+    11,
+    13,
+    15,
+    17,
+    19
+   ]
+  },
+  "photo_sample_method": "systematic sampling, the start moves each day",
+  "observation_reminders_hi": []
+ },
+ "session_minutes": 45,
+ "rotation_schedule": {
+  "blocks": [
+   {
+    "type": "anchor",
+    "script_hi": null,
+    "time_start": "0:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 5
+   },
+   {
+    "cfu": [
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा वाक्य के शब्द पहचानकर गिन सकता है।",
+      "listen_for": [],
+      "expected_hi": "4",
+      "question_hi": "बोर्ड पर लिखा है: 'हम स्कूल जाते हैं।' इसमें कितने शब्द हैं? उँगलियों से दिखाएँ।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "i_do",
+      "min": 4
+     },
+     {
+      "key": "we_do",
+      "min": 5
+     },
+     {
+      "key": "show_me",
+      "min": 2
+     },
+     {
+      "key": "you_do",
+      "min": 5
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "5:00",
+    "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+    "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+    "teach_group": "beginner",
+    "cfu_grounded": false,
+    "talking_points": {
+     "i_do_hi": "बोर्ड पर एक छोटा वाक्य लिखें: 'राम आम खाता है।' पहले एक-एक शब्द पर उँगली रखकर धीरे पढ़ें, फिर पूरे वाक्य को एक साँस में जोड़कर पढ़ें। बच्चों को दोनों का फ़र्क़ सुनने को कहें।",
+     "we_do_hi": "बोर्ड पर दो और वाक्य लिखें: 'मोहन घर जाता है।' और 'हम स्कूल में पढ़ते हैं।' शिक्षक उँगली रखें, बच्चे साथ-साथ पढ़ें। फिर बच्चे अकेले-अकेले पढ़ें और शिक्षक सुनें। वाक्य के बीच बिना रुके पढ़ने पर शाबाशी दें।",
+     "you_do_hi": "बच्चे वर्कशीट के शुरू के 6 से 8 कठिन शब्द साथी को पढ़कर सुनाएँ और फिर वर्कशीट का वाक्य-अनुच्छेद एक बार पढ़ें। बाकी दो पठन, साथी के साथ पठन और प्रश्न अगले ब्लॉक में अपनी जगह पर पूरे करें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+    },
+    "other_groups_hi": "प्रगतिशील समूह 'बिल्ली और दूध' (RP-002) को बोर्ड से पढ़े और उसके 3 प्रश्नों के उत्तर कॉपी में लिखे। दक्ष समूह 'किसान और बारिश' (RP-004) पढ़े और उसके 3 प्रश्नों के उत्तर कॉपी में लिखे। जो जल्दी ख़त्म करें, वे साथी के साथ अनुच्छेद को एक बार फिर पढ़ें।",
+    "duration_minutes": 16
+   },
+   {
+    "type": "transition",
+    "script_hi": "अपना काम यहीं रोक दें और कॉपी बंद करें। शुरुआती समूह अपनी जगह पर वर्कशीट लेकर जाए। प्रगतिशील समूह मेरे पास आएँ। शांति से और बिना शोर किए अपनी जगह बदलें।",
+    "time_start": "21:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "choose",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "CWPM may be adequate but reading sounds robotic; equal pause between all words regardless of meaning units",
+        "wrong_answer_hi": "1",
+        "misconception_id": "L2.5.1-M1",
+        "misconception_name_en": "Word-by-word reading without phrasing",
+        "misconception_name_hi": "वाक्यांश बनाए बिना शब्द-दर-शब्द पढ़ना"
+       }
+      ],
+      "expected_hi": "2",
+      "question_hi": "शिक्षक बोर्ड का वाक्य दो तरह से पढ़ें। 1) 'हमने...शेर...देखा' शब्द-शब्द। 2) 'हमने शेर / देखा' वाक्यांशों में। कौन सा पढ़ना स्वाभाविक है? उँगली से 1 या 2 दिखाएँ।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "i_do",
+      "min": 3
+     },
+     {
+      "key": "we_do",
+      "min": 4
+     },
+     {
+      "key": "show_me",
+      "min": 2
+     },
+     {
+      "key": "you_do",
+      "min": 5
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "23:00",
+    "teach_group": "progressor",
+    "cfu_grounded": true,
+    "talking_points": {
+     "i_do_hi": "बोर्ड पर पहले दो वाक्य लिखें: 'कल हम स्कूल से चिड़ियाघर गए। / वहाँ बहुत सारे जानवर थे।' शब्दों के बजाय वाक्यांशों पर उँगली रखकर प्राकृतिक ढंग से पढ़ें और / का निशान दिखाएँ। फिर एक बार रोबोट की तरह शब्द-शब्द पढ़कर फ़र्क़ सुनाएँ।",
+     "we_do_hi": "बच्चे वही दो वाक्य वाक्यांशों में तीन बार पढ़ें। हर बार शिक्षक सुनें और तीसरी बार तक गति थोड़ी तेज़ करवाएँ। फिर अगले दो वाक्य 'हमने शेर देखा। शेर बहुत बड़ा था।' साथ-साथ पढ़ें।",
+     "you_do_hi": "बच्चे वर्कशीट के कठिन शब्द साथी को पढ़कर सुनाएँ और फिर अनुच्छेद को एक बार वाक्यांशों में पढ़ें। बाकी दो पठन, साथी के साथ पठन और प्रश्न अगले ब्लॉक में अपनी जगह पर पूरे करें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+    },
+    "other_groups_hi": "शुरुआती समूह दृष्टि शब्दों की सूची साथी को पढ़कर सुनाए और मात्रा वाले सरल शब्द पढ़े। वर्कशीट का शेष काम भी यहीं पूरा करे। दक्ष समूह 'किसान और बारिश' (RP-004) पूरा करके उसके 3 प्रश्नों के उत्तर लिखे। जो जल्दी ख़त्म करें, वे अनुच्छेद साथी को पढ़कर सुनाएँ।",
+    "duration_minutes": 14
+   },
+   {
+    "type": "transition",
+    "script_hi": "सब अपना काम रोक दें। दक्ष समूह मेरे पास आएँ। बाकी समूह अपने स्वतंत्र काम पर लौटें।",
+    "time_start": "37:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 1
+   },
+   {
+    "cfu": [
+     {
+      "kind": "choose",
+      "grounded": false,
+      "shows_hi": "बच्चा समझता है कि तेज़ पढ़ने के साथ शुद्धता भी ज़रूरी है।",
+      "listen_for": [],
+      "expected_hi": "2",
+      "question_hi": "शिक्षक बोर्ड का वाक्य दो तरह से पढ़ें। 1) तेज़ पर कुछ शब्द गलत। 2) तेज़ और सारे शब्द सही। कौन सा पढ़ना अच्छा है? उँगली से 1 या 2 दिखाएँ।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "i_do",
+      "min": 2
+     },
+     {
+      "key": "show_me",
+      "min": 2
+     },
+     {
+      "key": "you_do",
+      "min": 3
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "38:00",
+    "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+    "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+    "teach_group": "proficient",
+    "cfu_grounded": false,
+    "talking_points": {
+     "i_do_hi": "बोर्ड पर लिखे अनुच्छेद का एक वाक्य, जैसे 'मधुमक्खियाँ बहुत मेहनती कीड़े हैं।' तेज़ गति और सही उतार-चढ़ाव से पढ़कर दिखाएँ। बताएँ कि तेज़ पढ़ने में भी हर शब्द सही और स्पष्ट बोलना है।",
+     "you_do_hi": "बच्चे वर्कशीट के कठिन शब्द साथी को पढ़कर सुनाएँ और अनुच्छेद को एक बार तेज़ गति से पढ़ें। बाकी दो पठन, साथी के साथ पठन और प्रश्न अगले ब्लॉक में अपनी जगह पर पूरे करें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+    },
+    "other_groups_hi": "शुरुआती समूह वर्कशीट के बाकी पठन और साथी के साथ पठन पूरा करे। प्रगतिशील समूह भी अपनी वर्कशीट के बाकी पठन, साथी के साथ पठन और प्रश्न पूरे करे। जो जल्दी ख़त्म करें, वे अनुच्छेद दोबारा पढ़ें।",
+    "duration_minutes": 7
+   }
+  ],
+  "total_minutes": 45
+ },
+ "group_skills_source": {
+  "beginner": "derived",
+  "proficient": "derived",
+  "progressor": "selected"
+ },
+ "classroom_management": {
+  "independent_activities_hi": {
+   "beginner": "बोर्ड पर लिखे दृष्टि शब्द साथी को पढ़कर सुनाएँ और मात्रा वाले सरल शब्द पढ़ें। जो जल्दी ख़त्म करें, वे साथी की पढ़ाई सुनकर अटके शब्द पर निशान लगाएँ।",
+   "proficient": "'किसान और बारिश' (RP-004) बोर्ड से पढ़ें और उसके 3 प्रश्नों के उत्तर कॉपी में लिखें। जो जल्दी ख़त्म करें, वे अनुच्छेद साथी को पढ़कर सुनाएँ।",
+   "progressor": "'बिल्ली और दूध' (RP-002) बोर्ड से पढ़ें और उसके 3 प्रश्नों के उत्तर कॉपी में लिखें। जो जल्दी ख़त्म करें, वे अनुच्छेद साथी को पढ़कर सुनाएँ।"
+  }
+ },
+ "independent_passages": {
+  "proficient": {
+   "id": "RP-004",
+   "text": "रामू एक किसान है। वह रोज़ सुबह खेत में जाता है। इस साल बारिश बहुत कम हुई। रामू की फ़सल सूखने लगी। रामू बहुत चिंतित था। एक दिन आसमान में काले बादल आए। ज़ोर की बारिश हुई। रामू ने ख़ुशी से नाचना शुरू किया। अब उसकी फ़सल बच जाएगी।",
+   "title": "किसान और बारिश",
+   "questions": [
+    {
+     "type": "literal",
+     "answer_hi": "किसानी / खेती",
+     "question_hi": "रामू क्या काम करता है?"
+    },
+    {
+     "type": "literal",
+     "answer_hi": "बहुत कम",
+     "question_hi": "बारिश कैसी हुई इस साल?"
+    },
+    {
+     "type": "inferential",
+     "answer_hi": "क्योंकि बारिश हुई और अब फ़सल बच जाएगी",
+     "question_hi": "रामू ने नाचना क्यों शुरू किया?"
+    }
+   ]
+  },
+  "progressor": {
+   "id": "RP-002",
+   "text": "एक बिल्ली थी। उसका नाम मोती था। मोती को दूध बहुत पसंद था। एक दिन मोती ने दूध का कटोरा देखा। मोती ने सारा दूध पी लिया। मोती बहुत खुश हुई।",
+   "title": "बिल्ली और दूध",
+   "questions": [
+    {
+     "type": "literal",
+     "answer_hi": "मोती",
+     "question_hi": "बिल्ली का नाम क्या था?"
+    },
+    {
+     "type": "literal",
+     "answer_hi": "दूध",
+     "question_hi": "मोती को क्या पसंद था?"
+    },
+    {
+     "type": "inferential",
+     "answer_hi": "क्योंकि उसने दूध पी लिया",
+     "question_hi": "मोती खुश क्यों हुई?"
+    }
+   ]
+  }
+ }
+}

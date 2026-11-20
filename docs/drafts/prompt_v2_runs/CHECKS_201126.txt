@@ -1,0 +1,238 @@
+
+=== L2.5.1_45  (served_from=ai, session_minutes=45)
+  call (plan, 51.5 s): in 8382, out 9750, cache read 0, cache write 10130  $0.1396  stop=end_turn
+  cost $0.1396
+  blocks: anchor 5, teach/beginner 16, transition 2, teach/progressor 14, transition 1, teach/proficient 7 = 45 min
+  beginner   L1.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[('6', '8')]
+  progressor L2.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[]
+  proficient L3.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch, Assumption for today's plan, resources); observation reminders: 0
+  validation warnings (0): none
+   log: CFU: beginner question 1 dropped: question too long for a show-me | «बोर्ड पर दो तरह से लिखा है। 1) 'मोहन ... घर ... जाता ... है' रुक-रुककर» → «2»
+   log: CFU: beginner: 1 question(s) beyond the 1 allowed were left out
+   log: CFU: progressor: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: proficient: 2 question(s) beyond the 1 allowed were left out
+   log: CFU kept: beginner 1/3, progressor 1/3, proficient 1/3
+  ISSUES: none
+
+=== L2.7.2_45  (served_from=ai, session_minutes=45)
+  call (plan, 53.2 s): in 6194, out 9266, cache read 0, cache write 10130  $0.1304  stop=end_turn
+  cost $0.1304
+  blocks: anchor 5, teach/beginner 16, transition 2, teach/progressor 14, transition 1, teach/proficient 7 = 45 min
+  beginner   L1.7.3   formation    rc=4 n=4 diags=[]  you_do ranges=[('1', '3')]
+  progressor L2.7.2   composition  rc=4 n=4 diags=[(1, 'L2.7.2-M1'), (2, 'L2.7.2-M1'), (3, 'L2.7.2-M2')]  you_do ranges=[]
+  proficient L3.7.1   composition  rc=4 n=4 diags=[(1, 'L3.7.1-M1'), (2, 'L3.7.1-M2'), (3, 'L3.7.1-M1'), (4, 'L3.7.1-M3')]  you_do ranges=[('5', '7')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch, Assumption for today's plan, resources); observation reminders: 0
+  validation warnings (2): the independent-practice passage «बिल्ली और दूध» for progressor is not mentioned in what the other groups do; the independent-practice passage «चिड़ियाघर की सैर» for proficient is not mentioned in what the other groups do
+   log: CFU: beginner: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: progressor: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: proficient question 2 dropped: a question about the structure or purpose of a paragraph is too abstract for Class 2 and 3: ask about punctuation, sequence or a missing full stop | «बोर्ड पर लिखें: 'विषय: मेरा त्योहा
+   log: CFU: proficient: 1 question(s) beyond the 1 allowed were left out
+   log: CFU kept: beginner 1/3, progressor 1/3, proficient 1/3
+  ISSUES: none
+
+=== N0.1.1_45  (served_from=ai, session_minutes=45)
+  call (plan, 65.0 s): in 4894, out 11586, cache read 0, cache write 10029  $0.1507  stop=end_turn
+  cost $0.1507
+  blocks: anchor 5, teach/beginner 16, transition 2, teach/progressor 14, transition 1, teach/proficient 7 = 45 min
+  beginner   N0.1.1   observed     rc=4 n=4 diags=[]  you_do ranges=[]
+  progressor N0.1.1   observed     rc=4 n=4 diags=[]  you_do ranges=[]
+  proficient N0.1.1   observed     rc=4 n=4 diags=[]  you_do ranges=[]
+  explainability items: 6 (Why these three groups, Why this rotation order, What to watch for, Assumptions for today's plan, Anchor match, resources); observation reminders: 3
+  validation warnings (2): worksheets.proficient problem 4: answer missing; worksheets.proficient (observed) problem 4: the grid has no cell that matches what it asks
+   log: CFU: beginner: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: progressor: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: proficient: 2 question(s) beyond the 1 allowed were left out
+   log: CFU kept: beginner 1/3, progressor 1/3, proficient 1/3
+  ISSUES: none
+
+=== N2.3.2_45  (served_from=ai, session_minutes=45)
+  call (plan, 54.2 s): in 6966, out 9556, cache read 0, cache write 9665  $0.1337  stop=end_turn
+  !! the system block differs from the first plan's of this subject (no cache read possible)
+  call (helper, 2.0 s): in 607, out 224, cache read 0, cache write 0  $0.0035  stop=end_turn
+  cost $0.1371
+  blocks: anchor 5, teach/beginner 16, transition 2, teach/progressor 14, transition 1, teach/proficient 7 = 45 min
+  beginner   N2.3.1   (3+N)        rc=3 n=4 diags=[(2, 'N2.3.1-M1'), (3, 'N2.3.1-M1')]  you_do ranges=[('1', '3')]
+  progressor N2.3.2   (3+N)        rc=3 n=4 diags=[(2, 'N2.3.2-M1'), (3, 'N2.3.2-M2')]  you_do ranges=[('1', '3')]
+  proficient N3.3.1   (3+N)        rc=3 n=4 diags=[(2, 'N3.3.1-M1'), (3, 'N3.3.1-M1')]  you_do ranges=[('1', '3')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch for, Use of sticks, resources); observation reminders: 0
+  validation warnings (1): blocks[5].talking_points.we_do_hi missing
+   log: Stick repair: beginner.we_do_hi: rewritten by the model; largest stick example 77 -> 49 (kit 49)
+   log: Worksheet repair: beginner problem 1: 23 + 14 -> 11 + 26 (copies an example solved in the lesson)
+   log: Worksheet repair: beginner problem 2: 32 + 25 -> 25 + 14 (is solved with sticks but totals more than 49)
+   log: Worksheet repair: proficient problem 2: 167 + 245 = ___ -> 369 + 318 = ___ (copies an example solved in the lesson)
+   log: CFU: beginner: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: progressor question 3 dropped: its right answer 64 is the same as question 2's (a child who knows one knows the other) | «49 + 15: उत्तर 54 है या 64? 1 या 2 उँगली से दिखाएँ। (1 = 54, 2 = 64)»
+   log: CFU: progressor: 1 question(s) beyond the 1 allowed were left out
+   log: CFU: proficient: 2 question(s) beyond the 1 allowed were left out
+   log: CFU kept: beginner 1/3, progressor 1/3, proficient 1/3
+  ISSUES: none
+
+=== L2.5.1_60  (served_from=ai, session_minutes=60)
+  call (plan, 59.0 s): in 7867, out 10573, cache read 9688, cache write 0  $0.1224  stop=end_turn
+  !! the system block differs from the first plan's of this subject (no cache read possible)
+  cost $0.1224
+  blocks: anchor 10, setup 2, teach/beginner 17, transition 2, teach/progressor 13, transition 2, teach/proficient 13 = 59 min
+  beginner   L1.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[('1', '3')]
+  progressor L2.5.1   fluency      rc=3 n=3 diags=[(2, 'L2.5.1-M1'), (3, 'L2.5.1-M3')]  you_do ranges=[('1', '3')]
+  proficient L3.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[('1', '3')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Which mistakes to watch, Assumptions specific to today', resources); observation reminders: 0
+  validation warnings (0): none
+   log: CFU: beginner: 1 question(s) beyond the 2 allowed were left out
+   log: CFU: progressor question 2 dropped: the answer says 2 but there are 9 words before the first slash | «बोर्ड पर लिखें: 'बारिश बहुत कम हुई।' पहली बार रुकने की जगह के लिए एक न» → «2 (बारिश बहुत / कम हुई)»
+   log: CFU: proficient question 2 dropped: it is told as a story about a child: write what is on the board instead (बोर्ड पर देखो: ...) | «बोर्ड पर लिखें: 'अकबर ने पूछा'। एक पाठक इसे 'अकबर ने कहा' पढ़ता है: सह» → «गलत»
+   log: CFU kept: beginner 2/3, progressor 2/3, proficient 2/3
+  ISSUES: none
+
+=== L2.7.2_60  (served_from=ai, session_minutes=60)
+  call (plan, 61.4 s): in 5924, out 10695, cache read 0, cache write 9688  $0.1430  stop=end_turn
+  !! the system block differs from the first plan's of this subject (no cache read possible)
+  cost $0.1430
+  blocks: anchor 10, setup 2, teach/beginner 17, transition 2, teach/progressor 13, transition 2, teach/proficient 13 = 59 min
+  beginner   L1.7.3   formation    rc=3 n=5 diags=[]  you_do ranges=[('1', '3')]
+  progressor L2.7.2   composition  rc=4 n=4 diags=[(1, 'L2.7.2-M1'), (2, 'L2.7.2-M1'), (3, 'L2.7.2-M2')]  you_do ranges=[('1', '4'), ('3', '5')]
+  proficient L3.7.1   composition  rc=4 n=4 diags=[(1, 'L3.7.1-M3'), (2, 'L3.7.1-M2'), (3, 'L3.7.1-M1'), (4, 'L3.7.1-M2')]  you_do ranges=[('1', '4'), ('5', '7'), ('2', '3')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch, Assumptions specific to today', resources); observation reminders: 0
+  validation warnings (2): the independent-practice passage «मेरा स्कूल» for progressor is not mentioned in what the other groups do; the independent-practice passage «पानी बचाओ» for proficient is not mentioned in what the other groups do
+   log: CFU: beginner: 1 question(s) beyond the 2 allowed were left out
+   log: CFU: progressor: 1 question(s) beyond the 2 allowed were left out
+   log: CFU: proficient question 1 dropped: a question about the structure or purpose of a paragraph is too abstract for Class 2 and 3: ask about punctuation, sequence or a missing full stop | «विषय 'मेरा विद्यालय' है। बोर्ड पर 
+   log: CFU kept: beginner 2/3, progressor 2/3, proficient 2/3
+  ISSUES: none
+
+=== N0.1.1_60  (served_from=ai, session_minutes=60)
+  call (plan, 71.0 s): in 4560, out 13028, cache read 9587, cache write 0  $0.1404  stop=end_turn
+  !! the system block differs from the first plan's of this subject (no cache read possible)
+  call (helper, 11.8 s): in 4226, out 1754, cache read 0, cache write 0  $0.0260  stop=end_turn
+  cost $0.1664
+  blocks: anchor 10, setup 2, teach/beginner 17, transition 2, teach/progressor 13, transition 2, teach/proficient 13, transition 1 = 60 min
+  beginner   N0.1.1   observed     rc=3 n=5 diags=[]  you_do ranges=[]
+  progressor N0.1.1   observed     rc=3 n=5 diags=[]  you_do ranges=[]
+  proficient N0.1.1   observed     rc=3 n=5 diags=[]  you_do ranges=[]
+  explainability items: 5 (Why these three groups, Why this rotation order, What to watch for, Assumptions specific to today, resources); observation reminders: 3
+  validation warnings (0): none
+   log: CFU top-up call for beginner, progressor, proficient: usage=Usage(input_tokens=4226, output_tokens=1754, cache_creation_input_tokens=0, cache_read_input_tokens=0, cache_creation={'ephemeral_5m_input_tokens': 0, 'ephemera
+   log: CFU: beginner: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: progressor: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: proficient: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: top-up: beginner question 3 dropped: question too long for a show-me | «बोर्ड पर बनाएँ: एक तारा, एक गोला। 'तारा' और 'गोला' में से एक आकृति हमा» → «1 (तारा)»
+   log: CFU: top-up: progressor: 1 question(s) beyond the 2 allowed were left out
+   log: CFU: top-up: proficient question 2 dropped: question too long for a show-me | «बोर्ड पर बनाएँ: बड़ा लाल गोला, छोटा लाल गोला, बड़ा नीला गोला। इन्हें र» → «2»
+   log: CFU kept: beginner 2/3, progressor 2/3, proficient 2/3
+  ISSUES: none
+
+=== N2.3.2_60  (served_from=ai, session_minutes=60)
+  call (plan, 59.4 s): in 6775, out 10338, cache read 0, cache write 9587  $0.1409  stop=end_turn
+  !! the system block differs from the first plan's of this subject (no cache read possible)
+  call (helper, 2.6 s): in 627, out 256, cache read 0, cache write 0  $0.0038  stop=end_turn
+  cost $0.1447
+  blocks: anchor 10, setup 2, teach/beginner 17, transition 2, teach/progressor 13, transition 2, teach/proficient 13 = 59 min
+  beginner   N2.3.1   (3+N)        rc=3 n=5 diags=[(2, 'N2.3.1-M1'), (3, 'N2.3.1-M1')]  you_do ranges=[]
+  progressor N2.3.2   (3+N)        rc=3 n=5 diags=[(1, 'N2.3.2-M1'), (2, 'N2.3.2-M1'), (3, 'N2.3.2-M2')]  you_do ranges=[('1', '3')]
+  proficient N3.3.1   (3+N)        rc=3 n=5 diags=[(2, 'N3.3.1-M1'), (3, 'N3.3.1-M1')]  you_do ranges=[('1', '3')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch for, Assumptions in today's plan, resources); observation reminders: 0
+  validation warnings (0): none
+   log: Stick repair: beginner.we_do_hi: rewritten by the model; largest stick example 67 -> 47 (kit 49)
+   log: Worksheet repair: beginner problem 1: 32 + 25 -> 21 + 22 (is solved with sticks but totals more than 49)
+   log: Worksheet repair: beginner problem 2: 43 + 14 -> 14 + 31 (is solved with sticks but totals more than 49)
+   log: Worksheet repair: proficient problem 2: 167 + 245 = ___ -> 369 + 318 = ___ (copies an example solved in the lesson)
+   log: CFU: beginner question 3 dropped: its right answer 77 is the same as question 2's (a child who knows one knows the other) | «बोर्ड पर देखें: 62 + 15 में पहले इकाई जोड़ी जाती है। इकाई का जोड़ स्ले»
+   log: CFU: progressor question 1 dropped: the line in the question is wrong, but the answer says it is right | «बोर्ड पर देखें: 45 + 37 = 72। यह सही है या गलत? सही हो तो 'सही', गलत ह» → «सही»
+   log: CFU: progressor question 2: listen-for N2.3.2-M3: listed '73' but that mistake gives 83 on 29 + 34: corrected to '83'
+   log: CFU: progressor question 3: warning: its right answer 84 is already a result in the lesson (on the board): a child could copy it
+   log: CFU: proficient question 1 dropped: it reuses an example already used in this group's lesson (I Do, We Do or You Do) | «बोर्ड पर देखें: 276 + 358 = 534। यह सही है या गलत? स्लेट पर 'सही' या '» → «गलत»
+   log: CFU: proficient question 2: warning: its right answer 634 is already a result in the lesson (on the board): a child could copy it
+   log: CFU kept: beginner 2/3, progressor 2/3, proficient 2/3
+  ISSUES: none
+
+=== L2.5.1_90  (served_from=ai, session_minutes=90)
+  call (plan, 64.2 s): in 8136, out 11298, cache read 9766, cache write 0  $0.1302  stop=end_turn
+  !! the system block differs from the first plan's of this subject (no cache read possible)
+  call (helper, 11.8 s): in 4727, out 1775, cache read 0, cache write 0  $0.0272  stop=end_turn
+  cost $0.1574
+  blocks: anchor 10, setup 2, teach/beginner 30, transition 2, teach/progressor 22, transition 2, teach/proficient 22 = 90 min
+  beginner   L1.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[('1', '3')]
+  progressor L2.5.1   fluency      rc=3 n=3 diags=[(2, 'L2.5.1-M3'), (3, 'L2.5.1-M1')]  you_do ranges=[('1', '3')]
+  proficient L3.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[('1', '3')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch for, Assumption for today's plan, resources); observation reminders: 0
+  validation warnings (0): none
+   log: CFU top-up call for beginner, progressor, proficient: usage=Usage(input_tokens=4727, output_tokens=1775, cache_creation_input_tokens=0, cache_read_input_tokens=0, cache_creation={'ephemeral_5m_input_tokens': 0, 'ephemera
+   log: CFU: beginner: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: progressor: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: proficient: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: top-up: beginner question 2 dropped: question too long for a show-me | «बोर्ड पर दो तरह से लिखा है: 1) माँ घर जाती है। 2) माँ... घर... जाती...» → «1»
+   log: CFU: top-up: progressor question 1 dropped: question too long for a show-me | «बोर्ड पर लिखें: 'गीता ने बाग़ से फूल तोड़े।' शिक्षक इसे हर शब्द के बाद» → «गलत»
+   log: CFU: top-up: progressor question 3 dropped: question too long for a show-me | «बोर्ड पर लिखें: 'बच्चे मैदान में खेल रहे हैं।' शिक्षक दो बार पढ़ें। पह» → «1»
+   log: CFU: top-up: progressor: only 1 valid question(s) (wanted 2 or more)
+   log: CFU: top-up: proficient question 3 dropped: the answer says 9 but there are 10 words in the quoted sentence | «बोर्ड पर लिखें: 'चिड़िया पेड़ पर बैठी है और गाना गा रही है।' इसमें कित» → «9»
+   log: CFU kept: beginner 2/3, progressor 1/3, proficient 2/3
+  ISSUES: none
+
+=== L2.7.2_90  (served_from=ai, session_minutes=90)
+  call (plan, 953.1 s): in 5924, out 11045, cache read 9688, cache write 0  $0.1233  stop=end_turn
+  !! the system block differs from the first plan's of this subject (no cache read possible)
+  cost $0.1233
+  blocks: anchor 10, setup 2, teach/beginner 29, transition 2, teach/progressor 22, transition 2, teach/proficient 22, transition 1 = 90 min
+  beginner   L1.7.3   formation    rc=3 n=6 diags=[]  you_do ranges=[('1', '3')]
+  progressor L2.7.2   composition  rc=4 n=4 diags=[(1, 'L2.7.2-M1'), (2, 'L2.7.2-M1'), (3, 'L2.7.2-M2'), (4, 'L2.7.2-M3')]  you_do ranges=[('3', '5'), ('2', '4')]
+  proficient L3.7.1   composition  rc=4 n=4 diags=[(1, 'L3.7.1-M3'), (2, 'L3.7.1-M1'), (3, 'L3.7.1-M2'), (4, 'L3.7.1-M2')]  you_do ranges=[('5', '7')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch, Assumptions for today, resources); observation reminders: 0
+  validation warnings (2): worksheets.beginner has 6 problems but required_count is 3 (should be 5); the independent-practice passage «किसान और बारिश» for proficient is not mentioned in what the other groups do
+   log: CFU top-up skipped: APIConnectionError: Connection error.
+   log: CFU: beginner: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: progressor: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: proficient: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU kept: beginner 0/0, progressor 0/0, proficient 0/0
+  ISSUES: none
+
+=== N0.1.1_90  (served_from=ai, session_minutes=90)
+  call (plan, 55.7 s): in 4720, out 9660, cache read 9665, cache write 0  $0.1070  stop=end_turn
+  !! the system block differs from the first plan's of this subject (no cache read possible)
+  call (helper, 13.0 s): in 4244, out 1904, cache read 0, cache write 0  $0.0275  stop=end_turn
+  cost $0.1345
+  blocks: anchor 10, setup 2, teach/beginner 30, transition 2, teach/progressor 22, transition 2, teach/proficient 22, transition 0 = 90 min
+  beginner   N0.1.1   observed     rc=3 n=3 diags=[]  you_do ranges=[]
+  progressor N0.1.1   observed     rc=3 n=3 diags=[]  you_do ranges=[]
+  proficient N0.1.1   observed     rc=3 n=3 diags=[]  you_do ranges=[]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch, Assumption for today, resources); observation reminders: 3
+  validation warnings (1): blocks[7].duration_minutes missing
+   log: CFU top-up call for beginner, progressor, proficient: usage=Usage(input_tokens=4244, output_tokens=1904, cache_creation_input_tokens=0, cache_read_input_tokens=0, cache_creation={'ephemeral_5m_input_tokens': 0, 'ephemera
+   log: CFU: beginner: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: progressor: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: proficient: no CFU written (the model's block has: cfu, duration_minutes, other_groups_hi, script_hi, talking_points, teach_group, time_start, type)
+   log: CFU: top-up: beginner: 1 question(s) beyond the 2 allowed were left out
+   log: CFU: top-up: progressor question 1 dropped: question too long for a show-me | «बोर्ड पर बनाएँ: लाल वृत्त, नीला वृत्त, लाल वर्ग, नीला वर्ग। अगर रंग से» → «1»
+   log: CFU: top-up: proficient question 2 dropped: question too long for a show-me | «बोर्ड पर बनाएँ: बड़ी लाल गेंद, छोटी लाल गेंद, बड़ी नीली गेंद, छोटी नील» → «2»
+   log: CFU kept: beginner 2/3, progressor 2/3, proficient 2/3
+  ISSUES: none
+
+=== N2.3.2_90  (served_from=ai, session_minutes=90)
+  call (plan, 54.1 s): in 6775, out 9785, cache read 9587, cache write 0  $0.1124  stop=end_turn
+  !! the system block differs from the first plan's of this subject (no cache read possible)
+  cost $0.1124
+  blocks: anchor 10, setup 2, teach/beginner 29, transition 2, teach/progressor 22, transition 2, teach/proficient 22 = 89 min
+  beginner   N2.3.1   (3+N)        rc=3 n=6 diags=[(2, 'N2.3.1-M1'), (3, 'N2.3.1-M1')]  you_do ranges=[('1', '3')]
+  progressor N2.3.2   (3+N)        rc=3 n=6 diags=[(2, 'N2.3.2-M1'), (3, 'N2.3.2-M2')]  you_do ranges=[('1', '3')]
+  proficient N3.3.1   (3+N)        rc=3 n=6 diags=[(2, 'N3.3.1-M1'), (3, 'N3.3.1-M1')]  you_do ranges=[('1', '3')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch for, Assumption for today's plan, resources); observation reminders: 0
+  validation warnings (0): none
+   log: Worksheet repair: beginner problem 2: 45 + 23 -> 12 + 23 (is solved with sticks but totals more than 49)
+   log: CFU: beginner question 2 dropped: no option in the question equals 68; 4 + 7 needs a carry but the skill is 'without regrouping'; 4 + 7 needs a carry but the skill is 'without regrouping' | «बोर्ड पर लिखें: 41 + 27। इकाई
+   log: CFU: progressor question 3 dropped: no option in the question equals 75 | «बोर्ड पर लिखें: 58 + 17। इकाई 8 + 7 = 15 है। दहाई में कितना जोड़ेंगे? » → «1 (5 + 1 + 1), उत्तर 75»
+   log: CFU: proficient question 3 dropped: no option in the question equals 825 | «बोर्ड पर लिखें: 468 + 357। दहाई का योग 6 + 5 + 1 = 12 है। सैकड़े में क» → «1 (4 + 3 + 1), उत्तर 825»
+   log: CFU kept: beginner 2/3, progressor 2/3, proficient 2/3
+  ISSUES: none
+
+TOTAL $1.662 over 12 plans
+  ('L2.5.1_45', 0, 0.1396)
+  ('L2.7.2_45', 0, 0.1304)
+  ('N0.1.1_45', 0, 0.1507)
+  ('N2.3.2_45', 0, 0.1371)
+  ('L2.5.1_60', 0, 0.1224)
+  ('L2.7.2_60', 0, 0.143)
+  ('N0.1.1_60', 0, 0.1664)
+  ('N2.3.2_60', 0, 0.1447)
+  ('L2.5.1_90', 0, 0.1574)
+  ('L2.7.2_90', 0, 0.1233)
+  ('N0.1.1_90', 0, 0.1345)
+  ('N2.3.2_90', 0, 0.1124)
