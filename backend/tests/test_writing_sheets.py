@@ -426,6 +426,9 @@ def unit_observed():
           and W.structure_item({"item_type": "compare_boxes", "a": {"s": "●", "count": 3}, "b": {"s": "●", "count": 7}, "ask": "less"})["answer"] == "क")
     odd2 = W.structure_item({"item_type": "symbol_grid", "grid": [{"s": "○", "size": "big"}, {"s": "△", "size": "big"}, {"s": "□", "size": "big"}, {"s": "○", "size": "small"}], "target": {"odd_one_out": True}, "problem_hi": "x"})
     check("odd one out by size among three shapes: cell 4 (the shapes differ in three ways, so shape is not the odd one)", odd2["answer"] == "खाना 4", odd2["answer"])
+    two_big = [{"s": "★", "size": "small", "colour": "green"}] * 6 + [{"s": "★", "size": "big", "colour": "green"}] * 2
+    check("an 'odd one out' with NO single different cell (two big stars among six small: a real plan, 20 Nov) is dropped, not kept with a blank answer",
+          W.structure_item({"item_type": "symbol_grid", "grid": two_big, "target": {"odd_one_out": True}, "problem_hi": "जो अलग है उसे काटें।"}) is None)
     check("compare_bars: 'longer' with 4 and 7 is ख; 'shorter' flips it; equal lengths or counts are dropped", bars["answer"] == "ख"
           and W.structure_item({"item_type": "compare_bars", "a": 4, "b": 7, "ask": "shorter"})["answer"] == "क"
           and W.structure_item({"item_type": "compare_bars", "a": 5, "b": 5, "ask": "longer"}) is None

@@ -388,8 +388,10 @@ def structure_item(p: dict):
         show_colour = any(c["colour"] for c in cells)
         if target.get("odd_one_out"):
             k = _odd_one_out(cells)
-            q["answer"] = f"खाना {k}" if k else ""
-            q["matches"] = [k] if k else []
+            if not k:                                   # no single cell differs (e.g. two big stars among small ones): no right answer, so the item is dropped
+                return None
+            q["answer"] = f"खाना {k}"
+            q["matches"] = [k]
         else:
             key = next((a for a in ("s", "size", "colour") if target.get(a)), None)
             if key is None or (key == "s" and target["s"] not in SYMBOLS) or (key == "size" and target["size"] not in SIZES) or (key == "colour" and target["colour"] not in COLOURS):

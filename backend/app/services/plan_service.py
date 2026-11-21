@@ -1462,6 +1462,9 @@ async def generate_dainik_yojana(
             "progressor": sample_for_group(ctx.progressor.roll_numbers, plan_date, "progressor", competency_id)["rolls"],
             "proficient": sample_for_group(ctx.proficient.roll_numbers, plan_date, "proficient", proficient_comp.id)["rolls"],
         }
+        for g, kind in (ctx.sheet_kinds or {}).items():       # a practice-only sheet (reading aloud, observed) is never photographed for marking
+            if kind in ("fluency", "observed"):
+                plan_json["review_prompts"]["photo_sample_rolls"][g] = []
         plan_json["review_prompts"]["photo_sample_method"] = "systematic sampling, the start moves each day"
     except Exception as e:
         print(f"   Photo sample skipped: {type(e).__name__}: {e}")
