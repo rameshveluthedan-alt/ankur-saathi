@@ -8,6 +8,7 @@ Operator tools for sign-in (docs/AUTH.md and docs/DEMO_ACCESS.md). An account is
   python scripts/auth_admin.py unlock --code MPT101
   python scripts/auth_admin.py list
   python scripts/auth_admin.py create-school --school PILOT-01 --leader PLA001 --teachers PLT001,PLT002 [--grades 1,2,3]   a REAL school (temporary passwords shown once)
+      [--block NAME] [--district NAME] [--printer yes|no]   the school's block and district (for the progress export and mentor report) and whether it can print (default no)
   python scripts/auth_admin.py create-account --school PILOT-01 --code PLT003                                            one more teacher in a real school
 
 The demo accounts hold FICTIONAL data only. Their passwords are published to reviewers, so they are not secrets:
@@ -163,13 +164,41 @@ async def cmd_create_school(db, args):
     taken = [r["phone_hash"] for r in await db.fetch("SELECT phone_hash FROM teachers WHERE phone_hash = ANY($1::text[])", codes)]
     if taken:
         problems.append("already in use: " + ", ".join(taken))
+    details, detail_problems = _school_details(args)
+    problems += detail_problems
     if problems:
         sys.exit("Nothing was created:\n  - " + "\n  - ".join(problems))
     grades = [g.strip() for g in (args.grades or "1,2,3").split(",") if g.strip()]
     made = [await _new_account(db, args.leader, school, grades)]
     for c in teachers:
         made.append(await _new_account(db, c, school, grades))
+    await db.execute("UPDATE schools SET block_name = $2, district_name = $3, has_printer = $4 WHERE school_code = $1",
+                     school, details["block"], details["district"], details["printer"])
     _print_made(school, made)
+    print(f"School details: block {details['block'] or '(not given)'}, district {details['district'] or '(not given)'}, "
+          f"printer {'yes' if details['printer'] else 'no'}")
+
+
+MAX_PLACE = 60
+_PLACE_BAD = re.compile(r"[\x00-\x1f\x7f-\x9f<>]")
+
+
+def _school_details(args) -> tuple:
+    """({block, district, printer}, problems) from create-school's optional --block, --district and --printer. A block or district is the
+    name of an administrative area (Hindi or English), not personal data; empty means not given. The printer is no unless 'yes'."""
+    out, problems = {}, []
+    for key in ("block", "district"):
+        v = re.sub(r"\s+", " ", getattr(args, key, None) or "").strip()
+        if len(v) > MAX_PLACE:
+            problems.append(f"the {key} name is longer than {MAX_PLACE} characters")
+        elif _PLACE_BAD.search(v):
+            problems.append(f"the {key} name has characters that are not allowed")
+        out[key] = v or None
+    printer = (getattr(args, "printer", None) or "no").strip().lower()
+    if printer not in ("yes", "no"):
+        problems.append("--printer must be yes or no")
+    out["printer"] = printer == "yes"
+    return out, problems
 
 
 async def cmd_create_account(db, args):
@@ -200,6 +229,9 @@ async def main():
     ap.add_argument("--school", help="create-school / create-account: the school code (3 to 25 letters, digits or dashes)")
     ap.add_argument("--leader", help="create-school: the school leader's employee code")
     ap.add_argument("--teachers", help="create-school: the teachers' employee codes, comma-separated")
+    ap.add_argument("--block", help="create-school: the school's block (optional; shown in the progress export and mentor report)")
+    ap.add_argument("--district", help="create-school: the school's district (optional; as --block)")
+    ap.add_argument("--printer", choices=["yes", "no"], default="no", help="create-school: can the school print worksheets? (default no: plans assume no printer)")
     ap.add_argument("--grades", help="create-school / create-account: the grades taught, e.g. 1,2,3 (default)")
     ap.add_argument("--code", "--phone", dest="code", help="the employee code, for example MPT101 (--phone is the old name of this option)")
     ap.add_argument("--pin", help="the password")

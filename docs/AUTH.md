@@ -39,7 +39,7 @@ link cannot carry it. Without this a password screen would protect nothing, sinc
 
 ## Real accounts (a pilot school)
 The operator makes them, never in the demo school and never with a demo-style code (MPT101-MPT199):
-`python scripts/auth_admin.py create-school --school PILOT-01 --leader PLA001 --teachers PLT001,PLT002 [--grades 1,2,3]` creates the school, its
+`python scripts/auth_admin.py create-school --school PILOT-01 --leader PLA001 --teachers PLT001,PLT002 [--grades 1,2,3] [--block NAME] [--district NAME] [--printer yes|no]` creates the school (with its block and district for the progress export and mentor report, and whether it can print: no by default), its
 leader (the school's admin) and its teachers, each with a temporary password printed ONCE: give it in person. At the first sign-in each person
 chooses their own password; the leader confirms the consent statement once. `create-account --school PILOT-01 --code PLT003` adds a teacher.
 Codes already in use, a code given twice, an existing school and the demo school are refused before anything is made (`backend/tests/test_real_accounts.py`).
