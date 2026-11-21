@@ -1,0 +1,117 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.4.2__normal__medium",
+ "skill_id": "N2.4.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर सप्ताह के सात दिन क्रम से लिखें: सोमवार से रविवार तक, और हर दिन को उँगली से छूकर धीरे बोलें। फिर बारह महीने जनवरी से दिसंबर तक क्रम से लिखें और बोलें। कक्षा के कैलेंडर पर आज की तारीख ढूँढकर दिखाएँ: 'देखिए, पहले महीना देखते हैं, फिर तारीख का अंक, फिर ऊपर उस खाने का दिन।'",
+   "we_do_hi": "बच्चों से पूछें: 'सोमवार के बाद कौन सा दिन आता है?', 'मार्च के बाद कौन सा महीना?' और एक-एक बच्चे को बारी से बोलने दें। कैलेंडर पर कोई एक तारीख बताएँ, जैसे 15, और बच्चों के साथ मिलकर उसका दिन पढ़ें। बोर्ड पर एक दिन मिटाकर पूछें कि कौन सा दिन छूट गया।",
+   "you_do_hi": "हर जोड़ी को एक कैलेंडर का पन्ना दें, या बोर्ड पर बनाया कैलेंडर दिखाएँ और दिनों-महीनों के नाम लिखी पर्चियाँ दें। पहले एक बच्चा सातों दिन क्रम से बोले और पर्चियाँ क्रम से रखे, फिर साथी आज की तारीख और उसका दिन कैलेंडर पर दिखाए; महीनों का क्रम अगले ब्लॉक में अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बुधवार के बाद कौन सा दिन आता है? स्लेट पर उस दिन का पहला अक्षर लिखें।",
+    "expected_hi": "गु (गुरुवार)",
+    "listen_for": [],
+    "shows_hi": "बच्चा सप्ताह के दिनों का क्रम जानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "जून के बाद कौन सा महीना आता है? 1) जुलाई 2) मई। उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1 (जुलाई)",
+    "listen_for": [],
+    "shows_hi": "बच्चा महीनों का क्रम जानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कक्षा का एक दीवार कैलेंडर, या बोर्ड पर इस महीने का कैलेंडर बनाएँ।",
+   "कागज़ की पर्चियों पर सात दिनों और बारह महीनों के नाम लिखें, हर जोड़ी के लिए एक सेट।",
+   "यदि छपे कैलेंडर के पुराने पन्ने हों, तो हर जोड़ी के लिए एक पन्ना रखें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "बोर्ड से कॉपी में बनाएँ और काम पूरा करें।",
+   "instructions_en": "Copy from the board into your notebook and complete.",
+   "required_count": 3,
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चा सातों दिन और बारह महीने क्रम से बोले और कैलेंडर पर आज की तारीख और उसका दिन दिखाए।",
+    "task_en": "The child names the 7 days and 12 months in order and shows today's date and its day on the calendar.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "दीवार कैलेंडर या पुराने कैलेंडर के पन्ने",
+     "दिनों के नाम की पर्चियाँ",
+     "महीनों के नाम की पर्चियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "सातों दिन और बारह महीने बिना मदद क्रम से बोलता है और आज की तारीख ढूँढ लेता है।",
+     "partial_hi": "दिन क्रम से बोलता है, पर महीनों में अटकता है या तारीख ढूँढने में मदद चाहिए।",
+     "not_yet_hi": "दिनों का क्रम अभी नहीं बोल पाता।",
+     "achieved_en": "Names all days and months in order without help and finds today's date.",
+     "partial_en": "Names days in order but stumbles on months or needs help finding the date.",
+     "not_yet_en": "Cannot yet name the days in order."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "खाली जगह में दिन का नाम लिखें: सोमवार, मंगलवार, ___, गुरुवार",
+     "answer": "बुधवार",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "खाली जगह में महीने का नाम लिखें: अगस्त, ___, अक्टूबर",
+     "answer": "सितंबर",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "कक्षा के कैलेंडर में आज की तारीख पर गोला लगाएँ और उसके दिन का नाम लिखें।",
+     "answer": "",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "शनिवार के बाद आने वाले दिन का नाम लिखें।",
+     "answer": "रविवार",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 3: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T06:08:40Z",
+ "cost_usd": 0.0259,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

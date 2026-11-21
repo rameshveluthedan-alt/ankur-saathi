@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.2.1__normal__short",
+ "skill_id": "L1.2.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'सुनें, हम ध्वनियों को जोड़कर शब्द बनाएँगे।' धीरे-धीरे बोलें: 'क... म... ल', फिर ध्वनियों को पास लाते हुए जल्दी बोलें: 'कमल'। एक और शब्द इसी तरह करें: 'न... ल' से 'नल', फिर बच्चों से पूछें: 'ज... ग... बोलें तो कौन-सा शब्द बना?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को बोर्ड पर लिखे तीन ध्वनि-समूह दिखाएँ: र-थ, घ-ड़ा, ब-त-ख। एक बच्चा ध्वनियाँ अलग-अलग बोले, दूसरा उन्हें जोड़कर पूरा शब्द बोले, फिर बारी बदलें; जो जल्दी कर लें, वे वर्कशीट के बाकी शब्द करें, और बचा काम अगले खंड में अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "एक-एक ध्वनि बोलें: 'प... त... ल'। कौन-सा शब्द बना? 1) पतला 2) पतल",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा तीन ध्वनियाँ जोड़कर सही शब्द पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक-एक ध्वनि बोलें: 'घ... र'। जो शब्द बना, उसका पहला अक्षर स्लेट पर लिखें।",
+    "expected_hi": "घ",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो ध्वनियाँ जोड़कर शब्द सुनता है और उसकी पहली ध्वनि पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर ध्वनि-समूह लिखें: र-थ, घ-ड़ा, ब-त-ख",
+   "कागज़ की पर्चियों पर शब्द-कार्ड बनाएँ: नल, जग, कमल, बतख (यदि समय हो)"
+  ],
+  "worksheet": {
+   "instructions_hi": "साथी के साथ बैठें। ध्वनियाँ धीरे-धीरे बोलें, फिर जोड़कर पूरा शब्द बोलें।",
+   "instructions_en": "Sit with a partner. Say the sounds slowly, then blend them and say the whole word.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "ध्वनियाँ जोड़ने का उदाहरण:",
+    "example_text": "क + म + ल = कमल"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "शिक्षक एक-एक ध्वनि अलग बोलें (जैसे स... ड़... क), बच्चा उन्हें जोड़कर पूरा शब्द बोले। पाँच शब्द करवाएँ।",
+    "task_en": "The teacher says each sound separately (e.g. स... ड़... क); the child blends them and says the whole word. Do five words.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे ध्वनि-समूह"
+    ],
+    "look_for": {
+     "achieved_hi": "तीन-चार ध्वनियों वाले पाँच में से चार शब्द खुद जोड़कर बोलता है",
+     "partial_hi": "दो ध्वनियों वाले शब्द जोड़ लेता है, तीन-चार ध्वनियों पर अटकता है",
+     "not_yet_hi": "ध्वनियाँ अलग-अलग ही दोहराता है या अंदाज़ा लगाता है",
+     "achieved_en": "Blends 3-4 sound words on their own for 4 of 5 words",
+     "partial_en": "Blends 2-sound words but stumbles on 3-4 sound words",
+     "not_yet_en": "Repeats the separate sounds or guesses"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "ध्वनियाँ जोड़कर शब्द बोलें: न + ल",
+     "answer": "नल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ध्वनियाँ जोड़कर शब्द बोलें: ज + ल + न",
+     "answer": "जलन",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "ध्वनियाँ जोड़कर शब्द बोलें: स + ड़ + क",
+     "answer": "सड़क",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "ध्वनियाँ जोड़कर शब्द बोलें: ह + व + न",
+     "answer": "हवन",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "ध्वनियाँ जोड़कर शब्द बोलें: ब + र + त + न",
+     "answer": "बरतन",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:10:44Z",
+ "cost_usd": 0.0259,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

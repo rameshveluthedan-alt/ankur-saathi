@@ -1,0 +1,132 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.4.2__normal__short",
+ "skill_id": "L2.4.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: और, लेकिन, इसलिए, क्योंकि। हर शब्द पर उँगली रखकर एक बार में पूरा पढ़ें, अक्षर तोड़े बिना: 'देखिए, ये शब्द हम एक नज़र में पहचानते हैं।' फिर बोर्ड पर लिखें: 'राम खेला लेकिन थका नहीं।' और 'लेकिन' पर उँगली रखकर बताएँ कि यह दो बातों को जोड़ता है।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: और, लेकिन, इसलिए, क्योंकि, फिर, भी, तो, पर, जब, हालाँकि। एक बच्चा कार्ड दिखाए, दूसरा तुरंत पढ़े, फिर बारी बदलें; पर्चियाँ न हों तो बोर्ड से वर्कशीट के शब्द कॉपी में देखकर पढ़ें। यह काम अपनी जगह पर अगले समय में पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक शब्द बोलें: 'क्योंकि'। बोर्ड पर लिखें: 1) क्योंकि 2) इसलिए। सुना हुआ शब्द कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा योजक शब्द को उसके पूरे रूप से पहचानता है, अक्षर जोड़े बिना।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'मीना को बुखार था, ___ वह स्कूल नहीं आई।' खाली जगह में कौन-सा शब्द आएगा: 1) इसलिए 2) लेकिन?",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा योजक शब्द पढ़कर वाक्य में उसका काम समझता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर 10 शब्द लिखें: और, लेकिन, इसलिए, क्योंकि, फिर, भी, तो, पर, जब, हालाँकि (हर जोड़ी के लिए एक सेट)।",
+   "बोर्ड पर पहले से लिखें: और, लेकिन, इसलिए, क्योंकि।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अपने साथी को ये शब्द और वाक्य पढ़कर सुनाएँ। हर शब्द एक बार में पूरा पढ़ें।",
+   "instructions_en": "Read these words and sentences aloud to your partner. Read each word whole, in one go.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी के दिखाए शब्द-कार्ड (और, लेकिन, इसलिए, क्योंकि, हालाँकि आदि) बिना अक्षर तोड़े तुरंत पढ़ें।",
+    "task_en": "Read the word cards shown by a partner (और, लेकिन, इसलिए, क्योंकि, हालाँकि, etc.) instantly, without sounding out letters.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी शब्द, लंबे योजक भी, तुरंत पूरे पढ़ता है।",
+     "partial_hi": "छोटे शब्द तुरंत पढ़ता है, पर क्योंकि, हालाँकि जैसे शब्द अक्षर जोड़कर पढ़ता है।",
+     "not_yet_hi": "ज़्यादातर शब्द अक्षर-अक्षर जोड़कर या मदद से पढ़ता है।",
+     "achieved_en": "Reads all words, including long connectors, instantly and whole.",
+     "partial_en": "Reads short words instantly but sounds out long connectors like क्योंकि, हालाँकि.",
+     "not_yet_en": "Sounds out most words letter by letter or needs help."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "ये शब्द साथी को पढ़कर सुनाएँ: और, भी, तो, पर, जब",
+     "answer": "और, भी, तो, पर, जब",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ये शब्द साथी को पढ़कर सुनाएँ: लेकिन, इसलिए, क्योंकि, हालाँकि, फिर",
+     "answer": "लेकिन, इसलिए, क्योंकि, हालाँकि, फिर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "यह वाक्य पढ़ें और जोड़ने वाला शब्द बताएँ: 'बारिश हुई, इसलिए हम घर में खेले।'",
+     "answer": "इसलिए",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "यह वाक्य पढ़ें और जोड़ने वाला शब्द बताएँ: 'सोनू थका था, लेकिन वह खेलता रहा।'",
+     "answer": "लेकिन",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह वाक्य पढ़ें और जोड़ने वाला शब्द बताएँ: 'हम पार्क गए क्योंकि धूप खिली थी।'",
+     "answer": "क्योंकि",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:06:03Z",
+ "cost_usd": 0.0287,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

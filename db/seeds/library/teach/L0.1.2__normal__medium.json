@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.1.2__normal__medium",
+ "skill_id": "L0.1.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों को एक गेंद दिखाएँ और कहें: 'देखिए, यह गेंद है।' फिर पूरा वाक्य बोलकर दिखाएँ: 'यह गेंद लाल रंग की है।' हर वाक्य दो बार बोलें और हर शब्द पर एक उँगली उठाएँ, ताकि बच्चे देखें कि वाक्य में चार या अधिक शब्द हैं।",
+   "we_do_hi": "एक पत्ती दिखाकर पूछें: 'यह क्या है?' जो बच्चा एक शब्द में बोले, उसके साथ मिलकर वाक्य बढ़ाएँ: 'पत्ती' से 'यह हरी पत्ती है' बनाएँ। दो और चीज़ों (कंकड़, बोतल का ढक्कन) पर यही करें, और बच्चे वाक्य बोलते हुए उँगलियों पर शब्द गिनें।",
+   "you_do_hi": "हर जोड़ी को कंकड़, बटन, पत्ती और बोतल का ढक्कन मिलाकर दें। बच्चों से कहें: 'एक चीज़ उठाएँ और अपने साथी को उसके बारे में एक पूरा वाक्य बताएँ।' पहले एक चीज़ पर वाक्य बोलें; बाकी चीज़ें अगले समय में अपनी जगह पर करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें, दो बातें बोलें: 1) 'गेंद' 2) 'यह मेरी लाल गेंद है'। कौन-सा पूरा वाक्य है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा एक शब्द और पूरे वाक्य का अंतर पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "यह वाक्य सुनें: 'बिल्ली दूध पी रही है'। इसमें कितने शब्द हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "5",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुनता है कि वाक्य कई शब्दों से बनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "एक लाल गेंद, कुछ पत्तियाँ, कंकड़, बटन और बोतल के ढक्कन इकट्ठा करें।",
+   "हर जोड़ी के लिए चार चीज़ों का एक छोटा ढेर बनाएँ।"
+  ],
+  "worksheet": {
+   "instructions_hi": "साथी के साथ बैठें। हर चीज़ या बात के बारे में एक पूरा वाक्य बोलें।",
+   "instructions_en": "Sit with a partner. Say one complete sentence about each object or prompt.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "पूरा वाक्य बोलने का उदाहरण:",
+    "example_text": "यह गेंद लाल रंग की है।"
+   },
+   "passage_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा एक चीज़ उठाए और उसके बारे में साथी को चार या अधिक शब्दों का एक पूरा वाक्य बोले।",
+    "task_en": "The child picks one object and tells a partner one complete sentence of four or more words about it.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "पत्तियाँ",
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के चार या अधिक शब्दों का पूरा वाक्य बोलता है।",
+     "partial_hi": "दो-तीन शब्द बोलता है, पूछने पर पूरा वाक्य बनाता है।",
+     "not_yet_hi": "एक शब्द में या इशारे से जवाब देता है।",
+     "achieved_en": "Says a complete sentence of four or more words without help.",
+     "partial_en": "Says two or three words; forms a full sentence when prompted.",
+     "not_yet_en": "Answers with one word or a gesture."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पत्ती उठाएँ। साथी को पत्ती के बारे में एक पूरा वाक्य बताएँ।",
+     "answer": "चार या अधिक शब्दों का पूरा वाक्य, जैसे 'यह पत्ती हरी है'",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को बताएँ: आज सुबह आपने क्या खाया?",
+     "answer": "चार या अधिक शब्दों का पूरा वाक्य, जैसे 'मैंने सुबह रोटी खाई'",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को बताएँ: आप स्कूल कैसे आते हैं?",
+     "answer": "चार या अधिक शब्दों का पूरा वाक्य, जैसे 'मैं पैदल स्कूल आता हूँ'",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "बोतल का ढक्कन उठाएँ। साथी को उसके बारे में एक पूरा वाक्य बताएँ।",
+     "answer": "चार या अधिक शब्दों का पूरा वाक्य, जैसे 'यह ढक्कन नीले रंग का है'",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats wording from the lesson or anchor: «बारे में एक पूरा वाक्य»",
+   "worksheets.progressor problem 4 repeats wording from the lesson or anchor: «साथी को उसके बारे में»"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:10:44Z",
+ "cost_usd": 0.0271,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

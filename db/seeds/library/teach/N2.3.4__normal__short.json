@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.3.4__normal__short",
+ "skill_id": "N2.3.4",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 53 - 28 और कहें: 'देखिए, इकाई में 3 में से 8 नहीं घटता, तो हम दहाई से एक दहाई उधार लेते हैं; 5 दहाई अब 4 दहाई, और इकाई 13 हुई।' 13 - 8 = 5 और 4 - 2 = 2 लिखकर दिखाएँ: उत्तर 25, और 5 को काटकर ऊपर 4 लिखें। अंत में समूह से पूछें: 'उधार के बाद दहाई में कितना बचा?'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। उधार लेने पर दहाई का अंक काटकर उसके ऊपर नया अंक लिखें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिनके उत्तर स्लेट पर गलत थे; जो बचे, वह अपनी जगह पर अगले ब्लॉक में पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 64 - 37",
+    "expected_hi": "27",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M1",
+      "misconception_name_hi": "इकाई में छोटे से बड़ा घटाना (उल्टा)",
+      "misconception_name_en": "Smaller-from-larger reversal in ones column",
+      "detect_en": "In ones column, child always subtracts the smaller digit from the larger regardless of position. Tens column is unchanged (no borrowing attempted). Very common and persistent.",
+      "wrong_answer_hi": "33"
+     },
+     {
+      "misconception_id": "N2.3.4-M2",
+      "misconception_name_hi": "उधार लेता है पर दहाई कम नहीं करता",
+      "misconception_name_en": "Borrows but does not reduce tens digit",
+      "detect_en": "Answer is exactly 10 more than correct. Ones column is right, tens column is 1 too high.",
+      "wrong_answer_hi": "37"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "72 - 46: 26 या 36? उत्तर स्लेट पर लिखें।",
+    "expected_hi": "26",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M2",
+      "misconception_name_hi": "उधार लेता है पर दहाई कम नहीं करता",
+      "misconception_name_en": "Borrows but does not reduce tens digit",
+      "detect_en": "Answer is exactly 10 more than correct. Ones column is right, tens column is 1 too high.",
+      "wrong_answer_hi": "36"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 53 - 28 (दहाई-इकाई का बॉक्स बनाकर)",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो"
+  ],
+  "worksheet": {
+   "instructions_hi": "घटाएँ। इकाई में ऊपर का अंक छोटा हो तो दहाई से उधार लें, दहाई का अंक काटकर नया अंक ऊपर लिखें।",
+   "instructions_en": "Subtract. If the top ones digit is smaller, borrow from the tens: cross out the tens digit and write the new digit above it.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "52 - 17 = ___",
+    "answer": "35",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "5",
+    "row1_o": "2",
+    "row2_t": "1",
+    "row2_o": "7",
+    "answer_t": "3",
+    "answer_o": "5"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "43 - 15",
+     "answer": "28",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "62 - 27",
+     "answer": "35",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "80 - 46 = ___",
+     "answer": "34",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.4-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "74 - 38 = ___",
+     "answer": "36",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "91 - 65 = ___",
+     "answer": "26",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 93 आम थे। 47 आम बिक गए। टोकरी में कितने आम बचे?",
+     "answer": "46",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 28"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a1845ed66154",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0294,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

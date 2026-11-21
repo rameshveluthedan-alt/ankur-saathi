@@ -1,0 +1,277 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.5.1__normal__medium",
+ "skill_id": "N0.5.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर चार आकृतियाँ बनाएँ: वृत्त, वर्ग, त्रिभुज, आयत, और हर एक का नाम बोलते हुए उसकी किनारियों पर उँगली फेरें। बच्चों से कहें: 'देखिए, त्रिभुज की तीन भुजाएँ हैं, वर्ग की चारों भुजाएँ बराबर हैं, आयत की दो भुजाएँ लंबी और दो छोटी हैं, वृत्त गोल है।' कक्षा की चीज़ें दिखाएँ: घड़ी वृत्त, दरवाज़ा आयत।",
+   "we_do_hi": "कक्षा की चीज़ें एक-एक करके उठाएँ: चूड़ी, किताब, रूमाल, कागज़ का तिकोना टुकड़ा। हर चीज़ पर बच्चों से पूछें: 'यह किस आकृति जैसी है?' और बोर्ड पर बनी उसी आकृति की ओर इशारा करवाएँ। वर्ग और आयत को साथ रखकर भुजाएँ गिनें और लंबाई मिलाएँ।",
+   "you_do_hi": "हर जोड़ी को बोतल का ढक्कन, माचिस की डिब्बी, रूमाल और कागज़ का तिकोना टुकड़ा मिलाकर दें। बच्चे हर चीज़ उठाकर उसकी आकृति का नाम बोलें और उसे बोर्ड पर बनी उसी आकृति के नीचे रखें; बाकी काम अगले खंड में अपनी जगह पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर एक त्रिभुज बनाएँ। 'इस आकृति की कितनी भुजाएँ हैं? उँगलियों पर दिखाएँ।'",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा त्रिभुज को उसकी तीन भुजाओं से पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो आकृतियाँ बनाएँ: 1) चारों भुजाएँ बराबर वाली 2) दो लंबी और दो छोटी भुजाओं वाली। 'वर्ग कौन-सा है? 1 या 2 उँगली दिखाएँ।'",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा वर्ग और आयत का अंतर समझता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर चार आकृतियाँ बड़ी बनाकर नाम लिखें: वृत्त, वर्ग, त्रिभुज, आयत।",
+   "हर जोड़ी के लिए एक बोतल का ढक्कन, एक माचिस की डिब्बी, एक रूमाल और एक कागज़ का तिकोना टुकड़ा इकट्ठा करें।",
+   "दिखाने के लिए एक चूड़ी और एक किताब रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "बोर्ड से कॉपी में बनाएँ और बताए अनुसार निशान लगाएँ।",
+   "instructions_en": "Copy from the board into the notebook and mark as asked.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा हर चीज़ उठाकर उसकी आकृति का नाम बोले (वृत्त, वर्ग, त्रिभुज, आयत) और उसे बोर्ड पर बनी उसी आकृति के नीचे रखे।",
+    "task_en": "The child picks up each object, names its shape (circle, square, triangle, rectangle) and places it under the matching shape drawn on the board.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "बोतल के ढक्कन",
+     "माचिस की डिब्बी",
+     "रूमाल",
+     "कागज़ के तिकोने टुकड़े"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों आकृतियों के नाम सही बोलता है और हर चीज़ सही आकृति के नीचे रखता है।",
+     "partial_hi": "दो-तीन आकृतियाँ पहचानता है या वर्ग और आयत में उलझता है।",
+     "not_yet_hi": "एक भी आकृति या केवल एक आकृति सही पहचानता है।",
+     "achieved_en": "Names all four shapes and places every object under the right shape.",
+     "partial_en": "Identifies two or three shapes, or mixes up square and rectangle.",
+     "not_yet_en": "Names no shape or only one reliably."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "item_type": "symbol_grid",
+     "grid": [
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": null
+      }
+     ],
+     "target": {
+      "s": "○"
+     },
+     "problem_hi": "सभी ○ पर गोला लगाएँ।",
+     "answer": "3 (खाने 1, 4, 7)",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "matches": [
+      1,
+      4,
+      7
+     ],
+     "board_hi": "बड़ा ○  बड़ा △  छोटा □  छोटा ○  छोटा △  बड़ा □  बड़ा ○  बड़ा △"
+    },
+    {
+     "number": 2,
+     "item_type": "symbol_grid",
+     "grid": [
+      {
+       "s": "△",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      }
+     ],
+     "target": {
+      "s": "△"
+     },
+     "problem_hi": "सभी △ पर गोला लगाएँ।",
+     "answer": "4 (खाने 1, 3, 5, 8)",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "matches": [
+      1,
+      3,
+      5,
+      8
+     ],
+     "board_hi": "छोटा △  बड़ा □  बड़ा △  छोटा ○  बड़ा △  छोटा □  बड़ा ○  छोटा △  बड़ा □"
+    },
+    {
+     "number": 3,
+     "item_type": "symbol_grid",
+     "grid": [
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      }
+     ],
+     "target": {
+      "odd_one_out": true
+     },
+     "problem_hi": "जो अलग है उसे काटें।",
+     "answer": "खाना 4",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "matches": [
+      4
+     ],
+     "board_hi": "□  □  □  ○  □  □  □  □"
+    },
+    {
+     "number": 4,
+     "problem_hi": "कॉपी में एक आयत बनाएँ।",
+     "answer": "आयत (दो लंबी, दो छोटी भुजाएँ)",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (3 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T06:04:22Z",
+ "cost_usd": 0.0307,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

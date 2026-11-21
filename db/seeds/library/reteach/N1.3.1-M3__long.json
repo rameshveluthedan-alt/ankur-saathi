@@ -1,0 +1,136 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.3.1-M3__long",
+ "skill_id": "N1.3.1",
+ "domain_id": "numeracy",
+ "mode": "N1.3.1-M3",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने आगे गिनकर जोड़ना सीखा था।' बोर्ड पर 8 + 5 लिखें, पहले दोनों हाथों की उँगलियों पर 8 और फिर 5 गिनें। दस उँगलियाँ ख़त्म होने पर बच्चों को दिखाएँ: 'देखिए, उँगलियाँ ख़त्म हो गईं, अब आगे कैसे गिनें?' इसके बाद वही 8 + 5 सही तरीके से करें: '8 मन में रखें', फिर सिर्फ़ 5 उँगलियाँ उठाकर आगे गिनें: 9, 10, 11, 12, 13। बोर्ड पर 8 + 5 = 13 लिखें, और ग़लत तरीके वाला हिस्सा मिटा दें ताकि सिर्फ़ सही तरीका बोर्ड पर रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 6 + 6 = 10 और 9 + 5 = 10। बच्चों से पूछें: 'क्या उँगलियाँ ख़त्म होने पर रुक गए?' फिर साथ में बड़ी संख्या मन में रखकर छोटी संख्या उँगलियों पर आगे गिनें और दोनों को सुधारें: 12 और 14। अंत में एक नया सवाल 7 + 4 साथ में करें: '7 मन में, फिर 8, 9, 10, 11।'",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' शिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार 10 से बड़े योग में गलती की थी, और सवाल 2 पर उनका आगे गिनना देखें। अगर दिखाएँ-सवाल में एक चौथाई से अधिक बच्चे गलत हों, तो वर्कशीट से पहले उस कदम को छड़ियों से फिर करवाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "8 + 7 कितना होता है? स्लेट पर लिखें।",
+    "expected_hi": "15",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M3",
+      "misconception_name_hi": "उँगलियों से गिनने की सीमा (योग > 10 पर असफल)",
+      "misconception_name_en": "Finger counting ceiling (fails when sum > 10)",
+      "detect_en": "Correct for sums ≤ 10 but errors when sum is 11-18; may refuse to attempt or guess",
+      "wrong_answer_hi": "10"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "9 + 7: 16 या 10? उँगलियों पर दिखाएँ: 16 के लिए 1, 10 के लिए 2।",
+    "expected_hi": "1 (16)",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M3",
+      "misconception_name_hi": "उँगलियों से गिनने की सीमा (योग > 10 पर असफल)",
+      "misconception_name_en": "Finger counting ceiling (fails when sum > 10)",
+      "detect_en": "Correct for sums ≤ 10 but errors when sum is 11-18; may refuse to attempt or guess",
+      "wrong_answer_hi": "2 (10)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 6 + 6 = 10 और 9 + 5 = 10 (We Do के लिए, ढककर रखें)",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो",
+   "दोबारा समझाने की ज़रूरत पड़े तो छड़ियों का एक छोटा ढेर पास रखें"
+  ],
+  "worksheet": {
+   "instructions_hi": "बड़ी संख्या मन में रखें, छोटी संख्या उँगलियों पर आगे गिनें। जोड़ें और उत्तर लिखें।",
+   "instructions_en": "Keep the bigger number in your head and count on the smaller number on your fingers. Add and write the answer.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "7 + 5 = ___",
+    "answer": "12",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "7",
+    "row2_t": "",
+    "row2_o": "5",
+    "answer_t": "1",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "4 + 3",
+     "answer": "7",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "9 + 6",
+     "answer": "15",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N1.3.1-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "8 + 9 = ___",
+     "answer": "17",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N1.3.1-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "5 + 4 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "6 + 8 = ___",
+     "answer": "14",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "7 + 9 = ___",
+     "answer": "16",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "293d6ba7b44c",
+ "created": "2026-11-21T06:01:24Z",
+ "cost_usd": 0.0358,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

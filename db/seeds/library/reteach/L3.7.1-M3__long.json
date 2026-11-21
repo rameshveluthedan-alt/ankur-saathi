@@ -1,0 +1,150 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.7.1-M3__long",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.7.1-M3",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने एक विषय पर जुड़े हुए वाक्य लिखना सीखा था।' बोर्ड पर विषय 'हमारा स्कूल' लिखें और नीचे केवल दो वाक्य लिखें: 'मेरा स्कूल बड़ा है। मुझे स्कूल अच्छा लगता है।' बच्चों से कहें: 'देखिए, यहाँ सिर्फ़ दो वाक्य हैं, यह अनुच्छेद नहीं है; हमें 5 से 7 वाक्य चाहिए।' अब इसी विषय पर सवाल पूछते हुए वाक्य जोड़ें (स्कूल कहाँ है? वहाँ क्या है? हम क्या करते हैं? क्यों अच्छा लगता है?), जैसे 'मेरा स्कूल गाँव के पास है। पहले हम प्रार्थना करते हैं। फिर हम पढ़ते हैं। स्कूल में एक बड़ा मैदान है। अंत में हम घंटी बजने पर घर जाते हैं।', उँगली पर वाक्य गिनें, फिर ऊपर के दो वाक्य वाला रूप मिटा दें ताकि बोर्ड पर केवल पूरा अनुच्छेद रहे।",
+   "we_do_hi": "बोर्ड पर विषय 'बारिश का दिन' और दो वाक्य लिखें: 'आज बारिश हुई। हम घर में रहे।' बच्चों से पूछें: 'कितने वाक्य हैं? और कितने चाहिए?' फिर उनसे सवालों के सहारे (आसमान कैसा था? हमने क्या पहना? बाद में क्या हुआ?) तीन वाक्य और बनवाकर लिखें। इसके बाद नया विषय 'मेरी गाय' लें और साथ मिलकर हर बच्चे से एक-एक विचार लेकर पाँच वाक्य पूरे करें, हर वाक्य के अंत में पूर्ण विराम लगाते हुए गिनें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 4 हल करें; जो जल्दी ख़त्म करें, वे सवाल 5 करें।' सवाल 1 में वर्कशीट पर दिए विषय 'हमारा बाज़ार' पर कम से कम 5 वाक्य लिखने हैं। अपने सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार बहुत कम लिखा था, और उनसे वाक्य गिनवाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मुझे आम पसंद है। आम मीठा होता है।' इसमें कितने वाक्य हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "5"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'हमारे घर के पास तालाब है। उसमें मछलियाँ हैं। बत्तखें तैरती हैं।' 5 वाक्य पूरे करने के लिए और कितने वाक्य चाहिए? स्लेट पर संख्या लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "0"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से विषय लिखकर रखें: 'हमारा स्कूल', 'बारिश का दिन', 'मेरी गाय'।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें और लिखें। हर वाक्य के अंत में । लगाएँ।",
+   "instructions_en": "Read each question carefully and write. Put । at the end of every sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "हमारा बाज़ार",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 5 वाक्य",
+     "item_en": "At least 5 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य बाज़ार के बारे में",
+     "item_en": "All sentences are about the market"
+    },
+    {
+     "item_hi": "पहला वाक्य विषय बताता है और अंत में एक आख़िरी वाक्य है",
+     "item_en": "First sentence names the topic and there is a closing sentence"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop । at the end of every sentence"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'हमारा बाज़ार' पर 5-7 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "हमारा बाज़ार"
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: 'मेरे पास एक पतंग है। वह लाल है। मैं उसे छत पर उड़ाता हूँ।' इसमें कितने वाक्य हैं? 5 वाक्य पूरे करने के लिए और कितने वाक्य चाहिए? संख्या लिखें।",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: 'मुझे नदी अच्छी लगती है।' इस विषय पर एक और वाक्य लिखें जो नदी के बारे में हो।",
+     "answer": "नदी के बारे में कोई भी एक पूरा वाक्य, अंत में ।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "वाक्य के अंत में सही चिह्न लगाएँ: 'सुबह हम खेत गए'",
+     "answer": "सुबह हम खेत गए।",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'मेरा मनपसंद खेल' पर 5 वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 6,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "1d07c80915e1",
+ "created": "2026-11-21T06:04:22Z",
+ "cost_usd": 0.0325,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

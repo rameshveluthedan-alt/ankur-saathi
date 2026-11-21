@@ -1,0 +1,147 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.3.1__normal__medium",
+ "skill_id": "N1.3.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 6 + 2। बच्चों से कहें: 'देखें, बड़ी संख्या 6 मन में रखते हैं और आगे गिनते हैं: 7, 8।' उँगली हर नई संख्या पर ही उठाएँ, 6 पर नहीं। फिर 8 + 5 को इसी तरह 8 से आगे गिनकर 13 तक पहुँचें और बोर्ड पर 13 लिखें।",
+   "we_do_hi": "बोर्ड पर लिखें: 5 + 4। बच्चों से पूछें: 'किस संख्या से आगे गिनेंगे?' फिर साथ में 6, 7, 8, 9 गिनें और उत्तर 9 लिखें। इसके बाद 9 + 3 को इसी तरह साथ में हल करें और उत्तर 12 लिखें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' पहले उन बच्चों के पास जाएँ जो 1 से गिनना शुरू करते हैं। बचा हुआ काम बच्चे अगले समय में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर उत्तर लिखें: 5 + 2",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M2",
+      "misconception_name_hi": "आगे गिनते समय एक की त्रुटि",
+      "misconception_name_en": "Off-by-one error in counting-on",
+      "detect_en": "Answers are consistently exactly 1 less than correct: 5+3=7, 4+2=5, 6+3=8",
+      "wrong_answer_hi": "6"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर उत्तर लिखें: 8 + 7",
+    "expected_hi": "15",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M3",
+      "misconception_name_hi": "उँगलियों से गिनने की सीमा (योग > 10 पर असफल)",
+      "misconception_name_en": "Finger counting ceiling (fails when sum > 10)",
+      "detect_en": "Correct for sums ≤ 10 but errors when sum is 11-18; may refuse to attempt or guess",
+      "wrong_answer_hi": "कुछ नहीं लिखा या नहीं पता"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 1 से 20 तक की संख्या-पट्टी बनाएँ।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "बड़ी संख्या से आगे गिनकर जोड़ें और उत्तर लिखें।",
+   "instructions_en": "Count on from the bigger number to add, and write the answer.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "1 + 3 = ___",
+    "answer": "4",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "1",
+    "row2_t": "",
+    "row2_o": "3",
+    "answer_t": "",
+    "answer_o": "4"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 + 2 = ___",
+     "answer": "5",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "6 + 3 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "9 + 6 = ___",
+     "answer": "15",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.1-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "2 + 5 = ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "7 + 4 = ___",
+     "answer": "11",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "8 + 6 = ___",
+     "answer": "14",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7cbf1952feaf",
+ "created": "2026-11-21T05:57:58Z",
+ "cost_usd": 0.1445,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

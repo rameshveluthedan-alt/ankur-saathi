@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.3.3__normal__short",
+ "skill_id": "N1.3.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'टोकरी में 4 आम हैं। 3 आम और रखे। अब कितने आम हैं?' बच्चों को बताएँ: 'और रखे यानी आम बढ़े, इसलिए जोड़ेंगे: 4 + 3 = 7।' इसके बाद बोलें: '8 केले थे, 2 खा लिए। खा लिए यानी केले कम हुए, इसलिए घटाएँगे: 8 - 2 = 6।'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। हर सवाल में पहले देखें कि चीज़ें बढ़ीं या कम हुईं, फिर जोड़ें या घटाएँ। जो काम इस समय में पूरा न हो, उसे बच्चे अपनी जगह पर अगले समय में पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'पेड़ पर 5 चिड़ियाँ थीं। 2 चिड़ियाँ उड़ गईं।' कितनी बचीं, यह जानने के लिए क्या करेंगे? 1) जोड़ 2) घटाव",
+    "expected_hi": "2) घटाव",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि कम होने पर घटाते हैं।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'थैले में 3 गेंदें हैं। 5 गेंदें और डालीं।' अब थैले में कितनी गेंदें हैं?",
+    "expected_hi": "8",
+    "listen_for": [],
+    "shows_hi": "बच्चा बढ़ने वाले सवाल में जोड़कर सही उत्तर निकालता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do के दोनों सवाल पहले से लिख लें: 4 आम और 3 आम, 8 केले और 2 खाए।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। सोचें कि चीज़ें बढ़ीं या कम हुईं। फिर जोड़ें या घटाएँ और उत्तर लिखें।",
+   "instructions_en": "Read each problem carefully. Decide whether things increased or decreased, then add or subtract and write the answer.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मेज़ पर 3 पेंसिलें हैं। 1 पेंसिल और रखी। अब कितनी पेंसिलें हैं?",
+     "answer": "4",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "थाली में 7 लड्डू थे। 4 लड्डू खा लिए। अब कितने लड्डू बचे?",
+     "answer": "3",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "तालाब में 2 बतखें हैं। 7 बतखें और आ गईं। अब कितनी बतखें हैं?",
+     "answer": "9",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "गमले में 6 फूल थे। 5 फूल तोड़ लिए। अब कितने फूल बचे?",
+     "answer": "1",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बस्ते में 1 किताब है। 1 किताब और रखी। अब कितनी किताबें हैं?",
+     "answer": "2",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "8 गुब्बारे थे। 3 गुब्बारे फूट गए। अब कितने गुब्बारे बचे?",
+     "answer": "5",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "83a75ec71030",
+ "created": "2026-11-21T06:01:23Z",
+ "cost_usd": 0.0283,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

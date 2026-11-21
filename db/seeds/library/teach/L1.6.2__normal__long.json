@@ -1,0 +1,123 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.6.2__normal__long",
+ "skill_id": "L1.6.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'पिछली बार हमने छोटी कहानी सुनी थी।' यह छोटी कहानी धीरे-धीरे दो बार सुनाएँ: 'चिड़िया ने दाना ढूँढा। उसने दाना बोया। पौधा उगा। पौधे पर फूल खिले।' बोर्ड पर चारों घटनाओं के छोटे चित्र उल्टे क्रम में बनाएँ, फिर 'पहले क्या हुआ? उसके बाद?' कहते हुए उन पर 1, 2, 3, 4 लिखें।",
+   "we_do_hi": "नई कहानी सुनाएँ: 'मीना उठी। उसने मुँह धोया। उसने खाना खाया। वह स्कूल गई।' बोर्ड पर चारों घटनाओं के चित्र आगे-पीछे बनाएँ और बच्चों से पूछें 'पहले क्या हुआ?', हर उत्तर पर उस चित्र के नीचे क्रम की संख्या लिखें। बीच की घटनाओं पर रुककर पूछें: 'खाना पहले खाया या मुँह पहले धोया?'",
+   "you_do_hi": "हर जोड़ी को चार कागज़ की पर्चियाँ दें, जिन पर ये चित्र बने हों: बीज, छोटा पौधा, बड़ा पौधा, फूल; बच्चे इन्हें क्रम में रखकर साथी को कहानी सुनाएँ। पर्चियाँ न हों तो बच्चे वर्कशीट के सवाल कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "यह कहानी सुनें: 'राजू ने गेंद फेंकी। गेंद पेड़ पर अटक गई। राजू रोने लगा।' सबसे पहले क्या हुआ? उँगली दिखाएँ: 1) गेंद फेंकी 2) राजू रोया",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा कहानी की पहली घटना पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "यह कहानी सुनें: 'माँ ने आटा गूँधा। माँ ने रोटी बेली। माँ ने रोटी सेंकी।' बीच में क्या हुआ? उँगली दिखाएँ: 1) रोटी सेंकी 2) रोटी बेली",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा बीच की घटना सही जगह रखता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की 4-4 पर्चियों के सेट बनाएँ, हर जोड़ी के लिए एक; उन पर बीज, छोटा पौधा, बड़ा पौधा और फूल के चित्र बनाएँ।",
+   "बोर्ड पर चिड़िया की कहानी के चार छोटे चित्र बनाने की जगह रखें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "कहानी पढ़ें या सुनें। घटनाओं को सही क्रम में लगाएँ और साथी को सुनाएँ।",
+   "instructions_en": "Read or listen to the story. Put the events in the right order and retell them to a partner.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "चार चित्र-पर्चियों (बीज, छोटा पौधा, बड़ा पौधा, फूल) को क्रम में रखें और साथी को कहानी सुनाएँ।",
+    "task_en": "Arrange four picture slips (seed, small plant, big plant, flower) in order and retell the story to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "चित्र बनी कागज़ की पर्चियाँ",
+     "बीज",
+     "पत्तियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों पर्चियाँ बिना मदद सही क्रम में रखता है और कहानी सुनाता है।",
+     "partial_hi": "पहली और आखिरी सही रखता है, बीच की दो उलट देता है।",
+     "not_yet_hi": "पर्चियाँ बिना क्रम के रखता है या केवल अंत बताता है।",
+     "achieved_en": "Orders all four slips correctly without help and retells.",
+     "partial_en": "Gets first and last right but swaps the middle two.",
+     "not_yet_en": "Places slips randomly or recalls only the ending."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सही क्रम में संख्या लिखें: पानी पिया, प्यास लगी, गिलास भरा।",
+     "answer": "2, 1, 3",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सही क्रम में संख्या लिखें: पतंग उड़ी, धागा बाँधा, पतंग बनाई, पतंग कट गई।",
+     "answer": "3, 2, 1, 4",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सही क्रम में संख्या लिखें: केला खाया, छिलका फेंका, केला खरीदा, केला छीला।",
+     "answer": "3, 4, 1, 2",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सही क्रम में संख्या लिखें: नहाया, सो गया, कपड़े पहने, खेलने गया।",
+     "answer": "1, 4, 2, 3",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0275,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

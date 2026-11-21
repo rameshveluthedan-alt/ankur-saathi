@@ -1,0 +1,102 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.5.1__normal__long",
+ "skill_id": "N2.5.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल की बात एक वाक्य में याद कराएँ: 'हमने आकृतियाँ पहचानी थीं।' कागज़ का एक आयत बच्चों को दिखाएँ और उसे बीच से मोड़ें, फिर कहें: 'देखिए, दोनों हिस्से एक-दूसरे पर पूरे बैठ गए, इसलिए यह मोड़ सममिति रेखा है।' बोर्ड पर आयत बनाकर बीच में खड़ी रेखा खींचें, फिर उसे तिरछा मोड़कर दिखाएँ कि कोने बाहर निकल आते हैं, इसलिए तिरछी रेखा आयत की सममिति रेखा नहीं है।",
+   "we_do_hi": "बोर्ड पर एक वर्ग बनाएँ और बच्चों से पूछें: 'इसे कहाँ मोड़ें कि दोनों हिस्से बराबर हों?' बच्चे हवा में उँगली से रेखा बनाएँ, फिर शिक्षक खड़ी, आड़ी और दोनों तिरछी रेखाएँ खींचें। इसके बाद बोर्ड पर एक दिल की आकृति बनाएँ, बच्चे बताएँ कि रेखा खड़ी होगी या आड़ी, और शिक्षक उसे खींचें।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 कॉपी में बनाकर हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि रेखा आकृति को ठीक दो बराबर हिस्सों में बाँट रही है या नहीं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर एक त्रिभुज बनाएँ जिसकी दोनों तिरछी भुजाएँ बराबर हों, और उसके बीच में ऊपर से नीचे खड़ी रेखा खींचें। क्या यह सममिति रेखा है? स्लेट पर 'सही' या 'गलत' लिखें।",
+    "expected_hi": "सही",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि रेखा आकृति को दो बराबर हिस्सों में बाँटती है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर अक्षर T बनाएँ। इसकी सममिति रेखा कैसी होगी? 1) खड़ी 2) आड़ी। उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा मोड़ की दिशा पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ का एक आयताकार टुकड़ा, मोड़कर दिखाने के लिए",
+   "बोर्ड पर आयत, वर्ग और दिल की आकृति बनाने की जगह"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर आकृति में एक सममिति रेखा खींचें।",
+   "instructions_en": "Draw one line of symmetry in each shape.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "वर्ग बनाएँ और एक सममिति रेखा खींचें।",
+     "answer": "बीच से खड़ी या आड़ी रेखा",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "आयत बनाएँ और एक सममिति रेखा खींचें।",
+     "answer": "बीच से खड़ी या आड़ी रेखा",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "वृत्त बनाएँ और एक सममिति रेखा खींचें।",
+     "answer": "केंद्र से होकर जाती कोई भी रेखा",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "अक्षर A बनाएँ और उसकी सममिति रेखा खींचें।",
+     "answer": "बीच से खड़ी रेखा",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "अक्षर H बनाएँ और उसकी एक सममिति रेखा खींचें।",
+     "answer": "बीच से खड़ी या आड़ी रेखा",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक पत्ता बनाएँ और उसकी सममिति रेखा खींचें।",
+     "answer": "बीच की नस वाली रेखा",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a577d9bf8601",
+ "created": "2026-11-21T06:07:42Z",
+ "cost_usd": 0.0211,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

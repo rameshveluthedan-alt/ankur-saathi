@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.2.3__normal__short",
+ "skill_id": "L0.2.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'आज हम शब्द की पहली आवाज़ सुनेंगे।' धीरे से बोलें: 'कमल... क... क', फिर 'पानी... प... प'। हर शब्द दो बार बोलें और पहली आवाज़ को थोड़ा खींचकर सुनाएँ।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को एक चम्मच, एक कंकड़, एक बटन और एक पत्ती मिलाकर दें। एक बच्चा चीज़ उठाकर उसका नाम बोले, दूसरा बच्चा उस नाम की पहली आवाज़ बताए, फिर बारी बदलें। जो जल्दी कर लें, वे कक्षा की दूसरी चीज़ों के नाम की पहली आवाज़ बताएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक शब्द बोलें: 'मछली'। इस शब्द की पहली आवाज़ कौन-सी है? स्लेट पर वह अक्षर लिखें या उसका चित्र बनाएँ।",
+    "expected_hi": "म",
+    "listen_for": [],
+    "shows_hi": "बच्चा पूरे शब्द में से पहली आवाज़ अलग करके पहचान लेता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "एक शब्द बोलें: 'बतख'। पहली आवाज़ 1) ब या 2) त? उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1 (ब)",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहली आवाज़ को शब्द के बीच की आवाज़ से अलग पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए चार चीज़ें इकट्ठी करें: चम्मच, कंकड़, बटन, पत्ती (या जो कक्षा में मिल जाएँ)।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "शिक्षक हर शब्द बोलें। बच्चे सुनें और शब्द की पहली आवाज़ बोलकर बताएँ।",
+   "instructions_en": "The teacher says each word aloud. Children listen and say the first sound of the word.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "पहली आवाज़ का उदाहरण:",
+    "example_text": "कमल → क"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा किसी चीज़ का नाम सुनकर उस नाम की पहली आवाज़ बोलकर बताए।",
+    "task_en": "The child hears the name of an object and says aloud the first sound of that name.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "चम्मच",
+     "कंकड़",
+     "बटन",
+     "पत्ती"
+    ],
+    "look_for": {
+     "achieved_hi": "पाँच में से चार शब्दों की पहली आवाज़ बिना मदद के सही बताता है।",
+     "partial_hi": "दो-तीन शब्दों की पहली आवाज़ बताता है, मिलती-जुलती आवाज़ों में उलझता है।",
+     "not_yet_hi": "पूरा शब्द दोहराता है या अंदाज़े से बोलता है।",
+     "achieved_en": "Says the first sound correctly for 4 of 5 words without help.",
+     "partial_en": "Gets 2-3 words right, confuses similar sounds.",
+     "not_yet_en": "Repeats the whole word or guesses."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सुनें और पहली आवाज़ बताएँ: 'गमला'",
+     "answer": "ग",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सुनें और पहली आवाज़ बताएँ: 'नल'",
+     "answer": "न",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सुनें और पहली आवाज़ बताएँ: 'दवात'",
+     "answer": "द",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सुनें और पहली आवाज़ बताएँ: 'रथ'",
+     "answer": "र",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "सुनें और पहली आवाज़ बताएँ: 'जहाज़'",
+     "answer": "ज",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0235,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

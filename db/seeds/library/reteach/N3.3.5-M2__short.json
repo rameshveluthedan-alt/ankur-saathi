@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.5-M2__short",
+ "skill_id": "N3.3.5",
+ "domain_id": "numeracy",
+ "mode": "N3.3.5-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने भाग करना सीखा था; आज देखेंगे कि जब कुछ बच जाए तो क्या करें। बोर्ड पर लिखें: 17 ÷ 5 = 4। बच्चों से कहें: 'देखिए, यहाँ 17 को ऊपर की ओर गिन लिया गया है, पर 5 के 4 समूहों के लिए तो 20 चाहिए, हमारे पास 17 ही हैं।' फिर उसी सवाल के लिए बोर्ड पर 17 बिंदु बनाएँ और 5-5 के घेरे लगाएँ: 3 पूरे घेरे बनते हैं और 2 बिंदु बचते हैं। बोर्ड पर लिखें: 17 ÷ 5 = 3 शेष 2। गलत लाइन मिटा दें, ताकि बोर्ड पर सिर्फ़ सही तरीका रहे।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में सवाल 1 और 2 शुरू हो जाएँ; बाकी काम बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें। शिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ जिनसे शेष वाली गलती हुई थी, किसी का नाम लिए बिना।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "22 आम 4 टोकरियों में बराबर बाँटने हैं। हर टोकरी में कितने आम आएँगे?",
+    "expected_hi": "5",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M2",
+      "misconception_name_hi": "शेषफल संभाल नहीं पाता",
+      "misconception_name_en": "Cannot handle remainders",
+      "detect_en": "Correct for exact divisions (24÷6=4) but wrong/blank for inexact (25÷6)",
+      "wrong_answer_hi": "6"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "19 लड्डू 3 प्लेटों में बराबर रखने हैं। सबको बराबर देने के बाद कितने लड्डू बचेंगे?",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M2",
+      "misconception_name_hi": "शेषफल संभाल नहीं पाता",
+      "misconception_name_en": "Cannot handle remainders",
+      "detect_en": "Correct for exact divisions (24÷6=4) but wrong/blank for inexact (25÷6)",
+      "wrong_answer_hi": "0"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 17 बिंदु बनाने और 5-5 के घेरे लगाने के लिए जगह खाली रखें।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "भाग करें। अगर कुछ बच जाए, तो उसे शेष लिखें। चाहें तो बिंदु बनाकर घेरे लगाएँ।",
+   "instructions_en": "Divide. If something is left over, write it as the remainder. You may draw dots and circle equal groups.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "23 ÷ 5 = ___",
+    "answer": "4 शेष 3",
+    "show_pv_grid": false,
+    "pv_columns": 2
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "35 ÷ 5 = ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "26 ÷ 4 = ___",
+     "answer": "6 शेष 2",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "47 ÷ 6 = ___",
+     "answer": "7 शेष 5",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "54 ÷ 9 = ___",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "43 ÷ 8 = ___",
+     "answer": "5 शेष 3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "30 पेंसिलें 7 बच्चों में बराबर बाँटनी हैं। हर बच्चे को कितनी पेंसिलें मिलेंगी और कितनी बचेंगी?",
+     "answer": "4 शेष 2",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "c6952a3618ce",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.1029,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

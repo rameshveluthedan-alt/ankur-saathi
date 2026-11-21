@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N0.2.3-M2__long",
+ "skill_id": "N0.2.3",
+ "domain_id": "numeracy",
+ "mode": "N0.2.3-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने 1 से 9 तक के अंक पहचाने थे, आज हम 2 और 5 को ध्यान से देखेंगे। बोर्ड पर बड़ा 5 लिखें और कहें: 'देखिए, इसे कोई दो भी पढ़ सकता है, पर यह दो नहीं है', फिर उसी 5 पर उँगली से लिखकर दिखाएँ: 'पाँच ऊपर सीधी खड़ी लकीर और टोपी से शुरू होता है, नीचे पेट गोल है; दो ऊपर गोल घूमकर नीचे सीधी लेटी लकीर पर बैठता है।' गलत पढ़ने की बात मिटा दें, बोर्ड पर 2 और 5 पास-पास रहने दें और हर एक के पास उतनी ही बिंदियाँ बनाएँ।",
+   "we_do_hi": "बोर्ड पर लिखें: 2 के नीचे पाँच बिंदियाँ और 5 के नीचे दो बिंदियाँ, फिर पूछें: 'कौन सी जोड़ी गलत है?' बच्चे बताएँ और साथ मिलकर बिंदियाँ ठीक करें। इसके बाद बच्चे हवा में उँगली से 2 और फिर 5 बनाएँ, बोलते हुए: 'दो नीचे सीधी लकीर पर बैठता है, पाँच ऊपर टोपी पहनता है।' अंत में बोर्ड पर 3 लिखें और साथ मिलकर पहचानें।",
+   "you_do_hi": "हर जोड़ी को अंक कार्ड 1 से 9 दें; कार्ड न हों तो कागज़ की पर्चियों पर अंक लिखकर और कुछ कंकड़ या बीज दें। एक बच्चा कोई अंक कार्ड उठाए, दूसरा उसका नाम बोले और उतने कंकड़ रखे, फिर बारी बदलें; पहले उन बच्चों के पास शांति से जाएँ जिन्हें 2 और 5 में भ्रम था। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 2   2) 5। पाँच कौन सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M2",
+      "misconception_name_hi": "2 और 5 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 2 and 5",
+      "detect_en": "Reads 2 as 5 or vice versa; pattern is consistent across sessions",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 2। यह कौन सा अंक है? उतनी उँगलियाँ दिखाएँ।",
+    "expected_hi": "दो उँगलियाँ",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M2",
+      "misconception_name_hi": "2 और 5 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 2 and 5",
+      "detect_en": "Reads 2 as 5 or vice versa; pattern is consistent across sessions",
+      "wrong_answer_hi": "पाँच उँगलियाँ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए 1 से 9 के अंक कार्ड (या कागज़ की पर्चियों पर लिखे अंक)",
+   "हर जोड़ी के लिए 9 कंकड़ या बीज",
+   "स्लेट या कॉपी, और बोर्ड पर बड़े अक्षरों में 2 और 5 लिखने की जगह",
+   "फ्लैश कार्ड बनाएँ: मोटे कागज़ को ताश के पत्ते के आकार में काटें। एक तरफ़ अंक लिखें, दूसरी तरफ़ उतने बिंदु या दहाई-इकाई के चित्र बनाएँ। पाठ में ये कार्ड दिखाए जाएँगे: प्रगतिशील समूह के लिए 1। कुल 1 कार्ड।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अंक के आगे उतनी बिंदियाँ बनाएँ।",
+   "instructions_en": "Next to each numeral, draw that many dots.",
+   "required_count": 3,
+   "practice": true,
+   "sheet_kind": "observed",
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चा अंक कार्ड उठाकर अंक का नाम बोले और उतने कंकड़ रखे।",
+    "task_en": "The child picks a numeral card, names the numeral and places that many pebbles.",
+    "kit_materials_hi": [
+     "अंक कार्ड"
+    ],
+    "local_materials_hi": [
+     "कंकड़",
+     "बीज",
+     "बोतल के ढक्कन",
+     "अंक लिखी कागज़ की पर्चियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी 9 अंक सही बोलता है, 2 और 5 भी",
+     "partial_hi": "ज़्यादातर अंक सही, पर 2 और 5 या 6 और 9 में अटकता है",
+     "not_yet_hi": "6 से कम अंक पहचानता है",
+     "achieved_en": "Names all 9 numerals correctly, including 2 and 5",
+     "partial_en": "Names most numerals but mixes up 2/5 or 6/9",
+     "not_yet_en": "Names fewer than 6 numerals"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 के आगे उतनी बिंदियाँ बनाएँ।",
+     "answer": "3 बिंदियाँ",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "5 के आगे उतनी बिंदियाँ बनाएँ।",
+     "answer": "5 बिंदियाँ",
+     "diagnostic_for_misconception": "N0.2.3-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "2 के आगे उतनी बिंदियाँ बनाएँ।",
+     "answer": "2 बिंदियाँ",
+     "diagnostic_for_misconception": "N0.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "7 के आगे उतनी बिंदियाँ बनाएँ।",
+     "answer": "7 बिंदियाँ",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "4 के आगे उतनी बिंदियाँ बनाएँ।",
+     "answer": "4 बिंदियाँ",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 1: the question states its own answer (3 बिंदियाँ)",
+   "worksheets.progressor (observed) problem 2: the question states its own answer (5 बिंदियाँ)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (2 बिंदियाँ)",
+   "worksheets.progressor (observed) problem 4: the question states its own answer (7 बिंदियाँ)",
+   "worksheets.progressor (observed) problem 5: the question states its own answer (4 बिंदियाँ)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)",
+   "place value: flash cards listed from the lesson: progressor 1"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "160f4e585b9f",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0276,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

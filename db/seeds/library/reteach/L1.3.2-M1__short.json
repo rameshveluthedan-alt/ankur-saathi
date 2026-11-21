@@ -1,0 +1,143 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.2-M1__short",
+ "skill_id": "L1.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.2-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने ि और ी की मात्रा पढ़ी थी। बोर्ड पर लिखें: दिन, और पहले गलत पढ़कर दिखाएँ: 'दीन', फिर बच्चों से पूछें कि मात्रा छोटी है या बड़ी, और सही पढ़ें: 'दिन', छोटी इ की मात्रा पर आवाज़ छोटी रखें। इसके बाद गलत पढ़ना मिटाने की बात कहें और बोर्ड पर केवल 'दिन' सही उच्चारण के साथ रहने दें; फिर 'सील' लिखकर बड़ी ई की लंबी आवाज़ खींचकर पढ़ें।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को शब्द-पर्चियाँ दें, जिन पर बोर्ड से लिखे शब्द हों: किला, कील, मिल, मील, पिता, पीना। बच्चे बारी-बारी से साथी को शब्द पढ़कर सुनाएँ; पर्चियाँ न हों तो वर्कशीट के सवाल 1 से 3 पहले साथी को पढ़कर सुनाएँ, जो जल्दी ख़त्म करें वे बाकी सवाल पढ़ें, बाकी काम अगले समय अपनी जगह पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) सिल 2) सील। 'सील' शब्द कौन-सा है? उंगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M1",
+      "misconception_name_hi": "छोटी इ (ि) और बड़ी ई (ी) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटी इ (ि) and बड़ी ई (ी) matras",
+      "detect_en": "Errors specifically on ि/ी distinction; other matras are read correctly. Inconsistent — sometimes correct, sometimes swapped.",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: क_ल (कल्पना करें 'कील' बोलना है)। 'कील' बोलें। स्लेट पर बीच की मात्रा लिखें: ि या ी?",
+    "expected_hi": "ी",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M1",
+      "misconception_name_hi": "छोटी इ (ि) और बड़ी ई (ी) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटी इ (ि) and बड़ी ई (ी) matras",
+      "detect_en": "Errors specifically on ि/ी distinction; other matras are read correctly. Inconsistent — sometimes correct, sometimes swapped.",
+      "wrong_answer_hi": "ि"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: दिन, सील, सिल, कुल, कूल",
+   "कागज़ की पर्चियों पर हर जोड़ी के लिए छह शब्द लिखें: किला, कील, मिल, मील, पिता, पीना"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द साथी को पढ़कर सुनाएँ। छोटी इ और बड़ी ई की आवाज़ पर ध्यान दें।",
+   "instructions_en": "Read each word aloud to your partner. Listen for the short i and long i sound.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "साथी को छह शब्द-पर्चियाँ पढ़कर सुनाएँ: किला, कील, मिल, मील, पिता, पीना।",
+    "task_en": "Read six word slips aloud to a partner: kila, keel, mil, meel, pita, peena.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की शब्द-पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "छहों शब्द ि और ी का अंतर रखकर बिना मदद पढ़ता है",
+     "partial_hi": "कुछ शब्दों में ि और ी बदल जाते हैं, बताने पर सुधारता है",
+     "not_yet_hi": "ि और ी दोनों को एक जैसा पढ़ता है",
+     "achieved_en": "Reads all six words keeping short i and long i apart, without help",
+     "partial_en": "Swaps short and long i on some words, corrects with a cue",
+     "not_yet_en": "Reads short i and long i the same way"
+    }
+   },
+   "example_block": null,
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: पिता",
+     "answer": "पिता",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: मिल, मील",
+     "answer": "मिल, मील",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: किला, कील",
+     "answer": "किला, कील",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: पीना",
+     "answer": "पीना",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: दिया",
+     "answer": "दिया",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "10a88e50f41e",
+ "created": "2026-11-21T06:01:23Z",
+ "cost_usd": 0.0258,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

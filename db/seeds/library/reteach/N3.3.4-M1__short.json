@@ -1,0 +1,136 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.4-M1__short",
+ "skill_id": "N3.3.4",
+ "domain_id": "numeracy",
+ "mode": "N3.3.4-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने 2 अंकों की संख्या को 1 अंक से गुणा करना सीखा था। बोर्ड पर 26 × 3 लिखें, पहले गलत तरीका दिखाएँ: 6 × 3 = 18 और 2 × 3 = 6 साथ लिखकर 618। बच्चों से कहें: 'देखिए, यहाँ 18 का 1 दहाई में नहीं गया, इसलिए उत्तर गलत है।' फिर वही सवाल सही करें: 6 × 3 = 18, इकाई में 8 लिखें, 1 हासिल ऊपर; 2 × 3 = 6, 6 + 1 = 7, उत्तर 78। गलत हल मिटा दें, बोर्ड पर केवल सही हल रहने दें। अंत में समूह से एक छोटा प्रश्न पूछें: '16 × 4 में हासिल कितना होगा?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट का सवाल 1 कॉपी में हल करें।' जिन बच्चों ने पिछली बार अंक अलग-अलग गुणा करके साथ लिखे थे, उनके पास पहले जाएँ, शांति से, सामान्य चक्कर के बीच ही। सवाल 2 और 3 बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "37 × 2",
+    "expected_hi": "74",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M1",
+      "misconception_name_hi": "प्रत्येक अंक को अलग-अलग गुणा करना, हासिल के बिना",
+      "misconception_name_en": "Multiplies each digit independently without carrying",
+      "detect_en": "Answer structure looks like concatenation of two separate products rather than proper column multiplication",
+      "wrong_answer_hi": "614"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 18 × 5 = 540। सही या गलत?",
+    "expected_hi": "गलत, 90",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M1",
+      "misconception_name_hi": "प्रत्येक अंक को अलग-अलग गुणा करना, हासिल के बिना",
+      "misconception_name_en": "Multiplies each digit independently without carrying",
+      "detect_en": "Answer structure looks like concatenation of two separate products rather than proper column multiplication",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से 26 × 3 लिखकर रखें, और उसके नीचे गलत व सही हल के लिए जगह छोड़ें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "गुणा करें। इकाई का गुणा पहले करें, हासिल को दहाई वाले बॉक्स के ऊपर लिखें और दहाई के गुणनफल में जोड़ें।",
+   "instructions_en": "Multiply. Multiply the ones first, write the carry above the tens and add it to the tens product.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "27 × 3 = ___",
+    "answer": "81",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "",
+    "row2_o": "3",
+    "answer_t": "8",
+    "answer_o": "1"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "25 × 3",
+     "answer": "75",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "47 × 2",
+     "answer": "94",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N3.3.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "38 × 3 = ___",
+     "answer": "114",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.4-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "19 × 4 = ___",
+     "answer": "76",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "29 × 3 = ___",
+     "answer": "87",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक डिब्बे में 15 पेंसिलें हैं। 6 डिब्बों में कुल कितनी पेंसिलें हैं?",
+     "answer": "90",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6fcc8836d9a6",
+ "created": "2026-11-21T06:08:40Z",
+ "cost_usd": 0.0322,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

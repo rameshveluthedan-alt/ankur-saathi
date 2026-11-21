@@ -1,0 +1,149 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.3.5__normal__medium",
+ "skill_id": "N3.3.5",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 15 ÷ 3 और बताएँ: 'भाग का मतलब है बराबर बाँटना।' 15 कंकड़ 3 ढेरों में एक-एक करके बाँटें, फिर हर ढेर गिनें: 'हर ढेर में 5, तो 15 ÷ 3 = 5।' बच्चों को याद दिलाएँ: 'भाग में हम 3 घटाते नहीं, बराबर बाँटते हैं।'",
+   "we_do_hi": "बोर्ड पर लिखें: 20 ÷ 5। बच्चों के साथ 20 कंकड़ों में से 5-5 के समूह बनाएँ और पूछें 'कितने समूह बने?' उत्तर है 4। फिर 13 ÷ 4 लें: 4-4 के समूह बनाएँ, 3 समूह बनते हैं और 1 कंकड़ बचता है। बोर्ड पर लिखें: 13 ÷ 4 = 3 शेष 1, और बताएँ: 'जो बचता है, वह शेष है।'",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट का सवाल 1 हल करें।' बच्चे कॉपी में चित्र या डंडियाँ बनाकर बाँटें। बाकी सवाल बच्चे अगले समय में अपनी जगह पर पूरे करें। जो जल्दी ख़त्म करें, वे अतिरिक्त सवाल 4 से 6 करें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर उत्तर लिखें: 30 ÷ 5",
+    "expected_hi": "6",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M1",
+      "misconception_name_hi": "भाग को घटाव समझना",
+      "misconception_name_en": "Confuses division with subtraction",
+      "detect_en": "Answer equals dividend minus divisor consistently",
+      "wrong_answer_hi": "25"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर लिखें: 32 ÷ 4 = 28। क्या यह सही है? स्लेट पर सही या गलत लिखें, और गलत हो तो सही उत्तर भी लिखें।",
+    "expected_hi": "गलत, 8",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M1",
+      "misconception_name_hi": "भाग को घटाव समझना",
+      "misconception_name_en": "Confuses division with subtraction",
+      "detect_en": "Answer equals dividend minus divisor consistently",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "20 कंकड़ या बीज, बाँटकर दिखाने के लिए (एक सेट, शिक्षक के लिए)",
+   "बोर्ड पर पहले से लिखें: 15 ÷ 3, 20 ÷ 5, 13 ÷ 4"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में बराबर बाँटें। चित्र या डंडियाँ बनाकर हल कर सकते हैं। कुछ बचे तो शेष लिखें।",
+   "instructions_en": "Share equally in each problem. You may draw pictures or sticks. If something is left over, write the remainder.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "18 ÷ 3 = ___",
+    "answer": "6",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": null,
+    "row1_o": null,
+    "row2_t": null,
+    "row2_o": null,
+    "answer_t": null,
+    "answer_o": null
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "21 ÷ 3 = ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "54 ÷ 6 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "23 ÷ 4 = ___",
+     "answer": "5 शेष 3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "16 ÷ 2 = ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "29 ÷ 3 = ___",
+     "answer": "9 शेष 2",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "60 टॉफ़ियाँ 10 बच्चों में बराबर बाँटनी हैं। हर बच्चे को कितनी टॉफ़ियाँ मिलेंगी?",
+     "answer": "6",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "fbe625cb37ce",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0353,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

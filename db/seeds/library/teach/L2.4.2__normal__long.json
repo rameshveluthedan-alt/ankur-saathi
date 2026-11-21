@@ -1,0 +1,122 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.4.2__normal__long",
+ "skill_id": "L2.4.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कुछ शब्द बिना अक्षर जोड़े, एक नज़र में पढ़े थे।' बोर्ड पर लिखें: लेकिन, इसलिए, क्योंकि, और, फिर। हर शब्द पर उँगली रखकर एक बार में पूरा पढ़ें और बताएँ: 'देखिए, ये जोड़ने वाले शब्द हैं, इन्हें अक्षर-अक्षर नहीं, पूरा पहचानते हैं।' फिर बोर्ड पर लिखें: 'राम भूखा था, इसलिए उसने रोटी खाई।' और इसे बिना रुके पढ़कर सुनाएँ।",
+   "we_do_hi": "बोर्ड के शब्दों पर बारी-बारी से उँगली रखें और दो-दो बच्चों से एक-एक शब्द तुरंत पढ़वाएँ। फिर बोर्ड पर लिखें: हालाँकि, जब, तब, भी, नहीं और हर नए शब्द को पहले एक बार पढ़कर सुनाएँ, फिर बच्चों से पढ़वाएँ। जो बच्चा अक्षर जोड़कर पढ़े, उसके साथ वही शब्द दोबारा पूरा पढ़ें: 'अब एक नज़र में पढ़ें।'",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: लेकिन, इसलिए, क्योंकि, हालाँकि, और, फिर, जब, तब। एक बच्चा कार्ड दिखाए, दूसरा तुरंत पढ़े, फिर बारी बदलें; पर्चियाँ न हों तो बच्चे वर्कशीट के शब्द कॉपी में से साथी को पढ़कर सुनाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) लेकिन 2) लड़की। शिक्षक एक शब्द बोलें: 'लेकिन'। सुना हुआ शब्द कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा जोड़ने वाले शब्द को उसके पूरे रूप से पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मैं स्कूल गया क्योंकि आज परीक्षा थी।' इसमें जोड़ने वाला शब्द कौन-सा नंबर का है? उँगलियों पर शब्द का नंबर दिखाएँ।",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा वाक्य के बीच में योजक शब्द तुरंत पहचान लेता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर शब्द-कार्ड लिखें: लेकिन, इसलिए, क्योंकि, हालाँकि, और, फिर, जब, तब (हर जोड़ी के लिए एक सेट)।",
+   "बोर्ड पर पहले से लिखें: लेकिन, इसलिए, क्योंकि, और, फिर।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द और वाक्य अपने साथी को पढ़कर सुनाएँ। शब्द को एक नज़र में पूरा पढ़ें।",
+   "instructions_en": "Read each word and sentence aloud to your partner. Read each word whole, at a glance.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा साथी के दिखाए आठ शब्द-कार्ड (लेकिन, इसलिए, क्योंकि, हालाँकि, और, फिर, जब, तब) एक-एक करके ज़ोर से पढ़े।",
+    "task_en": "The child reads aloud eight word cards (connectors and function words) shown by a partner, one at a time.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी कार्ड बिना रुके, एक नज़र में पूरा पढ़ता है।",
+     "partial_hi": "छोटे शब्द तुरंत पढ़ता है, पर लंबे योजक अक्षर जोड़कर पढ़ता है।",
+     "not_yet_hi": "ज़्यादातर शब्द मदद से या अक्षर-अक्षर ही पढ़ पाता है।",
+     "achieved_en": "Reads all cards instantly, without pausing.",
+     "partial_en": "Reads short words instantly but decodes longer connectors letter by letter.",
+     "not_yet_en": "Reads most words only with help or letter by letter."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: और, फिर, जब, तब",
+     "answer": "और, फिर, जब, तब",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: लेकिन, इसलिए, क्योंकि, हालाँकि",
+     "answer": "लेकिन, इसलिए, क्योंकि, हालाँकि",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: 'धूप तेज़ थी, लेकिन हम खेलते रहे।' इसमें जोड़ने वाला शब्द कौन-सा है? बोलकर बताएँ।",
+     "answer": "लेकिन",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: 'मीना खुश थी क्योंकि उसे नई किताब मिली।' इसमें जोड़ने वाला शब्द कौन-सा है? बोलकर बताएँ।",
+     "answer": "क्योंकि",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0303,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

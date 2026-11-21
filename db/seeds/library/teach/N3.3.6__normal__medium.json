@@ -1,0 +1,132 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.3.6__normal__medium",
+ "skill_id": "N3.3.6",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'एक दुकान में 4 डिब्बे हैं, हर डिब्बे में 15 लड्डू हैं। 12 लड्डू बिक गए। अब कितने लड्डू बचे?' पहले 4 × 15 = 60 करके रुकें और पूछें: 'क्या सवाल का उत्तर मिल गया?' फिर बताएँ कि सवाल बचे हुए लड्डू पूछता है, इसलिए दूसरा चरण 60 - 12 = 48 है। दोनों चरणों पर 'चरण 1' और 'चरण 2' लिखें।",
+   "we_do_hi": "बोर्ड पर लिखें: 'एक बाग़ से 5 थैलियाँ आम आए, हर थैली में 20 आम। 18 आम खराब निकले। कितने अच्छे आम बचे?' बच्चों से पूछें: 'पहले क्या करेंगे?' 5 × 20 = 100 बच्चे कॉपी में लिखें। फिर पूछें: 'क्या यहीं रुक जाएँ?' और साथ में दूसरा चरण 100 - 18 = 82 करें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट का सवाल 1 हल करें, उसके दोनों चरण अलग-अलग लिखें।' जो सवाल 1 पूरा कर लें, वे अपनी जगह पर सवाल 2 और 3 करें। बाकी सवाल जल्दी ख़त्म करने वालों के लिए अतिरिक्त हैं। घूमकर देखें कि हर बच्चे ने दूसरा चरण लिखा है या नहीं।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "एक कक्षा में 6 बेंच हैं, हर बेंच पर 3 बच्चे बैठे हैं। 5 बच्चे और आ गए। कुल कितने बच्चे हैं: 18 या 23?",
+    "expected_hi": "23",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "18"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर लिखें: '7 पैकेट हैं, हर पैकेट में 10 पेन। 9 पेन बिक गए। कितने पेन बचे? उत्तर: 70'। यह उत्तर सही है या गलत?",
+    "expected_hi": "गलत, 61",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का लड्डू वाला सवाल और We Do का आम वाला सवाल पहले से लिख लें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। पहला चरण और दूसरा चरण अलग-अलग लिखें, फिर उत्तर लिखें।",
+   "instructions_en": "Read each problem carefully. Write step 1 and step 2 separately, then write the answer.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "8 थैलियों में 5-5 सेब हैं। 7 सेब और खरीदे। कुल कितने सेब हुए?",
+     "answer": "47",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "6 डिब्बों में 24-24 चॉक हैं। 35 चॉक इस्तेमाल हो गईं। कितनी चॉक बचीं?",
+     "answer": "109",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "मैदान में 9 पंक्तियों में 45-45 कुर्सियाँ हैं। 128 कुर्सियाँ और लाई गईं। अब कुल कितनी कुर्सियाँ हैं?",
+     "answer": "533",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "7 बसों में 32-32 यात्री बैठे हैं। 50 यात्री उतर गए। अब कितने यात्री बसों में हैं?",
+     "answer": "174",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "रीता के पास 250 रुपये थे। उसने 3 कॉपियाँ 40-40 रुपये की खरीदीं। उसके पास कितने रुपये बचे?",
+     "answer": "130",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "12 पैकेटों में 15-15 बिस्कुट हैं। 65 बिस्कुट और आए। कुल कितने बिस्कुट हुए?",
+     "answer": "245",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 12"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "59bc74964a49",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.0346,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

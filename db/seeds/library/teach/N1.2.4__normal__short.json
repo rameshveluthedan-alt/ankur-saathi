@@ -1,0 +1,138 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.4__normal__short",
+ "skill_id": "N1.2.4",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 34। दस-दस छड़ियों के 3 बंडल और 4 खुली छड़ियाँ दिखाकर कहें: 'देखिए, 3 बंडल यानी 3 दहाई, यानी 30; और 4 खुली छड़ियाँ यानी 4 इकाई।' दहाई-इकाई के बॉक्स में 3 को दहाई में और 4 को इकाई में लिखें, और अंत में समूह से पूछें: '34 में 3 का मान कितना है?'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि बच्चे दहाई का अंक बाएँ और इकाई का अंक दाएँ लिख रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 52। इसमें 5 का मान कितना है?",
+    "expected_hi": "50",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.4-M1",
+      "misconception_name_hi": "अंकों को स्वतंत्र मानना (23 = \"2 और 3\", \"20 और 3\" नहीं)",
+      "misconception_name_en": "Treats digits independently (23 = \"2 and 3\" not \"20 and 3\")",
+      "detect_en": "When asked \"what does the 2 in 23 mean?\" child says \"2\" not \"20\" or \"2 tens\"",
+      "wrong_answer_hi": "5"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 76। इसमें दहाई का अंक कौन-सा है?",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.4-M2",
+      "misconception_name_hi": "दहाई और इकाई का स्थान बदलता है",
+      "misconception_name_en": "Reverses tens and ones positions",
+      "detect_en": "Points to ones digit when asked about tens, or writes 5 in tens column and 4 in ones for \"forty-five\"",
+      "wrong_answer_hi": "6"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "दस-दस छड़ियों के 3 बंडल और 4 खुली छड़ियाँ।",
+   "बोर्ड पर दहाई-इकाई का बॉक्स बनाकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या की दहाई और इकाई पहचानें। दहाई का अंक बाएँ और इकाई का अंक दाएँ लिखें।",
+   "instructions_en": "Find the tens and ones of each number. Write the tens digit on the left and the ones digit on the right.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "25 = 2 दहाई 5 इकाई",
+    "answer": "2 दहाई 5 इकाई",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "5",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "2",
+    "answer_o": "5"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "46 को दहाई-इकाई के बॉक्स में लिखें",
+     "answer": "4 दहाई 6 इकाई",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "अट्ठावन लिखिए",
+     "answer": "58",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N1.2.4-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "73 में 7 का मान = ___",
+     "answer": "70",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N1.2.4-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "38 में कितनी दहाई? ___",
+     "answer": "3",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "9 दहाई 1 इकाई = ___",
+     "answer": "91",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "50 + 2 = ___",
+     "answer": "52",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "the progressor lesson (i_do_hi) says «दस» (= 10) beside the number 30",
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "5cc7036c5e29",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0272,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

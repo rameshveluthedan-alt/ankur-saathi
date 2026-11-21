@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.2.3__normal__medium",
+ "skill_id": "L0.2.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'आज हम सुनेंगे कि शब्द किस आवाज़ से शुरू होता है।' धीरे से बोलें: 'म...म...मछली', फिर कहें: 'मछली की पहली आवाज़ है म।' इसी तरह 'ब...ब...बकरी' बोलकर पहली आवाज़ ब बताएँ।",
+   "we_do_hi": "एक शब्द बोलें, जैसे 'नाक', और बच्चों से पूछें: 'पहली आवाज़ कौन-सी है?' एक-एक बच्चे से उत्तर सुनें और सही उत्तर पर शाबाशी दें। फिर 'घर' और 'तितली' के साथ यही करें।",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को चम्मच, पत्ता, कंघी और गिलास मिलाकर दें। एक बच्चा चीज़ उठाकर उसका नाम बोले, दूसरा उसकी पहली आवाज़ बताए, फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक शब्द सुनें: 'सेब'। इसकी पहली आवाज़ कौन-सी है? 1) स 2) ब। उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "1 (स)",
+    "listen_for": [],
+    "shows_hi": "बच्चा पूरे शब्द में से पहली आवाज़ अलग कर पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक शब्द सुनें: 'दरवाज़ा'। पहली आवाज़ कौन-सी है? 1) ज 2) द। उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "2 (द)",
+    "listen_for": [],
+    "shows_hi": "बच्चा लंबे शब्द में भी पहली आवाज़ पहचानता है, आख़िरी आवाज़ से भ्रमित नहीं होता।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "चम्मच, पत्ता, कंघी और गिलास जैसी रोज़ की चीज़ें इकट्ठा करें, हर जोड़ी के लिए एक सेट।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द को साथी को बोलकर सुनाएँ। साथी उसकी पहली आवाज़ बताए।",
+   "instructions_en": "Say each word to your partner. The partner tells its first sound.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "पहली आवाज़ का उदाहरण:",
+    "example_text": "कमल → क"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा एक चीज़ उठाकर उसका नाम बोले और उसकी पहली आवाज़ बताए।",
+    "task_en": "The child picks up an object, says its name and tells its first sound.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "चम्मच",
+     "पत्ता",
+     "कंघी",
+     "गिलास"
+    ],
+    "look_for": {
+     "achieved_hi": "पाँच में से चार शब्दों की पहली आवाज़ बिना मदद के सही बताता है।",
+     "partial_hi": "दो-तीन शब्दों की पहली आवाज़ सही बताता है या मिलती-जुलती आवाज़ों में उलझता है।",
+     "not_yet_hi": "पूरा शब्द दोहराता है या अंदाज़े से बोलता है।",
+     "achieved_en": "Tells the first sound of 4 of 5 words without help.",
+     "partial_en": "Gets 2-3 right or mixes similar sounds.",
+     "not_yet_en": "Repeats the whole word or guesses."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'पानी' बोलें। पहली आवाज़ बताएँ।",
+     "answer": "प",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "'गमला' बोलें। पहली आवाज़ बताएँ।",
+     "answer": "ग",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "'रस्सी' बोलें। पहली आवाज़ बताएँ।",
+     "answer": "र",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "'टमाटर' बोलें। पहली आवाज़ बताएँ।",
+     "answer": "ट",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'लड्डू' बोलें। पहली आवाज़ बताएँ।",
+     "answer": "ल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:02:08Z",
+ "cost_usd": 0.0243,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

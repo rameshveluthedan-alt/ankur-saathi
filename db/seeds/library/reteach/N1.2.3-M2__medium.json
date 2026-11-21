@@ -1,0 +1,150 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.2.3-M2__medium",
+ "skill_id": "N1.2.3",
+ "domain_id": "numeracy",
+ "mode": "N1.2.3-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने दो अंकों वाली संख्याएँ पढ़ना और लिखना सीखा था।' बोर्ड पर लिखें: पंद्रह = 50। फिर बच्चों से कहें: 'देखिए, यहाँ पंद्रह को पचास जैसा लिख दिया गया है। पंद्रह में एक दहाई और पाँच इकाई होती हैं।' दस छड़ियों का एक बंडल और पाँच खुली छड़ियाँ दिखाएँ। दहाई-इकाई के बॉक्स में दहाई में 1 और इकाई में 5 लिखकर 15 बनाएँ। अंत में गलत पंक्ति मिटा दें, ताकि बोर्ड पर सिर्फ़ 15 रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: सत्रह = 70 और उन्नीस = 90। बच्चों से पूछें: 'सत्रह में कितनी दहाई और कितनी इकाई हैं?' फिर साथ में बॉक्स भरकर दोनों को सुधारें: 17 और 19। इसके बाद एक नई संख्या साथ में करें: 'तेरह' बोलें, बंडल और तीन खुली छड़ियाँ दिखाएँ, और बच्चे बताएँ कि क्या लिखना है: 13। गलत पंक्तियाँ मिटा दें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' बच्चे इसी समय सवाल 1 से 3 शुरू करें और बाकी काम अगले ब्लॉक में अपनी जगह पर पूरा करें। सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार यह गलती की थी, और उनके सवाल 2 और 3 देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: सोलह। बच्चे स्लेट पर इसे अंकों में लिखें।",
+    "expected_hi": "16",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M2",
+      "misconception_name_hi": "किशोर संख्याओं (11-19) में भ्रम",
+      "misconception_name_en": "Teen number confusion (11-19)",
+      "detect_en": "Errors concentrated in 11-19 range; numbers 20+ are written correctly",
+      "wrong_answer_hi": "60"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 40   2) 14। एक संख्या बोलें: चौदह। बच्चे उंगली पर दिखाएँ: 1 या 2?",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M2",
+      "misconception_name_hi": "किशोर संख्याओं (11-19) में भ्रम",
+      "misconception_name_en": "Teen number confusion (11-19)",
+      "detect_en": "Errors concentrated in 11-19 range; numbers 20+ are written correctly",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "दस छड़ियों का एक बंडल (रबर बैंड से बँधा) और नौ खुली छड़ियाँ।",
+   "बोर्ड पर पहले से एक दहाई-इकाई का बॉक्स बनाकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "संख्या का नाम पढ़ें और उसे अंकों में लिखें। दहाई-इकाई के बॉक्स में दहाई और इकाई अलग-अलग लिखें।",
+   "instructions_en": "Read the number name and write it in digits. In the Tens-Ones box, write the tens and ones separately.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "इक्कीस लिखिए",
+    "answer": "21",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "1",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "2",
+    "answer_o": "1"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "चौंतीस लिखिए",
+     "answer": "34",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "अठारह लिखिए",
+     "answer": "18",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N1.2.3-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "ग्यारह लिखिए = ___",
+     "answer": "11",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बावन लिखिए = ___",
+     "answer": "52",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "सैंतालीस लिखिए = ___",
+     "answer": "47",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "तिरसठ लिखिए = ___",
+     "answer": "63",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "the progressor lesson (i_do_hi) says «पंद्रह» (= 15) beside the number 50",
+   "the progressor lesson (we_do_hi) says «सत्रह» (= 17) beside the number 70"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "825367898162",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0378,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

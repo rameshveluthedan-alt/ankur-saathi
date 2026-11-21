@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.6.2-M1__medium",
+ "skill_id": "L2.6.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.6.2-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने सीखा था कि मुख्य विचार पूरे अनुच्छेद की एक बड़ी बात होती है। बोर्ड पर लिखें: 'मोहन के पास एक गाय है। उसका रंग सफ़ेद है। मोहन रोज़ उसे चारा खिलाता है। वह उसे नहलाता भी है। मोहन अपनी गाय का पूरा ध्यान रखता है।' पहले गलत उत्तर बोलें: 'मुख्य विचार है: गाय सफ़ेद है', फिर समझाएँ: 'यह सिर्फ़ एक वाक्य की छोटी बात है, पूरे अनुच्छेद की नहीं', और सही उत्तर बोलें: 'मोहन अपनी गाय की देखभाल करता है'। इसके बाद गलत उत्तर मिटा दें, ताकि बोर्ड पर सिर्फ़ सही उत्तर बचे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'बारिश आई। बच्चे बाहर निकले। उन्होंने कागज़ की नाव बनाई। नाव पानी में तैरी। सबने बारिश में खूब मज़ा किया।' बच्चों से पूछें: 'मुख्य विचार है: नाव कागज़ की थी। क्या यह सही है?' और साथ मिलकर इसे सुधारें: 'बच्चों ने बारिश में मज़ा किया।' फिर नया अनुच्छेद बोलें: 'सोनू बाज़ार गया। उसने आम खरीदे। उसने केले लिए। वह सब्ज़ी भी लाया।' और साथ में मुख्य विचार बनाएँ: 'सोनू बाज़ार से सामान लाया।'",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियाँ दें, जिन पर वर्कशीट के छोटे अनुच्छेद लिखे हों। एक बच्चा अनुच्छेद पढ़े और दूसरा एक वाक्य में बताए कि पूरा अनुच्छेद किस बारे में है; पहले वर्कशीट के सवाल 1 से 3 करें, बाकी सवाल अपनी जगह पर अगले समय में पूरे करें। चक्कर लगाते समय पहले उन बच्चों के पास शांति से जाएँ जिन्होंने कल यही गलती की थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'रीना ने एक पौधा लगाया। वह रोज़ उसे पानी देती है। पौधा बड़ा हो गया। उस पर फूल आए।' मुख्य विचार क्या है? 1) फूल लाल थे 2) रीना ने पौधे की देखभाल की",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.2-M1",
+      "misconception_name_hi": "मुख्य विचार की बजाय कोई विवरण बताता है",
+      "misconception_name_en": "Gives a detail instead of the main idea",
+      "detect_en": "Response is factually correct but is a detail, not the main idea: \"The boy had a red ball\" instead of \"A boy learns to share\"",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'राजू ने पतंग बनाई। उसकी डोर लंबी थी। वह छत पर गया। पतंग ऊँची उड़ी।' और नीचे लिखें: मुख्य विचार: पतंग की डोर लंबी थी। सही या गलत?",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.2-M1",
+      "misconception_name_hi": "मुख्य विचार की बजाय कोई विवरण बताता है",
+      "misconception_name_en": "Gives a detail instead of the main idea",
+      "detect_en": "Response is factually correct but is a detail, not the main idea: \"The boy had a red ball\" instead of \"A boy learns to share\"",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखने के लिए गाय वाला और बारिश वाला अनुच्छेद तैयार रखें।",
+   "वर्कशीट के अनुच्छेद कागज़ की पर्चियों पर लिखें: हर जोड़ी के लिए एक सेट।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर अनुच्छेद जोड़ी में पढ़ें। फिर एक वाक्य में बताएँ या लिखें कि पूरा अनुच्छेद किस बारे में है।",
+   "instructions_en": "Read each paragraph with a partner. Then say or write in one sentence what the whole paragraph is about.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "जोड़ी में एक छोटा अनुच्छेद पढ़ें और एक वाक्य में उसका मुख्य विचार बोलें।",
+    "task_en": "Read a short paragraph with a partner and say its main idea in one sentence.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "अनुच्छेद लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखे अनुच्छेद"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के पूरे अनुच्छेद की बड़ी बात अपने शब्दों में बताता है",
+     "partial_hi": "पहले एक छोटी बात बताता है, पूछने पर मुख्य विचार तक पहुँचता है",
+     "not_yet_hi": "सिर्फ़ कोई एक बात दोहराता है या कुछ नहीं बताता",
+     "achieved_en": "States the big idea of the whole paragraph in own words without help",
+     "partial_en": "First gives a detail, reaches the main idea when prompted",
+     "not_yet_en": "Only repeats one detail or says nothing"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "चिड़िया ने तिनके जमा किए। उसने पेड़ पर घोंसला बनाया। घोंसले में अंडे रखे। मुख्य विचार एक वाक्य में बताएँ।",
+     "answer": "चिड़िया ने घोंसला बनाया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "गाँव में मेला लगा। वहाँ झूले थे। मिठाई की दुकानें थीं। सब लोग खुश होकर घूमे। मुख्य विचार चुनें: 1) मेले में झूले थे 2) गाँव के लोगों ने मेले का मज़ा लिया",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "दादी रात को कहानी सुनाती हैं। कहानी में एक शेर है। बच्चे ध्यान से सुनते हैं। सबको दादी की कहानियाँ अच्छी लगती हैं। मुख्य विचार चुनें: 1) बच्चों को दादी की कहानियाँ पसंद हैं 2) कहानी में एक शेर है",
+     "answer": "1",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "शाम को बच्चे मैदान में गए। उन्होंने कबड्डी खेली। फिर दौड़ लगाई। मुख्य विचार एक वाक्य में बताएँ।",
+     "answer": "बच्चों ने मैदान में खेल खेले।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 2: the question states its own answer (2)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (1)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "5c5176571e87",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0423,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

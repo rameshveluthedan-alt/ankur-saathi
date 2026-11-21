@@ -1,0 +1,112 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.6.3__normal__medium",
+ "skill_id": "L3.6.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर चार वाक्यों का छोटा अनुच्छेद लिखें: 'गीता ने आम का पौधा लगाया। वह रोज़ उसे पानी देती थी। कुछ साल बाद पेड़ बड़ा हो गया। अब उस पर मीठे आम लगते हैं।' बच्चों को धीरे-धीरे पढ़कर सुनाएँ, फिर पूछें: 'यह किसके बारे में है?' अपने शब्दों में दो वाक्य बोलकर दिखाएँ: 'गीता ने पौधा लगाया और उसकी देखभाल की। पेड़ बड़ा होकर मीठे आम देने लगा।'",
+   "we_do_hi": "बोर्ड पर नया अनुच्छेद लिखें: 'रवि को पतंग उड़ाना पसंद है। रविवार को वह छत पर गया। तेज़ हवा में उसकी पतंग सबसे ऊँची उड़ी। वह बहुत खुश हुआ।' बच्चों से पूछें: 'सबसे ज़रूरी बात क्या है?' फिर बच्चों के साथ मिलकर दो वाक्य का सारांश बनाएँ, और याद दिलाएँ: 'अपने शब्दों में, छोटा।'",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और बोर्ड पर लिखे वर्कशीट के अनुच्छेद 1 को पढ़ने को कहें। हर बच्चा अपने साथी को उसका सारांश 2-3 वाक्यों में अपने शब्दों में बोले; बाकी अनुच्छेद बच्चे अगले समय में अपनी जगह पर करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'मोर नाचा। बादल आए। बारिश हुई।' सारांश के लिए कौन-सा ठीक है? 1) बारिश आई 2) मोर हरा है",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "मुख्य बात पहचानता है",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "सारांश में कितने वाक्य बोलने हैं? 1) दो-तीन 2) दस",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "सारांश छोटा होता है, यह जानता है",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do के दोनों अनुच्छेद पहले से लिखें",
+   "वर्कशीट का अनुच्छेद 1 बोर्ड पर लिखें"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर अनुच्छेद पढ़ें। अपने साथी को उसका सारांश 2-3 वाक्यों में अपने शब्दों में बताएँ।",
+   "instructions_en": "Read each paragraph. Tell your partner its summary in 2-3 sentences in your own words.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "अनुच्छेद पढ़कर साथी को उसका सारांश 2-3 वाक्यों में अपने शब्दों में बताएँ।",
+    "task_en": "Read a paragraph and tell a partner its summary in 2-3 sentences in own words.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे छोटे अनुच्छेद",
+     "बोर्ड पर लिखा अनुच्छेद"
+    ],
+    "look_for": {
+     "achieved_hi": "मुख्य बात और 1-2 बातें अपने शब्दों में 2-3 वाक्यों में बताता है",
+     "partial_hi": "4 या ज़्यादा वाक्य बोलता है या मुख्य बात छोड़ देता है",
+     "not_yet_hi": "वाक्य हूबहू दोहराता है या दूसरी बात बोलता है",
+     "achieved_en": "Gives main idea and 1-2 details in own words in 2-3 sentences",
+     "partial_en": "Retells in 4+ sentences or misses main idea",
+     "not_yet_en": "Copies sentences or says unrelated content"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें और सारांश बताएँ: 'सोनू की गाय बीमार हो गई। वह उसे डॉक्टर के पास ले गया। दवा से गाय ठीक हो गई।'",
+     "answer": "सोनू की बीमार गाय दवा से ठीक हो गई।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें और सारांश बताएँ: 'स्कूल में मेला लगा। बच्चों ने झूले झूले। सबने चाट खाई और गाने गाए।'",
+     "answer": "स्कूल के मेले में बच्चों ने खूब मज़ा किया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें और सारांश बताएँ: 'चिड़िया ने तिनके जमा किए। उसने पेड़ पर घोंसला बनाया। फिर उसमें अंडे दिए।'",
+     "answer": "चिड़िया ने घोंसला बनाकर अंडे दिए।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:06:23Z",
+ "cost_usd": 0.0959,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

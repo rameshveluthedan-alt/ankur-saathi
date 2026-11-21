@@ -1,0 +1,144 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.7.1-M2__long",
+ "skill_id": "L2.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.7.1-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने बोलकर लिखे वाक्य लिखना सीखा था; आज बिंदी, चंद्रबिंदु और ऐ की मात्रा पर ध्यान देंगे। बोर्ड पर गलत रूप लिखें: 'चिड़िया पेड़ पर बैठी है।' की जगह 'गाय खेत मे चरती है।' और बोलें: 'देखिए, खेत में बोलते समय नाक से आवाज़ आती है, पर यहाँ बिंदी नहीं है।' फिर वही वाक्य सही लिखें: 'गाय खेत में चरती है।', में पर बिंदी पर उँगली रखकर दो बार बोलें, और गलत वाक्य मिटा दें ताकि बोर्ड पर केवल सही रूप रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'लड़के पतंग उड़ाते है।' और 'माँ ने रोटी बनाई। हम खुश है।' बच्चों से पूछें कि कहाँ बिंदी छूटी है, फिर उनके बताने पर है को हैं करें। फिर एक नया वाक्य साथ में बोलकर लिखें: 'बंदर पेड़ पर कूदते हैं।' और हर बिंदी पर रुककर पूछें: 'यहाँ नाक से आवाज़ आई?'",
+   "you_do_hi": "अब वर्कशीट के सवाल 1 से 3 पहले करें: शिक्षक हर वाक्य दो बार धीरे-धीरे बोलें, बच्चे उसे पंक्ति 1, 2, 3 पर लिखें, फिर बाकी पंक्तियाँ इसी तरह। लिखते समय शिक्षक पहले उन बच्चों की कॉपी शांति से देखें जिनसे पिछली बार बिंदी या ऐ की मात्रा छूटी थी, बिना किसी का नाम लिए। अगर show-me में चौथाई से अधिक बच्चे गलत दिखाएँ, तो पहले वही कदम फिर से बोर्ड पर समझाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) बच्चे गाते है। 2) बच्चे गाते हैं। कौन-सा वाक्य सही है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.1-M2",
+      "misconception_name_hi": "अनुस्वार, चंद्रबिंदु या मात्रा छोड़ देना (ं, ँ, े/ै)",
+      "misconception_name_en": "Leaves out the nasal sign or a matra (ं, ँ, े/ै)",
+      "detect_en": "Missing ं/ँ or े↔ै in two or more words; often in है/हैं, में/मैं",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मै स्कूल जाता हूँ।' पहले शब्द में कौन-सी मात्रा होनी चाहिए? स्लेट पर वह मात्रा लिखें।",
+    "expected_hi": "ैं",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.1-M2",
+      "misconception_name_hi": "अनुस्वार, चंद्रबिंदु या मात्रा छोड़ देना (ं, ँ, े/ै)",
+      "misconception_name_en": "Leaves out the nasal sign or a matra (ं, ँ, े/ै)",
+      "detect_en": "Missing ं/ँ or े↔ै in two or more words; often in है/हैं, में/मैं",
+      "wrong_answer_hi": "े"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का वाक्य और We Do के दो वाक्य पहले से लिखने की जगह तय कर लें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक जो वाक्य बोलें, उसे ध्यान से सुनें और अपनी पंक्ति पर लिखें। बिंदी, चंद्रबिंदु और ऐ की मात्रा का ध्यान रखें।",
+   "instructions_en": "Listen to each sentence the teacher reads and write it on your line. Take care with bindi, chandrabindu and the ai matra.",
+   "required_count": 5,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "dictation",
+   "dictation_sentences": [
+    "दादी कहानी सुनाती हैं।",
+    "मैं नदी में नहाता हूँ।",
+    "पेड़ों पर चिड़ियाँ बैठी हैं।",
+    "भैया गेंद लाए।",
+    "हम मेले में गए।"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "वाक्य 1",
+     "answer": "दादी कहानी सुनाती हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 2,
+     "problem_hi": "वाक्य 2",
+     "answer": "मैं नदी में नहाता हूँ।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 3,
+     "problem_hi": "वाक्य 3",
+     "answer": "पेड़ों पर चिड़ियाँ बैठी हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 4,
+     "problem_hi": "वाक्य 4",
+     "answer": "भैया गेंद लाए।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 5,
+     "problem_hi": "वाक्य 5",
+     "answer": "हम मेले में गए।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "re-teach: no core problem reveals L2.7.1-M2"
+  ],
+  "repairs": [
+   "sheet: progressor: dictation sheet built from 5 sentence(s), none printed for the child"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4842d0709134",
+ "created": "2026-11-21T06:08:40Z",
+ "cost_usd": 0.0273,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

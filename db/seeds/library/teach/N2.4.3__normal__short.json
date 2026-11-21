@@ -1,0 +1,123 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.4.3__normal__short",
+ "skill_id": "N2.4.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर ये सिक्के और नोट बनाएँ: ₹1, ₹2, ₹5, ₹10 के सिक्के और ₹10, ₹20 के नोट। हर एक पर उँगली रखकर उसका नाम बताएँ, फिर दिखाएँ: 'देखिए, ₹5 का सिक्का और ₹2 का सिक्का मिलकर ₹7 बनते हैं।' इसके बाद बच्चों से पूछें: '₹10 का नोट और ₹1 का सिक्का मिलकर कितने रुपये?'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को कागज़ के बने सिक्के और नोट (₹1, ₹2, ₹5, ₹10, ₹20) दें; न हों तो बोतल के ढक्कनों पर राशि लिखकर दें। बच्चों से कहें: 'पहले हर सिक्के और नोट का नाम अपने साथी को बताएँ, फिर ₹8 दो अलग तरीकों से बनाएँ।' जो जल्दी ख़त्म करें, वे ₹15 बनाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर एक सिक्का बनाएँ और उसके बीच में 5 लिखें। यह कितने रुपये का सिक्का है? स्लेट पर संख्या लिखें।",
+    "expected_hi": "5",
+    "listen_for": [],
+    "shows_hi": "बच्चा सिक्के पर लिखी संख्या से उसकी कीमत पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "₹12 बनाना है। 1) ₹10 का नोट और ₹2 का सिक्का 2) ₹10 का नोट और ₹5 का सिक्का। उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा दी गई राशि के लिए सही नोट और सिक्के चुनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ के गोल टुकड़ों पर ₹1, ₹2, ₹5, ₹10 लिखकर सिक्के और लंबी पर्चियों पर ₹10, ₹20 लिखकर नोट बनाएँ: हर जोड़ी के लिए एक सेट।",
+   "बोर्ड पर ₹1, ₹2, ₹5, ₹10 के सिक्के और ₹10, ₹20 के नोट बनाकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "बोर्ड से सिक्के और नोट कॉपी में बनाएँ और हर सवाल का काम करें।",
+   "instructions_en": "Draw the coins and notes from the board in your notebook and do each task.",
+   "required_count": 3,
+   "example_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा हर सिक्के और नोट का नाम बताए, फिर ₹8 दो अलग तरीकों से सिक्के और नोट मिलाकर बनाए।",
+    "task_en": "The child names each coin and note, then makes ₹8 in two different ways by combining coins and notes.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ के बने सिक्के और नोट",
+     "राशि लिखे बोतल के ढक्कन",
+     "राशि लिखी कागज़ की पर्चियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी सिक्के और नोट पहचानता है और ₹8 दो तरीकों से बनाता है",
+     "partial_hi": "सिक्के और नोट पहचानता है पर मिलाकर राशि बनाने में मदद चाहिए",
+     "not_yet_hi": "₹1 और ₹10 के अलावा सिक्के या नोट नहीं पहचानता",
+     "achieved_en": "Names all coins and notes and makes ₹8 in two ways",
+     "partial_en": "Names coins and notes but needs help to combine them into an amount",
+     "not_yet_en": "Cannot name coins or notes other than ₹1 and ₹10"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "₹1, ₹2, ₹5 और ₹10 के सिक्के बनाएँ और हर सिक्के में उसकी राशि लिखें।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "₹7 बनाने के लिए सिक्के बनाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "₹10 का नोट और कुछ सिक्के बनाकर ₹16 बनाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "₹20 का नोट और ₹5 का सिक्का बनाएँ। जोड़कर कुल राशि लिखें।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "₹9 को दो अलग तरीकों से सिक्के बनाकर दिखाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "worksheets.progressor problem 4: answer missing",
+   "worksheets.progressor problem 5: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0258,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

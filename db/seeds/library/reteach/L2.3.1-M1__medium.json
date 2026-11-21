@@ -1,0 +1,152 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.3.1-M1__medium",
+ "skill_id": "L2.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.3.1-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने संयुक्त अक्षर वाले शब्द पढ़े थे।' बोर्ड पर 'प्रकाश' लिखें, पहले अक्षर तोड़कर पढ़ें 'प-र-का-श' और बताएँ: 'देखिए, यहाँ प और र अलग नहीं हैं, दोनों मिलकर एक साथ बोले जाते हैं: प्र।' फिर वही शब्द सही पढ़ें 'प्रकाश', प्र के नीचे उँगली रखकर, और तोड़कर पढ़ा हुआ हिस्सा मिटा दें ताकि बोर्ड पर केवल सही रूप रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'मित्र = मि-त-र' और 'क्षमा = क-ष-मा'। बच्चों से पूछें कि गलती कहाँ है, फिर साथ मिलकर सही पढ़ें: 'मित्र', 'क्षमा'। इसके बाद नया शब्द 'श्रम' लिखें और बच्चे शिक्षक के साथ एक बार में पढ़ें।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: पत्र, यज्ञ, स्कूल, नक्शा, ग्रह। एक बच्चा कार्ड पढ़े, दूसरा सुने कि संयुक्त अक्षर एक साथ बोला गया या नहीं, फिर बारी बदलें; पर्चियाँ न हों तो वर्कशीट के सवाल 1 से 3 जोड़ी में पढ़ें और बाकी जगह पर पूरा करें। पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार यह गलती की थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर 'ग्राम' लिखें और पूछें: इसे कैसे पढ़ेंगे? 1) ग्राम 2) गराम। उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.3.1-M1",
+      "misconception_name_hi": "संयुक्त अक्षरों को अलग-अलग पढ़ता है",
+      "misconception_name_en": "Reads conjunct consonants as separate letters",
+      "detect_en": "Breaks down conjuncts into component letters consistently; reads विद्यालय as \"vi-da-ya-la-ya\" instead of \"vidyalay\"",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'चक्र' लिखें। इस शब्द में कितने बोले जाने वाले हिस्से हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.3.1-M1",
+      "misconception_name_hi": "संयुक्त अक्षरों को अलग-अलग पढ़ता है",
+      "misconception_name_en": "Reads conjunct consonants as separate letters",
+      "detect_en": "Breaks down conjuncts into component letters consistently; reads विद्यालय as \"vi-da-ya-la-ya\" instead of \"vidyalay\"",
+      "wrong_answer_hi": "3"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर शब्द-कार्ड लिखें: पत्र, यज्ञ, स्कूल, नक्शा, ग्रह (हर जोड़ी के लिए एक सेट)।",
+   "बोर्ड पर लिखने के लिए तैयार रखें: प्रकाश, मित्र, क्षमा, श्रम।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को जोड़ी के साथी को ज़ोर से पढ़कर सुनाएँ। संयुक्त अक्षर को एक साथ बोलें।",
+   "instructions_en": "Read each word aloud to your partner. Say the conjunct letter as one sound.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "जोड़ी में शब्द-कार्ड ज़ोर से पढ़ें: पत्र, यज्ञ, स्कूल, नक्शा, ग्रह।",
+    "task_en": "Read the word cards aloud to a partner: पत्र, यज्ञ, स्कूल, नक्शा, ग्रह.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना रुके, संयुक्त अक्षर एक साथ पढ़ता है",
+     "partial_hi": "पत्र, ग्रह पढ़ लेता है पर यज्ञ या नक्शा में अटकता है",
+     "not_yet_hi": "संयुक्त अक्षर तोड़कर पढ़ता है, जैसे प-त-र",
+     "achieved_en": "Reads all words smoothly, saying each conjunct as one sound",
+     "partial_en": "Reads पत्र, ग्रह but stumbles on यज्ञ or नक्शा",
+     "not_yet_en": "Breaks conjuncts apart, e.g. प-त-र"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: पत्र",
+     "answer": "पत्र",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: प्यार",
+     "answer": "प्यार",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: ज्ञान",
+     "answer": "ज्ञान",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.3.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: त्रिभुज",
+     "answer": "त्रिभुज",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: श्रवण",
+     "answer": "श्रवण",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "साथी को बताएँ: 'कक्षा' शब्द में कौन-सा संयुक्त अक्षर है?",
+     "answer": "क्ष",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "ebe6d5d01fe1",
+ "created": "2026-11-21T05:59:28Z",
+ "cost_usd": 0.0298,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

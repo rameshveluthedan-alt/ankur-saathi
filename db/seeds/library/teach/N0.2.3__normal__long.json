@@ -1,0 +1,138 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.3__normal__long",
+ "skill_id": "N0.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने 1 से 5 तक गिनती की थी।' बोर्ड पर बड़े अक्षरों में 6 लिखें, उसके नीचे 6 छड़ियाँ रखें और बोलें: 'देखिए, 6 का गोला नीचे है।' फिर 9 लिखें, 9 छड़ियाँ रखें और बोलें: 'देखिए, 9 का गोला ऊपर है।' इसी तरह 2 और 5 लिखकर उनका फ़र्क़ दिखाएँ: 2 नीचे सीधी लाइन पर बैठता है और 5 के ऊपर टोपी होती है।",
+   "we_do_hi": "बोर्ड पर इस क्रम में अंक लिखें: 3, 7, 1, 8, 4। एक-एक अंक पर उँगली रखें और बच्चे उतनी ही उँगलियाँ उठाकर दिखाएँ। इसके बाद बच्चे हवा में उँगली से 6 और 9 बनाएँ और बताएँ कि गोला ऊपर है या नीचे।",
+   "you_do_hi": "हर बच्चे को 1 से 9 तक के अंक-कार्ड दें। कार्ड न हों तो कागज़ की पर्चियों पर अंक लिखकर दें, साथ में कंकड़ या बीज दें। एक संख्या बोलें, बच्चे उसका कार्ड उठाएँ और उतने कंकड़ उसके पास रखें। कंकड़ न हों तो बोर्ड से वर्कशीट के सवाल कॉपी में करवाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बड़ा 9 लिखें। 'यह कौन-सा अंक है? उतनी उँगलियाँ दिखाएँ, या स्लेट पर वही अंक लिखें।'",
+    "expected_hi": "9",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M1",
+      "misconception_name_hi": "6 और 9 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 6 and 9",
+      "detect_en": "Consistently reads 6 as 9 or vice versa; other numerals are correct",
+      "wrong_answer_hi": "6"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 2   2) 5। 'पाँच कौन-सा है? 1 या 2 उँगली दिखाएँ।'",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M2",
+      "misconception_name_hi": "2 और 5 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 2 and 5",
+      "detect_en": "Reads 2 as 5 or vice versa; pattern is consistent across sessions",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "हर बच्चे के लिए 1 से 9 तक के अंक-कार्ड या कागज़ की पर्चियाँ तैयार करें।",
+   "9 छड़ियाँ (TLM-001) रखें।",
+   "हर बच्चे के लिए 9 कंकड़ या बीज इकट्ठा करें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अंक पहचानें और बताया गया काम करें।",
+   "instructions_en": "Recognise the numerals and do the task.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "शिक्षक बिना क्रम के एक अंक-कार्ड दिखाएँ। बच्चा अंक का नाम बोले और उतने कंकड़ रखे। 1 से 9 तक के सभी अंक इसी तरह दिखाएँ, और 6, 9, 2, 5 ज़रूर शामिल करें।",
+    "task_en": "Show numeral cards in random order. The child names each one and places that many pebbles. Include 6, 9, 2 and 5.",
+    "kit_materials_hi": [
+     "अंक-कार्ड"
+    ],
+    "local_materials_hi": [
+     "कंकड़",
+     "बीज",
+     "कागज़ की पर्चियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के सभी 9 अंक सही पहचानता है।",
+     "partial_hi": "6 से 8 अंक पहचानता है, पर 6/9 या 2/5 में उलझता है।",
+     "not_yet_hi": "6 से कम अंक पहचानता है।",
+     "achieved_en": "Names all 9 numerals without help.",
+     "partial_en": "Names 6-8; mixes 6/9 or 2/5.",
+     "not_yet_en": "Names fewer than 6."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोर्ड पर लिखे 4 के पास उतने ही गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बोर्ड पर 6, 9, 6, 9 लिखा है। हर 6 पर गोला लगाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": "N0.2.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "बोर्ड पर 2, 5, 5, 2 लिखा है। हर 5 पर गोला लगाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": "N0.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बोर्ड पर लिखे 7 के पास उतनी ही लकीरें बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बोर्ड पर लिखे 3 के पास उतने ही गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "worksheets.progressor problem 4: answer missing",
+   "worksheets.progressor problem 5: answer missing",
+   "worksheets.progressor (observed): the You Do says the teacher watches «हर बच्चे»; it should be the children shown in the app"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T06:01:34Z",
+ "cost_usd": 0.0261,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

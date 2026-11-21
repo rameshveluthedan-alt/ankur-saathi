@@ -1,0 +1,147 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.1-M1__short",
+ "skill_id": "N2.3.1",
+ "domain_id": "numeracy",
+ "mode": "N2.3.1-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने बिना हासिल का जोड़ सीखा था; आज देखेंगे कि अंक सही बॉक्स में कैसे रखें। बोर्ड पर 42 + 15 को बिना बॉक्स के तिरछा लिखें और गलत तरीका दिखाएँ: 4 + 5 = 9, 2 + 1 = 3, उत्तर 93, फिर कहें 'देखिए, यहाँ दहाई को इकाई से जोड़ दिया।' गलत हल मिटा दें, वही सवाल दहाई-इकाई के बॉक्स में लिखें, पहले इकाई 2 + 5 = 7, फिर दहाई 4 + 1 = 5, उत्तर 57, और समूह से पूछें: 'पहले कौन-सा बॉक्स जोड़ते हैं?'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार यह गलती की थी। अगर show-me में एक चौथाई से ज़्यादा बच्चे गलत हों, तो वर्कशीट से पहले छड़ियों से यही कदम फिर दिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 21 + 34",
+    "expected_hi": "55",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.1-M1",
+      "misconception_name_hi": "स्तम्भ गड़बड़ (इकाई को दहाई में जोड़ना)",
+      "misconception_name_en": "Column misalignment (adds ones to tens)",
+      "detect_en": "Errors are random and inconsistent; when given pre-aligned problems on place-value grid, accuracy improves dramatically",
+      "wrong_answer_hi": "64"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 52 + 13 = 83 लिखा है। सही या गलत?",
+    "expected_hi": "गलत, 65",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.1-M1",
+      "misconception_name_hi": "स्तम्भ गड़बड़ (इकाई को दहाई में जोड़ना)",
+      "misconception_name_en": "Column misalignment (adds ones to tens)",
+      "detect_en": "Errors are random and inconsistent; when given pre-aligned problems on place-value grid, accuracy improves dramatically",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर एक बड़ा दहाई-इकाई का बॉक्स पहले से बना लें।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक खाली पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल दहाई-इकाई के बॉक्स में लिखें। पहले इकाई जोड़ें, फिर दहाई जोड़ें।",
+   "instructions_en": "Write each sum in the tens-ones box. Add the ones first, then the tens.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "21 + 15 = ___",
+    "answer": "36",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "1",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "3",
+    "answer_o": "6"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "43 + 25",
+     "answer": "68",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "12 + 36",
+     "answer": "48",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "25 + 31",
+     "answer": "56",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "61 + 27",
+     "answer": "88",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "50 + 34",
+     "answer": "84",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "33 + 44",
+     "answer": "77",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "e183c6d15cdf",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0298,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

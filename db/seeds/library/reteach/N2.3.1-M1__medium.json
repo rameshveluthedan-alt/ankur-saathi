@@ -1,0 +1,149 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.1-M1__medium",
+ "skill_id": "N2.3.1",
+ "domain_id": "numeracy",
+ "mode": "N2.3.1-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने बिना हासिल के जोड़ सीखा था।' बोर्ड पर 32 + 15 लिखें और गलत तरीका दिखाएँ: 3 + 5 = 8 और 2 + 1 = 3, उत्तर 83। फिर बोलें: 'देखिए, यहाँ दहाई को इकाई से जोड़ दिया, यह गड़बड़ है।' अब दहाई-इकाई का बॉक्स बनाकर वही सवाल ठीक से करें: इकाई 2 + 5 = 7, दहाई 3 + 1 = 4, उत्तर 47। गलत तरीका मिटा दें, बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 52 + 34 = 95 और 21 + 13 = 52। बच्चों से पूछें: 'किस अंक को किससे जोड़ा गया?' और दहाई-इकाई के बॉक्स में साथ मिलकर ठीक करें: 86 और 34। फिर नया सवाल साथ में करें: 63 + 24, पहले इकाई, फिर दहाई।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; हर संख्या दहाई-इकाई के बॉक्स में सही जगह लिखें।' शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार स्तम्भ मिलाए थे। बचे सवाल 4 से 6 बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें; यदि चौथाई से अधिक बच्चे show-me में गलत हों, तो वह कदम छड़ियों से फिर दिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 24 + 51",
+    "expected_hi": "75",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.1-M1",
+      "misconception_name_hi": "स्तम्भ गड़बड़ (इकाई को दहाई में जोड़ना)",
+      "misconception_name_en": "Column misalignment (adds ones to tens)",
+      "detect_en": "Errors are random and inconsistent; when given pre-aligned problems on place-value grid, accuracy improves dramatically",
+      "wrong_answer_hi": "39"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "13 + 42: 55 या 37? उँगली दिखाएँ: 1 यानी 55, 2 यानी 37।",
+    "expected_hi": "1 (55)",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.1-M1",
+      "misconception_name_hi": "स्तम्भ गड़बड़ (इकाई को दहाई में जोड़ना)",
+      "misconception_name_en": "Column misalignment (adds ones to tens)",
+      "detect_en": "Errors are random and inconsistent; when given pre-aligned problems on place-value grid, accuracy improves dramatically",
+      "wrong_answer_hi": "2 (37)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर एक बड़ा दहाई-इकाई का बॉक्स पहले से बना लें।",
+   "दिखाने के लिए 10-10 के कुछ छड़ियों के बंडल और खुली छड़ियाँ रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को दहाई-इकाई के बॉक्स में सही जगह लिखें। पहले इकाई जोड़ें, फिर दहाई जोड़ें।",
+   "instructions_en": "Write each number in the correct place in the tens-ones box. Add the ones first, then the tens.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "21 + 15 = ___",
+    "answer": "36",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "1",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "3",
+    "answer_o": "6"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "43 + 25",
+     "answer": "68",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "23 + 54",
+     "answer": "77",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "14 + 52",
+     "answer": "66",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "61 + 27",
+     "answer": "88",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "35 + 43",
+     "answer": "78",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "50 + 19",
+     "answer": "69",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f5ba20d9ed09",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.0356,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

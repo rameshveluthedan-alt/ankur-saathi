@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.4.3__normal__medium",
+ "skill_id": "N3.4.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक तराज़ू (या डंडी पर दो थैलियाँ) और 1 किग्रा का बाट दिखाएँ: 'देखिए, एक पलड़े में बाट है, दूसरे में आलू डालते हैं; पलड़े बराबर हुए तो आलू 1 किलोग्राम हुए।' बोर्ड पर लिखें: 1 किग्रा = 1000 ग्राम। बच्चों से कहें: 'भारी चीज़ें किलोग्राम में, हल्की चीज़ें ग्राम में तोली जाती हैं।'",
+   "we_do_hi": "एक पलड़े में 500 ग्राम का बाट रखें, दूसरे में थोड़ी दाल डालें और बच्चों से पूछें: 'कौन-सा पलड़ा नीचे है? दाल कम है या ज़्यादा?' बच्चों के बताने पर दाल बढ़ाएँ-घटाएँ जब तक पलड़े बराबर न हों। फिर पूछें: 'दो 500 ग्राम के बाट मिलकर कितने हुए?' और बोर्ड पर लिखें: 500 ग्राम + 500 ग्राम = 1 किग्रा।",
+   "you_do_hi": "हर चार बच्चों को एक तराज़ू (या डंडी-थैली वाला तराज़ू) दें, साथ में 500 ग्राम का बाट या 500 ग्राम का नमक का पैकेट, और कंकड़, बोतल के ढक्कन और बीज। बच्चे पहले कंकड़ों को बाट के बराबर तोलें और बताएँ कि कौन भारी है; बाकी काम अगले खंड में अपनी जगह पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "गेहूँ की बोरी को किसमें तोलेंगे? 1) ग्राम 2) किलोग्राम — उँगली से दिखाएँ।",
+    "expected_hi": "2) किलोग्राम",
+    "listen_for": [],
+    "shows_hi": "भारी चीज़ के लिए सही इकाई चुनता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 2 किग्रा = ___ ग्राम। स्लेट पर संख्या लिखें।",
+    "expected_hi": "2000",
+    "listen_for": [],
+    "shows_hi": "किलोग्राम को ग्राम में बदलना जानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर चार बच्चों के लिए एक तराज़ू (या डंडी पर दो थैलियाँ बाँधकर बना तराज़ू)",
+   "1 किग्रा और 500 ग्राम के बाट, या 1 किग्रा और 500 ग्राम के बंद पैकेट (नमक, आटा)",
+   "कंकड़, बोतल के ढक्कन, बीज और थोड़ी दाल",
+   "बोर्ड पर लिखें: 1 किग्रा = 1000 ग्राम"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल कॉपी में लिखें और हल करें।",
+   "instructions_en": "Copy each item into your notebook and solve it.",
+   "required_count": 3,
+   "example_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "तराज़ू के एक पलड़े में 500 ग्राम का बाट रखें, दूसरे में कंकड़ डालकर पलड़े बराबर करें और बताएँ कि कंकड़ कितने ग्राम के हुए; फिर बताएँ कि ऐसे दो ढेर मिलकर कितने किलोग्राम होंगे।",
+    "task_en": "Put a 500 g weight on one pan, add pebbles to the other until the pans balance, say the pebbles' weight in grams, then say how many kilograms two such heaps make.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बोतल के ढक्कन",
+     "बीज",
+     "नमक या आटे का 500 ग्राम का पैकेट"
+    ],
+    "look_for": {
+     "achieved_hi": "खुद पलड़े बराबर करता है, 500 ग्राम बताता है और दो ढेर = 1 किग्रा कहता है",
+     "partial_hi": "पलड़े बराबर कर लेता है पर ग्राम-किलोग्राम बताने में मदद चाहिए",
+     "not_yet_hi": "मदद के बाद भी तराज़ू से भारी-हल्का नहीं बता पाता",
+     "achieved_en": "Balances the pans alone, says 500 g and that two heaps make 1 kg",
+     "partial_en": "Balances the pans but needs help to state grams or convert to kg",
+     "not_yet_en": "Cannot tell heavier or lighter on the balance even with help"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "एक तराज़ू का चित्र बनाएँ जिसमें आम वाला पलड़ा नीचे झुका हो और पंख वाला ऊपर।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "इन चीज़ों को ग्राम या किलोग्राम वाले डिब्बे में लिखें: चावल की बोरी, एक पेंसिल, एक तरबूज़, एक चम्मच।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "3 किग्रा को ग्राम में बदलकर लिखें।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0267,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

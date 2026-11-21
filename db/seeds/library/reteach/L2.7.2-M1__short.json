@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.7.2-M1__short",
+ "skill_id": "L2.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.7.2-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने जुड़े वाक्य लिखना सीखा था। बोर्ड पर लिखें: 'मेरी गाय सफ़ेद है। वह घास खाती है। वह दूध देती है।' और कहें: 'देखिए, ये वाक्य अलग-अलग खड़े हैं, कोई जोड़ने वाला शब्द नहीं है।' अब उसी बात को सही लिखें: 'मेरी गाय सफ़ेद है। वह घास खाती है और दूध देती है।', पहला रूप मिटा दें और 'और' पर उँगली रखकर बताएँ कि इसने दो बातें जोड़ दीं।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे वर्कशीट के सवाल 1 से 3 पहले हल करें: वर्कशीट पर दिए विषय पर जुड़े वाक्य लिखें, फिर जोड़ने वाले सवाल करें। इस छोटे समय में सवाल 1 के पहले दो वाक्य शुरू करें, बाकी अपनी जगह पर अगले समय में पूरा करें; जो जल्दी ख़त्म करें, वे सवाल 4 करें। शिक्षक सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार वाक्य अलग-अलग लिखे थे।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'राजू बाज़ार गया। ___ उसने आम खरीदे।' खाली जगह में कौन-सा शब्द आएगा? 1) फिर 2) लेकिन",
+    "expected_hi": "1) फिर",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M1",
+      "misconception_name_hi": "वाक्य अलग-अलग लिखना, जोड़ने वाले शब्द नहीं",
+      "misconception_name_en": "Writes separate sentences with no joining words",
+      "detect_en": "Three or more sentences on the topic, none joined by और / फिर / क्योंकि / लेकिन",
+      "wrong_answer_hi": "2) लेकिन"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 1) 'पापा खेत गए। पापा ने हल चलाया।' 2) 'पापा खेत गए और हल चलाया।' कौन-सा जुड़ा हुआ है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M1",
+      "misconception_name_hi": "वाक्य अलग-अलग लिखना, जोड़ने वाले शब्द नहीं",
+      "misconception_name_en": "Writes separate sentences with no joining words",
+      "detect_en": "Three or more sentences on the topic, none joined by और / फिर / क्योंकि / लेकिन",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'मेरी गाय सफ़ेद है। वह घास खाती है। वह दूध देती है।'",
+   "हर बच्चे के पास स्लेट या कॉपी का पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर वाक्य के अंत में । लगाएँ। वाक्यों को 'और / फिर / क्योंकि' से जोड़ें।",
+   "instructions_en": "End every sentence with a full stop. Join sentences with 'और / फिर / क्योंकि'.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा स्कूल",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य स्कूल के बारे में",
+     "item_en": "All sentences about the school"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of every sentence"
+    },
+    {
+     "item_hi": "कम से कम एक बार 'और / फिर / क्योंकि'",
+     "item_en": "At least one joining word 'और / फिर / क्योंकि'"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने स्कूल पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा स्कूल"
+    },
+    {
+     "number": 2,
+     "problem_hi": "जोड़ने वाला शब्द लिखें: 'मीना ने हाथ धोए ___ खाना खाया।' (फिर / लेकिन)",
+     "answer": "फिर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "जोड़ने वाला शब्द लिखें: 'हम छाता लाए ___ बारिश हो रही थी।' (क्योंकि / और)",
+     "answer": "क्योंकि",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "अपने दोस्त पर 3 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "ea4b11d2db06",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0249,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

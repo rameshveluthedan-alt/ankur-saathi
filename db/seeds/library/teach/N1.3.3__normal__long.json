@@ -1,0 +1,116 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.3.3__normal__long",
+ "skill_id": "N1.3.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने जोड़ना और घटाना सीखा था।' बोर्ड पर लिखें: 'टोकरी में 4 आम हैं। 3 आम और रखे। अब कितने आम हैं?' और 4 कंकड़ रखकर 3 और मिलाएँ, फिर बोलें: 'देखिए, और रखे यानी बढ़े, इसलिए जोड़ते हैं: 4 + 3 = 7।'",
+   "we_do_hi": "बोर्ड पर लिखें: 'डाल पर 8 पक्षी बैठे थे। 2 पक्षी उड़ गए। कितने पक्षी बचे?' बच्चों से पूछें: 'पक्षी बढ़े या कम हुए?' फिर साथ में 8 कंकड़ में से 2 हटाएँ और लिखें: 8 - 2 = 6। बच्चों से कहें कि 'और', 'मिले' जैसे शब्द सुनकर जोड़ें, और 'उड़ गए', 'खा लिए', 'दे दिए' जैसे शब्द सुनकर घटाएँ।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' घूमते हुए देखें कि हर बच्चा पहले जोड़ या घटाव का निशान सही चुन रहा है या नहीं।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'पेड़ पर 5 चिड़िया हैं। 2 चिड़िया और आ गईं।' इसमें जोड़ेंगे या घटाएँगे? 1) जोड़ 2) घटाव, उँगली पर दिखाएँ।",
+    "expected_hi": "1) जोड़",
+    "listen_for": [],
+    "shows_hi": "बच्चा सवाल के शब्दों से सही क्रिया पहचान लेता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'थैले में 9 टॉफ़ी थीं। 4 टॉफ़ी खा लीं।' कितनी टॉफ़ी बचीं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "5",
+    "listen_for": [],
+    "shows_hi": "बच्चा कम होने वाले सवाल में घटाकर सही उत्तर निकालता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "शिक्षक के लिए 9 कंकड़ या छड़ियाँ",
+   "बोर्ड पर पहले से लिखें: 'टोकरी में 4 आम हैं। 3 आम और रखे। अब कितने आम हैं?'"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। सोचें: जोड़ना है या घटाना है। फिर हल करके उत्तर लिखें।",
+   "instructions_en": "Read each problem carefully. Decide whether to add or subtract, then solve and write the answer.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "डिब्बे में 2 पेंसिल हैं। 6 पेंसिल और डालीं। अब कितनी पेंसिल हैं?",
+     "answer": "8",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "प्लेट में 9 लड्डू थे। 5 लड्डू खा लिए। कितने लड्डू बचे?",
+     "answer": "4",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "तालाब में 3 बत्तख हैं। 6 बत्तख और आ गईं। अब कितनी बत्तख हैं?",
+     "answer": "9",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "हाथ में 8 गुब्बारे थे। 6 गुब्बारे उड़ गए। कितने गुब्बारे बचे?",
+     "answer": "2",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "थाली में 5 केले थे। 4 केले दे दिए। कितने केले बचे?",
+     "answer": "1",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "बस में 3 लोग बैठे थे। 2 लोग और चढ़े। अब बस में कितने लोग हैं?",
+     "answer": "5",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7119e5da47ac",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.0309,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

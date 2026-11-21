@@ -1,0 +1,150 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.7.1-M3__medium",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.7.1-M3",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने एक विषय पर अनुच्छेद लिखना सीखा था।' बोर्ड पर विषय 'बारिश का दिन' और ये दो वाक्य लिखें: 'आज बारिश हुई। मुझे अच्छा लगा।' बच्चों से कहें: 'देखिए, यहाँ सिर्फ़ दो वाक्य हैं, ये पूरी बात नहीं बताते। अनुच्छेद में 5 से 7 वाक्य होते हैं।' इसके बाद इसी विषय पर पाँच वाक्य लिखें: 'आज सुबह से बारिश हो रही थी। आँगन में पानी भर गया। हमने काग़ज़ की नाव बनाई। फिर नाव पानी में तैराई। अंत में माँ ने गरम पकौड़े दिए।' अब दो वाक्यों वाली पंक्ति मिटा दें, ताकि बोर्ड पर केवल सही अनुच्छेद रहे।",
+   "we_do_hi": "बोर्ड पर विषय 'मेरा स्कूल' और ये दो वाक्य लिखें: 'मेरा स्कूल बड़ा है। मुझे स्कूल पसंद है।' बच्चों से पूछें: 'स्कूल में और क्या-क्या होता है?' और उनके जवाबों से तीन वाक्य और जोड़ें, जैसे 'हम सुबह प्रार्थना करते हैं।', 'फिर कक्षा में पढ़ते हैं।', 'अंत में घंटी बजती है।' साथ में गिनें कि अब पाँच वाक्य हो गए और हर वाक्य के अंत में । लगा है।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट का सवाल 1 शुरू करें: वर्कशीट पर दिए विषय पर पहले दो-तीन वाक्य लिखें।' बाकी वाक्य और सवाल 2 से 4 बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें; जो जल्दी ख़त्म करें, वे सवाल 5 करें। घूमते समय पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार कम वाक्य लिखे थे, और पूछें: 'इसके बाद क्या हुआ?'"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बिना पूर्ण विराम के लिखें: 'मेरा बगीचा छोटा है फूल लाल हैं मैं पानी देता हूँ' इसमें कितने पूर्ण विराम (।) लगेंगे? संख्या लिखें।",
+    "expected_hi": "3",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'हम मेले गए। वहाँ झूले थे हमने जलेबी खाई।' किस नंबर के शब्द के बाद पूर्ण विराम छूट गया है? संख्या लिखें।",
+    "expected_hi": "6",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "9"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से विषय 'बारिश का दिन' और 'मेरा स्कूल' लिखकर रखें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक खाली पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "ध्यान से पढ़ें और लिखें। हर वाक्य के अंत में । लगाएँ।",
+   "instructions_en": "Read carefully and write. Put a full stop at the end of every sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा पसंदीदा खेल",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 5 वाक्य",
+     "item_en": "At least 5 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य खेल के बारे में",
+     "item_en": "All sentences about the game"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of every sentence"
+    },
+    {
+     "item_hi": "पहले, फिर, अंत में जैसे शब्द",
+     "item_en": "Uses order words like first, then, at the end"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'मेरा पसंदीदा खेल' विषय पर 5 से 7 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा पसंदीदा खेल"
+    },
+    {
+     "number": 2,
+     "problem_hi": "सही जगह पूर्ण विराम (।) लगाकर लिखें: मुझे पतंग उड़ाना पसंद है मैं छत पर जाता हूँ हवा तेज़ होती है",
+     "answer": "मुझे पतंग उड़ाना पसंद है। मैं छत पर जाता हूँ। हवा तेज़ होती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "इसमें कितने वाक्य हैं? गाय घास खाती है। वह दूध देती है। हम उसे चारा देते हैं। गाय हमारी दोस्त है।",
+     "answer": "4",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "वाक्यों को सही क्रम में लगाकर उनके नंबर लिखें: 1) फिर हमने खाना खाया। 2) पहले हम पार्क गए। 3) अंत में हम घर लौटे।",
+     "answer": "2, 1, 3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "अतिरिक्त: 'मेरी कक्षा' विषय पर 3 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "0f1c53073ee2",
+ "created": "2026-11-21T06:07:24Z",
+ "cost_usd": 0.1184,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

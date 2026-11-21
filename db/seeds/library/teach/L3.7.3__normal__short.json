@@ -1,0 +1,137 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.7.3__normal__short",
+ "skill_id": "L3.7.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर एक छोटा पत्र लिखें: 'प्रिय दादी, नमस्ते। मैं ठीक हूँ। कल मैंने स्कूल में पौधा लगाया। आपकी पोती, सीमा'। हर हिस्से पर उँगली रखकर बोलें: 'देखिए, यह संबोधन है, यह अभिवादन, यह बीच की बात, और यह अंत में नाम।' इसके बाद समूह से पूछें: 'पत्र किस शब्द से शुरू होता है?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे वर्कशीट पर दिए विषय पर लिखना शुरू करें: अभी केवल 'प्रिय' वाली पहली पंक्ति और पहला वाक्य लिखें। बाकी पत्र और सवाल 2 से 4 बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें। शिक्षक घूमकर देखें कि हर बच्चे ने पत्र 'प्रिय' से शुरू किया है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "पत्र की पहली पंक्ति में कौन-सा शब्द आता है? 1) प्रिय 2) धन्यवाद",
+    "expected_hi": "1) प्रिय",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि पत्र संबोधन से शुरू होता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'प्रिय मामा, नमस्ते। मैं मेले गया। ________' अंत में क्या लिखेंगे? 1) आपका भांजा, राजू 2) एक दिन की बात",
+    "expected_hi": "1)",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि पत्र अपने नाम के साथ समाप्त होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दादी को लिखा छोटा पत्र पहले से लिख लें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पत्र 'प्रिय' से शुरू करें और अंत में अपना नाम लिखें। हर वाक्य के अंत में । लगाएँ।",
+   "instructions_en": "Begin the letter with 'प्रिय' and end with your name. Put । at the end of every sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "अपने दोस्त को पत्र: मेरी गर्मी की छुट्टियाँ",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "पत्र 'प्रिय' से शुरू",
+     "item_en": "Letter begins with 'प्रिय'"
+    },
+    {
+     "item_hi": "नमस्ते जैसा अभिवादन",
+     "item_en": "Has a greeting such as नमस्ते"
+    },
+    {
+     "item_hi": "बीच में कम से कम 3 वाक्य, विषय पर",
+     "item_en": "At least 3 sentences on the topic in the body"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "। at the end of every sentence"
+    },
+    {
+     "item_hi": "अंत में 'तुम्हारा/तुम्हारी दोस्त' और नाम",
+     "item_en": "Ends with a closing and the writer's name"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने दोस्त को 'मेरी गर्मी की छुट्टियाँ' पर पत्र लिखें। बीच में 3-5 वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "अपने दोस्त को पत्र: मेरी गर्मी की छुट्टियाँ"
+    },
+    {
+     "number": 2,
+     "problem_hi": "खाली जगह भरें: ______ नानी, नमस्ते। (प्रिय / धन्यवाद)",
+     "answer": "प्रिय",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "दोनों वाक्य जोड़ें: मैं बाज़ार गई। मैंने आम खरीदे। (और / फिर)",
+     "answer": "मैं बाज़ार गई और मैंने आम खरीदे।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सही क्रम लिखें (संख्या से): 1) बारिश रुक गई 2) बादल छा गए 3) तेज़ बारिश हुई",
+     "answer": "2, 3, 1",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "अपनी शिक्षिका को धन्यवाद का छोटा पत्र लिखें (2-3 वाक्य)।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 5,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "90e6af774cdc",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0239,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

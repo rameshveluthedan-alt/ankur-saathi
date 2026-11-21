@@ -1,0 +1,135 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.6.1-M1__medium",
+ "skill_id": "L2.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.6.1-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अनुच्छेद पढ़कर प्रश्नों के उत्तर ढूँढना सीखा था। बोर्ड पर लिखें: 'रीना बाज़ार गई। उसने लाल सेब खरीदे।' पूरा वाक्य बिना रुके पढ़कर पूछें 'रीना कहाँ गई?' और बोलें 'पता नहीं', फिर बताएँ: 'देखिए, पढ़ा तो सही, पर सोचा नहीं।' अब वही अनुच्छेद धीरे पढ़ें, 'बाज़ार' शब्द के नीचे रेखा खींचें, उत्तर बोलें 'बाज़ार', फिर गलत उत्तर 'पता नहीं' मिटा दें।",
+   "we_do_hi": "बोर्ड पर लिखें: 'मोहन सुबह खेत गया। वहाँ उसने गाय देखी।' और बोर्ड पर पहले से गलत उत्तर लिखें: 'मोहन कहाँ गया? उत्तर: सुबह'। बच्चों से पूछें 'क्या यह सही है? पाठ में कहाँ जाने की बात है?', और मिलकर 'खेत' के नीचे रेखा खींचें। फिर नया प्रश्न साथ में हल करें: 'मोहन ने क्या देखा?' — बच्चे शब्द ढूँढें: 'गाय'।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में बच्चे अनुच्छेद एक बार पढ़कर सवाल 1 करें, बाकी अपनी जगह पर अगले समय में पूरा करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार पढ़ा पर उत्तर नहीं दिया, और पूछें 'उत्तर वाला शब्द कहाँ है? उँगली रखें।'"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'सीता ने बगीचे में तितली पकड़ी।' पूछें: 'सीता ने क्या पकड़ा?' एक शब्द लिखें।",
+    "expected_hi": "तितली",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.1-M1",
+      "misconception_name_hi": "पाठ सही पढ़ता है पर समझता नहीं",
+      "misconception_name_en": "Decodes text correctly but does not understand what was read",
+      "detect_en": "CWPM and accuracy are adequate, but answers to literal questions are wrong or \"I don't know.\" This is the classic \"word caller\" pattern.",
+      "wrong_answer_hi": "पता नहीं"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'अमन रात को नदी पर गया।' पूछें: 'अमन कब गया? 1) नदी 2) रात' उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.1-M1",
+      "misconception_name_hi": "पाठ सही पढ़ता है पर समझता नहीं",
+      "misconception_name_en": "Decodes text correctly but does not understand what was read",
+      "detect_en": "CWPM and accuracy are adequate, but answers to literal questions are wrong or \"I don't know.\" This is the classic \"word caller\" pattern.",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का अनुच्छेद लिखें: 'रीना बाज़ार गई। उसने लाल सेब खरीदे।'",
+   "बोर्ड पर We Do का अनुच्छेद और गलत उत्तर लिखें: 'मोहन सुबह खेत गया। वहाँ उसने गाय देखी।' 'मोहन कहाँ गया? उत्तर: सुबह'",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद ध्यान से पढ़ें। हर प्रश्न का उत्तर अनुच्छेद में ढूँढें और लिखें।",
+   "instructions_en": "Read the passage carefully. Find each answer in the passage and write it.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "पिंकी का मेला",
+    "text": "रविवार को पिंकी अपने पापा के साथ मेले गई। मेले में बहुत भीड़ थी। पिंकी ने झूला झूला। पापा ने उसे एक नीला गुब्बारा दिलाया। शाम को दोनों बस से घर लौटे।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पिंकी कहाँ गई?",
+     "answer": "मेले",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पिंकी किसके साथ गई?",
+     "answer": "पापा के साथ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "गुब्बारा किस रंग का था?",
+     "answer": "नीला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पिंकी मेले कब गई?",
+     "answer": "रविवार को",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पिंकी ने मेले में क्या झूला?",
+     "answer": "झूला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "दोनों घर किससे लौटे?",
+     "answer": "बस से",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "db3020c5699c",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0248,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

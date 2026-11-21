@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.2.1__normal__long",
+ "skill_id": "L1.2.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने शब्दों की ध्वनियाँ अलग-अलग सुनी थीं।' धीरे-धीरे बोलें: 'न... ल', फिर हर ध्वनि के लिए एक ताली बजाकर जल्दी-जल्दी जोड़ें: 'नल'। इसी तरह 'ब... त... ख' को धीरे से, फिर जोड़कर बोलें: 'बतख'; हाथ से सरकने का इशारा करते हुए दिखाएँ कि ध्वनियाँ एक-दूसरे में मिल जाती हैं।",
+   "we_do_hi": "बच्चों से कहें: 'ध्यान से सुनें, फिर मेरे इशारे पर जोड़कर बोलें।' 'ज... ग', 'घ... र', फिर 'स... ड़... क' बोलें; हर बार एक-एक बच्चे से जुड़ा हुआ शब्द पूछें। आखिर में 'प... त... ं... ग' जैसा चार ध्वनियों वाला शब्द साथ में जोड़ें: 'पतंग'।",
+   "you_do_hi": "जोड़ियाँ बनाएँ और हर जोड़ी को बोर्ड से उतारी गई या कागज़ की पर्चियों पर लिखी शब्द-पर्चियाँ दें; एक बच्चा ध्वनियाँ अलग-अलग बोले, दूसरा उन्हें जोड़कर शब्द बताए, फिर बारी बदलें। पर्चियाँ न हों तो बच्चे वर्कशीट के शब्द कॉपी में देखकर यही काम करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'आ... म'। यह कौन-सा शब्द है? 1) आम 2) नाम। उँगली पर दिखाएँ।",
+    "expected_hi": "1) आम",
+    "listen_for": [],
+    "shows_hi": "दो ध्वनियाँ जोड़कर सही शब्द पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'म... ट... र'। यह कौन-सा शब्द है? 1) मटर 2) मगर। उँगली पर दिखाएँ।",
+    "expected_hi": "2 नहीं, 1) मटर",
+    "listen_for": [],
+    "shows_hi": "तीन ध्वनियाँ क्रम से जोड़कर शब्द बनाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर ध्वनियाँ अलग-अलग लिखें: क-म-ल, ह-ल, ग-म-ल-ा, फ-स-ल, द-व-ा-त",
+   "बोर्ड पर यही ध्वनि-शब्द लिखें, ताकि पर्चियाँ कम पड़ें तो जोड़ियाँ बोर्ड से देख सकें"
+  ],
+  "worksheet": {
+   "instructions_hi": "साथी के साथ बैठें। एक बच्चा ध्वनियाँ अलग-अलग बोले, दूसरा उन्हें जोड़कर पूरा शब्द बोले। फिर बारी बदलें।",
+   "instructions_en": "Sit with a partner. One child says the sounds separately, the other blends them into the whole word. Then swap.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "शिक्षक तीन या चार ध्वनियाँ अलग-अलग बोलें, जैसे क-म-ल; बच्चा उन्हें जोड़कर पूरा शब्द बोले। पाँच शब्द करवाएँ।",
+    "task_en": "The teacher says 3-4 sounds separately, such as क-म-ल; the child blends them and says the whole word. Do five words.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे ध्वनि-शब्द",
+     "बोर्ड पर लिखे ध्वनि-शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "पाँच में से चार शब्द बिना मदद के जोड़कर सही बोलता है",
+     "partial_hi": "दो ध्वनियों वाले शब्द जोड़ लेता है, तीन-चार ध्वनियों वाले में अटकता है",
+     "not_yet_hi": "ध्वनियाँ अलग-अलग दोहराता है या अंदाज़े से शब्द बोलता है",
+     "achieved_en": "Blends 4 of 5 words correctly without help",
+     "partial_en": "Blends 2-sound words but gets stuck on 3-4 sound words",
+     "not_yet_en": "Repeats sounds separately or guesses a word"
+    }
+   },
+   "example_block": {
+    "problem_hi": "ध्वनियाँ जोड़ने का उदाहरण:",
+    "example_text": "न + ल = नल"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को जोड़कर बोलें: ह - ल",
+     "answer": "हल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को जोड़कर बोलें: क - म - ल",
+     "answer": "कमल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को जोड़कर बोलें: ग - म - ल - ा",
+     "answer": "गमला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को जोड़कर बोलें: फ - स - ल",
+     "answer": "फसल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को जोड़कर बोलें: द - व - ा - त",
+     "answer": "दवात",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:10:43Z",
+ "cost_usd": 0.0277,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

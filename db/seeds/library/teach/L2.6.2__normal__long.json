@@ -1,0 +1,143 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.6.2__normal__long",
+ "skill_id": "L2.6.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने छोटा अनुच्छेद पढ़कर समझा था।' बोर्ड पर लिखें और धीरे पढ़कर सुनाएँ: 'मीना के आँगन में एक पौधा था। वह रोज़ उसे पानी देती थी। वह पौधे के पास से कचरा हटाती थी। धीरे-धीरे पौधा बड़ा हुआ। उस पर लाल फूल खिले। मीना ने पौधे की अच्छी देखभाल की।' फिर बताएँ: 'उस पर लाल फूल खिले, यह सिर्फ़ एक बात है। पूरा अनुच्छेद इस बारे में है कि मीना ने पौधे की देखभाल की, यही मुख्य विचार है।'",
+   "we_do_hi": "बोर्ड पर दूसरा अनुच्छेद लिखें और पढ़कर सुनाएँ: 'राजू की बिल्ली खो गई। राजू ने उसे घर में ढूँढा। फिर उसने बगीचे में देखा। उसने पड़ोसियों से भी पूछा। आख़िर बिल्ली छत पर मिली। राजू बहुत खुश हुआ।' बच्चों से पूछें: 'यह पूरा अनुच्छेद किस बारे में है?' दो बच्चों के उत्तर सुनें, और यदि कोई उत्तर एक बात बताए (जैसे 'बिल्ली छत पर मिली'), तो सब मिलकर बेहतर उत्तर तक पहुँचें: 'राजू ने अपनी खोई बिल्ली ढूँढी।'",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को एक पर्ची दें, जिस पर वर्कशीट का एक अनुच्छेद लिखा हो। एक बच्चा अनुच्छेद पढ़कर सुनाए, दूसरा एक वाक्य में बताए कि यह किस बारे में है, फिर दोनों भूमिका बदलें। पर्चियाँ न हों तो बच्चे वर्कशीट के सवाल 1 से 3 कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सोनू ने सुबह दाँत साफ़ किए। फिर वह नहाया। उसने साफ़ कपड़े पहने। उसने बाल भी बनाए।' यह किस बारे में है? 1) सोनू ने बाल बनाए 2) सोनू सुबह तैयार हुआ",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.2-M1",
+      "misconception_name_hi": "मुख्य विचार की बजाय कोई विवरण बताता है",
+      "misconception_name_en": "Gives a detail instead of the main idea",
+      "detect_en": "Response is factually correct but is a detail, not the main idea: \"The boy had a red ball\" instead of \"A boy learns to share\"",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'गाँव में मेला लगा। वहाँ झूले थे। मिठाई की दुकानें थीं। बच्चों ने गुब्बारे खरीदे।' यह किस बारे में है? 1) गाँव का मेला 2) गुब्बारे",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.2-M1",
+      "misconception_name_hi": "मुख्य विचार की बजाय कोई विवरण बताता है",
+      "misconception_name_en": "Gives a detail instead of the main idea",
+      "detect_en": "Response is factually correct but is a detail, not the main idea: \"The boy had a red ball\" instead of \"A boy learns to share\"",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do के दोनों अनुच्छेद पहले से लिख लें।",
+   "हर जोड़ी के लिए कागज़ की एक पर्ची पर वर्कशीट का एक अनुच्छेद लिखें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "अनुच्छेद पढ़ें। बताएँ कि पूरा अनुच्छेद किस बारे में है।",
+   "instructions_en": "Read the paragraph. Tell what the whole paragraph is about.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "अनुच्छेद सुनकर एक वाक्य में बताएँ कि पूरा अनुच्छेद किस बारे में है।",
+    "task_en": "After listening to a paragraph, tell in one sentence what the whole paragraph is about.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "अनुच्छेद लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखे अनुच्छेद"
+    ],
+    "look_for": {
+     "achieved_hi": "अपने शब्दों में पूरे अनुच्छेद की मुख्य बात बताता है",
+     "partial_hi": "अनुच्छेद की एक सही बात बताता है, पूरी मुख्य बात नहीं",
+     "not_yet_hi": "कुछ नहीं बताता या बिना जुड़ी बातें बोलता है",
+     "achieved_en": "States the main idea of the whole paragraph in own words",
+     "partial_en": "States one correct detail, not the main idea",
+     "not_yet_en": "Says nothing or gives unrelated bits"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: 'दादी ने खीर बनाई। उन्होंने दूध उबाला। फिर चावल डाले। अंत में चीनी मिलाई।' यह अनुच्छेद किस बारे में है? साथी को बताएँ।",
+     "answer": "दादी ने खीर बनाई",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: 'अमन ने पतंग बनाई। उसने रंगीन कागज़ लिया। डोर बाँधी। फिर छत पर पतंग उड़ाई।' यह किस बारे में है? 1) डोर 2) अमन की पतंग",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: 'स्कूल में खेल दिवस था। बच्चे दौड़े। कुछ ने कूद लगाई। विजेताओं को इनाम मिले।' यह किस बारे में है? 1) स्कूल का खेल दिवस 2) इनाम",
+     "answer": "1",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: 'पिंकी ने अपना कमरा साफ़ किया। उसने किताबें जमाईं। खिलौने डिब्बे में रखे। झाड़ू भी लगाई।' यह किस बारे में है? साथी को बताएँ।",
+     "answer": "पिंकी ने कमरा साफ़ किया",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats wording from the lesson or anchor: «अनुच्छेद किस बारे में है»",
+   "worksheets.progressor problem 2 repeats wording from the lesson or anchor: «यह किस बारे में है»",
+   "worksheets.progressor problem 3 repeats wording from the lesson or anchor: «यह किस बारे में है»",
+   "worksheets.progressor problem 4 repeats wording from the lesson or anchor: «यह किस बारे में है»",
+   "worksheets.progressor (observed) problem 2: the question states its own answer (2)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (1)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0313,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

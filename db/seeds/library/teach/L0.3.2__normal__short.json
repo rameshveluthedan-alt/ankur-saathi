@@ -1,0 +1,133 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.3.2__normal__short",
+ "skill_id": "L0.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर बड़ा 'क' लिखें और बच्चों को दिखाएँ: 'देखिए, यह क है। क से कमल, क से कप।' हर शब्द धीरे बोलें और पहली ध्वनि 'क' पर ज़ोर दें; फिर 'म' लिखकर यही करें: 'म से मछली, म से मटर।' अंत में समूह से एक बार पूछें: 'क से और कौन-सा शब्द बनता है?'",
+   "we_do_hi": "",
+   "you_do_hi": "बोर्ड पर क, म, ब, प और ग लिखें। हर जोड़ी को कागज़ की पर्चियों पर लिखे यही अक्षर, और कप, बटन, पत्ती जैसी चीज़ें मिलाकर दें; बच्चे चीज़ उठाकर उसका नाम बोलें और उसके पहले अक्षर वाली पर्ची रखें, फिर एक अक्षर पर अपने साथी को एक शब्द बताएँ। यह काम अपनी जगह पर अगले समय में पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "'मछली' शब्द बोलें। बोर्ड पर लिखें: 1) म 2) क। 'मछली' किस अक्षर से शुरू होता है? उँगली पर दिखाएँ।",
+    "expected_hi": "1) म",
+    "listen_for": [],
+    "shows_hi": "बच्चा शब्द की पहली ध्वनि सुनकर सही अक्षर पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर 'ब' लिखें। 'ब' से कौन-सा शब्द शुरू होता है: 1) गमला 2) बतख? उँगली पर दिखाएँ।",
+    "expected_hi": "2) बतख",
+    "listen_for": [],
+    "shows_hi": "बच्चा अक्षर देखकर उसी ध्वनि से शुरू होने वाला शब्द चुनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर क, म, ब, प, ग लिखें: हर जोड़ी के लिए एक सेट।",
+   "कप, बटन, पत्ती, गमला या कंकड़ जैसी कुछ चीज़ें इकट्ठा करें, जिनके नाम इन अक्षरों से शुरू हों।",
+   "बोर्ड पर क, म, ब, प, ग बड़े अक्षरों में लिखने की जगह रखें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर अक्षर को पढ़ें और उससे शुरू होने वाला एक शब्द अपने साथी को बताएँ। हर शब्द सुनकर उसका पहला अक्षर लिखें।",
+   "instructions_en": "Read each letter and tell your partner a word that starts with it. Listen to each word and write its first letter.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "अक्षर और शब्द का उदाहरण:",
+    "example_text": "क → कमल"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा कोई चीज़ उठाकर उसका नाम बोले और उसके पहले अक्षर वाली पर्ची रखे; फिर शिक्षक के दिखाए अक्षर पर एक शब्द बताए।",
+    "task_en": "The child picks an object, says its name and places the card with its first letter; then names a word for a letter the teacher shows.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "अक्षर लिखी कागज़ की पर्चियाँ",
+     "बटन",
+     "पत्ती",
+     "कंकड़"
+    ],
+    "look_for": {
+     "achieved_hi": "शब्द से सही अक्षर चुनता है और अक्षर पर सही शब्द बताता है, बिना मदद के।",
+     "partial_hi": "कुछ अक्षरों पर सही है, या केवल एक तरफ़ से जोड़ पाता है।",
+     "not_yet_hi": "अक्षर और शब्द की पहली ध्वनि को जोड़ नहीं पाता।",
+     "achieved_en": "Matches word to letter and letter to word correctly without help.",
+     "partial_en": "Correct for some letters, or only in one direction.",
+     "not_yet_en": "Cannot link letters to the first sound of words."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'कप' शब्द सुनें। इसका पहला अक्षर लिखें।",
+     "answer": "क",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "'बटन' शब्द सुनें। इसका पहला अक्षर लिखें।",
+     "answer": "ब",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "'गमला' शब्द सुनें। इसका पहला अक्षर लिखें।",
+     "answer": "ग",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "'पत्ती' शब्द सुनें। इसका पहला अक्षर लिखें।",
+     "answer": "प",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'मटर' शब्द सुनें। इसका पहला अक्षर लिखें।",
+     "answer": "म",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:08:40Z",
+ "cost_usd": 0.0262,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,119 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.5.1-M1__short",
+ "skill_id": "L2.5.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.5.1-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कहानी पढ़ना सीखा था।' बोर्ड पर लिखें: मीना ने बगीचे में लाल फूल देखे। पहले हर शब्द के बाद बराबर रुककर पढ़ें, बच्चों से पूछें कि क्या यह बात करने जैसा लगा, फिर वही वाक्य 'मीना ने / बगीचे में / लाल फूल देखे' की तरह टुकड़ों में पढ़ें और टुकड़ों के बीच स्लैश लगाएँ; अंत में अलग-अलग पढ़ने की बात मिटा दें, बोर्ड पर स्लैश वाला वाक्य ही रहे।",
+   "we_do_hi": "",
+   "you_do_hi": "वर्कशीट पर कठिन शब्द साथी को धीमे से पढ़कर सुनाएँ, फिर अनुच्छेद एक बार टुकड़ों में पढ़ें; बाकी दो बार पढ़ना, जोड़ी में पढ़ना और प्रश्न 1 से 3 अगले ब्लॉक में अपनी जगह पर करें। घूमते हुए पहले उन बच्चों के पास शांति से जाएँ जिन्हें शब्द-दर-शब्द पढ़ने में कठिनाई थी। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) पापा ने / बाज़ार से / केले लाए  2) पापा / ने / बाज़ार / से / केले / लाए। कौन-सा पढ़ना बात करने जैसा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M1",
+      "misconception_name_hi": "वाक्यांश बनाए बिना शब्द-दर-शब्द पढ़ना",
+      "misconception_name_en": "Word-by-word reading without phrasing",
+      "detect_en": "CWPM may be adequate but reading sounds robotic; equal pause between all words regardless of meaning units",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: बिल्ली दूध पी रही है। पहला टुकड़ा किस शब्द के बाद ख़त्म होगा? उस शब्द की संख्या लिखें।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M1",
+      "misconception_name_hi": "वाक्यांश बनाए बिना शब्द-दर-शब्द पढ़ना",
+      "misconception_name_en": "Word-by-word reading without phrasing",
+      "detect_en": "CWPM may be adequate but reading sounds robotic; equal pause between all words regardless of meaning units",
+      "wrong_answer_hi": "हर शब्द के बाद रुकना, 1 2 3 4"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: मीना ने बगीचे में लाल फूल देखे।",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार टुकड़ों में धीमे से पढ़ें, हर बार एक डिब्बे में सही लगाएँ। जोड़ी में पढ़ें: एक पढ़े, साथी उँगली से साथ चले। अंत में प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the hard words to a partner. Read the passage aloud three times in phrases, ticking a box each time. Read in pairs: one reads, the partner follows with a finger. Then answer the questions.",
+   "required_count": 3,
+   "sheet_kind": "fluency",
+   "example_block": null,
+   "passage_block": {
+    "title": "बगीचे की सैर",
+    "text": "रविवार को मीना अपने दादा के साथ बगीचे गई। वहाँ रंग-बिरंगे फूल खिले थे। एक पेड़ पर चिड़िया गाना गा रही थी। मीना ने दादा से पूछा कि चिड़िया क्या कह रही है। दादा हँसकर बोले, 'वह सुबह का स्वागत कर रही है।'"
+   },
+   "warmup_words": [
+    "रविवार",
+    "बगीचे",
+    "रंग-बिरंगे",
+    "चिड़िया",
+    "स्वागत",
+    "हँसकर"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मीना किसके साथ बगीचे गई?",
+     "answer": "दादा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "वाक्य पढ़ें: मीना अपने दादा के साथ बगीचे गई। पहला टुकड़ा किस शब्द के बाद ख़त्म होगा? उस शब्द की संख्या लिखें।",
+     "answer": "1",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.5.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "वाक्य पढ़ें: एक पेड़ पर / चिड़िया / गाना गा रही थी। इसमें कितने टुकड़े हैं? संख्या लिखें।",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.5.1-M1"
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 6 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "13a466fabb02",
+ "created": "2026-11-21T05:59:53Z",
+ "cost_usd": 0.025,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

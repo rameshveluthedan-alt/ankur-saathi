@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.3.2__normal__short",
+ "skill_id": "L1.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर दो पंक्तियाँ लिखें: 'दिन  दीन' और 'कुल  कूल'। हर शब्द पढ़कर सुनाएँ और बताएँ: 'देखिए, ि छोटी है तो आवाज़ छोटी, ी बड़ी है तो आवाज़ लंबी; ु छोटा, ू लंबा।' इसके बाद 'कमाल' लिखें और ा की मात्रा पर उँगली रखकर पढ़ें: 'क - मा - ल, मात्रा म पर लगी है।' अंत में समूह से पूछें: 'दिन में कौन-सी मात्रा है, छोटी इ या बड़ी ई?'",
+   "we_do_hi": "",
+   "you_do_hi": "बोर्ड पर लिखे 'दिन, दीन, कुल, कूल, कमाल' मिटा दें। हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: मिला, मीना, पुल, पूरा, कुरता। एक बच्चा कार्ड पढ़े, दूसरा सुने, फिर बारी बदलें; कार्ड न हों तो वर्कशीट के शब्द कॉपी से पढ़ें, और जो जल्दी पढ़ लें वे बाकी शब्द भी पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) सिल  2) सील। फिर बोलें: 'सील'। उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M1",
+      "misconception_name_hi": "छोटी इ (ि) और बड़ी ई (ी) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटी इ (ि) and बड़ी ई (ी) matras",
+      "detect_en": "Errors specifically on ि/ी distinction; other matras are read correctly. Inconsistent — sometimes correct, sometimes swapped.",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) पुल  2) पूल। फिर बोलें: 'पुल'। उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M2",
+      "misconception_name_hi": "छोटा उ (ु) और बड़ा ऊ (ू) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटा उ (ु) and बड़ा ऊ (ू) matras",
+      "detect_en": "Errors specifically on ु/ू distinction; reads both as the same vowel sound",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: दिन  दीन, कुल  कूल, कमाल।",
+   "कागज़ की पर्चियों पर शब्द-कार्ड बनाएँ: मिला, मीना, पुल, पूरा, कुरता (हर जोड़ी के लिए एक सेट)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द अपनी जोड़ी को ज़ोर से पढ़कर सुनाएँ। मात्रा ध्यान से देखें।",
+   "instructions_en": "Read each word aloud to your partner. Look carefully at the matra.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "जोड़ी में शब्द-कार्ड ज़ोर से पढ़ें: मिला, मीना, पुल, पूरा, कुरता।",
+    "task_en": "Read word cards aloud to a partner: मिला, मीना, पुल, पूरा, कुरता.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "पाँचों शब्द बिना मदद के सही मात्रा के साथ पढ़ता है",
+     "partial_hi": "आ की मात्रा सही पढ़ता है पर छोटी-बड़ी इ या उ में अटकता है",
+     "not_yet_hi": "केवल व्यंजन पढ़ता है, मात्रा नहीं जोड़ पाता",
+     "achieved_en": "Reads all five words correctly without help",
+     "partial_en": "Reads aa matra but mixes short and long i or u",
+     "not_yet_en": "Reads only bare consonants, cannot add the matra"
+    }
+   },
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "क + ि = कि,  क + ी = की"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: नाना",
+     "answer": "नाना",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: दिन, दीन",
+     "answer": "दिन, दीन",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: सुर, सूरज",
+     "answer": "सुर, सूरज",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: पानी",
+     "answer": "पानी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: गुड़िया",
+     "answer": "गुड़िया",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.0261,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

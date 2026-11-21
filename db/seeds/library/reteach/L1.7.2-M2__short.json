@@ -1,0 +1,128 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.7.2-M2__short",
+ "skill_id": "L1.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.7.2-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने मात्रा वाले शब्द लिखे थे। बोर्ड पर लिखें: 'नदी' को 'नद ई' की तरह, यानी द के बाद पूरा ई अक्षर, और बच्चों से कहें: 'देखिए, यहाँ ई अलग अक्षर बन गया, यह शब्द नहीं बना।' अब उसके नीचे सही 'नदी' लिखें, द के साथ ी की मात्रा जोड़कर, फिर गलत वाला शब्द मिटा दें ताकि बोर्ड पर केवल सही रूप रहे।",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बच्चे अपनी जगह शुरू करें और बचा काम अगले समय में अपनी जगह पूरा करें। शिक्षक सामान्य चक्कर में पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने पिछली बार मात्रा की जगह पूरा अक्षर लिखा था।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) मोर 2) मओर। सही शब्द कौन सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M2",
+      "misconception_name_hi": "मात्रा चिह्न की बजाय स्वर अक्षर लिखता है",
+      "misconception_name_en": "Writes the vowel letter instead of the matra sign",
+      "detect_en": "Writes \"क + ई\" as two separate characters instead of \"की\" as one unit",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: र। 'रानी' के पहले अक्षर में र के साथ क्या लगेगा? स्लेट पर बस वह चिह्न लिखें।",
+    "expected_hi": "ा",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M2",
+      "misconception_name_hi": "मात्रा चिह्न की बजाय स्वर अक्षर लिखता है",
+      "misconception_name_en": "Writes the vowel letter instead of the matra sign",
+      "detect_en": "Writes \"क + ई\" as two separate characters instead of \"की\" as one unit",
+      "wrong_answer_hi": "आ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से गलत 'नद ई' और उसके नीचे सही 'नदी' लिखने की जगह छोड़ें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "चित्र के नाम ध्यान से बोलें और मात्रा लगाकर शब्द लिखें। अक्षर के साथ मात्रा का चिह्न लगाएँ, अलग अक्षर नहीं। शब्द के ऊपर शिरोरेखा जोड़ें।",
+   "instructions_en": "Write each word using the matra sign, not the separate vowel letter. Join the letters with the headline.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "म + ा = मा"
+   },
+   "passage_block": null,
+   "sheet_kind": "formation",
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "ग + ा + य = ?",
+     "answer": "गाय",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ट + ो + प + ी = ?",
+     "answer": "टोपी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "फ + ू + ल = ?",
+     "answer": "फूल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "च + ा + य = ?",
+     "answer": "चाय",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "ब + े + र = ?",
+     "answer": "बेर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "bc9fa2c97f17",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0205,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

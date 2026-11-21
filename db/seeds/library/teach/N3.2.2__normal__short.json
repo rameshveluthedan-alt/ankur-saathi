@@ -1,0 +1,101 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.2.2__normal__short",
+ "skill_id": "N3.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 4625, और हर अंक के ऊपर ह, स, द, इ लिखें। बच्चों को दिखाएँ: 'देखिए, 4 हज़ार के स्थान पर है, इसलिए इसका मान 4000 है; 6 का 600, 2 का 20, 5 का 5।' फिर बोर्ड पर लिखें: 4625 = 4000 + 600 + 20 + 5, और एक छोटा सवाल पूछें: 'इसमें 2 का स्थानीय मान क्या है?'",
+   "we_do_hi": "",
+   "you_do_hi": "'अपनी कॉपी में पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' शिक्षक घूमकर देखें कि बच्चे शून्य वाले स्थान को सही रख रहे हैं। जो बचे, वह बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 5382। इसमें 3 का स्थानीय मान क्या है?",
+    "expected_hi": "300",
+    "listen_for": [],
+    "shows_hi": "बच्चा अंक के स्थान से उसका मान पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर लिखें: 7000 + 400 + 90 + 1। यह कौन सी संख्या है?",
+    "expected_hi": "7491",
+    "listen_for": [],
+    "shows_hi": "बच्चा विस्तारित रूप से संख्या बना लेता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से ह | स | द | इ के चार शीर्षक लिखकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को ध्यान से पढ़ें। स्थानीय मान या विस्तारित रूप लिखें।",
+   "instructions_en": "Read each number carefully. Write the place value or the expanded form.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "2736 का विस्तारित रूप लिखें = ___",
+     "answer": "2000 + 700 + 30 + 6",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "8514 में 5 का स्थानीय मान = ___",
+     "answer": "500",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "9000 + 60 + 3 = ___",
+     "answer": "9063",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "4972 में 9 का स्थानीय मान = ___",
+     "answer": "900",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "3208 का विस्तारित रूप लिखें = ___",
+     "answer": "3000 + 200 + 8",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "1000 + 500 + 40 + 7 = ___",
+     "answer": "1547",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "51c13913269b",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0229,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

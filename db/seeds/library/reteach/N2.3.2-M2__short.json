@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.2-M2__short",
+ "skill_id": "N2.3.2",
+ "domain_id": "numeracy",
+ "mode": "N2.3.2-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने हासिल वाला जोड़ सीखा था, आज एक गलती पहचानेंगे। बोर्ड पर दहाई-इकाई का बॉक्स बनाकर 46 + 37 लिखें। इकाई में 6 + 7 = 13 पूरा लिख दें और दहाई में 4 + 3 = 7 लिखें, उत्तर 713 बनता है। बच्चों से कहें: 'देखिए, इकाई के बॉक्स में एक ही अंक आता है, 13 नहीं।' यह गलत काम मिटा दें। अब वही सवाल फिर करें: इकाई में 3 लिखें, 1 हासिल दहाई के ऊपर रखें, 4 + 3 + 1 = 8, उत्तर 83। अंत में पूछें: '13 में से इकाई में कौन-सा अंक जाता है?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट का सवाल 1 अभी हल करें। सवाल 2 और 3 अपनी जगह पर पूरे करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' जिन बच्चों ने इकाई में पूरा योग लिखा था, उनकी कॉपी पहले देखें। यह सामान्य चक्कर में ही, धीरे से करें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर लिखें: 28 + 35। स्लेट पर उत्तर लिखें।",
+    "expected_hi": "63",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M2",
+      "misconception_name_hi": "पूरा इकाई योग लिखना, हासिल न रखना",
+      "misconception_name_en": "Writes full ones sum without carrying",
+      "detect_en": "Answer has 3 digits where 2 expected, or ones column shows 2 digits (e.g., 34+28 → 512 where ones shows 12)",
+      "wrong_answer_hi": "513"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 39 + 45 = 714। क्या यह सही है? गलत हो तो सही उत्तर लिखें।",
+    "expected_hi": "गलत, 84",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M2",
+      "misconception_name_hi": "पूरा इकाई योग लिखना, हासिल न रखना",
+      "misconception_name_en": "Writes full ones sum without carrying",
+      "detect_en": "Answer has 3 digits where 2 expected, or ones column shows 2 digits (e.g., 34+28 → 512 where ones shows 12)",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दहाई-इकाई का बॉक्स बनाकर रखें, जिसमें इकाई के ऊपर हासिल की छोटी जगह हो।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले इकाई जोड़ें। इकाई के बॉक्स में एक ही अंक लिखें और हासिल को दहाई के ऊपर वाले खाली स्थान में लिखें। फिर दहाई जोड़ें।",
+   "instructions_en": "Add the ones first. Write only one digit in the ones box and write the carry in the carry cell above the tens. Then add the tens.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "36 + 25",
+     "answer": "61",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "48 + 37",
+     "answer": "85",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "29 + 41 = ___",
+     "answer": "70",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N2.3.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "43 + 38 = ___",
+     "answer": "81",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "57 + 16 = ___",
+     "answer": "73",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 38 आम हैं और दूसरी टोकरी में 26 आम हैं। दोनों टोकरियों में कुल कितने आम हैं?",
+     "answer": "64",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "8f306e8b3890",
+ "created": "2026-11-21T06:02:47Z",
+ "cost_usd": 0.0342,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

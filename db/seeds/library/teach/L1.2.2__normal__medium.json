@@ -1,0 +1,129 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.2.2__normal__medium",
+ "skill_id": "L1.2.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: कमल। बच्चों से कहें: 'सुनें, यह शब्द हम धीरे-धीरे तोड़ते हैं: क... म... ल', हर ध्वनि पर एक ताली बजाएँ। फिर 'जल' शब्द के साथ यही करें: ज... ल, दो ताली।",
+   "we_do_hi": "'नल' शब्द बोलें और बच्चों के साथ हर ध्वनि पर ताली बजाएँ: न... ल। फिर 'घर' और 'कलम' लें; हर बार पूछें: 'कितनी ताली बजीं?' जो बच्चा ध्वनियाँ गिनने में अटके, उसके साथ धीमे बोलकर दोहराएँ।",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को 5 कंकड़ या बोतल के ढक्कन दें। एक बच्चा शब्द बोले (मन, बस, सड़क, मटर), दूसरा हर ध्वनि पर एक कंकड़ आगे सरकाए और ध्वनियाँ बोले; फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक शब्द बोलें: 'रथ'। इस शब्द में कितनी ध्वनियाँ हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा छोटे शब्द को अलग ध्वनियों में तोड़ पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक शब्द बोलें: 'पतन'। इसमें कितनी ध्वनियाँ हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा तीन ध्वनियों वाला शब्द तोड़कर गिन पाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: कमल",
+   "हर दो बच्चों के लिए 5 कंकड़ या बोतल के ढक्कन इकट्ठा करें"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द साथी को बोलकर सुनाएँ। हर ध्वनि पर एक ताली बजाएँ और बताएँ कितनी ध्वनियाँ हैं।",
+   "instructions_en": "Say each word to a partner. Clap once for each sound and tell how many sounds there are.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "शिक्षक एक शब्द बोलें (जैसे मटर); बच्चा हर ध्वनि बोलते हुए एक कंकड़ आगे सरकाए और बताए कितनी ध्वनियाँ हैं।",
+    "task_en": "The teacher says a word (like मटर); the child says each sound while moving one pebble forward, and tells how many sounds there are.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बोतल के ढक्कन",
+     "बीज",
+     "बटन"
+    ],
+    "look_for": {
+     "achieved_hi": "तीन-चार ध्वनि वाले शब्द बिना मदद सही तोड़ता है",
+     "partial_hi": "दो ध्वनि वाले शब्द तोड़ता है, बड़े शब्दों में मदद चाहिए",
+     "not_yet_hi": "पूरा शब्द दोहराता है या अलग ध्वनियाँ नहीं बोल पाता",
+     "achieved_en": "Segments 3-4 sound words correctly without help",
+     "partial_en": "Segments 2-sound words, needs help with longer ones",
+     "not_yet_en": "Repeats the whole word or cannot give separate sounds"
+    }
+   },
+   "example_block": null,
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को बोलें: दल। कितनी ध्वनियाँ?",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को बोलें: नमक। कितनी ध्वनियाँ?",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को बोलें: कसरत। कितनी ध्वनियाँ?",
+     "answer": "4",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को बोलें: फल। कितनी ध्वनियाँ?",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को बोलें: गमला। कितनी ध्वनियाँ?",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:08:40Z",
+ "cost_usd": 0.0242,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

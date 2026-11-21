@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.4.1__normal__medium",
+ "skill_id": "L3.4.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर एक नया शब्द लिखें: 'पतंगबाज़ी'। उँगली रखकर टुकड़ों में पढ़ें: 'प-तंग-बा-ज़ी', फिर टुकड़े जोड़कर पूरा शब्द बोलें। बच्चों से कहें: 'देखिए, लंबा शब्द आए तो हम उसे छोटे टुकड़ों में तोड़ते हैं।'",
+   "we_do_hi": "बोर्ड पर लिखें: 'रेलगाड़ी' और 'चमकीला'। हर शब्द के टुकड़ों के नीचे बच्चों के साथ रेखा खींचें, फिर टुकड़े जोड़कर शब्द पढ़ें। बच्चों से पूछें: 'पहला टुकड़ा क्या है? अब अगला?'",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे पाँच नए शब्द दें; पर्चियाँ न हों तो वर्कशीट के शब्द कॉपी में उतार लें। एक बच्चा टुकड़े बोलकर शब्द पढ़े, दूसरा सुने, फिर बारी बदलें; शब्द 1 से शुरू करें, बाकी अगले ब्लॉक में अपनी जगह पर पूरे करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'कबूतर'। इस शब्द में कितने टुकड़े हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा शब्द को टुकड़ों में तोड़ पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'सम-झ-दार'। ये टुकड़े जोड़कर जो शब्द बनता है, उसका पहला अक्षर स्लेट पर लिखें।",
+    "expected_hi": "स",
+    "listen_for": [],
+    "shows_hi": "बच्चा टुकड़ों को जोड़कर पूरा शब्द पढ़ता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: पतंगबाज़ी, रेलगाड़ी, चमकीला।",
+   "हर जोड़ी के लिए पाँच कागज़ की पर्चियाँ, जिन पर नए शब्द लिखे हों: अखबारवाला, गुलमोहर, सरसराहट, टिमटिमाना, फुलवारी।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को टुकड़ों में तोड़कर साथी को पढ़कर सुनाएँ।",
+   "instructions_en": "Break each word into parts and read it aloud to your partner.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "पाँच नए शब्द टुकड़ों में तोड़कर साथी को पढ़कर सुनाएँ।",
+    "task_en": "Read five new words aloud to a partner by breaking them into syllables.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "टुकड़े बोलकर पाँच में से चार या पाँच शब्द सही पढ़ता है।",
+     "partial_hi": "कोशिश करता है, दो-तीन शब्द सही पढ़ता है, बाकी छोड़ देता है।",
+     "not_yet_hi": "नए शब्द नहीं पढ़ता, छोड़ देता है या शिक्षक से पूछता है।",
+     "achieved_en": "Breaks words into parts and reads 4 or 5 of 5 correctly.",
+     "partial_en": "Tries, reads 2-3 correctly, gives up on others.",
+     "not_yet_en": "Does not attempt; skips or asks the teacher."
+    }
+   },
+   "example_block": null,
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "टुकड़े बोलकर पढ़ें: अखबारवाला",
+     "answer": "अख-बार-वा-ला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "टुकड़े बोलकर पढ़ें: गुलमोहर",
+     "answer": "गुल-मो-हर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "टुकड़े बोलकर पढ़ें: सरसराहट",
+     "answer": "सर-स-रा-हट",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "टुकड़े बोलकर पढ़ें: टिमटिमाना",
+     "answer": "टिम-टि-मा-ना",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "टुकड़े बोलकर पढ़ें: फुलवारी",
+     "answer": "फुल-वा-री",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0252,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

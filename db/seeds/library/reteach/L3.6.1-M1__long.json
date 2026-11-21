@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.6.1-M1__long",
+ "skill_id": "L3.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.6.1-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने पढ़ा था कि क्यों और कैसे वाले सवाल का उत्तर सोचकर देते हैं।' बोर्ड पर लिखें: 'बारिश शुरू हुई। मीना दौड़कर पेड़ के नीचे खड़ी हो गई।' और सवाल 'मीना पेड़ के नीचे क्यों खड़ी हुई?' पहले बोर्ड पर गलत उत्तर लिखें: 'मीना दौड़कर पेड़ के नीचे खड़ी हो गई।' और बोलें: 'देखिए, यह तो कहानी का वाक्य ज्यों का त्यों है, इसमें कारण नहीं है।' फिर उसी सवाल का सही उत्तर लिखें: 'क्योंकि वह भीगना नहीं चाहती थी।' और बताएँ कि 'बारिश' शब्द से हमें कारण मिला। अंत में गलत उत्तर मिटा दें, बोर्ड पर केवल सही उत्तर रहने दें।",
+   "we_do_hi": "बोर्ड पर लिखें: 'राजू की पतंग पेड़ में अटक गई। राजू रोने लगा।' और सवाल 'राजू क्यों रोने लगा?' के आगे गलत उत्तर 'राजू रोने लगा।' लिखें। बच्चों से पूछें: 'इसमें कारण है क्या?' फिर सब मिलकर ठीक करें: 'क्योंकि उसकी पतंग अटक गई थी।' इसके बाद नया उदाहरण साथ में करें: 'दादी ने चश्मा लगाया और अख़बार पढ़ने लगीं।' सवाल: 'दादी ने चश्मा क्यों लगाया?' उत्तर साथ में बनाएँ: 'पढ़ने के लिए।'",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' हर उत्तर 'क्योंकि' से शुरू करने की याद दिलाएँ। पहला चक्कर शांति से उन बच्चों के पास लगाएँ जिन्होंने पिछली बार कहानी का वाक्य उतारा था, बिना किसी का नाम लिए।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सोनू ने छाता खोला, क्योंकि धूप बहुत तेज़ थी।' सवाल: सोनू ने छाता क्यों खोला? 1) सोनू ने छाता खोला। 2) धूप से बचने के लिए। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M1",
+      "misconception_name_hi": "अनुमानात्मक प्रश्न का तथ्यात्मक उत्तर देता है",
+      "misconception_name_en": "Gives literal answer to inferential question",
+      "detect_en": "Response is a copy from the text, not a reasoned answer. E.g., \"Why was Ram sad?\" → \"Ram went home\" (quotes text) instead of \"Because his friend moved away\" (infers)",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'बिल्ली ने दूध का खाली कटोरा देखा और म्याऊँ-म्याऊँ करने लगी।' सवाल: बिल्ली म्याऊँ क्यों कर रही थी? स्लेट पर एक शब्द लिखें: उसे क्या चाहिए था?",
+    "expected_hi": "दूध",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M1",
+      "misconception_name_hi": "अनुमानात्मक प्रश्न का तथ्यात्मक उत्तर देता है",
+      "misconception_name_en": "Gives literal answer to inferential question",
+      "detect_en": "Response is a copy from the text, not a reasoned answer. E.g., \"Why was Ram sad?\" → \"Ram went home\" (quotes text) instead of \"Because his friend moved away\" (infers)",
+      "wrong_answer_hi": "म्याऊँ-म्याऊँ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का वाक्य और सवाल पहले से लिखें: 'बारिश शुरू हुई। मीना दौड़कर पेड़ के नीचे खड़ी हो गई।'",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति और स्लेट या कॉपी।"
+  ],
+  "worksheet": {
+   "instructions_hi": "कहानी ध्यान से पढ़ें। हर सवाल का उत्तर सोचकर अपने शब्दों में लिखें। उत्तर 'क्योंकि' से शुरू करें।",
+   "instructions_en": "Read the story carefully. Answer each question in your own words by thinking. Begin your answer with 'because'.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "गोलू का बगीचा",
+    "text": "गोलू ने घर के पीछे एक छोटा बगीचा बनाया। उसने टमाटर के पौधे लगाए। कई दिन बारिश नहीं हुई। पौधों की पत्तियाँ पीली होकर झुक गईं। गोलू रोज़ सुबह बाल्टी भरकर पौधों को पानी देने लगा। कुछ दिन बाद पौधों पर लाल टमाटर आ गए। गोलू ने टमाटर दादी को दिए। दादी ने टमाटर की चटनी बनाई और गोलू को गले लगा लिया।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गोलू रोज़ पौधों को पानी क्यों देने लगा?",
+     "answer": "क्योंकि बारिश नहीं हुई थी और पौधे सूख रहे थे।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पौधों की पत्तियाँ पीली होकर क्यों झुक गईं?",
+     "answer": "क्योंकि पौधों को पानी नहीं मिला था।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "दादी ने गोलू को गले क्यों लगाया?",
+     "answer": "क्योंकि वह गोलू के उगाए टमाटरों से खुश थीं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पौधों पर टमाटर कैसे आए?",
+     "answer": "क्योंकि गोलू ने रोज़ उन्हें पानी दिया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "गोलू बाल्टी भरकर क्यों ले जाता था?",
+     "answer": "पौधों को पानी देने के लिए।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "दादी ने चटनी किससे बनाई?",
+     "answer": "गोलू के दिए टमाटरों से।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "fd08e369cf36",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.0311,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,135 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.6.1__normal__medium",
+ "skill_id": "L1.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'सुनें, आज हम एक छोटी कहानी सुनेंगे और बताएँगे कि कौन था, क्या हुआ, कहाँ हुआ।' यह कहानी धीरे-धीरे एक बार पढ़कर सुनाएँ: 'मीना बाज़ार गई। उसने लाल आम खरीदा। रास्ते में उसे एक प्यासी बकरी मिली। मीना ने बकरी को पानी पिलाया।' फिर ज़ोर से सोचकर दिखाएँ: 'देखिए, कहानी में कौन था? मीना। वह कहाँ गई? बाज़ार।'",
+   "we_do_hi": "उसी कहानी पर बच्चों से एक-एक करके पूछें: 'मीना ने क्या खरीदा?' और 'रास्ते में कौन मिला?' दो-तीन बच्चों से बारी-बारी उत्तर सुनें और कहानी की वह पंक्ति दोबारा पढ़कर उत्तर मिलाएँ। सही उत्तर पर तालियाँ बजवाएँ।",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को बोर्ड पर लिखे पर्चों वाले शब्द-कार्ड (कौन, क्या, कहाँ) दें; यह नई कहानी एक बार सुनाएँ: 'राजू खेत में गया। वहाँ उसने एक पीली तितली देखी। तितली फूल पर बैठ गई।' अब जोड़ी में एक बच्चा कार्ड उठाकर प्रश्न पूछे और दूसरा उत्तर बोले; जो काम पूरा न हो, वह अगले हिस्से में अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "यह सुनें: 'गोलू नदी के पास बैठा था।' गोलू कहाँ बैठा था? 1) नदी के पास 2) पेड़ पर। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "सुनी हुई बात से जगह (कहाँ) याद रखकर बताता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "यह सुनें: 'बिल्ली ने दूध पिया।' किसने दूध पिया? 1) कुत्ता 2) बिल्ली। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "सुनी हुई बात से पात्र (कौन) पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "I Do वाली कहानी (मीना और बकरी) और You Do वाली कहानी (राजू और तितली) एक पर्ची पर लिखकर रखें।",
+   "हर जोड़ी के लिए कागज़ की तीन पर्चियाँ बनाएँ: 'कौन', 'क्या', 'कहाँ'।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "शिक्षक कहानी पढ़कर सुनाएँ। बच्चे ध्यान से सुनें और हर प्रश्न का उत्तर बोलें।",
+   "instructions_en": "The teacher reads the story aloud. Children listen carefully and answer each question aloud.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "मोर और बारिश",
+    "text": "एक दिन बादल आए। जंगल में एक मोर था। बारिश हुई तो मोर नाचने लगा। पास के पेड़ पर एक तोता बैठा था। तोते ने मोर का नाच देखा।"
+   },
+   "observe": {
+    "task_hi": "शिक्षक एक छोटी कहानी एक बार सुनाएँ और पाँच प्रश्न पूछें (कौन, क्या, कहाँ)। बच्चा हर प्रश्न का उत्तर बोलकर दे।",
+    "task_en": "The teacher reads a short story once and asks five who/what/where questions. The child answers each aloud.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कौन, क्या, कहाँ लिखे कागज़ के पर्चे",
+     "बोर्ड पर लिखी छोटी कहानी"
+    ],
+    "look_for": {
+     "achieved_hi": "पाँच में से चार या अधिक प्रश्नों के सही उत्तर बिना मदद के बोलता है।",
+     "partial_hi": "पात्र बताता है, पर क्या हुआ या कहाँ हुआ यह मदद से या आधा बताता है।",
+     "not_yet_hi": "कहानी की कोई बात याद नहीं रख पाता, उत्तर नहीं दे पाता।",
+     "achieved_en": "Answers 4 or more of 5 questions correctly without help.",
+     "partial_en": "Names the character but needs help or is partly right on events or places.",
+     "not_yet_en": "Cannot recall the story or answer the questions."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "कहानी में कौन नाचने लगा?",
+     "answer": "मोर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "मोर कहाँ था?",
+     "answer": "जंगल में",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "तोता कहाँ बैठा था?",
+     "answer": "पेड़ पर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "मोर कब नाचने लगा?",
+     "answer": "बारिश हुई तब",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "मोर का नाच किसने देखा?",
+     "answer": "तोते ने",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0285,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

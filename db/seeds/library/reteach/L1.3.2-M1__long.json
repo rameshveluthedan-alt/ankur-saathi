@@ -1,0 +1,155 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.2-M1__long",
+ "skill_id": "L1.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.2-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने मात्रा वाले अक्षर पढ़े थे; आज छोटी इ और बड़ी ई को ध्यान से पढ़ेंगे। बोर्ड पर लिखें: दिन, और पहले गलत पढ़कर सुनाएँ 'दीन', फिर बताएँ: 'देखिए, यहाँ छोटी इ की मात्रा है, यह छोटी आवाज़ है: दिन।' इसके बाद ताली से दिखाएँ: छोटी इ पर एक छोटी ताली, बड़ी ई पर लंबी आवाज़ 'ई...'; अंत में गलत पढ़ाई की बात मिटा दें, बोर्ड पर केवल सही 'दिन' रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: मिठाई के नीचे 'मीठाई' और सिल के नीचे 'सील', और बच्चों से पूछें कि किस शब्द की मात्रा छोटी इ वाली है; साथ मिलकर ठीक करें और गलत रूप मिटा दें। फिर नया शब्द साथ पढ़ें: बिल और बील, पहले छोटी आवाज़, फिर लंबी।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: दिन, दीन, कल, काल, किला, कील, पिता, पीला; एक बच्चा कार्ड पढ़े, साथी सुने, फिर बारी बदलें। कार्ड न हों तो वर्कशीट के सवाल 1 से 3 पहले साथी को पढ़कर सुनाएँ; जो जल्दी ख़त्म करें, वे बाकी सवाल पढ़ें, और शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्हें यह मात्रा कठिन लगी थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "एक शब्द बोलें: 'खिला'। बोर्ड पर लिखें: 1) खिला 2) खीला। सुना हुआ शब्द कौन-सा है? उँगली दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M1",
+      "misconception_name_hi": "छोटी इ (ि) और बड़ी ई (ी) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटी इ (ि) and बड़ी ई (ी) matras",
+      "detect_en": "Errors specifically on ि/ी distinction; other matras are read correctly. Inconsistent — sometimes correct, sometimes swapped.",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: तीर। इसमें कौन-सी मात्रा है: 1) छोटी इ 2) बड़ी ई? उँगली दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M1",
+      "misconception_name_hi": "छोटी इ (ि) और बड़ी ई (ी) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटी इ (ि) and बड़ी ई (ी) matras",
+      "detect_en": "Errors specifically on ि/ी distinction; other matras are read correctly. Inconsistent — sometimes correct, sometimes swapped.",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर शब्द-कार्ड लिखें: दिन, दीन, कल, काल, किला, कील, पिता, पीला (हर जोड़ी के लिए एक सेट)।",
+   "बोर्ड पर पहले से लिखें: दिन, मिठाई, सिल, बिल, बील।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द साथी को पढ़कर सुनाएँ। छोटी इ और बड़ी ई की आवाज़ पर ध्यान दें।",
+   "instructions_en": "Read each word aloud to your partner. Listen carefully to the short-i and long-i sounds.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "क + ि = कि,  क + ी = की"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा साथी को शब्द-कार्ड पढ़कर सुनाए, जिनमें छोटी इ और बड़ी ई वाले शब्द मिले हुए हों।",
+    "task_en": "The child reads word cards aloud to a partner, mixing short-i and long-i words.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "छोटी इ और बड़ी ई वाले सभी शब्द बिना मदद सही पढ़ता है।",
+     "partial_hi": "कुछ शब्द सही पढ़ता है या याद दिलाने पर ठीक करता है।",
+     "not_yet_hi": "दोनों मात्राओं को एक जैसा पढ़ता है।",
+     "achieved_en": "Reads all short-i and long-i words correctly without help.",
+     "partial_en": "Reads some correctly or corrects after a reminder.",
+     "not_yet_en": "Reads both matras the same way."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: पिता",
+     "answer": "पिता",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: दिन, दीन",
+     "answer": "दिन, दीन",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: किला, कील",
+     "answer": "किला, कील",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: पीला",
+     "answer": "पीला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: चिड़िया",
+     "answer": "चिड़िया",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "पढ़ें: नदी",
+     "answer": "नदी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4542131bd9e5",
+ "created": "2026-11-21T05:59:28Z",
+ "cost_usd": 0.0294,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

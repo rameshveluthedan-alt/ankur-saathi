@@ -1,0 +1,124 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.6.4__normal__long",
+ "skill_id": "L3.6.4",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने वाक्य ध्यान से पढ़ना सीखा था।' बोर्ड पर लिखें: 'गाय के चार पैर होते हैं।' और 'गाय सबसे प्यारा जानवर है।' बच्चों को समझाएँ: 'पहली बात सब मानेंगे, गिनकर जाँच सकते हैं: यह तथ्य है। दूसरी बात किसी की पसंद है, कोई और कुछ और सोच सकता है: यह राय है।'",
+   "we_do_hi": "बोर्ड पर लिखें: 'सूरज पूर्व से निकलता है।' और 'आम सबसे मीठा फल है।' हर वाक्य के बाद बच्चों से पूछें: 'क्या इसे जाँच सकते हैं, या यह किसी की पसंद है?' और साथ में त फ़ॉर तथ्य, र फ़ॉर राय लिखें। ध्यान दिलाएँ कि 'सबसे अच्छा', 'सुंदर', 'प्यारा' जैसे शब्द अक्सर राय बताते हैं, चाहे वाक्य पक्के ढंग से बोला जाए।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि बच्चे पक्के ढंग से कहे गए राय वाले वाक्यों को तथ्य तो नहीं लिख रहे।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'हाथी की एक सूँड होती है।' यह तथ्य है या राय? तथ्य के लिए 1 उँगली, राय के लिए 2 उँगलियाँ दिखाएँ।",
+    "expected_hi": "1 (तथ्य)",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि जाँची जा सकने वाली बात तथ्य है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'क्रिकेट सबसे अच्छा खेल है।' यह तथ्य है या राय? तथ्य के लिए 1, राय के लिए 2 उँगलियाँ दिखाएँ।",
+    "expected_hi": "2 (राय)",
+    "listen_for": [],
+    "shows_hi": "बच्चा पक्के ढंग से कही गई पसंद को भी राय पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do के चार वाक्य पहले से लिख लें: 'गाय के चार पैर होते हैं।', 'गाय सबसे प्यारा जानवर है।', 'सूरज पूर्व से निकलता है।', 'आम सबसे मीठा फल है।'",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर वाक्य पढ़ें। अगर बात जाँची जा सकती है तो 'तथ्य' लिखें, अगर किसी की पसंद या सोच है तो 'राय' लिखें।",
+   "instructions_en": "Read each sentence. Write 'fact' if it can be checked, write 'opinion' if it is someone's liking or belief.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "हमारा बगीचा",
+    "text": "हमारे स्कूल में एक बगीचा है। बगीचे में दस पेड़ हैं। नीम का पेड़ सबसे सुंदर है। बच्चे रोज़ पौधों को पानी देते हैं। बगीचे में खेलना सबसे अच्छा लगता है।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'बगीचे में दस पेड़ हैं।' तथ्य या राय?",
+     "answer": "तथ्य",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "'नीम का पेड़ सबसे सुंदर है।' तथ्य या राय?",
+     "answer": "राय",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "'बगीचे में खेलना सबसे अच्छा लगता है।' तथ्य या राय?",
+     "answer": "राय",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "'बच्चे रोज़ पौधों को पानी देते हैं।' तथ्य या राय?",
+     "answer": "तथ्य",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'हमारे स्कूल में एक बगीचा है।' तथ्य या राय?",
+     "answer": "तथ्य",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "'नीम का पेड़ सबसे सुंदर है।' इस वाक्य में राय बताने वाला शब्द लिखें।",
+     "answer": "सुंदर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "255506672f3b",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0243,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

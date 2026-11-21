@@ -1,0 +1,149 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.2.4-M1__long",
+ "skill_id": "N1.2.4",
+ "domain_id": "numeracy",
+ "mode": "N1.2.4-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने दहाई और इकाई के बंडल बनाए थे, यह एक वाक्य में याद दिलाएँ। बोर्ड पर लिखें: 34 = 3 और 4। बच्चों से कहें: 'देखिए, यह गलत है, क्योंकि 3 के पास 3 बंडल हैं, यानी 30 छड़ियाँ।' फिर 3 बंडल और 4 खुली छड़ियाँ दिखाकर बोर्ड पर लिखें: 34 = 3 दहाई 4 इकाई = 30 + 4। अंत में गलत लाइन मिटा दें, बोर्ड पर केवल सही लाइन रहे।",
+   "we_do_hi": "बोर्ड पर दो गलत लाइनें लिखें: '52 में 5 का मान 5' और '68 = 6 + 8'। बच्चों के साथ बंडल गिनकर दोनों सुधारें: 5 का मान 50 है, और 68 = 60 + 8। फिर नया उदाहरण साथ में करें: 7 बंडल और 1 खुली छड़ी दिखाएँ, बच्चे बताएँ कि यह 71 है, यानी 70 + 1।",
+   "you_do_hi": "अगर show-me में चौथाई से अधिक बच्चे गलत उत्तर दिखाएँ, तो You Do से पहले वही कदम छड़ियों से दोबारा कराएँ। बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार यह गलती की थी।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 46। इसमें 4 का मान क्या है?",
+    "expected_hi": "40",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.4-M1",
+      "misconception_name_hi": "अंकों को स्वतंत्र मानना (23 = \"2 और 3\", \"20 और 3\" नहीं)",
+      "misconception_name_en": "Treats digits independently (23 = \"2 and 3\" not \"20 and 3\")",
+      "detect_en": "When asked \"what does the 2 in 23 mean?\" child says \"2\" not \"20\" or \"2 tens\"",
+      "wrong_answer_hi": "4"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 29। इसमें 2 का मान क्या है? 1) 2  2) 20। उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2 (यानी 20)",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.4-M1",
+      "misconception_name_hi": "अंकों को स्वतंत्र मानना (23 = \"2 और 3\", \"20 और 3\" नहीं)",
+      "misconception_name_en": "Treats digits independently (23 = \"2 and 3\" not \"20 and 3\")",
+      "detect_en": "When asked \"what does the 2 in 23 mean?\" child says \"2\" not \"20\" or \"2 tens\"",
+      "wrong_answer_hi": "1 (यानी 2)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "दस-दस छड़ियों के 7 बंडल (रबर बैंड से बँधे) और 9 खुली छड़ियाँ।",
+   "बोर्ड पर बायीं ओर दहाई-इकाई का बॉक्स बना लें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को दहाई और इकाई में तोड़ें। खाली जगह में सही संख्या लिखें।",
+   "instructions_en": "Break each number into tens and ones. Fill in the blanks.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "25 = 2 दहाई 5 इकाई = 20 + 5",
+    "answer": "20 + 5",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "5",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "2",
+    "answer_o": "5"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "37 = ___ दहाई ___ इकाई",
+     "answer": "3 दहाई 7 इकाई",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "58 में 5 का मान = ___",
+     "answer": "50",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "94 = ___ + ___",
+     "answer": "90 + 4",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.4-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "61 = ___ दहाई ___ इकाई",
+     "answer": "6 दहाई 1 इकाई",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "75 में 7 का मान = ___",
+     "answer": "70",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "4 दहाई 3 इकाई = ___",
+     "answer": "43",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "459cf22ba319",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0339,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,132 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.5__normal__short",
+ "skill_id": "N1.2.5",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 63 ___ 58। बच्चों को दिखाएँ: 'पहले दहाई देखें: 6 दहाई, 5 दहाई से ज़्यादा हैं, इसलिए 63 > 58।' फिर 41 ___ 45 लिखें और बताएँ: 'दहाई बराबर हैं, तो इकाई देखें: 1 इकाई, 5 इकाई से कम है, इसलिए 41 < 45।' इसके बाद समूह से पूछें: 'चिह्न का खुला मुँह किस संख्या की ओर रहता है?' (बड़ी संख्या की ओर)",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' अभी बच्चे सवाल 1 से 3 शुरू करें, बाकी काम अगले ब्लॉक में अपनी जगह पर पूरा करें। शिक्षक घूमकर देखें कि बराबर दहाई वाले सवाल में बच्चे इकाई देख रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 72 ___ 27। स्लेट पर बीच का सही चिह्न लिखें।",
+    "expected_hi": ">",
+    "listen_for": [],
+    "shows_hi": "बच्चा अंकों की जगह नहीं, दहाई देखकर तुलना करता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 36 और 39। बड़ी संख्या स्लेट पर लिखें: 36 या 39?",
+    "expected_hi": "39",
+    "listen_for": [],
+    "shows_hi": "दहाई बराबर होने पर बच्चा इकाई से तुलना करता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 63 ___ 58 और 41 ___ 45",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना",
+   "हर बच्चे के लिए एक वर्कशीट"
+  ],
+  "worksheet": {
+   "instructions_hi": "दोनों संख्याओं के बीच >, < या = लिखें। पहले दहाई देखें, दहाई बराबर हो तो इकाई देखें।",
+   "instructions_en": "Write >, < or = between the two numbers. Look at the tens first; if the tens are equal, look at the ones.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "52 ___ 47",
+    "answer": ">",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "5",
+    "row1_o": "2",
+    "row2_t": "4",
+    "row2_o": "7",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "84 ___ 29",
+     "answer": ">",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "56 ___ 59",
+     "answer": "<",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "38 ___ 83",
+     "answer": "<",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "91 ___ 19",
+     "answer": ">",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "65 ___ 65",
+     "answer": "=",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "22 ___ 27",
+     "answer": "<",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f37f87375c5a",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0272,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,138 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.3.3__normal__medium",
+ "skill_id": "N1.3.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'टोकरी में 4 आम हैं। 3 आम और रखे। अब कितने आम?' पढ़कर सुनाएँ, फिर 'और रखे' शब्द पर गोला बनाएँ और कहें: 'देखिए, आम बढ़ रहे हैं, इसलिए हम जोड़ेंगे।' बोर्ड पर 4 और 3 गोले बनाकर गिनें, फिर लिखें: 4 + 3 = 7 आम।",
+   "we_do_hi": "बोर्ड पर लिखें: 'तार पर 8 चिड़ियाँ बैठी हैं। 2 चिड़ियाँ उड़ गईं। अब कितनी चिड़ियाँ?' बच्चों से पूछें: 'चिड़ियाँ बढ़ीं या घटीं?' 'उड़ गईं' पर गोला बनाएँ, 8 गोले बनाकर 2 काटें और साथ में गिनकर लिखें: 8 − 2 = 6 चिड़ियाँ।",
+   "you_do_hi": "बच्चों से कहें: 'अपनी वर्कशीट लें और सवाल 1 हल करें।' बाकी सवाल बच्चे अगले समय में अपनी जगह पर पूरे करेंगे: पहले सवाल 1 से 3, और जो जल्दी ख़त्म करें, वे बाकी सवाल करें। घूमकर देखें कि बच्चे पहले सही काम चुन रहे हैं: जोड़ना है या घटाना।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'थाली में 5 लड्डू हैं। 2 लड्डू खा लिए। अब कितने लड्डू बचे?' इसमें जोड़ेंगे या घटाएँगे? उँगली से दिखाएँ: 1) जोड़ 2) घटाव",
+    "expected_hi": "2) घटाव",
+    "listen_for": [],
+    "shows_hi": "बच्चा कहानी के शब्दों से पहचान लेता है कि चीज़ें कम हुईं, इसलिए घटाना है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'डाल पर 1 चिड़िया है। 3 चिड़ियाँ और आ गईं। अब कितनी चिड़ियाँ हैं?' स्लेट पर संख्या लिखें।",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा 'और आ गईं' सुनकर जोड़ता है और सही उत्तर निकालता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का सवाल पहले से लिख लें: 'टोकरी में 4 आम हैं। 3 आम और रखे। अब कितने आम?'",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। पहले सोचें कि जोड़ना है या घटाना, फिर उत्तर लिखें।",
+   "instructions_en": "Read each problem carefully. First decide whether to add or subtract, then write the answer.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "थैले में 3 सेब हैं। 2 सेब और डाले। अब कितने सेब हैं? 3 + 2 = 5",
+    "answer": "5",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "3",
+    "row2_t": "",
+    "row2_o": "2",
+    "answer_t": "",
+    "answer_o": "5"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मेज़ पर 5 किताबें हैं। 3 किताबें और रखीं। अब कितनी किताबें हैं?",
+     "answer": "8",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पेड़ पर 7 आम थे। 4 आम गिर गए। अब कितने आम बचे?",
+     "answer": "3",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "कक्षा में 6 बच्चे थे। 3 बच्चे और आए। अब कितने बच्चे हैं?",
+     "answer": "9",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "मेले में 9 गुब्बारे थे। 8 गुब्बारे उड़ गए। अब कितने गुब्बारे बचे?",
+     "answer": "1",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "तालाब में 2 बत्तखें थीं। 4 बत्तखें और आईं। अब कितनी बत्तखें हैं?",
+     "answer": "6",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "डिब्बे में 5 टॉफ़ियाँ थीं। 3 टॉफ़ियाँ खा लीं। अब कितनी टॉफ़ियाँ बचीं?",
+     "answer": "2",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6ef83775d230",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0419,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

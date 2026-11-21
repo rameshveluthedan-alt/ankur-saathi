@@ -1,0 +1,143 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.5-M2__medium",
+ "skill_id": "N2.3.5",
+ "domain_id": "numeracy",
+ "mode": "N2.3.5-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने शब्द-सवाल में सही संक्रिया चुनी थी।' बोर्ड पर लिखें: 'दुकान में 52 केले थे, 27 बिक गए। कितने बचे?' फिर 52 − 27 = 35 हल करके दिखाएँ (हर स्तंभ में बड़े में से छोटा घटाया) और बोलें: 'देखिए, 2 में से 7 नहीं घटता, इसलिए एक दहाई तोड़नी थी।' फिर उसी सवाल को सही करें: 12 − 7 = 5, 4 − 2 = 2, उत्तर 25। आख़िर में गलत हल मिटा दें, ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'बस में 38 लोग थे, 26 और चढ़े। कुल कितने?' 38 + 26 = 54। बच्चों से पूछें: 'हासिल कहाँ गया?' फिर साथ मिलकर इसे 64 करें। इसके बाद लिखें: 'थैले में 63 टॉफ़ी थीं, 28 बँट गईं। कितनी बचीं?' 63 − 28 = 45। बच्चे गलती ढूँढें और साथ में इसे 35 करें। अंत में एक नया सवाल साथ हल करें: 'मेले में 81 गुब्बारे थे, 45 बिक गए। कितने बचे?' (उत्तर 36)।",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट का सवाल 1 हल करें। बाकी सवाल 1 से 3 अपनी जगह पर पूरे करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार यह गलती की थी। अगर show-me में चौथाई से ज़्यादा बच्चों के उत्तर गलत हों, तो You Do से पहले वही कदम छड़ियों से फिर से समझाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "पेड़ पर 64 चिड़ियाँ थीं, 37 उड़ गईं। कितनी बचीं? 64 − 37",
+    "expected_hi": "27",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M2",
+      "misconception_name_hi": "सही संक्रिया पर गणना में त्रुटि",
+      "misconception_name_en": "Correct operation but cannot compute",
+      "detect_en": "Operation symbol is correct, but answer is wrong due to carry/borrow errors — diagnose the underlying operation misconception",
+      "wrong_answer_hi": "33"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "56 + 29: 75 या 85?",
+    "expected_hi": "85",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M2",
+      "misconception_name_hi": "सही संक्रिया पर गणना में त्रुटि",
+      "misconception_name_en": "Correct operation but cannot compute",
+      "detect_en": "Operation symbol is correct, but answer is wrong due to carry/borrow errors — diagnose the underlying operation misconception",
+      "wrong_answer_hi": "75"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दहाई-इकाई का बॉक्स बनाकर रखें।",
+   "TLM-001 छड़ियाँ (दहाई के गट्ठर और खुली छड़ियाँ) पास रखें, ताकि ज़रूरत पड़ने पर हासिल और उधार दोबारा दिखाया जा सके।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। पहले तय करें कि जोड़ना है या घटाना है, फिर हल करें। हासिल वाले बॉक्स में हासिल लिखें।",
+   "instructions_en": "Read each problem carefully. First decide whether to add or subtract, then solve. Write the carry in the carry cell.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "रीना के पास 27 मोती थे, उसे 15 और मिले। कुल कितने मोती हुए? 27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "एक कक्षा में 34 लड़के और 25 लड़कियाँ हैं। कुल कितने बच्चे हैं?",
+     "answer": "59",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "टोकरी में 72 आम थे, 46 बिक गए। कितने आम बचे?",
+     "answer": "26",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.5-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "गाँव में 48 बकरियाँ और 36 गायें हैं। कुल कितने पशु हैं? उत्तर: ___",
+     "answer": "84",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.5-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पुस्तकालय में 65 किताबें थीं, बच्चे 28 किताबें ले गए। कितनी किताबें बचीं? उत्तर: ___",
+     "answer": "37",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "राजू ने 57 पत्थर जमा किए, फिर 33 और जमा किए। कुल कितने पत्थर हुए? उत्तर: ___",
+     "answer": "90",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "बाज़ार में 90 गुब्बारे थे, उनमें से 62 बिक गए। कितने गुब्बारे बचे?",
+     "answer": "28",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 25",
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 26",
+   "worksheets.progressor problem 3 repeats a number the lesson or anchor already used: 36",
+   "worksheets.progressor problem 4 repeats a number the lesson or anchor already used: 28",
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 28"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7eb530cde46d",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.045,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

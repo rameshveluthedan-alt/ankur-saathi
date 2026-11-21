@@ -1,0 +1,156 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.7.1-M1__long",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.7.1-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने एक विषय पर कई जुड़े वाक्य लिखना सीखा था।' बोर्ड पर विषय 'हमारा बगीचा' लिखें और ये तीन वाक्य लिखें: 'हमारे बगीचे में फूल हैं। फूल लाल और पीले हैं। मुझे पतंग उड़ाना पसंद है।' बच्चों से पूछें: 'क्या तीसरा वाक्य बगीचे के बारे में है?' फिर समझाएँ कि यह वाक्य विषय से अलग है, उसे मिटा दें और उसकी जगह लिखें: 'हम रोज़ पौधों को पानी देते हैं।' अब बोर्ड पर केवल सही अनुच्छेद रहे।",
+   "we_do_hi": "बोर्ड पर विषय 'हमारी रसोई' और ये वाक्य लिखें: '1) माँ रसोई में खाना बनाती हैं। 2) रसोई में चमकते बर्तन रखे हैं। 3) मेरा दोस्त साइकिल चलाता है।' बच्चों से पूछें कि कौन-सा वाक्य विषय पर नहीं है, उसे मिटाएँ और बच्चों के साथ रसोई पर एक नया वाक्य बनाकर लिखें। इसके बाद विषय 'सुबह का समय' पर बच्चों के साथ 'पहले, फिर, अंत में' से तीन जुड़े वाक्य बनाकर बोर्ड पर लिखें।",
+   "you_do_hi": "बच्चे वर्कशीट पर दिए विषय 'मेरा प्रिय पशु' पर सवाल 1 शुरू करें; हर वाक्य लिखने के बाद खुद से पूछें: 'क्या यह मेरे पशु के बारे में है?' इसके बाद सवाल 2 से 4 करें; जो जल्दी ख़त्म करें, वे सवाल 5 करें। अपने चक्कर में पहले उन बच्चों के पास शांति से जाएँ जो पिछली बार विषय से भटके थे, और उनका पहला-दूसरा वाक्य साथ में देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "विषय है 'मेला'। बोर्ड पर लिखें: 1) अंत में हम थककर घर लौटे। 2) पहले हम मेले में गए। अनुच्छेद में सबसे पहले कौन-सा वाक्य आएगा? 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M2",
+      "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं",
+      "misconception_name_en": "No order: no beginning, middle and end",
+      "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "विषय 'मेरी नानी' पर 5 से 7 वाक्य लिखने हैं। बोर्ड पर लिखें: मेरी नानी गाँव में रहती हैं। वे कहानी सुनाती हैं। क्या यह अनुच्छेद पूरा है? हाँ या नहीं लिखें।",
+    "expected_hi": "नहीं",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "हाँ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड के एक कोने में विषय 'हमारा बगीचा' और उसके तीन वाक्य पहले से लिख लें।",
+   "'हमारी रसोई' वाले तीन वाक्य एक अलग जगह लिखने के लिए जगह छोड़ें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना, और हर बच्चे के लिए एक वर्कशीट।"
+  ],
+  "worksheet": {
+   "instructions_hi": "दिए गए विषय पर जुड़े हुए वाक्य लिखें। हर वाक्य विषय के बारे में हो। फिर बाकी सवाल हल करें।",
+   "instructions_en": "Write connected sentences on the given topic. Every sentence must be about the topic. Then solve the other questions.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा प्रिय पशु",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 5 वाक्य",
+     "item_en": "At least 5 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य विषय पर",
+     "item_en": "All sentences on the topic"
+    },
+    {
+     "item_hi": "पहला वाक्य पशु का नाम बताए",
+     "item_en": "First sentence names the animal"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop (।) at the end of every sentence"
+    },
+    {
+     "item_hi": "'पहले / फिर / अंत में' जैसे जोड़ने वाले शब्द",
+     "item_en": "Sequence words such as first / then / at the end"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'मेरा प्रिय पशु' विषय पर 5-7 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा प्रिय पशु"
+    },
+    {
+     "number": 2,
+     "problem_hi": "विषय है 'हमारा तालाब'। कौन-सा वाक्य इस विषय पर नहीं है? उसकी संख्या लिखें।\n• 1) तालाब में मछलियाँ तैरती हैं।\n• 2) तालाब का पानी ठंडा है।\n• 3) मेरे पास नई साइकिल है।",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "विषय है 'रेल यात्रा'। इस अनुच्छेद में कौन-सा वाक्य जोड़ें? सही वाक्य की संख्या लिखें।\n• 1) रेल तेज़ी से पुल पर चली।\n• 2) मुझे आम खाना पसंद है।",
+     "answer": "1",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "इन वाक्यों को सही क्रम में लगाकर उनकी संख्या लिखें।\n• 1) फिर हमने पौधा गड्ढे में रखा।\n• 2) अंत में हमने उसे पानी दिया।\n• 3) पहले हमने मिट्टी में गड्ढा खोदा।",
+     "answer": "3, 1, 2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M2"
+    },
+    {
+     "number": 5,
+     "problem_hi": "'मेरा बस्ता' विषय पर 3 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "re-teach: no show-me question listens for L3.7.1-M1"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "ba680266f7b6",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.054,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

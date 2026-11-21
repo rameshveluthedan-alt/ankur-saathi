@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.7.2-M3__short",
+ "skill_id": "L1.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.7.2-M3",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने मात्रा वाले शब्द लिखे थे। बोर्ड पर 'मकान' के तीनों अक्षर अलग-अलग लिखें, ऊपर की रेखा के बिना, और बच्चों से कहें: 'देखिए, ये अक्षर अलग-अलग तैर रहे हैं, यह एक शब्द नहीं लगता।' फिर ठीक बगल में 'मकान' को ऊपर की एक लंबी शिरोरेखा से जोड़कर लिखें, बिना रेखा वाला 'मकान' मिटा दें और बोलें: 'शब्द पूरा लिखने के बाद ऊपर एक रेखा खींचकर सब अक्षर जोड़ते हैं।'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बच्चे हर शब्द के बाद ऊपर की रेखा खींचकर देखें कि सब अक्षर जुड़े हैं। सामान्य चक्कर में पहले उन बच्चों की कॉपी शांति से देखें जिनकी पिछली बार शिरोरेखा छूटी थी; बाकी काम बच्चे अगले हिस्से में अपनी जगह पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर 'नमक' दो तरह लिखें: 1) तीनों अक्षर ऊपर की एक रेखा से जुड़े, 2) तीनों अक्षर अलग-अलग, ऊपर रेखा के बिना। कौन-सा सही है, 1 या 2?",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M3",
+      "misconception_name_hi": "लिखित शब्दों में शिरोरेखा छूटना",
+      "misconception_name_en": "Missing shirorekha (headline) in written words",
+      "detect_en": "All letters are individually correct but float without the connecting headline; word looks like separate letters",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'कलम' लिखें, पर क और ल के ऊपर रेखा हो और म के ऊपर रेखा न हो। क्या यह सही लिखा है? सही या गलत लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M3",
+      "misconception_name_hi": "लिखित शब्दों में शिरोरेखा छूटना",
+      "misconception_name_en": "Missing shirorekha (headline) in written words",
+      "detect_en": "All letters are individually correct but float without the connecting headline; word looks like separate letters",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से जगह छोड़ें: एक ओर बिना रेखा वाला 'मकान', दूसरी ओर रेखा से जुड़ा 'मकान' लिखने के लिए।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द देखें और खाली जगह में साफ़ लिखें। शब्द लिखने के बाद ऊपर की रेखा खींचकर सब अक्षर जोड़ें।",
+   "instructions_en": "Look at each word and write it neatly in the space. After writing, draw the headline to join all the letters.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "शिरोरेखा जोड़ने का उदाहरण:",
+    "example_text": "ब + त + ख = बतख (ऊपर एक रेखा से जुड़ा)"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह शब्द लिखें: घर",
+     "answer": "घर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ऊपर की रेखा से जोड़कर यह शब्द लिखें: सड़क",
+     "answer": "सड़क",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "ऊपर की रेखा से जोड़कर यह शब्द लिखें: तितली",
+     "answer": "तितली",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "यह शब्द लिखें: पानी",
+     "answer": "पानी",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह शब्द लिखें: गमला",
+     "answer": "गमला",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "eda26358dfc3",
+ "created": "2026-11-21T06:00:58Z",
+ "cost_usd": 0.0228,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

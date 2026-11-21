@@ -1,0 +1,101 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.2.1__normal__short",
+ "skill_id": "N3.2.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर हज़ार, सैकड़ा, दहाई, इकाई के चार बॉक्स बनाएँ और उनमें 2, 7, 4, 6 लिखें। बायें से पढ़कर सुनाएँ: 'पहले हज़ार, फिर सैकड़ा, फिर बाकी संख्या: दो हज़ार सात सौ छियालीस।' अब 5, 0, 8, 3 लिखें और बताएँ: 'सैकड़े में शून्य है, इसलिए सौ नहीं बोलते: पाँच हज़ार तिरासी।'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे पहले वर्कशीट के सवाल 1 से 3 कॉपी में उतारकर हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक उन बच्चों को पहले देखें जो शून्य वाली संख्याएँ लिख रहे हैं। जो सवाल रह जाएँ, बच्चे उन्हें अपनी जगह पर अगले समय में पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: चार हज़ार छह सौ बीस। स्लेट पर इसे अंकों में लिखें।",
+    "expected_hi": "4620",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुनी हुई चार अंकों की संख्या को सही स्थानों पर अंकों में लिख सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 3,050  2) 3,500। 'तीन हज़ार पचास' कौन-सी है? 1 या 2 उँगली दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि सैकड़े में शून्य हो तो सौ नहीं बोला जाता।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर हज़ार, सैकड़ा, दहाई, इकाई के चार बॉक्स पहले से बना लें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "संख्या को अंकों में या शब्दों में लिखें, जैसा सवाल में कहा है।",
+   "instructions_en": "Write each number in digits or in words, as the problem asks.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "तीन हज़ार चार सौ पच्चीस को अंकों में लिखें: ___",
+     "answer": "3425",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पाँच हज़ार सात सौ नौ को अंकों में लिखें: ___",
+     "answer": "5709",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सात हज़ार चौदह को अंकों में लिखें: ___",
+     "answer": "7014",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "6,238 को शब्दों में लिखें: ___",
+     "answer": "छह हज़ार दो सौ अड़तीस",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "नौ हज़ार नौ सौ नब्बे को अंकों में लिखें: ___",
+     "answer": "9990",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "4,821 को शब्दों में लिखें: ___",
+     "answer": "चार हज़ार आठ सौ इक्कीस",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "98fb708a49b5",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.026,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

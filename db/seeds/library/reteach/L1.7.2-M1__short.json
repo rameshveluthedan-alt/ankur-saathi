@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.7.2-M1__short",
+ "skill_id": "L1.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.7.2-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने छोटी इ की मात्रा वाले शब्द लिखे थे। बोर्ड पर 'दिन' ऐसे लिखें कि ि की मात्रा द के दाईं ओर हो, और बच्चों से कहें: 'देखिए, यहाँ मात्रा अक्षर के बाद लग गई है, यह गलत है; छोटी इ बोलने में बाद में आती है, पर लिखने में पहले लगती है।' फिर गलत रूप मिटाकर 'दिन' सही लिखें: पहले ि की मात्रा बाईं ओर, फिर द, फिर न, और ऊपर शिरोरेखा।",
+   "we_do_hi": "",
+   "you_do_hi": "वर्कशीट के सवाल 1 से 3 पहले हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक पहले उन बच्चों की कॉपी शांति से देखें जिनकी मात्रा कल दाईं ओर लगी थी, बिना किसी का नाम लिए। अगर समय कम पड़े तो बच्चे बाकी सवाल अपनी जगह पर अगले समय में पूरे करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) मिल 2) मलि। 'मिल' शब्द का सही रूप कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M1",
+      "misconception_name_hi": "ि (छोटी इ) मात्रा व्यंजन के गलत तरफ रखता है",
+      "misconception_name_en": "Places ि (chhoti i) matra on wrong side of consonant",
+      "detect_en": "ि matra consistently placed after the consonant in handwriting; other matras placed correctly",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'पिता' लिखें, पर ि की मात्रा प के दाईं ओर लगाएँ। यह सही है या गलत? स्लेट पर 'सही' या 'गलत' लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M1",
+      "misconception_name_hi": "ि (छोटी इ) मात्रा व्यंजन के गलत तरफ रखता है",
+      "misconception_name_en": "Places ि (chhoti i) matra on wrong side of consonant",
+      "detect_en": "ि matra consistently placed after the consonant in handwriting; other matras placed correctly",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 'दिन' लिखने की जगह खाली रखें, जहाँ पहले गलत रूप लिखकर मिटाना है।"
+  ],
+  "worksheet": {
+   "instructions_hi": "चित्र का नाम सोचें और मात्रा सही जगह लगाकर शब्द लिखें। अक्षरों को ऊपर की रेखा से जोड़ें।",
+   "instructions_en": "Write each word with the matra in the correct place. Join the letters with the headline.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "छोटी इ की मात्रा पहले लगती है:",
+    "example_text": "ि + स = सि"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "क + ा + न = ? लिखें।",
+     "answer": "कान",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ग + ि + र = ? लिखें।",
+     "answer": "गिर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "ख + ि + ल + ा = ? लिखें।",
+     "answer": "खिला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "न + ी + ल = ? लिखें।",
+     "answer": "नील",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "ज + ि + स = ? लिखें।",
+     "answer": "जिस",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "म + ु + ख = ? लिखें।",
+     "answer": "मुख",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4e16a30cc7ae",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0208,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

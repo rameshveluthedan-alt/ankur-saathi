@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.5__normal__long",
+ "skill_id": "N1.2.5",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने दो अंकों की संख्याओं में दहाई और इकाई पहचानी थीं, आज हम दो संख्याओं की तुलना करेंगे। बोर्ड पर लिखें: 63 ___ 58, छड़ियों से दिखाएँ कि 63 में 6 दहाई और 58 में 5 दहाई हैं। पहले दहाई देखें, फिर 63 > 58 लिखें। इसके बाद 47 ___ 42 लिखें और कहें: 'देखिए, दोनों में 4 दहाई हैं, इसलिए अब इकाई देखते हैं: 7 बड़ा है।' फिर 47 > 42 लिखें और बताएँ: 'चिह्न का खुला मुँह बड़ी संख्या की ओर रहता है।'",
+   "we_do_hi": "बोर्ड पर लिखें: 29 ___ 35, फिर बच्चों से पूछें: 'पहले किसकी दहाई देखेंगे? कितनी दहाई हैं?' इसके बाद मिलकर < लगाएँ। फिर 81 ___ 86 पर बच्चे बताएँ कि दहाई बराबर है, इसलिए इकाई देखनी है, और मिलकर < लिखें। अंत में 54 ___ 54 लिखें और पूछें: 'दहाई और इकाई दोनों बराबर हैं, तो कौन-सा चिह्न लगेगा?' मिलकर = लिखें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' घूमकर देखें कि बच्चे पहले दहाई और फिर इकाई की तुलना कर रहे हैं। सवाल 2 पर, जहाँ दहाई बराबर है, खास ध्यान दें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 26 और 62। कौन-सी संख्या बड़ी है? स्लेट पर वह संख्या लिखें।",
+    "expected_hi": "62",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहले दहाई की तुलना करता है, अंकों की जगह पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 73 ___ 78। खाली जगह में कौन-सा चिह्न लगेगा? स्लेट पर केवल चिह्न लिखें।",
+    "expected_hi": "<",
+    "listen_for": [],
+    "shows_hi": "दहाई बराबर होने पर बच्चा इकाई की तुलना करता है और चिह्न सही दिशा में लगाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "दहाई के बंडल और खुली छड़ियाँ (TLM-001): 8 बंडल और 9 खुली छड़ियाँ, I Do के लिए।",
+   "बोर्ड पर पहले से लिखें: 63 ___ 58, 47 ___ 42।"
+  ],
+  "worksheet": {
+   "instructions_hi": "दोनों संख्याओं की तुलना करें। पहले दहाई देखें, दहाई बराबर हो तो इकाई देखें। खाली जगह में >, < या = लिखें।",
+   "instructions_en": "Compare the two numbers. Look at the tens first; if the tens are equal, look at the ones. Write >, < or = in the blank.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "45 ___ 52",
+    "answer": "<",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "4",
+    "row1_o": "5",
+    "row2_t": "5",
+    "row2_o": "2",
+    "answer_t": null,
+    "answer_o": null
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "72 ___ 46",
+     "answer": ">",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "38 ___ 34",
+     "answer": ">",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "57 ___ 75",
+     "answer": "<",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "40 ___ 40",
+     "answer": "=",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "83 ___ 89",
+     "answer": "<",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "66 ___ 61",
+     "answer": ">",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6896a32fb2e6",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0309,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

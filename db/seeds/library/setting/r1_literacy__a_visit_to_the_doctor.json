@@ -1,0 +1,36 @@
+{
+ "format": 1,
+ "piece": "setting",
+ "key": "r1_literacy__a_visit_to_the_doctor",
+ "skill_id": null,
+ "domain_id": "r1_literacy",
+ "mode": "a visit to the doctor",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "title_hi": "डॉक्टर दीदी का दवाखाना",
+  "title_en": "Doctor Didi's Clinic",
+  "theme": "a visit to the doctor",
+  "board_hi": "बोर्ड पर एक छोटा दवाखाना बनाएँ: एक मेज़, उस पर दवा की शीशी, थर्मामीटर और एक कटोरी में पट्टी। मेज़ के पास एक बेंच बनाएँ जिस पर दादी बैठी हैं। दीवार पर एक तख्ती बनाएँ: 'दवाखाना'। हर चीज़ के पास उसका नाम लिखें: दवा, पट्टी, मेज़, बेंच, पानी। नीचे खाली जगह छोड़ें, जहाँ बाद में नए शब्द और छोटे वाक्य लिखे जा सकें।",
+  "narration_hi": "देखें, आज हम गाँव के दवाखाने चलते हैं। दादी को बुखार है, इसलिए वे डॉक्टर दीदी के पास आई हैं। डॉक्टर दीदी की मेज़ पर बहुत सी चीज़ें रखी हैं, चलें उन्हें पहचानते हैं।",
+  "opening_question_hi": "बच्चो, आप कभी दवाखाने गए हैं? वहाँ आपने क्या-क्या देखा था?",
+  "closing_question_hi": "दादी जल्दी ठीक हो जाएँ, इसके लिए उन्हें क्या करना चाहिए?",
+  "materials_hi": [
+   "बोर्ड और चॉक",
+   "रंगीन चॉक (दवा और पट्टी के लिए)"
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a0647e4e6719",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0077,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

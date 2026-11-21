@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.5.2__normal__long",
+ "skill_id": "L3.5.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'पिछली बार हमने रुककर पढ़ना सीखा था।' बोर्ड पर लिखें: 'अरे वाह! बारिश आ गई। क्या तुम भीगोगे?' पहले हर शब्द अलग-अलग, एक ही सुर में पढ़कर सुनाएँ, फिर भाव से पढ़ें: '!' पर खुशी, '।' पर ठहराव, '?' पर आवाज़ ऊपर।",
+   "we_do_hi": "बोर्ड पर लिखें: 'माँ, मेरी किताब कहाँ है? मिल गई! अब मैं पढ़ूँगा।' बच्चों से पूछें कि किस चिह्न पर आवाज़ ऊपर जाएगी और किस पर खुशी दिखेगी। फिर दो-दो बच्चे बारी-बारी से भाव के साथ पढ़ें, बाकी सुनें और अंगूठे से बताएँ।",
+   "you_do_hi": "बच्चे वर्कशीट खोलें, पहले कठिन शब्द साथी को पढ़कर सुनाएँ, फिर अनुच्छेद तीन बार धीमी आवाज़ में पढ़ें और हर बार डिब्बे में सही लगाएँ। इसके बाद जोड़ी में पढ़ें, भाव वाले वाक्य पढ़ें और प्रश्न 1 से 3 लिखें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'तुम कहाँ जा रहे हो' और वाक्य बोले बिना पूछें: इस वाक्य के अंत में कौन-सा चिह्न लगेगा? 1) । 2) ?",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि प्रश्न वाले वाक्य के अंत में ? आता है और आवाज़ ऊपर जाती है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "यह वाक्य दो तरह से पढ़कर सुनाएँ: 'कितना सुंदर फूल है!' पहले एक ही सुर में, फिर खुशी से। कौन-सा पढ़ना सही था? 1 या 2?",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि '!' वाले वाक्य में भाव और बल आता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do के दो वाक्य पहले से लिख लें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार भाव के साथ पढ़ें और हर बार डिब्बे में सही लगाएँ। जोड़ी में पढ़ें: साथी उँगली से पीछे-पीछे चले। अंत में प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the hard words to a partner. Read the passage aloud three times with expression, ticking a box each time. Read in pairs while the partner follows with a finger. Then answer the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "मेले की सैर",
+    "text": "रविवार को चिंटू दादी के साथ मेले गया। वहाँ रंग-बिरंगे गुब्बारे थे। चिंटू ने पूछा, 'दादी, क्या हम झूला झूलें?' दादी हँसकर बोलीं, 'हाँ, ज़रूर!' झूले पर चिंटू खुशी से चिल्लाया, 'वाह! कितना मज़ा आ रहा है!' शाम को दोनों मिठाई लेकर घर लौटे।"
+   },
+   "sheet_kind": "fluency",
+   "warmup_words": [
+    "रविवार",
+    "रंग-बिरंगे",
+    "गुब्बारे",
+    "झूला",
+    "ज़रूर",
+    "चिल्लाया",
+    "मिठाई"
+   ],
+   "expression_sentences": [
+    "क्या तुम मेरे साथ खेलोगे?",
+    "अरे! मेरी गेंद कहाँ गई?",
+    "आज बहुत ठंड है।",
+    "वाह! कितनी सुंदर पतंग है!"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "चिंटू किसके साथ मेले गया?",
+     "answer": "दादी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "चिंटू किस दिन मेले गया?",
+     "answer": "रविवार",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "दोनों घर क्या लेकर लौटे?",
+     "answer": "मिठाई",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 7 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "725bb02735b4",
+ "created": "2026-11-21T06:09:37Z",
+ "cost_usd": 0.024,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

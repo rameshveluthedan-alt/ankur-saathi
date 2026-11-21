@@ -1,0 +1,132 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.5.1__normal__short",
+ "skill_id": "N2.5.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर एक बड़ा आयत बनाएँ और उसके बीच से ऊपर से नीचे एक खड़ी रेखा खींचें। बच्चों से कहें: 'देखिए, कागज़ को इस रेखा पर मोड़ें तो दोनों हिस्से एक-दूसरे पर ठीक बैठते हैं; यही सममिति रेखा है।' फिर एक कागज़ आधा मोड़कर दिखाएँ कि दोनों हिस्से बराबर मिलते हैं।",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। समय कम है: अभी सवाल 1 करें, बाकी अपनी जगह पर पूरा करें। शिक्षक घूमकर देखें कि रेखा आकृति के ठीक बीच से जा रही है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर एक वर्ग बनाएँ और उसके ठीक बीच से ऊपर से नीचे एक खड़ी रेखा खींचें। क्या दोनों हिस्से एक जैसे हैं? 1) हाँ 2) नहीं",
+    "expected_hi": "1) हाँ",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि बीच से जाने वाली रेखा आकृति को दो बराबर हिस्सों में बाँटती है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर एक लंबा आयत बनाएँ और एक कोने से सामने वाले कोने तक तिरछी रेखा खींचें। क्या यह सममिति रेखा है? स्लेट पर लिखें: सही या गलत।",
+    "expected_hi": "गलत",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि मोड़ने पर दोनों हिस्से ठीक बैठें, तभी रेखा सममिति रेखा है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "मोड़कर दिखाने के लिए एक आयताकार कागज़।",
+   "बोर्ड पर आयत बनाने की जगह खाली रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर आकृति बनाएँ और उसकी सममिति रेखा खींचें, या सवाल का उत्तर लिखें।",
+   "instructions_en": "Draw each shape and its line of symmetry, or write the answer.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "आयत बनाएँ और बीच से एक सममिति रेखा खींचें।",
+    "answer": "बीच से खड़ी रेखा",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "एक वर्ग बनाएँ और उसमें एक सममिति रेखा खींचें।",
+     "answer": "बीच से खड़ी या आड़ी रेखा",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "एक वृत्त बनाएँ और उसमें एक सममिति रेखा खींचें।",
+     "answer": "केंद्र से होकर जाने वाली सीधी रेखा",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "आयत के एक कोने से सामने वाले कोने तक की रेखा क्या सममिति रेखा है? हाँ या नहीं लिखें।",
+     "answer": "नहीं",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "अंक 3 बड़ा लिखें और उसकी सममिति रेखा खींचें।",
+     "answer": "बीच से आड़ी रेखा",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "एक वर्ग में कुल कितनी सममिति रेखाएँ हैं? संख्या लिखें।",
+     "answer": "4",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक रूमाल वर्ग जैसा है। उसे बीच से आधा मोड़ें, तो दोनों हिस्से कैसे होंगे?",
+     "answer": "एक जैसे",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9b50cf64160f",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0383,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

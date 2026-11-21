@@ -1,0 +1,109 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.4.2__normal__long",
+ "skill_id": "N2.4.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने सप्ताह के दिन बोले थे।' बोर्ड पर एक महीने का कैलेंडर बनाएँ: ऊपर महीने का नाम, फिर सात दिनों के नाम (सोमवार से रविवार) और नीचे तारीखें। उंगली रखकर दिखाएँ: 'देखिए, यह मंगलवार की पंक्ति है; इसमें 5 तारीख है, तो 5 तारीख को मंगलवार है।'",
+   "we_do_hi": "बच्चों के साथ सातों दिन क्रम से बोलें, फिर बारह महीने जनवरी से दिसंबर तक बोलें। बोर्ड के कैलेंडर पर एक-एक करके पूछें: 'यह कौन-सी तारीख है?', 'इस दिन कौन-सा वार है?' हर बार एक बच्चा अपनी जगह से उत्तर दे और बाकी बच्चे अँगूठे से सही या गलत दिखाएँ।",
+   "you_do_hi": "बच्चों की जोड़ियाँ बनाएँ और हर जोड़ी को कक्षा का दीवार-कैलेंडर या कागज़ की पर्चियों पर लिखे दिनों और महीनों के नाम दें। एक बच्चा पर्चियों को क्रम में लगाकर पढ़े, फिर कैलेंडर पर आज की तारीख और वार दिखाकर बोले; इसके बाद दूसरा बच्चा यही करे। पर्चियाँ न हों तो बच्चे कॉपी में वर्कशीट करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "सोमवार के बाद कौन-सा दिन आता है? स्लेट पर उसका पहला अक्षर लिखें।",
+    "expected_hi": "मं (मंगलवार)",
+    "listen_for": [],
+    "shows_hi": "बच्चा सप्ताह के दिनों का क्रम जानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "मार्च के बाद कौन-सा महीना आता है? 1) फ़रवरी 2) अप्रैल। उंगली पर दिखाएँ।",
+    "expected_hi": "2 (अप्रैल)",
+    "listen_for": [],
+    "shows_hi": "बच्चा महीनों का क्रम जानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर एक महीने का कैलेंडर बनाएँ: ऊपर महीने का नाम, सात दिनों के नाम और तारीखें।",
+   "कागज़ की पर्चियों पर सात दिनों और बारह महीनों के नाम लिखें, हर जोड़ी के लिए एक सेट।",
+   "कक्षा का दीवार-कैलेंडर हो तो उसे साथ रखें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "बोर्ड से कॉपी में उतारें और हर काम करें।",
+   "instructions_en": "Copy from the board into your notebook and do each task.",
+   "required_count": 3,
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चा दिनों और महीनों की पर्चियाँ क्रम में लगाकर पढ़े, फिर कैलेंडर पर आज की तारीख और वार दिखाकर बोले।",
+    "task_en": "The child puts day and month slips in order and reads them, then points to today's date and day on the calendar and says them.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कक्षा का दीवार-कैलेंडर",
+     "दिनों के नाम की पर्चियाँ",
+     "महीनों के नाम की पर्चियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "सातों दिन और बारह महीने बिना मदद के क्रम से बोलता है और आज की तारीख पढ़ता है",
+     "partial_hi": "दिन क्रम से बोलता है, पर महीनों में या तारीख पढ़ने में मदद लेता है",
+     "not_yet_hi": "दिनों के नाम क्रम से नहीं बोल पाता",
+     "achieved_en": "Says all 7 days and 12 months in order without help and reads today's date",
+     "partial_en": "Says the days in order but needs help with the months or with reading a date",
+     "not_yet_en": "Cannot say the days of the week in order"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सोमवार से शुरू करके सप्ताह के सातों दिन क्रम से लिखें।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "जनवरी से शुरू करके बारह महीने क्रम से लिखें।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "कक्षा के कैलेंडर में आज की तारीख पर गोला लगाएँ और उस दिन का वार लिखें।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 12"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0249,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

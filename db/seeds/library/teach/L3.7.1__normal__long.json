@@ -1,0 +1,149 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.7.1__normal__long",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने जुड़े हुए वाक्य लिखे थे।' बोर्ड पर विषय लिखें: 'हमारा स्कूल', फिर पाँच वाक्य एक-एक करके लिखें: 'हमारा स्कूल गाँव के पास है। पहले हम प्रार्थना करते हैं। फिर हम कक्षा में पढ़ते हैं। दोपहर में हम साथ खाना खाते हैं। अंत में हम खुशी से घर जाते हैं।' हर वाक्य के बाद बच्चों से पूछें: 'क्या यह वाक्य स्कूल के बारे में है?' और 'पहले, फिर, अंत में' शब्दों पर गोला बनाएँ।",
+   "we_do_hi": "बोर्ड पर विषय लिखें: 'बारिश का दिन' और पहला वाक्य साथ बनाएँ: 'आज सुबह से बारिश हो रही है।' बच्चों से एक-एक करके अगले वाक्य पूछें, 'फिर' और 'अंत में' से शुरू होने वाले वाक्य जोड़ें, और हर वाक्य पर पूछें कि वह विषय पर है या नहीं। पाँच वाक्य पूरे होने पर बच्चे उँगलियों पर वाक्य गिनें और हर वाक्य के अंत में । लगाने में मदद करें।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 4 करें: सवाल 1 में 'मेरी माँ' पर 5-7 वाक्य लिखें, फिर सवाल 2 से 4 करें; जो जल्दी ख़त्म करें, वे सवाल 5 करें। शिक्षक घूमकर पहले देखें कि पहला वाक्य विषय बताता है या नहीं। जो बच्चे दो वाक्य पर रुक गए हों, उनसे धीरे से पूछें: 'इसके बाद माँ क्या करती हैं?'"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "विषय है 'मेला'। बोर्ड पर लिखें: 1) अंत में हम घर लौटे। 2) कल हम मेला देखने गए। अनुच्छेद का पहला वाक्य कौन-सा होगा? 1 या 2 उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M2",
+      "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं",
+      "misconception_name_en": "No order: no beginning, middle and end",
+      "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मुझे आम पसंद है। आम मीठा होता है।' विषय 'मेरा फल' पर अनुच्छेद के लिए कम से कम कितने वाक्य चाहिए? संख्या लिखें।",
+    "expected_hi": "5",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से विषय 'हमारा स्कूल' और 'बारिश का दिन' लिखने की जगह बनाकर रखें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "दिए गए विषय पर ध्यान से लिखें। हर वाक्य के अंत में । लगाएँ।",
+   "instructions_en": "Write carefully on the given topic. Put a full stop at the end of every sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरी माँ",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "5 से 7 वाक्य",
+     "item_en": "5 to 7 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य माँ के बारे में",
+     "item_en": "All sentences about mother"
+    },
+    {
+     "item_hi": "पहला वाक्य विषय बताता है और आख़िरी वाक्य बात ख़त्म करता है",
+     "item_en": "First sentence names the topic and the last sentence closes it"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of every sentence"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'मेरी माँ' विषय पर 5-7 जुड़े हुए वाक्य लिखें। शुरुआत, बीच और अंत का ध्यान रखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M3",
+     "writing_task": true,
+     "topic_hi": "मेरी माँ"
+    },
+    {
+     "number": 2,
+     "problem_hi": "विषय 'मेरा बगीचा' है। जो वाक्य विषय पर नहीं है, उसका नंबर लिखें: 1) बगीचे में गुलाब खिले हैं। 2) मेरी साइकिल नीली है। 3) तितलियाँ फूलों पर बैठती हैं।",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "वाक्यों को सही क्रम में लगाएँ और क्रम के नंबर लिखें: 1) फिर हमने पौधे को पानी दिया। 2) अंत में पौधे पर फूल आया। 3) पहले हमने बीज बोया।",
+     "answer": "3, 1, 2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "खाली जगह में सही शब्द लिखें (पहले / अंत में): ______ हमने खाना खाया और सो गए।",
+     "answer": "अंत में",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'मेरा प्यारा खिलौना' विषय पर 3-4 वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 5,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "8fc30877480e",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0297,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.3.6__normal__long",
+ "skill_id": "N2.3.6",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल की बात एक वाक्य में दोहराएँ: 'हमने बराबर-बराबर ढेरियाँ बनाकर गिना था।' मेज़ पर 2-2 छड़ियों की 3 ढेरियाँ रखें और बोलें: 'देखिए, हर ढेरी में 2, ऐसी 3 ढेरियाँ।' बोर्ड पर लिखें: 2 + 2 + 2 = 6, फिर उसके नीचे 3 × 2 = 6, और बताएँ कि '3 × 2' का मतलब है '3 बार 2'।",
+   "we_do_hi": "बच्चों के साथ 5-5 छड़ियों की 2 ढेरियाँ बनाएँ और पूछें: 'कितनी बार 5?' बोर्ड पर मिलकर लिखें: 5 + 5 = 10, यानी 2 × 5 = 10। फिर बोर्ड पर 4 + 4 + 4 + 4 लिखें, बच्चों से गिनवाएँ कि 4 कितनी बार आया, और मिलकर लिखें: 4 × 4 = 16।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' शिक्षक घूमकर देखें कि बच्चे गुणा के पहले अंक जितनी बार ही संख्या जोड़ रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर देखें: 7 + 7 + 7। इसे गुणा के रूप में स्लेट पर लिखें।",
+    "expected_hi": "3 × 7",
+    "listen_for": [],
+    "shows_hi": "बच्चा बार-बार जोड़ को गुणा के रूप में बदल सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर देखें: 2 × 6 = 6 + 6 = 12। सही या गलत? स्लेट पर लिखें।",
+    "expected_hi": "सही",
+    "listen_for": [],
+    "shows_hi": "बच्चा गुणा और बार-बार जोड़ को आपस में मिलाकर जाँच सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कम से कम 16 खुली छड़ियाँ ढेरियाँ बनाने के लिए",
+   "बोर्ड पर एक तरफ़ उदाहरण के लिए जगह: 2 + 2 + 2 = 3 × 2"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल को जोड़ और गुणा, दोनों रूपों में लिखें और उत्तर निकालें।",
+   "instructions_en": "Write each problem as both addition and multiplication, and find the answer.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "3 × 4 = 4 + 4 + 4 = ___",
+    "answer": "12",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 × 3 = 3 + 3 + 3 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "5 + 5 + 5 + 5 = ___ × 5 = ___",
+     "answer": "4 × 5 = 20",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "6 × 4 को जोड़ के रूप में लिखें और उत्तर निकालें = ___",
+     "answer": "4 + 4 + 4 + 4 + 4 + 4 = 24",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "2 × 7 = 7 + 7 = ___",
+     "answer": "14",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "3 + 3 + 3 + 3 + 3 = ___ × 3 = ___",
+     "answer": "5 × 3 = 15",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "4 × 7 को जोड़ के रूप में लिखें और उत्तर निकालें = ___",
+     "answer": "7 + 7 + 7 + 7 = 28",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats an example solved in the talking points",
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9e9078546ff0",
+ "created": "2026-11-21T06:00:21Z",
+ "cost_usd": 0.0998,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

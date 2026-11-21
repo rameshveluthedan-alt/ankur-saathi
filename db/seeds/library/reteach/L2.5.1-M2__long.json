@@ -1,0 +1,123 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.5.1-M2__long",
+ "skill_id": "L2.5.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.5.1-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अनुच्छेद को रुक-रुक कर नहीं, जुड़े हुए वाक्यांशों में पढ़ना सीखा था। बोर्ड पर लिखें: 'सीमा ने / बाग़ में / पीले फूल / देखे' और उसके नीचे वही वाक्य अक्षर तोड़कर लिखें: 'सी-मा ने बा-ग़ में पी-ले फू-ल दे-खे'। पहले तोड़कर अक्षर-अक्षर धीरे पढ़ें और बच्चों से कहें: 'देखिए, हर शब्द सही है पर पढ़ना बहुत धीमा है, जाने-पहचाने शब्द एक नज़र में पढ़े जाते हैं'; फिर ऊपर वाला वही वाक्य वाक्यांशों में, सहज गति से पढ़ें और नीचे वाली तोड़ी हुई पंक्ति मिटा दें।",
+   "we_do_hi": "बोर्ड पर तीन शब्द तोड़कर लिखें: 'बा-ज़ा-र', 'स-ब्ज़ी', 'टो-क-री'; बच्चे हर शब्द को पूरा देखकर एक ही बार में पढ़ें, फिर तोड़ने वाली रेखाएँ मिटा दें। इसके बाद नया वाक्य लिखें: 'माँ ने / टोकरी में / ताज़ी सब्ज़ी / रखी'; पहले शिक्षक के साथ एक बार, फिर बच्चे उँगली से वाक्यांश दिखाते हुए दो बार, हर बार थोड़ा तेज़ पढ़ें। कहें: 'पहले आँख से पूरा शब्द देखें, फिर बोलें।'",
+   "you_do_hi": "पहले वर्कशीट के कठिन शब्द साथी को पढ़कर सुनाएँ, फिर अनुच्छेद तीन बार धीमी आवाज़ में पढ़ें और हर बार एक खाने में सही का निशान लगाएँ; इसके बाद जोड़ी में पढ़ें: एक पढ़े, साथी उँगली से पीछे चले और जिस शब्द पर मदद लगी उस पर निशान लगाए, फिर प्रश्न 1 से 3 हल करें। शिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ जो पिछली बार धीमे पढ़ रहे थे। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मोहन ने नदी में नाव चलाई'। पहली बार किस शब्द के बाद रुकना ठीक है? उस शब्द की गिनती स्लेट पर लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M1",
+      "misconception_name_hi": "वाक्यांश बनाए बिना शब्द-दर-शब्द पढ़ना",
+      "misconception_name_en": "Word-by-word reading without phrasing",
+      "detect_en": "CWPM may be adequate but reading sounds robotic; equal pause between all words regardless of meaning units",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'राजू ने लाल पतंग उड़ाई'। अब पढ़कर सुनाएँ: 'राजू ने पतंग उड़ाई'। कौन-सा शब्द छूट गया? स्लेट पर लिखें।",
+    "expected_hi": "लाल",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M3",
+      "misconception_name_hi": "तेज़ पढ़ता है पर बार-बार गलतियाँ (गति शुद्धता पर भारी)",
+      "misconception_name_en": "Reads fast but with frequent errors (speed over accuracy)",
+      "detect_en": "CWPM ≥40 but accuracy below 85%; errors are substitutions and skips rather than slow decoding",
+      "wrong_answer_hi": "कोई नहीं"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'सीमा ने / बाग़ में / पीले फूल / देखे' और उसके नीचे अक्षर तोड़कर वही वाक्य।",
+   "बोर्ड के कोने में लिखें: 'बा-ज़ा-र', 'स-ब्ज़ी', 'टो-क-री' और वाक्य 'माँ ने / टोकरी में / ताज़ी सब्ज़ी / रखी'।",
+   "समूह के हर बच्चे के लिए एक वर्कशीट।"
+  ],
+  "worksheet": {
+   "instructions_hi": "कठिन शब्द साथी को पढ़कर सुनाएँ। अनुच्छेद तीन बार धीमी आवाज़ में पढ़ें और हर बार खाने में निशान लगाएँ। फिर जोड़ी में पढ़ें और प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the hard words aloud to a partner. Read the passage softly three times, ticking a box each time. Then read in pairs and answer the questions.",
+   "required_count": 3,
+   "sheet_kind": "fluency",
+   "example_block": null,
+   "passage_block": {
+    "title": "गुड़िया का बाज़ार",
+    "text": "रविवार को गुड़िया अपनी माँ के साथ बाज़ार गई। बाज़ार में बहुत भीड़ थी। माँ ने टोकरी में ताज़ी सब्ज़ियाँ रखीं। गुड़िया ने एक दुकान पर रंग-बिरंगे गुब्बारे देखे। उसने माँ से एक लाल गुब्बारा माँगा। माँ ने मुस्कुराकर गुब्बारा दिला दिया। घर लौटते समय गुड़िया बहुत ख़ुश थी।"
+   },
+   "warmup_words": [
+    "रविवार",
+    "बाज़ार",
+    "सब्ज़ियाँ",
+    "रंग-बिरंगे",
+    "गुब्बारे",
+    "मुस्कुराकर",
+    "लौटते"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गुड़िया किसके साथ बाज़ार गई?",
+     "answer": "माँ के साथ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "माँ ने टोकरी में क्या रखा?",
+     "answer": "ताज़ी सब्ज़ियाँ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.5.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "गुड़िया ने किस रंग का गुब्बारा माँगा?",
+     "answer": "लाल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.5.1-M2"
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "re-teach: no show-me question listens for L2.5.1-M2"
+  ],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 7 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "516308d3a346",
+ "created": "2026-11-21T06:04:22Z",
+ "cost_usd": 0.0428,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

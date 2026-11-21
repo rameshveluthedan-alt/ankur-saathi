@@ -1,0 +1,120 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.5.1__normal__medium",
+ "skill_id": "N3.5.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कॉपी का कोना दिखाएँ और कहें: 'देखिए, इस सीधे कोने को समकोण कहते हैं।' बोर्ड पर तीन कोण बनाएँ: कॉपी के कोने से छोटा कोण (न्यूनकोण), कॉपी के कोने जितना कोण (समकोण), और कॉपी के कोने से बड़ा, खुला कोण (अधिककोण)। हर कोण पर कॉपी का कोना रखकर दिखाएँ: 'कोना ठीक बैठा तो समकोण, कोण छोटा तो न्यूनकोण, कोण बड़ा तो अधिककोण।'",
+   "we_do_hi": "बच्चे अपनी दो पेंसिलें मिलाकर कोण बनाएँ। कहें: 'अब समकोण बनाएँ', फिर 'न्यूनकोण', फिर 'अधिककोण'। हर बार बच्चे अपनी कॉपी का कोना रखकर जाँचें, और शिक्षक घूमकर देखें।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बच्चे घड़ी की तस्वीर कॉपी में बनाकर कोण पहचानें। इस ब्लॉक में सवाल 1 शुरू करें, बाकी काम अगले ब्लॉक में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर घड़ी बनाएँ, सुइयाँ 11 बजे पर। सुइयों के बीच का कोण कौन-सा है? उँगलियों पर दिखाएँ: 1 न्यूनकोण, 2 समकोण, 3 अधिककोण।",
+    "expected_hi": "1 (न्यूनकोण)",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि समकोण से छोटा कोण न्यूनकोण है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर घड़ी बनाएँ, सुइयाँ 7 बजे पर। यह कोण कौन-सा है? उँगलियों पर दिखाएँ: 1 न्यूनकोण, 2 समकोण, 3 अधिककोण।",
+    "expected_hi": "3 (अधिककोण)",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि समकोण से बड़ा कोण अधिककोण है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर बनाने के लिए एक बड़ी घड़ी का गोला (12 अंकों के साथ) तैयार रखें।",
+   "हर बच्चे के पास दो पेंसिलें और अपनी कॉपी हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "घड़ी में दिए गए समय पर सुइयों के बीच का कोण पहचानें। समकोण, न्यूनकोण या अधिककोण लिखें। जाँचने के लिए कॉपी का कोना रखें।",
+   "instructions_en": "Identify the angle between the clock hands at the given time. Write right, acute or obtuse angle. Use the corner of your notebook to check.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 बजे घड़ी की सुइयों के बीच का कोण = ___",
+     "answer": "समकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "1 बजे घड़ी की सुइयों के बीच का कोण = ___",
+     "answer": "न्यूनकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "5 बजे घड़ी की सुइयों के बीच का कोण = ___",
+     "answer": "अधिककोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "10 बजे घड़ी की सुइयों के बीच का कोण = ___",
+     "answer": "न्यूनकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "8 बजे घड़ी की सुइयों के बीच का कोण = ___",
+     "answer": "अधिककोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "9 बजे घड़ी की सुइयों के बीच का कोण = ___",
+     "answer": "समकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a41242c1e21e",
+ "created": "2026-11-21T05:57:58Z",
+ "cost_usd": 0.0307,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

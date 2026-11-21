@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.4.1__normal__short",
+ "skill_id": "L2.4.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: समझदारी, अध्यापिका, गुलाबी। पहले 'स-मझ-दा-री' टुकड़ों में धीरे पढ़ें, फिर पूरा शब्द एक साँस में पढ़कर सुनाएँ: 'देखिए, टुकड़े जोड़कर हम पूरा शब्द एक बार में पढ़ते हैं।' बाकी दो शब्दों के साथ भी ऐसे ही करें, फिर एक बच्चे से गुलाबी पढ़वाकर पूछें: 'यह शब्द एक बार में पढ़ा या टुकड़ों में?'",
+   "we_do_hi": "",
+   "you_do_hi": "बोर्ड पर लिखें: तितलियाँ, मुसाफ़िर, किताबें, चमकीला, रसोईघर। हर जोड़ी को कागज़ की पर्चियाँ दें जिन पर ये शब्द लिखे हों; पर्चियाँ न हों तो बोर्ड से पढ़ें, और वह भी न हो सके तो वर्कशीट से। बच्चे बारी-बारी से साथी को शब्द पढ़कर सुनाएँ, फिर अपनी जगह पर अभ्यास जारी रखें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: टमाटर। इस शब्द में कितने टुकड़े (अक्षरांश) हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा लंबे शब्द को अक्षरांशों में बाँटकर देख पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "यह शब्द सुनें: 'मिठाइयाँ'। बोर्ड पर लिखें: 1) मिठाइयाँ 2) मठाइयाँ। सही शब्द कौन-सा है? 1 या 2 उँगली दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पूरे शब्द की सभी मात्राएँ पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: समझदारी, अध्यापिका, गुलाबी।",
+   "हर जोड़ी के लिए कागज़ की पर्चियों पर लिखें: तितलियाँ, मुसाफ़िर, किताबें, चमकीला, रसोईघर।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द पहले मन में पढ़ें, फिर साथी को पूरा शब्द एक बार में पढ़कर सुनाएँ।",
+   "instructions_en": "Read each word silently first, then read the whole word aloud to your partner in one go.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी को पाँच लंबे शब्द (तितलियाँ, मुसाफ़िर, किताबें, चमकीला, रसोईघर) पढ़कर सुनाएँ।",
+    "task_en": "Read five long words aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "शब्द लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "चार या ज़्यादा अक्षरांश वाले शब्द बिना अटके, तुरंत पढ़ता है",
+     "partial_hi": "तीन अक्षरांश वाले शब्द ठीक पढ़ता है, लंबे शब्दों में अटकता है",
+     "not_yet_hi": "हर शब्द टुकड़ों में धीरे-धीरे पढ़ता है",
+     "achieved_en": "Reads 4+ syllable words quickly without breaking",
+     "partial_en": "Reads 3-syllable words fluently, breaks on longer ones",
+     "not_yet_en": "Reads every word syllable by syllable, slowly"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: किताबें",
+     "answer": "किताबें",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: रसोईघर",
+     "answer": "रसोईघर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: तितलियाँ",
+     "answer": "तितलियाँ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: चमकीला",
+     "answer": "चमकीला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: मुसाफ़िर",
+     "answer": "मुसाफ़िर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0252,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

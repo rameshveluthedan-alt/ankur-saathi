@@ -1,0 +1,115 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.1.1__normal__medium",
+ "skill_id": "L0.1.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'आज हम दो काम एक साथ सुनकर करेंगे।' खुद करके दिखाएँ: 'पहले किताब उठाते हैं, फिर मेज़ पर रखते हैं।' दोनों काम करते समय उँगली पर गिनें: 'एक... दो...'।",
+   "we_do_hi": "पूरे समूह को एक निर्देश दें: 'खड़े हो जाएँ और ताली बजाएँ।' इसके बाद दूसरा: 'हाथ ऊपर करें और फिर सिर पर रखें।' हर निर्देश एक ही बार बोलें, फिर देखें कि बच्चे दोनों काम सही क्रम में करते हैं।",
+   "you_do_hi": "हर जोड़ी को कंकड़, बटन और बोतल के ढक्कन मिलाकर दें। एक बच्चा निर्देश सुने और करे, जैसे 'बटन उठाएँ और ढक्कन के पास रखें', फिर दोनों बच्चे अपनी भूमिका बदल लें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'पहले नाक छुएँ, फिर कान छुएँ।' पहला काम कौन-सा है? नाक के लिए 1 उँगली, कान के लिए 2 उँगलियाँ दिखाएँ।",
+    "expected_hi": "1 उँगली",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो कामों में से पहला काम याद रखता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'स्लेट उठाएँ और उस पर एक गोला बनाएँ।' अब यह काम करके दिखाएँ।",
+    "expected_hi": "स्लेट पर गोला",
+    "listen_for": [],
+    "shows_hi": "बच्चा दोनों काम सही क्रम में पूरे करता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए 3-4 कंकड़, बटन और बोतल के ढक्कन इकट्ठा करें।",
+   "बच्चों के पास अपनी स्लेट हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "साथी से निर्देश सुनें और दोनों काम करें।",
+   "instructions_en": "Listen to your partner's instruction and do both steps.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "शिक्षक दो काम वाला निर्देश एक बार बोलें, जैसे 'बटन उठाएँ और ढक्कन के पास रखें'; बच्चा दोनों काम क्रम से करे।",
+    "task_en": "The teacher says a two-step instruction once (e.g. pick up the button and put it next to the lid); the child does both steps in order.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "एक बार सुनकर दोनों काम सही क्रम में करता है",
+     "partial_hi": "एक काम करता है, दूसरा भूलता है या दोबारा सुनना पड़ता है",
+     "not_yet_hi": "एक काम भी ठीक से नहीं कर पाता",
+     "achieved_en": "Does both steps in order after hearing once",
+     "partial_en": "Does one step, forgets the other or needs repetition",
+     "not_yet_en": "Cannot do even one step correctly"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "कंकड़ उठाएँ और बटन के पास रखें।",
+     "answer": "कंकड़ बटन के पास",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ढक्कन उठाएँ और साथी को दें।",
+     "answer": "ढक्कन साथी के पास",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "बटन उठाएँ और ढक्कन के अंदर रखें।",
+     "answer": "बटन ढक्कन के अंदर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 3 repeats wording from the lesson or anchor: «बटन उठाएँ और ढक्कन के»"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:08:11Z",
+ "cost_usd": 0.0219,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

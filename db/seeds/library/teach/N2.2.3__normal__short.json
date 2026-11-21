@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.2.3__normal__short",
+ "skill_id": "N2.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 452 ___ 427। बच्चों को दिखाएँ कि पहले सैकड़े देखते हैं, दोनों में 4 हैं, इसलिए दहाई देखते हैं: 5 दहाई, 2 दहाई से अधिक है, तो 452 > 427। आख़िर में समूह से पूछें: 'चिह्न का खुला मुँह किस ओर रहता है?' (बड़ी संख्या की ओर)",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बच्चे हर बार पहले सैकड़े, फिर दहाई, फिर इकाई देखें। जो सवाल अभी पूरे न हों, वे अगले ब्लॉक में अपनी जगह पर पूरे करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 618 और 681। कौन-सी संख्या बड़ी है?",
+    "expected_hi": "681",
+    "listen_for": [],
+    "shows_hi": "सैकड़े बराबर होने पर बच्चा दहाई की तुलना करता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 305 ___ 350। खाली जगह का चिह्न स्लेट पर लिखें।",
+    "expected_hi": "<",
+    "listen_for": [],
+    "shows_hi": "बच्चा सही चिह्न चुनकर सही दिशा में लिखता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 452 ___ 427",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो"
+  ],
+  "worksheet": {
+   "instructions_hi": "दोनों संख्याओं की तुलना करें और खाली जगह में >, < या = लिखें। पहले सैकड़े, फिर दहाई, फिर इकाई देखें।",
+   "instructions_en": "Compare the two numbers and write >, < or = in the blank. Look at hundreds first, then tens, then ones.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "563 ___ 538",
+    "answer": "563 > 538",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "5",
+    "row1_t": "6",
+    "row1_o": "3",
+    "row2_h": "5",
+    "row2_t": "3",
+    "row2_o": "8",
+    "answer_h": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "734 ___ 529",
+     "answer": "734 > 529",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "465 ___ 492",
+     "answer": "465 < 492",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "807 ___ 870",
+     "answer": "807 < 870",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "210 ___ 201",
+     "answer": "210 > 201",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "376 ___ 376",
+     "answer": "376 = 376",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "648 ___ 684",
+     "answer": "648 < 684",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "40b76de3f5e2",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0245,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

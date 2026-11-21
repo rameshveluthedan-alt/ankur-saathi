@@ -1,0 +1,120 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.1.1__normal__medium",
+ "skill_id": "N1.1.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर बनाएँ: ○ △ ○ △ ○ △ और बच्चों से कहें: 'देखिए, गोला, तिकोन, फिर गोला, तिकोन... यह जोड़ी बार-बार आ रही है।' इसके बाद बोर्ड पर लिखें: लाल नीला नीला लाल नीला नीला, और हर बार दोहराने वाले हिस्से के नीचे रेखा खींचकर दिखाएँ कि अगला 'लाल' आएगा।",
+   "we_do_hi": "बोर्ड पर लिखें: ★ ★ ● ★ ★ ● ___ और बच्चों से पूछें कि दोहराने वाला हिस्सा कौन-सा है, फिर साथ मिलकर अगला चिह्न भरें। फिर लिखें: क ख ग क ख ग ___ ___ और बच्चों के साथ अगले दो अक्षर भरें। अंत में बच्चों से कहें कि ताली और चुटकी से अपना एक पैटर्न सोचें।",
+   "you_do_hi": "बच्चों से कहें: 'अपनी वर्कशीट निकालें, पहले सवाल 1 हल करें।' बाकी सवाल 2 और 3, और जो जल्दी ख़त्म करें वे बाकी सवाल, बच्चे अगले हिस्से में अपनी जगह पर पूरे करें। शिक्षक घूमकर देखें कि बच्चे दोहराने वाले हिस्से के नीचे रेखा खींच रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर देखें: ○ □ ○ □ ○ ___ । खाली जगह पर क्या आएगा? स्लेट पर बनाएँ।",
+    "expected_hi": "□",
+    "listen_for": [],
+    "shows_hi": "बच्चा AB पैटर्न में अगला चिह्न पहचान लेता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर देखें: ▲ ▲ ● ▲ ▲ ● ▲ ___ । अगला क्या आएगा? 1) ▲ 2) ● — उँगली से दिखाएँ।",
+    "expected_hi": "1) ▲",
+    "listen_for": [],
+    "shows_hi": "बच्चा AAB पैटर्न में दोहराने वाला हिस्सा पूरा पहचानता है, सिर्फ़ पिछला चिह्न नहीं देखता।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से बनाएँ: ○ △ ○ △ ○ △ और लाल नीला नीला लाल नीला नीला",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना"
+  ],
+  "worksheet": {
+   "instructions_hi": "पैटर्न देखें। दोहराने वाले हिस्से के नीचे रेखा खींचें और खाली जगह पर अगला चिह्न या संख्या लिखें।",
+   "instructions_en": "Look at the pattern. Underline the part that repeats and write the next shape or number in the blank.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "○ △ ○ △ ○ △ ___",
+     "answer": "○",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "★ ● ● ★ ● ● ★ ___",
+     "answer": "●",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "क क ख क क ख क ___",
+     "answer": "क",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "□ ○ △ □ ○ △ □ ___",
+     "answer": "○",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "5 7 5 7 5 7 5 ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "▲ ▲ ■ ▲ ▲ ■ ▲ ▲ ___",
+     "answer": "■",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "90c7bbbe9eec",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.0209,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

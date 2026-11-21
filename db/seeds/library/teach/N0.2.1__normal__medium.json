@@ -1,0 +1,121 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.1__normal__medium",
+ "skill_id": "N0.2.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'सुनें, आज हम 1 से 20 तक गिनती बोलेंगे।' हर संख्या पर एक ताली बजाते हुए धीरे-धीरे 1 से 20 तक बोलें, और 10 के बाद थोड़ा रुककर 11 से आगे बोलें। फिर 11 से 20 तक बोर्ड पर लिखी पंक्ति पर उँगली रखकर एक बार और बोलें।",
+   "we_do_hi": "बोर्ड पर 1 से 20 तक की पंक्ति पर उँगली रखें, और बच्चे हर संख्या पर ताली बजाते हुए साथ बोलें। फिर बीच से शुरू करें: 'अब 8 से आगे बोलें', 'अब 13 से आगे बोलें'। जहाँ कोई संख्या छूटे, वहीं रुककर वह संख्या दोबारा साथ बोलें।",
+   "you_do_hi": "बच्चे जोड़ी में बैठें और हर जोड़ी को 20 कंकड़ या बीज दें। एक बच्चा हर कंकड़ को एक-एक करके दूसरी ओर रखते हुए 1 से 20 तक बोले, फिर दूसरा बच्चा यही करे; कंकड़ न हों तो वर्कशीट का काम कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 11, 12, 13, ... इसके बाद कौन-सी संख्या आएगी? उँगलियों पर दिखाएँ या स्लेट पर लिखें।",
+    "expected_hi": "14",
+    "listen_for": [],
+    "shows_hi": "10 के बाद की गिनती का क्रम याद है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 17, 18, ... इसके बाद 19 आएगा या 20? 19 के लिए एक उँगली, 20 के लिए दो उँगलियाँ दिखाएँ।",
+    "expected_hi": "19 (एक उँगली)",
+    "listen_for": [],
+    "shows_hi": "बीच में संख्या छोड़े बिना गिनती आगे बढ़ाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 1 से 20 तक की संख्याएँ एक पंक्ति में लिखें।",
+   "हर जोड़ी के लिए 20 कंकड़ या बीज इकट्ठे करें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "संख्याएँ क्रम से बोलें और खाली जगह भरें।",
+   "instructions_en": "Say the numbers in order and fill in the blanks.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा 20 कंकड़ एक-एक करके दूसरी ओर रखते हुए 1 से 20 तक गिनती बोले।",
+    "task_en": "The child moves 20 pebbles one at a time while reciting 1 to 20.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बीज",
+     "बोतल के ढक्कन",
+     "तीलियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "1 से 20 तक बिना रुके और बिना छोड़े बोलता है।",
+     "partial_hi": "1-2 संख्याएँ छोड़ता है या रुकता है, फिर ख़ुद सुधारता है।",
+     "not_yet_hi": "10 के आगे नहीं बोल पाता या बार-बार संख्याएँ छोड़ता है।",
+     "achieved_en": "Recites 1 to 20 fluently with no skips.",
+     "partial_en": "Skips or pauses on 1-2 numbers, then self-corrects.",
+     "not_yet_en": "Cannot go beyond 10 or skips often."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गिनती बोलें और लिखें: 3, 4, ___, 6",
+     "answer": "5",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "गिनती बोलें और लिखें: 10, ___, 12, 13",
+     "answer": "11",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "गिनती बोलें और लिखें: 16, 17, ___, 19",
+     "answer": "18",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "गिनती बोलें और लिखें: 13, 14, ___",
+     "answer": "15",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "गिनती बोलें और लिखें: 7, ___, 9",
+     "answer": "8",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 11",
+   "worksheets.progressor problem 4 repeats a number the lesson or anchor already used: 13"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0234,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

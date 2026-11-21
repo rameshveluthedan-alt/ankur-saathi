@@ -1,0 +1,155 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.3-M1__short",
+ "skill_id": "L1.3.3",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.3-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने े और ै की मात्रा पढ़ी थी। बोर्ड पर लिखें: 'मेला'। ऊपर एक मात्रा है, फिर भी इसे 'मैला' पढ़कर सुनाएँ और पूछें: 'यहाँ कितनी मात्राएँ हैं?' एक मात्रा पर उँगली रखकर 'मेला' सही पढ़ें, बोर्ड पर 'मैला' भी लिखकर उसकी दो मात्राएँ दिखाएँ, फिर गलत पढ़ना याद न रहे, इसलिए 'मैला' मिटा दें।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियाँ दें, जिन पर बोर्ड से उतारे शब्द लिखे हों: सेब, बैल, केला, थैला, पेड़, मैना। बच्चे बारी-बारी से साथी को शब्द पढ़कर सुनाएँ और उन्हें दो ढेरों में रखें: एक मात्रा वाले और दो मात्रा वाले; पर्चियाँ न हों तो वर्कशीट के शब्द कॉपी से पढ़ें, यह काम अगले ब्लॉक में अपनी जगह पूरा करें। जिन बच्चों ने पिछली बार यह गलती की थी, उनके पास सामान्य चक्कर में पहले जाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) सेर 2) सैर। एक संख्या बोलें: 'सैर' कौन-सा है? उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.3-M1",
+      "misconception_name_hi": "े (ए) और ै (ऐ) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses े (e) and ै (ai) matras",
+      "detect_en": "Reads words with े/ै interchangeably; specifically: reads मेला as मैला or vice versa",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "'बेल' शब्द बोलें। स्लेट पर इसकी मात्रा लिखें: े या ै?",
+    "expected_hi": "े",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.3-M1",
+      "misconception_name_hi": "े (ए) और ै (ऐ) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses े (e) and ै (ai) matras",
+      "detect_en": "Reads words with े/ै interchangeably; specifically: reads मेला as मैला or vice versa",
+      "wrong_answer_hi": "ै"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: मेला (मैला बाद में लिखकर मिटाना है)।",
+   "हर जोड़ी के लिए 6 कागज़ की पर्चियाँ: सेब, बैल, केला, थैला, पेड़, मैना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द साथी को पढ़कर सुनाएँ। बताएँ कि उसमें े की मात्रा है या ै की।",
+   "instructions_en": "Read each word aloud to your partner. Say whether it has the e matra or the ai matra.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "म + े = मे,  म + ै = मै"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी को शब्द-पर्चियाँ पढ़कर सुनाएँ और उन्हें दो ढेरों में रखें: े वाले और ै वाले।",
+    "task_en": "Read word slips aloud to a partner and sort them into two piles: e-matra words and ai-matra words.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की शब्द-पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द सही पढ़ता है और े/ै सही छाँटता है",
+     "partial_hi": "कुछ शब्दों में े और ै बदल देता है",
+     "not_yet_hi": "ज़्यादातर शब्द नहीं पढ़ पाता",
+     "achieved_en": "Reads all words correctly and sorts e/ai correctly",
+     "partial_en": "Swaps e and ai in some words",
+     "not_yet_en": "Cannot read most of the words"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: केला। मात्रा कौन-सी है?",
+     "answer": "े",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: थैला। मात्रा कौन-सी है?",
+     "answer": "ै",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: पेड़। मात्रा कौन-सी है?",
+     "answer": "े",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: बैल। मात्रा कौन-सी है?",
+     "answer": "ै",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: रेल। मात्रा कौन-सी है?",
+     "answer": "े",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "पढ़ें: मैना। मात्रा कौन-सी है?",
+     "answer": "ै",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "42f10ebde6e6",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0268,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

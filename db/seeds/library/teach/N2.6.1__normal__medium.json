@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.6.1__normal__medium",
+ "skill_id": "N2.6.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर चित्र-आलेख बनाएँ, ऊपर लिखें 'एक ○ = एक फल'। तीन पंक्तियाँ बनाएँ: आम ○○○○, केला ○○, सेब ○○○○○○○। हर पंक्ति के गोले उँगली रखकर गिनें, बोलें: 'देखिए, आम के चार गोले हैं, तो चार आम।' फिर दिखाएँ कि सबसे लंबी पंक्ति सेब की है, इसलिए सेब सबसे ज़्यादा हैं, और सबसे छोटी पंक्ति केले की है।",
+   "we_do_hi": "बोर्ड पर दूसरा चित्र-आलेख बनाएँ: 'पसंद का रंग', एक ★ = एक बच्चा। पंक्तियाँ: लाल ★★★★★, नीला ★★★, हरा ★★★★★★। बच्चों से पूछें: 'नीला कितने बच्चों को पसंद है?', 'कौन-सा रंग सबसे ज़्यादा पसंद है?' और 'कौन-सा सबसे कम?' हर उत्तर के बाद एक बच्चे से पूछें कि उसने कैसे पता किया।",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट का चित्र-आलेख ध्यान से देखें और सवाल 1 हल करें।' जो जल्दी ख़त्म करें, वे सवाल 2 और 3 करें; बाकी सवाल 4 से 6 अतिरिक्त हैं। बचे हुए सवाल बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: गेंद ●●●●●●●● (एक ● = एक गेंद)। कितनी गेंदें हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "8",
+    "listen_for": [],
+    "shows_hi": "बच्चा चित्र-आलेख में एक निशान को एक चीज़ मानकर सही गिनती पढ़ लेता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) पतंग ■■■  2) लट्टू ■ (एक ■ = एक खिलौना)। कौन-सा खिलौना ज़्यादा है? उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पंक्तियों की तुलना करके बता पाता है कि कौन-सी चीज़ ज़्यादा है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से दो चित्र-आलेख बना लें: फल (आम 4, केला 2, सेब 7, एक ○ = एक फल) और पसंद का रंग (लाल 5, नीला 3, हरा 6, एक ★ = एक बच्चा)।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "नीचे का चित्र-आलेख ध्यान से देखें। एक ● = एक बच्चा।\n• गाय ●●●●●●\n• बिल्ली ●●●\n• कुत्ता ●●●●●●●●\n• तोता ●●●●●\nयह बताता है कि कितने बच्चों को कौन-सा जानवर पसंद है। चित्र-आलेख पढ़कर सवालों के उत्तर लिखें।",
+   "instructions_en": "Look at the pictograph carefully. One ● = one child. Cow 6, Cat 3, Dog 8, Parrot 5 (shown as dots). Read the pictograph and answer the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बिल्ली कितने बच्चों को पसंद है? ___",
+     "answer": "3",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "कौन-सा जानवर सबसे ज़्यादा बच्चों को पसंद है? ___",
+     "answer": "कुत्ता",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "गाय और बिल्ली को मिलकर कितने बच्चे पसंद करते हैं? ___",
+     "answer": "9",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "गाय कितने बच्चों को पसंद है? ___",
+     "answer": "6",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "कौन-सा जानवर सबसे कम बच्चों को पसंद है? ___",
+     "answer": "बिल्ली",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "कुत्ता पसंद करने वाले बच्चे, गाय पसंद करने वाले बच्चों से कितने अधिक हैं? उत्तर लिखें।",
+     "answer": "2",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "97281c2698e8",
+ "created": "2026-11-21T06:10:44Z",
+ "cost_usd": 0.0413,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

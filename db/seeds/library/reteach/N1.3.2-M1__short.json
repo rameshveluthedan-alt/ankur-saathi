@@ -1,0 +1,152 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.3.2-M1__short",
+ "skill_id": "N1.3.2",
+ "domain_id": "numeracy",
+ "mode": "N1.3.2-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने घटाना सीखा था, आज एक आम गलती पकड़ेंगे। बोर्ड पर ऊपर 12 और नीचे 7 लिखें, फिर गलत तरीका दिखाएँ: '7 में से 2 घटाया, 5 आया, आगे 1 रखा, उत्तर 15 बना।' बच्चों से कहें: 'देखिए, यहाँ उल्टा घटा दिया। हमें 12 में से 7 हटाने हैं।' फिर 12 छड़ियाँ गिनकर उनमें से 7 हटाएँ, बची 5 छड़ियाँ गिनवाएँ, बोर्ड पर 12 - 7 = 5 लिखें और गलत काम मिटा दें।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में बच्चे सवाल 1 से 3 शुरू करें और बाकी अपनी जगह पर अगले समय में पूरे करें। शिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्होंने उल्टा घटाया था, और उनसे पूछें: 'किसमें से घटा रहे हैं?'"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर उत्तर लिखें: 11 - 4",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.2-M1",
+      "misconception_name_hi": "क्रम की परवाह किए बिना छोटे से बड़ा घटाता है",
+      "misconception_name_en": "Subtracts smaller from larger regardless of order",
+      "detect_en": "When given impossible single-digit subtractions or mixed problems, child always does larger minus smaller",
+      "wrong_answer_hi": "13"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर लिखें: 16 - 7 = 11। क्या यह सही है? स्लेट पर 'सही' या 'गलत' लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.2-M1",
+      "misconception_name_hi": "क्रम की परवाह किए बिना छोटे से बड़ा घटाता है",
+      "misconception_name_en": "Subtracts smaller from larger regardless of order",
+      "detect_en": "When given impossible single-digit subtractions or mixed problems, child always does larger minus smaller",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "शिक्षक के लिए 12 खुली छड़ियाँ",
+   "बोर्ड पर पहले से ऊपर-नीचे लिखकर रखें: 12 और 7"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में बड़ी संख्या में से छोटी संख्या घटाएँ। पहले देखें कि किसमें से घटाना है, फिर उत्तर लिखें।",
+   "instructions_en": "In each problem, take the second number away from the first. First check which number you are taking away from, then write the answer.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "10 - 6 = ___",
+    "answer": "4",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "1",
+    "row1_o": "0",
+    "row2_t": "",
+    "row2_o": "6",
+    "answer_t": "",
+    "answer_o": "4"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "9 - 4",
+     "answer": "5",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "13 - 5",
+     "answer": "8",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N1.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "15 - 9 = ___",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "17 - 8 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "7 - 3 = ___",
+     "answer": "4",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक थैले में 12 आम हैं। 9 आम बाँट दिए। थैले में कितने आम बचे?",
+     "answer": "3",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 3 repeats a number the lesson or anchor already used: 15",
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 12"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "e99889c8e271",
+ "created": "2026-11-21T06:10:43Z",
+ "cost_usd": 0.0371,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

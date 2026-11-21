@@ -1,0 +1,125 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.7.2__normal__medium",
+ "skill_id": "L3.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'लड़का खेलता है।' और उसके नीचे 'लड़की खेलती है।' बच्चों से कहें: 'देखिए, लड़का के साथ खेलता, लड़की के साथ खेलती। लिंग बदला तो क्रिया भी बदली।' फिर लिखें: 'बच्चे खेलते हैं।' और बताएँ कि एक से अधिक हों तो 'खेलते हैं' आता है।",
+   "we_do_hi": "बोर्ड पर लिखें: 'गाय घास ___ है।' (खाता / खाती) और बच्चों से पूछें कि कौन-सा शब्द सही बैठेगा। इसके बाद लिखें: 'कल मोहन बाज़ार ___।' (जाएगा / गया) और पूछें कि 'कल' बीता हुआ दिन है तो कौन-सा शब्द आएगा। हर उत्तर के बाद पूरा वाक्य बोलकर सुनाएँ।",
+   "you_do_hi": "बच्चों से कहें: 'अपनी जगह जाएँ और वर्कशीट के सवाल 1 से 3 हल करें।' जो जल्दी ख़त्म करें, वे बाकी सवाल करें; बाकी काम अगले समय में अपनी जगह पर पूरा करें। शिक्षक घूमकर देखें कि बच्चे स्त्रीलिंग शब्दों के साथ क्रिया ठीक बदल रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'चिड़िया गाना ___ है।' 1) गाता 2) गाती। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2) गाती",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि स्त्रीलिंग शब्द के साथ क्रिया भी स्त्रीलिंग होती है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'पेड़ पर बंदर ___ हैं।' 1) बैठा 2) बैठे। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2) बैठे",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि बहुवचन के साथ क्रिया भी बहुवचन होती है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड के एक कोने पर तीन वाक्य पहले से लिख लें: 'लड़का खेलता है।', 'लड़की खेलती है।', 'बच्चे खेलते हैं।'",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर वाक्य में खाली जगह पर सही शब्द लिखें।",
+   "instructions_en": "Write the correct word in each blank.",
+   "required_count": 3,
+   "sheet_kind": "usage",
+   "example_block": {
+    "problem_hi": "उदाहरण:",
+    "example_text": "मोर नाचता है। मोरनी नाचती है।"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "घोड़ा तेज़ ___ है। (दौड़ता / दौड़ती)",
+     "answer": "दौड़ता",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "नानी कहानी ___ है। (सुनाता / सुनाती)",
+     "answer": "सुनाती",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "कल हम मेले में ___। (जाएँगे / गए)",
+     "answer": "गए",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "बत्तखें पानी में ___ हैं। (तैरती / तैरता)",
+     "answer": "तैरती",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "एक शब्द को अनेक में बदलें: किताब",
+     "answer": "किताबें",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "परसों दादाजी गाँव से ___। (आएँगे / आए थे)",
+     "answer": "आएँगे",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9525506f66da",
+ "created": "2026-11-21T06:10:43Z",
+ "cost_usd": 0.0222,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

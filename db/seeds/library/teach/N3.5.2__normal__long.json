@@ -1,0 +1,138 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.5.2__normal__long",
+ "skill_id": "N3.5.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने सीखा था कि परिमाप यानी आकृति के चारों ओर की पूरी लंबाई। बोर्ड पर 6 cm और 4 cm भुजाओं वाला आयत बनाएँ, चारों भुजाओं पर लंबाई लिखें और उंगली से किनारे-किनारे चलकर दिखाएँ। बोर्ड पर लिखें: 6 + 4 + 6 + 4 = 20 cm, और बताएँ: 'देखिए, आयत की चार भुजाएँ हैं, इसलिए चारों जोड़ते हैं, यानी 2 × (6 + 4) = 20 cm।'",
+   "we_do_hi": "बोर्ड पर 8 cm भुजा वाला वर्ग बनाएँ और बच्चों से पूछें: 'कितनी भुजाएँ हैं? सब बराबर हैं?' फिर साथ में जोड़ें: 8 + 8 + 8 + 8 = 32 cm। इसके बाद 3 cm, 4 cm और 5 cm भुजाओं वाला त्रिभुज बनाएँ, बच्चे हर भुजा गिनकर बताएँ और साथ में परिमाप 12 cm निकालें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' आयत वाले सवालों में देखें कि बच्चे चारों भुजाएँ जोड़ रहे हैं या केवल दो।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर एक आयत बनाएँ जिसकी भुजाएँ 7 cm और 2 cm हैं। इसका परिमाप 1) 9 cm या 2) 18 cm?",
+    "expected_hi": "2) 18 cm",
+    "listen_for": [
+     {
+      "misconception_id": "N3.5.2-M1",
+      "misconception_name_hi": "आयत का परिमाप: केवल 2 भुजाएँ जोड़ना",
+      "misconception_name_en": "Adds only 2 sides for rectangle perimeter",
+      "detect_en": "Answer is exactly half the correct perimeter",
+      "wrong_answer_hi": "1) 9 cm"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर आयत बनाएँ: लंबाई 10 cm, चौड़ाई 3 cm। इसका परिमाप कितना है?",
+    "expected_hi": "26 cm",
+    "listen_for": [
+     {
+      "misconception_id": "N3.5.2-M1",
+      "misconception_name_hi": "आयत का परिमाप: केवल 2 भुजाएँ जोड़ना",
+      "misconception_name_en": "Adds only 2 sides for rectangle perimeter",
+      "detect_en": "Answer is exactly half the correct perimeter",
+      "wrong_answer_hi": "13 cm"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से आयत (6 cm × 4 cm), वर्ग (8 cm) और त्रिभुज (3, 4, 5 cm) बनाकर रखें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर आकृति की सभी भुजाएँ जोड़कर परिमाप लिखें।",
+   "instructions_en": "Add all the sides of each shape and write its perimeter.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "आयत: लंबाई 5 cm, चौड़ाई 2 cm। परिमाप = 5 + 2 + 5 + 2",
+    "answer": "14 cm",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "वर्ग की हर भुजा 6 cm है। परिमाप = ___",
+     "answer": "24 cm",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "आयत: लंबाई 8 cm, चौड़ाई 3 cm। परिमाप = ___",
+     "answer": "22 cm",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.5.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "आयत: लंबाई 9 cm, चौड़ाई 5 cm। परिमाप = ___",
+     "answer": "28 cm",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.5.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "त्रिभुज की भुजाएँ 4 cm, 5 cm और 6 cm हैं। परिमाप = ___",
+     "answer": "15 cm",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "वर्ग की हर भुजा 9 cm है। परिमाप = ___",
+     "answer": "36 cm",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक आयताकार बगीचा 10 m लंबा और 7 m चौड़ा है। उसके चारों ओर बाड़ लगानी है। कितने मीटर बाड़ लगेगी?",
+     "answer": "34 m",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "64fd8c75d188",
+ "created": "2026-11-21T06:04:22Z",
+ "cost_usd": 0.0318,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

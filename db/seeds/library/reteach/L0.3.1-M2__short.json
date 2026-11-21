@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L0.3.1-M2__short",
+ "skill_id": "L0.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "L0.3.1-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अक्षर पहचानना सीखा था; आज हम अक्षर बिना क्रम के पहचानेंगे। बोर्ड पर अकेला 'ग' लिखें और 'क, ख, ग' गिनकर उस तक पहुँचें, फिर बताएँ: 'देखिए, गिनने में समय लगा; अक्षर को सीधे देखकर पहचानते हैं।' अब उसी 'ग' पर उँगली रखकर तुरंत 'ग' बोलें, फिर क्रम वाली गिनती मिटा दें ताकि बोर्ड पर केवल 'ग' रहे।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को पर्चियों पर लिखे अक्षर-कार्ड दें (च, ट, ई, ज, ठ, ऊ, ढ, छ), उलट-पुलट करके। एक बच्चा कार्ड उठाए और दूसरा बिना गिने अक्षर का नाम बोले, फिर बारी बदलें। पहले उन बच्चों के पास शांति से जाएँ जिन्हें पिछली बार गिनकर पहुँचना पड़ा था। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर अकेला 'घ' लिखें। यह कौन-सा अक्षर है: 1) घ 2) क? उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M2",
+      "misconception_name_hi": "अक्षर केवल क्रम में पहचानता है, बेतरतीब में नहीं",
+      "misconception_name_en": "Recognises letters only in sequence, not randomly",
+      "detect_en": "Fast when pointing along a chart in sequence; very slow or wrong when shown flashcards in random order",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर अकेला 'ज' लिखें। यह कौन-सा अक्षर है: 1) च 2) ज? उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M2",
+      "misconception_name_hi": "अक्षर केवल क्रम में पहचानता है, बेतरतीब में नहीं",
+      "misconception_name_en": "Recognises letters only in sequence, not randomly",
+      "detect_en": "Fast when pointing along a chart in sequence; very slow or wrong when shown flashcards in random order",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए कागज़ की 8 पर्चियों पर अक्षर लिखें: च, ट, ई, ज, ठ, ऊ, ढ, छ",
+   "बोर्ड पर लिखने के लिए जगह रखें: ग"
+  ],
+  "worksheet": {
+   "instructions_hi": "साथी को अक्षर दिखाएँ। साथी बिना गिने अक्षर का नाम बोले।",
+   "instructions_en": "Show each letter to your partner. The partner names it without reciting the order.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "उलट-पुलट रखे अक्षर-कार्ड में से एक-एक उठाकर साथी को दिखाएँ; साथी बिना क्रम गिने अक्षर का नाम बोले।",
+    "task_en": "Pick shuffled letter cards one by one; the partner names each letter without reciting the sequence.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अक्षर-कार्ड",
+     "बोर्ड पर लिखे अक्षर"
+    ],
+    "look_for": {
+     "achieved_hi": "हर अक्षर तुरंत सही बोलता है, गिनता नहीं",
+     "partial_hi": "कुछ अक्षर तुरंत, कुछ के लिए क्रम गिनता है",
+     "not_yet_hi": "हर अक्षर तक क्रम गिनकर पहुँचता है या गलत बोलता है",
+     "achieved_en": "Names each letter at once without reciting",
+     "partial_en": "Names some at once, recites the order for others",
+     "not_yet_en": "Recites the order for every letter or names it wrongly"
+    }
+   },
+   "example_block": {
+    "problem_hi": "अक्षर देखकर सीधे नाम बोलें:",
+    "example_text": "ग → ग"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह अक्षर साथी को दिखाएँ: च",
+     "answer": "च",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "यह अक्षर साथी को दिखाएँ: ढ",
+     "answer": "ढ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "यह अक्षर साथी को दिखाएँ: ऊ",
+     "answer": "ऊ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "यह अक्षर साथी को दिखाएँ: ट",
+     "answer": "ट",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह अक्षर साथी को दिखाएँ: ई",
+     "answer": "ई",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "04f18c87c426",
+ "created": "2026-11-21T05:57:58Z",
+ "cost_usd": 0.0255,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,125 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.7.2__normal__medium",
+ "skill_id": "L1.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: क + ि = कि, और बच्चों को दिखाएँ कि ि की मात्रा क से पहले, बाईं ओर लगती है। इसके बाद बोर्ड पर 'किला' लिखें और कहें: 'देखिए, पहले मात्रा, फिर क, फिर ला, और ऊपर एक लंबी शिरोरेखा।' इसी तरह 'मीना' लिखकर दिखाएँ कि ी की मात्रा अक्षर से जुड़ती है, अलग ई नहीं लिखा जाता।",
+   "we_do_hi": "बोर्ड पर 'दिया' बोलें और बच्चों से पूछें: 'पहले कौन-सी मात्रा लगेगी, कहाँ लगेगी?' फिर बच्चों के बताए अनुसार बोर्ड पर लिखें। इसके बाद 'सोना' बोलें, बच्चे हवा में उँगली से लिखें, फिर बोर्ड पर मिलाकर देखें कि शिरोरेखा पूरे शब्द पर है।",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट के सवाल 1 से 3 अपनी कॉपी में लिखें।' शिक्षक घूमकर देखें कि ि की मात्रा बाईं ओर है और शिरोरेखा जुड़ी है। जो बच्चे जल्दी ख़त्म करें, वे बाकी सवाल करें; बाकी काम बच्चे अगले खंड में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "'पिन' शब्द बोलें। बच्चे स्लेट पर 'पिन' लिखें।",
+    "expected_hi": "पिन",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M1",
+      "misconception_name_hi": "ि (छोटी इ) मात्रा व्यंजन के गलत तरफ रखता है",
+      "misconception_name_en": "Places ि (chhoti i) matra on wrong side of consonant",
+      "detect_en": "ि matra consistently placed after the consonant in handwriting; other matras placed correctly",
+      "wrong_answer_hi": "प के दाईं ओर ि लगाकर, फिर न"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) खीर 2) खईर। 'खीर' सही किसमें लिखा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M2",
+      "misconception_name_hi": "मात्रा चिह्न की बजाय स्वर अक्षर लिखता है",
+      "misconception_name_en": "Writes the vowel letter instead of the matra sign",
+      "detect_en": "Writes \"क + ई\" as two separate characters instead of \"की\" as one unit",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: क + ि = कि"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक शब्द बोलेंगे। हर शब्द सही मात्रा और शिरोरेखा के साथ लिखें।",
+   "instructions_en": "The teacher will say each word. Write it with the correct matra and the headline.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "ग + ा = गा"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "लिखें: घर",
+     "answer": "घर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "लिखें: तितली",
+     "answer": "तितली",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "लिखें: मीठा",
+     "answer": "मीठा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "लिखें: बिल्ली",
+     "answer": "बिल्ली",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "लिखें: रोटी",
+     "answer": "रोटी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "df59213d9ed6",
+ "created": "2026-11-21T06:00:21Z",
+ "cost_usd": 0.0201,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.3-M1__long",
+ "skill_id": "L1.3.3",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.3-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने े और ै की मात्रा पढ़ी थी; आज इन दोनों का फ़र्क पक्का करेंगे। बोर्ड पर लिखें: बेल। पहले उँगली रखकर इसे 'बैल' पढ़ें, फिर कहें: 'देखिए, ऊपर केवल एक लकीर है, यह ए की मात्रा है, तो यह बे है।' अब सही पढ़ें: 'बेल', फिर बगल में बैल लिखकर दो लकीरें दिखाएँ और 'बैल' पढ़ें, और गलत पढ़ने वाली बात मिटा दें।",
+   "we_do_hi": "बोर्ड पर लिखें: सेर और सैर। पूछें: 'किस शब्द पर दो लकीरें हैं?' बच्चे उँगली से हवा में लकीरें गिनें और साथ में सही पढ़ें। इसके बाद नया शब्द-जोड़ा लिखें: पेसा नहीं, खेल और खैर, और समूह के साथ हर शब्द पर लकीरें गिनकर पढ़ें।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: मेला, मैला, तेल, थैला, देर, पैर, मोर, कौआ; जोड़ी में एक बच्चा पढ़े, दूसरा सुने, फिर बारी बदलें। कार्ड न हों तो वर्कशीट के शब्द बोर्ड से कॉपी में उतारकर साथी को पढ़कर सुनाएँ; पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार े और ै में भ्रम किया था। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) मेज़ 2) मैज़। मेज़ (टेबल) कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.3-M1",
+      "misconception_name_hi": "े (ए) और ै (ऐ) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses े (e) and ै (ai) matras",
+      "detect_en": "Reads words with े/ै interchangeably; specifically: reads मेला as मैला or vice versa",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "'शैर' नहीं, 'सैर' सुनें: एक शब्द बोलें: पैसा। इस शब्द में पहले अक्षर पर कौन-सी मात्रा है? स्लेट पर मात्रा लिखें।",
+    "expected_hi": "ै",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.3-M1",
+      "misconception_name_hi": "े (ए) और ै (ऐ) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses े (e) and ै (ai) matras",
+      "detect_en": "Reads words with े/ै interchangeably; specifically: reads मेला as मैला or vice versa",
+      "wrong_answer_hi": "े"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर शब्द-कार्ड लिखें: मेला, मैला, तेल, थैला, देर, पैर, मोर, कौआ (हर जोड़ी के लिए एक सेट)।",
+   "बोर्ड पर शब्द-जोड़े लिखने की जगह रखें: बेल-बैल, सेर-सैर, खेल-खैर।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को ध्यान से देखें, मात्रा की लकीरें गिनें और साथी को पढ़कर सुनाएँ।",
+   "instructions_en": "Look at each word, count the matra strokes and read it aloud to a partner.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "क + े = के, क + ै = कै"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा साथी को शब्द-कार्ड पढ़कर सुनाए: मेला, मैला, तेल, थैला, देर, पैर, मोर, कौआ।",
+    "task_en": "The child reads word cards aloud to a partner: mela, maila, tel, thaila, der, pair, mor, kaua.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना रुके सही पढ़ता है, े और ै में भ्रम नहीं।",
+     "partial_hi": "ज़्यादातर शब्द पढ़ता है पर े और ै या ो और ौ बदल देता है।",
+     "not_yet_hi": "ज़्यादातर शब्द नहीं पढ़ पाता।",
+     "achieved_en": "Reads all words correctly without e/ai confusion.",
+     "partial_en": "Reads most words but swaps e/ai or o/au.",
+     "not_yet_en": "Cannot read most of the words."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: तेल",
+     "answer": "तेल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: मेला और मैला",
+     "answer": "मेला, मैला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: देर और पैर",
+     "answer": "देर, पैर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: मोर और कौआ",
+     "answer": "मोर, कौआ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: थैला",
+     "answer": "थैला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6ade16a51d69",
+ "created": "2026-11-21T06:08:40Z",
+ "cost_usd": 0.028,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

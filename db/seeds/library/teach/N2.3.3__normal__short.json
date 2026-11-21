@@ -1,0 +1,124 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.3.3__normal__short",
+ "skill_id": "N2.3.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 58 − 23। 5 बंडल और 8 खुली छड़ियाँ दिखाएँ। पहले इकाई से 3 छड़ियाँ हटाएँ, फिर दहाई से 2 बंडल हटाएँ, और बोलें: 'देखिए, 3 दहाई और 5 इकाई बचीं, यानी 35।' अंत में समूह से एक छोटा प्रश्न पूछें: 'पहले कौन-सा बॉक्स घटाते हैं, इकाई या दहाई?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में बच्चे केवल सवाल 1 और 2 शुरू करें और बाकी अगले ब्लॉक में अपनी जगह पर पूरे करें। शिक्षक घूमकर देखें कि बच्चे इकाई से घटाना शुरू कर रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "67 − 25 कितना होगा? स्लेट पर लिखें।",
+    "expected_hi": "42",
+    "listen_for": [],
+    "shows_hi": "बच्चा इकाई से इकाई और दहाई से दहाई अलग-अलग घटा सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "89 − 34: 55 या 65? सही उत्तर उँगलियों से बताएँ: 1 या 2।",
+    "expected_hi": "1 (55)",
+    "listen_for": [],
+    "shows_hi": "बच्चा दहाई के अंकों को सही घटाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "5 बंडल (दस-दस छड़ियों के) और 8 खुली छड़ियाँ तैयार रखें।",
+   "बोर्ड पर दहाई-इकाई का बॉक्स बनाकर 58 − 23 लिखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "दहाई-इकाई के बॉक्स में घटाएँ। पहले इकाई घटाएँ, फिर दहाई।",
+   "instructions_en": "Subtract using the tens-ones box. Subtract the ones first, then the tens.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "64 − 21 = ___",
+    "answer": "43",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "6",
+    "row1_o": "4",
+    "row2_t": "2",
+    "row2_o": "1",
+    "answer_t": "4",
+    "answer_o": "3"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "46 − 13",
+     "answer": "33",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "79 − 45",
+     "answer": "34",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "86 − 46 = ___",
+     "answer": "40",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "68 − 27 = ___",
+     "answer": "41",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "59 − 36 = ___",
+     "answer": "23",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक दुकान में 48 आम थे। 16 आम बिक गए। कितने आम बचे?",
+     "answer": "32",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 5 repeats a number the lesson or anchor already used: 23",
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d7e914784875",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0251,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

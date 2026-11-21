@@ -1,0 +1,143 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.2__normal__long",
+ "skill_id": "N0.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक सेकंड में याद दिलाएँ: 'पिछली बार हमने 5 तक गिनती की थी।' मेज़ पर 8 कंकड़ एक लाइन में रखें, हर कंकड़ को छूकर एक तरफ़ खिसकाते हुए धीरे-धीरे गिनें: 'एक, दो, तीन... आठ।' फिर पूछें 'कितने कंकड़ हैं?' और खुद उत्तर दें: 'आठ, आख़िरी संख्या ही कुल है।'",
+   "we_do_hi": "6 बटन रखें; बच्चों के साथ मिलकर हर बटन को एक बार छूकर खिसकाते हुए गिनें, फिर पूछें 'कितने बटन?'। इसके बाद 9 ढक्कन रखें और जान-बूझकर एक ढक्कन छोड़कर गिनें; बच्चों से पूछें 'क्या कोई छूट गया?' और सबके साथ फिर से सही गिनें। याद दिलाएँ: 'हर चीज़ एक बार, न छोड़ें, न दोबारा।'",
+   "you_do_hi": "हर जोड़ी को 10 कंकड़, बटन या बोतल के ढक्कन मिलाकर दें; एक बच्चा कोई संख्या बोले (1 से 10 तक), दूसरा उतनी चीज़ें गिनकर अलग रखे और बताए 'कितनी हैं'। फिर बारी बदलें; चीज़ें न हों तो वर्कशीट के सवाल कॉपी में बनाकर करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 7 गोले एक लाइन में बनाएँ: ○ ○ ○ ○ ○ ○ ○। हर गोले को एक बार छूकर नहीं, सिर्फ़ उँगली से इशारा करके धीरे गिनें। 'कितने गोले हैं?' उँगलियों पर दिखाएँ।",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M1",
+      "misconception_name_hi": "दोहरी गिनती (वस्तु को दो बार छूता है)",
+      "misconception_name_en": "Double-counting (touches object twice)",
+      "detect_en": "Reported total is consistently higher than actual count; observed tagging shows repeated touches on same object",
+      "wrong_answer_hi": "9"
+     },
+     {
+      "misconception_id": "N0.2.2-M3",
+      "misconception_name_hi": "गणनांक की समझ नहीं",
+      "misconception_name_en": "No cardinality understanding",
+      "detect_en": "After counting 7 objects, when asked \"how many are there?\" child does not say 7 or restarts counting",
+      "wrong_answer_hi": "फिर से गिनना शुरू करना"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 10 तारे बनाएँ: पहली लाइन में 5 और दूसरी लाइन में 5। 'कुल कितने तारे हैं?' उँगलियों पर दिखाएँ।",
+    "expected_hi": "10",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M2",
+      "misconception_name_hi": "गिनते समय वस्तुओं को छोड़ना",
+      "misconception_name_en": "Skipping objects while counting",
+      "detect_en": "Reported total is consistently lower; observed counting shows objects not tagged",
+      "wrong_answer_hi": "5"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "8 कंकड़, 6 बटन और 9 बोतल के ढक्कन दिखाने के लिए रखें।",
+   "हर जोड़ी के लिए 10 छोटी चीज़ें (कंकड़, बटन या ढक्कन) की एक थैली बनाएँ।",
+   "बोर्ड पर दिखाने के लिए 7 गोले, 10 तारे और 4 त्रिभुज बनाने की जगह रखें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर चीज़ को एक बार छूकर गिनें, फिर बताएँ कि कुल कितनी हैं।",
+   "instructions_en": "Touch each object once while counting, then say how many there are in all.",
+   "required_count": 3,
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चे के सामने 10 चीज़ें रखें। कहें: '7 चीज़ें गिनकर अलग रखें।' फिर पूछें: 'कितनी हैं?'",
+    "task_en": "Place 10 objects before the child. Say: 'Count out 7 objects and set them aside.' Then ask: 'How many are there?'",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "हर चीज़ एक बार छूकर ठीक 7 अलग करता है और पूछने पर '7' बताता है",
+     "partial_hi": "गिन लेता है पर एक चीज़ छोड़ता या दोबारा गिनता है, या मदद से सही करता है",
+     "not_yet_hi": "5 के बाद गिनती बिगड़ती है या 'कितनी हैं' पूछने पर फिर से गिनता है",
+     "achieved_en": "Touches each object once, sets aside exactly 7, says '7' when asked",
+     "partial_en": "Counts but skips or double-counts one object, or corrects with help",
+     "not_yet_en": "Loses count after 5 or recounts when asked how many"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "कॉपी में 5 गोले बनाएँ।",
+     "answer": "5",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "कॉपी में 8 डंडियाँ बनाएँ, फिर हर डंडी पर एक बार गिनकर ✓ लगाएँ।",
+     "answer": "8",
+     "diagnostic_for_misconception": "N0.2.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "कॉपी में 10 बिंदु बनाएँ, फिर हर बिंदु के नीचे गिनती की संख्या लिखें।",
+     "answer": "10",
+     "diagnostic_for_misconception": "N0.2.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "कॉपी में 6 तारे बनाएँ।",
+     "answer": "6",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "कॉपी में 9 त्रिभुज बनाएँ।",
+     "answer": "9",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 1: the question states its own answer (5)",
+   "worksheets.progressor (observed) problem 2: the question states its own answer (8)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (10)",
+   "worksheets.progressor (observed) problem 4: the question states its own answer (6)",
+   "worksheets.progressor (observed) problem 5: the question states its own answer (9)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0287,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.2__normal__short",
+ "skill_id": "N0.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों के सामने 6 कंकड़ एक लाइन में रखें। हर कंकड़ को छूकर एक तरफ़ खिसकाते हुए धीरे-धीरे गिनें: 'एक, दो, तीन, चार, पाँच, छह', एक कंकड़ पर एक ही संख्या। फिर बच्चों से कहें: 'आख़िरी संख्या छह थी, इसलिए यहाँ छह कंकड़ हैं।'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को कंकड़, बीज और बोतल के ढक्कन मिलाकर 10 तक चीज़ें दें। एक बच्चा चीज़ें छूकर और खिसकाकर गिने, फिर दूसरा पूछे: 'कितनी हैं?', फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 4 गोले बनाएँ: ○ ○ ○ ○। हर गोले को छूते हुए धीरे-धीरे गिनें, पर एक गोले को दो बार छूकर गिनें। फिर पूछें: 'यहाँ असल में कितने गोले हैं? उँगलियों पर दिखाएँ।'",
+    "expected_hi": "4",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M1",
+      "misconception_name_hi": "दोहरी गिनती (वस्तु को दो बार छूता है)",
+      "misconception_name_en": "Double-counting (touches object twice)",
+      "detect_en": "Reported total is consistently higher than actual count; observed tagging shows repeated touches on same object",
+      "wrong_answer_hi": "5"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 8 तारे बनाएँ: ★ ★ ★ ★ ★ ★ ★ ★। पूछें: 'कितने तारे हैं? उँगलियों पर दिखाएँ।'",
+    "expected_hi": "8",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M2",
+      "misconception_name_hi": "गिनते समय वस्तुओं को छोड़ना",
+      "misconception_name_en": "Skipping objects while counting",
+      "detect_en": "Reported total is consistently lower; observed counting shows objects not tagged",
+      "wrong_answer_hi": "7"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कंकड़, बीज और बोतल के ढक्कन इकट्ठा करें: हर जोड़ी के लिए 10 चीज़ें, और प्रदर्शन के लिए 6 कंकड़।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को एक बार छूकर गिनें, फिर बताएँ कि कितनी हैं।",
+   "instructions_en": "Touch each object once while counting, then say how many there are.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "sheet_kind": "observed",
+   "observe": {
+    "task_hi": "बच्चे के सामने 7 चीज़ें रखें। बच्चा हर चीज़ छूकर और खिसकाकर गिने, फिर पूछें: 'कितनी हैं?'",
+    "task_en": "Place 7 objects in front of the child. The child counts by touching and moving each object, then is asked: 'How many are there?'",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बीज",
+     "बोतल के ढक्कन",
+     "तीलियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "हर चीज़ एक बार छूकर 7 तक सही गिनता है और 'कितनी?' पूछने पर 7 बताता है",
+     "partial_hi": "7 तक गिनता है, पर कोई चीज़ छोड़ता या दो बार गिनता है, या 'कितनी?' पर फिर से गिनता है",
+     "not_yet_hi": "5 के बाद एक-एक करके गिन नहीं पाता",
+     "achieved_en": "Touches each object once, counts to 7 correctly and answers 7 when asked how many",
+     "partial_en": "Counts to 7 but skips or double-counts an object, or recounts when asked how many",
+     "not_yet_en": "Cannot count one by one beyond 5"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोर्ड पर 5 गोले बनाएँ। बच्चे हर गोले पर एक-एक निशान लगाएँ और कॉपी में उतनी ही डंडियाँ बनाएँ।",
+     "answer": "5",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बोर्ड पर 7 तारे बनाएँ। बच्चे हर तारे को एक बार काटें और कॉपी में उतने ही गोले बनाएँ।",
+     "answer": "7",
+     "diagnostic_for_misconception": "N0.2.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "बोर्ड पर 9 त्रिभुज बनाएँ। बच्चे कॉपी में उतने ही त्रिभुज बनाएँ।",
+     "answer": "9",
+     "diagnostic_for_misconception": "N0.2.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बोर्ड पर 6 चौकोर बनाएँ। बच्चे कॉपी में उतनी ही डंडियाँ बनाएँ।",
+     "answer": "6",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बोर्ड पर 10 गोले बनाएँ। बच्चे कॉपी में उतने ही गोले बनाएँ।",
+     "answer": "10",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 1: the question states its own answer (5)",
+   "worksheets.progressor (observed) problem 2: the question states its own answer (7)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (9)",
+   "worksheets.progressor (observed) problem 4: the question states its own answer (6)",
+   "worksheets.progressor (observed) problem 5: the question states its own answer (10)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0263,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

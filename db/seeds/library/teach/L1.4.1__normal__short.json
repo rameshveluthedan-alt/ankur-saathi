@@ -1,0 +1,121 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.4.1__normal__short",
+ "skill_id": "L1.4.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर बड़े अक्षरों में लिखें: यह, वह, और, में, है, का। हर शब्द पर उँगली रखकर एक बार पूरा शब्द एक साथ पढ़ें, अक्षर तोड़े बिना। बच्चों से कहें: 'देखिए, ये शब्द हम बार-बार पढ़ते हैं, इन्हें देखते ही पहचान लेते हैं।'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: यह, वह, और, में, है, का, को, से। एक बच्चा कार्ड दिखाए, दूसरा उसे तुरंत पढ़े, फिर बारी बदलें; कार्ड न हों तो कॉपी में लिखी वर्कशीट की सूची से पढ़ें। जो जोड़ी जल्दी ख़त्म करे, वह कार्ड मिलाकर फिर से पढ़े। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "यह शब्द पढ़कर सुनाएँ: 'और'। बोर्ड पर लिखें: 1) और 2) में। मैंने कौन-सा शब्द बोला? उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुने हुए दृष्टि शब्द को लिखे रूप में तुरंत पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) से 2) को। 'से' कौन-सा है? उँगलियों पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा मिलते-जुलते छोटे शब्दों में अंतर पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर शब्द-कार्ड बनाएँ: यह, वह, और, में, है, का, को, से (हर जोड़ी के लिए एक सेट)",
+   "बोर्ड पर लिखें: यह, वह, और, में, है, का"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "ये शब्द अपने साथी को पढ़कर सुनाएँ। हर शब्द देखते ही पूरा पढ़ें।",
+   "instructions_en": "Read these words aloud to your partner. Read each word whole, at a glance.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "देखते ही पढ़ने का उदाहरण:",
+    "example_text": "यह"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी के दिखाए शब्द-कार्ड (यह, वह, और, में, है, का, को, से) एक-एक करके तुरंत पढ़ें।",
+    "task_en": "Read aloud the sight-word cards (यह, वह, और, में, है, का, को, से) a partner shows, one by one, instantly.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी कार्ड बिना रुके, पूरे शब्द के रूप में पढ़ता है",
+     "partial_hi": "कुछ शब्द तुरंत पढ़ता है, बाकी अक्षर जोड़कर धीरे पढ़ता है",
+     "not_yet_hi": "ज़्यादातर शब्द अक्षर-अक्षर करके पढ़ता है या नहीं पढ़ पाता",
+     "achieved_en": "Reads all cards instantly as whole words",
+     "partial_en": "Reads some instantly, sounds out the rest slowly",
+     "not_yet_en": "Sounds out most words letter by letter or cannot read them"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: यह, वह, और",
+     "answer": "यह, वह, और",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: में, है, का",
+     "answer": "में, है, का",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: को, से, यह",
+     "answer": "को, से, यह",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "वाक्य पढ़ें: वह घर में है।",
+     "answer": "वह घर में है।",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0234,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

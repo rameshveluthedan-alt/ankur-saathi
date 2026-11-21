@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.3.3__normal__long",
+ "skill_id": "N3.3.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने 2, 5 और 10 के पहाड़े पढ़े थे।' बोर्ड पर लिखें: 7 × 5 = 35, फिर बोलें: 'देखिए, 35 में एक बार 7 और जोड़ें तो 7 × 6 = 42, और एक बार 7 और तो 7 × 7 = 49।' बच्चों से कहें कि पास वाले तथ्य में एक ही गुणा का फ़र्क होता है, इसलिए कौन-सी संख्या से गुणा है, उसे ध्यान से देखें।",
+   "we_do_hi": "बोर्ड पर बिना क्रम के तथ्य लिखें: 8 × 4, 3 × 9, 6 × 6। हर तथ्य पर बच्चों से कहें: 'मन में सोचें, शुरू से पहाड़ा न बोलें।' तीन तक गिनें, फिर एक-एक बच्चे से उत्तर पूछें और बोर्ड पर लिखें: 32, 27, 36।",
+   "you_do_hi": "हर जोड़ी को तथ्य लिखी कागज़ की पर्चियाँ और बोतल के ढक्कन दें: एक बच्चा पर्ची उठाकर तथ्य बोले, दूसरा तीन सेकंड में उत्तर दे; सही उत्तर पर एक ढक्कन मिले, फिर बारी बदलें। पर्चियाँ न हों तो बच्चे वर्कशीट के सवाल 1 से 3 पहले हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "6 × 8",
+    "expected_hi": "48",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.3-M1",
+      "misconception_name_hi": "पास-पास के तथ्यों में भ्रम",
+      "misconception_name_en": "Confuses adjacent table facts",
+      "detect_en": "Errors are within ±1 of the correct product when interpreted as an adjacent fact in the same table",
+      "wrong_answer_hi": "54"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "3 × 8: 24 या 21?",
+    "expected_hi": "24",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.3-M2",
+      "misconception_name_hi": "क्रम में याद पर बेतरतीब में नहीं",
+      "misconception_name_en": "Tables known sequentially but not randomly",
+      "detect_en": "Fast when asked in sequence, very slow or incorrect when asked out of order",
+      "wrong_answer_hi": "21"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर 2 से 10 तक के पहाड़ों के तथ्य बिना उत्तर के लिखें (जैसे 6 × 9), हर जोड़ी के लिए 10 पर्चियाँ।",
+   "हर जोड़ी के लिए लगभग 10 बोतल के ढक्कन इकट्ठा करें।",
+   "बोर्ड पर पहले से लिखें: 7 × 5 = 35"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर गुणा का उत्तर मन में सोचकर लिखें। पहाड़ा शुरू से न बोलें।",
+   "instructions_en": "Write the answer to each multiplication fact from memory. Do not recite the table from the start.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "जोड़ी में साथी पर्ची से कोई भी तथ्य बिना क्रम के बोले, बच्चा तीन सेकंड में उत्तर बताए।",
+    "task_en": "In pairs, the partner reads a random multiplication fact from a slip; the child answers within three seconds.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "तथ्य लिखी कागज़ की पर्चियाँ",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना क्रम के पूछे तथ्य तीन सेकंड में सही बताता है",
+     "partial_hi": "2, 5, 10 के तथ्य जल्दी बताता है, बाकी में रुकता है या पास वाला उत्तर देता है",
+     "not_yet_hi": "हर तथ्य के लिए पहाड़ा शुरू से गिनता है",
+     "achieved_en": "Answers random facts correctly within three seconds",
+     "partial_en": "Quick on tables 2, 5, 10; slow or gives a nearby fact on others",
+     "not_yet_en": "Recites the table from the start for every fact"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "5 × 8 = ___",
+     "answer": "40",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "6 × 9 = ___",
+     "answer": "54",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.3.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "9 × 7 = ___",
+     "answer": "63",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.3.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "4 × 7 = ___",
+     "answer": "28",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "8 × 6 = ___",
+     "answer": "48",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "3 × 6 = ___",
+     "answer": "18",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0398,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

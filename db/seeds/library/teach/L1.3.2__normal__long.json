@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.3.2__normal__long",
+ "skill_id": "L1.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने क, म, ल जैसे अक्षर पढ़े थे।' बोर्ड पर लिखें: क, का, कि, की, कु, कू और हर रूप पर उंगली रखकर धीरे-धीरे पढ़कर सुनाएँ। छोटी इ और बड़ी ई पर रुककर बताएँ: 'देखिए, कि छोटा बोलते हैं, की लंबा खींचकर।'",
+   "we_do_hi": "बोर्ड पर लिखें: म, मा, मि, मी, मु, मू; हर रूप पर उंगली रखें और बच्चे आपके साथ पढ़ें, फिर एक-एक बच्चा अपनी बारी पर पढ़े। इसके बाद बोर्ड पर लिखें: कमाल; पूछें 'ा की मात्रा किस अक्षर पर लगी है?' और म पर उंगली रखकर क-मा-ल पढ़ें।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: दिन, दीन, कुल, कूल, किला, कमाल, पुल, पूल। एक बच्चा कार्ड उठाकर पढ़े, साथी सुने, फिर बारी बदलें; पर्चियाँ न हों तो वर्कशीट के शब्द कॉपी में लिखकर पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) सिल 2) सील। एक शब्द बोलें: 'सील'। कौन-सा शब्द है? उंगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M1",
+      "misconception_name_hi": "छोटी इ (ि) और बड़ी ई (ी) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटी इ (ि) and बड़ी ई (ी) matras",
+      "detect_en": "Errors specifically on ि/ी distinction; other matras are read correctly. Inconsistent — sometimes correct, sometimes swapped.",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) पुल 2) पूल। एक शब्द बोलें: 'पुल'। कौन-सा शब्द है? उंगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M2",
+      "misconception_name_hi": "छोटा उ (ु) और बड़ा ऊ (ू) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटा उ (ु) and बड़ा ऊ (ू) matras",
+      "detect_en": "Errors specifically on ु/ू distinction; reads both as the same vowel sound",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: क, का, कि, की, कु, कू और म, मा, मि, मी, मु, मू",
+   "कागज़ की पर्चियों पर शब्द-कार्ड बनाएँ: दिन, दीन, कुल, कूल, किला, कमाल, पुल, पूल (हर जोड़ी के लिए एक सेट)"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द साथी को पढ़कर सुनाएँ। फिर साथी पढ़े और आप सुनें।",
+   "instructions_en": "Read each word aloud to your partner. Then your partner reads and you listen.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "ल + ी = ली"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा शब्द-कार्ड (दिन, दीन, कुल, कूल, किला, कमाल) एक-एक करके साथी को पढ़कर सुनाए।",
+    "task_en": "The child reads word cards (दिन, दीन, कुल, कूल, किला, कमाल) aloud to a partner, one by one.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना मदद सही पढ़ता है, ि/ी और ु/ू का फ़र्क बोलता है",
+     "partial_hi": "ा वाले शब्द सही पढ़ता है, पर ि/ी या ु/ू में कभी-कभी अटकता है",
+     "not_yet_hi": "मात्रा छोड़कर केवल अक्षर पढ़ता है",
+     "achieved_en": "Reads all words correctly without help, distinguishing ि/ी and ु/ू",
+     "partial_en": "Reads ा words correctly but sometimes mixes ि/ी or ु/ू",
+     "not_yet_en": "Ignores matras and reads only bare consonants"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: नाना",
+     "answer": "नाना",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: दिन, दीन",
+     "answer": "दिन, दीन",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: कुल, कूल",
+     "answer": "कुल, कूल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: किला",
+     "answer": "किला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: कमाल",
+     "answer": "कमाल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:08:40Z",
+ "cost_usd": 0.0274,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

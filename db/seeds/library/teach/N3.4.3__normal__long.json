@@ -1,0 +1,124 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.4.3__normal__long",
+ "skill_id": "N3.4.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'पिछली बार हमने तराज़ू से देखा था कि कौन-सी चीज़ भारी है।' तराज़ू के एक पलड़े में 1 किग्रा का बाट रखें, दूसरे में आटे की थैली डालें, जब तक दोनों पलड़े बराबर न हों, और बच्चों को दिखाएँ: 'देखिए, पलड़े बराबर हैं, इसलिए आटा 1 किलोग्राम है।' बोर्ड पर लिखें: 1 किलोग्राम = 1000 ग्राम, और 500 ग्राम के दो बाट रखकर दिखाएँ कि वे भी 1 किग्रा के बाट के बराबर हैं।",
+   "we_do_hi": "एक पलड़े में किताबों का थैला रखें और बच्चों से पूछें: 'कौन-सा बाट रखें?' बच्चों के सुझाव पर बाट बदलते जाएँ, जब तक पलड़े बराबर न हों, फिर सब मिलकर बाटों का जोड़ पढ़ें। इसके बाद बोर्ड पर 2 किग्रा लिखें और बच्चों से पूछें कि यह कितने ग्राम है; एक बच्चा उत्तर दे, बाकी अंगूठे से सहमति दिखाएँ।",
+   "you_do_hi": "चार-चार बच्चों की टोली बनाएँ और हर टोली को तराज़ू, बाटों का सेट और पत्थर, पानी की बोतल, सब्ज़ी की थैली दें। हर टोली एक चीज़ तौले, बाट जोड़कर उसका भार बताए और ग्राम या किलोग्राम में कहे; जहाँ तराज़ू न हो, वहाँ बच्चे बोर्ड से वर्कशीट कॉपी में उतारकर हल करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "3 किलोग्राम कितने ग्राम होते हैं? स्लेट पर लिखें।",
+    "expected_hi": "3000 ग्राम",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि 1 किलोग्राम में 1000 ग्राम होते हैं।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "एक पलड़े में 500 ग्राम के दो बाट हैं। दूसरे पलड़े में कौन-सा एक बाट रखें कि पलड़े बराबर हों: 1) 1 किलोग्राम 2) 100 ग्राम? उँगलियों पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि पलड़े बराबर होने पर दोनों ओर भार बराबर होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "तराज़ू और बाटों का सेट (1 किग्रा, 500 ग्राम, 200 ग्राम, 100 ग्राम) शिक्षक के लिए; यदि बाट कम हों तो रेत भरी थैलियाँ रसोई के तराज़ू पर तौलकर बना लें।",
+   "1 किलोग्राम आटे की थैली और किताबों का थैला।",
+   "हर चार बच्चों पर एक तराज़ू और बाटों का सेट; तौलने के लिए पत्थर, पानी की बोतल, सब्ज़ी की थैली।",
+   "बोर्ड पर लिखें: 1 किलोग्राम = 1000 ग्राम"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल कॉपी में उतारें और हल करें।",
+   "instructions_en": "Copy each item into your notebook and solve it.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "sheet_kind": "observed",
+   "observe": {
+    "task_hi": "बच्चा तराज़ू पर एक चीज़ रखे, बाट रखकर पलड़े बराबर करे, भार बताए और उसे ग्राम या किलोग्राम में बदलकर कहे।",
+    "task_en": "The child balances an object with weights, states its weight and converts it between g and kg.",
+    "kit_materials_hi": [
+     "तराज़ू और बाट"
+    ],
+    "local_materials_hi": [
+     "पानी की बोतल",
+     "पत्थर",
+     "सब्ज़ी की थैली",
+     "रेत भरी थैलियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद पलड़े बराबर करता है, सही भार बताता है और किग्रा को ग्राम में बदलता है",
+     "partial_hi": "पलड़े बराबर करता है पर बाट जोड़ने या इकाई बदलने में मदद चाहिए",
+     "not_yet_hi": "तराज़ू से भार नहीं निकाल पाता या ग्राम-किलोग्राम का अर्थ नहीं समझता",
+     "achieved_en": "Balances unaided, states the correct weight, converts kg to g",
+     "partial_en": "Balances but needs help adding weights or converting units",
+     "not_yet_en": "Cannot find weight with a balance or does not understand g and kg"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "4 किलोग्राम = ___ ग्राम",
+     "answer": "4000",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पलड़े में 500 ग्राम, 200 ग्राम और 100 ग्राम के बाट हैं। कुल भार = ___ ग्राम",
+     "answer": "800",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "2000 ग्राम = ___ किलोग्राम",
+     "answer": "2",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पलड़े में 1 किलोग्राम और 500 ग्राम के बाट हैं। कुल भार = ___ ग्राम",
+     "answer": "1500",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "इनमें से किसका भार ग्राम में मापेंगे: 1) पेंसिल 2) गेहूँ की बोरी? सही अंक लिखें।",
+     "answer": "1",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 5: the question states its own answer (1)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0294,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

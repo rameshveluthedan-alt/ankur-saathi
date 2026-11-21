@@ -1,0 +1,155 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.2-M2__short",
+ "skill_id": "L1.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.2-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने उ और ऊ की मात्रा पढ़ी थी। बोर्ड पर 'कुल' लिखें और गलत तरीके से लंबा खींचकर 'कूल' जैसा पढ़ें, फिर बच्चों को बताएँ: 'छोटा उ (ु) नीचे छोटा मुड़ता है, इसे छोटा बोलते हैं: कुल।' अब वही शब्द सही पढ़ें, 'कूल' भी लिखकर लंबा बोलें, गलत पढ़ाई वाली बात मिटाकर बोर्ड पर सिर्फ़ कुल / कूल रहने दें।",
+   "we_do_hi": "",
+   "you_do_hi": "जोड़ियाँ बनाएँ और हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: पुल, फूल, गुड़, धूप, चुप, भूख; बच्चे बारी-बारी से साथी को पढ़कर सुनाएँ। कार्ड न हों तो वर्कशीट के सवाल 1 से 3 पहले पढ़ें; जो जल्दी ख़त्म करें, वे बाकी शब्द पढ़ें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्हें कल उ और ऊ में कठिनाई थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) सुन 2) सून। शिक्षक बोलें: 'सुन'। कौन-सा शब्द बोला? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M2",
+      "misconception_name_hi": "छोटा उ (ु) और बड़ा ऊ (ू) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटा उ (ु) and बड़ा ऊ (ू) matras",
+      "detect_en": "Errors specifically on ु/ू distinction; reads both as the same vowel sound",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "शिक्षक बोलें: 'भूल'। स्लेट पर सिर्फ़ इसकी मात्रा लिखें: ु या ू?",
+    "expected_hi": "ू",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M2",
+      "misconception_name_hi": "छोटा उ (ु) और बड़ा ऊ (ू) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटा उ (ु) and बड़ा ऊ (ू) matras",
+      "detect_en": "Errors specifically on ु/ू distinction; reads both as the same vowel sound",
+      "wrong_answer_hi": "ु"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर हर जोड़ी के लिए छह शब्द-कार्ड लिखें: पुल, फूल, गुड़, धूप, चुप, भूख",
+   "बोर्ड पर पहले से 'कुल' लिख कर रखें"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द साथी को पढ़कर सुनाएँ। ध्यान दें: ु छोटा बोलें, ू लंबा बोलें।",
+   "instructions_en": "Read each word aloud to a partner. Say ु short and ू long.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "साथी को उ और ऊ की मात्रा वाले छह शब्द-कार्ड पढ़कर सुनाएँ।",
+    "task_en": "Read six word cards with ु and ू matras aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "शब्द-कार्ड (कागज़ की पर्चियाँ)",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी शब्दों में ु छोटा और ू लंबा बिना मदद पढ़ता है",
+     "partial_hi": "कुछ शब्द सही, या मदद से ु और ू का अंतर करता है",
+     "not_yet_hi": "ु और ू दोनों को एक जैसा पढ़ता है",
+     "achieved_en": "Reads ु short and ू long in all words without help",
+     "partial_en": "Some words right, or distinguishes ु/ू only with help",
+     "not_yet_en": "Reads ु and ू the same way"
+    }
+   },
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "क + ु = कु, क + ू = कू"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: पुल",
+     "answer": "पुल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: धूप",
+     "answer": "धूप",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: चुप",
+     "answer": "चुप",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: फूल",
+     "answer": "फूल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: गुड़",
+     "answer": "गुड़",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "पढ़ें: भूख",
+     "answer": "भूख",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a0a9c41081e5",
+ "created": "2026-11-21T06:08:39Z",
+ "cost_usd": 0.0267,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.5.2__normal__short",
+ "skill_id": "L2.5.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'माँ बाज़ार गई। तुम कहाँ जा रहे हो? वाह, कितना सुंदर फूल है!' हर वाक्य दो बार पढ़कर सुनाएँ: पहले बिना रुके एक साँस में, फिर हर चिह्न पर रुककर, ? पर आवाज़ ऊपर उठाकर और ! पर खुशी से। बच्चों से कहें: 'सुनें, । पर हम रुकते हैं, ? पर पूछते हैं, ! पर भाव से बोलते हैं।' इसके बाद समूह से एक प्रश्न पूछें: 'दोनों में से कौन-सा पढ़ना अच्छा लगा, पहला या दूसरा?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे वर्कशीट खोलें और कठिन शब्द साथी को पढ़कर सुनाएँ, फिर अनुच्छेद एक बार धीमी आवाज़ में पढ़ें। बाकी दो बार पढ़ना, जोड़ी में पढ़ना और प्रश्न 1 से 3 बच्चे अगले ब्लॉक में अपनी जगह पर करें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'राजू खेत में गया वहाँ गाय चर रही थी।' इस वाक्य में किस शब्द के बाद रुकना है? उस शब्द की संख्या स्लेट पर लिखें।",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि एक बात पूरी होने पर रुकना है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'तुम्हारा नाम क्या है' इसके अंत में कौन-सा चिह्न लगेगा? 1) । 2) ? उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा प्रश्न वाले वाक्य को पहचानता है, जिस पर आवाज़ ऊपर उठती है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'माँ बाज़ार गई। तुम कहाँ जा रहे हो? वाह, कितना सुंदर फूल है!'",
+   "समूह के हर बच्चे के लिए वर्कशीट की एक प्रति रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार धीमी आवाज़ में पढ़ें और हर बार एक खाने में सही का निशान लगाएँ। । पर रुकें, ? पर आवाज़ ऊपर उठाएँ, ! पर भाव से पढ़ें। फिर जोड़ी में पढ़ें और प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "First read the hard words aloud to a partner. Then read the passage softly three times, ticking a box each time. Pause at ।, raise your voice at ?, and read ! with feeling. Then read in pairs and answer the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "मेले की सैर",
+    "text": "रविवार को सीमा अपने पिता के साथ मेले में गई। वहाँ बहुत भीड़ थी। सीमा ने पूछा, 'पिताजी, वह बड़ा झूला कहाँ है?' पिताजी ने झूले की ओर इशारा किया। सीमा खुशी से बोली, 'वाह! कितना ऊँचा झूला है!' दोनों ने झूले की सवारी की और गरम जलेबी खाई।"
+   },
+   "sheet_kind": "fluency",
+   "warmup_words": [
+    "रविवार",
+    "पिताजी",
+    "इशारा",
+    "खुशी",
+    "ऊँचा",
+    "सवारी",
+    "जलेबी"
+   ],
+   "expression_sentences": [
+    "आज मौसम बहुत अच्छा है।",
+    "क्या तुम मेरे साथ खेलोगे?",
+    "अरे वाह, कितनी सुंदर पतंग है!",
+    "तुम्हारा घर कहाँ है?"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सीमा किसके साथ मेले में गई?",
+     "answer": "पिता के साथ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सीमा ने किसके बारे में पूछा?",
+     "answer": "झूला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "दोनों ने मेले में क्या खाया?",
+     "answer": "जलेबी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 7 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "547e1d30e23b",
+ "created": "2026-11-21T06:00:21Z",
+ "cost_usd": 0.0252,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

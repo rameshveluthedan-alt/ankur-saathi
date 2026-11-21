@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.3__normal__short",
+ "skill_id": "N0.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर बड़े अक्षरों में लिखें: 6 और 9, फिर 2 और 5। हर अंक पर उँगली रखकर नाम बोलें: 'देखिए, 6 का पेट नीचे है, 9 का सिर ऊपर गोल है।' इसी तरह बताएँ: '2 नीचे सीधी लाइन पर बैठता है, 5 की टोपी ऊपर सीधी है।'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को 1 से 9 तक के अंक-कार्ड दें। अगर कार्ड न हों तो पर्चियों पर अंक लिखकर दें। एक बच्चा कार्ड मिलाकर उठाए और साथी उसका नाम बोले, फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बड़ा 9 लिखें। पूछें: 'यह कौन-सा अंक है? उतनी उँगलियाँ दिखाएँ।'",
+    "expected_hi": "9 (नौ उँगलियाँ)",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M1",
+      "misconception_name_hi": "6 और 9 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 6 and 9",
+      "detect_en": "Consistently reads 6 as 9 or vice versa; other numerals are correct",
+      "wrong_answer_hi": "6 उँगलियाँ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 2   2) 5। पूछें: 'पाँच कौन-सा है? 1 या 2, उँगली से दिखाएँ।'",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M2",
+      "misconception_name_hi": "2 और 5 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 2 and 5",
+      "detect_en": "Reads 2 as 5 or vice versa; pattern is consistent across sessions",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए 1 से 9 तक के अंक-कार्ड या पर्चियाँ तैयार करें।",
+   "बोर्ड पर बड़े अक्षरों में लिखें: 6  9  2  5"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक जो अंक बोलें, उस पर गोला लगाएँ।",
+   "instructions_en": "Circle the numeral the teacher says.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "1 से 9 तक के अंक-कार्ड बिना क्रम के एक-एक करके दिखाएँ। बच्चा हर अंक का नाम बोले।",
+    "task_en": "Show numeral cards 1-9 one at a time in random order; the child names each numeral.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अंक",
+     "बोर्ड पर लिखे अंक"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी 9 अंक बिना मदद के सही बताता है।",
+     "partial_hi": "6 से 8 अंक सही बताता है, 6/9 या 2/5 में अटकता है।",
+     "not_yet_hi": "6 से कम अंक सही बताता है।",
+     "achieved_en": "Names all 9 numerals correctly without help.",
+     "partial_en": "Names 6-8 numerals and mixes up 6/9 or 2/5.",
+     "not_yet_en": "Names fewer than 6 numerals correctly."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोर्ड पर लिखें: 3  7  1  4। शिक्षक बोलें 'सात'। बच्चे उस अंक पर गोला लगाएँ।",
+     "answer": "7",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बोर्ड पर लिखें: 9  6  8  3। शिक्षक बोलें 'छह'। बच्चे उस अंक पर गोला लगाएँ।",
+     "answer": "6",
+     "row_type": null,
+     "diagnostic_for_misconception": "N0.2.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "बोर्ड पर लिखें: 5  2  7  1। शिक्षक बोलें 'दो'। बच्चे उस अंक पर गोला लगाएँ।",
+     "answer": "2",
+     "row_type": null,
+     "diagnostic_for_misconception": "N0.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बोर्ड पर लिखें: 4  8  1  6। शिक्षक बोलें 'आठ'। बच्चे उस अंक पर गोला लगाएँ।",
+     "answer": "8",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 1: the question states its own answer (7)",
+   "worksheets.progressor (observed) problem 2: the question states its own answer (6)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (2)",
+   "worksheets.progressor (observed) problem 4: the question states its own answer (8)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:06:23Z",
+ "cost_usd": 0.0248,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

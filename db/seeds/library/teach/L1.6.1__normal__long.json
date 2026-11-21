@@ -1,0 +1,135 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.6.1__normal__long",
+ "skill_id": "L1.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कहानी ध्यान से सुनी थी।' फिर यह छोटी कहानी धीरे-धीरे पढ़कर सुनाएँ: 'मीना बाज़ार गई। उसने लाल सेब खरीदा। रास्ते में एक बिल्ली मिली।' फिर ज़ोर से सोचते हुए दिखाएँ: 'कौन बाज़ार गई? कहानी में सुना था: मीना।'",
+   "we_do_hi": "बोर्ड पर तीन शब्द लिखें: कौन, क्या, कहाँ। वही कहानी एक बार और सुनाएँ और पूछें: 'मीना ने क्या खरीदा?', 'मीना कहाँ गई?' उत्तर बताने से पहले बच्चे सोचें; फिर दो बच्चों से पूछें कि उन्हें कहानी में यह कहाँ सुनाई दिया।",
+   "you_do_hi": "बच्चों की जोड़ियाँ बनाएँ और हर जोड़ी को बोर्ड पर बनी तीन चित्र-पर्चियाँ दें: सेब, बिल्ली, बाग़। नई कहानी एक बार सुनाएँ: 'राजू बाग़ में गया। उसने एक तोता देखा। तोता हरा था।' फिर पूछें: 'कौन बाग़ में गया? उसने क्या देखा? वह कहाँ गया?' जोड़ी के बच्चे एक-दूसरे को उत्तर बोलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'सोनू पेड़ के नीचे बैठा।' कौन बैठा? 1) सोनू 2) पेड़। उँगली से बताएँ।",
+    "expected_hi": "1) सोनू",
+    "listen_for": [],
+    "shows_hi": "कहानी के पात्र को पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'गुड़िया ने दूध पिया।' गुड़िया ने क्या पिया? 1) पानी 2) दूध। उँगली से बताएँ।",
+    "expected_hi": "2) दूध",
+    "listen_for": [],
+    "shows_hi": "कहानी में क्या हुआ, याद रखता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर कौन, क्या, कहाँ लिखें।",
+   "कागज़ की पर्चियों पर सेब, बिल्ली और बाग़ के छोटे चित्र बनाएँ, हर जोड़ी के लिए एक सेट।",
+   "तीनों कहानियाँ पहले से एक बार पढ़कर देख लें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक कहानी पढ़कर सुनाएँगे। ध्यान से सुनें और साथी को उत्तर बोलें।",
+   "instructions_en": "The teacher reads the story aloud. Listen carefully and tell your partner the answers.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "एक छोटी कहानी एक बार सुनकर कौन, क्या, कहाँ के प्रश्नों के उत्तर बोलकर बताएँ।",
+    "task_en": "After hearing a short story once, answer who, what and where questions aloud.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की चित्र-पर्चियाँ",
+     "बोर्ड पर लिखे शब्द-कार्ड"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद कौन, क्या, कहाँ तीनों के सही उत्तर बताता है।",
+     "partial_hi": "पात्र बताता है, पर क्या हुआ या जगह भूल जाता है।",
+     "not_yet_hi": "कहानी की कोई बात याद नहीं कर पाता।",
+     "achieved_en": "Answers who, what and where correctly without help.",
+     "partial_en": "Names the character but misses the event or the place.",
+     "not_yet_en": "Cannot recall anything from the story."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "कहानी सुनें: 'राजू बाग़ में गया। उसने एक तोता देखा।' कौन बाग़ में गया? बोलकर बताएँ।",
+     "answer": "राजू",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "उसी कहानी में राजू ने क्या देखा? बोलकर बताएँ।",
+     "answer": "तोता",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "राजू कहाँ गया? बोलकर बताएँ।",
+     "answer": "बाग़ में",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "कहानी सुनें: 'दादी छत पर बैठीं। उन्होंने चाय पी।' दादी ने क्या पिया? बोलकर बताएँ।",
+     "answer": "चाय",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "उसी कहानी में दादी कहाँ बैठीं? बोलकर बताएँ।",
+     "answer": "छत पर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats wording from the lesson or anchor: «राजू बाग़ में गया उसने»"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T05:57:58Z",
+ "cost_usd": 0.0264,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

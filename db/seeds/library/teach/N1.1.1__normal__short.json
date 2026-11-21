@@ -1,0 +1,132 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.1.1__normal__short",
+ "skill_id": "N1.1.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों के सामने यह क्रम करें: ताली, चुटकी, ताली, चुटकी, फिर रुककर पूछें, 'अब क्या आएगा?' इसके बाद यह क्रम करें: ताली, चुटकी, चुटकी, ताली, चुटकी, चुटकी, और कहें, 'देखिए, यही टुकड़ा बार-बार दोहराया जा रहा है।' बोर्ड पर लिखें: △ ○ △ ○ ___ और दोहराने वाले टुकड़े △ ○ के नीचे रेखा खींचकर खाली जगह में △ बनाएँ।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में सवाल 1 शुरू करवाएँ और बाकी सवाल बच्चे अगले हिस्से में अपनी जगह पर पूरे करें। घूमकर देखें कि बच्चे दोहराने वाले टुकड़े के नीचे उँगली रखकर आगे बढ़ रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: ☆ ♥ ☆ ♥ ☆ ___। खाली जगह में कौन-सी आकृति आएगी? स्लेट पर बनाएँ।",
+    "expected_hi": "♥",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो चीज़ों वाला दोहराव (AB) पहचानकर क्रम आगे बढ़ा सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: □ ○ ☆ □ ○ ___। अगली आकृति कौन-सी है: 1) □ 2) ☆? उँगली से दिखाएँ।",
+    "expected_hi": "2) ☆",
+    "listen_for": [],
+    "shows_hi": "बच्चा तीन चीज़ों वाले दोहराव (ABC) का पूरा टुकड़ा देखता है, सिर्फ़ दो चीज़ें नहीं।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "ताली-चुटकी वाला क्रम पहले से एक बार बोलकर देख लें।",
+   "हर बच्चे के पास स्लेट और चॉक या कॉपी-पेंसिल हो।",
+   "बोर्ड पर पहले से लिखें: △ ○ △ ○ ___"
+  ],
+  "worksheet": {
+   "instructions_hi": "क्रम ध्यान से देखें। खाली जगह में अगली आकृति बनाएँ।",
+   "instructions_en": "Look at the pattern carefully. Draw the next shape in the blank.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "△ ○ △ ○ ___",
+    "answer": "△",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "☆ ♥ ☆ ♥ ☆ ___",
+     "answer": "♥",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "□ ○ ☆ □ ○ ___",
+     "answer": "☆",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "◇ ◇ △ ◇ ◇ ___",
+     "answer": "△",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "♥ □ □ ♥ □ ___",
+     "answer": "□",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "◇ ○ ◇ ○ ___",
+     "answer": "◇",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "△ ♥ ○ △ ♥ ___",
+     "answer": "○",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d6b3b140c54e",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0308,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

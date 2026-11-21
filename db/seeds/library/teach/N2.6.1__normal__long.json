@@ -1,0 +1,101 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.6.1__normal__long",
+ "skill_id": "N2.6.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने गिनती करके चीज़ों की तुलना की थी।' बोर्ड पर चित्र-आलेख बनाएँ: बिल्ली ★★★, कुत्ता ★★★★★, तोता ★★ और नीचे लिखें 'हर ★ = 1 बच्चा'। हर पंक्ति पर उँगली रखकर तारे गिनें और बोलें: 'देखिए, कुत्ते की पंक्ति सबसे लंबी है, इसलिए कुत्ता सबसे ज़्यादा बच्चों को पसंद है; तोते की पंक्ति सबसे छोटी है।'",
+   "we_do_hi": "बोर्ड पर दूसरा चित्र-आलेख बनाएँ: लाल ▲▲▲▲, नीला ▲▲▲▲▲▲, हरा ▲ (हर ▲ = 1 बच्चा)। बच्चों से एक-एक करके पूछें: हर रंग कितने बच्चों को पसंद है, कौन-सा सबसे ज़्यादा और कौन-सा सबसे कम। हर जवाब के बाद सब साथ में उँगली से गिनकर जाँच करें।",
+   "you_do_hi": "'अब आप अपनी कॉपी में काम करें।' पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। घूमकर देखें कि बच्चे हर चिह्न को एक बार ही गिन रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: बस ■■■■■■■ (हर ■ = 1 बच्चा)। कितने बच्चे बस से आते हैं?",
+    "expected_hi": "7",
+    "listen_for": [],
+    "shows_hi": "बच्चा चित्र-आलेख की एक पंक्ति से मान पढ़ सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: गुलाब ●●●●, गेंदा ●●●●●●●●, कमल ●●●। सबसे ज़्यादा फूल कौन-से हैं? 1) गुलाब 2) गेंदा — उँगली से दिखाएँ।",
+    "expected_hi": "2 (गेंदा)",
+    "listen_for": [],
+    "shows_hi": "बच्चा पंक्तियों की तुलना करके सबसे ज़्यादा पहचान सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दो चित्र-आलेख तैयार रखें: पालतू जानवर (★) और पसंदीदा रंग (▲), हर एक के नीचे 'हर चिह्न = 1 बच्चा'।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चित्र-आलेख में चिह्न गिनें और सवाल का उत्तर लिखें। हर चिह्न = 1।",
+   "instructions_en": "Count the symbols in each pictograph and write the answer. Each symbol = 1.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "आम ●●●●●●●●, केला ●●●●। आम कितने हैं? ___",
+     "answer": "8",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "गेंद ■■■■■, गुड़िया ■■■■■■■, पतंग ■■। सबसे ज़्यादा कौन-सा खिलौना है? ___",
+     "answer": "गुड़िया",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "चिड़िया ▲▲▲▲▲▲▲▲▲▲, कौआ ▲▲▲▲▲▲▲। चिड़िया, कौओं से कितनी ज़्यादा हैं? ___",
+     "answer": "3",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साइकिल ★★★★★, बस ★★★★। दोनों मिलाकर कितने बच्चे हैं? ___",
+     "answer": "9",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "दूध ○○○○, चाय ○, पानी ○○○○○○। सबसे कम कौन-सा पसंद है? ___",
+     "answer": "चाय",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "पेंसिल ◆◆◆◆◆◆, रबर ◆◆◆◆◆◆◆◆◆◆◆। पेंसिल कितनी हैं? ___",
+     "answer": "6",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7caf084766fd",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0304,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

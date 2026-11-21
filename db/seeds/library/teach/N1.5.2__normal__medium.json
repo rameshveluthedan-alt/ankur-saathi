@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.5.2__normal__medium",
+ "skill_id": "N1.5.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "मेज़ पर चार चीज़ें रखें: गेंद, चौकोर डिब्बा, गिलास या बेलनाकार डिब्बी, और कागज़ की टोपी (शंकु)। हर चीज़ उठाकर नाम बोलें: 'देखिए, यह गेंद गोले जैसी है, सब तरफ़ गोल। यह डिब्बा घन है, इसके सब तरफ़ चौकोर।' इसी तरह बेलन (ऊपर-नीचे गोल, सीधा खड़ा) और शंकु (नीचे गोल, ऊपर नोक) दिखाएँ।",
+   "we_do_hi": "एक-एक चीज़ उठाएँ और बच्चों से पूछें: 'इसका ऊपर का हिस्सा कैसा है, नोक या सपाट?' बेलन और शंकु को साथ रखकर फ़र्क दिखाएँ: शंकु की नोक है, बेलन की नहीं। फिर कक्षा की और चीज़ें (चॉक का डिब्बा, पानी की बोतल) दिखाकर बच्चे बताएँ कि यह किस आकृति जैसी है।",
+   "you_do_hi": "हर जोड़ी को एक गेंद या गोल फल, माचिस या चॉक का डिब्बा, बोतल का ढक्कन या गिलास, और कागज़ की टोपी मिलाकर दें। बच्चे चीज़ों को चार ढेरों में रखें (गोला, घन, बेलन, शंकु) और हर ढेर का नाम बताएँ; बाकी काम अगले ब्लॉक में अपनी जगह पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर एक आइसक्रीम का कोन बनाएँ। यह किस आकृति जैसा है? 1) बेलन 2) शंकु। उँगली पर दिखाएँ।",
+    "expected_hi": "2) शंकु",
+    "listen_for": [],
+    "shows_hi": "बच्चा नोक वाली आकृति को शंकु पहचानता है और बेलन से अलग करता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "फुटबॉल किस आकृति जैसी है? 1) घन 2) गोला। उँगली पर दिखाएँ।",
+    "expected_hi": "2) गोला",
+    "listen_for": [],
+    "shows_hi": "बच्चा असली चीज़ में गोले की आकृति पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए चार चीज़ें जुटाएँ: गेंद या गोल फल, चौकोर डिब्बा, गिलास या बेलनाकार डिब्बी, कागज़ की शंकु वाली टोपी।",
+   "बोर्ड पर चार नाम लिखें: गोला, घन, बेलन, शंकु।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को उसकी आकृति के नाम से मिलाएँ।",
+   "instructions_en": "Match each object to its shape name.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "sheet_kind": "observed",
+   "observe": {
+    "task_hi": "गेंद, डिब्बा, गिलास और टोपी को चार ढेरों में रखें और हर आकृति का नाम बताएँ।",
+    "task_en": "Sort a ball, a box, a glass and a cone cap into four piles and name each shape.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "गेंद या गोल फल",
+     "माचिस या चॉक का डिब्बा",
+     "गिलास या बोतल का ढक्कन",
+     "कागज़ की टोपी"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों आकृतियों के सही नाम बताता है और चीज़ें सही ढेर में रखता है।",
+     "partial_hi": "दो-तीन नाम सही बताता है, बेलन और शंकु में उलझता है।",
+     "not_yet_hi": "एक या कोई भी आकृति नहीं पहचानता।",
+     "achieved_en": "Names all four shapes and sorts each object correctly.",
+     "partial_en": "Names 2-3 shapes, confuses cylinder and cone.",
+     "not_yet_en": "Names one or no shape."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गेंद का चित्र बनाएँ और उसके नीचे उसकी आकृति का नाम लिखें।",
+     "answer": "गोला",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "चौकोर डिब्बे का चित्र बनाएँ और उसकी आकृति का नाम लिखें।",
+     "answer": "घन",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "गिलास और आइसक्रीम कोन के चित्र बनाएँ। हर चित्र के नीचे आकृति का नाम लिखें।",
+     "answer": "गिलास: बेलन, कोन: शंकु",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T06:02:47Z",
+ "cost_usd": 0.0252,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

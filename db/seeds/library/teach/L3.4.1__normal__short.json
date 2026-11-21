@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.4.1__normal__short",
+ "skill_id": "L3.4.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर एक नया शब्द लिखें: 'मछलीघर'। अक्षर-समूह पर उँगली रखकर धीरे पढ़ें: 'मछ - ली - घर', फिर पूरा शब्द एक साथ बोलें: 'मछलीघर'। बच्चों से कहें: 'नया शब्द आए तो उसे टुकड़ों में तोड़ें, हर टुकड़ा पढ़ें, फिर जोड़ें।' इसके बाद एक प्रश्न पूछें: 'मछलीघर में कितने टुकड़े थे?'",
+   "we_do_hi": "",
+   "you_do_hi": "बोर्ड पर या कागज़ की पर्चियों पर ये शब्द-कार्ड लिखें: पतंगबाज़ी, रसोईघर, किताबघर, चमचमाता, बरसाती। बच्चे जोड़ी में बैठें, और हर जोड़ी में एक बच्चा शब्द टुकड़ों में तोड़कर साथी को पढ़कर सुनाए, फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: कमलनयन। इस शब्द में कितने टुकड़े हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "3 (कमल - न - यन) या 4 (क - मल - न - यन)",
+    "listen_for": [],
+    "shows_hi": "बच्चा लंबे नए शब्द को छोटे टुकड़ों में तोड़ पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: टमाटर। पढ़ने का सही तरीका कौन-सा है? 1) ट - मा - टर 2) टमा - टर - अ",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा अक्षर और मात्रा को सही टुकड़ों में जोड़ता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखने के लिए शब्द: मछलीघर",
+   "कागज़ की पर्चियों पर शब्द-कार्ड: पतंगबाज़ी, रसोईघर, किताबघर, चमचमाता, बरसाती (हर जोड़ी के लिए एक सेट, या बोर्ड पर लिख दें)"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द को टुकड़ों में तोड़ें, हर टुकड़ा पढ़ें, फिर पूरा शब्द अपने साथी को पढ़कर सुनाएँ।",
+   "instructions_en": "Break each word into parts, read each part, then read the whole word aloud to your partner.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "शब्द तोड़कर पढ़ने का उदाहरण:",
+    "example_text": "मछलीघर = मछ + ली + घर"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा पाँच नए शब्द (पतंगबाज़ी, रसोईघर, किताबघर, चमचमाता, बरसाती) टुकड़ों में तोड़कर साथी को पढ़कर सुनाए।",
+    "task_en": "The child reads five unfamiliar words aloud to a partner by breaking them into syllables.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "शिक्षक द्वारा लिखी शब्द-पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "खुद टुकड़े करके पढ़ता है, 5 में से 4 शब्द सही पढ़ता है",
+     "partial_hi": "कोशिश करता है, 2-3 शब्द सही पढ़ता है, बाकी छोड़ देता है",
+     "not_yet_hi": "नए शब्द पढ़ने की कोशिश नहीं करता, छोड़ देता है या पूछता है",
+     "achieved_en": "Breaks words into parts on own; reads 4 of 5 correctly",
+     "partial_en": "Attempts; reads 2-3 correctly, gives up on others",
+     "not_yet_en": "Does not attempt; skips or asks the teacher"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: रसोईघर",
+     "answer": "र - सो - ई - घर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: पतंगबाज़ी",
+     "answer": "प - तंग - बा - ज़ी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: चमचमाता",
+     "answer": "चम - च - मा - ता",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: किताबघर",
+     "answer": "कि - ताब - घर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: बरसाती",
+     "answer": "बर - सा - ती",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0278,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

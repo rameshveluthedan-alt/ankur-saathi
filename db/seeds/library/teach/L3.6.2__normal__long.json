@@ -1,0 +1,124 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.6.2__normal__long",
+ "skill_id": "L3.6.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कहानी पढ़कर सवालों के जवाब दिए थे।' बोर्ड पर लिखें: 'बारिश हुई, इसलिए सड़क गीली हो गई।' पहले भाग के नीचे 'कारण' और दूसरे के नीचे 'असर' लिखें और बताएँ: 'जो पहले हुआ और जिसकी वजह से कुछ हुआ, वह कारण है; जो उसकी वजह से हुआ, वह असर है।'",
+   "we_do_hi": "बोर्ड पर लिखें: 'मीना को भूख लगी थी, इसलिए उसने रोटी खाई।' बच्चों से पूछें: 'मीना ने रोटी क्यों खाई?' और जवाब में 'क्योंकि' जोड़कर कारण पर निशान लगाएँ। फिर साथ मिलकर 'पौधे को पानी नहीं मिला, इसलिए वह सूख गया।' में कारण और असर अलग करें।",
+   "you_do_hi": "पहले वर्कशीट की कहानी पढ़ें और सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि बच्चे कारण और असर की दिशा उलटी तो नहीं लिख रहे।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'धूप तेज़ थी, इसलिए राजू ने टोपी पहनी।' कारण कौन-सा है? 1) धूप तेज़ थी 2) राजू ने टोपी पहनी",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि जिसकी वजह से कुछ हुआ, वही कारण है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'गिलास गिर गया, इसलिए टूट गया।' असर कौन-सा है? 1) गिलास गिर गया 2) गिलास टूट गया",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा कारण से होने वाला असर अलग पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दो वाक्य पहले से लिखें: 'बारिश हुई, इसलिए सड़क गीली हो गई।' और 'मीना को भूख लगी थी, इसलिए उसने रोटी खाई।'",
+   "हर बच्चे के लिए एक वर्कशीट और स्लेट या कॉपी।"
+  ],
+  "worksheet": {
+   "instructions_hi": "कहानी ध्यान से पढ़ें। फिर हर सवाल का जवाब कहानी से लिखें।",
+   "instructions_en": "Read the story carefully. Then answer each question from the story.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "गुड़िया की बिल्ली",
+    "text": "सुबह से बहुत ठंड थी, इसलिए गुड़िया ने स्वेटर पहना। उसकी बिल्ली दूध पीना चाहती थी, पर कटोरा खाली था। गुड़िया ने कटोरे में दूध डाला, इसलिए बिल्ली खुश हो गई। दोपहर में तेज़ हवा चली, इसलिए आँगन में पत्ते बिखर गए। गुड़िया ने झाड़ू लगाई क्योंकि आँगन गंदा हो गया था। शाम को वह थक गई थी, इसलिए जल्दी सो गई।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गुड़िया ने स्वेटर क्यों पहना?",
+     "answer": "क्योंकि सुबह से बहुत ठंड थी।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "गुड़िया ने कटोरे में दूध डाला। इसका असर क्या हुआ?",
+     "answer": "बिल्ली खुश हो गई।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "आँगन में पत्ते क्यों बिखर गए?",
+     "answer": "क्योंकि दोपहर में तेज़ हवा चली।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "गुड़िया ने झाड़ू क्यों लगाई?",
+     "answer": "क्योंकि आँगन गंदा हो गया था।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "शाम को गुड़िया थक गई थी। इसका असर क्या हुआ?",
+     "answer": "वह जल्दी सो गई।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "बिल्ली दूध क्यों नहीं पी पा रही थी?",
+     "answer": "क्योंकि कटोरा खाली था।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7e4e071e64ed",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0245,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

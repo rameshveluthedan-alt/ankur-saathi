@@ -1,0 +1,128 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.3.1__normal__short",
+ "skill_id": "L3.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: स्वतंत्रता। इसे टुकड़ों में तोड़कर पढ़ें: 'स्व - तं - त्र - ता', फिर पूरा शब्द एक साथ बोलें। इसके बाद 'विद्यालय' को इसी तरह 'वि - द्या - लय' में तोड़कर पढ़ें और बताएँ: 'आधा अक्षर अगले अक्षर से मिलकर बोला जाता है।'",
+   "we_do_hi": "",
+   "you_do_hi": "बोर्ड पर या कागज़ की पर्चियों पर ये शब्द लिखें: अध्यापक, सर्वोत्तम, प्रश्नपत्र, राष्ट्रगान, पुस्तकालय। बच्चे जोड़ी में बैठें और बारी-बारी से हर शब्द साथी को पढ़कर सुनाएँ; समय कम हो तो पहले तीन शब्द पढ़ें, बाकी अपनी जगह पर पूरे करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: प्रश्न। इस शब्द में कितने आधे अक्षर हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा शब्द में आधे अक्षर पहचान लेता है, जो संयुक्त अक्षर पढ़ने की पहली सीढ़ी है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) वि - द्या - र्थी 2) विद् - या - र्थी। 'विद्यार्थी' को सही टुकड़ों में किसने बाँटा है? 1 या 2 उँगली दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि आधा अक्षर अगले अक्षर के साथ जुड़कर बोला जाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: स्वतंत्रता, विद्यालय (I Do के लिए)",
+   "बोर्ड पर या कागज़ की पर्चियों पर लिखें: अध्यापक, सर्वोत्तम, प्रश्नपत्र, राष्ट्रगान, पुस्तकालय"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द को ध्यान से देखें, टुकड़ों में बाँटें और फिर साथी को पूरा शब्द पढ़कर सुनाएँ।",
+   "instructions_en": "Look at each word, break it into parts, then read the whole word aloud to your partner.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "जोड़ी में बैठकर साथी को ये जटिल शब्द पढ़कर सुनाएँ: अध्यापक, सर्वोत्तम, प्रश्नपत्र, राष्ट्रगान, पुस्तकालय।",
+    "task_en": "Read these complex words aloud to a partner: अध्यापक, सर्वोत्तम, प्रश्नपत्र, राष्ट्रगान, पुस्तकालय.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "बोर्ड पर लिखे शब्द",
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना रुके, सही पढ़ता है",
+     "partial_hi": "ज़्यादातर शब्द पढ़ता है, दोहरे संयुक्त अक्षर पर रुकता है",
+     "not_yet_hi": "शब्द छोड़ देता है या दूसरा शब्द बोल देता है",
+     "achieved_en": "Reads all words correctly without stopping",
+     "partial_en": "Reads most words, hesitates on double conjuncts",
+     "not_yet_en": "Skips words or says a different word"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: अध्यापक",
+     "answer": "अध्यापक",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: सर्वोत्तम",
+     "answer": "सर्वोत्तम",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: राष्ट्रगान",
+     "answer": "राष्ट्रगान",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "'प्रश्नपत्र' में कितने आधे अक्षर हैं? लिखें और शब्द पढ़कर सुनाएँ।",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'पुस्तकालय' किन दो शब्दों से बना है? दोनों शब्द लिखें।",
+     "answer": "पुस्तक, आलय",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T05:59:28Z",
+ "cost_usd": 0.0259,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,129 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.3.1__normal__medium",
+ "skill_id": "L3.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: स्वतंत्रता। शब्द को टुकड़ों में बाँटकर दिखाएँ: 'स्व - तं - त्र - ता', हर टुकड़े के नीचे उँगली रखकर धीरे पढ़ें, फिर पूरा शब्द एक साँस में पढ़ें। इसी तरह 'अध्या - पक' पढ़कर बताएँ: 'देखिए, आधा अक्षर अगले अक्षर से जुड़कर बोला जाता है।'",
+   "we_do_hi": "बोर्ड पर लिखें: विद्यालय, प्रार्थना। हर शब्द में बच्चों से पूछें: 'आधा अक्षर कौन-सा है?' और उसके नीचे घेरा बनाएँ। फिर टुकड़ों में साथ पढ़ें और अंत में एक-एक बच्चा पूरा शब्द पढ़े।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: सर्वोत्तम, उज्ज्वल, राष्ट्रगान, पुस्तकालय। जोड़ी में एक बच्चा कार्ड पढ़े, दूसरा सुने, फिर बारी बदलें; कार्ड न हों तो वर्कशीट के शब्द बोर्ड से पढ़ें, और बाकी काम अगले ब्लॉक में अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: स्वच्छ। इस शब्द में कितने आधे अक्षर हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा शब्द में छिपे आधे अक्षर पहचानता है, जो जटिल शब्द पढ़ने की पहली सीढ़ी है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) राष्ट्र 2) राश्ट्र। शिक्षक 'राष्ट्र' बोलें। सही लिखा शब्द कौन-सा है? 1 या 2 उँगलियों पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा दोहरे संयुक्त अक्षर ष्ट्र को उसकी ध्वनि से मिलाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: स्वतंत्रता, अध्यापक, विद्यालय, प्रार्थना।",
+   "कागज़ की पर्चियों पर शब्द-कार्ड बनाएँ: सर्वोत्तम, उज्ज्वल, राष्ट्रगान, पुस्तकालय (हर जोड़ी के लिए एक सेट)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को साथी को पढ़कर सुनाएँ। फिर सवाल का उत्तर बोलें।",
+   "instructions_en": "Read each word aloud to your partner. Then answer the question aloud.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "जोड़ी में शब्द-कार्ड के जटिल शब्द साथी को ज़ोर से पढ़कर सुनाएँ।",
+    "task_en": "Read the complex words on the word cards aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना रुके, सही पढ़ता है।",
+     "partial_hi": "ज़्यादातर शब्द पढ़ता है, दोहरे संयुक्त अक्षर पर रुकता है।",
+     "not_yet_hi": "शब्द छोड़ देता है या दूसरा शब्द बोल देता है।",
+     "achieved_en": "Reads all words correctly without stopping.",
+     "partial_en": "Reads most words but hesitates on double conjuncts.",
+     "not_yet_en": "Skips words or substitutes other words."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: विद्यार्थी",
+     "answer": "विद्यार्थी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: उज्ज्वल",
+     "answer": "उज्ज्वल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: राष्ट्रगान",
+     "answer": "राष्ट्रगान",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: सर्वोत्तम। इसमें आधा अक्षर कौन-सा है? बोलकर बताएँ।",
+     "answer": "र्",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: रसोईघर। इसमें कौन-से दो शब्द जुड़े हैं? बोलकर बताएँ।",
+     "answer": "रसोई, घर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 4 repeats wording from the lesson or anchor: «आधा अक्षर कौन सा है»"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:01:23Z",
+ "cost_usd": 0.0268,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

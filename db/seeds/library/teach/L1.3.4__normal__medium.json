@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.3.4__normal__medium",
+ "skill_id": "L1.3.4",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: नमक। हर अक्षर के नीचे उँगली रखकर धीरे बोलें 'न... म... क', फिर उँगली तेज़ी से पूरे शब्द के नीचे खिसकाते हुए बोलें 'नमक'। बच्चों से कहें: 'देखिए, अक्षर जोड़कर ही शब्द बनता है; हम पहले अक्षर से अंदाज़ा नहीं लगाते, पूरा शब्द पढ़ते हैं।'",
+   "we_do_hi": "बोर्ड पर लिखें: जल, घर, मकान। हर शब्द पर पहले सब अक्षर साथ में धीरे बोलें, फिर उँगली खिसकाकर बच्चों से पूरा शब्द जोड़कर बोलने को कहें। मकान पर ध्यान दिलाएँ कि आख़िरी अक्षर तक पढ़ें, बीच में न रुकें।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द दें: बस, कलम, पानी, नदी, कमल; पर्चियाँ न हों तो वर्कशीट के शब्द बोर्ड से कॉपी में लिख लें। बच्चे बारी-बारी से साथी को शब्द पढ़कर सुनाएँ, पहले अक्षर-अक्षर और फिर पूरा शब्द; बाकी शब्द अगले खंड में अपनी जगह पूरे करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "यह शब्द धीरे बोलें: 'ग... म... ला'। यह कौन-सा शब्द है? 1) गमला 2) ग म ला",
+    "expected_hi": "1) गमला",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.4-M1",
+      "misconception_name_hi": "अक्षर अलग-अलग पढ़ता है पर शब्द में जोड़ नहीं पाता",
+      "misconception_name_en": "Decodes letters individually but cannot blend into word",
+      "detect_en": "Says \"क-म-ल\" but cannot say \"कमल\" — the blending step fails",
+      "wrong_answer_hi": "2) ग म ला"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: कपड़ा। अब पूछें: बोर्ड पर कौन-सा शब्द लिखा है? 1) कपड़ा 2) कमरा",
+    "expected_hi": "1) कपड़ा",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.4-M2",
+      "misconception_name_hi": "डिकोड करने की बजाय पहले अक्षर से शब्द अनुमान लगाता है",
+      "misconception_name_en": "Guesses word from first letter instead of decoding",
+      "detect_en": "Reads कमल as \"कमरा\" or \"काम\" — guesses a known word starting with क instead of decoding",
+      "wrong_answer_hi": "2) कमरा"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखने के लिए शब्द तैयार रखें: नमक, जल, घर, मकान, कपड़ा।",
+   "हर जोड़ी के लिए कागज़ की पाँच पर्चियाँ बनाएँ: बस, कलम, पानी, नदी, कमल।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को पहले अक्षर-अक्षर पढ़ें, फिर जोड़कर पूरा शब्द साथी को पढ़कर सुनाएँ।",
+   "instructions_en": "Read each word sound by sound, then blend it and read the whole word aloud to a partner.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "अक्षर जोड़कर पढ़ने का उदाहरण:",
+    "example_text": "स + र + ल = सरल"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा पाँच शब्द-पर्चियाँ साथी को पढ़कर सुनाए: बस, कलम, पानी, नदी, कमल।",
+    "task_en": "The child reads five word slips aloud to a partner: bas, kalam, paani, nadi, kamal.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "पाँच में से कम से कम चार शब्द बिना मदद जोड़कर सही पढ़ता है",
+     "partial_hi": "धीरे पढ़ता है, ख़ुद सुधारता है; दो-तीन शब्द सही",
+     "not_yet_hi": "अक्षर पहचानता है पर उन्हें जोड़कर शब्द नहीं बोल पाता",
+     "achieved_en": "Reads at least 4 of 5 words correctly by blending, without help",
+     "partial_en": "Reads slowly with self-correction; 2-3 words correct",
+     "not_yet_en": "Names letters but cannot blend them into a word"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: बस",
+     "answer": "बस",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "अक्षर-अक्षर पढ़ें, फिर जोड़कर पूरा शब्द बोलें: क ल म",
+     "answer": "कलम",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "ध्यान से पूरा शब्द पढ़ें: कमल",
+     "answer": "कमल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.4-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: पानी",
+     "answer": "पानी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: नदी",
+     "answer": "नदी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0272,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,108 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.5.1__normal__short",
+ "skill_id": "N3.5.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक कागज़ को दो बार मोड़कर उसका कोना दिखाएँ और कहें: 'यह कोना समकोण है, किताब के कोने जैसा।' बोर्ड पर तीन कोण बनाएँ और हर कोण पर मुड़ा कागज़ रखकर दिखाएँ: 'यह कोना ठीक बराबर है, तो समकोण। यह कोना कागज़ के कोने से छोटा है, तो न्यूनकोण। यह कोना कागज़ के कोने से बड़ा है, तो अधिककोण।' हर कोण के पास उसका नाम लिखें।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' बोर्ड की घड़ी देखकर बच्चे हर समय पर सुइयों के बीच का कोण पहचानें और उसका नाम लिखें। जो बच्चे अटकें, उन्हें अपना मुड़ा कागज़ सुइयों पर रखकर देखने को कहें। जो काम इस समय में पूरा न हो, उसे बच्चे अगले हिस्से में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड की घड़ी में 3 बजे की सुइयाँ बनाएँ। दोनों सुइयों के बीच कौन-सा कोण है? 1) समकोण 2) न्यूनकोण 3) अधिककोण, उँगलियों पर दिखाएँ।",
+    "expected_hi": "1) समकोण",
+    "listen_for": [],
+    "shows_hi": "बच्चा समकोण को किताब के कोने जैसा पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड की घड़ी में 1 बजे की सुइयाँ बनाएँ। दोनों सुइयों के बीच कौन-सा कोण है? 1) समकोण 2) न्यूनकोण 3) अधिककोण, उँगलियों पर दिखाएँ।",
+    "expected_hi": "2) न्यूनकोण",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि समकोण से छोटा कोण न्यूनकोण होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर बच्चे के लिए कागज़ का एक टुकड़ा, जिसे दो बार मोड़कर समकोण बनाया जा सके",
+   "बोर्ड पर 1 से 12 तक अंकों वाली एक बड़ी घड़ी बनाएँ, जिस पर सुइयाँ बदल-बदल कर बनाई जा सकें"
+  ],
+  "worksheet": {
+   "instructions_hi": "घड़ी में दिए गए समय पर छोटी और बड़ी सुई के बीच का कोण पहचानें। कोण का नाम लिखें: समकोण, न्यूनकोण या अधिककोण।",
+   "instructions_en": "Look at the angle between the two clock hands at the given time. Write its name: right, acute or obtuse.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "9 बजे सुइयों के बीच का कोण: ___",
+     "answer": "समकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "2 बजे सुइयों के बीच का कोण: ___",
+     "answer": "न्यूनकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "4 बजे सुइयों के बीच का कोण: ___",
+     "answer": "अधिककोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "10 बजे सुइयों के बीच का कोण: ___",
+     "answer": "न्यूनकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "8 बजे सुइयों के बीच का कोण: ___",
+     "answer": "अधिककोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "किताब के कोने का कोण: ___",
+     "answer": "समकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "c537a44e2ccc",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.0286,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

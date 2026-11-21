@@ -1,0 +1,113 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.4__normal__medium",
+ "skill_id": "N0.2.4",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर बड़ा-बड़ा 3 लिखें और बोलें: 'देखिए, ऊपर से शुरू करते हैं, आधा गोला, फिर एक और आधा गोला।' इसके बाद 5 और 7 इसी तरह धीरे-धीरे लिखें, हर अंक बनाते समय उसकी दिशा बोलें। हर अंक के नीचे उतनी ही बिंदियाँ बनाएँ।",
+   "we_do_hi": "बच्चों से कहें: 'अपनी उँगली हवा में उठाएँ, मेरे साथ 2 बनाएँ।' फिर 4, 6 और 9 हवा में और स्लेट पर साथ-साथ बनवाएँ। हर बार पूछें कि अंक ऊपर से शुरू हुआ या नीचे से।",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट का सवाल 1 करें।' बाकी सवाल बच्चे अगले समय में अपनी जगह पर पूरे करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। घूमकर देखें कि अंक उल्टे तो नहीं बन रहे।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर चार बिंदियाँ बनाएँ: ● ● ● ●। स्लेट पर यह संख्या लिखें।",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा गिनती को सही अंक के रूप में लिख सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: आठ। स्लेट पर लिखें।",
+    "expected_hi": "8",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुनी हुई संख्या का अंक सही बनावट में लिख सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 1 से 9 तक अंक बड़े-बड़े लिखने की जगह छोड़ें।",
+   "हर बच्चे के लिए स्लेट और चॉक या कॉपी-पेंसिल।"
+  ],
+  "worksheet": {
+   "instructions_hi": "बिंदियाँ गिनें और बॉक्स में अंक लिखें।",
+   "instructions_en": "Count the dots and write the numeral in the box.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "● ●",
+    "answer": "2",
+    "show_pv_grid": false,
+    "pv_columns": 1
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "● ● ●",
+     "answer": "3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "● ● ● ● ● ●",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "● ● ● ● ● ● ● ● ●",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "●",
+     "answer": "1",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "● ● ● ● ●",
+     "answer": "5",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "● ● ● ● ● ● ●",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "8c9012ba14f1",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0166,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

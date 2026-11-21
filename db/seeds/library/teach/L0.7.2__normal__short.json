@@ -1,0 +1,119 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.7.2__normal__short",
+ "skill_id": "L0.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर पहले एक सीधी लंबी लकीर खींचें और कहें: 'यह शिरोरेखा है, अक्षर इसके नीचे लटकता है।' फिर उसके नीचे धीरे-धीरे 'ग' और 'प' बनाएँ, हर अक्षर का पहला निशान कहाँ से शुरू होता है, बोलते हुए दिखाएँ। अंत में बच्चों से पूछें: 'शिरोरेखा पहले खींची या बाद में?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे कॉपी में वर्कशीट के सवाल 1 से 3 पहले लिखें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि हर अक्षर के ऊपर शिरोरेखा है और अक्षर एक जैसे आकार के हैं। जो बाकी रह जाए, बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) मन  2) मन, पर दूसरे शब्द में ऊपर की लकीर न खींचें। किसमें शिरोरेखा पूरी है? उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि शब्द के ऊपर शिरोरेखा होनी चाहिए।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "स्लेट पर अक्षर 'ज' लिखें, शिरोरेखा के साथ।",
+    "expected_hi": "ज",
+    "listen_for": [],
+    "shows_hi": "बच्चा अक्षर की सही बनावट शिरोरेखा सहित लिख पाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर अक्षर लिखने के लिए जगह रखें और हर बच्चे की स्लेट या कॉपी तैयार रखें।",
+   "हर बच्चे के लिए एक वर्कशीट छापकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अक्षर ध्यान से लिखें। पहले शिरोरेखा खींचें, फिर उसके नीचे अक्षर बनाएँ।",
+   "instructions_en": "Write each letter carefully. Draw the headline first, then form the letter below it.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "शिरोरेखा के साथ अक्षर लिखने का उदाहरण:",
+    "example_text": "क"
+   },
+   "passage_block": null,
+   "sheet_kind": "formation",
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अक्षर 'त' शिरोरेखा के साथ लिखें।",
+     "answer": "त",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "अक्षर 'म' शिरोरेखा के साथ लिखें।",
+     "answer": "म",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "अक्षर 'ल' शिरोरेखा के साथ लिखें।",
+     "answer": "ल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "अक्षर 'न' शिरोरेखा के साथ लिखें।",
+     "answer": "न",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "अक्षर 'स' शिरोरेखा के साथ लिखें।",
+     "answer": "स",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "अक्षर 'र' शिरोरेखा के साथ लिखें।",
+     "answer": "र",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a00ef6d20a74",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0197,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

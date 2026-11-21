@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.3.1__normal__medium",
+ "skill_id": "L1.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: क, ख, ग, अ, आ, इ। हर अक्षर पर उँगली रखकर उसका नाम साफ़ बोलें: 'देखिए, यह क है, यह ख है।' फिर एक-जैसे दिखने वाले अक्षर पास-पास लिखें: ब और व, घ और ध, और बताएँ कि दोनों में क्या अलग है।",
+   "we_do_hi": "बोर्ड पर अक्षर बिना क्रम के लिखें: म, ध, ए, भ, ज, औ, घ। एक अक्षर की ओर इशारा करें और बच्चों से एक-एक करके नाम पूछें। जो अक्षर कठिन लगे, उसे बोर्ड पर दोबारा दिखाकर उसका अलग हिस्सा बताएँ।",
+   "you_do_hi": "हर जोड़ी को अक्षर-कार्ड दें; कार्ड न हों तो कागज़ की पर्चियों पर अक्षर लिखकर दें। एक बच्चा पर्ची उठाकर दिखाए, दूसरा उसका नाम बोले, फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) ब 2) व। 'ब' कौन-सा है? उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा ब और व के बीच का अंतर पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक अक्षर बोलें: 'ठ'। स्लेट पर यह अक्षर लिखें।",
+    "expected_hi": "ठ",
+    "listen_for": [],
+    "shows_hi": "बच्चा अक्षर का नाम सुनकर उसका रूप पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की छोटी पर्चियों पर एक-एक अक्षर लिखें: हर जोड़ी के लिए 10 पर्चियाँ (जैसे प, ष, य, थ, ड, ङ, उ, ऊ, ओ, अः)।",
+   "बोर्ड पर पहले से लिखें: क, ख, ग, अ, आ, इ।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अक्षर को साथी के सामने पढ़ें। साथी सुनें और सही-गलत बताएँ।",
+   "instructions_en": "Read each letter aloud to your partner. The partner listens and says if it is right.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "अक्षर पढ़ने का उदाहरण:",
+    "example_text": "क - 'क'"
+   },
+   "passage_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "बिना क्रम के रखी अक्षर-पर्चियाँ एक-एक करके उठाएँ और हर अक्षर का नाम साथी को बोलें।",
+    "task_en": "Pick up letter slips in random order and say each letter's name to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अक्षर",
+     "बोर्ड पर लिखे अक्षर"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे अक्षर बिना रुके, बिना मदद के सही बोलता है।",
+     "partial_hi": "ज़्यादातर अक्षर सही, पर ब-व या घ-ध जैसे जोड़ों में अटकता है।",
+     "not_yet_hi": "कई अक्षरों के नाम नहीं बता पाता।",
+     "achieved_en": "Names all letters quickly without help.",
+     "partial_en": "Names most letters but mixes similar pairs like ब-व or घ-ध.",
+     "not_yet_en": "Cannot name many letters."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह अक्षर पढ़ें: म",
+     "answer": "म",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "यह अक्षर पढ़ें: ध",
+     "answer": "ध",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "यह अक्षर पढ़ें: ङ",
+     "answer": "ङ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "यह अक्षर पढ़ें: औ",
+     "answer": "औ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह अक्षर पढ़ें: ष",
+     "answer": "ष",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "यह अक्षर पढ़ें: ज्ञ",
+     "answer": "ज्ञ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:00:21Z",
+ "cost_usd": 0.0246,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

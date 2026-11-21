@@ -1,0 +1,125 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.1.1__normal__long",
+ "skill_id": "N1.1.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'पैटर्न में एक चीज़ बार-बार उसी क्रम में आती है।' मेज़ पर पत्ता, कंकड़, पत्ता, कंकड़, पत्ता रखें और पूछें: 'देखिए, अब कौन आएगा?' फिर कंकड़ रखें, और इसी तरह पत्ता, कंकड़, कंकड़ वाला पैटर्न भी आगे बढ़ाकर दिखाएँ।",
+   "we_do_hi": "बच्चों के साथ ताली, ताली, पैर (AAB) करें, फिर ताली, पैर, सिर छूना (ABC) करें और रुककर पूछें: 'अब क्या आएगा?' बोर्ड पर डंडी, गोला, गोला बनाकर बच्चों से अगला चिह्न कॉपी में बनवाएँ। फिर हर बच्चा अपनी कॉपी में दो चिह्नों से अपना एक छोटा पैटर्न बनाए।",
+   "you_do_hi": "'पहले वर्कशीट के सवाल 1 से 3 करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' पहले उन बच्चों के पास जाएँ जो ABC और AAB वाले पैटर्न पर रुक रहे हैं, और उनसे पूछें: 'बार-बार क्या दोहराया जा रहा है?'"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बनाएँ: △ □ △ □ △ ___ । अगला आकार स्लेट पर बनाएँ।",
+    "expected_hi": "□",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो चीज़ों वाला सीधा पैटर्न आगे बढ़ा सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर बनाएँ: □ ○ ○ □ ○ ○ □ ___ । अगला कौन: 1) □ 2) ○ ? उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा देखता है कि एक चीज़ दो बार आ रही है (ABB)।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "मेज़ के लिए 4 पत्ते और 4 कंकड़",
+   "बोर्ड पर पहले से बनाएँ: | ○ ○ | ○ ○ | ___"
+  ],
+  "worksheet": {
+   "instructions_hi": "पैटर्न ध्यान से देखें। खाली जगह में अगला आकार बनाएँ।",
+   "instructions_en": "Look at the pattern carefully. Draw the next shape in the blank.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "○ △ ○ △ ○ ___",
+    "answer": "△",
+    "show_pv_grid": false,
+    "pv_columns": 2
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "☆ ○ ☆ ○ ☆ ___",
+     "answer": "○",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "□ ☆ ☆ □ ☆ ☆ □ ___",
+     "answer": "☆",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "○ ○ △ ○ ○ △ ○ ○ ___",
+     "answer": "△",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "◇ ○ □ ◇ ○ ___",
+     "answer": "□",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "♡ ◇ ♡ ◇ ♡ ___",
+     "answer": "◇",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "☆ ☆ ♡ ☆ ☆ ___",
+     "answer": "♡",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f23ff9139fe9",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0321,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

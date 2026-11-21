@@ -1,0 +1,111 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.1.2__normal__medium",
+ "skill_id": "N0.1.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों को पास बिठाएँ और ज़मीन पर पत्ती, कंकड़, पत्ती, कंकड़, पत्ती, कंकड़ की लाइन रखें। हर चीज़ छूकर धीरे से बोलें: 'पत्ती, कंकड़, पत्ती, कंकड़... देखिए, यह जोड़ी बार-बार आ रही है, अब अगली बारी पत्ती की है।' फिर नई लाइन बनाएँ: बटन, ढक्कन, ढक्कन, बटन, ढक्कन, ढक्कन, और बोलें: 'यहाँ एक बटन, फिर दो ढक्कन, फिर से वही।'",
+   "we_do_hi": "बोर्ड पर लिखें: ○ △ ○ △ ○ △ और बच्चों से पूछें कि आगे क्या आएगा। एक बच्चा बताए, फिर पूरा समूह उंगली से हवा में आकृति बनाए। इसके बाद ★ ● ● ★ ● ● लिखें और बच्चों से एक-एक करके अगली दो आकृतियाँ पूछें।",
+   "you_do_hi": "हर जोड़ी को कंकड़, पत्तियाँ, बटन और बोतल के ढक्कन मिलाकर दें। कहें: 'पहले एक पैटर्न आगे बढ़ाएँ: कंकड़, पत्ती, पत्ती, कंकड़, पत्ती, पत्ती... फिर अपना एक पैटर्न बनाएँ।' चीज़ें न हों तो बच्चे वर्कशीट कॉपी में बनाएँ, और जो काम बचे वह अगले ब्लॉक में अपनी जगह पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: □ ● □ ● □ ● □ । अगली आकृति स्लेट पर बनाएँ।",
+    "expected_hi": "●",
+    "listen_for": [],
+    "shows_hi": "बच्चा AB पैटर्न में दोहराई जाने वाली जोड़ी पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: ▲ ○ ○ ▲ ○ ○ ▲ । अगली आकृति स्लेट पर बनाएँ।",
+    "expected_hi": "○",
+    "listen_for": [],
+    "shows_hi": "बच्चा ABB पैटर्न में एक के बाद दो वाला क्रम पकड़ता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "दो जोड़ियों के लिए कंकड़, पत्तियाँ, बटन और बोतल के ढक्कन (हर तरह के लगभग 6) इकट्ठा करें।",
+   "बोर्ड पर पहले से लिखें: ○ △ ○ △ ○ △ और ★ ● ● ★ ● ●"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर पैटर्न को देखें और आगे की आकृतियाँ बनाएँ।",
+   "instructions_en": "Look at each pattern and draw the shapes that come next.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा चीज़ों से बना AB और ABB पैटर्न तीन बार आगे बढ़ाए, फिर अपना एक पैटर्न बनाए।",
+    "task_en": "The child extends an AB and an ABB pattern of objects for three more repeats, then makes a pattern of their own.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "पत्तियाँ",
+     "बटन",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "AB और ABB दोनों पैटर्न बिना मदद आगे बढ़ाता है और अपना पैटर्न बनाता है।",
+     "partial_hi": "AB पैटर्न बढ़ाता है, पर ABB में अटकता है या संकेत चाहिए।",
+     "not_yet_hi": "AB पैटर्न में दोहराने वाली जोड़ी नहीं पहचानता।",
+     "achieved_en": "Extends both AB and ABB without help and makes own pattern.",
+     "partial_en": "Extends AB but struggles with ABB or needs hints.",
+     "not_yet_en": "Cannot find the repeating unit in an AB pattern."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पैटर्न आगे बढ़ाएँ: ○ □ ○ □ ○ □ ___ ___",
+     "answer": "○ □",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पैटर्न आगे बढ़ाएँ: △ ● ● △ ● ● ___ ___ ___",
+     "answer": "△ ● ●",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "पैटर्न आगे बढ़ाएँ: ■ ★ ★ ■ ★ ★ ■ ___ ___",
+     "answer": "★ ★",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पैटर्न आगे बढ़ाएँ: ◇ ▲ ◇ ▲ ◇ ___ ___",
+     "answer": "▲ ◇",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0263,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

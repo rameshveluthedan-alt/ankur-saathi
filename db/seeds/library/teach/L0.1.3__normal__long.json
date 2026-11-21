@@ -1,0 +1,126 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.1.3__normal__long",
+ "skill_id": "L0.1.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कहानी सुनी थी।' फिर एक छोटी घटना तीन चरणों में सुनाएँ: 'सुबह हम उठे, फिर हमने मुँह धोया, उसके बाद हमने नाश्ता किया।' हर चरण पर एक उँगली उठाएँ और 'फिर', 'उसके बाद' शब्दों पर ज़ोर दें।",
+   "we_do_hi": "बोर्ड पर तीन चित्र बनाएँ: बीज, छोटा पौधा, बड़ा पेड़। बच्चों से पूछें: 'पहले क्या हुआ? फिर क्या हुआ? उसके बाद क्या हुआ?' हर उत्तर पर एक उँगली उठाएँ और साथ में पूरी बात 'फिर' और 'उसके बाद' जोड़कर दोहराएँ।",
+   "you_do_hi": "हर जोड़ी को तीन चीज़ें दें: एक पत्ती, एक कंकड़ और एक बोतल का ढक्कन। हर चीज़ हाथ में लेकर एक-एक चरण बोलते हुए अपनी कोई घटना साथी को सुनाएँ, जैसे स्कूल आने की बात, और 'फिर', 'उसके बाद' बोलें; फिर साथी सुनाए। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'पहले हमने हाथ धोए, फिर खाना खाया, उसके बाद पानी पिया।' इसमें कितनी बातें हुईं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा घटना के अलग-अलग चरण गिन पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 1) पहले नहाए, फिर कपड़े पहने। 2) पहले कपड़े पहने, फिर नहाए। कौन-सा क्रम सही है? 1 या 2 उँगली दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा घटनाओं का सही क्रम पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "तीन-चार जोड़ियों के लिए पत्ती, कंकड़ और बोतल के ढक्कन इकट्ठे करें।",
+   "बोर्ड पर बीज, छोटा पौधा और बड़ा पेड़ के सरल चित्र बनाने की तैयारी करें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "सुनें और अपने साथी को बोलकर सुनाएँ। 'पहले', 'फिर', 'उसके बाद' बोलें।",
+   "instructions_en": "Listen and tell your partner aloud. Use 'first', 'then', 'after that'.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "क्रम से सुनाने का उदाहरण:",
+    "example_text": "पहले हम उठे, फिर मुँह धोया, उसके बाद नाश्ता किया।"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा अपनी कोई घटना, जैसे स्कूल आना, कम से कम तीन चरणों में 'फिर' और 'उसके बाद' जोड़कर साथी को सुनाए।",
+    "task_en": "The child tells a personal event, such as coming to school, in at least three steps, joining them with 'then' and 'after that'.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "पत्तियाँ",
+     "कंकड़",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "तीन या अधिक बातें सही क्रम में, 'फिर' या 'उसके बाद' जोड़कर बिना मदद सुनाता है।",
+     "partial_hi": "दो-तीन बातें सुनाता है पर क्रम उलझता है या जोड़ने वाले शब्द नहीं बोलता।",
+     "not_yet_hi": "केवल एक बात या एक पात्र का नाम बताता है।",
+     "achieved_en": "Tells 3+ events in order with connectors, without help.",
+     "partial_en": "Tells 2-3 events but the order is mixed or connectors are missing.",
+     "not_yet_en": "Names only one event or character."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सुबह उठने से स्कूल पहुँचने तक की तीन बातें क्रम से साथी को सुनाएँ।",
+     "answer": "तीन बातें सही क्रम में, जोड़ने वाले शब्दों के साथ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बोर्ड से बनाएँ: बीज, छोटा पौधा, बड़ा पेड़। पहले कौन-सा चित्र आएगा? बोलकर बताएँ।",
+     "answer": "बीज",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सुनें: 'पहले बादल आए, फिर ... , उसके बाद धूप निकली।' बीच में क्या हुआ? बोलकर बताएँ।",
+     "answer": "बारिश हुई",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "खाना खाने से पहले और बाद की बातें क्रम से साथी को सुनाएँ।",
+     "answer": "हाथ धोना, खाना खाना, फिर पानी पीना या बर्तन रखना, क्रम में",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats wording from the lesson or anchor: «बनाएँ बीज छोटा पौधा बड़ा»"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0277,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

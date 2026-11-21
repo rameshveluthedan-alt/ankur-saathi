@@ -1,0 +1,108 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.5.2__normal__short",
+ "skill_id": "N1.5.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "गेंद, डिब्बा, बेलनाकार डिब्बी और शंकु आकार की टोपी या कागज़ का शंकु एक-एक करके उठाकर दिखाएँ। हर चीज़ का नाम बोलें: 'यह गोला है, यह घन है, यह बेलन है, यह शंकु है।' बेलन और शंकु साथ रखकर दिखाएँ: 'देखिए, बेलन के दोनों सिरे गोल और चपटे हैं, शंकु ऊपर नुकीला है।' इसके बाद समूह से एक जल्दी सवाल पूछें: 'यह नुकीली चीज़ कौन-सी आकृति है?'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को गेंद, माचिस की डिब्बी, बोतल का ढक्कन या पेंसिल-बॉक्स जैसी बेलनाकार डिब्बी और कागज़ का शंकु मिलाकर दें। बच्चे हर चीज़ उठाकर उसकी आकृति का नाम अपने साथी को बताएँ, फिर चारों को गोला, घन, बेलन, शंकु के ढेरों में रखें; चीज़ें न हों तो बोर्ड से वर्कशीट कॉपी में बनाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो चित्र बनाएँ: 1) आइसक्रीम का कोन, 2) पानी का पाइप। शंकु कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा शंकु को बेलन से अलग पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "लड्डू किस आकृति का होता है? 1) गोला 2) घन। उँगली पर दिखाएँ।",
+    "expected_hi": "1 (गोला)",
+    "listen_for": [],
+    "shows_hi": "बच्चा रोज़ की चीज़ में गोला पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "एक गेंद, एक डिब्बा या पासा, एक बेलनाकार डिब्बी और एक कागज़ का शंकु दिखाने के लिए रखें।",
+   "हर जोड़ी के लिए गोला, घन, बेलन और शंकु जैसी एक-एक चीज़ इकट्ठा करें (गेंद, माचिस की डिब्बी, ढक्कन या डिब्बी, कागज़ का शंकु)।",
+   "बोर्ड पर आइसक्रीम का कोन और पानी का पाइप बनाने की जगह रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को उसकी आकृति के नाम से मिलाएँ और चित्र बनाएँ।",
+   "instructions_en": "Match each object to its shape name and draw it.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा चार चीज़ें (गेंद, डिब्बी, बेलनाकार डिब्बी, शंकु) एक-एक उठाकर उसकी आकृति का नाम बताए और उन्हें गोला, घन, बेलन, शंकु के ढेरों में रखे।",
+    "task_en": "The child picks up four objects (ball, box, cylindrical tin, cone), names each shape, and places them in sphere, cube, cylinder and cone piles.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "गेंद",
+     "माचिस की डिब्बी",
+     "बेलनाकार डिब्बी या ढक्कन",
+     "कागज़ का शंकु"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों आकृतियों के नाम सही बताता है और हर चीज़ सही ढेर में रखता है।",
+     "partial_hi": "दो-तीन नाम सही बताता है, बेलन और शंकु में उलझता है।",
+     "not_yet_hi": "एक या किसी भी आकृति का नाम नहीं बता पाता।",
+     "achieved_en": "Names all four shapes and places every object in the right pile.",
+     "partial_en": "Names two or three shapes; mixes up cylinder and cone.",
+     "not_yet_en": "Names one or no shape."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गेंद का चित्र बनाएँ और उसके नीचे उसकी आकृति का नाम लिखें: गोला, घन, बेलन या शंकु।",
+     "answer": "गोला",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "आइसक्रीम के कोन का चित्र बनाएँ और उसकी आकृति के नाम पर गोला लगाएँ: बेलन / शंकु।",
+     "answer": "शंकु",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "मोमबत्ती का चित्र बनाएँ और उसकी आकृति के नाम पर गोला लगाएँ: बेलन / शंकु।",
+     "answer": "बेलन",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पासे का चित्र बनाएँ और उसकी आकृति के नाम पर गोला लगाएँ: घन / गोला।",
+     "answer": "घन",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:07:42Z",
+ "cost_usd": 0.0257,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

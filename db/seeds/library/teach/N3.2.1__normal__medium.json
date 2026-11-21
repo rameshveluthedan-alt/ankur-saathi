@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.2.1__normal__medium",
+ "skill_id": "N3.2.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर हज़ार-सैकड़ा-दहाई-इकाई के चार बॉक्स बनाएँ और 4 2 7 5 लिखें। हर अंक पर उँगली रखकर बोलें: 'देखिए, 4 हज़ार, 2 सौ, 7 दहाई, 5 इकाई, यानी चार हज़ार दो सौ पचहत्तर।' फिर 3 0 6 8 लिखकर दिखाएँ कि शून्य वाला सैकड़ा बोला नहीं जाता: 'तीन हज़ार अड़सठ।'",
+   "we_do_hi": "बोर्ड पर 5 1 9 2 लिखें और बच्चों से पूछें: 'हज़ार की जगह कौन सा अंक है? सैकड़ा की जगह?' फिर हर एक बच्चे से संख्या पढ़वाएँ। इसके बाद बोलें 'सात हज़ार चार सौ छह' और बच्चे बॉक्स में अंक लिखें, खाली दहाई में 0 के साथ।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। इस छोटे समय में सवाल 1 और 2 यहीं शुरू करें, बाकी अपनी जगह पर पूरे करें। शिक्षक घूमकर देखें कि शून्य वाली जगह पर 0 लिखा जा रहा है।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: दो हज़ार पाँच सौ इकतालीस। स्लेट पर अंकों में लिखें।",
+    "expected_hi": "2541",
+    "listen_for": [],
+    "shows_hi": "बच्चा हज़ार, सैकड़ा, दहाई, इकाई को सही जगह पर लिख पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 8 0 3 7। इस संख्या में सैकड़ा की जगह कौन सा अंक है?",
+    "expected_hi": "0",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि खाली जगह शून्य से भरी जाती है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर हज़ार-सैकड़ा-दहाई-इकाई के चार बॉक्स पहले से बना लें।",
+   "हर बच्चे के पास स्लेट या कॉपी का पन्ना रहे।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या-नाम को अंकों में लिखें।",
+   "instructions_en": "Write each number name in digits.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "तीन हज़ार चार सौ बासठ लिखें = ___",
+     "answer": "3462",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पाँच हज़ार अस्सी लिखें = ___",
+     "answer": "5080",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "नौ हज़ार तीन लिखें = ___",
+     "answer": "9003",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "एक हज़ार सात सौ पंद्रह लिखें = ___",
+     "answer": "1715",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "छह हज़ार दो सौ चार लिखें = ___",
+     "answer": "6204",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "आठ हज़ार नौ सौ इक्यानवे लिखें = ___",
+     "answer": "8991",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "af03919e97a2",
+ "created": "2026-11-21T05:57:58Z",
+ "cost_usd": 0.0177,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

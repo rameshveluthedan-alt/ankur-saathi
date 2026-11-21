@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.2.2__normal__short",
+ "skill_id": "L1.2.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: कमल। धीरे बोलें: 'क - म - ल', हर ध्वनि पर एक ताली बजाएँ और एक उँगली खोलें: 'देखिए, कमल में तीन ध्वनियाँ हैं।' इसके बाद 'घर' को ऐसे ही तोड़कर दिखाएँ और बच्चों से पूछें: 'घर में कितनी ध्वनियाँ?'",
+   "we_do_hi": "",
+   "you_do_hi": "जोड़ियाँ बनवाएँ और हर जोड़ी को 5 कंकड़ या 5 बोतल के ढक्कन दें। एक बच्चा शब्द बोले (नल, बस, मटर, जग), दूसरा हर ध्वनि पर एक कंकड़ आगे सरकाए और ध्वनियाँ बोले, फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक शब्द सुनें: 'नल'। इसमें कितनी ध्वनियाँ हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा छोटे शब्द को अलग-अलग ध्वनियों में तोड़ पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक शब्द सुनें: 'मटर'। इसकी पहली ध्वनि का अक्षर स्लेट पर लिखें।",
+    "expected_hi": "म",
+    "listen_for": [],
+    "shows_hi": "बच्चा शब्द की पहली ध्वनि अलग पहचान लेता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए 5 कंकड़ या 5 बोतल के ढक्कन इकट्ठा करें।",
+   "बोर्ड पर लिखें: कमल।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को साथी के सामने बोलें। हर ध्वनि पर एक ताली बजाएँ और बताएँ कि उसमें कितनी ध्वनियाँ हैं।",
+   "instructions_en": "Say each word to a partner. Clap once for each sound and tell how many sounds it has.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "ध्वनि तोड़ने का उदाहरण:",
+    "example_text": "घर = घ - र"
+   },
+   "passage_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "शिक्षक एक शब्द बोलें (जैसे बतख)। बच्चा हर ध्वनि पर एक कंकड़ आगे सरकाए और ध्वनियाँ अलग-अलग बोले।",
+    "task_en": "The teacher says a word (e.g. बतख). The child moves one pebble forward for each sound and says the sounds one by one.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बोतल के ढक्कन",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "तीन-चार ध्वनियों वाले शब्द बिना मदद के सही तोड़ता है, जैसे क-म-ल।",
+     "partial_hi": "दो ध्वनियों वाले शब्द तोड़ता है, लंबे शब्दों में मदद चाहिए।",
+     "not_yet_hi": "पूरा शब्द एक साथ दोहराता है या कोई और ध्वनि बोलता है।",
+     "achieved_en": "Segments 3-4 sound words correctly without help, e.g. क-म-ल.",
+     "partial_en": "Segments 2-sound words, needs help with longer words.",
+     "not_yet_en": "Repeats the word whole or says unrelated sounds."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "जग: कितनी ध्वनियाँ?",
+     "answer": "2 (ज - ग)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बतख: कितनी ध्वनियाँ?",
+     "answer": "3 (ब - त - ख)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "कसरत: कितनी ध्वनियाँ?",
+     "answer": "4 (क - स - र - त)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पल: कितनी ध्वनियाँ?",
+     "answer": "2 (प - ल)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "नमक: कितनी ध्वनियाँ?",
+     "answer": "3 (न - म - क)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0252,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

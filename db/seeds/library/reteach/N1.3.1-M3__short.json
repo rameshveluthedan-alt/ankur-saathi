@@ -1,0 +1,148 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.3.1-M3__short",
+ "skill_id": "N1.3.1",
+ "domain_id": "numeracy",
+ "mode": "N1.3.1-M3",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने दो संख्याएँ जोड़ना सीखा था।' बोर्ड पर 7 + 5 लिखें, पहले 7 उँगलियाँ और फिर 5 उँगलियाँ उठाने की कोशिश करके दिखाएँ: 'देखिए, उँगलियाँ ख़त्म हो गईं, जवाब नहीं मिला।' उसी 7 + 5 को सही तरीक़े से करें: '7 मन में रखें, अब केवल 5 उँगलियाँ उठाकर आगे गिनें: 8, 9, 10, 11, 12', बोर्ड पर 12 लिखें, उँगलियों वाला गलत तरीक़ा मिटा दें और एक छोटा सवाल पूछें: '9 + 4 कितना होगा?'",
+   "we_do_hi": "",
+   "you_do_hi": "अगर show-me में एक चौथाई से अधिक बच्चे गलत उत्तर दिखाएँ, तो बड़ी संख्या मन में रखकर आगे गिनने वाला कदम छड़ियों से तुरंत दोबारा कराएँ। फिर बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बचा हुआ काम अपनी जगह पर अगले समय में पूरा करें।' सामान्य चक्कर लगाते हुए सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार यह गलती की थी।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "8 + 6 कितना होता है? स्लेट पर उत्तर लिखें।",
+    "expected_hi": "14",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M3",
+      "misconception_name_hi": "उँगलियों से गिनने की सीमा (योग > 10 पर असफल)",
+      "misconception_name_en": "Finger counting ceiling (fails when sum > 10)",
+      "detect_en": "Correct for sums ≤ 10 but errors when sum is 11-18; may refuse to attempt or guess",
+      "wrong_answer_hi": "10"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "9 + 7: 16 या 15? स्लेट पर अपना उत्तर लिखें।",
+    "expected_hi": "16",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M2",
+      "misconception_name_hi": "आगे गिनते समय एक की त्रुटि",
+      "misconception_name_en": "Off-by-one error in counting-on",
+      "detect_en": "Answers are consistently exactly 1 less than correct: 5+3=7, 4+2=5, 6+3=8",
+      "wrong_answer_hi": "15"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से 7 + 5 लिखकर रखें।",
+   "ज़रूरत पड़ने पर दोबारा सिखाने के लिए पास में 20 छड़ियाँ रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "बड़ी संख्या मन में रखें और आगे गिनें। उत्तर लिखें।",
+   "instructions_en": "Keep the bigger number in your head and count on. Write the answer.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "8 + 4 = ___",
+    "answer": "12",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "8",
+    "row2_t": "",
+    "row2_o": "4",
+    "answer_t": "1",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "6 + 3",
+     "answer": "9",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "8 + 5",
+     "answer": "13",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N1.3.1-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "9 + 6 = ___",
+     "answer": "15",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.1-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "4 + 7 = ___",
+     "answer": "11",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "8 + 8 = ___",
+     "answer": "16",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 7 आम हैं। उसमें 9 आम और रखे गए। अब टोकरी में कितने आम हैं?",
+     "answer": "16",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "69bcd6250082",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0367,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

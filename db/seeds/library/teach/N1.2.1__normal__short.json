@@ -1,0 +1,114 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.1__normal__short",
+ "skill_id": "N1.2.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 28, 29, 30 और 58, 59, 60। हर संख्या पर उँगली रखकर धीरे-धीरे बोलें: 'देखिए, उनतीस के बाद नई दहाई शुरू होती है: तीस।' इसके बाद समूह से एक सवाल पूछें: 'उनसठ के बाद कौन-सी संख्या आती है?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों की जोड़ियाँ बनाएँ और हर जोड़ी को दस-दस तीलियों के बंडल दें; तीलियाँ न हों तो कंकड़ या बीज दें। एक बच्चा 1 से गिनती बोले और हर दहाई पूरी होने पर एक बंडल अलग रखे, दूसरा बच्चा सुने; फिर दोनों बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: उनचालीस। इसके बाद कौन-सी संख्या आती है? स्लेट पर लिखें।",
+    "expected_hi": "40",
+    "listen_for": [],
+    "shows_hi": "बच्चा दहाई की सीमा पार करके अगली दहाई सही बोलता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 67, 68, ___, 70। खाली जगह की संख्या स्लेट पर लिखें।",
+    "expected_hi": "69",
+    "listen_for": [],
+    "shows_hi": "बच्चा दहाई से ठीक पहले की संख्या जानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 28, 29, 30 और 58, 59, 60",
+   "हर जोड़ी के लिए 10 बंडल तीलियाँ (हर बंडल में 10 तीलियाँ), या कंकड़ या बीज"
+  ],
+  "worksheet": {
+   "instructions_hi": "गिनती बोलते हुए खाली जगह में सही संख्या लिखें।",
+   "instructions_en": "Say the numbers aloud and write the missing number in each blank.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चा 1 से 100 तक गिनती बोले और हर दहाई पूरी होने पर दस तीलियों का एक बंडल अलग रखे।",
+    "task_en": "The child recites numbers from 1 to 100 aloud, setting aside one bundle of ten sticks each time a ten is completed.",
+    "kit_materials_hi": [
+     "तीलियों के बंडल"
+    ],
+    "local_materials_hi": [
+     "तीलियाँ",
+     "कंकड़",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "1 से 100 तक बिना रुके बोलता है; 29 से 30, 39 से 40 सही पार करता है",
+     "partial_hi": "100 तक पहुँचता है पर दहाई पर अटकता है और खुद सुधार लेता है",
+     "not_yet_hi": "50 से आगे नहीं बोल पाता या दहाई पर बार-बार गलती करता है",
+     "achieved_en": "Recites 1-100 without stopping; crosses 29 to 30 and 39 to 40 correctly",
+     "partial_en": "Reaches 100 but stumbles at decade changes and self-corrects",
+     "not_yet_en": "Cannot go past 50, or makes frequent errors at decade changes"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "18, 19, ___, 21",
+     "answer": "20",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "48, 49, ___, 51",
+     "answer": "50",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "78, ___, 80, 81",
+     "answer": "79",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "88, 89, ___, 91",
+     "answer": "90",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "97, 98, 99, ___",
+     "answer": "100",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:08:39Z",
+ "cost_usd": 0.0214,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

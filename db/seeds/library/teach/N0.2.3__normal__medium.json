@@ -1,0 +1,136 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.3__normal__medium",
+ "skill_id": "N0.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर बड़े-बड़े लिखें: 1 2 3 4 5 6 7 8 9। हर अंक पर उँगली रखकर नाम बोलें और उतनी उँगलियाँ दिखाएँ। फिर 6 और 9 साथ लिखकर कहें: 'देखिए, 6 का गोला नीचे है, 9 का गोला ऊपर है'; इसी तरह 2 और 5 साथ लिखकर दिखाएँ: '2 नीचे सीधी लकीर पर बैठता है, 5 की ऊपर टोपी है'।",
+   "we_do_hi": "अंक-कार्ड एक-एक करके बिना क्रम के उठाएँ: 3, 9, 5, 1, 6, 2। हर कार्ड पर बच्चे उतनी उँगलियाँ दिखाएँ, फिर शिक्षक पूछें: 'इसका गोला ऊपर है या नीचे?' जहाँ गलती हो, वहीं कार्ड को 6 और 9 या 2 और 5 के पास रखकर फिर से देखें।",
+   "you_do_hi": "बच्चों को दो-दो की जोड़ी में बैठाएँ और हर जोड़ी को 1 से 9 तक के अंक-कार्ड मिलाकर दें; कार्ड न हों तो कागज़ की पर्चियों पर अंक लिखकर दें और साथ में कंकड़ या बीज दें। एक बच्चा कोई कार्ड उठाए, दूसरा उसका नाम बोले और उतने कंकड़ रखे, फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 6   2) 9। 'नौ कौन-सा है?' उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M1",
+      "misconception_name_hi": "6 और 9 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 6 and 9",
+      "detect_en": "Consistently reads 6 as 9 or vice versa; other numerals are correct",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 5   2) 2। 'दो कौन-सा है?' उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M2",
+      "misconception_name_hi": "2 और 5 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 2 and 5",
+      "detect_en": "Reads 2 as 5 or vice versa; pattern is consistent across sessions",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "1 से 9 तक के अंक-कार्ड, हर जोड़ी के लिए एक सेट (न हों तो कागज़ की पर्चियों पर अंक लिखें)",
+   "हर जोड़ी के लिए 9 कंकड़ या बीज",
+   "एक बड़ा कार्ड-सेट शिक्षक के लिए (We Do के लिए)"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अंक को देखें, उसका नाम बोलें और उतने गोले बनाएँ।",
+   "instructions_en": "Look at each numeral, say its name and draw that many circles.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "अंक-कार्ड बिना क्रम के दिखाने पर बच्चा हर अंक का नाम बोले और उतने कंकड़ रखे।",
+    "task_en": "When numeral cards are shown in random order, the child names each numeral and places that many pebbles.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "अंक लिखी कागज़ की पर्चियाँ",
+     "कंकड़",
+     "बीज",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के सभी 9 अंक सही पहचानता है",
+     "partial_hi": "6 से 8 अंक पहचानता है, 6 और 9 या 2 और 5 में अटकता है",
+     "not_yet_hi": "6 से कम अंक पहचानता है",
+     "achieved_en": "Names all 9 numerals correctly without help",
+     "partial_en": "Names 6-8 numerals, mixes up 6/9 or 2/5",
+     "not_yet_en": "Names fewer than 6 numerals"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "9 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": "N0.2.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "5 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": "N0.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "6 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "2 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "worksheets.progressor problem 4: answer missing",
+   "worksheets.progressor problem 5: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0247,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

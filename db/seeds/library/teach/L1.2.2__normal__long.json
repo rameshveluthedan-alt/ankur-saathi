@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.2.2__normal__long",
+ "skill_id": "L1.2.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने शब्द ताली से तोड़े थे।' बोर्ड पर 'नमक' लिखें और बच्चों से कहें: 'देखिए, हम इसे धीरे-धीरे बोलते हैं: न... म... क।' हर ध्वनि पर एक ताली बजाएँ और पूछें: 'कितनी ताली बजीं? तीन, यानी तीन ध्वनियाँ।'",
+   "we_do_hi": "बोर्ड पर 'सड़क' लिखें। बच्चे शिक्षक के साथ हर ध्वनि पर एक ताली बजाकर बोलें: स... ड़... क। इसके बाद 'घर' शब्द इसी तरह तोड़ें और ताली गिनें।",
+   "you_do_hi": "हर जोड़ी को बोतल के ढक्कन या कंकड़ दें। एक बच्चा शब्द बोले: जल, बतख, पतंग। दूसरा हर ध्वनि बोलते हुए एक ढक्कन आगे रखे और फिर गिनकर बताए। इसके बाद दोनों अपनी भूमिका बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "'कलम' शब्द धीरे से बोलें: क... ल... म। इसमें कितनी ध्वनियाँ हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा पूरे शब्द को अलग-अलग ध्वनियों में तोड़ पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "'मटर' शब्द की पहली ध्वनि कौन-सी है? स्लेट पर वह अक्षर लिखें।",
+    "expected_hi": "म",
+    "listen_for": [],
+    "shows_hi": "बच्चा शब्द की पहली ध्वनि अलग से पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: नमक, सड़क, घर",
+   "हर जोड़ी के लिए 4-5 बोतल के ढक्कन या कंकड़ इकट्ठा करें"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को धीरे-धीरे बोलें और हर ध्वनि पर कॉपी में एक गोला बनाएँ। कितने गोले बने, लिखें।",
+   "instructions_en": "Say each word slowly, draw one circle per sound in your notebook, and write how many circles.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "साथी के बोले शब्द (जैसे जल, बतख, पतंग) को अलग-अलग ध्वनियों में बोलें और हर ध्वनि पर एक ढक्कन आगे रखें।",
+    "task_en": "Say a partner's word sound by sound, moving one bottle cap forward for each sound.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "बोतल के ढक्कन",
+     "कंकड़",
+     "बटन"
+    ],
+    "look_for": {
+     "achieved_hi": "3-4 ध्वनि वाले शब्द बिना मदद के सही तोड़ता है",
+     "partial_hi": "दो ध्वनि वाले शब्द तोड़ता है या मदद लेकर तोड़ता है",
+     "not_yet_hi": "पूरा शब्द एक साथ दोहराता है",
+     "achieved_en": "Segments 3-4 sound words correctly without help",
+     "partial_en": "Segments 2-sound words or needs help",
+     "not_yet_en": "Repeats the word whole"
+    }
+   },
+   "example_block": null,
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "फल",
+     "answer": "2 (फ-ल)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "कमल",
+     "answer": "3 (क-म-ल)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "अदरक",
+     "answer": "4 (अ-द-र-क)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "बस",
+     "answer": "2 (ब-स)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "गमला",
+     "answer": "3 (ग-म-ला)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:01:23Z",
+ "cost_usd": 0.0229,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

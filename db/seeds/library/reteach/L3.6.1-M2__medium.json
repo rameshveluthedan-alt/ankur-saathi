@@ -1,0 +1,141 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.6.1-M2__medium",
+ "skill_id": "L3.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.6.1-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने 'क्यों' वाले सवालों के उत्तर ढूँढना सीखा था; आज देखेंगे कि उत्तर अनुच्छेद की बात से ही आए। बोर्ड पर लिखें: 'बाहर तेज़ धूप थी। दादी ने कहा कि आज सड़क बहुत गरम होगी। रीना ने छाता ले लिया।' फिर पूछें 'रीना ने छाता क्यों लिया?' और पहले यह उत्तर लिखें: 'बारिश हो रही थी।' बच्चों को बताएँ: 'यह बात अनुच्छेद में कहीं नहीं है, यह अपने मन से सोची है।' फिर उसी सवाल का सही उत्तर लिखें: 'तेज़ धूप से बचने के लिए।' इसके बाद 'धूप' और 'गरम' शब्दों पर उँगली रखकर दिखाएँ कि उत्तर इन्हीं से निकला। अंत में गलत उत्तर मिटा दें, ताकि बोर्ड पर केवल सही उत्तर रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'मोहन ने अभी-अभी खाना खाया था। उसका पेट भरा था। उसने लड्डू छोटी बहन को दे दिया।' फिर लिखें: 'मोहन ने लड्डू क्यों नहीं खाया? उत्तर: मोहन को लड्डू पसंद नहीं थे।' बच्चों से पूछें: 'क्या यह बात अनुच्छेद में है? कौन-से शब्द असली कारण बताते हैं?' उत्तर मिलकर सुधारें: 'उसका पेट भरा था।' फिर नया सवाल साथ में हल करें: 'मोहन का पेट क्यों भरा था?' बच्चे अनुच्छेद में शब्द ढूँढें और बताएँ: 'उसने अभी-अभी खाना खाया था।'",
+   "you_do_hi": "वर्कशीट का अनुच्छेद एक बार पढ़ें और सवाल 1 हल करें। बाकी सवाल 2 और 3 बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक अपने सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार यह गलती की थी, और पूछें: 'यह बात अनुच्छेद में कहाँ लिखी है?'"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'आसमान में काले बादल थे। सोनू ने छत से कपड़े उतार लिए।' सोनू ने कपड़े क्यों उतारे? 1) कपड़े सूख गए थे 2) बारिश आने वाली थी। उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M2",
+      "misconception_name_hi": "पाठ से असंबंधित अनुमान लगाता है (केवल अपना ज्ञान प्रयोग करता है)",
+      "misconception_name_en": "Makes inferences unrelated to text (uses only personal knowledge)",
+      "detect_en": "Answer is plausible in general but contradicted by or unsupported by the specific text",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'मीना की पेंसिल टूट गई। कल उसकी परीक्षा थी। वह मेज़ पर बैठकर उदास हो गई।' मीना उदास क्यों थी? 1) पेंसिल टूटी और कल परीक्षा थी 2) वह मेज़ पर बैठी थी।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M1",
+      "misconception_name_hi": "अनुमानात्मक प्रश्न का तथ्यात्मक उत्तर देता है",
+      "misconception_name_en": "Gives literal answer to inferential question",
+      "detect_en": "Response is a copy from the text, not a reasoned answer. E.g., \"Why was Ram sad?\" → \"Ram went home\" (quotes text) instead of \"Because his friend moved away\" (infers)",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: रीना वाला अनुच्छेद (तीन वाक्य) और मोहन वाला अनुच्छेद (तीन वाक्य)।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद ध्यान से पढ़ें। हर उत्तर अनुच्छेद की बात से जोड़कर लिखें।",
+   "instructions_en": "Read the passage carefully. Write each answer using what the passage says.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "गोलू और गौरी",
+    "text": "सुबह से ज़ोर की बारिश हो रही थी। गोलू की गाय गौरी बाहर पेड़ के नीचे बँधी थी। गोलू ने खिड़की से देखा कि गौरी काँप रही है। वह जल्दी से छाता लेकर बाहर गया। उसने गौरी को खोलकर बरामदे में बाँध दिया। बाहर की सारी घास गीली थी, इसलिए उसने गौरी को सूखी घास दी। गौरी ने खुश होकर सिर हिलाया।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गोलू छाता लेकर बाहर क्यों गया?",
+     "answer": "बारिश हो रही थी, भीगने से बचने के लिए",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "गौरी क्यों काँप रही थी?",
+     "answer": "वह बारिश में भीग रही थी, उसे ठंड लग रही थी",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "गोलू ने गौरी को बरामदे में क्यों बाँधा?",
+     "answer": "ताकि गौरी बारिश में न भीगे",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "गोलू को कैसे पता चला कि गौरी परेशान है?",
+     "answer": "खिड़की से देखा कि गौरी काँप रही है",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "गोलू ने गौरी को सूखी घास क्यों दी?",
+     "answer": "बाहर की सारी घास गीली थी",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "गौरी ने सिर क्यों हिलाया?",
+     "answer": "वह खुश थी, उसे सूखी जगह और सूखी घास मिली",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "ccdfee54089a",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0486,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

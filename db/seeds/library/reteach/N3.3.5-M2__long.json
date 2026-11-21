@@ -1,0 +1,148 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.5-M2__long",
+ "skill_id": "N3.3.5",
+ "domain_id": "numeracy",
+ "mode": "N3.3.5-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने बराबर बाँटना सीखा था। आज देखेंगे कि जब सब बराबर न बँटे तो क्या करें। बोर्ड पर लिखें: 13 ÷ 4 = 4, फिर 13 छड़ियाँ 4 ढेरों में एक-एक करके बाँटकर दिखाएँ और कहें: 'देखिए, हर ढेर में 4 नहीं, 3 ही आईं और 1 बच गई। 4 लिखना गलत है।' अब गलत लाइन मिटाएँ और लिखें: 13 ÷ 4 = 3 शेष 1।",
+   "we_do_hi": "बोर्ड पर लिखें: 27 ÷ 4 = नहीं हो सकता। बच्चों से पूछें: 'क्या सच में नहीं हो सकता?' बच्चे छड़ियों से 4 ढेर बनाएँ, फिर साथ में लिखें: 6 शेष 3। इसके बाद नया सवाल साथ में करें: 43 ÷ 8, बच्चे बताएँ कि हर ढेर में कितनी आईं और कितनी बचीं (5 शेष 3)।",
+   "you_do_hi": "'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' शिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्हें पिछली बार शेष में कठिनाई हुई थी। अगर शो-मी में एक चौथाई से अधिक बच्चे गलत हों, तो वर्कशीट से पहले छड़ियों से वही कदम फिर से करवाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 47 पेंसिलें, 6 डिब्बे। हर डिब्बे में बराबर पेंसिलें रखें। हर डिब्बे में कितनी पेंसिलें आएँगी?",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M2",
+      "misconception_name_hi": "शेषफल संभाल नहीं पाता",
+      "misconception_name_en": "Cannot handle remainders",
+      "detect_en": "Correct for exact divisions (24÷6=4) but wrong/blank for inexact (25÷6)",
+      "wrong_answer_hi": "8"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 17 टॉफ़ियाँ, 3 बच्चे। हर बच्चे को बराबर टॉफ़ियाँ दें। कितनी टॉफ़ियाँ बचेंगी?",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M2",
+      "misconception_name_hi": "शेषफल संभाल नहीं पाता",
+      "misconception_name_en": "Cannot handle remainders",
+      "detect_en": "Correct for exact divisions (24÷6=4) but wrong/blank for inexact (25÷6)",
+      "wrong_answer_hi": "0"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "हर बच्चे या जोड़ी के लिए 50 छड़ियाँ या तीलियाँ।",
+   "बोर्ड पर पहले से लिखें: 13 ÷ 4 = 4 (गलत लाइन, जो बाद में मिटानी है)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में भाग करें। जो बच जाए, उसे शेष लिखें।",
+   "instructions_en": "Divide in each problem. Write what is left over as the remainder.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "23 ÷ 5 = ___",
+    "answer": "4 शेष 3",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "36 ÷ 4 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "29 ÷ 6 = ___",
+     "answer": "4 शेष 5",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "61 ÷ 8 = ___",
+     "answer": "7 शेष 5",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "56 ÷ 7 = ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "35 ÷ 4 = ___",
+     "answer": "8 शेष 3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "50 आम 9 टोकरियों में बराबर रखें। हर टोकरी में कितने आम आएँगे और कितने बचेंगे?",
+     "answer": "5 शेष 5",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2e07c614293d",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.1242,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

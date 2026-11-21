@@ -1,0 +1,112 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.1.2__normal__long",
+ "skill_id": "N0.1.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने चीज़ों को एक नियम से छाँटा था।' फिर ज़मीन पर लाइन में रखें: पत्ती, कंकड़, पत्ती, कंकड़, पत्ती, कंकड़ और बोलें: 'देखिए, पत्ती-कंकड़ बार-बार आ रहा है, अगली चीज़ पत्ती है।' इसके बाद नई लाइन रखें: ढक्कन, बटन, बटन, ढक्कन, बटन, बटन और हर हिस्से पर ताली बजाकर 'एक ढक्कन, दो बटन' बोलते हुए अगला ढक्कन रखें।",
+   "we_do_hi": "बोर्ड पर बनाएँ: ○ △ ○ △ ○ और बच्चों से पूछें: 'अब क्या आएगा?' एक बच्चा बताए, बाकी अंगूठा दिखाकर सही या गलत बताएँ। फिर बोर्ड पर बनाएँ: ★ □ □ ★ □ □ ★ और बच्चों के साथ 'एक तारा, दो डिब्बे' बोलते हुए अगले दो निशान बनाएँ।",
+   "you_do_hi": "हर जोड़ी को कंकड़, पत्तियाँ, बटन और बोतल के ढक्कन मिलाकर दें। बच्चों से कहें: 'पहले एक-दो, एक-दो वाला पैटर्न बनाएँ, फिर एक-दो-दो वाला पैटर्न बनाकर तीन बार आगे बढ़ाएँ।' चीज़ें न हों तो बच्चे कॉपी में वर्कशीट के पैटर्न बनाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर देखें: ● ■ ● ■ ● ? अगला निशान स्लेट पर बनाएँ।",
+    "expected_hi": "■",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो चीज़ों वाले बार-बार आने वाले हिस्से को पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर देखें: △ ○ ○ △ ○ ○ △ ? अगला निशान कौन-सा है: 1) △ 2) ○ उँगली पर दिखाएँ।",
+    "expected_hi": "2 (○)",
+    "listen_for": [],
+    "shows_hi": "बच्चा एक-दो-दो वाले पैटर्न को आगे बढ़ाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कंकड़, पत्तियाँ, बटन और बोतल के ढक्कन इकट्ठा करें, हर जोड़ी के लिए हर तरह की लगभग 6 चीज़ें।",
+   "बोर्ड पर We Do के दो पैटर्न पहले से लिखने की जगह छोड़ें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पैटर्न देखें और कॉपी में अगले निशान बनाएँ।",
+   "instructions_en": "Look at the pattern and draw the next shapes in your notebook.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा दो तरह की चीज़ों से एक-दो वाला पैटर्न बनाए, फिर एक-दो-दो वाला पैटर्न बनाकर तीन बार आगे बढ़ाए।",
+    "task_en": "The child builds an AB pattern with two kinds of objects, then builds an ABB pattern and extends it for three repetitions.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "पत्तियाँ",
+     "बटन",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "दोनों पैटर्न बिना मदद तीन बार सही आगे बढ़ाता है",
+     "partial_hi": "एक-दो वाला सही, पर एक-दो-दो में मदद चाहिए",
+     "not_yet_hi": "बार-बार आने वाला हिस्सा नहीं पहचानता",
+     "achieved_en": "Extends both patterns correctly three times without help",
+     "partial_en": "AB correct, needs help with ABB",
+     "not_yet_en": "Cannot find the repeating unit"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "○ □ ○ □ ○ □ ___ ___ : अगले दो निशान बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "▲ ● ● ▲ ● ● ___ ___ ___ : अगले तीन निशान बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "★ ◇ ◇ ★ ◇ ◇ ★ ___ ___ : अगले दो निशान बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "■ △ ■ △ ___ ___ : अगले दो निशान बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "worksheets.progressor problem 4: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0254,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

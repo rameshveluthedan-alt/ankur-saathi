@@ -1,0 +1,125 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.5.1-M2__short",
+ "skill_id": "L2.5.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.5.1-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अनुच्छेद को सही-सही पढ़ना सीखा था; आज हम उसे बिना अटके, तेज़ी से पढ़ेंगे। बोर्ड पर लिखें: 'मीना ने बाग में लाल फूल देखे।' पहले इसे बहुत धीरे, हर शब्द को अक्षर-अक्षर जोड़कर पढ़ें (मी...ना ने... बा...ग में...), बच्चों से कहें: 'सुनें, शब्द सही हैं पर पढ़ना बहुत धीमा है, बात समझ नहीं आती।' फिर यही वाक्य सही गति से, शब्द एक बार में पहचानकर पढ़ें: 'मीना ने / बाग में / लाल फूल देखे।', और धीमा पढ़ने वाला तरीका मन से हटाने के लिए बोर्ड पर बने अक्षर-अक्षर के निशान मिटा दें, सिर्फ़ सही वाक्य रहने दें।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'अपनी वर्कशीट लें। पहले कठिन शब्द एक बार पढ़ें, फिर अनुच्छेद एक बार धीमी आवाज़ में पढ़ें।' बाकी दो बार पढ़ना, जोड़ी में पढ़ना और प्रश्न 1 से 3 यह समूह अगले ब्लॉक में अपनी जगह पर करेगा; घूमते हुए पहले उन बच्चों के पास शांति से जाएँ जो पिछली बार धीरे पढ़ रहे थे। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'राजू ने दूध पिया।' इसे दो तरह से पढ़कर सुनाएँ: 1) रा...जू ने... दू...ध पि...या  2) राजू ने / दूध पिया। कौन-सा पढ़ना अच्छा है, 1 या 2? उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M2",
+      "misconception_name_hi": "शुद्ध पढ़ता है पर बहुत धीमे (CWPM सीमा से कम)",
+      "misconception_name_en": "Reads accurately but extremely slowly (below CWPM threshold)",
+      "detect_en": "Accuracy ≥90% but CWPM consistently below 25; child is still sounding out known words",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'माँ ने रोटी बनाई।' इस वाक्य को एक बार सही गति से पढ़कर सुनाएँ। स्लेट पर लिखें: इस वाक्य में कितने शब्द हैं?",
+    "expected_hi": "4",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M2",
+      "misconception_name_hi": "शुद्ध पढ़ता है पर बहुत धीमे (CWPM सीमा से कम)",
+      "misconception_name_en": "Reads accurately but extremely slowly (below CWPM threshold)",
+      "detect_en": "Accuracy ≥90% but CWPM consistently below 25; child is still sounding out known words",
+      "wrong_answer_hi": "8"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'मीना ने बाग में लाल फूल देखे।'",
+   "समूह के हर बच्चे के लिए फ़्लुएंसी वर्कशीट की एक प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार धीमी आवाज़ में पढ़ें और हर बार एक खाने में सही का निशान लगाएँ। इसके बाद जोड़ी में पढ़ें: एक पढ़े, साथी उँगली से शब्द देखे और जिस शब्द पर मदद लगी उस पर निशान लगाए। अंत में प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "First read the hard words aloud to a partner. Then read the passage softly three times, ticking a box each time. Then read in pairs: one reads, the partner follows with a finger and marks any word that needed help. Finally answer the questions.",
+   "required_count": 3,
+   "sheet_kind": "fluency",
+   "example_block": null,
+   "passage_block": {
+    "title": "",
+    "text": ""
+   },
+   "warmup_words": [
+    "बाज़ार",
+    "खरीदे",
+    "मिठाई",
+    "त्योहार",
+    "सब्ज़ियाँ",
+    "दुकानदार",
+    "प्यार"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अनुच्छेद में कौन बाज़ार गया?",
+     "answer": "अनुच्छेद के अनुसार",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "अनुच्छेद में क्या खरीदा गया?",
+     "answer": "अनुच्छेद के अनुसार",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.5.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "अनुच्छेद के अंत में क्या हुआ?",
+     "answer": "अनुच्छेद के अनुसार",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.5.1-M2"
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (fluency): no passage to read aloud three times"
+  ],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 7 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "44b21af397d6",
+ "created": "2026-11-21T06:02:47Z",
+ "cost_usd": 0.0255,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

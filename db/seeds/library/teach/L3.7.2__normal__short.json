@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.7.2__normal__short",
+ "skill_id": "L3.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'लड़का खेलता है।' और उसके नीचे 'लड़की खेलती है।' बच्चों को दिखाएँ कि लड़की के साथ क्रिया 'ती' से ख़त्म होती है। फिर लिखें: 'बच्चे खेलते हैं।' और बताएँ कि बहुत सारे हों तो 'ते हैं' आता है।",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। यह ब्लॉक छोटा है: अभी सवाल 1 शुरू करें, बाकी अपनी जगह पर अगले ब्लॉक में पूरा करें। शिक्षक पहले उन बच्चों के पास जाएँ जिन्होंने शो-मी में गलत उत्तर दिखाया था।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'माँ खाना ___ है।' खाली जगह में क्या आएगा? 1) बनाता 2) बनाती",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "स्त्रीलिंग शब्द के साथ क्रिया का 'ती' रूप पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'चिड़ियाँ पेड़ पर ___ हैं।' खाली जगह में क्या आएगा? 1) बैठी 2) बैठा",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बहुवचन और स्त्रीलिंग के साथ क्रिया का सही रूप चुनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'लड़का खेलता है।', 'लड़की खेलती है।', 'बच्चे खेलते हैं।'",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर वाक्य को ध्यान से पढ़ें। खाली जगह में सही शब्द लिखें।",
+   "instructions_en": "Read each sentence carefully. Write the correct word in the blank.",
+   "required_count": 3,
+   "sheet_kind": "usage",
+   "example_block": {
+    "problem_hi": "सही शब्द भरने का उदाहरण:",
+    "example_text": "बहन गाना ___ है। (गाता / गाती) → गाती"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "घोड़ा तेज़ ___ है। (दौड़ता / दौड़ती)",
+     "answer": "दौड़ता",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "दादी कहानी ___ है। (सुनाता / सुनाती)",
+     "answer": "सुनाती",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "कल हम मेला देखने ___ थे। (जाते / गए)",
+     "answer": "गए",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "गायें घास ___ हैं। (चरती / चरता)",
+     "answer": "चरती",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "किसान खेत में काम ___ है। (करता / करते)",
+     "answer": "करता",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "5356f3ccc3ca",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0182,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

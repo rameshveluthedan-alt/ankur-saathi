@@ -1,0 +1,119 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.7.3__normal__long",
+ "skill_id": "L2.7.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'वाक्य के अंत में एक निशान लगता है।' बोर्ड पर लिखें: 'राधा स्कूल जाती है' और 'तुम्हारा नाम क्या है'। दोनों वाक्य दो बार बोलें, फिर पहले के अंत में । और दूसरे के अंत में ? लगाकर बताएँ: 'देखिए, जो वाक्य कुछ बताता है उसके अंत में पूर्ण विराम लगता है, और जो कुछ पूछता है उसके अंत में प्रश्नवाचक चिह्न।'",
+   "we_do_hi": "बोर्ड पर लिखें: 'आम मीठा है', 'तुम कहाँ रहते हो', 'बिल्ली दूध पीती है', 'यह किसकी किताब है'। हर वाक्य पढ़कर बच्चों से पूछें: 'यह वाक्य बताता है या पूछता है?' फिर दो बच्चों से कारण सुनकर सही चिह्न लगाएँ और ध्यान दिलाएँ कि क्या, कहाँ, कौन, किसकी जैसे शब्द वाले वाक्य अक्सर प्रश्न होते हैं।",
+   "you_do_hi": "बच्चे पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि हर वाक्य के अंत में कोई चिह्न लगा है और प्रश्न वाले वाक्यों पर ? लगा है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'तुम कब आओगे'। इसके अंत में कौन-सा चिह्न लगेगा? 1) । 2) ?",
+    "expected_hi": "2) ?",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि पूछने वाले वाक्य के अंत में ? लगता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'माँ खाना बनाती है'। इसके अंत में कौन-सा चिह्न लगेगा? 1) । 2) ?",
+    "expected_hi": "1) ।",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि बताने वाले वाक्य के अंत में पूर्ण विराम लगता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do के दो वाक्य और We Do के चार वाक्य बिना चिह्न के पहले से लिख लें।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर वाक्य पढ़ें। वाक्य के अंत में सही चिह्न लिखें: । या ?",
+   "instructions_en": "Read each sentence. Write the correct mark at the end: । or ?",
+   "required_count": 3,
+   "sheet_kind": "usage",
+   "example_block": {
+    "problem_hi": "चिह्न लगाने का उदाहरण:",
+    "example_text": "यह मेरा घर है ।     तुम्हारा घर कहाँ है ?"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मोर नाचता है __",
+     "answer": "।",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "तुम्हें कौन-सा फल पसंद है __",
+     "answer": "?",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "बस कब आएगी __",
+     "answer": "?",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "आज बारिश हो रही है __",
+     "answer": "।",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "गाय घास खाती है __",
+     "answer": "।",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "तुम्हारी बहन क्या पढ़ती है __",
+     "answer": "?",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "152bc421aae7",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0208,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

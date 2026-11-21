@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.3-M2__medium",
+ "skill_id": "L1.3.3",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.3-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने ए, ऐ, ओ, औ की मात्राएँ पढ़ी थीं। बोर्ड पर 'मौसी' लिखें और गलत पढ़कर सुनाएँ: 'मोसी', फिर बच्चों से कहें: 'देखिए, यहाँ ओ की मात्रा के ऊपर एक और तिरछी रेखा है, यह औ की मात्रा है, इसलिए यह मौसी है।' उसी शब्द पर उँगली रखकर सही पढ़ें 'मौ-सी', फिर गलत पढ़ने की बात मिटाकर बोर्ड पर केवल सही शब्द रहने दें।",
+   "we_do_hi": "बोर्ड पर लिखें: 'तोता' और 'चौका', बच्चों से पूछें: 'चौका को चोका पढ़ें तो क्या ठीक है? ऊपर की रेखाएँ गिनें।' बच्चे साथ मिलकर रेखाएँ गिनें और सही पढ़ें। फिर नया शब्द 'नौका' लिखें और बच्चों के साथ मात्रा पहचानकर पढ़ें।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: गोद, कौआ, रोटी, पौधा, सोना, औरत। एक बच्चा कार्ड पढ़े और साथी सुनकर बताए कि ओ है या औ; बारी बदलें, और जिनसे पिछली बार यह गलती हुई थी उनके पास पहले शांति से जाएँ। कार्ड न हों तो वर्कशीट के शब्द साथी को पढ़कर सुनाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) कोन 2) कौन। 'कौन' शब्द कौन सा है? उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.3-M2",
+      "misconception_name_hi": "ो (ओ) और ौ (औ) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses ो (o) and ौ (au) matras",
+      "detect_en": "Reads words with ो/ौ interchangeably; reads गोल as गौल or vice versa",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'गोल' लिखें। इसमें ओ की मात्रा है या औ की? स्लेट पर 'ओ' या 'औ' लिखें।",
+    "expected_hi": "ओ",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.3-M2",
+      "misconception_name_hi": "ो (ओ) और ौ (औ) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses ो (o) and ौ (au) matras",
+      "detect_en": "Reads words with ो/ौ interchangeably; reads गोल as गौल or vice versa",
+      "wrong_answer_hi": "औ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर शब्द-कार्ड लिखें: गोद, कौआ, रोटी, पौधा, सोना, औरत (हर जोड़ी के लिए एक सेट)",
+   "बोर्ड पर लिखने के लिए शब्द तैयार रखें: मौसी, तोता, चौका, नौका"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द साथी को पढ़कर सुनाएँ। बताएँ कि शब्द में कौन सी मात्रा है।",
+   "instructions_en": "Read each word aloud to your partner. Say which matra the word has.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "म + ौ = मौ"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "ओ और औ की मात्रा वाले शब्द-कार्ड साथी को पढ़कर सुनाएँ।",
+    "task_en": "Read word cards with o and au matras aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "ओ और औ वाले सब शब्द बिना मदद सही पढ़ता है",
+     "partial_hi": "कुछ शब्दों में ओ और औ बदल देता है, मदद से सुधारता है",
+     "not_yet_hi": "ज़्यादातर शब्द नहीं पढ़ पाता",
+     "achieved_en": "Reads all o and au words correctly without help",
+     "partial_en": "Swaps o and au in some words, corrects with help",
+     "not_yet_en": "Cannot read most of the words"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: रोटी",
+     "answer": "रोटी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: पौधा",
+     "answer": "पौधा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: सोना",
+     "answer": "सोना",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: कौआ",
+     "answer": "कौआ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: गोद",
+     "answer": "गोद",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a68f92a4a85",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0266,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

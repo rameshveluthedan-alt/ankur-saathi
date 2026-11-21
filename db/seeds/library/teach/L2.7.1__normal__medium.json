@@ -1,0 +1,142 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.7.1__normal__medium",
+ "skill_id": "L2.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखते हुए धीरे बोलें: 'सीमा फूल तोड़ती है।' हर शब्द के बाद रुककर पूछें: 'फूल में ऊ लंबा है, तो बड़ी मात्रा ू लगेगी।' अंत में दिखाएँ कि हर शब्द के बीच जगह छोड़ी है और 'है' पर बिंदी नहीं, क्योंकि सीमा एक है।",
+   "we_do_hi": "बोलें: 'बच्चे गीत गाते हैं।' हर शब्द पर बच्चों से पूछें कि कौन सी मात्रा लगेगी: 'गीत में ई छोटी या बड़ी? बच्चे कई हैं, तो है पर बिंदी लगेगी या नहीं?' बच्चे जैसा बताएँ, वैसा बोर्ड पर लिखें और शब्दों के बीच जगह गिनकर दिखाएँ।",
+   "you_do_hi": "वर्कशीट दें। हर वाक्य दो बार धीरे बोलें; बच्चे उसे पंक्ति 1, 2, 3 ... पर लिखें। पाँचों वाक्य बोलकर घूमकर देखें कि बड़ी-छोटी मात्रा, बिंदी और शब्दों के बीच जगह सही है या नहीं।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) दिन 2) दीन। फिर बोलें: 'आज बहुत अच्छा दिन है।' इस वाक्य में कौन सा शब्द है? उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.1-M1",
+      "misconception_name_hi": "छोटी-बड़ी मात्रा में भ्रम (ि/ी, ु/ू)",
+      "misconception_name_en": "Confuses short and long vowel matras (ि/ी, ु/ू)",
+      "detect_en": "The same pair is wrong in two or more dictated words; the consonants are right",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'बच्चे गाना गाते है।' (है पर बिंदी के बिना)। यह सही है या गलत?",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.1-M2",
+      "misconception_name_hi": "अनुस्वार, चंद्रबिंदु या मात्रा छोड़ देना (ं, ँ, े/ै)",
+      "misconception_name_en": "Leaves out the nasal sign or a matra (ं, ँ, े/ै)",
+      "detect_en": "Missing ं/ँ or े↔ै in two or more words; often in है/हैं, में/मैं",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "हर बच्चे के लिए श्रुतलेख वर्कशीट (पाँच खाली पंक्तियाँ)",
+   "बच्चों की स्लेट या कॉपी का एक पन्ना"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक जो वाक्य बोलें, उसे ध्यान से सुनें और सही मात्रा के साथ पंक्ति पर लिखें। हर शब्द के बीच जगह छोड़ें।",
+   "instructions_en": "Listen to each sentence the teacher reads and write it on the line with the correct matras. Leave a space between words.",
+   "required_count": 5,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "dictation",
+   "dictation_sentences": [
+    "नानी कहानी सुनाती है।",
+    "मीना और दीपू झूला झूलते हैं।",
+    "मैं अपनी किताब में चित्र बनाती हूँ।",
+    "बिल्ली दूध पीती है।",
+    "हम कल गाँव जाएँगे।"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "वाक्य 1",
+     "answer": "नानी कहानी सुनाती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 2,
+     "problem_hi": "वाक्य 2",
+     "answer": "मीना और दीपू झूला झूलते हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 3,
+     "problem_hi": "वाक्य 3",
+     "answer": "मैं अपनी किताब में चित्र बनाती हूँ।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 4,
+     "problem_hi": "वाक्य 4",
+     "answer": "बिल्ली दूध पीती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 5,
+     "problem_hi": "वाक्य 5",
+     "answer": "हम कल गाँव जाएँगे।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: dictation sheet built from 5 sentence(s), none printed for the child"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "8d2590806828",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.084,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

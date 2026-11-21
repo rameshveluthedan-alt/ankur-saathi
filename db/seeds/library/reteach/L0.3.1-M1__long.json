@@ -1,0 +1,148 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L0.3.1-M1__long",
+ "skill_id": "L0.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "L0.3.1-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अक्षर पहचानना सीखा था; आज हम मिलते-जुलते अक्षर ध्यान से देखेंगे। बोर्ड पर बड़ा 'ख' लिखें और कहें: 'देखिए, इसे कोई र और व समझकर रव पढ़ सकता है', फिर दिखाएँ कि ख में र और व के बीच छोटी गाँठ जुड़ी है, अलग नहीं, इसलिए यह 'ख' है। रव वाला पढ़ना मिटा दें और बोर्ड पर केवल सही 'ख' और उसकी ध्वनि छोड़ें।",
+   "we_do_hi": "बोर्ड पर 'भ' लिखें और नीचे 'म' लिखा दिखाएँ, बच्चों से पूछें: 'क्या यह म है? कौन-सा हिस्सा अलग है?' बच्चे भ की बाईं ओर की छोटी गाँठ ढूँढें और सही नाम बोलें। फिर 'घ' लिखकर साथ में पहचानें कि यह ध नहीं, घ है, और सब मिलकर उसकी ध्वनि बोलें।",
+   "you_do_hi": "हर जोड़ी को अक्षर-कार्ड दें; कार्ड न हों तो कागज़ की पर्चियों पर ख, घ, ध, म, भ, श, स, ब, व लिखकर दें। बच्चे बारी-बारी से पर्चियाँ उलटा मिलाकर एक-एक उठाएँ और साथी को अक्षर का नाम बताएँ; पर्चियाँ न हों तो वर्कशीट के अक्षर कॉपी में लिखकर यही करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्हें पिछली बार इन जोड़ियों में कठिनाई हुई थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो अक्षर लिखें: 1) ख 2) रव। 'ख' कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M1",
+      "misconception_name_hi": "दिखने में मिलते-जुलते अक्षरों में भ्रम (ख/रव, ध/घ, म/भ, श/स)",
+      "misconception_name_en": "Confuses visually similar letters (ख/रव, ध/घ, म/भ, श/स)",
+      "detect_en": "Consistently misidentifies specific letter pairs; other letters are correct. Common pairs: ख↔रव, ध↔घ, म↔भ, श↔स, ब↔व",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो अक्षर लिखें: 1) श 2) स। 'स' कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M1",
+      "misconception_name_hi": "दिखने में मिलते-जुलते अक्षरों में भ्रम (ख/रव, ध/घ, म/भ, श/स)",
+      "misconception_name_en": "Confuses visually similar letters (ख/रव, ध/घ, म/भ, श/स)",
+      "detect_en": "Consistently misidentifies specific letter pairs; other letters are correct. Common pairs: ख↔रव, ध↔घ, म↔भ, श↔स, ब↔व",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की छोटी पर्चियों पर ख, घ, ध, म, भ, श, स, ब, व लिखें: हर जोड़ी के लिए एक सेट।",
+   "बोर्ड पर बड़े अक्षर लिखने के लिए जगह रखें: ख, भ, म, घ, ध।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अक्षर को साथी के सामने उंगली रखकर पढ़ें और उसका नाम बोलें।",
+   "instructions_en": "Point to each letter and say its name to your partner.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "अक्षर पहचानने का उदाहरण:",
+    "example_text": "ख = ख (र और व नहीं)"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "उलटी मिलाई गई अक्षर-पर्चियों में से एक-एक उठाकर बच्चा अक्षर का नाम बोले।",
+    "task_en": "The child picks letter slips from a shuffled pile one by one and names each letter.",
+    "kit_materials_hi": [
+     "अक्षर-कार्ड"
+    ],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अक्षर",
+     "बोर्ड पर लिखे अक्षर"
+    ],
+    "look_for": {
+     "achieved_hi": "बेतरतीब पर्चियों के अक्षर बिना मदद तुरंत सही बोलता है, ख, भ, स भी।",
+     "partial_hi": "ज़्यादातर अक्षर सही, पर ख/रव या म/भ में अटकता है या मदद लेता है।",
+     "not_yet_hi": "बहुत से अक्षर नहीं बता पाता या वर्णमाला क्रम से गिनकर पहुँचता है।",
+     "achieved_en": "Names shuffled letters correctly and quickly without help, including ख, भ, स.",
+     "partial_en": "Most correct, but hesitates or needs help on pairs like ख/रव or म/भ.",
+     "not_yet_en": "Cannot name many letters or recites the sequence to reach one."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह अक्षर पढ़कर नाम बोलें: क",
+     "answer": "क",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "यह अक्षर पढ़कर नाम बोलें: ख",
+     "answer": "ख",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "यह अक्षर पढ़कर नाम बोलें: भ",
+     "answer": "भ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "यह अक्षर पढ़कर नाम बोलें: घ",
+     "answer": "घ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह अक्षर पढ़कर नाम बोलें: स",
+     "answer": "स",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "522a8c47fc08",
+ "created": "2026-11-21T06:06:03Z",
+ "cost_usd": 0.0287,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.2.2__normal__long",
+ "skill_id": "N3.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने सैकड़ा, दहाई, इकाई पहचाने थे।' बोर्ड पर चार खानों वाली तालिका बनाएँ, ऊपर ह, स, द, इ लिखें, और उसमें 4261 के अंक भरें। हर अंक पर उँगली रखकर बोलें: '4 हज़ार के स्थान पर है, इसका स्थानीय मान 4000 है; 2 का 200, 6 का 60, 1 का 1', फिर लिखें: 4261 = 4000 + 200 + 60 + 1।",
+   "we_do_hi": "बोर्ड पर 5308 लिखें और बच्चों से पूछें: 'हज़ार के स्थान पर कौन-सा अंक है? सैकड़े पर? दहाई पर?' बच्चों के उत्तर के साथ ह, स, द, इ की तालिका भरें। फिर साथ मिलकर लिखें: 5308 = 5000 + 300 + 8, और पूछें: 'दहाई के स्थान पर 0 है, तो वहाँ से कितना जुड़ा?'",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 कॉपी में हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' शिक्षक घूमकर देखें कि सवाल 2 और 3 में शून्य वाले स्थान को बच्चे सही समझ रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 6491। इसमें 4 का स्थानीय मान स्लेट पर लिखें।",
+    "expected_hi": "400",
+    "listen_for": [],
+    "shows_hi": "बच्चा अंक के स्थान से उसका मान पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर देखें: 3816 = 3000 + 800 + 10 + 6। यह सही है या गलत? स्लेट पर सही या गलत लिखें।",
+    "expected_hi": "सही",
+    "listen_for": [],
+    "shows_hi": "बच्चा हर अंक का विस्तारित रूप जाँच सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर ह, स, द, इ वाली चार खानों की तालिका बनाकर रखें।",
+   "I Do के लिए 4261 और We Do के लिए 5308 बोर्ड पर लिखने के लिए तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अंक का स्थान देखें। स्थानीय मान या विस्तारित रूप लिखें।",
+   "instructions_en": "Look at the place of each digit. Write the place value or the expanded form.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3527 में 5 का स्थानीय मान = ___",
+     "answer": "500",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "6084 का विस्तारित रूप लिखें = ___",
+     "answer": "6000 + 80 + 4",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "7000 + 300 + 9 = ___",
+     "answer": "7309",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "8162 में 8 का स्थानीय मान = ___",
+     "answer": "8000",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "4735 का विस्तारित रूप लिखें = ___",
+     "answer": "4000 + 700 + 30 + 5",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "2 हज़ार, 9 सैकड़े, 4 दहाई, 6 इकाई = ___",
+     "answer": "2946",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 3 repeats an example solved in the talking points"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "c4beca8cad2f",
+ "created": "2026-11-21T06:03:32Z",
+ "cost_usd": 0.0267,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

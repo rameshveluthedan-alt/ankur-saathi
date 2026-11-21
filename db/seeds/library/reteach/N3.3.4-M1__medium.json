@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.4-M1__medium",
+ "skill_id": "N3.3.4",
+ "domain_id": "numeracy",
+ "mode": "N3.3.4-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने 2 अंकों की संख्या को 1 अंक से गुणा करना सीखा था।' बोर्ड पर 26 × 3 = 618 लिखें और दिखाएँ: 6 × 3 = 18 और 2 × 3 = 6 को अलग-अलग पास-पास लिख दिया, 18 के 1 को हासिल नहीं बनाया, इसलिए यह गलत है। अब इसी सवाल को ठीक से करें: 6 × 3 = 18, इकाई में 8 लिखें, 1 हासिल; 2 × 3 = 6, 6 + 1 = 7, उत्तर 78। फिर गलत लिखाई मिटा दें, बोर्ड पर केवल 26 × 3 = 78 रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 17 × 4 = 428। बच्चों से पूछें: 'इकाई का गुणा कितना हुआ? हासिल कहाँ गया?' साथ मिलकर ठीक करें: 7 × 4 = 28, 8 लिखें, 2 हासिल; 1 × 4 = 4, 4 + 2 = 6, उत्तर 68। इसके बाद एक नया सवाल साथ में हल करें: 45 × 2 = 90, हर कदम पर बच्चों से पूछें कि हासिल कितना है।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में सवाल 1 से 3 शुरू हो जाएँ, बाकी सवाल बच्चे अगले समय में अपनी जगह पर पूरे करें। सामान्य चक्कर लगाते हुए पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने पिछली बार अंकों को अलग-अलग गुणा किया था, उनका नाम लिए बिना।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 18 × 3",
+    "expected_hi": "54",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M1",
+      "misconception_name_hi": "प्रत्येक अंक को अलग-अलग गुणा करना, हासिल के बिना",
+      "misconception_name_en": "Multiplies each digit independently without carrying",
+      "detect_en": "Answer structure looks like concatenation of two separate products rather than proper column multiplication",
+      "wrong_answer_hi": "324"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "36 × 2: 72 या 612? सही उत्तर लिखें।",
+    "expected_hi": "72",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M1",
+      "misconception_name_hi": "प्रत्येक अंक को अलग-अलग गुणा करना, हासिल के बिना",
+      "misconception_name_en": "Multiplies each digit independently without carrying",
+      "detect_en": "Answer structure looks like concatenation of two separate products rather than proper column multiplication",
+      "wrong_answer_hi": "612"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखकर रखें: 26 × 3 = 618 (गलत तरीका दिखाने के लिए)।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल का गुणा करें। पहले इकाई का गुणा करें, हासिल को हासिल वाले बॉक्स में लिखें, फिर दहाई का गुणा करके हासिल जोड़ें।",
+   "instructions_en": "Multiply each problem. Multiply the ones first, write the carry in the carry cell, then multiply the tens and add the carry.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "15 × 4 = ___",
+    "answer": "60",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "1",
+    "row1_o": "5",
+    "row2_t": "",
+    "row2_o": "4",
+    "answer_t": "6",
+    "answer_o": "0"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "32 × 3",
+     "answer": "96",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "29 × 3",
+     "answer": "87",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N3.3.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "46 × 2 = ___",
+     "answer": "92",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.4-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "13 × 5 = ___",
+     "answer": "65",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "28 × 2 = ___",
+     "answer": "56",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक डिब्बे में 16 पेंसिलें हैं। 4 डिब्बों में कुल कितनी पेंसिलें होंगी?",
+     "answer": "64",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 5 repeats a number the lesson or anchor already used: 28"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "e1ed9e482fa7",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0326,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

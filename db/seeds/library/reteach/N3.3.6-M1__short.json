@@ -1,0 +1,126 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.6-M1__short",
+ "skill_id": "N3.3.6",
+ "domain_id": "numeracy",
+ "mode": "N3.3.6-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने दो चरण वाले सवाल हल किए थे।' बोर्ड पर लिखें: 'एक पैकेट में 15 बिस्कुट हैं। 4 पैकेट हैं। 9 बिस्कुट खा लिए। कितने बचे?' इसके नीचे लिखें 4 × 15 = 60, उत्तर 60, और बच्चों से कहें: 'देखिए, यहाँ हम रुक गए, पर सवाल पूछता है कितने बचे; 9 खाए गए, वह चरण छूट गया।' फिर उसी सवाल को सही करें: 4 × 15 = 60, फिर 60 − 9 = 51, उत्तर 51। अब पहला, अधूरा हल मिटा दें, ताकि बोर्ड पर केवल सही तरीका रहे, और समूह से पूछें: 'इस सवाल में कितने चरण थे?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट का सवाल 1 अभी हल करें; सवाल 2 और 3 अपनी जगह पर जाकर पूरे करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' हर बच्चा उत्तर लिखने से पहले खुद से पूछे: 'क्या सवाल का आख़िरी प्रश्न हल हो गया?' घूमते समय पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार केवल एक चरण किया था, किसी का नाम लिए बिना।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'एक डिब्बे में 25 आम हैं। 3 डिब्बे हैं। 10 आम बिक गए। कितने आम बचे?' स्लेट पर केवल उत्तर लिखें।",
+    "expected_hi": "65",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "75"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'दो थैलों में 20-20 सेब हैं। 6 सेब और मिले। कुल कितने सेब?' उत्तर 1) 40 या 2) 46? उँगली पर दिखाएँ।",
+    "expected_hi": "2) 46",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "1) 40"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिख लें: 'एक पैकेट में 15 बिस्कुट हैं। 4 पैकेट हैं। 9 बिस्कुट खा लिए। कितने बचे?'",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। पहला चरण लिखें, फिर दूसरा चरण लिखें। उत्तर लिखने से पहले देखें कि सवाल क्या पूछता है।",
+   "instructions_en": "Read each problem carefully. Write the first step, then the second step. Before writing the answer, check what the question asks.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "रीना के पास 12 पेंसिल हैं। उसे 8 पेंसिल और मिलीं। फिर उसने 5 पेंसिल दे दीं। अब रीना के पास कितनी पेंसिल हैं?",
+     "answer": "15",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "एक पैकेट में 14 टॉफ़ी हैं। 5 पैकेट हैं। 18 टॉफ़ी बाँट दी गईं। कितनी टॉफ़ी बचीं?",
+     "answer": "52",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "हॉल में 6 पंक्तियाँ हैं। हर पंक्ति में 24 कुर्सियाँ हैं। 35 कुर्सियाँ और लाई गईं। अब कुल कितनी कुर्सियाँ हैं?",
+     "answer": "179",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "3 थैलों में 45-45 संतरे हैं। 27 संतरे खराब निकले। कितने संतरे अच्छे हैं?",
+     "answer": "108",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "दुकान में 250 कॉपियाँ थीं। 120 कॉपियाँ बिक गईं। फिर 75 नई कॉपियाँ आईं। अब कितनी कॉपियाँ हैं?",
+     "answer": "205",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "8 बक्सों में 12-12 गेंदें हैं। 30 गेंदें और आईं। कुल कितनी गेंदें हैं?",
+     "answer": "126",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 15"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "26471435e7a3",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0389,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

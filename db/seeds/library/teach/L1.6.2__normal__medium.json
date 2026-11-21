@@ -1,0 +1,124 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.6.2__normal__medium",
+ "skill_id": "L1.6.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर तीन छोटे चित्र बनाएँ: बीज, छोटा पौधा, बड़ा पेड़। छोटी कहानी सुनाएँ: 'एक बीज मिट्टी में बोया। उसमें से छोटा पौधा निकला। पौधा बढ़कर बड़ा पेड़ बन गया।' फिर चित्रों पर 1, 2, 3 लिखें और कहें: 'देखिए, पहले बीज, फिर पौधा, आखिर में पेड़।'",
+   "we_do_hi": "चार कागज़ की पर्चियों पर चित्र बनाएँ: लड़का उठता है, दाँत साफ़ करता है, खाना खाता है, स्कूल जाता है। पर्चियाँ उलट-पुलट रखें और कहानी दो बार सुनाएँ। बच्चों से पूछें: 'पहले क्या हुआ? उसके बाद क्या?' और उनके बताए क्रम में पर्चियाँ लगाएँ।",
+   "you_do_hi": "हर जोड़ी को चार कागज़ की पर्चियाँ दें, जिन पर चित्र बने हों: आम का पेड़, पका आम गिरा, बच्चे ने उठाया, बच्चे ने खाया। एक कहानी सुनाएँ, फिर हर जोड़ी पर्चियाँ क्रम में रखे और एक बच्चा कहानी फिर से सुनाए; पर्चियाँ न हों तो बोर्ड से वर्कशीट कॉपी में बनाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "यह कहानी सुनें: 'मीना ने दूध गरम किया। फिर गिलास में डाला। फिर पी लिया।' सबसे पहले क्या हुआ? उँगली दिखाएँ: 1) दूध गरम किया 2) दूध पी लिया",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा कहानी की पहली घटना पहचान लेता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 1) बारिश हुई 2) बादल छाए 3) ज़मीन गीली हुई। पहले कौन-सा हुआ? उसकी संख्या उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा घटनाओं में पहले-बाद का संबंध समझता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की 4 पर्चियाँ पर दिनचर्या के चित्र: उठना, दाँत साफ़ करना, खाना, स्कूल जाना।",
+   "हर जोड़ी के लिए 4 पर्चियाँ: आम का पेड़, आम गिरा, बच्चे ने उठाया, बच्चे ने खाया।",
+   "बोर्ड पर बीज, पौधा, पेड़ के तीन छोटे चित्र बनाने की जगह रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "कहानी ध्यान से सुनें। घटनाओं को सही क्रम में लगाएँ और साथी को कहानी सुनाएँ।",
+   "instructions_en": "Listen to the story. Put the events in the right order and retell the story to your partner.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "चार चित्र-पर्चियों को कहानी के क्रम में रखें और कहानी फिर से सुनाएँ।",
+    "task_en": "Put four picture slips in story order and retell the story.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियाँ जिन पर शिक्षक ने चित्र बनाए हों",
+     "पत्तियाँ",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों पर्चियाँ बिना मदद के सही क्रम में रखता है और कहानी सुनाता है।",
+     "partial_hi": "दो-तीन घटनाएँ सही रखता है पर बीच की घटना आगे-पीछे कर देता है।",
+     "not_yet_hi": "पर्चियाँ किसी भी क्रम में रखता है या केवल अंत बताता है।",
+     "achieved_en": "Places all four slips in order without help and retells.",
+     "partial_en": "Orders 2-3 events but misplaces the middle one.",
+     "not_yet_en": "Places slips randomly or recalls only the ending."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "इन्हें सही क्रम में लिखें: खाना खाया, हाथ धोए।",
+     "answer": "हाथ धोए, खाना खाया",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "इन्हें सही क्रम में लिखें: पौधा बढ़ा, बीज बोया, फूल खिला।",
+     "answer": "बीज बोया, पौधा बढ़ा, फूल खिला",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "इन्हें सही क्रम में लिखें: बस्ता उठाया, स्कूल पहुँचे, घंटी बजी, कक्षा में बैठे।",
+     "answer": "बस्ता उठाया, स्कूल पहुँचे, घंटी बजी, कक्षा में बैठे",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को सुनाएँ: सुबह उठकर आपने पहले क्या किया, फिर क्या, फिर क्या?",
+     "answer": "तीन काम सही क्रम में",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:06:23Z",
+ "cost_usd": 0.0283,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

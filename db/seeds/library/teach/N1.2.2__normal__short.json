@@ -1,0 +1,132 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.2__normal__short",
+ "skill_id": "N1.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों के सामने 14 कंकड़ एक पंक्ति में रखें। हर कंकड़ को छूकर एक तरफ़ खिसकाते हुए धीरे-धीरे गिनें: 'एक, दो, तीन... चौदह'। फिर पूछें: 'कुल कितने कंकड़ हैं?' और बताएँ: 'आख़िरी संख्या ही कुल गिनती है, चौदह।'",
+   "we_do_hi": "",
+   "you_do_hi": "हर बच्चे को 11 से 20 के बीच तीलियाँ, कंकड़ या बोतल के ढक्कन मिलाकर दें। बच्चों से कहें: 'हर चीज़ को छूकर एक तरफ़ खिसकाएँ और गिनें, फिर बताएँ कुल कितनी हैं।' चीज़ें न हों तो बच्चे वर्कशीट के सवाल 1 से 3 कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 12 गोले बनाएँ। 'कितने गोले हैं? स्लेट पर संख्या लिखें।'",
+    "expected_hi": "12",
+    "listen_for": [],
+    "shows_hi": "बच्चा हर गोले को एक बार गिनता है, न कोई छूटता है न दोबारा गिना जाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर 17 डंडियाँ बनाएँ। 'कितनी डंडियाँ हैं: 1) 16 या 2) 17? उँगली से बताएँ।'",
+    "expected_hi": "2) 17",
+    "listen_for": [],
+    "shows_hi": "बच्चा 15 के बाद भी एक-एक करके सही गिनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "एक पंक्ति में रखने के लिए 14 कंकड़।",
+   "हर बच्चे के लिए 11 से 20 के बीच तीलियाँ, कंकड़ या बोतल के ढक्कन (हर बच्चे के लिए अधिक से अधिक 20)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को छूकर एक-एक करके गिनें और कुल संख्या लिखें।",
+   "instructions_en": "Touch and count each object one by one, then write how many there are.",
+   "required_count": 3,
+   "example_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा 11 से 20 के बीच चीज़ों को एक-एक छूकर और खिसकाकर गिनता है, फिर बताता है कि कुल कितनी हैं।",
+    "task_en": "The child counts 11 to 20 objects, touching and moving each one, then says how many there are in all.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "तीलियाँ",
+     "बोतल के ढक्कन",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "20 तक हर चीज़ एक बार छूकर सही गिनता है और कुल संख्या बताता है।",
+     "partial_hi": "गिन लेता है पर 15 के बाद चीज़ छोड़ता या दोबारा गिनता है, या कुल संख्या नहीं बता पाता।",
+     "not_yet_hi": "10 के बाद एक-एक छूकर नहीं गिन पाता।",
+     "achieved_en": "Counts up to 20 touching each object once and states the total.",
+     "partial_en": "Counts, but skips or double-counts after 15, or cannot say the total.",
+     "not_yet_en": "Cannot count one-to-one beyond 10."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "●",
+      "count": 12
+     },
+     "b": {
+      "s": "●",
+      "count": 9
+     },
+     "ask": "more",
+     "problem_hi": "दोनों डिब्बों के गोले गिनें। जिस डिब्बे में ज़्यादा हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ●●●●●●●●●●●●   |   ख: ●●●●●●●●●"
+    },
+    {
+     "number": 2,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "★",
+      "count": 14
+     },
+     "b": {
+      "s": "★",
+      "count": 15
+     },
+     "ask": "less",
+     "problem_hi": "दोनों डिब्बों के तारे गिनें। जिस डिब्बे में कम हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ★★★★★★★★★★★★★★   |   ख: ★★★★★★★★★★★★★★★"
+    },
+    {
+     "number": 3,
+     "problem_hi": "कॉपी में 18 गोले बनाएँ। हर गोले को छूकर गिनें।",
+     "answer": "18 गोले",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed): the You Do says the teacher watches «हर बच्चे»; it should be the children shown in the app",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (18 गोले)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (2 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T05:57:33Z",
+ "cost_usd": 0.0234,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

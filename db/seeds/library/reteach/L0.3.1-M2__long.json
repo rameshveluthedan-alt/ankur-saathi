@@ -1,0 +1,145 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L0.3.1-M2__long",
+ "skill_id": "L0.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "L0.3.1-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अक्षर पहचानना सीखा था; आज हम हर अक्षर को अकेले पहचानेंगे। कार्ड 'ग' दिखाकर पहले गलत तरीका करें: 'क, ख, ग' गिनते हुए पहुँचें और कहें, 'देखिए, यह धीमा है, अक्षर को सीधे देखकर पहचानना है।' फिर वही कार्ड 'ग' दिखाकर सीधे कहें 'ग', आकार पर उँगली फेरें, और बोर्ड से गिनती वाली पंक्ति मिटा दें।",
+   "we_do_hi": "बोर्ड पर 'च' लिखें और गिनती वाला गलत तरीका दोहराएँ: 'क, ख, ग, घ, च'; बच्चों से पूछें कि गलती कहाँ है और फिर सब मिलकर सीधे 'च' बोलें। इसके बाद बेतरतीब क्रम में कार्ड 'ठ', 'ई', 'ढ' एक-एक कर दिखाएँ; बच्चे पहले उँगली से हवा में आकार बनाएँ, फिर नाम बताएँ।",
+   "you_do_hi": "हर जोड़ी को अक्षर-कार्ड मिलाकर दें; कार्ड न हों तो कागज़ की पर्चियों पर अक्षर लिखकर दें। एक बच्चा पर्ची उलटकर दिखाए, दूसरा बिना गिनती किए अक्षर का नाम बताए, फिर बारी बदलें। सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्होंने कल यह गलती की थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर अकेला अक्षर 'ज' लिखें। यह कौन-सा अक्षर है: 1) ज 2) झ? उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M2",
+      "misconception_name_hi": "अक्षर केवल क्रम में पहचानता है, बेतरतीब में नहीं",
+      "misconception_name_en": "Recognises letters only in sequence, not randomly",
+      "detect_en": "Fast when pointing along a chart in sequence; very slow or wrong when shown flashcards in random order",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर अकेला अक्षर 'ड' लिखें। स्लेट पर इसके बाद का अक्षर नहीं, यही अक्षर लिखें।",
+    "expected_hi": "ड",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M2",
+      "misconception_name_hi": "अक्षर केवल क्रम में पहचानता है, बेतरतीब में नहीं",
+      "misconception_name_en": "Recognises letters only in sequence, not randomly",
+      "detect_en": "Fast when pointing along a chart in sequence; very slow or wrong when shown flashcards in random order",
+      "wrong_answer_hi": "क"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर अक्षर लिखें: ग, च, ठ, ई, ढ, ज, ड, भ, ख, ऊ, घ, ण, ओ (हर जोड़ी के लिए एक सेट)।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "साथी को अक्षर दिखाएँ और उसका नाम बताएँ।",
+   "instructions_en": "Show each letter to a partner and say its name.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "अक्षर पहचानने का उदाहरण:",
+    "example_text": "ग → 'ग'"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बेतरतीब क्रम में दिखाए गए अक्षर-कार्ड देखकर बिना गिनती किए अक्षर का नाम बताएँ।",
+    "task_en": "Name letter cards shown in random order without reciting the sequence.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अक्षर",
+     "बोर्ड पर लिखे अक्षर"
+    ],
+    "look_for": {
+     "achieved_hi": "बेतरतीब अक्षरों का नाम तुरंत बताता है",
+     "partial_hi": "कुछ अक्षर गिनकर या मदद से बताता है",
+     "not_yet_hi": "अक्षर तक पहुँचने के लिए पूरा क्रम बोलता है",
+     "achieved_en": "Names random letters instantly",
+     "partial_en": "Names some letters with help or by counting",
+     "not_yet_en": "Recites the full sequence to reach a letter"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह अक्षर पढ़ें: ख",
+     "answer": "ख",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "यह अक्षर पढ़ें: घ",
+     "answer": "घ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "यह अक्षर पढ़ें: ण",
+     "answer": "ण",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "यह अक्षर पढ़ें: ऊ",
+     "answer": "ऊ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह अक्षर पढ़ें: ओ",
+     "answer": "ओ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "3047e588c248",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.0262,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

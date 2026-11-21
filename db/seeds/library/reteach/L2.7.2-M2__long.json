@@ -1,0 +1,152 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.7.2-M2__long",
+ "skill_id": "L2.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.7.2-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने जुड़े वाक्य लिखना सीखा था; आज देखेंगे कि वाक्य कहाँ खत्म होता है। बोर्ड पर लिखें: 'माँ ने खीर बनाई सबने मज़े से खाई' और पूछें कि यहाँ एक वाक्य कहाँ खत्म होता है, फिर बताएँ कि बिना । के दोनों वाक्य मिल गए हैं। अब यही दोनों वाक्य ठीक लिखें: 'माँ ने खीर बनाई। सबने मज़े से खाई।' और गलत पंक्ति मिटा दें, ताकि बोर्ड पर केवल सही रूप रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'बारिश हुई बच्चे नाचे' और 'मोर बाग में। नाचता है।' बच्चों के साथ हर वाक्य पढ़ें, पूछें कि वाक्य कहाँ पूरा होता है, और साथ मिलकर । सही जगह लगाएँ। फिर एक नया उदाहरण साथ बनाएँ: 'दादी कहानी सुनाती हैं। हम ध्यान से सुनते हैं।'",
+   "you_do_hi": "वर्कशीट के सवाल 1 से 4 हल करें; पहले सवाल 2 और 3 करें, फिर सवाल 1 का लेखन शुरू करें और जो पूरा न हो, वह अपनी जगह पर पूरा करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिनसे कल । छूटा था, सामान्य चक्कर के हिस्से के रूप में। अगर show-me में चौथाई से अधिक बच्चे गलत दिखाएँ, तो You Do से पहले बोर्ड पर यही चरण एक और उदाहरण से दोबारा कराएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'राजू ने गेंद फेंकी कुत्ता दौड़ा'। पहला वाक्य कितने शब्दों के बाद खत्म होता है? संख्या लिखें।",
+    "expected_hi": "4",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M2",
+      "misconception_name_hi": "वाक्य कहाँ खत्म होता है, यह नहीं दिखाना",
+      "misconception_name_en": "Does not mark where a sentence ends",
+      "detect_en": "Two or more full stops missing or misplaced on the sheet",
+      "wrong_answer_hi": "6"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) चिड़िया उड़ी। पेड़ पर बैठी।  2) चिड़िया। उड़ी पेड़ पर बैठी। किसमें । सही जगह है? 1 या 2?",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M2",
+      "misconception_name_hi": "वाक्य कहाँ खत्म होता है, यह नहीं दिखाना",
+      "misconception_name_en": "Does not mark where a sentence ends",
+      "detect_en": "Two or more full stops missing or misplaced on the sheet",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do के वाक्य पहले से लिखने की जगह तैयार रखें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।",
+   "हर बच्चे के लिए एक वर्कशीट की प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "ध्यान से पढ़ें। हर वाक्य के अंत में पूर्ण विराम (।) लगाएँ।",
+   "instructions_en": "Read carefully. Put a full stop (।) at the end of every sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा स्कूल",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य स्कूल के बारे में",
+     "item_en": "All sentences are about the school"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of every sentence"
+    },
+    {
+     "item_hi": "वाक्य 'और / फिर / क्योंकि' से जुड़े",
+     "item_en": "Sentences joined with और / फिर / क्योंकि"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने स्कूल पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा स्कूल"
+    },
+    {
+     "number": 2,
+     "problem_hi": "इस पंक्ति में । लगाकर दोबारा लिखें: गाय घास खाती है वह दूध देती है",
+     "answer": "गाय घास खाती है। वह दूध देती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "इस पंक्ति में । गलत जगह है। सही करके लिखें: सोनू। बाज़ार गया उसने आम खरीदे।",
+     "answer": "सोनू बाज़ार गया। उसने आम खरीदे।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "खाली जगह में सही शब्द लिखें (और / क्योंकि): मीना ने हाथ धोए ___ खाना खाया।",
+     "answer": "और",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "अतिरिक्त: अपने दोस्त पर 3 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "0a03cd71f501",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.028,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

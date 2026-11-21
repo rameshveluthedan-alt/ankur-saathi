@@ -1,0 +1,108 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.2.3__normal__medium",
+ "skill_id": "N3.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 3472 और 3427। बच्चों को दिखाएँ कि बाईं ओर से अंक मिलाते हैं: हजार 3 और 3 बराबर, सैकड़ा 4 और 4 बराबर, दहाई 7 और 2, यहाँ 7 बड़ा है। बोर्ड पर लिखें: 3472 > 3427, और कहें: 'जहाँ पहली बार अंक अलग हों, वहीं फ़ैसला होता है।'",
+   "we_do_hi": "बोर्ड पर लिखें: 5160 ___ 5106। बच्चों से पूछें कि किस जगह पर अंक पहली बार अलग हैं, फिर साथ मिलकर > का निशान लगाएँ। इसके बाद बोर्ड पर 2815, 2581, 2158 लिखें और बच्चों के साथ हजार, फिर सैकड़ा देखकर इन्हें छोटी से बड़ी के क्रम में लगाएँ।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट का सवाल 1 हल करें।' बाकी सवाल 2 और 3 बच्चे अगले समय में अपनी जगह पर पूरे करें; जो जल्दी ख़त्म करें, वे सवाल 4 से 6 करें। घूमते हुए देखें कि बच्चे बाईं ओर से अंक मिला रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 6083 2) 6380। इनमें बड़ी संख्या कौन-सी है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2) 6380",
+    "listen_for": [],
+    "shows_hi": "बच्चा हजार बराबर होने पर सैकड़े के अंक से तुलना करता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 9124 ___ 9142। खाली जगह में कौन-सा निशान आएगा, > या <? स्लेट पर लिखें।",
+    "expected_hi": "<",
+    "listen_for": [],
+    "shows_hi": "बच्चा दहाई के अंक तक जाकर सही निशान चुनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 3472 और 3427, 5160 ___ 5106, तथा 2815, 2581, 2158।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "संख्याओं को बाईं ओर से अंक मिलाकर देखें। बड़ी या छोटी संख्या लिखें, या संख्याओं को क्रम में लगाएँ।",
+   "instructions_en": "Compare the numbers digit by digit from the left. Write the bigger or smaller number, or put the numbers in order.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "4385 और 4358 में बड़ी संख्या लिखें।",
+    "answer": "4385",
+    "show_pv_grid": false,
+    "pv_columns": 4
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "6214 और 4612 में बड़ी संख्या लिखें: ___",
+     "answer": "6214",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "7385 और 7358 में बड़ी संख्या लिखें: ___",
+     "answer": "7385",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "छोटी से बड़ी के क्रम में लिखें: 4920, 4092, 4290, 4902",
+     "answer": "4092, 4290, 4902, 4920",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "8031 और 8130 में छोटी संख्या लिखें: ___",
+     "answer": "8031",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "3609 और 3690 में बड़ी संख्या लिखें: ___",
+     "answer": "3690",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "रामपुर गाँव में 2475 लोग रहते हैं और सीतापुर गाँव में 2547 लोग रहते हैं। किस गाँव में ज़्यादा लोग रहते हैं?",
+     "answer": "सीतापुर",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "12933dffe155",
+ "created": "2026-11-21T06:00:57Z",
+ "cost_usd": 0.0291,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

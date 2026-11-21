@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.3-M1__short",
+ "skill_id": "N3.3.3",
+ "domain_id": "numeracy",
+ "mode": "N3.3.3-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने पहाड़े याद किए थे, पर कुछ तथ्य पास वाले तथ्य से गड़बड़ा गए।' बोर्ड पर लिखें: 7 × 8 = 63 और बताएँ: '63 तो 7 × 9 है, यह अगले तथ्य का उत्तर है।' फिर इसी सवाल को सही लिखें: 7 × 8 = 56, बच्चों से कहें 'पास वाला तथ्य नहीं, ठीक यही तथ्य सोचें', और गलत पंक्ति मिटा दें ताकि बोर्ड पर केवल सही पंक्ति बचे।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे जोड़ियों में बैठें; हर जोड़ी को कागज़ की पर्चियाँ दें, जिन पर पहाड़े के तथ्य बिना उत्तर के लिखे हों (जैसे 6 × 7, 8 × 9), और गिनने के लिए कुछ कंकड़। एक बच्चा पर्चियाँ उलट-पुलट क्रम में दिखाए, दूसरा तुरंत उत्तर बोले; कंकड़ केवल तब, जब उत्तर याद न आए। पर्चियाँ न हों तो वर्कशीट के सवाल 1 से 3 पहले कॉपी में हल करें, जो जल्दी ख़त्म करें वे बाकी सवाल करें; शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिनसे यह गलती हुई थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "6 × 8",
+    "expected_hi": "48",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.3-M1",
+      "misconception_name_hi": "पास-पास के तथ्यों में भ्रम",
+      "misconception_name_en": "Confuses adjacent table facts",
+      "detect_en": "Errors are within ±1 of the correct product when interpreted as an adjacent fact in the same table",
+      "wrong_answer_hi": "54"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 9 × 3 = 30। यह सही है या गलत? स्लेट पर 'सही' या 'गलत' लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.3-M1",
+      "misconception_name_hi": "पास-पास के तथ्यों में भ्रम",
+      "misconception_name_en": "Confuses adjacent table facts",
+      "detect_en": "Errors are within ±1 of the correct product when interpreted as an adjacent fact in the same table",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर बिना उत्तर के पहाड़े के तथ्य लिखें (जैसे 6 × 7, 8 × 9, 3 × 4, 4 × 6, 9 × 5), हर जोड़ी के लिए एक सेट।",
+   "हर जोड़ी के लिए 10-15 कंकड़ रखें।",
+   "बोर्ड पर लिखने के लिए तैयार रखें: 7 × 8 = 63 (गलत) और 7 × 8 = 56 (सही)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर तथ्य का उत्तर याद करके लिखें। गिनती से शुरू न करें।",
+   "instructions_en": "Write the answer to each fact from memory. Do not count up from the start.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "साथी उलट-पुलट क्रम में तथ्य की पर्ची दिखाए, बच्चा बिना गिने तुरंत उत्तर बोले।",
+    "task_en": "A partner shows fact cards in random order; the child says the product at once, without counting.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियाँ",
+     "कंकड़",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "हर तथ्य का सही उत्तर तीन सेकंड में, बिना गिने बोलता है।",
+     "partial_hi": "2, 5, 10 के तथ्य जल्दी बोलता है, बाकी में धीमा या पास वाला उत्तर।",
+     "not_yet_hi": "हर तथ्य के लिए शुरू से गिनता है या कंकड़ जोड़ता है।",
+     "achieved_en": "Says each product correctly within 3 seconds, without counting.",
+     "partial_en": "Fast on tables 2, 5, 10; slow or gives a neighbouring fact on others.",
+     "not_yet_en": "Counts from the start or adds pebbles for each fact."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 × 4 = ___",
+     "answer": "12",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "6 × 7 = ___",
+     "answer": "42",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "8 × 9 = ___",
+     "answer": "72",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.3-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "4 × 6 = ___",
+     "answer": "24",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "9 × 5 = ___",
+     "answer": "45",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "39a1d53826f5",
+ "created": "2026-11-21T06:01:23Z",
+ "cost_usd": 0.0965,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

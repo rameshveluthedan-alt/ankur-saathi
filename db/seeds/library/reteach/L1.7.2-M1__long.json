@@ -1,0 +1,135 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.7.2-M1__long",
+ "skill_id": "L1.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.7.2-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने छोटी इ की मात्रा वाले शब्द लिखे थे।' बोर्ड पर 'दिन' गलत तरीके से लिखें: पहले द, फिर उसके दाईं ओर ि, फिर न, और बच्चों से कहें: 'देखिए, यहाँ मात्रा द के बाद लग गई, इसे पढ़ने में दिक्कत होती है।' इसके बाद 'दिन' सही लिखें: पहले ि की मात्रा बाईं ओर, फिर द, फिर न, ऊपर शिरोरेखा; और गलत 'दिन' मिटा दें, ताकि बोर्ड पर केवल सही शब्द रहे।",
+   "we_do_hi": "बोर्ड पर दो गलत शब्द लिखें: 'सिर' और 'मिल', दोनों में ि को व्यंजन के दाईं ओर लगाकर। बच्चों से पूछें: 'छोटी इ की मात्रा किस तरफ जाती है?' और उनके साथ दोनों शब्द सही लिखें, फिर गलत रूप मिटा दें। अंत में नया शब्द 'किला' सब मिलकर लिखें, पहले मात्रा, फिर क।",
+   "you_do_hi": "बच्चे पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार मात्रा दाईं ओर लगाई थी, यह सामान्य चक्कर का हिस्सा हो। अगर दिखाने के सवाल में चौथाई से ज़्यादा बच्चे गलत हों, तो यह कदम तुरंत फिर से करवाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो रूप लिखें: 1) 'पिन', जिसमें ि की मात्रा प के बाईं ओर हो। 2) 'पिन', जिसमें ि की मात्रा प के दाईं ओर हो। सही रूप कौन-सा है, 1 या 2?",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M1",
+      "misconception_name_hi": "ि (छोटी इ) मात्रा व्यंजन के गलत तरफ रखता है",
+      "misconception_name_en": "Places ि (chhoti i) matra on wrong side of consonant",
+      "detect_en": "ि matra consistently placed after the consonant in handwriting; other matras placed correctly",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'गिर' लिखें, ि की मात्रा ग के दाईं ओर लगाकर। यह सही है या गलत?",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M1",
+      "misconception_name_hi": "ि (छोटी इ) मात्रा व्यंजन के गलत तरफ रखता है",
+      "misconception_name_en": "Places ि (chhoti i) matra on wrong side of consonant",
+      "detect_en": "ि matra consistently placed after the consonant in handwriting; other matras placed correctly",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखने के लिए शब्द तैयार रखें: दिन, सिर, मिल, किला।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द ध्यान से लिखें। छोटी इ की मात्रा व्यंजन के बाईं ओर लगाएँ और ऊपर शिरोरेखा खींचें।",
+   "instructions_en": "Write each word carefully. Put the short i matra to the left of the consonant and draw the headline on top.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "ब + ि = बि"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "म + ा + ल = ? जोड़कर शब्द लिखें।",
+     "answer": "माल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "त + ि + ल = ? जोड़कर शब्द लिखें।",
+     "answer": "तिल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "च + ि + ड़ + ि + य + ा = ? जोड़कर शब्द लिखें।",
+     "answer": "चिड़िया",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "ख + ी + र = ? जोड़कर शब्द लिखें।",
+     "answer": "खीर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "ग + ि + न = ? जोड़कर शब्द लिखें।",
+     "answer": "गिन",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "फ + ू + ल = ? जोड़कर शब्द लिखें।",
+     "answer": "फूल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "df07fc8ba6dc",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0243,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

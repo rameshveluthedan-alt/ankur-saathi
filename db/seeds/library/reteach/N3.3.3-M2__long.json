@@ -1,0 +1,136 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.3-M2__long",
+ "skill_id": "N3.3.3",
+ "domain_id": "numeracy",
+ "mode": "N3.3.3-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने 2 से 10 तक के पहाड़े दोहराए थे।' बोर्ड पर लिखें: 6 × 4 = ? फिर गलत तरीका दिखाएँ: '6, 12, 18, 24' गिनते हुए उँगलियाँ खोलें और कहें: 'देखिए, यह शुरू से गिनना है, इसमें बहुत समय लगता है।' अब वही सवाल सही तरीके से दिखाएँ: 6 × 4 = 24 और कहें: 'पास का तथ्य याद रखें: 6 × 5 = 30, उसमें से एक 6 कम, तो 24।' गिनती वाली लाइन मिटा दें, बोर्ड पर केवल 6 × 4 = 24 रहने दें।",
+   "we_do_hi": "बोर्ड पर लिखें: 7 × 3 → 7, 14, 21। बच्चों से पूछें: 'यह जवाब शुरू से गिनकर आया। सीधे कैसे याद करें?' मिलकर बोलें: 3 × 7 भी 21 है, यह छोटा पहाड़ा है। इसके बाद नया तथ्य बिना क्रम के मिलकर करें: 8 × 5 = ?, 5 का पहाड़ा याद है, तो जवाब 40।",
+   "you_do_hi": "हर जोड़ी को 10 बोतल के ढक्कन दें और एक कागज़ की पर्ची पर कुछ गुणा तथ्य लिखें: एक बच्चा पर्ची से बिना क्रम के तथ्य पूछे, दूसरा तुरंत जवाब दे, फिर बारी बदलें। ढक्कन न हों तो वर्कशीट के सवाल 1 से 3 पहले हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। घूमते हुए पहले उन बच्चों के पास शांति से जाएँ जिन्हें पिछली बार गिनना पड़ा था। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर जवाब लिखें: 9 × 3",
+    "expected_hi": "27",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.3-M2",
+      "misconception_name_hi": "क्रम में याद पर बेतरतीब में नहीं",
+      "misconception_name_en": "Tables known sequentially but not randomly",
+      "detect_en": "Fast when asked in sequence, very slow or incorrect when asked out of order",
+      "wrong_answer_hi": "9, 18, 27 गिनकर देर से लिखना"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "7 × 6: 42 या 48? उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1 (42)",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.3-M1",
+      "misconception_name_hi": "पास-पास के तथ्यों में भ्रम",
+      "misconception_name_en": "Confuses adjacent table facts",
+      "detect_en": "Errors are within ±1 of the correct product when interpreted as an adjacent fact in the same table",
+      "wrong_answer_hi": "2 (48)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखने के लिए तथ्य: 6 × 4, 7 × 3, 8 × 5",
+   "हर जोड़ी के लिए 10 बोतल के ढक्कन या कंकड़",
+   "हर जोड़ी के लिए एक कागज़ की पर्ची जिस पर बिना क्रम के 6 गुणा तथ्य लिखे हों"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर गुणा का जवाब सीधे लिखें, शुरू से गिनें नहीं।",
+   "instructions_en": "Write each product directly, without counting from the start.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "जोड़ी में एक बच्चा बिना क्रम के गुणा तथ्य पूछे, दूसरा तुरंत जवाब बोले।",
+    "task_en": "In pairs, one child asks multiplication facts out of order; the other answers at once.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "बोतल के ढक्कन",
+     "कंकड़",
+     "कागज़ की पर्चियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना क्रम के तथ्य 3 सेकंड में सही बताता है",
+     "partial_hi": "2, 5, 10 के तथ्य तुरंत, बाकी में रुकता या गिनता है",
+     "not_yet_hi": "हर तथ्य के लिए शुरू से गिनता है",
+     "achieved_en": "Answers out-of-order facts correctly within 3 seconds",
+     "partial_en": "Fast on 2, 5, 10; slow or counting on others",
+     "not_yet_en": "Counts from the start for every fact"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "5 × 6 = ___",
+     "answer": "30",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "7 × 8 = ___",
+     "answer": "56",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.3-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "9 × 4 = ___",
+     "answer": "36",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "6 × 3 = ___",
+     "answer": "18",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "8 × 9 = ___",
+     "answer": "72",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 4 repeats a number the lesson or anchor already used: 18"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4e33d8b4b433",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0264,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

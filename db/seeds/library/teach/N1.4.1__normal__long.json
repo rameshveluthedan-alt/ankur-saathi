@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.4.1__normal__long",
+ "skill_id": "N1.4.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने चीज़ों को देखकर बड़ा-छोटा कहा था।' दो पेंसिलें लें, दोनों के सिरे मेज़ पर एक सीध में रखें और कहें: 'देखिए, नीचे से दोनों बराबर रखीं, अब ऊपर देखते हैं: यह पेंसिल लंबी है, यह छोटी।' फिर एक पेंसिल को आगे खिसकाकर दिखाएँ कि सिरे बराबर न हों तो तुलना गलत हो सकती है, और फिर से सीध में रखें।",
+   "we_do_hi": "दो बच्चों को पीठ से पीठ मिलाकर खड़ा करें और समूह से पूछें: 'कौन ऊँचा है?' फिर दो रिबन या रस्सी के टुकड़े दें; बच्चे बताएँ कि सिरे कहाँ मिलाएँ, और शिक्षक उनके कहने पर रखें। हर बार बच्चे पूरा शब्द बोलें: 'यह लंबा है', 'यह छोटा है'।",
+   "you_do_hi": "हर जोड़ी को तीन-तीन जोड़ी चीज़ें दें: दो पेंसिलें, दो तीलियाँ और दो पत्तियाँ। हर जोड़ी सिरे मिलाकर रखे और बताए कि कौन लंबी है और कौन छोटी; चीज़ें न हों तो कॉपी में वर्कशीट की पट्टियाँ बनाकर करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो पट्टियाँ बनाएँ, बाएँ सिरे एक सीध में: पहली 8 खानों की, दूसरी 3 खानों की। कौन-सी लंबी है? 1 या 2, उँगली से दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "सिरे बराबर हों तो लंबी पट्टी पहचान लेता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर एक ऊँचा पेड़ और उसके पास एक छोटा पौधा बनाएँ, दोनों ज़मीन की एक ही रेखा पर। कौन ऊँचा है? पेड़ हो तो 1, पौधा हो तो 2 उँगली दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "ऊँचाई की तुलना ज़मीन से करके ऊँचा पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "समूह के लिए दो-दो पेंसिलें, तीलियाँ और पत्तियाँ (हर जोड़ी को अलग लंबाई वाली एक-एक जोड़ी)",
+   "दो रिबन या रस्सी के टुकड़े, अलग लंबाई के",
+   "बोर्ड पर पट्टियाँ और पेड़ बनाने के लिए चॉक"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "दोनों पट्टियाँ देखें। जो पूछा है, उस पर ✓ लगाएँ।",
+   "instructions_en": "Look at both bars. Tick the one that is asked for.",
+   "required_count": 3,
+   "example_block": null,
+   "observe": {
+    "task_hi": "दो चीज़ों के सिरे एक सीध में रखें और बताएँ कि कौन लंबी है और कौन छोटी।",
+    "task_en": "Place two objects with ends aligned and say which is longer and which is shorter.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "पेंसिलें",
+     "तीलियाँ",
+     "पत्तियाँ",
+     "रस्सी के टुकड़े"
+    ],
+    "look_for": {
+     "achieved_hi": "सिरे खुद मिलाता है और तीन जोड़ियों में सही 'लंबा/छोटा' बोलता है",
+     "partial_hi": "सही बताता है पर सिरे नहीं मिलाता, या शब्द बदलता रहता है",
+     "not_yet_hi": "सिरे मिलाने पर भी लंबी चीज़ नहीं पहचानता",
+     "achieved_en": "Aligns ends unaided and names longer/shorter correctly for three pairs",
+     "partial_en": "Correct but does not align ends, or mixes up the words",
+     "not_yet_en": "Cannot pick the longer object even with ends aligned"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "item_type": "compare_bars",
+     "a": 9,
+     "b": 4,
+     "ask": "longer",
+     "problem_hi": "जो पट्टी लंबी है, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ▬▬▬▬▬▬▬▬▬   |   ख: ▬▬▬▬"
+    },
+    {
+     "number": 2,
+     "item_type": "compare_bars",
+     "a": 3,
+     "b": 7,
+     "ask": "shorter",
+     "problem_hi": "जो पट्टी छोटी है, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ▬▬▬   |   ख: ▬▬▬▬▬▬▬"
+    },
+    {
+     "number": 3,
+     "item_type": "compare_bars",
+     "a": 6,
+     "b": 5,
+     "ask": "longer",
+     "problem_hi": "जो पट्टी लंबी है, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ▬▬▬▬▬▬   |   ख: ▬▬▬▬▬"
+    },
+    {
+     "number": 4,
+     "item_type": "compare_bars",
+     "a": 12,
+     "b": 10,
+     "ask": "shorter",
+     "problem_hi": "जो पट्टी छोटी है, उस पर ✓ लगाएँ।",
+     "answer": "ख",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ▬▬▬▬▬▬▬▬▬▬▬▬   |   ख: ▬▬▬▬▬▬▬▬▬▬"
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (4 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0273,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

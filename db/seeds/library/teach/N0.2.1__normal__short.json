@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.1__normal__short",
+ "skill_id": "N0.2.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'देखें, आज हम 1 से 20 तक गिनती बोलेंगे।' ताली बजाते हुए धीरे-धीरे 1 से 20 तक गिनती बोलें, हर संख्या पर एक ताली। 10 के बाद रुककर बोलें: 'अब ग्यारह, बारह...' और 20 तक पूरा करें।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को 20 कंकड़ या बीज दें। एक बच्चा कंकड़ एक-एक करके रखे और दूसरा 1 से 20 तक गिनती बोले, फिर दोनों बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'बारह, तेरह, चौदह, ...' इसके बाद कौन-सी संख्या आएगी? उतनी उँगलियाँ नहीं, बोर्ड पर लिखे 1 से 20 में से उस संख्या की ओर स्लेट पर लिखकर दिखाएँ।",
+    "expected_hi": "15",
+    "listen_for": [],
+    "shows_hi": "10 के बाद की गिनती का क्रम याद है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'छह, सात, ...' इसके बाद कौन-सी संख्या आएगी? उतनी उँगलियाँ दिखाएँ।",
+    "expected_hi": "8 उँगलियाँ",
+    "listen_for": [],
+    "shows_hi": "1 से 10 तक का क्रम पक्का है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए 20 कंकड़ या बीज गिनकर रखें।",
+   "बोर्ड पर 1 से 20 तक संख्याएँ एक पंक्ति में लिखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "गिनती बोलते हुए हर संख्या पर एक गोला बनाएँ।",
+   "instructions_en": "Say the numbers aloud and draw one circle for each number.",
+   "required_count": 3,
+   "example_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा एक-एक कंकड़ रखते हुए 1 से 20 तक गिनती बोले।",
+    "task_en": "The child says the numbers 1 to 20 in order while placing one pebble at a time.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बीज",
+     "बोतल के ढक्कन",
+     "तीलियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "1 से 20 तक बिना रुके और बिना छोड़े बोलता है",
+     "partial_hi": "20 तक बोलता है पर एक-दो संख्या छोड़ता है या रुककर खुद सुधारता है",
+     "not_yet_hi": "10 के बाद नहीं बोल पाता या बार-बार संख्याएँ छोड़ता है",
+     "achieved_en": "Says 1 to 20 without pausing or skipping",
+     "partial_en": "Reaches 20 but skips one or two numbers or pauses and self-corrects",
+     "not_yet_en": "Stops after 10 or skips numbers often"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "1 से 10 तक गिनती बोलें और हर संख्या पर एक गोला बनाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "11 से 20 तक गिनती बोलें और हर संख्या पर एक डंडी बनाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "1 से 20 तक गिनती बोलें और हर संख्या पर एक ताली बजाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "the progressor lesson (i_do_hi) says «ग्यारह» (= 11) beside the number 10",
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 11"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:02:08Z",
+ "cost_usd": 0.021,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

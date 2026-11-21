@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.2.1__normal__short",
+ "skill_id": "L0.2.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर दो शब्द बोलें और लिखें: 'मोर' और 'चोर'। धीरे बोलें: 'मोर, चोर, दोनों के अंत में ओर की आवाज़ है, ये तुकबंदी वाले शब्द हैं।' फिर 'मोर' और 'पेड़' बोलकर दिखाएँ कि इनका अंत अलग है, इसलिए इनमें तुक नहीं है।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को शब्द-पर्चियाँ दें: थाली, ताली, किताब, आम, काम, घर। बच्चे तीन पर्चियों में से तुक वाले दो शब्द जोड़कर एक-दूसरे को बोलकर सुनाएँ। पर्चियाँ न हों तो बोर्ड के तीन-तीन शब्दों से कॉपी में तुक वाली जोड़ी पर गोला लगाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'गाना'। इसके साथ तुक वाला शब्द कौन-सा है? 1) खाना 2) पेड़। उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि अंत की आवाज़ एक जैसी हो तो शब्द तुक वाले होते हैं।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'नाक, काक'। क्या इनमें तुक है? हाँ हो तो अंगूठा ऊपर, नहीं हो तो अंगूठा नीचे दिखाएँ।",
+    "expected_hi": "हाँ",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो शब्दों के अंत की एक जैसी आवाज़ सुनकर तुक पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की छोटी पर्चियों पर ये शब्द लिखें: थाली, ताली, किताब, आम, काम, घर (हर जोड़ी के लिए एक सेट)।",
+   "बोर्ड पर लिखें: मोर, चोर, पेड़।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर पंक्ति के तीन शब्द बोलकर पढ़ें। तुक वाले दो शब्दों पर गोला लगाएँ।",
+   "instructions_en": "Read the three words in each row aloud. Circle the two words that rhyme.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "तीन शब्द-पर्चियों में से तुक वाले दो शब्द चुनकर जोड़ी बनाएँ और साथी को बोलकर सुनाएँ।",
+    "task_en": "From three word slips, pick the two rhyming words, pair them and say them aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "शब्द लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के तुक वाली जोड़ी सही चुनता है और बोलकर सुनाता है।",
+     "partial_hi": "शब्द दोबारा सुनने पर या मदद से जोड़ी चुनता है।",
+     "not_yet_hi": "तुक वाली जोड़ी नहीं पहचान पाता।",
+     "achieved_en": "Picks the rhyming pair without help and says it aloud.",
+     "partial_en": "Picks the pair only after hearing the words again or with help.",
+     "not_yet_en": "Cannot identify the rhyming pair."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "थाली, ताली, घर",
+     "answer": "थाली, ताली",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "आम, किताब, काम",
+     "answer": "आम, काम",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "बिल्ली, कुत्ता, चिल्ली",
+     "answer": "बिल्ली, चिल्ली",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "दाल, गाय, बाल",
+     "answer": "दाल, बाल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पानी, कमल, रानी",
+     "answer": "पानी, रानी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:00:58Z",
+ "cost_usd": 0.0237,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

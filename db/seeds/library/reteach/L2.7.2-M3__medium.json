@@ -1,0 +1,158 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.7.2-M3__medium",
+ "skill_id": "L2.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.7.2-M3",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने एक विषय पर जुड़े हुए वाक्य लिखे थे।' बोर्ड पर लिखें: 'मेरी गाय सफ़ेद है। मेरी गाय अच्छी है। मेरी गाय प्यारी है।' और बच्चों से कहें: 'देखिए, हर वाक्य एक ही तरह शुरू होता है, बात आगे नहीं बढ़ती।' फिर उसी विषय पर सही लिखें: 'मेरी गाय सफ़ेद है। वह रोज़ हरी घास खाती है। हम उसका दूध पीते हैं।' और गलत वाक्य मिटा दें, बोर्ड पर सिर्फ़ सही वाक्य रहने दें।",
+   "we_do_hi": "बोर्ड पर लिखें: 'मेरा बस्ता नीला है। मेरा बस्ता बड़ा है।' बच्चों से पूछें: 'दूसरा वाक्य किस नए शब्द से शुरू कर सकते हैं?' और मिलकर लिखें: 'उसमें मेरी किताबें रहती हैं।' फिर एक नया विषय 'हमारा पेड़' लें और बच्चों के साथ तीन वाक्य बनाएँ, हर वाक्य की शुरुआत अलग रखें।",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट पर दिए विषय पर पहला वाक्य अभी लिखें, बाकी अपनी जगह पर अगले समय में पूरा करें।' जिन बच्चों के वाक्य एक जैसे शुरू होते थे, उनके पास पहले जाएँ, शांति से, सामान्य चक्कर के बीच। उनसे पूछें: 'अगला वाक्य किस नए शब्द से शुरू करेंगे?'"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: '1) मेरी बिल्ली काली है। मेरी बिल्ली छोटी है।  2) मेरी बिल्ली काली है। वह दूध पीती है।' किसमें बात आगे बढ़ती है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M3",
+      "misconception_name_hi": "एक ही शुरुआत या बात दोहराना",
+      "misconception_name_en": "Repeats the same sentence start or idea",
+      "detect_en": "Three or more sentences begin with the same words, or two sentences say the same thing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मेरा घर छोटा है। मेरा घर सुंदर है।' दूसरे वाक्य की शुरुआत बदलें: 1) मेरा  2) उसके। स्लेट पर 1 या 2 लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M3",
+      "misconception_name_hi": "एक ही शुरुआत या बात दोहराना",
+      "misconception_name_en": "Repeats the same sentence start or idea",
+      "detect_en": "Three or more sentences begin with the same words, or two sentences say the same thing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'मेरी गाय सफ़ेद है। मेरी गाय अच्छी है। मेरी गाय प्यारी है।'",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "ध्यान से पढ़ें और लिखें। हर वाक्य अलग शब्द से शुरू करें।",
+   "instructions_en": "Read carefully and write. Begin each sentence with a different word.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा स्कूल",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य स्कूल के बारे में",
+     "item_en": "All sentences about the school"
+    },
+    {
+     "item_hi": "हर वाक्य की शुरुआत अलग",
+     "item_en": "Each sentence begins differently"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of each sentence"
+    },
+    {
+     "item_hi": "कम से कम एक बार 'और / फिर / क्योंकि'",
+     "item_en": "At least one 'और / फिर / क्योंकि'"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने स्कूल पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा स्कूल"
+    },
+    {
+     "number": 2,
+     "problem_hi": "दूसरे वाक्य की सही शुरुआत चुनकर लिखें: 'मेरा तोता हरा है। ___ मिर्च खाता है।' (मेरा तोता हरा / वह)",
+     "answer": "वह",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "किस वाक्य में बात दोहराई गई है? उसका अंक लिखें: 1) आम मीठा है। आम पीला है। आम रसीला है।  2) आम मीठा है। हम उसे गर्मी में खाते हैं।",
+     "answer": "1",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "दोनों वाक्य जोड़कर लिखें: 'राजू ने खाना खाया।' 'राजू सो गया।' (और / फिर)",
+     "answer": "राजू ने खाना खाया फिर सो गया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "अतिरिक्त: अपने दोस्त पर 3 वाक्य लिखें, हर वाक्य की शुरुआत अलग रखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 5 repeats wording from the lesson or anchor: «हर वाक्य की शुरुआत अलग»"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "bba6f0be553e",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0295,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

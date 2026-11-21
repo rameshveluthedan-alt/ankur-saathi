@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.6.1__normal__short",
+ "skill_id": "N3.6.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर एक दण्ड आलेख बनाएँ: फल - आम 6, केला 4, सेब 8, अमरूद 3 (नीचे फलों के नाम, बाईं ओर 0 से 10 तक संख्याएँ)। उँगली से आम के दण्ड के ऊपरी सिरे से बाईं ओर की संख्या तक जाकर दिखाएँ: 'देखिए, आम का दण्ड 6 तक पहुँचता है, तो आम 6 हैं।' फिर बताएँ: 'सबसे ऊँचा दण्ड सबसे ज़्यादा, सबसे छोटा दण्ड सबसे कम।' इसके बाद एक प्रश्न पूछें: 'केला कितने हैं?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' वर्कशीट के ऊपर बना दण्ड आलेख देखकर उत्तर लिखें। जो पूरा न कर पाएँ, वे बाकी काम अपनी जगह पर अगले समय में पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर दण्ड आलेख बनाएँ: पक्षी - तोता 5, मैना 7, कौआ 2। मैना के दण्ड को देखकर बताएँ: मैना कितनी हैं?",
+    "expected_hi": "7",
+    "listen_for": [],
+    "shows_hi": "बच्चा दण्ड के सिरे से संख्या पढ़ पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "इसी आलेख में: सबसे कम पक्षी कौन-से हैं? 1) तोता 2) कौआ",
+    "expected_hi": "2) कौआ",
+    "listen_for": [],
+    "shows_hi": "बच्चा दण्डों की ऊँचाई की तुलना कर पाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर फलों का दण्ड आलेख बनाएँ: आम 6, केला 4, सेब 8, अमरूद 3 (बाईं ओर 0 से 10 तक संख्याएँ)।",
+   "दिखाने के प्रश्नों के लिए पक्षियों का दण्ड आलेख बनाने की जगह रखें: तोता 5, मैना 7, कौआ 2।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "नीचे का दण्ड आलेख देखें। यह बताता है कि बच्चों ने कौन-सा खेल पसंद किया: क्रिकेट 9, कबड्डी 5, खो-खो 3, फुटबॉल 6। आलेख पढ़कर हर सवाल का उत्तर लिखें।",
+   "instructions_en": "Look at the bar graph of favourite games: Cricket 9, Kabaddi 5, Kho-kho 3, Football 6. Read the graph and answer each question.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "कबड्डी पसंद करने वाले बच्चे कितने हैं? ___",
+     "answer": "5",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "किस खेल का दण्ड सबसे ऊँचा है? ___",
+     "answer": "क्रिकेट",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "क्रिकेट पसंद करने वाले बच्चे, खो-खो वालों से कितने ज़्यादा हैं? ___",
+     "answer": "6",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "फुटबॉल पसंद करने वाले बच्चे कितने हैं? ___",
+     "answer": "6",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "किस खेल का दण्ड सबसे छोटा है? ___",
+     "answer": "खो-खो",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "कबड्डी और खो-खो पसंद करने वाले कुल कितने बच्चे हैं? ___",
+     "answer": "8",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "ef3a28597792",
+ "created": "2026-11-21T06:04:22Z",
+ "cost_usd": 0.0199,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

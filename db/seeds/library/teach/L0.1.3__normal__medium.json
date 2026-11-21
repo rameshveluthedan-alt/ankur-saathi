@@ -1,0 +1,115 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.1.3__normal__medium",
+ "skill_id": "L0.1.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों को एक छोटी कहानी तीन चरणों में सुनाएँ, हर चरण पर एक उँगली उठाकर: 'पहले चिड़िया ने तिनके इकट्ठे किए। फिर उसने घोंसला बनाया। उसके बाद उसने अंडे दिए।' 'पहले', 'फिर' और 'उसके बाद' पर ज़ोर देकर बोलें। बच्चों से कहें: 'देखिए, कहानी एक के बाद एक चलती है।'",
+   "we_do_hi": "बच्चों से पूछें: 'सुबह उठकर आप क्या करते हैं?' और उनके साथ मिलकर तीन चरण बनाएँ: 'पहले उठे, फिर मुँह धोया, उसके बाद नाश्ता किया।' हर चरण पर बच्चे एक उँगली उठाएँ। दो बच्चों से अगला चरण 'फिर' जोड़कर बुलवाएँ।",
+   "you_do_hi": "बच्चों की जोड़ियाँ बनाएँ और हर जोड़ी को तीन चीज़ें दें, जैसे एक पत्ती, एक कंकड़ और एक बोतल का ढक्कन; बच्चे हर चीज़ रखते हुए अपनी कहानी का एक चरण बोलें: 'आज स्कूल आने से पहले क्या-क्या हुआ, साथी को सुनाएँ।' चीज़ें न हों तो वर्कशीट का सवाल 1 करवाएँ, बाकी काम बच्चे अगले समय अपनी जगह पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'पहले बीज बोया। फिर पानी डाला। उसके बाद पौधा उगा।' पौधा कब उगा? उँगलियों पर दिखाएँ: पहले, दूसरे या तीसरे चरण में?",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा घटनाओं का क्रम याद रखता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 1) 'पहले नहाए, फिर कपड़े पहने।' 2) 'पहले कपड़े पहने, फिर नहाए।' कौन सा सही क्रम है? 1 या 2 उँगली दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा सही क्रम पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए तीन चीज़ें इकट्ठी करें: एक पत्ती, एक कंकड़, एक बोतल का ढक्कन।"
+  ],
+  "worksheet": {
+   "instructions_hi": "साथी को कहानी सुनाएँ। 'पहले', 'फिर', 'उसके बाद' बोलें।",
+   "instructions_en": "Tell the story to a partner using 'first', 'then', 'after that'.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "कहानी सुनाने का उदाहरण:",
+    "example_text": "पहले बीज बोया। फिर पानी डाला। उसके बाद पौधा उगा।"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा तीन चीज़ें एक-एक करके रखते हुए अपनी सुबह की घटना तीन चरणों में साथी को सुनाए।",
+    "task_en": "The child places three objects one by one while narrating their morning in three steps to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "पत्तियाँ",
+     "कंकड़",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "तीन या अधिक चरण सही क्रम में, 'फिर' जोड़कर सुनाता है।",
+     "partial_hi": "दो-तीन चरण सुनाता है पर क्रम उलझा या 'फिर' नहीं बोलता।",
+     "not_yet_hi": "केवल एक घटना या एक नाम बताता है।",
+     "achieved_en": "Narrates 3+ steps in order using 'then'.",
+     "partial_en": "Narrates 2-3 steps but jumbled or without connectors.",
+     "not_yet_en": "Names only one event or character."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को सुनाएँ: आज सुबह उठकर आपने क्या-क्या किया? तीन चरण बोलें।",
+     "answer": "तीन चरण सही क्रम में, जोड़ने वाले शब्दों के साथ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सही क्रम बोलें: पौधा उगा, बीज बोया, पानी डाला।",
+     "answer": "बीज बोया, पानी डाला, पौधा उगा",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सही क्रम बोलें: खाना खाया, हाथ धोए, थाली उठाई।",
+     "answer": "हाथ धोए, खाना खाया, थाली उठाई",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0255,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

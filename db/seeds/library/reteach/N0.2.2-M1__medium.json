@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N0.2.2-M1__medium",
+ "skill_id": "N0.2.2",
+ "domain_id": "numeracy",
+ "mode": "N0.2.2-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'पिछली बार हमने चीज़ें गिनना सीखा था।' मेज़ पर 6 कंकड़ एक पंक्ति में रखें और गलत गिनकर दिखाएँ: एक कंकड़ को दो बार छूकर 'एक, दो, तीन, चार, पाँच, छह, सात' गिनें, फिर पूछें 'क्या यहाँ सात हैं? देखिए, इस कंकड़ को दो बार गिन लिया।' अब वही 6 कंकड़ फिर गिनें, हर कंकड़ को गिनकर एक तरफ़ खिसकाएँ, गलत गिनती वाली बात छोड़ दें और कहें 'हर चीज़ एक बार, गिनी हुई चीज़ अलग रख दें: छह।'",
+   "we_do_hi": "8 ढक्कन रखें और एक ढक्कन को दो बार गिनकर 'नौ' कहें; बच्चों से पूछें 'कौन-सा ढक्कन दो बार गिना गया?' और साथ में हर ढक्कन खिसकाते हुए ठीक करें। इसके बाद 5 बटन रखें, फिर से एक बटन दो बार गिनें और बच्चे ग़लती पकड़ें। अंत में 9 तीलियाँ सब साथ में, एक-एक खिसकाकर गिनें और पूछें 'कुल कितनी?'",
+   "you_do_hi": "हर जोड़ी को कंकड़, बटन और बोतल के ढक्कन मिलाकर दें; एक बच्चा गिनते हुए हर चीज़ खिसकाए, दूसरा देखे कि कोई चीज़ दो बार न गिनी जाए, फिर बारी बदलें। चीज़ें न हों तो वर्कशीट का पहला सवाल शुरू करें; बाकी काम अगले समय में अपनी जगह पर पूरा करें। पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार दो बार गिना था। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 7 गोले बनाएँ: ○ ○ ○ ○ ○ ○ ○। कितने गोले हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M1",
+      "misconception_name_hi": "दोहरी गिनती (वस्तु को दो बार छूता है)",
+      "misconception_name_en": "Double-counting (touches object twice)",
+      "detect_en": "Reported total is consistently higher than actual count; observed tagging shows repeated touches on same object",
+      "wrong_answer_hi": "8"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 4 तारे बनाएँ: ★ ★ ★ ★। गिनती में एक तारे पर दो बार उँगली रखें और बोलें 'पाँच'। सही या गलत? सही हो तो 1 उँगली, गलत हो तो 2 उँगलियाँ दिखाएँ।",
+    "expected_hi": "गलत (2 उँगलियाँ)",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M1",
+      "misconception_name_hi": "दोहरी गिनती (वस्तु को दो बार छूता है)",
+      "misconception_name_en": "Double-counting (touches object twice)",
+      "detect_en": "Reported total is consistently higher than actual count; observed tagging shows repeated touches on same object",
+      "wrong_answer_hi": "सही (1 उँगली)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "10 कंकड़, 10 बटन, 10 बोतल के ढक्कन और 10 तीलियाँ: प्रदर्शन के लिए एक सेट, और हर जोड़ी के लिए 10 चीज़ों का एक मिला-जुला ढेर।",
+   "बोर्ड पर पहले से जगह छोड़ें जहाँ गोले, तारे और डंडियाँ बनानी हैं।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को एक बार गिनें। गिनी हुई चीज़ पर छोटा निशान लगाएँ, फिर कुल संख्या लिखें या उतनी गोलियाँ बनाएँ।",
+   "instructions_en": "Count each object once. Tick each one as you count it, then write how many or draw that many.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चे के सामने 8 चीज़ें रखें। बच्चा हर चीज़ को छूकर एक तरफ़ खिसकाते हुए गिने, फिर पूछें 'कुल कितनी हैं?'",
+    "task_en": "Place 8 objects before the child. The child counts by touching and moving each one aside, then is asked 'How many are there?'",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "तीलियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "हर चीज़ एक बार छूकर खिसकाता है और पूछने पर 'आठ' बताता है।",
+     "partial_hi": "याद दिलाने पर ठीक गिनता है, या 7 के बाद गिनती भूलता है।",
+     "not_yet_hi": "एक ही चीज़ दो बार गिनता है या चीज़ें छोड़ देता है।",
+     "achieved_en": "Touches and moves each object once and says 'eight' when asked.",
+     "partial_en": "Counts right only with a reminder, or loses track after 7.",
+     "not_yet_en": "Counts an object twice or skips objects."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोर्ड पर बने ● ● ● ● ● गिनें और उतनी गोलियाँ अपनी कॉपी में बनाएँ।",
+     "answer": "5",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बोर्ड पर बने △ △ △ △ △ △ △ पर एक-एक निशान लगाते हुए गिनें, फिर कुल संख्या की उतनी डंडियाँ बनाएँ।",
+     "answer": "7",
+     "row_type": null,
+     "diagnostic_for_misconception": "N0.2.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "बोर्ड पर बने ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ को एक-एक करके काटते हुए गिनें, फिर कुल संख्या की उतनी गोलियाँ बनाएँ।",
+     "answer": "10",
+     "row_type": null,
+     "diagnostic_for_misconception": "N0.2.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बोर्ड पर बने □ □ □ □ □ □ गिनें और उतनी डंडियाँ बनाएँ।",
+     "answer": "6",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बोर्ड पर बने ○ ○ ○ ○ ○ ○ ○ ○ ○ गिनें और उतने गोले बनाएँ।",
+     "answer": "9",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "07b4e9cb8067",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0325,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

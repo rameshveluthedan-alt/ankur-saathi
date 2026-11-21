@@ -1,0 +1,148 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.5-M1__short",
+ "skill_id": "N3.3.5",
+ "domain_id": "numeracy",
+ "mode": "N3.3.5-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने बराबर बाँटना सीखा था। बोर्ड पर लिखें: 18 ÷ 3 = 15, और बच्चों से कहें: 'देखिए, यहाँ 18 में से 3 घटा दिया गया है। भाग में घटाना नहीं, बराबर समूह बनाने होते हैं।' अब 18 तीलियों से 3-3 के समूह बनाकर गिनें: 'छह समूह बने, इसलिए 18 ÷ 3 = 6।' गलत पंक्ति मिटा दें, ताकि बोर्ड पर केवल सही तरीका रहे। अंत में समूह से एक जल्दी प्रश्न पूछें: '12 ÷ 4 में 4-4 के कितने समूह बनेंगे?'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो बच्चे जल्दी ख़त्म करें, वे बाकी सवाल करें। जो सवाल रह जाएँ, उन्हें बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें। हर बच्चे के पास सामान्य तरीके से जाएँ, पर पहले उन बच्चों के पास शांति से जाएँ जिन्होंने भाग की जगह घटाया था। यदि दिखाएँ-प्रश्न में एक-चौथाई से अधिक बच्चों के उत्तर गलत हों, तो वर्कशीट शुरू करने से पहले वही चरण तीलियों से फिर से सिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "35 ÷ 5",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M1",
+      "misconception_name_hi": "भाग को घटाव समझना",
+      "misconception_name_en": "Confuses division with subtraction",
+      "detect_en": "Answer equals dividend minus divisor consistently",
+      "wrong_answer_hi": "30"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "28 ÷ 7: 4 या 21?",
+    "expected_hi": "4",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M1",
+      "misconception_name_hi": "भाग को घटाव समझना",
+      "misconception_name_en": "Confuses division with subtraction",
+      "detect_en": "Answer equals dividend minus divisor consistently",
+      "wrong_answer_hi": "21"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "18 तीलियाँ गिनकर अपने पास रखें, बोर्ड पर दिखाने के लिए।",
+   "बोर्ड पर लिखने के लिए तैयार रखें: 18 ÷ 3 = 15 (गलत पंक्ति, जिसे बाद में मिटाना है)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में बराबर समूह बनाकर भाग करें। उत्तर खाली जगह पर लिखें।",
+   "instructions_en": "Divide by making equal groups. Write the answer in the blank.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "20 ÷ 5 = ___",
+    "answer": "4",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "16 ÷ 2 = ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "45 ÷ 9 = ___",
+     "answer": "5",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "54 ÷ 6 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "30 ÷ 10 = ___",
+     "answer": "3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "32 ÷ 8 = ___",
+     "answer": "4",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "70 लड्डू 10 डिब्बों में बराबर बाँटें। हर डिब्बे में कितने लड्डू होंगे?",
+     "answer": "7",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "5cccd02a6c69",
+ "created": "2026-11-21T05:59:28Z",
+ "cost_usd": 0.0334,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,145 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.2__normal__medium",
+ "skill_id": "N0.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "मेज़ पर 7 कंकड़ एक लाइन में रखें। हर कंकड़ को छूकर एक तरफ़ खिसकाते हुए धीरे-धीरे गिनें: 'एक, दो, तीन... सात'। फिर कहें: 'देखिए, आख़िरी संख्या सात है, इसलिए कुल सात कंकड़ हैं।'",
+   "we_do_hi": "बच्चों के सामने 9 ढक्कन रखें। एक-एक बच्चा एक ढक्कन छूकर खिसकाए और सब मिलकर उसकी संख्या बोलें, ताकि कोई ढक्कन छूटे नहीं और दो बार न गिना जाए। अंत में पूछें: 'कुल कितने ढक्कन हैं?' और बच्चे फिर से गिने बिना बताएँ।",
+   "you_do_hi": "हर जोड़ी को कंकड़, बटन और बोतल के ढक्कन मिलाकर 10 तक दें। एक बच्चा कुछ चीज़ें रखे, दूसरा हर चीज़ को खिसकाकर गिने और बताए 'कुल कितनी हैं', फिर दोनों बारी बदलें; बाकी काम बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 6 गोले बनाएँ: ○ ○ ○ ○ ○ ○। हर गोले को उँगली से देखकर गिनें। कितने गोले हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "6",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M1",
+      "misconception_name_hi": "दोहरी गिनती (वस्तु को दो बार छूता है)",
+      "misconception_name_en": "Double-counting (touches object twice)",
+      "detect_en": "Reported total is consistently higher than actual count; observed tagging shows repeated touches on same object",
+      "wrong_answer_hi": "8"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 8 तारे बनाएँ, दो पंक्तियों में नहीं, एक लंबी लाइन में: ★ ★ ★ ★ ★ ★ ★ ★। कितने तारे हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "8",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M2",
+      "misconception_name_hi": "गिनते समय वस्तुओं को छोड़ना",
+      "misconception_name_en": "Skipping objects while counting",
+      "detect_en": "Reported total is consistently lower; observed counting shows objects not tagged",
+      "wrong_answer_hi": "6"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "7 कंकड़ और 9 बोतल के ढक्कन I Do और We Do के लिए अलग रखें।",
+   "हर जोड़ी के लिए कंकड़, बटन और बोतल के ढक्कन मिलाकर 10 चीज़ों का एक ढेर।",
+   "बोर्ड पर बनाने के लिए गोले, तारे और डिब्बे की जगह खाली रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को एक-एक करके छूकर गिनें। गिनी हुई चीज़ पर छोटा निशान लगाएँ।",
+   "instructions_en": "Count each object one by one, touching it. Put a small mark on each object you have counted.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चे के सामने 10 तक चीज़ें रखें। बच्चा हर चीज़ को छूकर एक तरफ़ खिसकाते हुए गिने, फिर पूछने पर बिना दोबारा गिने बताए कि कुल कितनी हैं।",
+    "task_en": "Place up to 10 objects before the child. The child counts each one by touching and moving it aside, then says how many there are in all without recounting.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "10 चीज़ें हर एक को एक बार छूकर सही गिनता है और कुल संख्या बताता है",
+     "partial_hi": "10 तक गिनता है पर कोई चीज़ छूटती है या दोबारा गिनता है, या 7 के बाद गड़बड़ाता है",
+     "not_yet_hi": "5 के बाद एक-एक करके नहीं गिन पाता",
+     "achieved_en": "Counts 10 objects touching each once and states the total",
+     "partial_en": "Counts to 10 but skips or double-counts, or loses track after 7",
+     "not_yet_en": "Cannot count beyond 5 one by one"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोर्ड से कॉपी में 5 गोले बनाएँ। हर गोले पर एक-एक निशान लगाते हुए गिनें।",
+     "answer": "",
+     "item_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "शिक्षक बोर्ड पर कुछ तारे बनाएँ। हर तारे पर एक निशान लगाएँ, कोई तारा दो बार नहीं।",
+     "answer": "",
+     "item_type": null,
+     "diagnostic_for_misconception": "N0.2.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "शिक्षक बोर्ड पर एक लाइन में कुछ डिब्बे बनाएँ। हर डिब्बे पर निशान लगाएँ, कोई डिब्बा न छूटे।",
+     "answer": "",
+     "item_type": null,
+     "diagnostic_for_misconception": "N0.2.2-M2"
+    },
+    {
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "★",
+      "count": 7
+     },
+     "b": {
+      "s": "★",
+      "count": 4
+     },
+     "ask": "more",
+     "problem_hi": "जिस डिब्बे में ज़्यादा हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "number": 4,
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ★★★★★★★   |   ख: ★★★★"
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (1 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.0282,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

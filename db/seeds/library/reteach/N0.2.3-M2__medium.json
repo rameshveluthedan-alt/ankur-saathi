@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N0.2.3-M2__medium",
+ "skill_id": "N0.2.3",
+ "domain_id": "numeracy",
+ "mode": "N0.2.3-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने 1 से 9 तक के अंक पहचाने थे। बोर्ड पर 2 बड़ा लिखें, उस पर उँगली रखकर कहें: 'कुछ बच्चे इसे पाँच पढ़ते हैं, यह गलत है', फिर ऊपर की गोलाई और नीचे की सीधी लकीर दिखाकर कहें: 'यह दो है, नीचे सीधी लकीर, जैसे बत्तख़ पानी पर बैठी हो।' इसके पास 5 लिखें, ऊपर की सीधी टोपी और नीचे का पेट दिखाकर कहें: 'यह पाँच है, ऊपर टोपी, नीचे गोल पेट', फिर गलत पढ़ने वाली बात मिटा दें और बोर्ड पर केवल सही बने 2 और 5 रहने दें।",
+   "we_do_hi": "बोर्ड पर 5 लिखें और पूछें: 'इसे दो कहा जाए तो सही है या गलत?' बच्चे टोपी पहचानकर सुधारें; फिर 2 लिखकर पूछें: 'इसे पाँच कहा जाए तो?' बच्चे सीधी लकीर देखकर सुधारें। अंत में बोर्ड पर 7 और 2 लिखें, 2 की ओर इशारा करके बच्चों के साथ नाम बोलें और हवा में उँगली से उसे बनाएँ।",
+   "you_do_hi": "हर जोड़ी को अंक कार्ड दें (या कंकड़ और पत्तियों से ज़मीन पर 2 और 5 बनवाएँ); शिक्षक एक अंक बोलें, बच्चे वह कार्ड उठाएँ। जिन बच्चों से कल यह भूल हुई थी, उनके पास पहले शांति से जाएँ, सामान्य घूमने के क्रम में; बाकी काम बच्चे अगले समय अपनी जगह पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 1) 2 2) 5। अब पूछें: 'पाँच कौन-सा है? उँगलियों पर 1 या 2 दिखाएँ।'",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M2",
+      "misconception_name_hi": "2 और 5 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 2 and 5",
+      "detect_en": "Reads 2 as 5 or vice versa; pattern is consistent across sessions",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बड़ा लिखें: 2। पूछें: 'यह कौन-सा अंक है? उतनी उँगलियाँ दिखाएँ।'",
+    "expected_hi": "दो उँगलियाँ",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M2",
+      "misconception_name_hi": "2 और 5 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 2 and 5",
+      "detect_en": "Reads 2 as 5 or vice versa; pattern is consistent across sessions",
+      "wrong_answer_hi": "पाँच उँगलियाँ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "1 से 9 तक के अंक कार्ड, हर जोड़ी के लिए एक सेट (कागज़ की पर्चियों पर बड़े अंक लिखें)",
+   "कार्ड न हों तो हर जोड़ी के लिए एक मुट्ठी कंकड़ या पत्तियाँ"
+  ],
+  "worksheet": {
+   "instructions_hi": "अंक पहचानें और बताया गया काम करें।",
+   "instructions_en": "Recognise the numerals and do the task.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चे के सामने 1 से 9 के कार्ड बिना क्रम के रखें; शिक्षक अंक बोलें, बच्चा वही कार्ड उठाए, फिर 2 और 5 कार्ड दिखाकर बच्चा उनका नाम बोले।",
+    "task_en": "Lay numeral cards 1-9 in random order; the teacher names a numeral and the child picks it, then the child names the 2 and 5 cards.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अंक कार्ड",
+     "कंकड़",
+     "पत्तियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी 9 अंक सही उठाता है, 2 और 5 सही बोलता है",
+     "partial_hi": "6 से 8 अंक सही, 2 और 5 या 6 और 9 में अटकता है",
+     "not_yet_hi": "6 से कम अंक पहचानता है",
+     "achieved_en": "Picks all 9 numerals, names 2 and 5 correctly",
+     "partial_en": "6-8 correct, mixes 2/5 or 6/9",
+     "not_yet_en": "Fewer than 6 correct"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोर्ड पर लिखें: 3 7 4। तीन पर गोला लगाएँ।",
+     "answer": "3",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बोर्ड पर लिखें: 5 2 8। दो पर गोला लगाएँ।",
+     "answer": "2",
+     "row_type": null,
+     "diagnostic_for_misconception": "N0.2.3-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "बोर्ड पर लिखें: 2 5 1। पाँच पर गोला लगाएँ।",
+     "answer": "5",
+     "row_type": null,
+     "diagnostic_for_misconception": "N0.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बोर्ड पर लिखें: 9 6 1। छह पर गोला लगाएँ।",
+     "answer": "6",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बोर्ड पर लिखें: 8 3 1। आठ पर गोला लगाएँ।",
+     "answer": "8",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 1: the question states its own answer (3)",
+   "worksheets.progressor (observed) problem 2: the question states its own answer (2)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (5)",
+   "worksheets.progressor (observed) problem 4: the question states its own answer (6)",
+   "worksheets.progressor (observed) problem 5: the question states its own answer (8)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6d6a264438ee",
+ "created": "2026-11-21T05:57:58Z",
+ "cost_usd": 0.0283,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

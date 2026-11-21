@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.6.1__normal__long",
+ "skill_id": "L2.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कहानी पढ़कर बातें बताईं थीं।' बोर्ड पर लिखें: 'मीना सुबह बाग में गई। उसने पेड़ पर एक तोता देखा।' धीरे पढ़कर पूछें 'मीना कहाँ गई?', फिर 'बाग' शब्द पर उंगली रखकर दिखाएँ कि उत्तर पाठ में ही लिखा है।",
+   "we_do_hi": "बोर्ड पर लिखें: 'रवि शाम को नदी किनारे गया। वहाँ उसे एक मछली दिखी।' बच्चे साथ पढ़ें, फिर पूछें 'कौन गया? कब गया? क्या दिखा?' और हर उत्तर के लिए बच्चे पाठ का शब्द ढूँढकर बताएँ।",
+   "you_do_hi": "बच्चे वर्कशीट का अनुच्छेद अपने मन में पढ़ें। पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि बच्चे उत्तर पाठ से ढूँढ रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'गीता ने दुकान से दो केले खरीदे।' पूछें: गीता ने कितने केले खरीदे? स्लेट पर संख्या लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.1-M1",
+      "misconception_name_hi": "पाठ सही पढ़ता है पर समझता नहीं",
+      "misconception_name_en": "Decodes text correctly but does not understand what was read",
+      "detect_en": "CWPM and accuracy are adequate, but answers to literal questions are wrong or \"I don't know.\" This is the classic \"word caller\" pattern.",
+      "wrong_answer_hi": "पता नहीं"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सोनू रात को छत पर सोया।' पूछें: सोनू कहाँ सोया? 1) छत पर 2) कमरे में। उंगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.1-M1",
+      "misconception_name_hi": "पाठ सही पढ़ता है पर समझता नहीं",
+      "misconception_name_en": "Decodes text correctly but does not understand what was read",
+      "detect_en": "CWPM and accuracy are adequate, but answers to literal questions are wrong or \"I don't know.\" This is the classic \"word caller\" pattern.",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do के दो छोटे अनुच्छेद पहले से लिख लें।",
+   "हर बच्चे के लिए एक वर्कशीट और स्लेट।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद ध्यान से पढ़ें। फिर प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the passage carefully. Then answer the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "राजू का मेला",
+    "text": "रविवार को राजू अपने पापा के साथ मेले में गया। मेले में बहुत भीड़ थी। राजू ने एक लाल गुब्बारा लिया। पापा ने उसे गरम जलेबी खिलाई। शाम को दोनों घर लौट आए।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "राजू किसके साथ मेले में गया?",
+     "answer": "पापा के साथ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "राजू ने किस रंग का गुब्बारा लिया?",
+     "answer": "लाल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "राजू मेले में किस दिन गया?",
+     "answer": "रविवार",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पापा ने राजू को क्या खिलाया?",
+     "answer": "जलेबी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "मेले में क्या बहुत थी?",
+     "answer": "भीड़",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "दोनों घर कब लौटे?",
+     "answer": "शाम को",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7b7d682a3d04",
+ "created": "2026-11-21T06:10:44Z",
+ "cost_usd": 0.0205,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

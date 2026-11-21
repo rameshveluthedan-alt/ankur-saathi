@@ -1,0 +1,138 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.4-M2__long",
+ "skill_id": "N3.3.4",
+ "domain_id": "numeracy",
+ "mode": "N3.3.4-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने गुणा में हासिल ले जाना सीखा था; आज देखेंगे कि दहाई का अंक भी गुणा होता है, जोड़ा नहीं जाता। बोर्ड पर 26 × 3 लिखें और पहले गलत तरीका दिखाएँ: 'इकाई 6 × 3 = 18, 8 लिखा, 1 हासिल; दहाई 2 + 3 = 5, हासिल मिलाकर 6, उत्तर 68। देखिए, यहाँ दहाई को जोड़ दिया, जबकि दहाई का भी गुणा होना चाहिए।' फिर उसी सवाल को सही करें: 'दहाई 2 × 3 = 6, हासिल 1 मिलाकर 7, उत्तर 78।' इसके बाद गलत हल मिटा दें, ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर दो गलत हल लिखें: 15 × 4 = 70 और 32 × 3 = 66। बच्चों के साथ हर हल में ढूँढें कि दहाई का अंक कहाँ जोड़ा गया है, और उसे गुणा करके ठीक करें: 15 × 4 = 60 और 32 × 3 = 96। फिर एक नया सवाल 18 × 5 सबके साथ हल करें; हर कदम पर पूछें: 'दहाई का अंक जोड़ें या गुणा करें?'",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक सबसे पहले उन बच्चों की कॉपी देखें जिन्होंने पिछली बार दहाई को जोड़ा था; यह सामान्य चक्कर का ही हिस्सा हो और किसी का नाम न लिया जाए। यदि दिखाएँ-प्रश्न में समूह के एक-चौथाई से अधिक बच्चों के उत्तर गलत हों, तो स्वतंत्र अभ्यास से पहले वही कदम छड़ियों से दोबारा सिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 27 × 3",
+    "expected_hi": "81",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M2",
+      "misconception_name_hi": "एक अंक का गुणा करने की बजाय जोड़ना",
+      "misconception_name_en": "Adds instead of multiplying one digit",
+      "detect_en": "Ones column is correct (multiplied) but tens result looks like addition rather than multiplication",
+      "wrong_answer_hi": "71"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "46 × 2 का उत्तर क्या है: 1) 92 2) 72? उँगली पर दिखाएँ।",
+    "expected_hi": "1) 92",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M2",
+      "misconception_name_hi": "एक अंक का गुणा करने की बजाय जोड़ना",
+      "misconception_name_en": "Adds instead of multiplying one digit",
+      "detect_en": "Ones column is correct (multiplied) but tens result looks like addition rather than multiplication",
+      "wrong_answer_hi": "2) 72"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 26 × 3 (मैं करके दिखाने के लिए), गलत हल 15 × 4 = 70 और 32 × 3 = 66, और नया सवाल 18 × 5",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो",
+   "दोबारा सिखाने की ज़रूरत पड़े तो दस-दस के बंडल वाली छड़ियाँ पास रखें"
+  ],
+  "worksheet": {
+   "instructions_hi": "गुणा करें। पहले इकाई का गुणा करें, फिर दहाई का अंक भी गुणा करें और हासिल जोड़ें। हासिल ऊपर वाले बॉक्स में लिखें।",
+   "instructions_en": "Multiply. First multiply the ones, then multiply the tens digit too and add the carry. Write the carry in the top box.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "16 × 4 = ___",
+    "answer": "64",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "1",
+    "row1_o": "6",
+    "row2_t": "",
+    "row2_o": "4",
+    "answer_t": "6",
+    "answer_o": "4"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "12 × 4",
+     "answer": "48",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "38 × 2",
+     "answer": "76",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N3.3.4-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "29 × 3 = ___",
+     "answer": "87",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.4-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "14 × 6 = ___",
+     "answer": "84",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "47 × 2 = ___",
+     "answer": "94",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक पेटी में 13 आम हैं। ऐसी 7 पेटियों में कुल कितने आम हैं?",
+     "answer": "91",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a944adb235bf",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0375,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,121 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.5.1-M3__short",
+ "skill_id": "L2.5.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.5.1-M3",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने अनुच्छेद को रुककर, समझकर पढ़ना सीखा था।' बोर्ड पर लिखें: 'मीना ने पेड़ पर मीठे आम देखे।' पहले इसे बहुत तेज़ पढ़ें, 'मीठे' की जगह 'मीठा' और 'पर' छोड़कर, फिर पूछें: 'क्या कोई शब्द छूटा या बदला?' इसके बाद वही वाक्य उँगली हर शब्द के नीचे रखकर, ठीक गति से, सही मात्राओं के साथ पढ़ें, और गलत पढ़ने वाली बात भूलने के लिए कहें: 'अब हम हर शब्द को देखकर पढ़ते हैं।'",
+   "we_do_hi": "",
+   "you_do_hi": "वर्कशीट निकालें। इस छोटे ब्लॉक में बच्चे पहले कठिन शब्द साथी को धीरे पढ़कर सुनाएँ, फिर अनुच्छेद एक बार उँगली रखकर धीमी आवाज़ में पढ़ें; बाकी दो बार पढ़ना, जोड़ी में पढ़ना और प्रश्न 1 से 3 बच्चे अगले ब्लॉक में अपनी जगह पर करें। पहले उन बच्चों के पास शांति से जाएँ जो शब्द छोड़ते या बदलते थे। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'बिल्ली दूध पीती है।' फिर इसे ऐसे पढ़कर सुनाएँ: 'बिल्ली दूध पीता है।' कौन-सा शब्द बदला? उसकी संख्या लिखें।",
+    "expected_hi": "3",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M3",
+      "misconception_name_hi": "तेज़ पढ़ता है पर बार-बार गलतियाँ (गति शुद्धता पर भारी)",
+      "misconception_name_en": "Reads fast but with frequent errors (speed over accuracy)",
+      "detect_en": "CWPM ≥40 but accuracy below 85%; errors are substitutions and skips rather than slow decoding",
+      "wrong_answer_hi": "कोई नहीं"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'गाय खेत में घास चरती है।' फिर पढ़कर सुनाएँ: 'गाय खेत घास चरती है।' कौन-सा शब्द छूटा? 1) में 2) घास",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M3",
+      "misconception_name_hi": "तेज़ पढ़ता है पर बार-बार गलतियाँ (गति शुद्धता पर भारी)",
+      "misconception_name_en": "Reads fast but with frequent errors (speed over accuracy)",
+      "detect_en": "CWPM ≥40 but accuracy below 85%; errors are substitutions and skips rather than slow decoding",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: 'मीना ने पेड़ पर मीठे आम देखे।'",
+   "समूह के हर बच्चे के लिए पढ़ने की वर्कशीट की एक प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद को तीन बार धीमी आवाज़ में पढ़ें, हर शब्द के नीचे उँगली रखकर, और हर बार एक खाने में सही का निशान लगाएँ। फिर जोड़ी में पढ़ें: एक पढ़े, साथी उँगली से देखे और जिस शब्द में मदद लगी उस पर निशान लगाए। अंत में प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the hard words aloud to a partner. Read the passage three times softly with a finger under each word, ticking a box each time. Then read in pairs: one reads, the partner follows with a finger and marks any word that needed help. Then answer the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "मीना का बगीचा",
+    "text": "मीना के घर के पीछे एक छोटा बगीचा है। उसमें गुलाब और गेंदे के फूल खिलते हैं। हर सुबह मीना पौधों को पानी देती है। एक दिन उसने देखा कि एक तितली फूल पर बैठी है। मीना बहुत खुश हुई।"
+   },
+   "sheet_kind": "fluency",
+   "warmup_words": [
+    "बगीचा",
+    "गुलाब",
+    "गेंदे",
+    "खिलते",
+    "पौधों",
+    "तितली",
+    "सुबह"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मीना हर सुबह पौधों को क्या देती है?",
+     "answer": "पानी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बगीचे में कौन-से दो फूल खिलते हैं?",
+     "answer": "गुलाब और गेंदा",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.5.1-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "फूल पर कौन बैठी थी?",
+     "answer": "तितली",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.5.1-M3"
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 7 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "bfca1c1e7ff4",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0249,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,36 @@
+{
+ "format": 1,
+ "piece": "setting",
+ "key": "r1_literacy__the_friendly_elephant",
+ "skill_id": null,
+ "domain_id": "r1_literacy",
+ "mode": "the friendly elephant",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "title_hi": "गाँव का दोस्त हाथी",
+  "title_en": "The Friendly Elephant of the Village",
+  "theme": "the friendly elephant",
+  "board_hi": "बोर्ड के बीच में एक बड़ा हाथी बनाएँ, उसकी सूँड ऊपर उठी हुई हो। पास में एक तालाब, एक पेड़ और एक छोटा घर बनाएँ। हाथी के पास तीन चीज़ें बनाएँ: केले का गुच्छा, पानी की बाल्टी और एक गेंद। हर चित्र के नीचे उसका नाम लिखने के लिए जगह खाली छोड़ें। बोर्ड के नीचे एक लंबी खाली पट्टी छोड़ें, जहाँ बाद में शब्द और छोटे वाक्य लिखे जा सकें।",
+  "narration_hi": "देखें, हमारे गाँव में आज एक दोस्त हाथी आया है। वह तालाब से पानी पीता है और बच्चों के साथ गेंद से खेलता है। आज हम इस हाथी की बातें पढ़ेंगे और लिखेंगे।",
+  "opening_question_hi": "बोर्ड पर हाथी के पास कौन-कौन सी चीज़ें दिख रही हैं? हाथ उठाकर एक चीज़ का नाम बताएँ।",
+  "closing_question_hi": "आज हाथी के बारे में आपने कौन सा नया शब्द पढ़ा या लिखा? अपने साथी को धीरे से बताएँ।",
+  "materials_hi": [
+   "बोर्ड और रंगीन चॉक",
+   "हाथी, तालाब, पेड़, केले, बाल्टी और गेंद का चित्र बोर्ड पर पहले से बना हुआ"
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "683246e76869",
+ "created": "2026-11-21T06:00:57Z",
+ "cost_usd": 0.0082,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

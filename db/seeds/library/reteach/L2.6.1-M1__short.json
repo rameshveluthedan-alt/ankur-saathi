@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.6.1-M1__short",
+ "skill_id": "L2.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.6.1-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कहानी पढ़कर सवालों के जवाब दिए थे।' बोर्ड पर लिखें: 'रानी सुबह बाग में गई। उसने लाल फूल तोड़ा।' इसे धीरे पढ़ें, फिर पूछें 'रानी कहाँ गई?' और कहें: 'पढ़ लिया, पर रुककर सोचा नहीं, तो जवाब नहीं आया।' अब वही वाक्य फिर पढ़ें, 'बाग में' पर उँगली रखें और कहें: 'सवाल का शब्द कहाँ ढूँढ़ें, फिर जवाब वहीं मिलता है: बाग में।' बिना सोचे पढ़ने वाली बात खत्म करके केवल सही तरीका बोर्ड पर रहने दें।",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बच्चों से कहें: 'हर वाक्य पढ़कर रुकें और सोचें कि किसने क्या किया।' इस समय में अनुच्छेद एक बार पढ़कर सवाल 1 शुरू करें, बाकी अपनी जगह पर अगले समय में पूरा करें; पहले उन बच्चों के पास शांति से जाएँ जिन्हें पिछली बार कठिनाई हुई थी।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मोहन ने बिल्ली को दूध दिया।' पढ़कर सुनाएँ। पूछें: 'मोहन ने किसको दूध दिया?' एक शब्द लिखें।",
+    "expected_hi": "बिल्ली",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.1-M1",
+      "misconception_name_hi": "पाठ सही पढ़ता है पर समझता नहीं",
+      "misconception_name_en": "Decodes text correctly but does not understand what was read",
+      "detect_en": "CWPM and accuracy are adequate, but answers to literal questions are wrong or \"I don't know.\" This is the classic \"word caller\" pattern.",
+      "wrong_answer_hi": "मोहन"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सीता शाम को नदी पर गई।' पूछें: 'सीता कब गई? 1) सुबह 2) शाम' उँगली से दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.1-M1",
+      "misconception_name_hi": "पाठ सही पढ़ता है पर समझता नहीं",
+      "misconception_name_en": "Decodes text correctly but does not understand what was read",
+      "detect_en": "CWPM and accuracy are adequate, but answers to literal questions are wrong or \"I don't know.\" This is the classic \"word caller\" pattern.",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'रानी सुबह बाग में गई। उसने लाल फूल तोड़ा।'",
+   "हर बच्चे के लिए एक वर्कशीट।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद ध्यान से पढ़ें। फिर सवालों के जवाब लिखें।",
+   "instructions_en": "Read the passage carefully. Then write the answers to the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "गोलू की गाय",
+    "text": "गोलू के पास एक सफ़ेद गाय है। उसका नाम गौरी है। हर सुबह गोलू गौरी को हरी घास खिलाता है। गौरी रोज़ दो बाल्टी दूध देती है। रविवार को गोलू गौरी को तालाब पर नहलाने ले जाता है।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गाय का रंग क्या है?",
+     "answer": "सफ़ेद",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "गोलू गौरी को क्या खिलाता है?",
+     "answer": "हरी घास",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "गोलू गौरी को किस दिन तालाब पर ले जाता है?",
+     "answer": "रविवार",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "गाय का नाम क्या है?",
+     "answer": "गौरी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "गौरी रोज़ कितनी बाल्टी दूध देती है?",
+     "answer": "दो",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "गोलू गौरी को कहाँ नहलाता है?",
+     "answer": "तालाब पर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4510ed04900d",
+ "created": "2026-11-21T06:09:37Z",
+ "cost_usd": 0.0222,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,109 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.6.1__normal__short",
+ "skill_id": "N2.6.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर चित्र-आलेख बनाएँ: आम 🙂🙂🙂, केला 🙂🙂🙂🙂🙂, सेब 🙂🙂, और नीचे लिखें 'एक 🙂 = एक फल'। हर पंक्ति के चित्र उँगली रखकर गिनें और बच्चों को दिखाएँ कि केले सबसे ज़्यादा हैं और सेब सबसे कम। इसके बाद बच्चों से पूछें: 'आम कितने हैं?'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक पहले यह देखें कि बच्चे हर चित्र पर उँगली रखकर गिन रहे हैं। जो बच्चे अभी पूरा न कर पाएँ, वे बाकी काम अगले ब्लॉक में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: पतंग ⭐⭐⭐⭐। एक ⭐ = एक पतंग। पतंगें कितनी हैं?",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा एक पंक्ति के चित्र गिनकर उसकी संख्या पढ़ लेता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: गेंद ⭐⭐⭐⭐⭐⭐, गुड़िया ⭐⭐। किसकी संख्या ज़्यादा है? गेंद हो तो 1 उँगली, गुड़िया हो तो 2 उँगली दिखाएँ।",
+    "expected_hi": "1 (गेंद)",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो पंक्तियों की तुलना करके ज़्यादा वाली पंक्ति पहचान लेता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर चित्र-आलेख बनाएँ: आम 🙂🙂🙂, केला 🙂🙂🙂🙂🙂, सेब 🙂🙂; नीचे लिखें 'एक 🙂 = एक फल'।",
+   "हर बच्चे के लिए एक स्लेट या कॉपी का पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "चित्र-आलेख ध्यान से देखें। एक ⭐ = एक बच्चा। हर चित्र गिनें और उत्तर लिखें।\nकक्षा के बच्चों के मनपसंद जानवर:\nकुत्ता ⭐⭐⭐⭐⭐⭐\nबिल्ली ⭐⭐⭐⭐\nतोता ⭐⭐\nगाय ⭐⭐⭐⭐⭐⭐⭐",
+   "instructions_en": "Look at the pictograph carefully. One ⭐ = one child. Count each picture and write the answer.\nFavourite animals of the class:\nDog 6 stars, Cat 4 stars, Parrot 2 stars, Cow 7 stars.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बिल्ली कितने बच्चों को पसंद है? ___",
+     "answer": "4",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "कौन-सा जानवर सबसे ज़्यादा बच्चों को पसंद है? ___",
+     "answer": "गाय",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "कौन-सा जानवर सबसे कम बच्चों को पसंद है? ___",
+     "answer": "तोता",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "कुत्ता कितने बच्चों को पसंद है? ___",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "तोता कितने बच्चों को पसंद है? ___",
+     "answer": "2",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "कुत्ता और बिल्ली में से कौन ज़्यादा बच्चों को पसंद है? ___",
+     "answer": "कुत्ता",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "8a4cb5f26266",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0213,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,133 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N0.2.3-M1__long",
+ "skill_id": "N0.2.3",
+ "domain_id": "numeracy",
+ "mode": "N0.2.3-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अंक 1 से 9 पहचानना सीखा था; आज 6 और 9 को ध्यान से देखेंगे। बोर्ड पर बड़ा 6 लिखें और ऐसे बोलें जैसे गलती में होता है: 'यह नौ है', फिर बताएँ कि 6 का गोला नीचे बैठा है, इसलिए यह छह है; 9 लिखकर दिखाएँ कि इसका गोला ऊपर टँगा है, इसलिए यह नौ है। गलत पढ़ना मिटा दें और बोर्ड पर केवल सही 6 और 9 रहने दें: 'छह का गोला नीचे, नौ का गोला ऊपर।'",
+   "we_do_hi": "बोर्ड पर 9 लिखें और उसके नीचे 'छह' लिखें; बच्चों के साथ गोला देखकर इसे सुधारें और 'छह' मिटाकर 'नौ' लिखें। फिर 6 के नीचे 'नौ' लिखकर इसी तरह मिलकर ठीक करें। अंत में बोर्ड पर 3 6 9 लिखें और हर अंक पर उँगली रखकर बच्चों से पूछें कि यह कौन-सा अंक है।",
+   "you_do_hi": "हर जोड़ी को 1 से 9 तक के अंक कार्ड दें; कार्ड न हों तो कागज़ की पर्चियों पर अंक लिखकर दें। एक बच्चा कार्ड मिलाकर उठाए और दूसरा अंक का नाम बोले, फिर दोनों बारी बदलें; पहले उन बच्चों के पास शांति से जाएँ जिन्होंने 6 और 9 में गलती की थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 6। यह कौन-सा अंक है? छह हो तो 1 उँगली, नौ हो तो 2 उँगलियाँ दिखाएँ।",
+    "expected_hi": "1 उँगली (छह)",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M1",
+      "misconception_name_hi": "6 और 9 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 6 and 9",
+      "detect_en": "Consistently reads 6 as 9 or vice versa; other numerals are correct",
+      "wrong_answer_hi": "2 उँगलियाँ (नौ)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 9। इस अंक जितनी उँगलियाँ दिखाएँ।",
+    "expected_hi": "9 उँगलियाँ",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M1",
+      "misconception_name_hi": "6 और 9 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 6 and 9",
+      "detect_en": "Consistently reads 6 as 9 or vice versa; other numerals are correct",
+      "wrong_answer_hi": "6 उँगलियाँ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए 1 से 9 तक के अंक कार्ड, या कागज़ की 9 पर्चियाँ जिन पर अंक लिखे हों",
+   "बोर्ड पर बड़ा 6 और बड़ा 9 लिखने की जगह रखें"
+  ],
+  "worksheet": {
+   "instructions_hi": "अंक को देखें और उतने ही गोले बनाएँ।",
+   "instructions_en": "Look at the numeral and draw that many circles.",
+   "required_count": 3,
+   "example_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा 1 से 9 तक के मिले हुए अंक कार्ड एक-एक करके उठाए और हर अंक का नाम बोले।",
+    "task_en": "The child picks numeral cards 1 to 9 in mixed order, one at a time, and names each numeral.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अंक",
+     "बोर्ड पर लिखे अंक"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी 9 अंक बिना मदद के सही बोलता है, 6 और 9 भी",
+     "partial_hi": "6 से 8 अंक सही बोलता है, या 6 और 9 में अटकता है",
+     "not_yet_hi": "6 से कम अंक सही बोलता है",
+     "achieved_en": "Names all 9 numerals correctly without help, including 6 and 9",
+     "partial_en": "Names 6 to 8 numerals, or hesitates between 6 and 9",
+     "not_yet_en": "Names fewer than 6 numerals"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "6 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": "N0.2.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "9 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": "N0.2.3-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "5 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "2 — इतने गोले बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "worksheets.progressor problem 4: answer missing",
+   "worksheets.progressor problem 5: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2e08fbac8569",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0256,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

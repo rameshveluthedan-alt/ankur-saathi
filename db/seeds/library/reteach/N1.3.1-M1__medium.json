@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.3.1-M1__medium",
+ "skill_id": "N1.3.1",
+ "domain_id": "numeracy",
+ "mode": "N1.3.1-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने दो संख्याएँ जोड़ना सीखा था।' बोर्ड पर 6 + 3 लिखें और पहले 1 से गिनकर दिखाएँ: '1, 2, 3, 4, 5, 6... फिर 7, 8, 9'। बच्चों से कहें: 'देखिए, उत्तर 9 आया, पर 1 से गिनने में बहुत समय लगा।' अब वही सवाल आगे गिनकर दिखाएँ: '6 मन में रखें, फिर 7, 8, 9 बोलें, हर बार एक उँगली उठाएँ: उत्तर 9।' इसके बाद 1 से लिखी गिनती मिटा दें, बोर्ड पर केवल 6 से आगे की गिनती रहने दें।",
+   "we_do_hi": "बोर्ड पर लिखें: 4 + 3 = 7 (गिनती: 1, 2, 3, 4, 5, 6, 7)। बच्चों से पूछें: 'हमें कौन-सी संख्या से गिनती शुरू करनी चाहिए?' फिर सब मिलकर 4 मन में रखें और 5, 6, 7 बोलें। इसके बाद नया सवाल 8 + 4 साथ में करें: 8 मन में रखें, फिर 9, 10, 11, 12 बोलें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें। हर सवाल में बड़ी संख्या मन में रखें और आगे गिनें।' कक्षा में घूमते हुए पहले उन बच्चों के पास शांति से जाएँ जो 1 से गिन रहे थे, और देखें कि वे अब आगे गिन रहे हैं या नहीं। बाकी सवाल बच्चे अपनी जगह पर बाद में पूरे करें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर लिखें: 8 + 6। स्लेट पर उत्तर लिखें।",
+    "expected_hi": "14",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M2",
+      "misconception_name_hi": "आगे गिनते समय एक की त्रुटि",
+      "misconception_name_en": "Off-by-one error in counting-on",
+      "detect_en": "Answers are consistently exactly 1 less than correct: 5+3=7, 4+2=5, 6+3=8",
+      "wrong_answer_hi": "13"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर लिखें: 7 + 4, गिनती: 8, 9, 10, 11, उत्तर 11। यह सही है या गलत? स्लेट पर 'सही' या 'गलत' लिखें।",
+    "expected_hi": "सही",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M1",
+      "misconception_name_hi": "आगे गिनने की बजाय पूरा गिनना",
+      "misconception_name_en": "Counting-all instead of counting-on",
+      "detect_en": "Child is slow and uses fingers from 1; accuracy may be fine but strategy is inefficient and will fail for larger numbers",
+      "wrong_answer_hi": "गलत"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 6 + 3, 4 + 3 = 7 (गिनती 1 से 7 तक), 8 + 4",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना",
+   "हर बच्चे के लिए एक वर्कशीट"
+  ],
+  "worksheet": {
+   "instructions_hi": "बड़ी संख्या मन में रखें और आगे गिनकर जोड़ें। दस से बड़ा उत्तर हो तो हासिल वाले बॉक्स में 1 लिखें।",
+   "instructions_en": "Keep the bigger number in your head and count on to add. If the answer is more than ten, write the carry 1 in the carry cell.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "7 + 5 = ___",
+    "answer": "12",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "7",
+    "row2_t": "",
+    "row2_o": "5",
+    "answer_t": "1",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "39 + 36",
+     "answer": "75",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "8 + 3",
+     "answer": "11",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N1.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "9 + 5 = ___",
+     "answer": "14",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N1.3.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "7 + 6 = ___",
+     "answer": "13",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "2 + 8 = ___",
+     "answer": "10",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 9 आम हैं। उसमें 6 आम और रखे गए। अब टोकरी में कितने आम हैं?",
+     "answer": "15",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "worksheet: progressor problem 1: 3 + 4 -> 39 + 36 (copies an example solved in the lesson)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "1d5870a0837a",
+ "created": "2026-11-21T06:01:34Z",
+ "cost_usd": 0.0387,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.3.2__normal__long",
+ "skill_id": "L2.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने मात्राओं वाले शब्द पढ़े थे।' बोर्ड पर लिखें: चाँद, पतंग, दुःख। हर शब्द धीरे से दो बार पढ़ें और ँ (चंद्रबिंदु), ं (बिंदी) और ः (विसर्ग) पर उँगली रखकर बताएँ: 'देखिए, चंद्रबिंदु पर आवाज़ नाक से निकलती है, बिंदी पर न या म जैसी आवाज़ आती है, विसर्ग पर हल्का ह बोलते हैं।'",
+   "we_do_hi": "बोर्ड पर लिखें: गाँव, मंदिर, अंगूर, प्रातः। बच्चे आपके साथ एक-एक शब्द पढ़ें, फिर हर शब्द में निशान पहचानें। इसके बाद एक बच्चा पढ़े और बाकी अँगूठे से बताएँ कि निशान वाली आवाज़ आई या नहीं।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: साँप, बंदर, ऊँट, शंख, अतः, हँसी। एक बच्चा कार्ड पढ़े और साथी सुने कि निशान वाली आवाज़ आई या नहीं, फिर बारी बदलें; कार्ड न हों तो वर्कशीट के शब्द कॉपी में लिखकर पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) हस 2) हंस। पानी में तैरने वाला पक्षी कौन-सा शब्द है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा बिंदी वाले शब्द को बिना बिंदी वाले शब्द से अलग पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "यह शब्द पढ़कर सुनाएँ: पूँछ। इस शब्द में कौन-सा निशान है? स्लेट पर वह निशान बनाएँ।",
+    "expected_hi": "ँ",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुनकर नाक वाली आवाज़ के निशान चंद्रबिंदु को पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: चाँद, पतंग, दुःख और गाँव, मंदिर, अंगूर, प्रातः",
+   "हर जोड़ी के लिए कागज़ की 6 पर्चियों पर लिखें: साँप, बंदर, ऊँट, शंख, अतः, हँसी"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "शब्द कॉपी में लिखें और अपने साथी को पढ़कर सुनाएँ। हर शब्द में निशान पहचानें।",
+   "instructions_en": "Copy the words into the notebook and read them aloud to a partner. Identify the mark in each word.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी को छह शब्द-कार्ड पढ़कर सुनाएँ: साँप, बंदर, ऊँट, शंख, अतः, हँसी",
+    "task_en": "Read six word cards aloud to a partner: साँप, बंदर, ऊँट, शंख, अतः, हँसी",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी शब्द ँ, ं और ः की सही आवाज़ के साथ बिना मदद पढ़ता है",
+     "partial_hi": "शब्द पढ़ता है पर कुछ में निशान की आवाज़ छोड़ देता है, जैसे हंस को हस",
+     "not_yet_hi": "निशान नहीं पहचानता, उन पर रुक जाता है",
+     "achieved_en": "Reads all words with correct ँ, ं, ः sounds without help",
+     "partial_en": "Reads words but drops the nasal or visarg sound in some",
+     "not_yet_en": "Does not recognise the marks; stops at them"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: आँख",
+     "answer": "आँख",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: संतरा",
+     "answer": "संतरा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: दुःख",
+     "answer": "दुःख",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें और निशान लिखें: कुआँ",
+     "answer": "ँ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें और निशान लिखें: पंखा",
+     "answer": "ं",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0261,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

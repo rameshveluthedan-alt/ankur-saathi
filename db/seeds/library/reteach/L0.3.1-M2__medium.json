@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L0.3.1-M2__medium",
+ "skill_id": "L0.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "L0.3.1-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अक्षर पहचानना सीखा था। बोर्ड पर अलग-अलग जगह लिखें: ग, च, ड और बच्चों से कहें 'देखिए, ड पढ़ने के लिए क, ख, ग, घ, ङ... शुरू से बोलना पड़ रहा है, यह धीमा है'; इसके बाद ड पर उँगली रखकर सीधे बोलें 'ड', उसकी आकृति दिखाएँ: 'ड के पेट पर छोटी बिंदी नहीं, ऊपर रेखा, नीचे मुड़ा हुआ'। क्रम से गिनने वाली बात बोर्ड से मिटा दें, केवल ग, च, ड रहने दें।",
+   "we_do_hi": "कार्ड बेतरतीब क्रम में दिखाएँ: ट, ए, ज, उ; हर कार्ड पर बच्चों से पूछें 'क्या क्रम से गिनना पड़ा या सीधे पहचाना?' और साथ में आकृति की एक पहचान ढूँढें। फिर एक नया कार्ड झ दिखाकर सब साथ सीधे नाम पहचानें, शुरू से गिने बिना।",
+   "you_do_hi": "हर जोड़ी को अक्षर कार्ड दें (न हों तो कागज़ की पर्चियों पर अ से औ और क से ण के अक्षर लिखकर दें); एक बच्चा कार्ड फेंटकर दिखाए, दूसरा सीधे नाम बोले, फिर बारी बदलें। पहले उन बच्चों के पास जाएँ जिन्हें पिछली बार क्रम से गिनना पड़ा था, सहज ढंग से, बिना नाम लिए। जो जल्दी कर लें, वे वर्कशीट के बाकी अक्षर पढ़ें; बाकी काम अगले खंड में अपनी जगह पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर अकेला अक्षर लिखें: घ। यह कौन सा अक्षर है? 1) ग 2) घ — उँगली से दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M2",
+      "misconception_name_hi": "अक्षर केवल क्रम में पहचानता है, बेतरतीब में नहीं",
+      "misconception_name_en": "Recognises letters only in sequence, not randomly",
+      "detect_en": "Fast when pointing along a chart in sequence; very slow or wrong when shown flashcards in random order",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: ण, ठ, ओ। एक अक्षर बोलें: ठ। यह किस नंबर पर है? उँगलियों से दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M2",
+      "misconception_name_hi": "अक्षर केवल क्रम में पहचानता है, बेतरतीब में नहीं",
+      "misconception_name_en": "Recognises letters only in sequence, not randomly",
+      "detect_en": "Fast when pointing along a chart in sequence; very slow or wrong when shown flashcards in random order",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "अक्षर कार्ड या कागज़ की पर्चियाँ: अ से औ और क से ण, हर जोड़ी के लिए एक सेट",
+   "बोर्ड पर अलग-अलग जगह लिखें: ग, च, ड"
+  ],
+  "worksheet": {
+   "instructions_hi": "अक्षरों को बेतरतीब क्रम में देखकर सीधे उनका नाम साथी को बोलें।",
+   "instructions_en": "Look at each letter out of order and say its name to your partner directly.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "उदाहरण:",
+    "example_text": "छ → 'छ' (सीधे पहचानें, क्रम से न गिनें)"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी फेंटे हुए अक्षर कार्ड एक-एक करके दिखाए; बच्चा हर अक्षर का नाम सीधे बोले।",
+    "task_en": "A partner shows shuffled letter cards one by one; the child names each letter directly.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अक्षर",
+     "बोर्ड पर बेतरतीब लिखे अक्षर"
+    ],
+    "look_for": {
+     "achieved_hi": "15 या अधिक अक्षर बेतरतीब क्रम में सीधे सही बोलता है",
+     "partial_hi": "8 से 14 अक्षर सही, कुछ के लिए शुरू से गिनता है या मिलते-जुलते अक्षरों में उलझता है",
+     "not_yet_hi": "8 से कम अक्षर पहचानता है",
+     "achieved_en": "Names 15+ shuffled letters directly and correctly",
+     "partial_en": "Names 8-14 correctly; recites from the start for some or mixes look-alikes",
+     "not_yet_en": "Names fewer than 8 letters"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह अक्षर साथी को पढ़कर सुनाएँ: क",
+     "answer": "क",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "यह अक्षर साथी को पढ़कर सुनाएँ: ङ",
+     "answer": "ङ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "यह अक्षर साथी को पढ़कर सुनाएँ: ढ",
+     "answer": "ढ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "यह अक्षर साथी को पढ़कर सुनाएँ: ऐ",
+     "answer": "ऐ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह अक्षर साथी को पढ़कर सुनाएँ: ञ",
+     "answer": "ञ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6304f3432cb0",
+ "created": "2026-11-21T06:09:37Z",
+ "cost_usd": 0.0285,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

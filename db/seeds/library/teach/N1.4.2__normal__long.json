@@ -1,0 +1,112 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.4.2__normal__long",
+ "skill_id": "N1.4.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'हम रोज़ सुबह उठते हैं और रात को सोते हैं।' बोर्ड पर तीन चित्र बनाएँ: उगता सूरज (सुबह), सिर के ऊपर सूरज (दोपहर), चाँद-तारे (रात)। हर चित्र पर उंगली रखकर बोलें: 'सुबह हम दाँत साफ़ करते हैं, दोपहर में खाना खाते हैं, रात को सोते हैं। दाँत साफ़ करना खाने से पहले होता है, सोना खाने के बाद।'",
+   "we_do_hi": "बच्चों से पूछें: 'नहाना पहले होता है या स्कूल आना?' बच्चे बताएँ, फिर 'पहले' और 'बाद' शब्द के साथ पूरा वाक्य दोहराएँ। चार काम बोलें: उठना, नहाना, स्कूल आना, सोना; बच्चों के साथ मिलकर उन्हें बोर्ड पर 1 से 4 के क्रम में लगाएँ और पूछें कि हर काम सुबह, दोपहर या रात में से कब होता है।",
+   "you_do_hi": "हर जोड़ी को चार कागज़ की पर्चियाँ दें, जिन पर ये चित्र बने हों: उठना, खाना खाना, खेलना, सोना। जोड़ी पर्चियों को क्रम में रखे और साथी को 'पहले ... फिर ... बाद में ...' कहकर बताए; जिनके पास पर्चियाँ न हों, वे वर्कशीट के सवाल कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "हम पहले क्या करते हैं? 1) नाश्ता करना 2) रात का खाना खाना। उंगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "सुबह और रात के कामों में से पहले होने वाला काम पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "चाँद-तारे निकलते हैं, तब कौन-सा समय होता है? स्लेट पर चित्र बनाएँ: सूरज या चाँद।",
+    "expected_hi": "चाँद (रात)",
+    "listen_for": [],
+    "shows_hi": "रात के समय को उसकी पहचान से जोड़ता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर बनाने के लिए तीन चित्र सोच लें: उगता सूरज, सिर के ऊपर सूरज, चाँद-तारे।",
+   "हर जोड़ी के लिए कागज़ की 4 पर्चियाँ बनाएँ, जिन पर ये चित्र हों: उठना, खाना खाना, खेलना, सोना।"
+  ],
+  "worksheet": {
+   "practice": true,
+   "sheet_kind": "observed",
+   "instructions_hi": "चित्र देखें और कामों को सही क्रम में लगाएँ।",
+   "instructions_en": "Look at the pictures and put the events in the correct order.",
+   "required_count": 3,
+   "example_block": null,
+   "observe": {
+    "task_hi": "चार चित्र-पर्चियों (उठना, खाना खाना, खेलना, सोना) को दिन के क्रम में रखें और 'पहले/बाद' बोलकर बताएँ।",
+    "task_en": "Put four picture slips (waking up, eating, playing, sleeping) in daily order and explain using before/after.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की चित्र-पर्चियाँ",
+     "सूरज और चाँद के कार्ड"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों पर्चियाँ सही क्रम में रखता है और 'पहले/बाद' ठीक बोलता है",
+     "partial_hi": "दो-तीन पर्चियाँ सही रखता है या दोपहर-शाम में उलझता है",
+     "not_yet_hi": "सुबह और रात के काम भी अलग नहीं कर पाता",
+     "achieved_en": "Orders all four slips and uses before/after correctly",
+     "partial_en": "Orders 2-3 slips or mixes afternoon/evening",
+     "not_yet_en": "Cannot separate morning and night events"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सूरज और चाँद बनाएँ। 'उठना' को सही चित्र से रेखा द्वारा मिलाएँ।",
+     "answer": "सूरज",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "इन कामों के आगे 1, 2, 3 लिखें: सोना, नहाना, उठना।",
+     "answer": "उठना 1, नहाना 2, सोना 3",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "इन कामों के आगे 1, 2, 3, 4 लिखें: खेलना, उठना, सोना, दोपहर का खाना।",
+     "answer": "उठना 1, दोपहर का खाना 2, खेलना 3, सोना 4",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "'रात का खाना' को सही चित्र से मिलाएँ: सूरज या चाँद।",
+     "answer": "चाँद",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 2: the question states its own answer (उठना 1, नहाना 2, सोना 3)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (उठना 1, दोपहर का खाना 2, खेलना 3, सोना 4)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0258,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.4.1__normal__medium",
+ "skill_id": "L1.4.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर पाँच शब्द लिखें: यह, वह, और, में, है। हर शब्द पर उँगली रखकर एक बार साफ़ पढ़ें और बच्चों से कहें: 'देखिए, ये शब्द हम अक्षर-अक्षर जोड़कर नहीं पढ़ते, एक नज़र में पहचानते हैं।' फिर 'यह' और 'वह' पर उँगली रखकर दिखाएँ कि पहला अक्षर बदलने से शब्द बदल जाता है।",
+   "we_do_hi": "बोर्ड पर पाँच और शब्द जोड़ें: का, को, से, एक, नहीं। किसी एक शब्द पर उँगली रखें और कहें: 'जो यह शब्द पढ़ सके, हाथ उठाएँ', फिर दो-तीन बच्चों से अलग-अलग पढ़वाएँ। शब्दों का क्रम बदलकर उँगली रखें, ताकि बच्चे याद से नहीं, देखकर पढ़ें।",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: यह, वह, और, में, का, है, को, से, एक, नहीं। एक बच्चा कार्ड दिखाए, दूसरा तुरंत पढ़े; जो शब्द अटके, उस कार्ड को अलग रखें। पर्चियाँ न हों तो बच्चे वर्कशीट के शब्द कॉपी में लिखकर साथी को पढ़कर सुनाएँ; जो काम बच जाए, उसे अपनी जगह पर अगले खंड में पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) में 2) है। शब्द बोलें: 'है'। बच्चे उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुने हुए शब्द को उसके लिखे रूप से तुरंत पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) वह 2) यह। शब्द बोलें: 'वह'। बच्चे उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा मिलते-जुलते शब्दों में पहले अक्षर से अंतर पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर दस शब्द-कार्ड बनाएँ: यह, वह, और, में, का, है, को, से, एक, नहीं; हर जोड़ी के लिए एक सेट।",
+   "बोर्ड पर पहले से जगह रखें, जहाँ दस शब्द लिखे जा सकें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को देखकर तुरंत पढ़ें और साथी को सुनाएँ। जो शब्द अटके, उस पर गोला लगाएँ।",
+   "instructions_en": "Look at each word, read it at once, and read it to your partner. Circle any word you get stuck on.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "साथी जो शब्द-कार्ड दिखाए, उसे तुरंत बिना अक्षर जोड़े पढ़ें।",
+    "task_en": "Read each word card the partner shows, instantly, without sounding out letters.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "दसों शब्द बिना रुके, एक नज़र में पढ़ता है।",
+     "partial_hi": "कुछ शब्द तुरंत पढ़ता है, बाकी धीरे-धीरे जोड़कर।",
+     "not_yet_hi": "ज़्यादातर शब्द अक्षर-अक्षर जोड़कर पढ़ता है या पढ़ नहीं पाता।",
+     "achieved_en": "Reads all ten words instantly at a glance.",
+     "partial_en": "Reads some words instantly, sounds out the rest slowly.",
+     "not_yet_en": "Sounds out most words letter by letter or cannot read them."
+    }
+   },
+   "example_block": {
+    "problem_hi": "देखकर तुरंत पढ़ने का उदाहरण:",
+    "example_text": "यह"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: यह, वह, और",
+     "answer": "यह, वह, और",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: में, का, है, को",
+     "answer": "में, का, है, को",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: से, एक, नहीं",
+     "answer": "से, एक, नहीं",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "वाक्य पढ़ें: यह एक घर है।",
+     "answer": "यह एक घर है।",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "वाक्य पढ़ें: वह घर में नहीं है।",
+     "answer": "वह घर में नहीं है।",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.029,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

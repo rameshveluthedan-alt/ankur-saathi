@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.4.2__normal__short",
+ "skill_id": "N2.4.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर सात दिनों के नाम क्रम से लिखें: सोमवार, मंगलवार, बुधवार, गुरुवार, शुक्रवार, शनिवार, रविवार। हर नाम पर उँगली रखकर पढ़ें और बताएँ: 'रविवार के बाद फिर सोमवार आता है।' इसके बाद कक्षा का कैलेंडर दिखाएँ, आज की तारीख पर उँगली रखें और पढ़ें: 'यह महीना, यह तारीख, यह दिन।'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को सात कागज़ की पर्चियाँ दें, जिन पर सप्ताह के दिनों के नाम लिखे हों, और उन्हें मिलाकर दें। बच्चे पर्चियाँ क्रम से रखें, साथी को पढ़कर सुनाएँ, फिर कैलेंडर पर आज की तारीख और दिन बताएँ; पर्चियाँ न हों तो वर्कशीट कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बुधवार के बाद कौन-सा दिन आता है? पहला अक्षर लिखें।",
+    "expected_hi": "गु (गुरुवार)",
+    "listen_for": [],
+    "shows_hi": "बच्चा दिनों का क्रम जानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "रविवार के बाद कौन-सा दिन आता है: 1) शनिवार 2) सोमवार? उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि सप्ताह फिर से शुरू होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कक्षा का एक कैलेंडर (दीवार वाला या पुराना)",
+   "हर जोड़ी के लिए सात कागज़ की पर्चियाँ, हर पर्ची पर एक दिन का नाम"
+  ],
+  "worksheet": {
+   "instructions_hi": "दिनों और महीनों को क्रम से लिखें।",
+   "instructions_en": "Write the days and months in order.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा दिनों की पर्चियाँ क्रम से रखकर पढ़े, फिर कैलेंडर पर आज की तारीख, महीना और दिन बताए।",
+    "task_en": "The child arranges day slips in order and reads them, then reads today's date, month and day from the calendar.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "दिनों के नाम लिखी कागज़ की पर्चियाँ",
+     "पुराना कैलेंडर",
+     "महीनों के नाम लिखी पर्चियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "सातों दिन और बारह महीने क्रम से बताता है और कैलेंडर पर आज की तारीख पढ़ता है।",
+     "partial_hi": "दिन क्रम से बताता है, पर महीने या तारीख पढ़ने में मदद चाहिए।",
+     "not_yet_hi": "दिनों को क्रम से नहीं रख पाता।",
+     "achieved_en": "Names all 7 days and 12 months in order and reads today's date.",
+     "partial_en": "Orders the days but needs help with months or reading the date.",
+     "not_yet_en": "Cannot put the days of the week in order."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सोमवार से शुरू करके सप्ताह के सातों दिन क्रम से लिखें।",
+     "answer": "",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "शुक्रवार के पहले और बाद वाले दिन का नाम लिखें।",
+     "answer": "",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "जनवरी से शुरू करके बारह महीने क्रम से लिखें।",
+     "answer": "",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0213,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

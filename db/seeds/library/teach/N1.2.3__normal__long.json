@@ -1,0 +1,119 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.3__normal__long",
+ "skill_id": "N1.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने दस-दस छड़ियों के बंडल बनाए थे।' 2 बंडल और 6 खुली छड़ियाँ दिखाएँ। 'छब्बीस' बोलें और दहाई-इकाई के बॉक्स में पहले दहाई में 2, फिर इकाई में 6 लिखें। इसके बाद 1 बंडल और 4 खुली छड़ियाँ दिखाएँ। 'चौदह' बोलें और समझाएँ: 'देखिए, चौदह में बंडल एक है, इसलिए दहाई में 1 पहले लिखते हैं, फिर इकाई में 4।'",
+   "we_do_hi": "छड़ियाँ दिखाते हुए बच्चों से पूछें: 'कितनी दहाई और कितनी इकाई?' फिर बच्चे बारी-बारी से बताएँ कि पहले कौन-सा अंक लिखें। इस तरह मिलकर पैंतीस, पंद्रह और बावन लिखें। हर बार पहले दहाई का अंक लिखें, फिर इकाई का।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' जो बच्चे अंक उलटे क्रम में लिखें, उनके पास पहले जाएँ। उनसे पूछें: 'इसमें कितने बंडल हैं? वह अंक पहले लिखें।'"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: बयालीस। बच्चे स्लेट पर अंकों में लिखें।",
+    "expected_hi": "42",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M1",
+      "misconception_name_hi": "लिखते समय अंक उलटना (13 के लिए 31 लिखता है)",
+      "misconception_name_en": "Digit reversal in writing (writes 31 for 13)",
+      "detect_en": "Consistently writes digits in wrong order: \"thirteen\" → writes 31; but reads 31 correctly as thirty-one",
+      "wrong_answer_hi": "24"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: सोलह। बच्चे स्लेट पर अंकों में लिखें।",
+    "expected_hi": "16",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M2",
+      "misconception_name_hi": "किशोर संख्याओं (11-19) में भ्रम",
+      "misconception_name_en": "Teen number confusion (11-19)",
+      "detect_en": "Errors concentrated in 11-19 range; numbers 20+ are written correctly",
+      "wrong_answer_hi": "61"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "दस-दस छड़ियों के 5 बंडल और 9 खुली छड़ियाँ तैयार रखें।",
+   "बोर्ड पर दहाई-इकाई का बॉक्स बनाएँ।",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "संख्या का नाम पढ़ें और उसे अंकों में लिखें। पहले दहाई का अंक लिखें, फिर इकाई का।",
+   "instructions_en": "Read the number name and write it in digits. Write the tens digit first, then the ones digit.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "छत्तीस लिखिए: ___",
+     "answer": "36",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "इकसठ लिखिए: ___",
+     "answer": "61",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N1.2.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "सत्रह लिखिए: ___",
+     "answer": "17",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N1.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "चौंसठ लिखिए: ___",
+     "answer": "64",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "उन्नीस लिखिए: ___",
+     "answer": "19",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "अट्ठावन लिखिए: ___",
+     "answer": "58",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "cca3a76aa8f6",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.032,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

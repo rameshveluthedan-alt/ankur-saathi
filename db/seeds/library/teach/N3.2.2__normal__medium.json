@@ -1,0 +1,109 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.2.2__normal__medium",
+ "skill_id": "N3.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर हज़ार, सौ, दहाई, इकाई का बॉक्स बनाएँ और उसमें 2647 लिखें। हर अंक पर उँगली रखकर बोलें: 'देखिए, 2 हज़ार के स्थान पर है, इसका मान 2000 है; 6 का मान 600, 4 का मान 40, 7 का मान 7।' फिर नीचे लिखें: 2647 = 2000 + 600 + 40 + 7।",
+   "we_do_hi": "बोर्ड पर 5314 लिखें और बच्चों से एक-एक अंक का स्थान पूछें: 'हज़ार के स्थान पर कौन-सा अंक है? उसका मान क्या है?' बच्चों के उत्तर के साथ विस्तारित रूप मिलकर लिखें: 5000 + 300 + 10 + 4। फिर पूछें: 'हर भाग को जोड़ें तो कौन-सी संख्या बनेगी?'",
+   "you_do_hi": "बच्चे कॉपी में वर्कशीट का सवाल 1 हल करें; बाकी सवाल 2 और 3, फिर अतिरिक्त सवाल, वे अपनी जगह पर अगले समय में पूरे करें। पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि शून्य वाले स्थान ठीक लिखे जा रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर देखें: 8263। इसमें 2 का स्थानीय मान क्या है?",
+    "expected_hi": "200",
+    "listen_for": [],
+    "shows_hi": "बच्चा अंक के स्थान से उसका मान पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर देखें: 6000 + 400 + 9। यह कौन-सी संख्या है? स्लेट पर लिखें।",
+    "expected_hi": "6409",
+    "listen_for": [],
+    "shows_hi": "बच्चा विस्तारित रूप से संख्या बनाता है और खाली दहाई के लिए शून्य लिखता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर हज़ार, सौ, दहाई, इकाई का बॉक्स पहले से बना लें।",
+   "बच्चों के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को ध्यान से देखें। अंक का स्थानीय मान या विस्तारित रूप लिखें।",
+   "instructions_en": "Look at each number carefully. Write the place value of the digit or the expanded form.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "4725 का विस्तारित रूप लिखें",
+    "answer": "4000 + 700 + 20 + 5",
+    "show_pv_grid": false,
+    "pv_columns": 3
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3846 का विस्तारित रूप लिखें = ___",
+     "answer": "3000 + 800 + 40 + 6",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "6519 में 5 का स्थानीय मान लिखें = ___",
+     "answer": "500",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "7040 का विस्तारित रूप लिखें = ___",
+     "answer": "7000 + 40",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "9152 में 9 का स्थानीय मान लिखें = ___",
+     "answer": "9000",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "4000 + 600 + 7 = ___",
+     "answer": "4607",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "2385 में दहाई के स्थान पर कौन-सा अंक है? ___",
+     "answer": "8",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 5 repeats an example solved in the talking points"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "75768fa8fa2f",
+ "created": "2026-11-21T06:01:23Z",
+ "cost_usd": 0.0251,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

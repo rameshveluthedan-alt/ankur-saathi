@@ -1,0 +1,133 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.2.3__normal__long",
+ "skill_id": "L0.2.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने शब्दों को ध्यान से सुना था।' धीरे से 'कमल' बोलें, फिर पहली ध्वनि को खींचकर बोलें: 'क...मल, पहली आवाज़ है क।' इसी तरह 'पानी' और 'मछली' बोलकर पहली ध्वनि अलग से बोलें, और हर बार मुँह पर हाथ रखकर बताएँ कि पहली आवाज़ सबसे पहले निकलती है।",
+   "we_do_hi": "बच्चों से कहें: 'हम शब्द बोलेंगे' नहीं, बल्कि 'सुनें, अब शब्द आएगा: बकरी।' बच्चे साथ में 'ब...करी' बोलें और एक-एक बच्चे से पहली आवाज़ पूछें। फिर 'नाक', 'सेब' और 'घर' से यही करें, और जो बच्चा पूरा शब्द दोहराए उसे धीरे से 'सिर्फ़ पहली आवाज़' याद दिलाएँ।",
+   "you_do_hi": "हर जोड़ी को कंकड़, बटन और बोतल के ढक्कन मिलाकर दें; एक बच्चा किसी चीज़ का नाम बोले, दूसरा उसकी पहली आवाज़ बताए, फिर बारी बदलें। चीज़ें न हों तो बोर्ड पर लिखे शब्द-सूची के शब्दों से यही खेल करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'मटर'। इसकी पहली आवाज़ क्या है? 1) म 2) ट — उँगली से दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा शब्द की पहली ध्वनि अलग कर पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'दाल' और 'दूध'। क्या दोनों की पहली आवाज़ एक जैसी है? 1) हाँ 2) नहीं",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो शब्दों की पहली ध्वनि की तुलना कर पाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कंकड़, बटन और बोतल के ढक्कन इकट्ठे करें, हर जोड़ी के लिए कुछ।",
+   "बोर्ड पर शब्द लिखें: कमल, पानी, मछली, बकरी, नाक, सेब, घर।"
+  ],
+  "worksheet": {
+   "instructions_hi": "साथी के साथ हर शब्द ज़ोर से बोलें और उसकी पहली आवाज़ बताएँ।",
+   "instructions_en": "Say each word aloud with a partner and tell its first sound.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "पहली आवाज़ का उदाहरण:",
+    "example_text": "कमल → क"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "शिक्षक किसी चीज़ का नाम बोलें, बच्चा उसकी पहली आवाज़ बताए (5 शब्द)।",
+    "task_en": "Teacher says the name of an object; the child tells its first sound (5 words).",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "पत्तियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "5 में से 4 शब्दों की पहली आवाज़ सही बताता है",
+     "partial_hi": "2-3 शब्दों की पहली आवाज़ सही, मिलती-जुलती आवाज़ों में उलझता है",
+     "not_yet_hi": "पूरा शब्द दोहराता है या अंदाज़ा लगाता है",
+     "achieved_en": "Tells the first sound correctly for 4 of 5 words",
+     "partial_en": "Gets 2-3 words right, confuses similar sounds",
+     "not_yet_en": "Repeats the whole word or guesses"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोलें: बटन। पहली आवाज़?",
+     "answer": "ब",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बोलें: पत्ता। पहली आवाज़?",
+     "answer": "प",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "बोलें: ढक्कन। पहली आवाज़?",
+     "answer": "ढ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "बोलें: रोटी। पहली आवाज़?",
+     "answer": "र",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बोलें: लड्डू। पहली आवाज़?",
+     "answer": "ल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)",
+   "1 gendered 'मैं' quote(s) rewritten to 'हम'"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:06:23Z",
+ "cost_usd": 0.0249,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

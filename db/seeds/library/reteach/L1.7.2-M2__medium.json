@@ -1,0 +1,135 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.7.2-M2__medium",
+ "skill_id": "L1.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.7.2-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने मात्रा वाले शब्द लिखे थे।' बोर्ड पर पहले गलत तरीका लिखें: 'पई' (प के बाद पूरा ई अक्षर), और बोलें: 'देखिए, यहाँ ई अलग अक्षर बन गया, यह शब्द नहीं बना।' इसके बाद वही शब्द सही लिखें: 'पी' (प पर ी की मात्रा), फिर गलत रूप मिटा दें, बोर्ड पर केवल 'पी' रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'दई' और 'सऊ'। बच्चों से पूछें: 'कौन सा अक्षर पूरा लिखा गया है? उसकी जगह कौन सी मात्रा आएगी?' साथ मिलकर ठीक करें: 'दी' और 'सू'। फिर एक नया शब्द साथ में लिखें: 'मेला', ए की मात्रा अक्षर के ऊपर।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इन 5 मिनट में सवाल 1 से 3 शुरू करें, बाकी अपनी जगह पर पूरा करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार यह गलती की थी, किसी का नाम न लें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) नई  2) नी। 'नी' (जैसे नीला में) सही कौन सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M2",
+      "misconception_name_hi": "मात्रा चिह्न की बजाय स्वर अक्षर लिखता है",
+      "misconception_name_en": "Writes the vowel letter instead of the matra sign",
+      "detect_en": "Writes \"क + ई\" as two separate characters instead of \"की\" as one unit",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'जऊता'। जूता बनाने के लिए ज पर कौन सी मात्रा लगेगी? स्लेट पर केवल मात्रा लिखें।",
+    "expected_hi": "ू",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M2",
+      "misconception_name_hi": "मात्रा चिह्न की बजाय स्वर अक्षर लिखता है",
+      "misconception_name_en": "Writes the vowel letter instead of the matra sign",
+      "detect_en": "Writes \"क + ई\" as two separate characters instead of \"की\" as one unit",
+      "wrong_answer_hi": "ऊ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड के एक कोने में लिखकर रखें: दई, सऊ (ढूँढने और ठीक करने के लिए)।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "sheet_kind": "formation",
+   "instructions_hi": "व्यंजन पर मात्रा लगाकर एक शब्द लिखें। मात्रा का चिह्न लगाएँ, पूरा स्वर अक्षर नहीं। शब्द के ऊपर शिरोरेखा खींचें।",
+   "instructions_en": "Join the consonant and the matra to write one word. Use the matra sign, not the full vowel letter. Draw the headline over the word.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "ग + ा = गा"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "म + ा + म + ा = ?",
+     "answer": "मामा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ख + ी + र = ?",
+     "answer": "खीर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "फ + ू + ल = ?",
+     "answer": "फूल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "ब + े + र = ?",
+     "answer": "बेर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "च + ू + ह + ा = ?",
+     "answer": "चूहा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "ट + ो + प + ी = ?",
+     "answer": "टोपी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f420a67a9682",
+ "created": "2026-11-21T06:02:47Z",
+ "cost_usd": 0.0225,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,153 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.2.2__normal__long",
+ "skill_id": "N2.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने सीखा था कि हर अंक की अपनी जगह होती है: सैकड़ा, दहाई, इकाई। बोर्ड पर 563 लिखें, हर अंक के नीचे सैकड़ा, दहाई, इकाई लिखें और बोलें: 'देखें, 5 सैकड़े यानी 500, 6 दहाई यानी 60, 3 इकाई यानी 3: 563 = 500 + 60 + 3।' फिर 408 लिखें और बताएँ: 'यहाँ दहाई में 0 है, यानी एक भी दहाई नहीं: 408 = 400 + 0 + 8। 0 की जगह खाली नहीं छोड़ते।'",
+   "we_do_hi": "बोर्ड पर 724 लिखें और बच्चों से एक-एक करके पूछें: 'सैकड़े के स्थान पर कौन सा अंक है? उसका मान क्या है?' फिर साथ मिलकर लिखें: 724 = 700 + 20 + 4। इसके बाद 609 लिखें, बच्चों से पूछें कि दहाई में कितना है, और साथ में लिखें: 609 = 600 + 0 + 9।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' घूमते हुए सवाल 2 (बीच में शून्य) और सवाल 3 (विस्तारित रूप) को ध्यान से देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: सात सौ चार। बच्चे इसे अंकों में स्लेट पर लिखें।",
+    "expected_hi": "704",
+    "listen_for": [
+     {
+      "misconception_id": "N2.2.2-M1",
+      "misconception_name_hi": "बीच में शून्य से भ्रम (जैसे 305)",
+      "misconception_name_en": "Zero in middle causes confusion (e.g., 305)",
+      "detect_en": "Errors concentrated on numbers with internal zero; other 3-digit numbers are fine",
+      "wrong_answer_hi": "74"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "386 का विस्तारित रूप कौन सा है? 1) 3 + 8 + 6  2) 300 + 80 + 6। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N2.2.2-M2",
+      "misconception_name_hi": "विस्तारित रूप में त्रुटि: अंकित मान और स्थानीय मान में भ्रम",
+      "misconception_name_en": "Expanded form errors: confuses face value and place value",
+      "detect_en": "Expanded form consistently uses face values not place values; but child can read the number correctly",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से सैकड़ा | दहाई | इकाई का बॉक्स बनाकर रखें।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को सैकड़ा, दहाई और इकाई में तोड़ें और विस्तारित रूप लिखें। शून्य को भी लिखें।",
+   "instructions_en": "Break each number into hundreds, tens and ones and write its expanded form. Write the zero too.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "315 = ___ + ___ + ___",
+    "answer": "300 + 10 + 5",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "3",
+    "row1_t": "1",
+    "row1_o": "5",
+    "row2_h": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_h": "300",
+    "answer_t": "10",
+    "answer_o": "5"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "247 को सैकड़ा, दहाई, इकाई में लिखें",
+     "answer": "200 + 40 + 7",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "506 को सैकड़ा, दहाई, इकाई में लिखें",
+     "answer": "500 + 0 + 6",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.2.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "831 = ___ + ___ + ___",
+     "answer": "800 + 30 + 1",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N2.2.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "670 = ___ + ___ + ___",
+     "answer": "600 + 70 + 0",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "952 = ___ + ___ + ___",
+     "answer": "900 + 50 + 2",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "चार सौ तीन को अंकों में लिखें",
+     "answer": "403",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "e1558ea565c6",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0318,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

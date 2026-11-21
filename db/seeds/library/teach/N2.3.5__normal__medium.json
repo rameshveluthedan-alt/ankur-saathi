@@ -1,0 +1,133 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.3.5__normal__medium",
+ "skill_id": "N2.3.5",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'रीना के पास 34 पेंसिल थीं। उसने 12 पेंसिल दोस्त को दे दीं। अब कितनी बचीं?' बच्चों को दिखाएँ: 'देखिए, दे दीं, खा लीं, खो गईं, उड़ गईं का मतलब है कम हुईं, इसलिए घटाएँगे; और मिले, कुल कितने का मतलब है बढ़ीं, इसलिए जोड़ेंगे।' बोर्ड पर 34 − 12 = 22 हल करें और कहें: 'पहले सोचें, बढ़ा या घटा, फिर हल करें।'",
+   "we_do_hi": "बोर्ड पर लिखें: 'एक थैले में 28 आम हैं, दूसरे में 25 आम। कुल कितने आम?' बच्चों से पूछें: 'बढ़ा या घटा?' फिर साथ में दहाई-इकाई के बॉक्स में 28 + 25 = 53 हल करें, हासिल लिखना याद दिलाएँ। इसके बाद लिखें: 'सोनू के पास 61 कंचे थे, 27 खो गए। कितने बचे?' बच्चों से पहले संक्रिया पूछें, फिर साथ में 61 − 27 = 34 हल करें।",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट का सवाल 1 हल करें, पहले लिखें कि जोड़ना है या घटाना।' सवाल 2 और 3 बच्चे अपनी जगह पर अगले समय में पूरे करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि हर बच्चा संक्रिया का चिह्न सही चुन रहा है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'गीता के पास 56 टॉफ़ी थीं। उसने 21 टॉफ़ी खा लीं। कितनी बचीं?' इसे हल करने के लिए क्या करेंगे? उँगली दिखाएँ: 1) जोड़ 2) घटाव",
+    "expected_hi": "2) घटाव",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M1",
+      "misconception_name_hi": "संक्रिया चयन त्रुटि: घटाने की बजाय जोड़ता है",
+      "misconception_name_en": "Operation selection error: adds when should subtract",
+      "detect_en": "Computation is correct but operation is wrong; \"gave away\" / \"ate\" / \"lost\" problems are solved with addition",
+      "wrong_answer_hi": "1) जोड़"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "compute",
+    "question_hi": "एक डिब्बे में 73 गेंदें थीं। 38 गेंदें बाहर निकाल दीं। कितनी बचीं? स्लेट पर हल करें: 73 − 38",
+    "expected_hi": "35",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M2",
+      "misconception_name_hi": "सही संक्रिया पर गणना में त्रुटि",
+      "misconception_name_en": "Correct operation but cannot compute",
+      "detect_en": "Operation symbol is correct, but answer is wrong due to carry/borrow errors — diagnose the underlying operation misconception",
+      "wrong_answer_hi": "45"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: रीना वाला सवाल (34 पेंसिल, 12 दे दीं)।",
+   "बोर्ड के एक कोने में दो सूचियाँ लिखें: 'घटाव: दे दीं, खा लीं, खो गए, उड़ गए' और 'जोड़: और मिले, कुल कितने'।",
+   "हर बच्चे के लिए एक वर्कशीट और स्लेट या कॉपी का पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। पहले लिखें कि जोड़ना है या घटाना, फिर हल करें और उत्तर लिखें।",
+   "instructions_en": "Read each problem carefully. First write whether to add or subtract, then solve and write the answer.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मीना के पास 36 कंचे हैं। उसे 23 कंचे और मिले। अब उसके पास कुल कितने कंचे हैं?",
+     "answer": "59",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "रवि के पास 68 रुपये थे। उसने 25 रुपये की किताब खरीदी। अब उसके पास कितने रुपये बचे?",
+     "answer": "43",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N2.3.5-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "बस में 84 लोग थे। 47 लोग उतर गए। अब बस में कितने लोग हैं?",
+     "answer": "37",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N2.3.5-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "एक दुकान में 45 लाल चूड़ियाँ और 38 हरी चूड़ियाँ हैं। कुल कितनी चूड़ियाँ हैं?",
+     "answer": "83",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बगीचे में 70 फूल थे। माली ने 26 फूल तोड़ लिए। अब कितने फूल बचे?",
+     "answer": "44",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "माँ ने 57 लड्डू बनाए। बच्चों ने 19 लड्डू खा लिए। कितने लड्डू बचे?",
+     "answer": "38",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 25"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4462d6ebedc8",
+ "created": "2026-11-21T06:08:39Z",
+ "cost_usd": 0.0416,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

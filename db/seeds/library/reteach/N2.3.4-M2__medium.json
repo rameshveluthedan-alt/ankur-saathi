@@ -1,0 +1,142 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.4-M2__medium",
+ "skill_id": "N2.3.4",
+ "domain_id": "numeracy",
+ "mode": "N2.3.4-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने उधार लेकर घटाना सीखा था। बोर्ड पर लिखें: 53 - 28 = 35, और बच्चों को बताएँ कि इकाई में 13 - 8 = 5 ठीक है, पर दहाई ने 1 दहाई उधार दी, फिर भी 5 को 4 नहीं किया, इसलिए उत्तर 10 ज़्यादा आया। अब इसी सवाल को दहाई-इकाई के बॉक्स में दोबारा करें: 5 काटकर ऊपर 4 लिखें, 13 - 8 = 5, 4 - 2 = 2, उत्तर 25; इसके बाद गलत लाइन मिटा दें, ताकि बोर्ड पर सिर्फ़ सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 71 - 45 = 36, और बच्चों से पूछें: 'दहाई में क्या भूल हुई?' साथ मिलकर 7 काटकर 6 करें और सही उत्तर 26 तक पहुँचें। फिर नया सवाल 82 - 39 साथ में करें: 'इकाई में 2 में से 9 नहीं घटता, उधार लें, 8 को 7 करें', उत्तर 43।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें, उधार लेने पर ऊपर की दहाई ज़रूर काटें।' इस 5 मिनट में सवाल 1 और 2 शुरू हों, बाकी सवाल और अतिरिक्त सवाल बच्चे अपनी जगह पर अगले ब्लॉक में पूरे करें। शिक्षक पहले उन बच्चों के पास जाएँ जिनसे कल यह गलती हुई थी, सामान्य चक्कर के बीच शांति से।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "62 - 27: उत्तर 35 या 45?",
+    "expected_hi": "35",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M2",
+      "misconception_name_hi": "उधार लेता है पर दहाई कम नहीं करता",
+      "misconception_name_en": "Borrows but does not reduce tens digit",
+      "detect_en": "Answer is exactly 10 more than correct. Ones column is right, tens column is 1 too high.",
+      "wrong_answer_hi": "45"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 94 - 58 = 46। यह सही है या गलत?",
+    "expected_hi": "गलत, 36",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M2",
+      "misconception_name_hi": "उधार लेता है पर दहाई कम नहीं करता",
+      "misconception_name_en": "Borrows but does not reduce tens digit",
+      "detect_en": "Answer is exactly 10 more than correct. Ones column is right, tens column is 1 too high.",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से एक दहाई-इकाई का बॉक्स बनाकर रखें।",
+   "I Do और We Do के सवाल एक पर्ची पर लिख लें: 53 - 28, 71 - 45, 82 - 39।",
+   "हर बच्चे के पास स्लेट या कॉपी का खाली पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "घटाएँ। उधार लेने पर ऊपर की दहाई काटकर एक कम लिखें।",
+   "instructions_en": "Subtract. When you borrow, cross out the top tens digit and write one less.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "61 - 24 = ___",
+    "answer": "37",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "6",
+    "row1_o": "1",
+    "row2_t": "2",
+    "row2_o": "4",
+    "answer_t": "3",
+    "answer_o": "7"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "47 - 19",
+     "answer": "28",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "73 - 46",
+     "answer": "27",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.4-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "91 - 57 = ___",
+     "answer": "34",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.4-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "84 - 26 = ___",
+     "answer": "58",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "56 - 38 = ___",
+     "answer": "18",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 72 आम थे। 35 आम बिक गए। टोकरी में कितने आम बचे?",
+     "answer": "37",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 28",
+   "worksheets.progressor problem 4 repeats a number the lesson or anchor already used: 26",
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 35"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "cb91d203d57e",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0336,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,143 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.2-M2__medium",
+ "skill_id": "L1.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.2-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने छोटा उ और बड़ा ऊ की मात्रा पढ़ी थी। बोर्ड पर लिखें: कुल। इसे लंबा खींचकर 'कूल' पढ़ें, फिर बच्चों से पूछें, 'क के नीचे छोटी मात्रा है, तो आवाज़ लंबी क्यों?' अब 'कुल' छोटी आवाज़ में सही पढ़ें, मात्रा पर उँगली रखकर कहें 'छोटा उ, छोटी आवाज़', फिर गलत पढ़ने की बात मिटाकर बोर्ड पर केवल सही रूप 'कुल' रहने दें।",
+   "we_do_hi": "बोर्ड पर लिखें: धूल, और इसे छोटी आवाज़ में 'धुल' पढ़ें। बच्चों से पूछें, 'क्या यह सही पढ़ा?' फिर सब मिलकर ढूँढें कि ध के नीचे बड़ा ऊ है और 'धूल' लंबा पढ़ें। इसके बाद नया शब्द साथ में पढ़ें: पुल, हाथ से छोटा इशारा करते हुए।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: सुन, सूत, गुड़, भूल, मुख; बच्चे बारी-बारी से जोड़ीदार को पढ़कर सुनाएँ और जल्दी पूरा करें तो वर्कशीट के सवाल 1 से 3 पढ़ें, बाकी अपनी जगह पर अगले समय में पूरा करें। पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार ु और ू में भूल की थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) दुध 2) दूध। जो सही लिखा है, उसका नंबर उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M2",
+      "misconception_name_hi": "छोटा उ (ु) और बड़ा ऊ (ू) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटा उ (ु) and बड़ा ऊ (ू) matras",
+      "detect_en": "Errors specifically on ु/ू distinction; reads both as the same vowel sound",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक शब्द बोलें: 'फूल'। स्लेट पर केवल फ के नीचे लगने वाली मात्रा लिखें।",
+    "expected_hi": "ू",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M2",
+      "misconception_name_hi": "छोटा उ (ु) और बड़ा ऊ (ू) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses छोटा उ (ु) and बड़ा ऊ (ू) matras",
+      "detect_en": "Errors specifically on ु/ू distinction; reads both as the same vowel sound",
+      "wrong_answer_hi": "ु"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखने के लिए शब्द: कुल, धूल, पुल",
+   "कागज़ की पर्चियों पर हर जोड़ी के लिए शब्द-कार्ड: सुन, सूत, गुड़, भूल, मुख"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द ध्यान से देखें और जोड़ीदार को पढ़कर सुनाएँ। छोटा उ छोटा बोलें, बड़ा ऊ लंबा बोलें।",
+   "instructions_en": "Read each word aloud to your partner. Say the short u short and the long uu long.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "जोड़ीदार को पाँच शब्द-कार्ड पढ़कर सुनाएँ, जिनमें छोटा उ और बड़ा ऊ दोनों हों।",
+    "task_en": "Read five word cards aloud to a partner, mixing short u and long uu matras.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "पाँचों शब्दों में ु छोटा और ू लंबा बिना मदद पढ़ता है",
+     "partial_hi": "कुछ शब्दों में ु और ू की आवाज़ बदल देता है या मदद से सही करता है",
+     "not_yet_hi": "ु और ू दोनों को एक जैसा पढ़ता है",
+     "achieved_en": "Reads short u and long uu correctly in all five words without help",
+     "partial_en": "Mixes up u and uu in some words or corrects with help",
+     "not_yet_en": "Reads u and uu the same way"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: गुड़",
+     "answer": "गुड़",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: सूत",
+     "answer": "सूत",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: भूल",
+     "answer": "भूल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: सुन",
+     "answer": "सुन",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: मुख",
+     "answer": "मुख",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9e297b15d7c8",
+ "created": "2026-11-21T05:57:58Z",
+ "cost_usd": 0.0272,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,136 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.4.2__normal__long",
+ "skill_id": "L1.4.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने मात्रा वाले छोटे शब्द पढ़े थे।' बोर्ड पर लिखें: कमरा, पानी, गुड़िया। हर शब्द के अक्षरांश पर उँगली रखकर धीरे पढ़ें, 'क-म-रा, कमरा', फिर पूरा शब्द एक साँस में बोलें।",
+   "we_do_hi": "बोर्ड पर लिखें: मोती, चिड़िया, टमाटर। शिक्षक हर अक्षरांश पर उँगली रखें और बच्चे बारी-बारी से उसे पढ़ें, फिर पूरा शब्द जोड़कर बोलें। बच्चों से पूछें: 'इस शब्द में कौन-सी मात्रा है?'",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: बकरी, खिलौना, सूरज, केला, पतंग, दुकान। जोड़ी का एक बच्चा कार्ड पढ़े और दूसरा सुने, फिर बारी बदलें; पर्चियाँ न हों तो बच्चे बोर्ड से वर्कशीट के शब्द पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "एक शब्द बोलें: 'नदी'। बोर्ड पर लिखें: 1) नदी 2) नाद। आपने कौन-सा शब्द सुना? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुने हुए शब्द को मात्रा देखकर सही लिखे रूप से मिला लेता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: मछली। इस शब्द में कितने अक्षरांश हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा तीन अक्षरांश वाले शब्द को टुकड़ों में बाँटकर पढ़ता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: कमरा, पानी, गुड़िया, मोती, चिड़िया, टमाटर।",
+   "कागज़ की पर्चियों पर हर जोड़ी के लिए छह शब्द लिखें: बकरी, खिलौना, सूरज, केला, पतंग, दुकान।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द अपने साथी को पढ़कर सुनाएँ। फिर साथी पढ़े और आप सुनें।",
+   "instructions_en": "Read each word aloud to your partner. Then your partner reads and you listen.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा छह मात्रा वाले शब्द-कार्ड एक-एक करके साथी को पढ़कर सुनाए।",
+    "task_en": "The child reads six word cards with matras aloud to a partner, one by one.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "दो और तीन अक्षरांश वाले सभी शब्द बिना रुके, हर शब्द जल्दी पढ़ता है",
+     "partial_hi": "दो अक्षरांश वाले शब्द पढ़ता है, तीन अक्षरांश पर अटकता है",
+     "not_yet_hi": "पहले अक्षरांश के बाद रुक जाता है या मात्रा नहीं पढ़ पाता",
+     "achieved_en": "Reads all 2- and 3-syllable words quickly without stopping",
+     "partial_en": "Reads 2-syllable words but hesitates on 3-syllable words",
+     "not_yet_en": "Stops after the first syllable or cannot read the matra"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: बकरी",
+     "answer": "बकरी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: सूरज",
+     "answer": "सूरज",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: खिलौना",
+     "answer": "खिलौना",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: केला",
+     "answer": "केला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: दुकान",
+     "answer": "दुकान",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "पढ़ें: पतंग",
+     "answer": "पतंग",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:02:08Z",
+ "cost_usd": 0.026,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

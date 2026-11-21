@@ -1,0 +1,150 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.2.4-M2__medium",
+ "skill_id": "N1.2.4",
+ "domain_id": "numeracy",
+ "mode": "N1.2.4-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने संख्या को दहाई और इकाई में बाँटना सीखा था। बोर्ड पर बासठ के लिए 6 बंडल और 2 खुली छड़ियाँ बनाएँ, फिर दहाई-इकाई के बॉक्स में दहाई में 2 और इकाई में 6 लिखें और पूछें: 'देखिए, 6 बंडल दहाई में गए या इकाई में? यहाँ अंक उल्टे बैठ गए, यह 26 बन गया।' अब वही संख्या सही लिखें: बंडल गिनकर दहाई में 6, खुली छड़ियाँ गिनकर इकाई में 2, यानी 62; फिर गलत लिखावट मिटा दें, बोर्ड पर सिर्फ़ 62 रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'सैंतीस: दहाई 7, इकाई 3', बच्चों से पूछें कि बंडल कितने होंगे और गलती कहाँ है, फिर साथ मिलकर ठीक करें: दहाई 3, इकाई 7। इसके बाद 5 बंडल और 8 खुली छड़ियाँ दिखाएँ: बच्चे पहले बंडल गिनें और दहाई में लिखें, फिर खुली छड़ियाँ गिनें और इकाई में लिखें। 'पहले बंडल, फिर खुली छड़ियाँ' का नियम सब मिलकर दोहराएँ।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें, और बचा काम अपनी जगह पर पूरा करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिनसे कल अंक उल्टे हुए थे, सामान्य चक्कर के हिस्से के रूप में। अगर show-me में चौथाई से ज़्यादा बच्चों के उत्तर उल्टे हों, तो छड़ियों से यही कदम दोबारा कराएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "4 बंडल और 9 खुली छड़ियाँ। संख्या कौन-सी है: 1) 49 2) 94?",
+    "expected_hi": "1) 49",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.4-M2",
+      "misconception_name_hi": "दहाई और इकाई का स्थान बदलता है",
+      "misconception_name_en": "Reverses tens and ones positions",
+      "detect_en": "Points to ones digit when asked about tens, or writes 5 in tens column and 4 in ones for \"forty-five\"",
+      "wrong_answer_hi": "2) 94"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 81। इसमें दहाई का अंक कौन-सा है?",
+    "expected_hi": "8",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.4-M2",
+      "misconception_name_hi": "दहाई और इकाई का स्थान बदलता है",
+      "misconception_name_en": "Reverses tens and ones positions",
+      "detect_en": "Points to ones digit when asked about tens, or writes 5 in tens column and 4 in ones for \"forty-five\"",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "छड़ियों के 6 बंडल (हर बंडल में 10) और 8 खुली छड़ियाँ",
+   "बोर्ड पर एक बड़ा दहाई-इकाई का बॉक्स बनाएँ"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को दहाई-इकाई के बॉक्स में लिखें। पहले दहाई, फिर इकाई।",
+   "instructions_en": "Write each number in the tens-ones box. Tens first, then ones.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "3 दहाई और 4 इकाई",
+    "answer": "34",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "3",
+    "row1_o": "4",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "3",
+    "answer_o": "4"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 दहाई और 9 इकाई",
+     "answer": "39",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बहत्तर लिखें",
+     "answer": "72",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.4-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "6 इकाई और 4 दहाई",
+     "answer": "46",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.4-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पचासी लिखें",
+     "answer": "85",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "1 दहाई और 8 इकाई",
+     "answer": "18",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "इकसठ लिखें",
+     "answer": "61",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "the progressor lesson (i_do_hi) says «बासठ» (= 62) beside the number 26",
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2298a50c0620",
+ "created": "2026-11-21T06:06:03Z",
+ "cost_usd": 0.0348,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,36 @@
+{
+ "format": 1,
+ "piece": "setting",
+ "key": "numeracy__kitchen_and_cooking",
+ "skill_id": null,
+ "domain_id": "numeracy",
+ "mode": "kitchen and cooking",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "title_hi": "दादी की रसोई",
+  "title_en": "Grandmother's Kitchen",
+  "theme": "kitchen and cooking",
+  "board_hi": "बोर्ड पर एक रसोई की अलमारी बनाएँ, जिसमें चार खाने न बनाकर चार अलग चीज़ें एक लाइन में रखी हों: आलू की टोकरी, टमाटर की टोकरी, रोटियों की थाली और लड्डुओं का डिब्बा। हर चीज़ के नीचे एक खाली गोला बनाएँ, जिसमें शिक्षक गिनती या दाम लिख और मिटा सकें। बोर्ड के एक कोने में एक खाली जगह छोड़ें और ऊपर लिखें: 'आज की रसोई'।",
+  "narration_hi": "देखें, यह दादी की रसोई है। आज घर पर मेहमान आ रहे हैं और दादी को खाना बनाने के लिए आलू, टमाटर, रोटियाँ और लड्डू गिनकर रखने हैं। आज हम दादी की मदद करेंगे।",
+  "opening_question_hi": "आपके घर की रसोई में खाना बनाने के लिए कौन-कौन सी चीज़ें रखी होती हैं?",
+  "closing_question_hi": "आज हमने दादी की रसोई में कितनी मदद की? मेहमानों के लिए खाना तैयार है या नहीं?",
+  "materials_hi": [
+   "चॉक या मार्कर",
+   "डस्टर (गोलों की संख्या बदलने के लिए)"
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "df60e1e9a0a0",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0074,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

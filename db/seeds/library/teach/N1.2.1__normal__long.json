@@ -1,0 +1,117 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.1__normal__long",
+ "skill_id": "N1.2.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने 1 से 50 तक गिनती बोली थी।' बोर्ड पर लिखी दहाई की संख्याएँ 10, 20, 30 ... 100 दिखाएँ, फिर 55 से 62 तक धीरे-धीरे बोलें और 59 के बाद रुककर कहें: 'देखिए, 9 के बाद अगली दहाई आती है, 59 के बाद 60।' यही 85 से 92 तक करके दिखाएँ और 89 के बाद 90 पर ज़ोर दें।",
+   "we_do_hi": "बच्चों के साथ 1 से 100 तक गिनती बोलें। हर दहाई पूरी होने पर (जैसे 79 के बाद 80) सब एक ताली बजाएँ। फिर एक-एक बच्चे से बारी-बारी अगली संख्या बुलवाएँ, ख़ासकर 9 पर ख़त्म होने वाली संख्याओं के बाद।",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को 10 कंकड़ या बोतल के ढक्कन दें। एक बच्चा 1 से 100 तक गिनती बोले और हर दहाई पूरी होने पर एक कंकड़ आगे रखे, दूसरा बच्चा ध्यान से सुने; फिर दोनों बारी बदलें। चीज़ें न हों तो बच्चे वर्कशीट के सवाल कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: 39। इसके बाद कौन-सी संख्या आती है? स्लेट पर लिखें।",
+    "expected_hi": "40",
+    "listen_for": [],
+    "shows_hi": "बच्चा 9 पर ख़त्म होने वाली संख्या के बाद अगली दहाई पर सही पहुँचता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 47, 48, 49, ___ । खाली जगह में कौन-सी संख्या आएगी?",
+    "expected_hi": "50",
+    "listen_for": [],
+    "shows_hi": "बच्चा गिनती का क्रम पकड़कर दहाई की सीमा पार करता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर एक पंक्ति में लिखें: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100",
+   "हर जोड़ी के लिए 10 कंकड़ या बोतल के ढक्कन इकट्ठा करें"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "संख्याओं को कॉपी में लिखें और खाली जगह में सही संख्या भरें। फिर पूरी पंक्ति धीरे से बोलकर पढ़ें।",
+   "instructions_en": "Copy the numbers into your notebook and fill in the missing number. Then say the whole row aloud softly.",
+   "required_count": 3,
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चा साथी को 1 से 100 तक गिनती बोलकर सुनाए और हर दहाई पूरी होने पर एक कंकड़ आगे रखे।",
+    "task_en": "The child recites 1 to 100 to a partner, placing one pebble forward each time a ten is completed.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बोतल के ढक्कन",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना रुके 100 तक बोलता है, 29 से 30 और 79 से 80 जैसी जगह पर कोई गलती नहीं करता",
+     "partial_hi": "100 तक बोलता है, पर दहाई बदलते समय अटकता है और ख़ुद सुधारता है",
+     "not_yet_hi": "50 के बाद नहीं बोल पाता या दहाई बदलते समय बार-बार गलती करता है",
+     "achieved_en": "Recites to 100 without stopping, no error at boundaries like 29 to 30 or 79 to 80",
+     "partial_en": "Reaches 100 but stumbles at decade changes and self-corrects",
+     "not_yet_en": "Cannot go beyond 50 or makes frequent errors at decade changes"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "खाली जगह भरें: 18, 19, ___, 21",
+     "answer": "20",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "खाली जगह भरें: 28, 29, ___, 31",
+     "answer": "30",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "खाली जगह भरें: 68, 69, ___, 71",
+     "answer": "70",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "खाली जगह भरें: 97, 98, 99, ___",
+     "answer": "100",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "खाली जगह भरें: 64, 65, ___, 67",
+     "answer": "66",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T05:59:28Z",
+ "cost_usd": 0.0364,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

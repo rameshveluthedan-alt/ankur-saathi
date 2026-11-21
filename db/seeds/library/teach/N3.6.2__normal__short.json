@@ -1,0 +1,103 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.6.2__normal__short",
+ "skill_id": "N3.6.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'आम, केला, आम, सेब, आम, केला, आम'। हर फल के आगे एक-एक खड़ी रेखा खींचें; पाँचवीं रेखा चार रेखाओं को तिरछा काटती हुई खींचें और कहें: 'देखिए, यह पाँच का एक गुच्छा है।' फिर सारणी में फल और कुल संख्या लिखें: आम 4, केला 2, सेब 1, और बच्चों से पूछें: 'सबसे ज़्यादा कौन-सा फल है?'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बच्चे अपनी जगह पर काम शुरू करें और बाकी काम अगले समय में पूरा करें। शिक्षक घूमकर देखें कि पाँचवीं रेखा तिरछी खींची गई है या नहीं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर खींचें: चार खड़ी रेखाएँ और उन्हें काटती एक तिरछी रेखा, उसके बाद दो खड़ी रेखाएँ। ये कुल कितने हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "7",
+    "listen_for": [],
+    "shows_hi": "बच्चा पाँच के गुच्छे को एक साथ पाँच गिन पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'गेंद, पतंग, गेंद, गेंद, पतंग, गेंद, गेंद'। गेंद के लिए कितनी रेखाएँ खींचेंगे? स्लेट पर संख्या लिखें।",
+    "expected_hi": "5",
+    "listen_for": [],
+    "shows_hi": "बच्चा सूची से एक चीज़ को सही गिनकर अलग कर पाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर फलों की सूची लिखें: आम, केला, आम, सेब, आम, केला, आम",
+   "बोर्ड पर तीन पंक्तियों की एक खाली सारणी बनाएँ: फल, रेखाएँ, कुल संख्या"
+  ],
+  "worksheet": {
+   "instructions_hi": "सूची पढ़ें, हर चीज़ के लिए रेखाएँ खींचें, फिर कुल संख्या लिखें।",
+   "instructions_en": "Read the list, draw tally marks for each item, then write the total.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सूची: बिल्ली, कुत्ता, बिल्ली, बिल्ली, कुत्ता। बिल्ली कितनी हैं? कुल संख्या = ___",
+     "answer": "3",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "रेखाएँ: चार खड़ी रेखाएँ और उन्हें काटती एक तिरछी रेखा, फिर चार खड़ी रेखाएँ। कुल संख्या = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सूची: लाल, पीला, लाल, हरा, लाल, पीला, लाल, लाल, हरा, लाल। लाल के लिए रेखाएँ खींचें और कुल संख्या लिखें: ___",
+     "answer": "6",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सूची: गाय, बकरी, गाय, बकरी, बकरी, बकरी। बकरी कितनी हैं? कुल संख्या = ___",
+     "answer": "4",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "रेखाएँ: दो गुच्छे (हर गुच्छे में चार खड़ी और एक तिरछी रेखा), फिर दो खड़ी रेखाएँ। कुल संख्या = ___",
+     "answer": "12",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "सारणी: आम 5, केला 8, सेब 2। कुल कितने फल हैं?",
+     "answer": "15",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "06c2736a4e05",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0203,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

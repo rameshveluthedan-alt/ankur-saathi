@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.4.2__normal__medium",
+ "skill_id": "N1.4.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर तीन चित्र बनाएँ: सूरज उगता हुआ, सिर के ऊपर तेज़ सूरज, चाँद और तारे। हर चित्र पर उँगली रखकर बोलें: 'यह सुबह है, यह दोपहर है, यह रात है।' फिर कहें: 'सुबह हम उठकर दाँत साफ़ करते हैं, दोपहर में खाना खाते हैं, रात को सोते हैं। सोने से पहले खाना, खाने के बाद सोना।'",
+   "we_do_hi": "तीन घटनाएँ बोलें: 'स्कूल जाना, नहाना, घर लौटना'। बच्चों से पूछें कि पहले क्या होता है और उसके बाद क्या, फिर बोर्ड पर उसी क्रम में 1, 2, 3 लिखें। दो बच्चों से 'पहले' और 'बाद' शब्दों के साथ पूरा क्रम बुलवाएँ।",
+   "you_do_hi": "हर जोड़ी को चार कागज़ की पर्चियाँ दें, जिन पर शिक्षक ने सरल चित्र बनाए हों: उठना, नाश्ता करना, दोपहर का खाना, सोना। जोड़ी पर्चियों को दिन के क्रम में रखे और बोले कि कौन-सा काम पहले और कौन-सा बाद में होता है; पर्चियाँ न हों तो बच्चे बैक-अप वर्कशीट का सवाल 1 कॉपी में करें, बाकी काम अगले ब्लॉक में अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "हम दोपहर का खाना कब खाते हैं? 1) सुबह उठते ही 2) स्कूल के बीच में, दिन में। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा दोपहर को दिन के सही समय से जोड़ता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "पहले क्या होता है? 1) सोना 2) रात का खाना। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो पास-पास की घटनाओं में 'पहले' समझता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर सूरज उगने, तेज़ दोपहर के सूरज और चाँद-तारों के तीन सरल चित्र बनाएँ।",
+   "हर जोड़ी के लिए चार कागज़ की पर्चियों का एक सेट बनाएँ, जिन पर उठना, नाश्ता करना, दोपहर का खाना और सोना के सरल चित्र हों।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर सवाल में दिन के कामों को सही क्रम में रखें।",
+   "instructions_en": "Put the day's activities in the right order in each question.",
+   "required_count": 3,
+   "example_block": null,
+   "observe": {
+    "task_hi": "चार पर्चियों (उठना, नाश्ता, दोपहर का खाना, सोना) को दिन के क्रम में रखें और 'पहले' और 'बाद' शब्दों से क्रम बताएँ।",
+    "task_en": "Arrange four slips (waking up, breakfast, lunch, sleeping) in daily order and describe the order using 'before' and 'after'.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियाँ जिन पर शिक्षक चित्र बनाए",
+     "पुराने कैलेंडर या अख़बार के चित्र"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों पर्चियाँ बिना मदद सही क्रम में रखता है और 'पहले' और 'बाद' बोलता है",
+     "partial_hi": "दो-तीन पर्चियाँ सही रखता है या दोपहर और शाम में उलझता है",
+     "not_yet_hi": "सुबह, दोपहर और रात का क्रम भी नहीं बना पाता",
+     "achieved_en": "Orders all four slips without help and uses before/after",
+     "partial_en": "Orders 2-3 slips correctly or confuses afternoon and evening",
+     "not_yet_en": "Cannot order even morning, afternoon and night"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोर्ड पर बने तीन चित्र (सूरज उगता हुआ, तेज़ सूरज, चाँद) कॉपी में सुबह से रात के क्रम में बनाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "इन कामों के आगे 1, 2, 3 लिखकर क्रम बनाएँ: सोना, उठना, दोपहर का खाना।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "इन चार कामों के आगे 1, 2, 3, 4 लिखकर क्रम बनाएँ: स्कूल जाना, रात का खाना, नहाना, घर लौटना।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सुबह का एक काम और रात का एक काम कॉपी में चित्र बनाकर दिखाएँ।",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "worksheets.progressor problem 4: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T05:59:04Z",
+ "cost_usd": 0.0266,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

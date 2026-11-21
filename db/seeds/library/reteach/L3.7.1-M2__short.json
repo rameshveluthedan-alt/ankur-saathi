@@ -1,0 +1,143 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.7.1-M2__short",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.7.1-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अनुच्छेद लिखना सीखा था, आज क्रम पर ध्यान देंगे। बोर्ड पर लिखें: 'हमने पौधे को पानी दिया। हमने गड्ढा खोदा। पौधा बड़ा हुआ।' और बच्चों को बताएँ कि इसमें पहले क्या हुआ, यह पता नहीं चलता। फिर इसे मिटाकर सही क्रम लिखें: 'पहले हमने गड्ढा खोदा। फिर पौधा लगाकर पानी दिया। अंत में पौधा बड़ा हुआ।' और 'पहले, फिर, अंत में' पर उँगली रखकर पढ़ें।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट के सवाल 1 से 3 पहले हल करें; जो जल्दी ख़त्म करें, वे सवाल 4 करें।' बच्चे अपनी जगह पर पहला वाक्य लिखना शुरू करें और बाकी काम अगले समय में अपनी जगह पर पूरा करें। शिक्षक सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने क्रम में गलती की थी।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 1) हमने पतंग उड़ाई। 2) हमने पतंग बनाई। कौन-सा वाक्य पहले आएगा? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M2",
+      "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं",
+      "misconception_name_en": "No order: no beginning, middle and end",
+      "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: '___ सबने खाना खाया।' यह अनुच्छेद का आखिरी वाक्य है। खाली जगह में क्या आएगा? 1) पहले 2) अंत में",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M2",
+      "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं",
+      "misconception_name_en": "No order: no beginning, middle and end",
+      "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पौधा लगाने वाले तीन वाक्य उलटे क्रम में पहले से लिख लें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "composition",
+   "instructions_hi": "ध्यान से पढ़ें और लिखें। वाक्यों को 'पहले, फिर, अंत में' से क्रम में लिखें।",
+   "instructions_en": "Read carefully and write. Put sentences in order using first, then, finally.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "writing_task": {
+    "topic_hi": "मेरी सुबह",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 5 वाक्य",
+     "item_en": "At least 5 sentences"
+    },
+    {
+     "item_hi": "पहला वाक्य विषय बताता है",
+     "item_en": "First sentence names the topic"
+    },
+    {
+     "item_hi": "'पहले, फिर, अंत में' का प्रयोग",
+     "item_en": "Uses first, then, finally"
+    },
+    {
+     "item_hi": "सभी वाक्य विषय पर",
+     "item_en": "All sentences on topic"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "Full stop at end of each sentence"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'मेरी सुबह' विषय पर 5-7 जुड़े हुए वाक्य लिखें। 'पहले, फिर, अंत में' का प्रयोग करें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरी सुबह"
+    },
+    {
+     "number": 2,
+     "problem_hi": "इन वाक्यों को सही क्रम में लगाएँ (क्रम संख्या लिखें): क) हमने चाय पी। ख) माँ ने पानी उबाला। ग) माँ ने पानी में चाय-पत्ती डाली।",
+     "answer": "ख, ग, क",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "खाली जगह भरें (पहले / अंत में): '___ हम सब सो गए।' यह आखिरी वाक्य है।",
+     "answer": "अंत में",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "'मेरा खेल का मैदान' विषय पर 3 वाक्य क्रम से लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a2a59adf02a5",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0247,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

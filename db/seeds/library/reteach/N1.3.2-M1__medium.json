@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.3.2-M1__medium",
+ "skill_id": "N1.3.2",
+ "domain_id": "numeracy",
+ "mode": "N1.3.2-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने घटाना सीखा था; आज देखेंगे कि उलटा घटाने से क्या गड़बड़ होती है। बोर्ड पर 12 - 5 लिखें और पहले गलत तरीका दिखाएँ: '2 में से 5 नहीं निकलता, तो 5 में से 2 घटा दिया, 3 आया, उत्तर 13।' फिर कहें: 'पर 12 में से 5 हटाने पर संख्या बढ़ कैसे गई? हमें 12 में से घटाना है', फिर 1 बंडल और 2 खुली छड़ियाँ लेकर बंडल खोलें, 5 हटाएँ, 7 गिनें, और गलत लिखा हिस्सा मिटा दें ताकि बोर्ड पर केवल 12 - 5 = 7 रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 13 - 7 = 14 और बच्चों से पूछें: 'क्या 13 में से कुछ हटाने पर 14 बचेगा?' फिर साथ में छड़ियों से गिनकर सुधारें: 13 - 7 = 6। इसके बाद एक नया सवाल साथ में करें: 11 - 3, बंडल खोलकर 3 हटाएँ और 8 गिनें।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। इस छोटे समय में सवाल 1 और 2 शुरू करें, बाकी अपनी जगह पर अगले समय में पूरा करें। शिक्षक सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने उलटा घटाया था, और कहें: 'पहली संख्या में से घटाएँ।'"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर उत्तर लिखें: 15 - 6",
+    "expected_hi": "9",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.2-M1",
+      "misconception_name_hi": "क्रम की परवाह किए बिना छोटे से बड़ा घटाता है",
+      "misconception_name_en": "Subtracts smaller from larger regardless of order",
+      "detect_en": "When given impossible single-digit subtractions or mixed problems, child always does larger minus smaller",
+      "wrong_answer_hi": "11"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 14 - 9 = 15। सही या गलत? गलत हो तो सही उत्तर लिखें।",
+    "expected_hi": "गलत, 5",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.2-M1",
+      "misconception_name_hi": "क्रम की परवाह किए बिना छोटे से बड़ा घटाता है",
+      "misconception_name_en": "Subtracts smaller from larger regardless of order",
+      "detect_en": "When given impossible single-digit subtractions or mixed problems, child always does larger minus smaller",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "छड़ियों के 1 बंडल (10 छड़ियाँ) और 8 खुली छड़ियाँ।",
+   "बोर्ड पर पहले से लिखें: 12 - 5 और 13 - 7 = 14।"
+  ],
+  "worksheet": {
+   "instructions_hi": "घटाएँ। बड़ी संख्या (पहली संख्या) में से दूसरी संख्या घटाएँ। ज़रूरत हो तो दहाई तोड़ें।",
+   "instructions_en": "Subtract. Take the second number away from the first number. Break a ten if needed.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "13 - 5 = ___",
+    "answer": "8",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "1",
+    "row1_o": "3",
+    "row2_t": "",
+    "row2_o": "5",
+    "answer_t": "",
+    "answer_o": "8"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "9 - 4",
+     "answer": "5",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "16 - 7",
+     "answer": "9",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N1.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "12 - 8 = ___",
+     "answer": "4",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N1.3.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "11 - 4 = ___",
+     "answer": "7",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "14 - 8 = ___",
+     "answer": "6",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 10 आम हैं। 7 आम बिक गए। कितने आम बचे?",
+     "answer": "3",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 3 repeats a number the lesson or anchor already used: 12",
+   "worksheets.progressor problem 4 repeats a number the lesson or anchor already used: 11",
+   "worksheets.progressor problem 5 repeats a number the lesson or anchor already used: 14"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7076f6d8917c",
+ "created": "2026-11-21T06:00:21Z",
+ "cost_usd": 0.0405,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.7.2-M3__long",
+ "skill_id": "L2.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.7.2-M3",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने जुड़े हुए वाक्य लिखना सीखा था; आज देखेंगे कि हर वाक्य कुछ नई बात कहे। बोर्ड पर लिखें: 'मेरा स्कूल बड़ा है। मेरा स्कूल अच्छा है। मेरा स्कूल सुंदर है।' बच्चों से कहें: 'देखिए, हर वाक्य एक ही तरह शुरू होता है और बात आगे नहीं बढ़ती।' फिर इसी विषय को सही तरह लिखें: 'मेरा स्कूल बड़ा है। वहाँ एक खेल का मैदान है। हमारी शिक्षक रोज़ कहानी सुनाती हैं।' और गलत वाले वाक्य मिटा दें, बोर्ड पर केवल सही वाक्य रहें।",
+   "we_do_hi": "बोर्ड पर लिखें: 'मेरी गाय सफ़ेद है। मेरी गाय सफ़ेद है। वह घास खाती है।' बच्चों से पूछें कि कौन-सा वाक्य दोहराया गया है, और साथ मिलकर दूसरे वाक्य को नई बात से बदलें, जैसे 'उसका एक छोटा बछड़ा है।' फिर नया विषय 'बारिश' लें: पहला वाक्य 'आज बारिश हुई।' लिखें और बच्चों से अगले दो वाक्य पूछें, हर वाक्य अलग शब्द से शुरू हो।",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे सवाल 4 करें।' सवाल 1 में वर्कशीट पर दिए विषय पर लिखना है। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार एक ही शुरुआत दोहराई थी, और देखें कि हर वाक्य नई बात कह रहा है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'मेरा घर छोटा है।' अगला वाक्य कौन-सा अच्छा है? 1) मेरा घर छोटा है। 2) घर के आगे एक पेड़ है। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M3",
+      "misconception_name_hi": "एक ही शुरुआत या बात दोहराना",
+      "misconception_name_en": "Repeats the same sentence start or idea",
+      "detect_en": "Three or more sentences begin with the same words, or two sentences say the same thing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 1) मेरा तोता हरा है। 2) मेरा तोता हरा है। 3) वह मिर्च खाता है। कौन-सा वाक्य दोहराया गया है? उसका नंबर लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M3",
+      "misconception_name_hi": "एक ही शुरुआत या बात दोहराना",
+      "misconception_name_en": "Repeats the same sentence start or idea",
+      "detect_en": "Three or more sentences begin with the same words, or two sentences say the same thing",
+      "wrong_answer_hi": "3"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 'मेरा स्कूल' वाले तीन दोहराए वाक्य पहले से लिखकर रखें।",
+   "हर बच्चे के लिए एक वर्कशीट की प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "वाक्य ध्यान से लिखें। हर वाक्य नई बात कहे और अंत में । लगाएँ।",
+   "instructions_en": "Write carefully. Each sentence should say something new and end with a full stop.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा पसंदीदा त्योहार",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य विषय पर",
+     "item_en": "All sentences on the topic"
+    },
+    {
+     "item_hi": "हर वाक्य अलग शुरुआत से, कोई बात दोहराई नहीं",
+     "item_en": "Each sentence starts differently, nothing repeated"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "Full stop at the end of each sentence"
+    },
+    {
+     "item_hi": "कम से कम एक बार 'और / फिर / क्योंकि'",
+     "item_en": "At least one joining word used"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने पसंदीदा त्योहार पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा पसंदीदा त्योहार"
+    },
+    {
+     "number": 2,
+     "problem_hi": "इनमें कौन-सा वाक्य दोहराया गया है? उसका नंबर लिखें। 1) मेरी बिल्ली काली है। 2) वह दूध पीती है। 3) मेरी बिल्ली काली है।",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "'हमारा बगीचा बड़ा है।' के बाद कौन-सा वाक्य नई बात कहता है? (हमारा बगीचा बड़ा है। / उसमें गुलाब के फूल हैं।)",
+     "answer": "उसमें गुलाब के फूल हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "खाली जगह में सही शब्द लिखें: राजू ने खाना खाया ___ वह सो गया। (फिर / क्योंकि)",
+     "answer": "फिर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats wording from the lesson or anchor: «कौन सा वाक्य दोहराया गया»"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "cc1c5e9c9a1a",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.029,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

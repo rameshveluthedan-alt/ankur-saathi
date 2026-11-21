@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.4.2__normal__medium",
+ "skill_id": "N3.4.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर एक बड़ी घड़ी बनाएँ: छोटी सुई 3 पर, बड़ी सुई 12 पर। बच्चों को दिखाएँ: 'छोटी सुई घंटा बताती है, बड़ी सुई मिनट। बड़ी सुई 12 पर है, तो पूरे 3 बजे हैं।' फिर बड़ी सुई 6 पर और छोटी सुई 3 और 4 के बीच बनाकर बताएँ: 'बड़ी सुई 6 पर है, तो साढ़े तीन बजे हैं।'",
+   "we_do_hi": "गत्ते की घड़ी पर सुइयाँ घुमाएँ: छोटी सुई 7 पर, बड़ी सुई 12 पर, और बच्चों से पूछें 'कितने बजे हैं?'। फिर बड़ी सुई 3 पर रखकर बताएँ: 'बड़ी सुई 3 पर है, यानी सवा।' बच्चों के साथ मिलकर दो और समय पढ़ें: पौने और साढ़े।",
+   "you_do_hi": "हर जोड़ी को एक गत्ते की घड़ी (या कागज़ की प्लेट और दो तीलियों से बनी घड़ी) दें। एक बच्चा समय बोले, दूसरा सुइयाँ लगाकर दिखाए और बताए कितने बजे हैं; बाकी काम बच्चे अपनी जगह पर अगले ब्लॉक में पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर घड़ी बनाएँ: छोटी सुई 9 पर, बड़ी सुई 12 पर। कितने बजे हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "9",
+    "listen_for": [],
+    "shows_hi": "बच्चा छोटी सुई से घंटा पढ़ता है और जानता है कि बड़ी सुई 12 पर हो तो पूरा घंटा है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर घड़ी बनाएँ: छोटी सुई 5 और 6 के बीच, बड़ी सुई 6 पर। 1) साढ़े पाँच 2) छह बजे। उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा बड़ी सुई के 6 पर होने को आधा घंटा पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "एक बड़ी गत्ते की घड़ी, जिसकी दोनों सुइयाँ घूम सकें।",
+   "हर जोड़ी के लिए एक छोटी घड़ी: गत्ते की घड़ी, या कागज़ की प्लेट पर 1 से 12 लिखकर दो तीलियाँ (एक छोटी, एक बड़ी)।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "कॉपी में घड़ी बनाएँ और दिए गए समय के अनुसार सुइयाँ बनाएँ।",
+   "instructions_en": "Draw a clock in your notebook and draw the hands for the given time.",
+   "required_count": 3,
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चा घड़ी पर दिए गए समय (पूरा घंटा, साढ़े, सवा) के अनुसार सुइयाँ लगाए और बताए कि कितने बजे हैं।",
+    "task_en": "The child sets the hands on a clock for a given time (hour, half past, quarter past) and says the time.",
+    "kit_materials_hi": [
+     "गत्ते की घड़ी"
+    ],
+    "local_materials_hi": [
+     "कागज़ की प्लेट",
+     "तीलियाँ",
+     "बोतल का ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "घंटा, साढ़े और सवा तीनों बिना मदद के सही लगाता और पढ़ता है।",
+     "partial_hi": "घंटा सही पढ़ता है, पर साढ़े या सवा में बड़ी सुई गलत रखता है।",
+     "not_yet_hi": "छोटी और बड़ी सुई में अंतर नहीं कर पाता।",
+     "achieved_en": "Sets and reads hour, half past and quarter past correctly without help.",
+     "partial_en": "Reads hours correctly but places the minute hand wrongly for half or quarter past.",
+     "not_yet_en": "Cannot tell the hour hand from the minute hand."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "घड़ी बनाएँ और 4 बजे की सुइयाँ बनाएँ।",
+     "answer": "छोटी सुई 4 पर, बड़ी सुई 12 पर",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "घड़ी बनाएँ और साढ़े आठ बजे की सुइयाँ बनाएँ।",
+     "answer": "छोटी सुई 8 और 9 के बीच, बड़ी सुई 6 पर",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "घड़ी बनाएँ और सवा दस बजे की सुइयाँ बनाएँ।",
+     "answer": "छोटी सुई 10 के ठीक बाद, बड़ी सुई 3 पर",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "घड़ी बनाएँ और 11 बजे की सुइयाँ बनाएँ।",
+     "answer": "छोटी सुई 11 पर, बड़ी सुई 12 पर",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0273,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

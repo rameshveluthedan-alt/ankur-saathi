@@ -1,0 +1,145 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.2-M2__long",
+ "skill_id": "N2.3.2",
+ "domain_id": "numeracy",
+ "mode": "N2.3.2-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने सीखा था कि इकाई का जोड़ 10 या उससे ज़्यादा हो तो दहाई आगे जाती है। बोर्ड पर दहाई-इकाई के बॉक्स में 46 + 37 लिखें और पहले गलत तरीका दिखाएँ: 'देखिए, 6 + 7 = 13, इकाई में पूरा 13 लिख दिया, फिर 4 + 3 = 7, उत्तर 713 बन गया। पर दो अंकों की दो संख्याएँ जोड़कर सात सौ से ज़्यादा कैसे होगा? इकाई के बॉक्स में एक ही अंक आता है।' अब छड़ियों से वही सवाल सही करें: 13 खुली छड़ियों में से 10 का बंडल बनाकर हासिल 1 दहाई में रखें, इकाई में 3, दहाई में 4 + 3 + 1 = 8, उत्तर 83; फिर गलत लाइन मिटा दें ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 25 + 48 = 613 और बच्चों से पूछें: 'इकाई में कितना लिखा है? क्या इकाई में दो अंक आ सकते हैं?' बच्चों के साथ ठीक करें: 5 + 8 = 13, इकाई में 3, हासिल 1 ऊपर, दहाई 2 + 4 + 1 = 7, उत्तर 73। फिर एक नया सवाल साथ में करें: 59 + 26, हर कदम पर बच्चों से पूछें 'इकाई में क्या लिखें, हासिल कहाँ रखें?', उत्तर 85।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। हासिल ऊपर वाले खाली स्थान में लिखें।' शिक्षक सामान्य चक्कर लगाते हुए पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार इकाई में पूरा जोड़ लिखा था, और उनसे केवल पूछें: 'इकाई में कितने अंक लिखे हैं?' अगर शो-मी में एक चौथाई से ज़्यादा बच्चों ने गलत उत्तर दिखाया हो, तो वर्कशीट से पहले छड़ियों से हासिल वाला कदम फिर से करें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 27 + 55",
+    "expected_hi": "82",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M2",
+      "misconception_name_hi": "पूरा इकाई योग लिखना, हासिल न रखना",
+      "misconception_name_en": "Writes full ones sum without carrying",
+      "detect_en": "Answer has 3 digits where 2 expected, or ones column shows 2 digits (e.g., 34+28 → 512 where ones shows 12)",
+      "wrong_answer_hi": "712"
+     },
+     {
+      "misconception_id": "N2.3.2-M1",
+      "misconception_name_hi": "हासिल भूलना: हासिल छोड़ देता है",
+      "misconception_name_en": "Place-value carry-over confusion: drops the carry",
+      "detect_en": "Answer is exactly 10 less than correct. Ones column has a 2-digit number written, or only ones digit is written but tens carry is missing. Consistent across 3+ problems.",
+      "wrong_answer_hi": "72"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 39 + 45 = 714। सही या गलत? गलत हो तो सही उत्तर लिखें।",
+    "expected_hi": "गलत, 84",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M2",
+      "misconception_name_hi": "पूरा इकाई योग लिखना, हासिल न रखना",
+      "misconception_name_en": "Writes full ones sum without carrying",
+      "detect_en": "Answer has 3 digits where 2 expected, or ones column shows 2 digits (e.g., 34+28 → 512 where ones shows 12)",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "दहाई की छड़ियाँ: 8 बंडल (10-10 के) और 13 खुली छड़ियाँ, 46 + 37 दिखाने के लिए।",
+   "बोर्ड पर दहाई-इकाई का बॉक्स बनाकर रखें, जिसके ऊपर हासिल लिखने की जगह हो।",
+   "बोर्ड के एक कोने में लिखकर रखें: 25 + 48 = 613 (We Do में ठीक करने के लिए)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले इकाई जोड़ें। इकाई के बॉक्स में एक ही अंक लिखें, हासिल ऊपर वाले बॉक्स की जगह दहाई के ऊपर लिखें, फिर दहाई जोड़ें।",
+   "instructions_en": "Add the ones first. Write only one digit in the ones box, write the carry above the tens, then add the tens.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "36 + 25",
+     "answer": "61",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "48 + 39",
+     "answer": "87",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "19 + 56 = ___",
+     "answer": "75",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "34 + 26 = ___",
+     "answer": "60",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "45 + 27 = ___",
+     "answer": "72",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 18 आम हैं। दूसरी टोकरी में 47 आम हैं। दोनों टोकरियों में कुल कितने आम हैं? जोड़कर लिखें।",
+     "answer": "65",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34d866dc4f00",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.0415,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

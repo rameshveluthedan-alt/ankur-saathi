@@ -1,0 +1,154 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.7.1-M1__medium",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.7.1-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने एक विषय पर कई वाक्य लिखना सीखा था; आज देखेंगे कि हर वाक्य उसी विषय पर रहे। बोर्ड पर विषय 'बारिश का दिन' और ये वाक्य लिखें: 'आज बहुत बारिश हुई। आँगन में पानी भर गया। मेरे पास नई गेंद है।' बच्चों से कहें: 'देखिए, तीसरा वाक्य बारिश के बारे में नहीं है।' उसे मिटाकर लिखें: 'हमने पानी में कागज़ की नाव चलाई।' अब बोर्ड पर केवल सही वाक्य ही रहें।",
+   "we_do_hi": "बोर्ड पर विषय 'हमारा स्कूल' और ये वाक्य लिखें: '1) हमारा स्कूल बड़ा है। 2) यहाँ एक हरा मैदान है। 3) मेरे मामा शहर में रहते हैं। 4) हम यहाँ रोज़ पढ़ते हैं।' बच्चों से पूछें: 'कौन-सा वाक्य विषय पर नहीं है?' फिर सबके साथ मिलकर उसकी जगह स्कूल पर एक नया वाक्य बनाएँ, जैसे 'स्कूल में एक पुस्तकालय भी है।'",
+   "you_do_hi": "बच्चे वर्कशीट का सवाल 1 शुरू करें: विषय 'मेरा मनपसंद खेल' पर पहले दो वाक्य लिखें; बाकी काम वे अगले हिस्से में अपनी जगह पर पूरा करें। सवाल 1 से 4 सबके लिए हैं, सवाल 5 जल्दी ख़त्म करने वालों के लिए है। शिक्षक पहले उन बच्चों की कॉपी शांति से देखें जिनके वाक्य पिछली बार विषय से हटे थे, बिना किसी का नाम लिए।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) फिर हमने पौधे को पानी दिया। 2) पहले हमने गड्ढा खोदा। कौन-सा वाक्य पहले आएगा, 1 या 2?",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M2",
+      "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं",
+      "misconception_name_en": "No order: no beginning, middle and end",
+      "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बिना पूर्ण विराम के लिखें: हम मेले गए हमने झूला झूला घर आकर सो गए। इसमें कितने पूर्ण विराम लगेंगे?",
+    "expected_hi": "3",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: विषय 'बारिश का दिन' और उसके तीन वाक्य।",
+   "बोर्ड पर विषय 'हमारा स्कूल' के चार क्रमांक वाले वाक्य लिखकर रखें।",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर वाक्य दिए गए विषय पर ही लिखें। हर वाक्य के अंत में पूर्ण विराम (।) लगाएँ।",
+   "instructions_en": "Keep every sentence on the given topic. End each sentence with a full stop (।).",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा मनपसंद खेल",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 5 वाक्य",
+     "item_en": "At least 5 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य 'मेरा मनपसंद खेल' पर",
+     "item_en": "All sentences are about 'my favourite game'"
+    },
+    {
+     "item_hi": "पहला वाक्य खेल का नाम बताता है",
+     "item_en": "The first sentence names the game"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop (।) at the end of each sentence"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'मेरा मनपसंद खेल' विषय पर 5-7 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा मनपसंद खेल"
+    },
+    {
+     "number": 2,
+     "problem_hi": "विषय: मेरी गाय। कौन-सा वाक्य विषय पर नहीं है? उसकी संख्या लिखें।\n1) मेरी गाय सफ़ेद है।\n2) वह हरी घास खाती है।\n3) मुझे पतंग उड़ाना अच्छा लगता है।\n4) वह मीठा दूध देती है।",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "विषय: हमारा बगीचा। कौन-सा वाक्य विषय पर नहीं है? उसकी संख्या लिखें।\n1) हमारे बगीचे में गुलाब खिले हैं।\n2) कल मेरी बहन बस से गई।\n3) बगीचे में एक आम का पेड़ है।\n4) हम शाम को बगीचे में खेलते हैं।",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "इन वाक्यों को सही क्रम में लगाकर उनकी संख्याएँ लिखें।\n1) अंत में हमने चाय पी।\n2) पहले माँ ने पानी उबाला।\n3) फिर उसमें चाय की पत्ती डाली।",
+     "answer": "2, 3, 1",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'मेरा घर' विषय पर 3 वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats wording from the lesson or anchor: «कौन सा वाक्य विषय पर»",
+   "worksheets.progressor problem 3 repeats wording from the lesson or anchor: «कौन सा वाक्य विषय पर»",
+   "re-teach: no show-me question listens for L3.7.1-M1"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2a535660efe2",
+ "created": "2026-11-21T06:10:43Z",
+ "cost_usd": 0.132,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

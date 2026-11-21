@@ -1,0 +1,153 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.2.2-M1__long",
+ "skill_id": "N2.2.2",
+ "domain_id": "numeracy",
+ "mode": "N2.2.2-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने सैकड़ा, दहाई और इकाई में संख्या तोड़ना सीखा था। आज बीच वाले शून्य को ध्यान से देखेंगे। बोर्ड पर लिखें: 'तीन सौ दो = 32' और 302 = 300 + 20। बच्चों से कहें: 'देखिए, 32 तो बत्तीस है, तीन सौ नहीं; और 20 तो दो दहाई हैं, पर यहाँ एक भी दहाई नहीं है।'\nअब सैकड़ा-दहाई-इकाई का बॉक्स बनाएँ। सैकड़े में 3, दहाई में 0, इकाई में 2 लिखें। फिर लिखें: 302 = 300 + 0 + 2। बच्चों से कहें: 'दहाई का घर खाली नहीं छोड़ते, वहाँ 0 लिखते हैं।' इसके बाद गलत वाली दोनों पंक्तियाँ मिटा दें, ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर दो गलत पंक्तियाँ लिखें: 504 = 500 + 40 और 'सात सौ छह = 76'। बच्चों से पूछें: 'दहाई के घर में क्या है?' फिर साथ में बॉक्स भरकर सुधारें: 504 = 500 + 0 + 4, और सात सौ छह को 706 लिखें।\nअब एक नई संख्या साथ में करें: 901। बच्चे हर घर का अंक बताएँ, और शिक्षक बॉक्स भरें: 900 + 0 + 1।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।'\nशिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ, जिन्होंने कल बीच का शून्य छोड़ा था। किसी का नाम न लें।\nअगर प्रश्नों में एक चौथाई से अधिक बच्चे गलत उत्तर दिखाएँ, तो वर्कशीट से पहले बॉक्स के साथ वह चरण फिर से करवाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: आठ सौ तीन। बच्चे इसे स्लेट पर अंकों में लिखें।",
+    "expected_hi": "803",
+    "listen_for": [
+     {
+      "misconception_id": "N2.2.2-M1",
+      "misconception_name_hi": "बीच में शून्य से भ्रम (जैसे 305)",
+      "misconception_name_en": "Zero in middle causes confusion (e.g., 305)",
+      "detect_en": "Errors concentrated on numbers with internal zero; other 3-digit numbers are fine",
+      "wrong_answer_hi": "83"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 207। इसका विस्तारित रूप कौन-सा है? 1) 200 + 70 2) 200 + 0 + 7। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N2.2.2-M1",
+      "misconception_name_hi": "बीच में शून्य से भ्रम (जैसे 305)",
+      "misconception_name_en": "Zero in middle causes confusion (e.g., 305)",
+      "detect_en": "Errors concentrated on numbers with internal zero; other 3-digit numbers are fine",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड के एक कोने में सैकड़ा, दहाई और इकाई वाला बॉक्स पहले से बना लें, जिसे बार-बार भरा जा सके।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना और चॉक या पेंसिल हो।",
+   "वर्कशीट की एक-एक प्रति हर बच्चे के लिए तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को सैकड़ा, दहाई और इकाई में तोड़ें। दहाई या इकाई के घर में कुछ न हो, तो वहाँ 0 लिखें।",
+   "instructions_en": "Break each number into hundreds, tens and ones. If a place is empty, write 0 there.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "302 = 300 + 0 + 2",
+    "answer": "300 + 0 + 2",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "3",
+    "row1_t": "0",
+    "row1_o": "2",
+    "row2_h": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_h": "3",
+    "answer_t": "0",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "427 = ___ + ___ + ___",
+     "answer": "400 + 20 + 7",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "608 = ___ + ___ + ___",
+     "answer": "600 + 0 + 8",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N2.2.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "चार सौ नौ अंकों में लिखें: ___",
+     "answer": "409",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N2.2.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "253 = ___ + ___ + ___",
+     "answer": "200 + 50 + 3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "870 = ___ + ___ + ___",
+     "answer": "800 + 70 + 0",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "716 = ___ + ___ + ___",
+     "answer": "700 + 10 + 6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "the progressor lesson (we_do_hi) says «सात सौ छह» (= 706) beside the number 40"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a54b7ecc3992",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0421,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

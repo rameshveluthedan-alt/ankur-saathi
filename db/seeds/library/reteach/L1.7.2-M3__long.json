@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.7.2-M3__long",
+ "skill_id": "L1.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.7.2-M3",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने मात्रा वाले शब्द लिखना सीखा था, आज देखेंगे कि शब्द के अक्षर एक रेखा से कैसे जुड़ते हैं। बोर्ड पर 'नमक' के तीनों अक्षर अलग-अलग लिखें, हर अक्षर की अपनी छोटी रेखा हो, और कहें: 'देखिए, ये अक्षर अलग-अलग तैर रहे हैं, यह एक शब्द नहीं लगता।' फिर बगल में 'नमक' दोबारा लिखें, पहले अक्षर लिखें और अंत में ऊपर एक लंबी शिरोरेखा खींचकर तीनों को जोड़ें, फिर अलग-अलग अक्षरों वाला रूप मिटा दें ताकि बोर्ड पर केवल जुड़ा हुआ 'नमक' रहे।",
+   "we_do_hi": "बोर्ड पर 'घर' और 'जल' बिना शिरोरेखा के, अक्षर दूर-दूर लिखें और बच्चों से पूछें: 'इसमें क्या छूट गया?' बच्चे बताएँ, फिर शिक्षक उनके साथ ऊपर रेखा खींचकर दोनों शब्द ठीक करें। इसके बाद नया शब्द 'मछली' बोलें: बच्चे स्लेट पर अक्षर लिखें, फिर सब साथ में ऊपर एक रेखा खींचें, शिक्षक बोर्ड पर लिखकर मिलान कराएँ।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। हर शब्द लिखने के बाद ऊपर की रेखा ज़रूर जाँचें।' शिक्षक घूमते हुए पहले उन बच्चों की कॉपी शांति से देखें जिनकी शिरोरेखा पिछली बार छूटी थी, बिना किसी का नाम लिए।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'कमरा' के तीनों अक्षर अलग-अलग लिखें, ऊपर कोई जोड़ने वाली रेखा न हो। पूछें: 'यह शब्द सही लिखा है या गलत?' स्लेट पर सही या गलत लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M3",
+      "misconception_name_hi": "लिखित शब्दों में शिरोरेखा छूटना",
+      "misconception_name_en": "Missing shirorekha (headline) in written words",
+      "detect_en": "All letters are individually correct but float without the connecting headline; word looks like separate letters",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो रूप लिखें: 1) 'बतख' तीन अलग अक्षर, बिना जुड़ी रेखा के; 2) 'बतख' ऊपर एक लंबी रेखा से जुड़ा। सही रूप कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M3",
+      "misconception_name_hi": "लिखित शब्दों में शिरोरेखा छूटना",
+      "misconception_name_en": "Missing shirorekha (headline) in written words",
+      "detect_en": "All letters are individually correct but float without the connecting headline; word looks like separate letters",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से एक कोना खाली रखें जहाँ गलत और सही रूप पास-पास लिखे जा सकें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक खाली पन्ना और चॉक या पेंसिल।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द ध्यान से लिखें। अक्षर लिखने के बाद ऊपर एक लंबी रेखा खींचकर सारे अक्षर जोड़ें।",
+   "instructions_en": "Write each word carefully. After writing the letters, draw one long headline on top to join all the letters.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "शिरोरेखा से जोड़ने का उदाहरण:",
+    "example_text": "स + ड़ + क = सड़क (ऊपर एक जुड़ी रेखा)"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह शब्द लिखें: फल",
+     "answer": "फल",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "यह शब्द लिखें और ऊपर की रेखा से सारे अक्षर जोड़ें: गमला",
+     "answer": "गमला",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "यह शब्द लिखें: तितली",
+     "answer": "तितली",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "यह शब्द लिखें: बादल",
+     "answer": "बादल",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह शब्द लिखें: खिड़की",
+     "answer": "खिड़की",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "e01207f1db4a",
+ "created": "2026-11-21T06:04:22Z",
+ "cost_usd": 0.0257,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

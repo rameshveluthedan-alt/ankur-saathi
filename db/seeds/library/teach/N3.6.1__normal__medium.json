@@ -1,0 +1,111 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.6.1__normal__medium",
+ "skill_id": "N3.6.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर दण्ड आलेख बनाएँ: 'पसंद का खेल' - कबड्डी 6 खाने ऊँचा, खो-खो 3, क्रिकेट 8, और नीचे लिखें 'हर ■ = 1 बच्चा'। हर डंडे के ऊपर तक उँगली चलाकर गिनें और बताएँ: 'देखिए, कबड्डी का डंडा 6 तक जाता है, तो 6 बच्चों को कबड्डी पसंद है।' फिर दिखाएँ: 'सबसे ऊँचा डंडा क्रिकेट का है, तो क्रिकेट सबसे ज़्यादा पसंद है; क्रिकेट और खो-खो में अंतर 8 घटा 3, यानी 5 है।'",
+   "we_do_hi": "बोर्ड पर नया दण्ड आलेख बनाएँ: 'पसंद का रंग' - लाल 5, नीला 2, हरा 7। बच्चों से पूछें: 'हरा रंग कितने बच्चों को पसंद है?' और 'सबसे कम पसंद कौन-सा रंग है?' बच्चे गिनकर कॉपी में लिखें, फिर साथ में जाँचें। आखिर में साथ में निकालें कि लाल, नीले से कितना ज़्यादा है।",
+   "you_do_hi": "बच्चे वर्कशीट का फल वाला दण्ड आलेख देखें। पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। इस छोटे समय में सवाल 1 और 2 अभी करें, बाकी काम अपनी जगह पर अगले समय में पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: कुत्ते ■■■■■■■■■■ (हर ■ = 1 कुत्ता)। कितने कुत्ते हैं?",
+    "expected_hi": "10",
+    "listen_for": [],
+    "shows_hi": "बच्चा डंडे की लंबाई पढ़कर उसकी संख्या बता सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: पतंग ■■■■■■■■■■■■ और गेंद ■■■■■■■■■■■ (हर ■ = 1 खिलौना)। ज़्यादा कौन है: 1) पतंग 2) गेंद? उँगली पर दिखाएँ।",
+    "expected_hi": "1) पतंग",
+    "listen_for": [],
+    "shows_hi": "बच्चा पास-पास के दो डंडों की तुलना ठीक से कर सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से दण्ड आलेख बनाएँ: 'पसंद का खेल' - कबड्डी 6, खो-खो 3, क्रिकेट 8 (हर ■ = 1 बच्चा)।",
+   "दूसरा दण्ड आलेख तैयार रखें: 'पसंद का रंग' - लाल 5, नीला 2, हरा 7।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "यह दण्ड आलेख देखें: 'पसंद का फल' (हर ■ = 1 बच्चा)\n• आम ■■■■■■■\n• केला ■■■■\n• सेब ■■■■■■■■■\n• अमरूद ■■\nडंडे गिनकर सवालों के उत्तर लिखें।",
+   "instructions_en": "Look at the bar graph 'Favourite fruit' (each ■ = 1 child): Mango 7, Banana 4, Apple 9, Guava 2. Count the boxes and answer the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "केला कितने बच्चों को पसंद है? ___",
+     "answer": "4",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सबसे ज़्यादा बच्चों को कौन-सा फल पसंद है? ___",
+     "answer": "सेब",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सेब पसंद करने वाले बच्चे, अमरूद पसंद करने वालों से कितने ज़्यादा हैं? ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सबसे कम बच्चों को कौन-सा फल पसंद है? ___",
+     "answer": "अमरूद",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "आम और केला मिलाकर कितने बच्चों को पसंद हैं? ___",
+     "answer": "11",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "आम पसंद करने वाले बच्चे, केला पसंद करने वालों से कितने ज़्यादा हैं? ___",
+     "answer": "3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "fba10372963c",
+ "created": "2026-11-21T06:06:04Z",
+ "cost_usd": 0.0457,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

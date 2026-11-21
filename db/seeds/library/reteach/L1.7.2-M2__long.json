@@ -1,0 +1,126 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.7.2-M2__long",
+ "skill_id": "L1.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.7.2-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने मात्रा वाले शब्द लिखना सीखा था। बोर्ड पर 'नदी' को गलत तरीके से लिखें: न द ई, और बच्चों से कहें: 'देखिए, यहाँ द के बाद पूरा ई अक्षर अलग लिखा है, इसलिए यह शब्द टूट गया।' इसके बाद उसी शब्द को सही लिखें: नदी, द पर ी की मात्रा लगाकर, एक ही शिरोरेखा के साथ, फिर गलत रूप मिटा दें ताकि बोर्ड पर केवल सही 'नदी' रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: प ा न ई और ग ा ड ई, फिर बच्चों से पूछें: 'कहाँ पूरा अक्षर लिखा है जहाँ मात्रा आनी चाहिए?' बच्चों के साथ दोनों को सुधारें: पानी, गाड़ी, और गलत रूप मिटा दें। फिर नया शब्द 'मोती' साथ मिलकर लिखें: बच्चे कॉपी में लिखें और शिक्षक बोर्ड पर।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' शिक्षक घूमते हुए पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने पिछली बार पूरा स्वर अक्षर लिखा था, किसी का नाम लिए बिना। अगर एक चौथाई से अधिक बच्चे दिखाएँ प्रश्न में गलत थे, तो You Do से पहले वही चरण एक बार फिर बोर्ड पर करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) सीटी 2) सईटई। कौन सा शब्द सही लिखा है? उंगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M2",
+      "misconception_name_hi": "मात्रा चिह्न की बजाय स्वर अक्षर लिखता है",
+      "misconception_name_en": "Writes the vowel letter instead of the matra sign",
+      "detect_en": "Writes \"क + ई\" as two separate characters instead of \"की\" as one unit",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: ट + ी। स्लेट पर यह अक्षर लिखें।",
+    "expected_hi": "टी",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M2",
+      "misconception_name_hi": "मात्रा चिह्न की बजाय स्वर अक्षर लिखता है",
+      "misconception_name_en": "Writes the vowel letter instead of the matra sign",
+      "detect_en": "Writes \"क + ई\" as two separate characters instead of \"की\" as one unit",
+      "wrong_answer_hi": "टई"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखकर रखें: प ा न ई और ग ा ड ई (सुधारने के लिए)।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अक्षर और मात्रा जोड़कर पूरा शब्द लिखें। मात्रा अक्षर के साथ लगाएँ, अलग स्वर न लिखें।",
+   "instructions_en": "Join the letter and the matra and write the whole word. Attach the matra to the letter; do not write a separate vowel letter.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "र + ो + ट + ी = रोटी"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "म + ा + ल + ा = ?",
+     "answer": "माला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "च + ा + ब + ी = ?",
+     "answer": "चाबी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "ख + ी + र = ?",
+     "answer": "खीर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "द + ू + ध = ?",
+     "answer": "दूध",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "ब + े + र = ?",
+     "answer": "बेर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "8a70718784c4",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0222,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

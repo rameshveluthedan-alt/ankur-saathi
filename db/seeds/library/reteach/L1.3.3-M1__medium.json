@@ -1,0 +1,155 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.3-M1__medium",
+ "skill_id": "L1.3.3",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.3-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने े और ै की मात्रा पढ़ी थी।' बोर्ड पर 'मेला' लिखें, एक मात्रा पर उँगली रखकर गलती से 'मैला' पढ़ें, फिर बच्चों से कहें: 'देखिए, यहाँ ऊपर एक ही रेखा है, यह ए की मात्रा है, इसलिए यह मेला है; दो रेखाएँ होतीं तो ऐ की मात्रा होती।' अब उसी शब्द को सही 'मेला' पढ़कर सुनाएँ, फिर गलत पढ़ाई वाली बात मिटा दें ताकि बोर्ड पर सिर्फ़ 'मेला' और उसकी एक रेखा पर गोला रहे।",
+   "we_do_hi": "बोर्ड पर 'शेर' लिखें और उसके नीचे 'शैर' लिखा दिखाएँ; बच्चों से पूछें: 'शेर में ऊपर कितनी रेखाएँ हैं, एक या दो?' और साथ मिलकर गलत रूप मिटाकर सही 'शेर' पढ़ें। फिर नया शब्द 'पैसा' लिखें, बच्चे उँगली से हवा में दो रेखाएँ बनाएँ और साथ में पढ़ें।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियाँ दें जिन पर लिखा हो: केला, बैल, देश, थैला; एक बच्चा पढ़े, दूसरा सुने, फिर बारी बदलें। पर्चियाँ न हों तो वर्कशीट के सवाल 1 से 3 पहले साथी को पढ़कर सुनाएँ; बाकी शब्द अपनी जगह पर अगले समय में पूरे करें। सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार े और ै में गलती की थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) बेर 2) बैर। एक बोलें: 'खाने वाला फल बेर'। कौन-सा शब्द? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.3-M1",
+      "misconception_name_hi": "े (ए) और ै (ऐ) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses े (e) and ै (ai) matras",
+      "detect_en": "Reads words with े/ै interchangeably; specifically: reads मेला as मैला or vice versa",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'मैदान' लिखें। इसमें 'मै' पर ऊपर कितनी रेखाएँ हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.3-M1",
+      "misconception_name_hi": "े (ए) और ै (ऐ) मात्रा में भ्रम",
+      "misconception_name_en": "Confuses े (e) and ै (ai) matras",
+      "detect_en": "Reads words with े/ै interchangeably; specifically: reads मेला as मैला or vice versa",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर हर जोड़ी के लिए चार शब्द लिखें: केला, बैल, देश, थैला।",
+   "बोर्ड पर पहले से जगह रखें: मेला, शेर, पैसा लिखने के लिए।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "शब्दों को कॉपी में लिखें और साथी को पढ़कर सुनाएँ। ऊपर की रेखाएँ ध्यान से देखें।",
+   "instructions_en": "Copy the words into your notebook and read them aloud to a partner. Look carefully at the strokes on top.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "मात्रा जोड़ने का उदाहरण:",
+    "example_text": "म + े = मे,  म + ै = मै"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा पर्चियों पर लिखे शब्द (केला, बैल, देश, थैला, मोर, कौआ) साथी को ज़ोर से पढ़कर सुनाए।",
+    "task_en": "The child reads the word slips (केला, बैल, देश, थैला, मोर, कौआ) aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना मदद सही पढ़ता है, े और ै में गड़बड़ नहीं करता",
+     "partial_hi": "ज़्यादातर शब्द पढ़ता है पर एक-दो में े और ै बदल देता है",
+     "not_yet_hi": "मदद के बाद भी ज़्यादातर शब्द नहीं पढ़ पाता",
+     "achieved_en": "Reads all words correctly without help, no e/ai mix-up",
+     "partial_en": "Reads most words but swaps e/ai in one or two",
+     "not_yet_en": "Cannot read most words even with help"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: केला",
+     "answer": "केला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: बैल",
+     "answer": "बैल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: थैला",
+     "answer": "थैला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: देश",
+     "answer": "देश",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: मोर",
+     "answer": "मोर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: कौआ",
+     "answer": "कौआ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f6493f8a055f",
+ "created": "2026-11-21T06:09:37Z",
+ "cost_usd": 0.0299,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

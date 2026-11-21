@@ -1,0 +1,116 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.5.2__normal__long",
+ "skill_id": "N1.5.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने चपटी आकृतियाँ देखी थीं, आज हम ऐसी चीज़ें देखेंगे जिन्हें हाथ में पकड़ सकते हैं।' मेज़ पर गेंद, डिब्बा, गिलास या बेलनाकार डिब्बी और जोकर की टोपी जैसी शंकु वाली चीज़ रखें। हर चीज़ उठाकर नाम बोलें, जैसे 'देखिए, यह गेंद गोला है, यह हर तरफ़ से गोल है और लुढ़कती है', फिर घन, बेलन और शंकु का भी नाम बताकर दिखाएँ।",
+   "we_do_hi": "एक-एक चीज़ उठाएँ और बच्चों से पूछें: 'यह कौन-सी आकृति है?' दो बच्चों से कारण पूछें। बेलन और शंकु को साथ रखें और पूछें: 'किसका सिरा नुकीला है?'",
+   "you_do_hi": "हर जोड़ी को गेंद, माचिस की डिब्बी, गिलास या पेंसिल-डिब्बी और कागज़ की टोपी मिलाकर दें। बच्चे इन्हें चार ढेरों में रखें और हर ढेर का नाम बोलें: गोला, घन, बेलन, शंकु। चीज़ें न हों तो बोर्ड से वर्कशीट के सवाल कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) गोला 2) शंकु। गेंद किस आकृति जैसी है? उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1 (गोला)",
+    "listen_for": [],
+    "shows_hi": "बच्चा गोल चीज़ को गोले से जोड़ता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) बेलन 2) शंकु। आइसक्रीम का कोन किस आकृति जैसा है? उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2 (शंकु)",
+    "listen_for": [],
+    "shows_hi": "बच्चा बेलन और शंकु में अंतर करता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "गेंद, एक डिब्बा, गिलास या बेलनाकार डिब्बी और कागज़ की शंकु वाली टोपी शिक्षक के लिए रखें।",
+   "हर जोड़ी के लिए एक सेट: गोल चीज़, माचिस की डिब्बी, गिलास या पेंसिल-डिब्बी, कागज़ की टोपी।",
+   "बोर्ड पर चार नाम लिखें: गोला, घन, बेलन, शंकु।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ के सामने उसकी आकृति का नाम लिखें: गोला, घन, बेलन या शंकु।",
+   "instructions_en": "Write the shape name for each object: sphere, cube, cylinder or cone.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "चार तरह की चीज़ों को आकृति के अनुसार चार ढेरों में रखें और हर ढेर का नाम बोलें।",
+    "task_en": "Sort everyday objects into four piles by 3D shape and name each pile.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "गेंद",
+     "माचिस की डिब्बी",
+     "गिलास",
+     "कागज़ की टोपी"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों ढेर सही बनाता है और चारों नाम सही बोलता है",
+     "partial_hi": "दो-तीन नाम बोलता है या बेलन और शंकु में उलझता है",
+     "not_yet_hi": "एक या कोई नाम नहीं बोल पाता",
+     "achieved_en": "Sorts all four piles correctly and names all four shapes",
+     "partial_en": "Names 2-3 shapes or mixes up cylinder and cone",
+     "not_yet_en": "Names one or no shape"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गेंद: इसकी आकृति का नाम लिखें।",
+     "answer": "गोला",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "गिलास: इसकी आकृति का नाम लिखें।",
+     "answer": "बेलन",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "आइसक्रीम का कोन: इसकी आकृति का नाम लिखें।",
+     "answer": "शंकु",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पासा: इसकी आकृति का नाम लिखें।",
+     "answer": "घन",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T06:02:07Z",
+ "cost_usd": 0.0247,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

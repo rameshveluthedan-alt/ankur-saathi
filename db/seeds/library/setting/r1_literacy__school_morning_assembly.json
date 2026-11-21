@@ -1,0 +1,36 @@
+{
+ "format": 1,
+ "piece": "setting",
+ "key": "r1_literacy__school_morning_assembly",
+ "skill_id": null,
+ "domain_id": "r1_literacy",
+ "mode": "school morning assembly",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "title_hi": "स्कूल की सुबह की प्रार्थना सभा",
+  "title_en": "The School Morning Assembly",
+  "theme": "school morning assembly",
+  "board_hi": "बोर्ड के बीच में एक सीधी रेखा में खड़े बच्चों की तीन-चार आकृतियाँ बनाएँ, आगे एक छोटा मंच और उस पर झंडा। मंच के पास एक घंटी, एक ढोलक और एक पेड़ बनाएँ। हर चीज़ के नीचे उसका नाम बड़े अक्षरों में लिखें: झंडा, घंटी, ढोलक, पेड़, मंच। बोर्ड के ऊपर लिखें: 'सुबह की सभा'। दाईं ओर खाली जगह छोड़ें, जहाँ आगे शब्द और छोटे वाक्य लिखे जा सकें।",
+  "narration_hi": "देखें, सुबह हो गई है और घंटी बज गई है। सब बच्चे मैदान में पंक्ति में खड़े हैं, झंडा लहरा रहा है और ढोलक के साथ प्रार्थना हो रही है। आज हम इसी सभा की चीज़ों के नाम पढ़ेंगे और उनके बारे में बात करेंगे।",
+  "opening_question_hi": "आपके स्कूल में सुबह की सभा में सबसे पहले क्या होता है?",
+  "closing_question_hi": "आज बोर्ड पर सभा की कौन-सी चीज़ का नाम आपको सबसे अच्छा लगा?",
+  "materials_hi": [
+   "चॉक या बोर्ड पर लिखने का मार्कर",
+   "बोर्ड पर चित्र बनाने के लिए पहले से थोड़ी खाली जगह"
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "0f5d85f75cd9",
+ "created": "2026-11-21T06:05:34Z",
+ "cost_usd": 0.0082,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,151 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.3.2__normal__medium",
+ "skill_id": "N1.3.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर 0 से 18 तक संख्या-रेखा बनी रहे, उस पर 13 - 5 लिखें। बच्चों से कहें: 'घटाने में हम हमेशा पहली संख्या से शुरू करते हैं। देखिए, 13 पर उँगली रखी, अब 5 कदम पीछे: 12, 11, 10, 9, 8।' बोर्ड पर लिखें: 13 - 5 = 8, और पहली संख्या पर गोला बनाकर कहें: 'शुरुआत हमेशा यहीं से।'",
+   "we_do_hi": "बोर्ड पर 15 - 9 लिखें। बच्चे पहली संख्या पर उँगली रखें और साथ में पीछे गिनें, फिर हर बच्चा कॉपी में उत्तर 6 लिखे। इसके बाद 8 - 3 इसी तरह साथ में करें (उत्तर 5)। हर बार पूछें: 'हमने किस संख्या से शुरू किया?'",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। यह ब्लॉक छोटा है, इसलिए बच्चे यहाँ सवाल 1 शुरू करें और बाकी सवाल अपनी जगह पर पूरे करें। शिक्षक सवाल 2 पर नज़र रखें: क्या किसी ने 12 - 5 में उल्टा घटाया है?"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर लिखें: 11 - 7। स्लेट पर उत्तर लिखें।",
+    "expected_hi": "4",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.2-M1",
+      "misconception_name_hi": "क्रम की परवाह किए बिना छोटे से बड़ा घटाता है",
+      "misconception_name_en": "Subtracts smaller from larger regardless of order",
+      "detect_en": "When given impossible single-digit subtractions or mixed problems, child always does larger minus smaller",
+      "wrong_answer_hi": "16"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 16 - 9 = 13 लिखा है। यह सही है या गलत? स्लेट पर सही उत्तर लिखें।",
+    "expected_hi": "गलत, 7",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.2-M1",
+      "misconception_name_hi": "क्रम की परवाह किए बिना छोटे से बड़ा घटाता है",
+      "misconception_name_en": "Subtracts smaller from larger regardless of order",
+      "detect_en": "When given impossible single-digit subtractions or mixed problems, child always does larger minus smaller",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 0 से 18 तक संख्या-रेखा बनाएँ।",
+   "बोर्ड के एक कोने में लिखकर रखें: 13 - 5, 15 - 9, 8 - 3।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में पहली संख्या से शुरू करें और पीछे गिनकर घटाएँ। उत्तर खाली जगह में लिखें।",
+   "instructions_en": "Start from the first number in each problem and count back to subtract. Write the answer in the blank.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "10 - 4 = ___",
+    "answer": "6",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "1",
+    "row1_o": "0",
+    "row2_t": "",
+    "row2_o": "4",
+    "answer_t": "",
+    "answer_o": "6"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "9 - 3 = ___",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "12 - 5 = ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "14 - 6 = ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "8 - 4 = ___",
+     "answer": "4",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "16 - 7 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 11 आम थे। 8 आम बिक गए। कितने आम बचे?",
+     "answer": "3",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 12",
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 11"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "00932b4e51da",
+ "created": "2026-11-21T06:07:42Z",
+ "cost_usd": 0.035,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

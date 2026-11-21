@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.6.1-M1__medium",
+ "skill_id": "L3.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.6.1-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने 'क्यों' और 'कैसे' वाले सवाल सीखे थे। बोर्ड पर लिखें: 'मीना ने छाता खोला। उसके कपड़े सूखे रहे।' पूछें 'मीना के कपड़े सूखे क्यों रहे?' और पहले गलत उत्तर लिखें: 'उसके कपड़े सूखे रहे।' फिर बताएँ कि यह तो कहानी की पंक्ति की नकल है, इसमें 'क्योंकि' वाली बात नहीं है। अब उसी सवाल का सही उत्तर लिखें: 'क्योंकि उसने छाता खोला था।' इसके बाद गलत उत्तर मिटा दें, बोर्ड पर केवल सही उत्तर रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'राजू ने खाना नहीं खाया। शाम को उसके पेट में दर्द नहीं, भूख लगी थी।' सवाल 'राजू को भूख क्यों लगी?' के नीचे लिखें: 'उसे भूख लगी थी।' बच्चों से पूछें कि यह उत्तर नकल है या कारण बताता है, फिर मिलकर सही करें: 'क्योंकि उसने खाना नहीं खाया था।' एक नया उदाहरण साथ में करें: 'सोनू दौड़कर स्कूल पहुँचा। घंटी बज चुकी थी।' 'सोनू दौड़ा क्यों?' उत्तर: 'क्योंकि उसे देर हो रही थी।'",
+   "you_do_hi": "पहले अनुच्छेद एक बार पढ़ें और वर्कशीट का सवाल 1 हल करें। बाकी सवाल 2 और 3 बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने कल नकल वाला उत्तर लिखा था।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'पौधे को पानी नहीं मिला। उसकी पत्तियाँ सूख गईं।' सवाल: 'पत्तियाँ क्यों सूखीं?' सही उत्तर कौन-सा है? 1) उसकी पत्तियाँ सूख गईं 2) पानी नहीं मिला",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M1",
+      "misconception_name_hi": "अनुमानात्मक प्रश्न का तथ्यात्मक उत्तर देता है",
+      "misconception_name_en": "Gives literal answer to inferential question",
+      "detect_en": "Response is a copy from the text, not a reasoned answer. E.g., \"Why was Ram sad?\" → \"Ram went home\" (quotes text) instead of \"Because his friend moved away\" (infers)",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'आज बहुत ठंड थी। अमन ने स्वेटर पहना।' सवाल: 'अमन ने स्वेटर क्यों पहना?' बोर्ड पर उत्तर लिखा है: 'अमन ने स्वेटर पहना।' यह उत्तर सही है या गलत?",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M1",
+      "misconception_name_hi": "अनुमानात्मक प्रश्न का तथ्यात्मक उत्तर देता है",
+      "misconception_name_en": "Gives literal answer to inferential question",
+      "detect_en": "Response is a copy from the text, not a reasoned answer. E.g., \"Why was Ram sad?\" → \"Ram went home\" (quotes text) instead of \"Because his friend moved away\" (infers)",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "I Do और We Do के वाक्य बोर्ड पर पहले से लिख लें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद ध्यान से पढ़ें। हर सवाल का उत्तर 'क्योंकि' से कारण बताते हुए लिखें, पंक्ति की नकल न करें।",
+   "instructions_en": "Read the passage carefully. Answer each question with a reason starting with 'because'; do not copy a line.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "बारिश का दिन",
+    "text": "सुबह आसमान में काले बादल थे। रीना ने बस्ते में छाता रखा। स्कूल से लौटते समय तेज़ बारिश होने लगी। रीना भीगी नहीं। घर पहुँचकर उसने देखा कि उसका छोटा भाई खिड़की के पास उदास बैठा है। आज वह बाहर खेलने नहीं जा सका था। रीना ने उसके साथ कागज़ की नाव बनाई। भाई हँसने लगा।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "रीना ने बस्ते में छाता क्यों रखा?",
+     "answer": "क्योंकि आसमान में काले बादल थे और बारिश हो सकती थी",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "तेज़ बारिश में भी रीना भीगी क्यों नहीं?",
+     "answer": "क्योंकि उसके पास छाता था",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "छोटा भाई उदास क्यों था?",
+     "answer": "क्योंकि बारिश के कारण वह बाहर खेलने नहीं जा सका",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "भाई हँसने क्यों लगा?",
+     "answer": "क्योंकि रीना ने उसके साथ कागज़ की नाव बनाई",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "रीना ने भाई को कैसे खुश किया?",
+     "answer": "उसके साथ कागज़ की नाव बनाकर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "रीना ने कागज़ की नाव क्यों बनाई होगी?",
+     "answer": "क्योंकि भाई उदास था और बारिश का पानी था",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f37edbf96d57",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0285,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

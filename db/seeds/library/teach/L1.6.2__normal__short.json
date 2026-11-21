@@ -1,0 +1,115 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.6.2__normal__short",
+ "skill_id": "L1.6.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर चार चित्र बनाएँ, क्रम बिगाड़कर: 1) पौधा बड़ा हुआ 2) बीज बोया 3) फूल खिला 4) पानी डाला। बच्चों को कहानी सुनाएँ: 'मीना ने बीज बोया, फिर पानी डाला, पौधा बड़ा हुआ, फिर फूल खिला।' इसके बाद हर चित्र के नीचे सही क्रम की संख्या लिखें और बोलें: 'देखिए, पहले बीज बोया, फिर पानी डाला, फिर पौधा बड़ा हुआ, अंत में फूल खिला।'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को चार पर्चियाँ दें। इन पर बीच क्रम में ये बातें लिखी या बनी हों: गिलास में दूध डाला, दूध गरम किया, दूध पिया, गिलास धोया। एक बच्चा पर्चियाँ सही क्रम में रखे और साथी को कहानी सुनाए, फिर दोनों बारी बदलें। बाकी काम बच्चे अपनी जगह पर अगले ब्लॉक में पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "कहानी सुनें: 'राजू उठा। उसने नहाया। वह स्कूल गया।' राजू ने सबसे पहले क्या किया? 1) स्कूल गया 2) उठा। उंगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा कहानी की पहली घटना पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "कहानी सुनें: 'चिड़िया ने तिनके लाई। उसने घोंसला बनाया। उसने अंडे दिए।' बीच में क्या हुआ? 1) घोंसला बनाया 2) अंडे दिए। उंगलियों पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा बीच की घटना सही जगह रखता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर बीज-पौधे की कहानी के चार सरल चित्र, बिगड़े क्रम में, बनाकर रखें।",
+   "हर जोड़ी के लिए चार कागज़ की पर्चियाँ: गिलास में दूध डाला, दूध गरम किया, दूध पिया, गिलास धोया।"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक की कहानी सुनें। घटनाओं को सही क्रम में लगाएँ और साथी को सुनाएँ।",
+   "instructions_en": "Listen to the teacher's story. Put the events in the correct order and tell your partner.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "क्रम का उदाहरण:",
+    "example_text": "बीज बोया → पानी डाला → पौधा बड़ा हुआ → फूल खिला"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "चार पर्चियों को कहानी के सही क्रम में रखें और साथी को कहानी शुरू से अंत तक सुनाएँ।",
+    "task_en": "Arrange four slips in story order and retell the story to a partner from beginning to end.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कहानी की घटनाओं वाली कागज़ की पर्चियाँ",
+     "बोर्ड पर बने चित्र"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों घटनाएँ बिना मदद सही क्रम में रखता है और सुनाता है",
+     "partial_hi": "पहली और आख़िरी सही रखता है, बीच की घटनाएँ उलट देता है",
+     "not_yet_hi": "घटनाएँ किसी भी क्रम में रखता है या केवल अंत बताता है",
+     "achieved_en": "Orders all four events correctly without help and retells them",
+     "partial_en": "Gets first and last right but swaps the middle events",
+     "not_yet_en": "Places events randomly or recalls only the ending"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "क्रम में लगाएँ: स्कूल गया, उठा, नहाया",
+     "answer": "उठा, नहाया, स्कूल गया",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "क्रम में लगाएँ: अंडे दिए, तिनके लाई, घोंसला बनाया",
+     "answer": "तिनके लाई, घोंसला बनाया, अंडे दिए",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "क्रम में लगाएँ: छाता बंद किया, बारिश आई, बारिश रुकी, छाता खोला",
+     "answer": "बारिश आई, छाता खोला, बारिश रुकी, छाता बंद किया",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0253,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

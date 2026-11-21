@@ -1,0 +1,115 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.6.3__normal__long",
+ "skill_id": "L3.6.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कहानी पढ़कर उसकी मुख्य बात खोजी थी।' बोर्ड पर यह अनुच्छेद लिखें और दो बार पढ़कर सुनाएँ: 'रानी के गाँव में बारिश नहीं हुई। कुएँ सूख गए। लोग दूर नदी से पानी लाने लगे। तब सबने मिलकर एक तालाब खोदा। अगली बारिश में तालाब भर गया और गाँव को पानी मिल गया।' फिर बोलकर सारांश बनाएँ: 'देखिए, पहले पूछते हैं: यह किसके बारे में है? गाँव में पानी की कमी। फिर ज़रूरी बात: लोगों ने तालाब खोदा। अपने शब्दों में: गाँव में पानी नहीं था, इसलिए सबने मिलकर तालाब बनाया। बारिश में तालाब भरा और पानी की कमी दूर हुई।'",
+   "we_do_hi": "बोर्ड पर दूसरा अनुच्छेद लिखें और पढ़कर सुनाएँ: 'मोहन का पिल्ला खो गया। मोहन ने गली-गली ढूँढा। उसने दोस्तों से पूछा। शाम को पिल्ला पेड़ के नीचे सोता मिला। मोहन ने उसे गले लगा लिया।' बच्चों से पूछें: 'यह किसके बारे में है?' और 'अंत में क्या हुआ?' उनके उत्तरों से मिलकर दो वाक्य का सारांश बनाएँ, और ध्यान दिलाएँ कि हर छोटी बात नहीं, सिर्फ़ ज़रूरी बात रखी गई।",
+   "you_do_hi": "हर जोड़ी को बोर्ड या कागज़ की पर्ची पर लिखा एक छोटा अनुच्छेद दें; एक बच्चा पढ़े, दूसरा 2-3 वाक्य में अपने शब्दों में सारांश बताए, फिर बारी बदलें। पर्चियाँ न हों तो वर्कशीट का अनुच्छेद उपयोग करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'चिड़िया ने तिनके जमा किए। उसने पेड़ पर घोंसला बनाया। उसमें अंडे रखे।' मुख्य बात कौन-सी है? 1) चिड़िया ने घोंसला बनाया 2) पेड़ ऊँचा था",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा अनुच्छेद की मुख्य बात पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मीना बाज़ार गई। उसने आम खरीदे। घर आकर सबने आम खाए।' सारांश में कितने वाक्य होने चाहिए, उँगलियों पर दिखाएँ: 1 या 3?",
+    "expected_hi": "हर बात के लिए नहीं, कम वाक्य: 1 से 3 में सही, पर मुख्य बात रहे",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि सारांश छोटा होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do के दोनों अनुच्छेद पहले से लिख लें।",
+   "हर जोड़ी के लिए कागज़ की पर्चियों पर एक छोटा अनुच्छेद (4-5 वाक्य) लिख लें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद पढ़ें। साथी को अपने शब्दों में छोटा सारांश बताएँ।",
+   "instructions_en": "Read the paragraph. Tell your partner a short summary in your own words.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": {
+    "title": "पेड़ लगाओ",
+    "text": "राजू के स्कूल के पास कोई पेड़ नहीं था। गर्मी में बच्चे धूप में खेलते थे। एक दिन शिक्षक ने सबको एक-एक पौधा दिया। बच्चों ने पौधे लगाए और रोज़ पानी दिया। कुछ साल बाद वहाँ घनी छाया हो गई।"
+   },
+   "observe": {
+    "task_hi": "अनुच्छेद पढ़कर साथी को 2-3 वाक्य में अपने शब्दों में सारांश बताएँ।",
+    "task_en": "Read the paragraph and tell a partner its summary in 2-3 sentences in own words.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "अनुच्छेद लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखा अनुच्छेद"
+    ],
+    "look_for": {
+     "achieved_hi": "मुख्य बात और 1-2 ज़रूरी बातें अपने शब्दों में 2-3 वाक्य में बताता है",
+     "partial_hi": "4 या अधिक वाक्यों में पूरी कहानी दोहराता है या मुख्य बात छोड़ देता है",
+     "not_yet_hi": "वाक्य हूबहू पढ़ देता है या असंबंधित बात कहता है",
+     "achieved_en": "Gives main idea and 1-2 key details in own words, 2-3 sentences",
+     "partial_en": "Retells in 4+ sentences or misses the main idea",
+     "not_yet_en": "Copies sentences or says unrelated content"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह अनुच्छेद किसके बारे में है? एक शब्द में लिखें।",
+     "answer": "पेड़",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बच्चों ने पौधों के लिए रोज़ क्या किया?",
+     "answer": "पानी दिया",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को 2-3 वाक्य में अपने शब्दों में सारांश बताएँ।",
+     "answer": "बच्चों ने स्कूल के पास पौधे लगाए और उनकी देखभाल की; बाद में वहाँ छाया हो गई।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 3,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 3 repeats wording from the lesson or anchor: «2 3 वाक्य में अपने»"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.0304,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

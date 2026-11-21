@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.2.2__normal__medium",
+ "skill_id": "L0.2.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'देखिए, हम शब्द को ताली से तोड़ते हैं।' धीरे बोलें 'क-मल' और हर टुकड़े पर एक ताली बजाएँ: दो ताली। फिर 'ति-त-ली' बोलकर तीन ताली बजाएँ और उँगलियों पर गिनकर दिखाएँ।",
+   "we_do_hi": "बच्चों के साथ 'आ-म' और 'ब-त-ख' बोलें, हर टुकड़े पर साथ में ताली बजाएँ। हर शब्द के बाद पूछें: 'कितनी ताली बजीं?' और उँगलियों पर गिनवाएँ।",
+   "you_do_hi": "हर जोड़ी को कंकड़ या बटन दें। एक बच्चा शब्द बोले (घर, मछली, पतंग, गमला, कप) और ताली बजाए, दूसरा हर ताली पर एक कंकड़ रखे; फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "यह शब्द सुनें: 'नल'। इसमें कितनी ताली बजेंगी? उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "दो अक्षरांश वाला छोटा शब्द ठीक से तोड़ पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "यह शब्द सुनें: 'गाजर'। इसमें कितनी ताली बजेंगी? उँगलियों पर दिखाएँ।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "तीन अक्षरांश वाले शब्द में हर टुकड़ा अलग सुनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए 5 कंकड़ या बटन इकट्ठा करें।",
+   "अभ्यास के शब्द याद रखें: घर, मछली, पतंग, गमला, कप।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द बोलें और ताली बजाएँ। जितनी ताली बजें, उतने गोले कॉपी में बनाएँ।",
+   "instructions_en": "Say each word and clap its parts. Draw as many circles in the notebook as claps.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "ताली बजाने का उदाहरण:",
+    "example_text": "क-मल = दो ताली"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "जोड़ी में एक बच्चा शब्द बोलकर हर टुकड़े पर ताली बजाए, दूसरा हर ताली पर एक कंकड़ रखे।",
+    "task_en": "In pairs, one child says a word clapping each syllable; the partner places one pebble per clap.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "दो और तीन टुकड़ों वाले शब्दों में सही गिनती की ताली बजाता है",
+     "partial_hi": "दो टुकड़ों वाले शब्द सही, तीन टुकड़ों वाले में गलती",
+     "not_yet_hi": "हर शब्द पर एक ही ताली या बिना क्रम ताली",
+     "achieved_en": "Claps correctly for 2- and 3-syllable words",
+     "partial_en": "Right on 2-syllable words, errors on 3-syllable",
+     "not_yet_en": "One clap per word or random claps"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "जल",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बादल",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "टमाटर",
+     "answer": "4",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "रथ",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "कलम",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:10:44Z",
+ "cost_usd": 0.0223,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,112 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.6.3__normal__short",
+ "skill_id": "L3.6.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर यह अनुच्छेद लिखें: 'रीना की गाय बीमार थी। वह घास नहीं खा रही थी। रीना पशु डॉक्टर को बुलाकर लाई। डॉक्टर ने दवा दी। दो दिन में गाय ठीक हो गई।' इसे दो बार पढ़कर सुनाएँ, फिर बच्चों से कहें: 'देखिए, सारांश में हम सबसे ज़रूरी बात छोटे में अपने शब्दों में बताते हैं।' बोलकर दिखाएँ: 'रीना की गाय बीमार हुई। डॉक्टर की दवा से वह ठीक हो गई।'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को बोर्ड से लिखी कागज़ की एक पर्ची दें, जिस पर वर्कशीट का एक छोटा अनुच्छेद लिखा हो। एक बच्चा अनुच्छेद पढ़े, दूसरा उसका सारांश 2-3 वाक्यों में अपने शब्दों में साथी को बोलकर बताए, फिर बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'बारिश हुई। बच्चों ने कागज़ की नाव बनाई। नाव पानी में तैरने लगी।' यह अनुच्छेद किसके बारे में है? एक शब्द लिखें।",
+    "expected_hi": "नाव",
+    "listen_for": [],
+    "shows_hi": "बच्चा अनुच्छेद का मुख्य विषय एक शब्द में पकड़ता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'सारांश: चिड़िया ने घोंसला बनाया। उसमें अंडे दिए। बच्चे निकले। वे चीं-चीं करते। माँ दाना लाती। बच्चे उड़ गए।' क्या यह छोटा सारांश है? सही या गलत लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि सारांश 2-3 वाक्यों का होता है, हर बात दोहराना नहीं।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का अनुच्छेद (रीना की गाय) और तीनों show-me के छोटे अनुच्छेद लिखकर रखें।",
+   "हर जोड़ी के लिए वर्कशीट का एक अनुच्छेद कागज़ की पर्ची पर लिखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अनुच्छेद पढ़ें। फिर साथी को उसका सारांश 2-3 वाक्यों में अपने शब्दों में बोलकर बताएँ।",
+   "instructions_en": "Read each paragraph. Then tell your partner its summary in 2-3 sentences in your own words.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा एक छोटा अनुच्छेद पढ़कर साथी को उसका सारांश 2-3 वाक्यों में अपने शब्दों में बताए।",
+    "task_en": "The child reads a short paragraph and tells a partner its summary in 2-3 sentences in own words.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "अनुच्छेद लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखे अनुच्छेद"
+    ],
+    "look_for": {
+     "achieved_hi": "2-3 वाक्यों में मुख्य बात और 1-2 ज़रूरी बातें अपने शब्दों में बताता है।",
+     "partial_hi": "4 या अधिक वाक्यों में सब दोहराता है या मुख्य बात छोड़ देता है।",
+     "not_yet_hi": "वाक्य वैसे ही पढ़ देता है या असंबंधित बात कहता है।",
+     "achieved_en": "Gives the main idea and 1-2 key details in 2-3 sentences, own words.",
+     "partial_en": "Retells in 4+ sentences or misses the main idea.",
+     "not_yet_en": "Copies sentences from the text or says unrelated things."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: 'सोनू का पतंग पेड़ पर अटक गया। उसके दादा जी लंबी लकड़ी लाए। उन्होंने पतंग उतार दी। सोनू खुश हो गया।' अब इसका सारांश साथी को बताएँ।",
+     "answer": "दादा जी ने पेड़ में अटकी सोनू की पतंग उतारी, तो सोनू खुश हुआ।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 3,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: 'गाँव में मेला लगा। मीना माँ के साथ गई। उसने झूला झूला और लाल चूड़ियाँ खरीदीं। शाम को वे घर लौट आए।' अब इसका सारांश साथी को बताएँ।",
+     "answer": "मीना माँ के साथ मेले में गई, झूला झूली और चूड़ियाँ खरीदीं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 3,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: 'एक प्यासा कौआ घड़ा देखता है। घड़े में पानी कम था। कौए ने उसमें कंकड़ डाले। पानी ऊपर आया और कौए ने पानी पी लिया।' अब इसका सारांश साथी को बताएँ।",
+     "answer": "प्यासे कौए ने घड़े में कंकड़ डालकर पानी ऊपर किया और पी लिया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 3,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:01:34Z",
+ "cost_usd": 0.029,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

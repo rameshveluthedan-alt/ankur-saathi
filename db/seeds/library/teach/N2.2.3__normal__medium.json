@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.2.3__normal__medium",
+ "skill_id": "N2.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 452 ___ 437। बच्चों को दिखाएँ: 'देखिए, पहले सैकड़े मिलाते हैं: दोनों में 4, बराबर। अब दहाई: 5 और 3, तो 452 बड़ी है।' बीच में > लिखें और बताएँ: 'चिह्न का खुला मुँह बड़ी संख्या की ओर रहता है।'",
+   "we_do_hi": "बोर्ड पर लिखें: 618 ___ 681। बच्चों से पूछें: 'पहले कौन सा अंक देखें?' और साथ में सैकड़ा, फिर दहाई मिलाकर < लिखें। फिर 703 ___ 730 साथ में हल करें; जो बच्चा बताए, उससे पूछें कि किस अंक से पता चला।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में सवाल 1 से 3 शुरू करें; बाकी काम बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें। घूमकर देखें कि बच्चे पहले सैकड़े का अंक मिला रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 562 ___ 526। बीच में कौन सा चिह्न आएगा? स्लेट पर लिखें।",
+    "expected_hi": ">",
+    "listen_for": [],
+    "shows_hi": "सैकड़ा बराबर होने पर बच्चा दहाई का अंक मिलाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "कौन सी संख्या बड़ी है? 1) 349 2) 394। उंगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा एक जैसे अंकों वाली संख्याओं में स्थान का मान समझता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 452 ___ 437, 618 ___ 681, 703 ___ 730।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "दोनों संख्याओं के बीच सही चिह्न लिखें: >, < या =। पहले सैकड़ा, फिर दहाई, फिर इकाई मिलाएँ।",
+   "instructions_en": "Write the correct sign between the two numbers: >, < or =. Compare hundreds first, then tens, then ones.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "264 ___ 241",
+    "answer": "264 > 241",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "2",
+    "row1_t": "6",
+    "row1_o": "4",
+    "row2_h": "2",
+    "row2_t": "4",
+    "row2_o": "1",
+    "answer_h": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "315 ___ 289",
+     "answer": "315 > 289",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "538 ___ 583",
+     "answer": "538 < 583",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "476 ___ 479",
+     "answer": "476 < 479",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "640 ___ 640",
+     "answer": "640 = 640",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "721 ___ 712",
+     "answer": "721 > 712",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "905 ___ 950",
+     "answer": "905 < 950",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7f4c2879b121",
+ "created": "2026-11-21T06:09:37Z",
+ "cost_usd": 0.0272,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

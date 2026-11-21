@@ -1,0 +1,128 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.1.3__normal__short",
+ "skill_id": "L0.1.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों को तीन क्रम-चित्र दिखाएँ: बीज बोना, पानी डालना, पौधा उगना। हर चित्र पर उँगली रखकर कहानी सुनाएँ: 'पहले बीज बोया, फिर पानी डाला, उसके बाद पौधा उग आया।' 'पहले', 'फिर', 'उसके बाद' पर ज़ोर देकर बोलें। अंत में पूछें: 'सबसे पहले क्या हुआ?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों की जोड़ियाँ बनाएँ और हर जोड़ी को तीन क्रम-चित्र कार्ड दें; कार्ड न हों तो एक कटोरी, एक चम्मच और एक गिलास दें, जिनसे बच्चे 'सुबह का नाश्ता' की घटना सुनाएँ। हर बच्चा अपने साथी को सुबह उठने से स्कूल आने तक की बात तीन क्रम से सुनाए, 'पहले', 'फिर', 'उसके बाद' बोलते हुए। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'बच्चे ने हाथ धोए, फिर खाना खाया।' सबसे पहले क्या हुआ? हाथ धोए हों तो 1 उँगली, खाना खाया हो तो 2 उँगलियाँ दिखाएँ।",
+    "expected_hi": "1 (हाथ धोए)",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुनी हुई घटना में पहला चरण पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'पहले बारिश हुई, फिर मोर नाचा।' बाद में क्या हुआ? 1) बारिश 2) मोर नाचा। उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा 'पहले' और 'फिर' से क्रम समझता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बीज बोना, पानी डालना, पौधा उगना के तीन क्रम-चित्र कार्ड बनाएँ (या बोर्ड पर तीन सरल चित्र बनाएँ)।",
+   "जोड़ियों के लिए तीन-तीन क्रम-चित्र कार्ड, या कटोरी, चम्मच और गिलास जैसी घर की चीज़ें रखें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "साथी को सुनाएँ। हर बार 'पहले', 'फिर', 'उसके बाद' बोलें।",
+   "instructions_en": "Tell your partner. Each time use 'first', 'then', 'after that'.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा अपने साथी को सुबह उठने से स्कूल आने तक की घटना कम से कम तीन क्रमिक चरणों में सुनाए, 'पहले', 'फिर', 'उसके बाद' का प्रयोग करते हुए।",
+    "task_en": "The child tells a partner about the morning, from waking up to coming to school, in at least three steps in order, using 'first', 'then', 'after that'.",
+    "kit_materials_hi": [
+     "क्रम-चित्र कार्ड"
+    ],
+    "local_materials_hi": [
+     "कटोरी",
+     "चम्मच",
+     "गिलास",
+     "कंघी"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद तीन या अधिक बातें सही क्रम में 'फिर', 'उसके बाद' जोड़कर सुनाता है।",
+     "partial_hi": "दो-तीन बातें बताता है, पर क्रम उलझ जाता है या जोड़ने वाले शब्द नहीं बोलता।",
+     "not_yet_hi": "केवल एक बात या एक चीज़ का नाम बताता है।",
+     "achieved_en": "Tells 3+ events in correct order with 'then', 'after that', without help.",
+     "partial_en": "Tells 2-3 events but the order is mixed or has no connectors.",
+     "not_yet_en": "Names only one event or one thing."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "शिक्षक बोलें: 'पहले बीज बोया, फिर पानी डाला, उसके बाद पौधा उगा।' बच्चे बताएँ: सबसे पहले क्या हुआ?",
+     "answer": "बीज बोया",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "शिक्षक बोलें: 'पहले हाथ धोए, फिर खाना खाया, उसके बाद पानी पिया।' बच्चे बताएँ: सबसे बाद में क्या हुआ?",
+     "answer": "पानी पिया",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को अपने सुबह के नाश्ते की बात तीन क्रम में सुनाएँ।",
+     "answer": "तीन बातें सही क्रम में, 'पहले', 'फिर', 'उसके बाद' के साथ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को बताएँ कि स्कूल से घर जाकर आप क्या-क्या करते हैं, तीन क्रम में।",
+     "answer": "तीन बातें सही क्रम में, जोड़ने वाले शब्दों के साथ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats wording from the lesson or anchor: «पहले बीज बोया फिर पानी»"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:00:58Z",
+ "cost_usd": 0.0276,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

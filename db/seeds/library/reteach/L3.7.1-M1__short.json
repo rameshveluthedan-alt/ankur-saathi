@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.7.1-M1__short",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.7.1-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने एक विषय पर अनुच्छेद लिखना सीखा था।' बोर्ड पर विषय 'मेरी गाय' लिखें और नीचे लिखें: 'हमारे घर में एक गाय है। वह सफ़ेद है। मेरे दोस्त के पास नया बल्ला है।' फिर कहें: 'देखिए, तीसरा वाक्य गाय के बारे में नहीं है, यह विषय से भटक गया।' इसके बाद तीसरा वाक्य मिटाएँ और उसकी जगह लिखें: 'वह हमें रोज़ दूध देती है।' अब बोर्ड पर केवल सही अनुच्छेद रहे। अंत में समूह से एक छोटा सवाल पूछें: 'क्या अब हर वाक्य गाय के बारे में है?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट पर दिए विषय मेरा बस्ता पर लिखना शुरू करें। अभी पहले दो वाक्य लिखें, बाकी काम अपनी जगह पर पूरा करें।' हर वाक्य लिखकर बच्चे खुद से पूछें: 'क्या यह मेरे बस्ते के बारे में है?' शिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ, जो पिछली बार विषय से भटके थे।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "विषय है 'बारिश'। बोर्ड पर लिखें: 'मेरे भाई के पास नई साइकिल है।' क्या यह वाक्य बारिश के बारे में है? 1) हाँ 2) नहीं",
+    "expected_hi": "2) नहीं",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M1",
+      "misconception_name_hi": "विषय से भटक जाना",
+      "misconception_name_en": "Drifts away from the topic",
+      "detect_en": "One or more sentences not about the given topic",
+      "wrong_answer_hi": "1) हाँ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: '___ हमने आटा गूँधा। फिर रोटी बेली।' खाली जगह पर कौन सा शब्द आएगा? 1) पहले 2) अंत में",
+    "expected_hi": "पहले",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M2",
+      "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं",
+      "misconception_name_en": "No order: no beginning, middle and end",
+      "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+      "wrong_answer_hi": "अंत में"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर विषय 'मेरी गाय' और उसके तीन वाक्य पहले से लिख लें (तीसरा वाक्य: 'मेरे दोस्त के पास नया बल्ला है।')।",
+   "बच्चों के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "ध्यान से पढ़ें और लिखें। हर वाक्य दिए गए विषय पर ही हो।",
+   "instructions_en": "Read carefully and write. Every sentence must be about the given topic.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा बस्ता",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 5 वाक्य",
+     "item_en": "At least 5 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य बस्ते के बारे में",
+     "item_en": "All sentences are about the school bag"
+    },
+    {
+     "item_hi": "पहला वाक्य विषय बताता है",
+     "item_en": "The first sentence names the topic"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop (।) at the end of every sentence"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने बस्ते पर 5-7 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा बस्ता"
+    },
+    {
+     "number": 2,
+     "problem_hi": "विषय: 'मेरा बस्ता'। जो वाक्य विषय पर नहीं है, उसका अक्षर लिखें।\nक) मेरा बस्ता नीला है।\nख) उसमें मेरी किताबें हैं।\nग) कल मैंने आम खाया।",
+     "answer": "ग",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "विषय: 'हमारी रसोई'। जो वाक्य विषय पर है, उसका अक्षर लिखें।\nक) माँ रसोई में खाना बनाती हैं।\nख) मेरा भाई क्रिकेट खेलता है।",
+     "answer": "क",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "खाली जगह में सही शब्द लिखें: ___ हमने बीज बोए। फिर पानी डाला। (पहले / अंत में)",
+     "answer": "पहले",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "44fbf4a28521",
+ "created": "2026-11-21T06:08:40Z",
+ "cost_usd": 0.0393,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

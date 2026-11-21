@@ -1,0 +1,125 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.4.1__normal__medium",
+ "skill_id": "N3.4.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर एक पट्टी बनाएँ और उसके नीचे स्केल रखकर दिखाएँ कि नापना 0 के निशान से शुरू होता है, 1 से नहीं। पट्टी का दूसरा सिरा 9 पर है, तो लंबाई 9 सेमी है। फिर बोर्ड पर लिखें: 1 मी = 100 सेमी, और बताएँ: 'देखिए, 3 मी यानी 3 बार 100 सेमी, यानी 300 सेमी।'",
+   "we_do_hi": "बच्चे अपनी पेंसिल 0 से मिलाकर स्केल पर रखें और बताएँ कि उसका सिरा किस संख्या पर है। इसके बाद बोर्ड पर लिखें: 5 मी = ___ सेमी, और बच्चों से पूछें: 'कितनी बार 100?' फिर 700 सेमी = ___ मी साथ मिलकर भरें।",
+   "you_do_hi": "बच्चे वर्कशीट का सवाल 1 हल करें: स्केल 0 से रखकर रेखा नापें और सेमी में लिखें। शिक्षक घूमकर देखें कि स्केल 0 से रखी है या नहीं। बाकी सवाल, पहले 2 और 3, फिर अतिरिक्त सवाल, बच्चे अगले समय में अपनी जगह पर पूरे करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर देखें: स्केल के 0 से एक पट्टी शुरू होती है और उसका दूसरा सिरा 12 पर है। पट्टी कितने सेमी लंबी है?",
+    "expected_hi": "12 सेमी",
+    "listen_for": [],
+    "shows_hi": "बच्चा स्केल 0 से पढ़कर लंबाई सही बता सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 4 मी = ___ सेमी। खाली जगह में क्या आएगा?",
+    "expected_hi": "400",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि 1 मी में 100 सेमी होते हैं और मी को सेमी में बदल सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "एक बड़ी स्केल (या 30 सेमी की स्केल), बोर्ड पर निशान लगाकर दिखाने के लिए",
+   "हर बच्चे के पास 15 सेमी की स्केल और पेंसिल",
+   "बोर्ड पर लिखें: 1 मी = 100 सेमी",
+   "वर्कशीट की रेखाएँ ठीक नाप से छापें: 6 सेमी, 11 सेमी"
+  ],
+  "worksheet": {
+   "instructions_hi": "स्केल को हमेशा 0 के निशान से रखें। रेखा नापें और सेमी में लिखें। मीटर और सेंटीमीटर बदलें: 1 मी = 100 सेमी।",
+   "instructions_en": "Always place the ruler at the 0 mark. Measure the line and write its length in cm. Convert metres and centimetres: 1 m = 100 cm.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "स्केल से नापें: यह रेखा कितने सेमी लंबी है? (6 सेमी की रेखा) ___ सेमी",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "2 मी = ___ सेमी",
+     "answer": "200",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "800 सेमी = ___ मी",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "स्केल से नापें: यह रेखा कितने सेमी लंबी है? (11 सेमी की रेखा) ___ सेमी",
+     "answer": "11",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "9 मी = ___ सेमी",
+     "answer": "900",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक रस्सी 1 मी लंबी है। वह कितने सेमी लंबी है?",
+     "answer": "100 सेमी",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "22e4736a292f",
+ "created": "2026-11-21T06:02:47Z",
+ "cost_usd": 0.0215,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,128 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N0.2.2-M2__short",
+ "skill_id": "N0.2.2",
+ "domain_id": "numeracy",
+ "mode": "N0.2.2-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने गिनती की थी, आज देखेंगे कि कोई चीज़ छूट न जाए। मेज़ पर 8 कंकड़ बिखेरकर रखें और दो कंकड़ छोड़ते हुए गिनें: 'एक, दो... छह', फिर पूछें: 'क्या हर कंकड़ को छुआ? नहीं, दो छूट गए।' अब वही 8 कंकड़ गिनें, हर कंकड़ को छूकर एक तरफ़ सरकाते हुए: 'एक, दो... आठ, कुल आठ', और गलत गिनती की बात यहीं ख़त्म करके सिर्फ़ सही ढेर सामने रखें।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को 7 से 10 तक कंकड़, बटन या बोतल के ढक्कन दें; बच्चे हर चीज़ को छूकर एक तरफ़ सरकाते हुए गिनें और बताएँ 'कुल कितने'। जिन्हें यह मुश्किल लगा था, उनके पास पहले शांति से जाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 9 गोले बनाएँ: ○ ○ ○ ○ ○ ○ ○ ○ ○। 'कितने गोले हैं? उँगलियों पर दिखाएँ।'",
+    "expected_hi": "9",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M2",
+      "misconception_name_hi": "गिनते समय वस्तुओं को छोड़ना",
+      "misconception_name_en": "Skipping objects while counting",
+      "detect_en": "Reported total is consistently lower; observed counting shows objects not tagged",
+      "wrong_answer_hi": "7"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 6 तारे बनाएँ: ★ ★ ★ ★ ★ ★। 'कितने तारे हैं? उँगलियों पर दिखाएँ।'",
+    "expected_hi": "6",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M1",
+      "misconception_name_hi": "दोहरी गिनती (वस्तु को दो बार छूता है)",
+      "misconception_name_en": "Double-counting (touches object twice)",
+      "detect_en": "Reported total is consistently higher than actual count; observed tagging shows repeated touches on same object",
+      "wrong_answer_hi": "7"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "8 कंकड़ (I Do के लिए)",
+   "हर जोड़ी के लिए 10 कंकड़, बटन या बोतल के ढक्कन"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को छूकर गिनें और उतनी ही गोलियाँ बनाएँ या संख्या लिखें।",
+   "instructions_en": "Touch each object as you count, then draw or write how many.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चा 7 से 10 चीज़ें हर एक को छूकर एक तरफ़ सरकाते हुए गिने और बताए 'कुल कितनी'।",
+    "task_en": "The child counts 7 to 10 objects, touching and moving each one aside, then says how many in all.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "हर चीज़ को एक बार छूकर 10 तक सही गिनता है और कुल संख्या बताता है",
+     "partial_hi": "10 तक गिनता है पर 7 के बाद कोई चीज़ छोड़ता या दोबारा गिनता है",
+     "not_yet_hi": "5 के बाद चीज़ें छोड़ देता है या कुल नहीं बता पाता",
+     "achieved_en": "Touches each object once, counts to 10 correctly and says the total",
+     "partial_en": "Counts to 10 but skips or double-counts after 7",
+     "not_yet_en": "Skips objects beyond 5 or cannot say the total"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोर्ड पर 5 गोले देखें। हर गोले को छूकर गिनें और कॉपी में उतनी डंडियाँ बनाएँ।",
+     "answer": "5",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बोर्ड पर 8 तारे देखें। हर तारे पर एक निशान लगाते हुए गिनें और संख्या लिखें।",
+     "answer": "8",
+     "diagnostic_for_misconception": "N0.2.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "बोर्ड पर 10 त्रिकोण देखें। हर त्रिकोण पर एक निशान लगाते हुए गिनें और संख्या लिखें।",
+     "answer": "10",
+     "diagnostic_for_misconception": "N0.2.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बोर्ड पर 7 चौकोर देखें। हर एक को छूकर गिनें और कॉपी में उतने गोले बनाएँ।",
+     "answer": "7",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 1: the question states its own answer (5)",
+   "worksheets.progressor (observed) problem 2: the question states its own answer (8)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (10)",
+   "worksheets.progressor (observed) problem 4: the question states its own answer (7)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "5cd5e822e73c",
+ "created": "2026-11-21T05:59:28Z",
+ "cost_usd": 0.0255,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

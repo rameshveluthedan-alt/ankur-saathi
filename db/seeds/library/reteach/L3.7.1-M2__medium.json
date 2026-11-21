@@ -1,0 +1,158 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.7.1-M2__medium",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.7.1-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने एक विषय पर कई वाक्य लिखे थे।' बोर्ड पर गलत क्रम लिखें: 'हम भीगकर घर आए। आसमान में बादल आए। तेज़ बारिश हुई।' बोलें: 'देखिए, पहला वाक्य अंत की बात है, विषय की शुरुआत नहीं।' इसके बाद उन्हीं वाक्यों को सही क्रम में लिखें: 'पहले आसमान में बादल आए। फिर तेज़ बारिश हुई। अंत में हम भीगकर घर आए।' 'पहले, फिर, अंत में' को गोल घेरें और गलत क्रम वाली पंक्तियाँ मिटा दें, ताकि बोर्ड पर केवल सही क्रम रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'हम स्कूल पहुँचे। हमने बस्ता उठाया। हमने दाँत साफ़ किए।' बच्चों से पूछें: 'कौन-सा काम सबसे पहले हुआ?' और साथ मिलकर क्रम ठीक करें, 'पहले, फिर, अंत में' जोड़कर। फिर एक नया विषय 'रात का खाना' लें: बच्चे शुरुआत, बीच और अंत का एक-एक वाक्य बताएँ, और शिक्षक बोर्ड पर लिखें।",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट पर दिए विषय पर पहले शुरुआत का वाक्य लिखें, फिर सवाल 2 करें।' बाकी सवाल 1 से 4 बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें; जो जल्दी ख़त्म करें, वे सवाल 5 करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार क्रम की गलती की थी, बिना किसी का नाम लिए।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: '1) फिर हमने चाय पी।  2) पहले माँ ने चाय बनाई।' कौन-सा वाक्य पहले आएगा, 1 या 2?",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M2",
+      "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं",
+      "misconception_name_en": "No order: no beginning, middle and end",
+      "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: '1) अंत में हम घर लौटे।  2) पहले हम मेले गए।  3) फिर हम झूला झूले।' कौन-सा वाक्य सबसे आख़िर में आएगा? उसकी संख्या लिखें।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M2",
+      "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं",
+      "misconception_name_en": "No order: no beginning, middle and end",
+      "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+      "wrong_answer_hi": "3"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'बारिश का दिन' के तीन वाक्य गलत क्रम में (I Do के लिए)।",
+   "बोर्ड पर 'सुबह स्कूल जाना' के तीन वाक्य गलत क्रम में लिखें (We Do के लिए)।",
+   "समूह के हर बच्चे के लिए वर्कशीट की एक प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "दिए गए विषय पर सही क्रम में वाक्य लिखें: पहले शुरुआत, फिर बीच की बातें, अंत में आख़िरी बात। 'पहले, फिर, अंत में' का प्रयोग करें।",
+   "instructions_en": "Write sentences on the given topic in the right order: beginning, middle, end. Use 'पहले, फिर, अंत में'.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "पेड़ लगाना",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "5 से 7 वाक्य लिखे हैं",
+     "item_en": "5 to 7 sentences"
+    },
+    {
+     "item_hi": "पहला वाक्य विषय बताता है",
+     "item_en": "First sentence names the topic"
+    },
+    {
+     "item_hi": "'पहले, फिर, अंत में' जैसे क्रम वाले शब्द हैं",
+     "item_en": "Sequence words used"
+    },
+    {
+     "item_hi": "सभी वाक्य पेड़ लगाने के बारे में हैं",
+     "item_en": "All sentences on topic"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में । है",
+     "item_en": "Full stop after each sentence"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'पेड़ लगाना' विषय पर 5-7 जुड़े हुए वाक्य सही क्रम में लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "पेड़ लगाना"
+    },
+    {
+     "number": 2,
+     "problem_hi": "इन वाक्यों को सही क्रम में लगाएँ, अक्षर लिखें:\n• क) फिर हाथों पर साबुन लगाया।\n• ख) अंत में हाथ पानी से धोए।\n• ग) पहले हाथ गीले किए।",
+     "answer": "ग, क, ख",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "खाली जगह भरें: पहले हमने कॉपी खोली। ___ हमने अपना नाम लिखा। (फिर / पहले)",
+     "answer": "फिर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "जहाँ वाक्य ख़त्म होता है, वहाँ । लगाकर फिर से लिखें: हम खेत गए हमने आम तोड़े",
+     "answer": "हम खेत गए। हमने आम तोड़े।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'मेरी गाय' पर 3 वाक्य सही क्रम में लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats wording from the lesson or anchor: «वाक्यों को सही क्रम में»"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "e197892709e9",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0449,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

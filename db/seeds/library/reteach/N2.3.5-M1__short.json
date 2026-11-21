@@ -1,0 +1,137 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.5-M1__short",
+ "skill_id": "N2.3.5",
+ "domain_id": "numeracy",
+ "mode": "N2.3.5-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने शब्द-सवाल हल किए थे।' बोर्ड पर लिखें: 'रीना के पास 52 टॉफ़ियाँ थीं, उसने 17 टॉफ़ियाँ दोस्तों को दे दीं। कितनी टॉफ़ियाँ बचीं?' पहले गलत तरीका लिखें: 52 + 17 = 69 और बताएँ: 'टॉफ़ियाँ दे दीं, तो कम होंगी, 69 तो 52 से भी ज़्यादा है, यह गलत है।' फिर इसी सवाल को सही करें: 52 − 17 = 35, 'दे दीं, खा लीं, खो गईं, उड़ गईं का मतलब है घटाना।' गलत लाइन मिटा दें, बोर्ड पर केवल सही तरीका रहने दें। अंत में समूह से एक प्रश्न पूछें: 'खो गईं सुनकर हम जोड़ेंगे या घटाएँगे?'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। अभी सवाल 1 और 2 शुरू करें, बाकी काम अगले ब्लॉक में अपनी जगह पर पूरा करें। शिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार घटाने की जगह जोड़ा था, और देखें कि सवाल 2 में कौन-सा चिह्न लगाया।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'मीना के पास 63 पेंसिलें थीं, 25 पेंसिलें खो गईं। कितनी बचीं?' उत्तर कौन-सा है: 1) 38 2) 88? उंगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "1) 38",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M1",
+      "misconception_name_hi": "संक्रिया चयन त्रुटि: घटाने की बजाय जोड़ता है",
+      "misconception_name_en": "Operation selection error: adds when should subtract",
+      "detect_en": "Computation is correct but operation is wrong; \"gave away\" / \"ate\" / \"lost\" problems are solved with addition",
+      "wrong_answer_hi": "2) 88"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'पेड़ पर 46 चिड़ियाँ थीं, 14 चिड़ियाँ उड़ गईं। कितनी बचीं?' इसमें कौन-सा चिह्न लगेगा: + या −? स्लेट पर चिह्न लिखें।",
+    "expected_hi": "−",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M1",
+      "misconception_name_hi": "संक्रिया चयन त्रुटि: घटाने की बजाय जोड़ता है",
+      "misconception_name_en": "Operation selection error: adds when should subtract",
+      "detect_en": "Computation is correct but operation is wrong; \"gave away\" / \"ate\" / \"lost\" problems are solved with addition",
+      "wrong_answer_hi": "+"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'रीना के पास 52 टॉफ़ियाँ थीं, उसने 17 टॉफ़ियाँ दोस्तों को दे दीं। कितनी टॉफ़ियाँ बचीं?'",
+   "बोर्ड के एक कोने में तीनों शब्द-सवाल लिखने की जगह रखें, जो शो-मी प्रश्नों में पूछे जाएँगे।",
+   "समूह के हर बच्चे के लिए एक वर्कशीट और स्लेट।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। सोचें: चीज़ें बढ़ीं या कम हुईं? फिर + या − लगाकर हल करें। हासिल हो तो उसके बॉक्स में लिखें।",
+   "instructions_en": "Read each problem carefully. Think: did things increase or decrease? Then use + or − and solve. Write any carry in the carry cell.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "एक थैले में 27 सेब हैं, दूसरे में 15 सेब। कुल कितने सेब? 27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "कक्षा में 34 लड़के और 25 लड़कियाँ हैं। कुल कितने बच्चे हैं?",
+     "answer": "59",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "राजू के पास 58 कंचे थे, उसने 24 कंचे भाई को दे दिए। कितने कंचे बचे?",
+     "answer": "34",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.5-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "एक बस में 81 लोग थे, 37 लोग उतर गए। बस में कितने लोग बचे? = ___",
+     "answer": "44",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.5-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "दुकान में 47 केले थे, 28 केले और आ गए। अब कितने केले हैं? = ___",
+     "answer": "75",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "सीमा के पास 90 रुपये थे, उसने 48 रुपये की किताब ली। कितने रुपये बचे? = ___",
+     "answer": "42",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "खेत में 65 गायें और 26 भैंसें हैं। खेत में कुल कितने पशु हैं?",
+     "answer": "91",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "27d386d5d31d",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0435,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

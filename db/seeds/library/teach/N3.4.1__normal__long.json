@@ -1,0 +1,103 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.4.1__normal__long",
+ "skill_id": "N3.4.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने चीज़ों की लंबाई नापी थी।' बोर्ड पर स्केल का चित्र बनाएँ और दिखाएँ कि नापना 0 के निशान से शुरू होता है, सिरे से नहीं। एक पेंसिल को 0 पर रखकर नापें और बोलें: 'देखिए, पेंसिल 12 पर ख़त्म होती है, तो यह 12 सेमी लंबी है।' फिर बोर्ड पर लिखें: 1 मी = 100 सेमी, 2 मी = 200 सेमी।",
+   "we_do_hi": "बच्चे अपनी रबर को स्केल के 0 पर रखें और लंबाई बताएँ; शिक्षक देखें कि सबने 0 से शुरू किया है। फिर बोर्ड पर लिखें: 4 मी = ___ सेमी, और बच्चों से पूछें कि हर मीटर में कितने सेमी होते हैं। इसके बाद 500 सेमी = ___ मी साथ में हल करें।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि स्केल 0 पर रखा जा रहा है। जो काम बचे, वह अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर देखें: एक पट्टी स्केल के 0 से शुरू होकर 9 पर ख़त्म होती है। पट्टी कितने सेमी लंबी है?",
+    "expected_hi": "9 सेमी",
+    "listen_for": [],
+    "shows_hi": "बच्चा स्केल को 0 से पढ़ता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "3 मी में कितने सेमी होते हैं?",
+    "expected_hi": "300 सेमी",
+    "listen_for": [],
+    "shows_hi": "बच्चा मीटर को सेमी में बदल सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर बच्चे के लिए 15 सेमी का स्केल और एक पेंसिल या रबर।",
+   "बोर्ड पर स्केल का बड़ा चित्र 0 से 15 तक बनाएँ।"
+  ],
+  "worksheet": {
+   "instructions_hi": "स्केल को 0 से पढ़ें। खाली जगह भरें।",
+   "instructions_en": "Read the ruler from 0. Fill in the blanks.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "एक डोरी स्केल के 0 से 11 तक है। डोरी की लंबाई = ___ सेमी",
+     "answer": "11",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "एक पत्ती स्केल के 3 से 10 तक है। पत्ती की लंबाई = ___ सेमी",
+     "answer": "7",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "6 मी = ___ सेमी",
+     "answer": "600",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "800 सेमी = ___ मी",
+     "answer": "8",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "एक चॉक स्केल के 0 से 5 तक है। चॉक की लंबाई = ___ सेमी",
+     "answer": "5",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक रस्सी 2 मी लंबी है। रस्सी कितने सेमी लंबी है?",
+     "answer": "200 सेमी",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "216650f0ea9a",
+ "created": "2026-11-21T06:08:39Z",
+ "cost_usd": 0.0181,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,118 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.6.4__normal__medium",
+ "skill_id": "L3.6.4",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर दो वाक्य लिखें: 'आम एक फल है।' और 'आम सबसे अच्छा फल है।' बच्चों को बताएँ: 'तथ्य वह है जिसे जाँचकर सही साबित कर सकते हैं; राय वह है जो किसी को लगती है, सबको एक जैसी नहीं लगती।' पहले वाक्य के आगे 'तथ्य' और दूसरे के आगे 'राय' लिखें, और 'सबसे अच्छा' शब्द के नीचे रेखा खींचें।",
+   "we_do_hi": "बोर्ड पर लिखें: 'गाय दूध देती है।' और 'बिल्ली बहुत प्यारी होती है।' बच्चों से पूछें: 'क्या इसे जाँच सकते हैं? क्या यह सबको एक जैसा लगेगा?' दो बच्चों से कारण सुनें और हर वाक्य के आगे मिलकर तथ्य या राय लिखें।",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट का सवाल 1 हल करें।' बाकी सवाल बच्चे अगले समय में अपनी जगह पर पूरे करें: पहले सवाल 1 से 3, फिर जो जल्दी ख़त्म करें, वे बाकी सवाल करें। घूमकर देखें कि बच्चे 'अच्छा', 'सुंदर', 'सबसे' जैसे शब्दों पर ध्यान दे रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सूरज पूरब से निकलता है।' यह 1) तथ्य है या 2) राय? उँगली पर दिखाएँ।",
+    "expected_hi": "1 (तथ्य)",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि जो बात जाँची जा सके, वह तथ्य है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'हरा रंग सबसे सुंदर रंग है।' यह 1) तथ्य है या 2) राय? उँगली पर दिखाएँ।",
+    "expected_hi": "2 (राय)",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि पक्के ढंग से कही गई पसंद भी राय होती है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'आम एक फल है।' और 'आम सबसे अच्छा फल है।'",
+   "हर बच्चे के लिए एक वर्कशीट की प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर वाक्य पढ़ें। उसके आगे 'तथ्य' या 'राय' लिखें।",
+   "instructions_en": "Read each sentence. Write 'fact' or 'opinion' next to it.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "हमारा बगीचा",
+    "text": "हमारे बगीचे में एक नीम का पेड़ है। पेड़ पर चिड़िया घोंसला बनाती है। बगीचे में गुलाब के फूल भी हैं। गुलाब सबसे सुंदर फूल है। शाम को बगीचे में खेलना बहुत अच्छा लगता है।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "हमारे बगीचे में एक नीम का पेड़ है।",
+     "answer": "तथ्य",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "गुलाब सबसे सुंदर फूल है।",
+     "answer": "राय",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "शाम को बगीचे में खेलना बहुत अच्छा लगता है।",
+     "answer": "राय",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पेड़ पर चिड़िया घोंसला बनाती है।",
+     "answer": "तथ्य",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बगीचे में गुलाब के फूल भी हैं।",
+     "answer": "तथ्य",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "नीम का पेड़ बहुत प्यारा है।",
+     "answer": "राय",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dbfbaa899ef7",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0229,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

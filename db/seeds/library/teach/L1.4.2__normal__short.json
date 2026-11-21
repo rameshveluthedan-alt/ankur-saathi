@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.4.2__normal__short",
+ "skill_id": "L1.4.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: किताब। हर अक्षर के नीचे उँगली रखकर धीरे बोलें: 'कि... ता... ब', फिर एक साथ जोड़कर बोलें: 'किताब'। इसी तरह बोर्ड पर 'बगीचा' लिखकर पढ़ें, और अंत में बच्चों से पूछें: 'इसमें कितने टुकड़े हैं?'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द दें: पानी, मछली, टमाटर, गुड़िया। एक बच्चा पढ़े, दूसरा सुने, फिर बारी बदलें; बचा काम बच्चे अगले समय में अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) मोर 2) मेर। पढ़कर सुनाएँ: 'मोर'। उँगली पर दिखाएँ, कौन-सा शब्द पढ़ा गया?",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा ो और े की मात्रा पहचानकर सही शब्द चुनता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: कमला। इस शब्द में कितने अक्षर हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा तीन अक्षर वाले शब्द को टुकड़ों में बाँट पाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: किताब, बगीचा",
+   "कागज़ की पर्चियों पर शब्द लिखें: पानी, मछली, टमाटर, गुड़िया (हर जोड़ी के लिए एक सेट)"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द अपने साथी को पढ़कर सुनाएँ। फिर साथी पढ़े।",
+   "instructions_en": "Read each word aloud to your partner. Then your partner reads.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "शब्द पढ़ने का उदाहरण:",
+    "example_text": "कि + ता + ब = किताब"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "जोड़ी में पर्चियों पर लिखे मात्रा वाले शब्द साथी को पढ़कर सुनाएँ।",
+    "task_en": "Read matra words on slips aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "दो और तीन अक्षर वाले शब्द बिना रुके जल्दी पढ़ता है",
+     "partial_hi": "दो अक्षर वाले शब्द पढ़ता है, तीन अक्षर वाले पर अटकता है",
+     "not_yet_hi": "पहले अक्षर के बाद रुक जाता है",
+     "achieved_en": "Reads 2- and 3-syllable words quickly without stopping",
+     "partial_en": "Reads 2-syllable words, hesitates on 3-syllable words",
+     "not_yet_en": "Stalls after the first syllable"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: पानी",
+     "answer": "पानी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: मछली",
+     "answer": "मछली",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: टमाटर",
+     "answer": "टमाटर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: गुड़िया",
+     "answer": "गुड़िया",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: सुंदर",
+     "answer": "सुंदर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0223,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

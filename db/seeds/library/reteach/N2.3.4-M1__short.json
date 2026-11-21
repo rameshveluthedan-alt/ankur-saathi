@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.4-M1__short",
+ "skill_id": "N2.3.4",
+ "domain_id": "numeracy",
+ "mode": "N2.3.4-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने उधार लेकर घटाना सीखा था।' बोर्ड पर दहाई-इकाई के बॉक्स में 53 - 26 लिखें और पहले गलत तरीका दिखाएँ: इकाई में 6 - 3 = 3, दहाई में 5 - 2 = 3, उत्तर 33, फिर कहें: 'देखिए, ऊपर 3 है और नीचे 6, ऊपर वाली संख्या से ही घटाना है, उलटा नहीं।' अब उसी सवाल को सही करें: दहाई से एक उधार, 5 का 4, इकाई 13 - 6 = 7, दहाई 4 - 2 = 2, उत्तर 27; गलत हल मिटा दें ताकि बोर्ड पर केवल सही तरीका रहे, और पूछें: 'इकाई में ऊपर 3 और नीचे 6 हो तो पहले क्या करेंगे?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में सवाल 1 शुरू करवाएँ, बाकी सवाल समूह अपनी जगह पर पूरे करे। सामान्य चक्कर में सबसे पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने इकाई में उलटा घटाया था, किसी का नाम लिए बिना; यदि शो-मी में एक चौथाई से अधिक बच्चे गलत हों, तो You Do से पहले वही कदम छड़ियों से फिर दिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 61 - 24",
+    "expected_hi": "37",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M1",
+      "misconception_name_hi": "इकाई में छोटे से बड़ा घटाना (उल्टा)",
+      "misconception_name_en": "Smaller-from-larger reversal in ones column",
+      "detect_en": "In ones column, child always subtracts the smaller digit from the larger regardless of position. Tens column is unchanged (no borrowing attempted). Very common and persistent.",
+      "wrong_answer_hi": "43"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "85 - 49 का उत्तर क्या है: 1) 36  2) 44? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1) 36",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M1",
+      "misconception_name_hi": "इकाई में छोटे से बड़ा घटाना (उल्टा)",
+      "misconception_name_en": "Smaller-from-larger reversal in ones column",
+      "detect_en": "In ones column, child always subtracts the smaller digit from the larger regardless of position. Tens column is unchanged (no borrowing attempted). Very common and persistent.",
+      "wrong_answer_hi": "2) 44"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दहाई-इकाई का बॉक्स बनाकर उसमें 53 - 26 लिखकर रखें।",
+   "दस-दस की 5 बंडल छड़ियाँ और 10 खुली छड़ियाँ पास रखें, ज़रूरत पड़ने पर उधार दोबारा दिखाने के लिए।"
+  ],
+  "worksheet": {
+   "instructions_hi": "घटाएँ। इकाई में ऊपर की संख्या छोटी हो तो दहाई से उधार लें और दहाई को एक कम करें।",
+   "instructions_en": "Subtract. If the top ones digit is smaller, borrow one ten and reduce the tens digit by one.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "64 - 29 = ___",
+    "answer": "35",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "6",
+    "row1_o": "4",
+    "row2_t": "2",
+    "row2_o": "9",
+    "answer_t": "3",
+    "answer_o": "5"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "43 - 15",
+     "answer": "28",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "81 - 37",
+     "answer": "44",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "63 - 47 = ___",
+     "answer": "16",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.4-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "75 - 38 = ___",
+     "answer": "37",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "50 - 24 = ___",
+     "answer": "26",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक कॉपी में 84 पन्ने हैं। 46 पन्ने भर गए। कितने पन्ने खाली हैं?",
+     "answer": "38",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 5 repeats a number the lesson or anchor already used: 26"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2371a13d7b0a",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0361,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

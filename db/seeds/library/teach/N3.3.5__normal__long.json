@@ -1,0 +1,148 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.3.5__normal__long",
+ "skill_id": "N3.3.5",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने बराबर बाँटना शुरू किया था, आज बचे हुए (शेष) को भी देखेंगे। 15 छड़ियाँ लें और 3 डिब्बों में एक-एक करके बाँटें, बोलते जाएँ: 'हर डिब्बे में 5 आईं, इसलिए 15 ÷ 3 = 5।' फिर 16 छड़ियाँ बाँटें, 1 छड़ी बच जाती है: बोर्ड पर लिखें '16 ÷ 3 = 5 शेष 1' और कहें: 'जो बराबर न बँट सके, वह शेष है।'",
+   "we_do_hi": "बोर्ड पर लिखें 18 ÷ 2 और बच्चों से पूछें: '18 में 2-2 के कितने समूह बनेंगे?' बच्चे बारी-बारी से 2-2 छड़ियाँ अलग रखें और समूह गिनें, उत्तर 9। फिर 22 ÷ 5 साथ में करें: 5-5 के समूह बनाएँ, 4 समूह बने और 2 बचीं, बोर्ड पर लिखें '22 ÷ 5 = 4 शेष 2'।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' जरूरत हो तो बच्चे छड़ियों या गोलों की ड्रॉइंग से बाँटें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिनका उत्तर घटाव जैसा बड़ा आ रहा हो या जो सवाल 3 खाली छोड़ रहे हों।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "27 ÷ 9",
+    "expected_hi": "3",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M1",
+      "misconception_name_hi": "भाग को घटाव समझना",
+      "misconception_name_en": "Confuses division with subtraction",
+      "detect_en": "Answer equals dividend minus divisor consistently",
+      "wrong_answer_hi": "18"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 42 ÷ 6 = 36। सही या गलत? गलत हो तो सही उत्तर लिखें।",
+    "expected_hi": "गलत, 7",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M1",
+      "misconception_name_hi": "भाग को घटाव समझना",
+      "misconception_name_en": "Confuses division with subtraction",
+      "detect_en": "Answer equals dividend minus divisor consistently",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "22 छड़ियाँ (तीलियाँ) और 3 डिब्बे या कटोरियाँ बाँटकर दिखाने के लिए",
+   "बोर्ड पर पहले से लिखें: 15 ÷ 3, 16 ÷ 3, 18 ÷ 2, 22 ÷ 5"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में बराबर बाँटें या बराबर समूह बनाएँ। जो बच जाए, उसे शेष लिखें।",
+   "instructions_en": "Share equally or make equal groups in each problem. Write what is left over as the remainder.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "14 ÷ 4 = ___",
+    "answer": "3 शेष 2",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "28 ÷ 4 = ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "36 ÷ 6 = ___",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "29 ÷ 3 = ___",
+     "answer": "9 शेष 2",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "40 ÷ 5 = ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "38 ÷ 8 = ___",
+     "answer": "4 शेष 6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "60 टॉफ़ियाँ 6 बच्चों में बराबर बाँटनी हैं। हर बच्चे को कितनी टॉफ़ियाँ मिलेंगी?",
+     "answer": "10",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9800a87ecc22",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0347,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

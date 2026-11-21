@@ -1,0 +1,176 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.7.2__normal__medium",
+ "skill_id": "L0.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर चार लाइन वाली पट्टी बनाएँ और 'प' लिखकर दिखाएँ: पहले अक्षर का आकार, फिर खड़ी पाई, सबसे अंत में ऊपर शिरोरेखा। हर चरण बोलकर करें: 'देखिए, पहले मुड़ी हुई रेखा, फिर सीधी खड़ी पाई, फिर ऊपर की लकीर।' इसी तरह 'ग' लिखकर दिखाएँ और बच्चों से कहें: 'शिरोरेखा अक्षर को ऊपर से छूती है।'",
+   "we_do_hi": "बच्चों से कहें: 'हवा में उँगली से मेरे साथ 'न' बनाएँ।' फिर बच्चे स्लेट पर 'न' और 'म' लिखें; शिक्षक हर अक्षर के चरण धीरे-धीरे बोलें। घूमकर देखें कि शिरोरेखा सबसे अंत में और अक्षर के ऊपर सटी हुई बने।",
+   "you_do_hi": "बच्चे वर्कशीट का सवाल 1 शुरू करें: पहले अक्षर पर उँगली फेरें, फिर खाली खानों में लिखें। बाकी सवाल बच्चे अगले समय अपनी जगह पर पूरे करें; जो जल्दी करें, वे सवाल 2 और 3 भी करें। शिक्षक घूमकर देखें कि शिरोरेखा अक्षर से सटी है और अक्षर पंक्ति के भीतर हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो रूप लिखें: 1) 'ल' ऊपर लकीर के साथ, 2) 'ल' बिना ऊपर की लकीर के। कौन-सा सही लिखा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि अक्षर शिरोरेखा के साथ पूरा होता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "स्लेट पर 'क' लिखें।",
+    "expected_hi": "क",
+    "listen_for": [],
+    "shows_hi": "बच्चा अक्षर सही बनावट और शिरोरेखा के साथ लिख पाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर चार लाइन वाली पट्टी बनाएँ।",
+   "हर बच्चे के लिए स्लेट और चॉक या कॉपी-पेंसिल रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अक्षर पर उँगली फेरें, फिर ध्यान से लिखें। हर अक्षर के ऊपर शिरोरेखा लगाएँ।",
+   "instructions_en": "Trace each letter with a finger, then write it carefully. Put the headline (shirorekha) on every letter.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "अक्षर बनाने का उदाहरण:",
+    "example_text": "ब: पहले आकार, फिर खड़ी पाई, फिर ऊपर शिरोरेखा"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'त' खाली खानों में लिखें।",
+     "answer": "त",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": true,
+     "target_letter": "त",
+     "letter_grid_cells": [
+      {
+       "prefilled": true,
+       "text": "त"
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      }
+     ],
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "'ह' खाली खानों में लिखें।",
+     "answer": "ह",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": true,
+     "target_letter": "ह",
+     "letter_grid_cells": [
+      {
+       "prefilled": true,
+       "text": "ह"
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      }
+     ],
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "'च' खाली खानों में लिखें।",
+     "answer": "च",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": true,
+     "target_letter": "च",
+     "letter_grid_cells": [
+      {
+       "prefilled": true,
+       "text": "च"
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      }
+     ],
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "शिरोरेखा लगाकर लिखें: स",
+     "answer": "स",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "शिरोरेखा लगाकर लिखें: द",
+     "answer": "द",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "शिरोरेखा लगाकर लिखें: ज",
+     "answer": "ज",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "570caeec9e99",
+ "created": "2026-11-21T06:09:37Z",
+ "cost_usd": 0.0236,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

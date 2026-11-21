@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.6.2__normal__medium",
+ "skill_id": "N3.6.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: आम, आम, केला, आम, अमरूद, केला, आम। हर नाम पर उँगली रखें, उसके आगे वाले फल की पंक्ति में एक खड़ी लकीर लगाएँ और कहें: 'देखिए, हर फल के लिए एक लकीर।' इसके बाद गिनती वाला स्तंभ भरें (आम 4, केला 2, अमरूद 1) और नीचे कुल 7 लिखें। बच्चों को दिखाएँ कि हर नाम एक ही बार गिना गया।",
+   "we_do_hi": "बोर्ड पर लिखें: पेन, पेंसिल, पेन, रबर, पेन, पेंसिल, पेन, पेन, रबर। बच्चे एक-एक नाम पढ़ें और बताएँ कि लकीर किस पंक्ति में लगेगी। जब पेन की चार लकीरें हो जाएँ, तब पाँचवीं लकीर चारों के ऊपर तिरछी खींचें और कहें: 'यह पाँच का गट्ठा है।' इसके बाद सब मिलकर गिनती भरें (पेन 5, पेंसिल 2, रबर 2) और कुल 9 जाँचें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' ये 5 मिनट काम की शुरुआत हैं, जो बचे वह बच्चे अपनी जगह पर अगले भाग में पूरा करें। घूमकर देखें कि पाँचवीं लकीर तिरछी खींची जा रही है और कुल सही जोड़ा जा रहा है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "6 को टैली निशानों में कैसे दिखाएँगे? 1) पाँच का एक गट्ठा और एक खड़ी लकीर 2) छह खड़ी लकीरें एक साथ। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि पाँचवीं लकीर तिरछी खींचकर गट्ठा बनता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बनाएँ: पाँच के दो गट्ठे (चार खड़ी लकीरें और उन पर एक तिरछी) और उनके बाद एक खड़ी लकीर। ये कुल कितने हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "11",
+    "listen_for": [],
+    "shows_hi": "बच्चा गट्ठों को पाँच-पाँच में गिनकर टैली पढ़ लेता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दो सारणी के ढाँचे बनाकर रखें: एक फलों के लिए (आम, केला, अमरूद) और एक पेन, पेंसिल, रबर के लिए, हर एक में टैली और गिनती के स्तंभ और नीचे कुल की पंक्ति।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। सूची के नाम गिनने के लिए टैली निशान बनाएँ और पाँचवीं लकीर तिरछी खींचें। उत्तर खाली जगह में लिखें।",
+   "instructions_en": "Read each question carefully. Use tally marks to count the names in a list, drawing every fifth mark across the other four. Write the answer in the blank.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सूची: गेंद, बल्ला, गेंद, गेंद, पतंग, गेंद, बल्ला, गेंद, गेंद। टैली बनाकर गिनें: गेंद कितनी बार आई? = ___",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "टैली: पाँच का एक गट्ठा और तीन खड़ी लकीरें। कुल कितने? = ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सारणी: लाल 4, नीला 6, हरा 5। कुल कितने? = ___",
+     "answer": "15",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सूची: कौआ, तोता, कौआ, मोर, तोता, कौआ, मोर। टैली बनाकर गिनें: कौआ कितनी बार आया? = ___",
+     "answer": "3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "टैली: पाँच के दो गट्ठे और दो खड़ी लकीरें। कुल कितने? = ___",
+     "answer": "12",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक कक्षा में 7 बच्चों को आम, 6 बच्चों को केला और 4 बच्चों को सेब पसंद है। इसकी सारणी बनाएँ और लिखें कि कुल कितने बच्चे हैं।",
+     "answer": "17",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a98fcf44dd24",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0404,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

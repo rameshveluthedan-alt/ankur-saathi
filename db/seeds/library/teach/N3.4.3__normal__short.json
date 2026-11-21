@@ -1,0 +1,115 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.4.3__normal__short",
+ "skill_id": "N3.4.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 1 किग्रा = 1000 ग्राम। तराज़ू के एक पलड़े में 1 किग्रा का बाट और दूसरे में आटे की थैली रखकर दिखाएँ: 'देखिए, दोनों पलड़े बराबर हैं, तो थैली का भार 1 किग्रा है।' फिर पूछें: 'आधा किग्रा कितने ग्राम?' और बोर्ड पर लिखें: आधा किग्रा = 500 ग्राम।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को तराज़ू और बाट दें; बाट न हों तो पत्थर, पानी भरी बोतल और रेत की थैली दें। बच्चों से कहें: 'एक चीज़ तौलें और बताएँ कि वह 1 किग्रा से भारी है या हल्की।' चीज़ें न हों तो बच्चे कॉपी में वर्कशीट करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "किसका भार ज़्यादा है: 1) 1 किग्रा 2) 700 ग्राम? उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "किग्रा और ग्राम की तुलना कर सकते हैं",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "2 किग्रा में कितने ग्राम होते हैं? स्लेट पर लिखें।",
+    "expected_hi": "2000",
+    "listen_for": [],
+    "shows_hi": "किग्रा को ग्राम में बदल सकते हैं",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "तराज़ू और 1 किग्रा, 500 ग्राम के बाट (उपलब्ध हों तो)",
+   "1 किग्रा आटे या चावल की थैली",
+   "पत्थर, पानी भरी बोतल, रेत की थैली",
+   "बोर्ड पर लिखें: 1 किग्रा = 1000 ग्राम"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर सवाल को कॉपी में करें।",
+   "instructions_en": "Do each question in your notebook.",
+   "required_count": 3,
+   "example_block": null,
+   "observe": {
+    "task_hi": "तराज़ू पर एक चीज़ तौलें और बताएँ कि वह 1 किग्रा से भारी है या हल्की; फिर बताएँ कि 1 किग्रा में कितने ग्राम होते हैं।",
+    "task_en": "Weigh an object on the balance, say whether it is heavier or lighter than 1 kg, and say how many grams make 1 kg.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "पत्थर",
+     "पानी भरी बोतल",
+     "रेत की थैली",
+     "आटे की थैली"
+    ],
+    "look_for": {
+     "achieved_hi": "खुद तराज़ू सही उपयोग करता है, भारी-हल्का बताता है और 1 किग्रा = 1000 ग्राम बताता है",
+     "partial_hi": "मदद से तौलता है या ग्राम में बदल नहीं पाता",
+     "not_yet_hi": "तराज़ू का उपयोग नहीं कर पाता",
+     "achieved_en": "Uses balance alone, says heavier/lighter and that 1 kg = 1000 g",
+     "partial_en": "Weighs with help or cannot convert to grams",
+     "not_yet_en": "Cannot use the balance"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "1 किग्रा = ___ ग्राम लिखें।",
+     "answer": "1000",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "3 किग्रा = ___ ग्राम लिखें।",
+     "answer": "3000",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "भारी भार पर गोला लगाएँ: 800 ग्राम या 1 किग्रा",
+     "answer": "1 किग्रा",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "4000 ग्राम = ___ किग्रा लिखें।",
+     "answer": "4",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 3: the question states its own answer (1 किग्रा)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:06:03Z",
+ "cost_usd": 0.0218,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

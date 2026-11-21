@@ -1,0 +1,137 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.2.1__normal__long",
+ "skill_id": "L0.2.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने शब्दों की आवाज़ें ध्यान से सुनी थीं।' धीरे-धीरे दो बार बोलें: 'मोर - चोर', और अंत की आवाज़ 'ओर' पर ज़ोर दें: 'देखिए, दोनों शब्द एक जैसी आवाज़ पर ख़त्म होते हैं, ये तुकबंदी वाले शब्द हैं।' फिर बोलें 'मोर - आम' और कहें: 'इनका अंत अलग है, इनमें तुक नहीं है।'",
+   "we_do_hi": "तीन शब्द धीरे बोलें: 'नाक, आग, काग'; बच्चों के साथ हर शब्द का अंत दोहराएँ और पूछें कि किन दो का अंत एक जैसा है। इसके बाद 'रानी, नानी, गाड़ी' से यही करें, हर शब्द दो बार बोलें। जो बच्चे सही जोड़ी पहचानें, उनसे कहें कि वे अंत की आवाज़ धीरे से बोलकर बताएँ।",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को चित्र-कार्ड दें; न हों तो बोतल का ढक्कन, पत्ती और कंकड़ रखकर उनके नाम बोलें, या कागज़ की पर्चियों पर बने चित्र दें। हर जोड़ी तीन शब्द सुनकर तुक वाली जोड़ी बताए: 'मछली, बिजली, घर' और 'टोपी, गोपी, पेड़'; पर्चियाँ भी न हों तो वर्कशीट के सवाल बोलकर करवाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'गाना, खाना, कुर्सी'। कुर्सी तुक वाला है या नहीं? तुक हो तो 1 उंगली, न हो तो 2 उंगलियाँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि जिस शब्द का अंत अलग है, उसमें तुक नहीं है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'दाल'। इसकी तुक किससे मिलती है: 1) बाल 2) फूल? उंगली दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा दिए गए शब्द के लिए तुक वाला शब्द चुन लेता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "चित्र-कार्ड या कागज़ की पर्चियाँ तैयार करें: मछली, बिजली, घर, टोपी, गोपी, पेड़।",
+   "बोलकर सुनाने वाले शब्दों के सेट याद कर लें: मोर-चोर-आम, नाक-आग-काग, रानी-नानी-गाड़ी।"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक तीन शब्द बोलें। बच्चे तुक वाले दो शब्द बोलकर बताएँ।",
+   "instructions_en": "The teacher says three words. Children say the two rhyming words.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "तुकबंदी का उदाहरण:",
+    "example_text": "मोर - चोर"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "तीन शब्द सुनकर तुक वाली जोड़ी बोलकर बताएँ।",
+    "task_en": "Listen to three words and say the rhyming pair aloud.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "बोतल के ढक्कन",
+     "पत्तियाँ",
+     "कंकड़",
+     "चित्र वाली पर्चियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के सही तुक वाली जोड़ी बताता है।",
+     "partial_hi": "शब्द दोबारा सुनकर या मदद से जोड़ी बताता है।",
+     "not_yet_hi": "तुक वाली जोड़ी नहीं पहचान पाता।",
+     "achieved_en": "Names the rhyming pair without help.",
+     "partial_en": "Names the pair after hearing the words again or with help.",
+     "not_yet_en": "Cannot identify the rhyming pair."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सुनें और तुक वाले दो शब्द बताएँ: बिल्ली, दिल्ली, कुत्ता",
+     "answer": "बिल्ली - दिल्ली",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सुनें और तुक वाले दो शब्द बताएँ: पेड़, झोला, गोला",
+     "answer": "झोला - गोला",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सुनें और तुक वाले दो शब्द बताएँ: चाबी, किताब, भाभी",
+     "answer": "चाबी - भाभी",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सुनें और तुक वाले दो शब्द बताएँ: ठेला, केला, बकरी",
+     "answer": "ठेला - केला",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "सुनें और तुक वाले दो शब्द बताएँ: सूरज, लाल, गाल",
+     "answer": "लाल - गाल",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0277,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

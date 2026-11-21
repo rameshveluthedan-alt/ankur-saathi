@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.5.2-M1__long",
+ "skill_id": "N3.5.2",
+ "domain_id": "numeracy",
+ "mode": "N3.5.2-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने सीखा था कि परिमाप यानी आकृति की सारी भुजाओं का जोड़। बोर्ड पर 7 सेमी लंबा और 4 सेमी चौड़ा आयत बनाएँ, पहले 7 + 4 = 11 सेमी लिखें और बच्चों से कहें: 'देखिए, यहाँ केवल दो भुजाएँ जोड़ी हैं, पर आयत की चार भुजाएँ हैं।' अब चारों भुजाओं पर उँगली रखते हुए लिखें 7 + 4 + 7 + 4 = 22 सेमी, यानी 2 × (7 + 4) = 22 सेमी, और फिर गलत पंक्ति मिटा दें ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'आयत 6 सेमी और 2 सेमी, परिमाप = 8 सेमी' और 'आयत 9 सेमी और 5 सेमी, परिमाप = 14 सेमी'। बच्चों से पूछें कि कितनी भुजाएँ छूट गईं, फिर साथ मिलकर सुधारें: 16 सेमी और 28 सेमी। अंत में नया आयत 10 सेमी और 3 सेमी साथ हल करें: 10 + 3 + 10 + 3 = 26 सेमी।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' घूमते हुए सबसे पहले शांति से उन बच्चों की कॉपी देखें जिन्होंने पिछली बार दो भुजाएँ ही जोड़ी थीं, बिना किसी का नाम लिए। अगर शो-मी में एक चौथाई से अधिक बच्चों का उत्तर आधा आया हो, तो स्वतंत्र अभ्यास से पहले चारों भुजाएँ गिनने वाला कदम दोबारा कराएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर लिखें: आयत की लंबाई 5 सेमी, चौड़ाई 4 सेमी। इसका परिमाप कितना है?",
+    "expected_hi": "18 सेमी",
+    "listen_for": [
+     {
+      "misconception_id": "N3.5.2-M1",
+      "misconception_name_hi": "आयत का परिमाप: केवल 2 भुजाएँ जोड़ना",
+      "misconception_name_en": "Adds only 2 sides for rectangle perimeter",
+      "detect_en": "Answer is exactly half the correct perimeter",
+      "wrong_answer_hi": "9 सेमी"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: आयत 8 सेमी और 2 सेमी। परिमाप 1) 10 सेमी 2) 20 सेमी?",
+    "expected_hi": "2) 20 सेमी",
+    "listen_for": [
+     {
+      "misconception_id": "N3.5.2-M1",
+      "misconception_name_hi": "आयत का परिमाप: केवल 2 भुजाएँ जोड़ना",
+      "misconception_name_en": "Adds only 2 sides for rectangle perimeter",
+      "detect_en": "Answer is exactly half the correct perimeter",
+      "wrong_answer_hi": "1) 10 सेमी"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 7 सेमी × 4 सेमी का आयत बनाने की जगह रखें, भुजाओं पर लंबाई लिखने के लिए चॉक तैयार रखें।",
+   "हर बच्चे के पास स्लेट या कॉपी का पन्ना शो-मी के लिए हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर आकृति की सारी भुजाएँ जोड़कर परिमाप निकालें। आयत की चारों भुजाएँ गिनना न भूलें। उत्तर के साथ सेमी या मीटर लिखें।",
+   "instructions_en": "Find the perimeter by adding all the sides of each shape. Remember a rectangle has four sides. Write the unit with the answer.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "वर्ग की हर भुजा 8 सेमी है। परिमाप = ___",
+     "answer": "32 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "आयत की लंबाई 9 सेमी, चौड़ाई 6 सेमी। परिमाप = ___",
+     "answer": "30 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.5.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "आयत की लंबाई 12 सेमी, चौड़ाई 5 सेमी। परिमाप = ___",
+     "answer": "34 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.5.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "त्रिभुज की भुजाएँ 5 सेमी, 6 सेमी और 7 सेमी हैं। परिमाप = ___",
+     "answer": "18 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "आयत की लंबाई 10 सेमी, चौड़ाई 8 सेमी। परिमाप = ___",
+     "answer": "36 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक आयताकार खेत 15 मीटर लंबा और 10 मीटर चौड़ा है। खेत के चारों ओर एक बार तार लगाने के लिए कितने मीटर तार चाहिए?",
+     "answer": "50 मीटर",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "53a2aa3e86be",
+ "created": "2026-11-21T06:03:32Z",
+ "cost_usd": 0.0358,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

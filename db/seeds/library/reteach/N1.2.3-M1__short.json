@@ -1,0 +1,149 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.2.3-M1__short",
+ "skill_id": "N1.2.3",
+ "domain_id": "numeracy",
+ "mode": "N1.2.3-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने संख्याएँ सुनकर लिखना सीखा था।' बोर्ड पर पहले गलत तरीका लिखें: 'चौदह' बोलकर 41 लिखें और बच्चों से कहें: 'देखिए, चौदह में 1 दहाई और 4 इकाई हैं। दहाई हमेशा पहले, बाईं ओर लिखते हैं, इसलिए यह गलत है।' अब उसी 'चौदह' को सही लिखें, पहले 1 और फिर उसके दाईं ओर 4। फिर 41 मिटा दें, ताकि बोर्ड पर सिर्फ़ 14 रहे। अंत में समूह से एक छोटा सवाल पूछें: 'चौदह में पहले कौन सा अंक लिखा जाता है?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' सबसे पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने पिछली बार अंक उलटे थे, ताकि यह सामान्य चक्कर जैसा ही लगे। जो बच्चा अंक उलटे, उससे धीरे से पूछें: 'इसमें कितनी दहाई है? वह पहले कहाँ लिखेंगे?'"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: सोलह। बच्चे इसे स्लेट पर अंकों में लिखें।",
+    "expected_hi": "16",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M1",
+      "misconception_name_hi": "लिखते समय अंक उलटना (13 के लिए 31 लिखता है)",
+      "misconception_name_en": "Digit reversal in writing (writes 31 for 13)",
+      "detect_en": "Consistently writes digits in wrong order: \"thirteen\" → writes 31; but reads 31 correctly as thirty-one",
+      "wrong_answer_hi": "61"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 27  2) 72। संख्या बोलें: बहत्तर। इनमें बहत्तर कौन सी है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M1",
+      "misconception_name_hi": "लिखते समय अंक उलटना (13 के लिए 31 लिखता है)",
+      "misconception_name_en": "Digit reversal in writing (writes 31 for 13)",
+      "detect_en": "Consistently writes digits in wrong order: \"thirteen\" → writes 31; but reads 31 correctly as thirty-one",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।",
+   "बोर्ड पर एक दहाई-इकाई का बॉक्स पहले से बना लें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक संख्या का नाम पढ़कर सुनाएँ। बच्चे संख्या को अंकों में लिखें। दहाई का अंक पहले, बाईं ओर लिखें।",
+   "instructions_en": "The teacher reads each number name aloud. Children write the number in digits. Write the tens digit first, on the left.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "उन्नीस लिखिए",
+    "answer": "19",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "1",
+    "row1_o": "9",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "1",
+    "answer_o": "9"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पैंतीस लिखिए",
+     "answer": "35",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सत्रह लिखिए",
+     "answer": "17",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "बासठ लिखिए",
+     "answer": "62",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.3-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बारह लिखिए",
+     "answer": "12",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "अड़तालीस लिखिए",
+     "answer": "48",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "इक्यानबे लिखिए",
+     "answer": "91",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "the progressor lesson (i_do_hi) says «चौदह» (= 14) beside the number 41"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "56df1aa66881",
+ "created": "2026-11-21T06:04:22Z",
+ "cost_usd": 0.0327,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

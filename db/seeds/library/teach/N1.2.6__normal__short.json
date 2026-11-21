@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.6__normal__short",
+ "skill_id": "N1.2.6",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 34, 72, 19, 56। बच्चों से कहें: 'देखिए, पहले दहाई देखते हैं। जिसकी दहाई सबसे छोटी है, वह सबसे पहले आएगी। बढ़ते क्रम में: 19, 34, 56, 72।' फिर उल्टा पढ़कर दिखाएँ: 'घटते क्रम में सबसे बड़ी पहले आती है: 72, 56, 34, 19।'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' घूमकर देखें कि बच्चे पहले दहाई की तुलना कर रहे हैं या नहीं। जहाँ दहाई एक जैसी हो, वहाँ पूछें: 'अब इकाई देखें, कौन छोटी है?' बाकी काम बच्चे अपनी जगह पर अगले ब्लॉक में पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "कौन-सी संख्या बड़ी है: 47 या 74?",
+    "expected_hi": "74",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहले दहाई की तुलना करता है, अंकों के दिखने से नहीं।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 63, 36, 60। बढ़ते क्रम में सबसे पहले कौन-सी संख्या आएगी? स्लेट पर लिखें।",
+    "expected_hi": "36",
+    "listen_for": [],
+    "shows_hi": "बच्चा बढ़ते क्रम में सबसे छोटी संख्या पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 34, 72, 19, 56",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना"
+  ],
+  "worksheet": {
+   "instructions_hi": "संख्याओं को बताए गए क्रम में लिखें। पहले दहाई देखें, दहाई एक जैसी हो तो इकाई देखें।",
+   "instructions_en": "Write the numbers in the order asked. Compare the tens first; if the tens are the same, compare the ones.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "बढ़ते क्रम में लिखें: 52, 18, 37, 90",
+    "answer": "18, 37, 52, 90",
+    "show_pv_grid": false,
+    "pv_columns": 2
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बढ़ते क्रम में लिखें: 64, 21, 89, 47 = ___",
+     "answer": "21, 47, 64, 89",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "घटते क्रम में लिखें: 33, 81, 15, 58, 72 = ___",
+     "answer": "81, 72, 58, 33, 15",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "बढ़ते क्रम में लिखें: 42, 24, 49, 40, 44 = ___",
+     "answer": "24, 40, 42, 44, 49",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "बढ़ते क्रम में लिखें: 76, 9, 53, 28, 61 = ___",
+     "answer": "9, 28, 53, 61, 76",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "घटते क्रम में लिखें: 67, 76, 70, 61, 66 = ___",
+     "answer": "76, 70, 67, 66, 61",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "घटते क्रम में लिखें: 13, 95, 38, 50, 84 = ___",
+     "answer": "95, 84, 50, 38, 13",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 72"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "1e061770a88b",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0282,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

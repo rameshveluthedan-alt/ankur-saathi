@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.7.2-M1__long",
+ "skill_id": "L2.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.7.2-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने एक विषय पर कुछ वाक्य लिखना सीखा था।' बोर्ड पर लिखें: 'मेरी दादी बगीचे में जाती हैं। दादी फूल तोड़ती हैं।' और बच्चों से कहें: 'सुनें, ये दो वाक्य अलग-अलग हैं, आपस में जुड़े नहीं हैं।' इसके बाद उसी बात को जोड़कर लिखें: 'मेरी दादी बगीचे में जाती हैं और फूल तोड़ती हैं।' और 'और' पर गोला बनाएँ; फिर पहली दो पंक्तियाँ मिटा दें, ताकि बोर्ड पर केवल जुड़ा हुआ वाक्य रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'बारिश हुई। हम घर के अंदर आ गए।' बच्चों से पूछें: 'कौन-सा शब्द इन्हें जोड़ेगा?' और साथ मिलकर लिखें: 'बारिश हुई, इसलिए हम घर के अंदर आ गए।' अब एक नया उदाहरण साथ बनाएँ: 'मैंने हाथ धोए। ___ खाना खाया।' बच्चों से 'फिर' बुलवाकर पूरा वाक्य बोर्ड पर लिखें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी खत्म करें, वे सवाल 4 करें।' बच्चे वर्कशीट पर दिए विषय पर लिखें और वाक्यों को 'और / फिर / क्योंकि' से जोड़ें। सामान्य चक्कर में शिक्षक सबसे पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने पिछली बार वाक्य अलग-अलग लिखे थे।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'मोर नाचा ___ सबने ताली बजाई।' कौन-सा शब्द लगेगा? 1) और 2) लेकिन",
+    "expected_hi": "1) और",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M1",
+      "misconception_name_hi": "वाक्य अलग-अलग लिखना, जोड़ने वाले शब्द नहीं",
+      "misconception_name_en": "Writes separate sentences with no joining words",
+      "detect_en": "Three or more sentences on the topic, none joined by और / फिर / क्योंकि / लेकिन",
+      "wrong_answer_hi": "कोई शब्द नहीं, दो अलग वाक्य"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मैं स्कूल नहीं गया ___ मुझे बुखार था।' खाली जगह में एक शब्द लिखें।",
+    "expected_hi": "क्योंकि",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M1",
+      "misconception_name_hi": "वाक्य अलग-अलग लिखना, जोड़ने वाले शब्द नहीं",
+      "misconception_name_en": "Writes separate sentences with no joining words",
+      "detect_en": "Three or more sentences on the topic, none joined by और / फिर / क्योंकि / लेकिन",
+      "wrong_answer_hi": "। (पूर्ण विराम)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'मेरी दादी बगीचे में जाती हैं। दादी फूल तोड़ती हैं।'",
+   "बोर्ड के कोने में जोड़ने वाले शब्द लिखें: और, फिर, क्योंकि, लेकिन"
+  ],
+  "worksheet": {
+   "instructions_hi": "ध्यान से पढ़ें और लिखें। वाक्यों को और, फिर, क्योंकि से जोड़ें।",
+   "instructions_en": "Read carefully and write. Join sentences with और, फिर, क्योंकि.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा प्यारा पालतू जानवर",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य विषय पर",
+     "item_en": "All sentences on topic"
+    },
+    {
+     "item_hi": "वाक्य और / फिर / क्योंकि से जुड़े",
+     "item_en": "Sentences joined with और / फिर / क्योंकि"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "Full stop at the end of each sentence"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने प्यारे पालतू जानवर पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा प्यारा पालतू जानवर"
+    },
+    {
+     "number": 2,
+     "problem_hi": "खाली जगह भरें: राजू ने बस्ता उठाया ___ स्कूल चला गया। (और / लेकिन)",
+     "answer": "और",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "खाली जगह भरें: पौधा सूख गया ___ किसी ने पानी नहीं डाला। (क्योंकि / फिर)",
+     "answer": "क्योंकि",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "खाली जगह भरें: पहले हमने पतंग बनाई, ___ उसे उड़ाया। (फिर / क्योंकि)",
+     "answer": "फिर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "5a721b5b1db5",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0274,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

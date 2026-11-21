@@ -1,0 +1,135 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.4.1__normal__long",
+ "skill_id": "L3.4.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'हमने मात्राएँ और संयुक्त अक्षर पढ़ना सीखा है।' बोर्ड पर नया शब्द लिखें: पतंगबाज़ी। उसे टुकड़ों में तोड़कर दिखाएँ: प-तं-ग-बा-ज़ी, हर टुकड़े के नीचे छोटी रेखा खींचें, हर टुकड़ा धीरे बोलें, फिर पूरा शब्द एक साथ पढ़ें और कहें: 'देखिए, बड़ा शब्द छोटे टुकड़ों से बनता है।'",
+   "we_do_hi": "बोर्ड पर लिखें: चमगादड़। बच्चों से पूछें कि पहला टुकड़ा क्या है, फिर अगला; हर टुकड़े के नीचे साथ में रेखा खींचें और अंत में पूरा शब्द मिलाकर पढ़ें। इसी तरह दूसरा शब्द करें: रसोईघर।",
+   "you_do_hi": "हर जोड़ी को कागज़ की चार शब्द-पर्चियाँ दें (बोर्ड पर लिखे शब्दों से बनी)। एक बच्चा पर्ची का शब्द टुकड़ों में तोड़कर पढ़े, दूसरा सुने, फिर बारी बदलें; पर्चियाँ न हों तो बच्चे वर्कशीट के शब्द कॉपी में लिखकर साथी को पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: कबूतरखाना। इस शब्द में कितने टुकड़े हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "5",
+    "listen_for": [],
+    "shows_hi": "बच्चा अपरिचित शब्द को अक्षर-टुकड़ों में तोड़ पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: अखबारवाला। इसे तोड़ने का सही तरीका कौन-सा है? 1) अ-ख-बा-र-वा-ला 2) अख-बार-वाला-अ",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि हर टुकड़ा बारी-बारी से, बिना छोड़े पढ़ा जाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: पतंगबाज़ी, चमगादड़, रसोईघर।",
+   "कागज़ की पर्चियों पर नए शब्द लिखें: तितलियाँ, मछुआरा, गुब्बारेवाला, किताबघर (हर जोड़ी के लिए एक सेट)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को छोटे टुकड़ों में तोड़ें, फिर पूरा शब्द अपने साथी को पढ़कर सुनाएँ।",
+   "instructions_en": "Break each word into small parts, then read the whole word aloud to your partner.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "शब्द तोड़कर पढ़ने का उदाहरण:",
+    "example_text": "पतंगबाज़ी = प-तं-ग-बा-ज़ी"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा पाँच नए शब्द (तितलियाँ, मछुआरा, गुब्बारेवाला, किताबघर, चिड़ियाघर) टुकड़ों में तोड़कर साथी को पढ़कर सुनाए।",
+    "task_en": "The child reads five new words aloud to a partner by breaking them into syllables.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की शब्द-पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "टुकड़े करके पढ़ता है, 5 में से 4 शब्द सही पढ़ता है",
+     "partial_hi": "कोशिश करता है, 2-3 शब्द सही पढ़ता है, बाकी छोड़ देता है",
+     "not_yet_hi": "नए शब्द पढ़ने की कोशिश नहीं करता, छोड़ता है या पूछता है",
+     "achieved_en": "Breaks words into parts and reads 4 of 5 correctly",
+     "partial_en": "Tries, reads 2-3 correctly, gives up on others",
+     "not_yet_en": "Does not attempt; skips or asks the teacher"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "टुकड़ों में तोड़कर पढ़ें: तितलियाँ",
+     "answer": "ति-त-लि-याँ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "टुकड़ों में तोड़कर पढ़ें: मछुआरा",
+     "answer": "म-छु-आ-रा",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "टुकड़ों में तोड़कर पढ़ें: गुब्बारेवाला",
+     "answer": "गुब्-बा-रे-वा-ला",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "टुकड़ों में तोड़कर पढ़ें: किताबघर",
+     "answer": "कि-ता-ब-घ-र",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "टुकड़ों में तोड़कर पढ़ें: चिड़ियाघर",
+     "answer": "चि-ड़ि-या-घ-र",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0282,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

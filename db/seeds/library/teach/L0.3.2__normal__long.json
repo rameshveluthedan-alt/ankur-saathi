@@ -1,0 +1,133 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.3.2__normal__long",
+ "skill_id": "L0.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने अक्षर पहचाने थे।' बोर्ड पर बड़ा 'म' लिखें, उस पर उँगली रखकर कहें: 'देखिए, म से मछली, म से मटर।' फिर 'घर' बोलें, पहली ध्वनि 'घ' को खींचकर बोलें और बोर्ड पर 'घ' लिखकर दिखाएँ।",
+   "we_do_hi": "बोर्ड पर 'प' लिखें और बच्चों से पूछें: 'प से कौन-सी चीज़?' कुछ बच्चों से एक-एक करके सुनें, जैसे पतंग या पानी। फिर 'बकरी' बोलें, बच्चे बताएँ कि पहला अक्षर कौन-सा है, और 'ब' बोर्ड पर लिखें।",
+   "you_do_hi": "हर जोड़ी को अक्षर कार्ड (क, म, प, ब, स) और आम, केला, पत्ता, बटन, सेब जैसी चीज़ें या उनकी पर्ची दें; बच्चे हर चीज़ को उसके पहले अक्षर वाले कार्ड के पास रखें और नाम बोलें। चीज़ें न हों तो बोर्ड से वर्कशीट के सवाल कॉपी में करवाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "'नल' बोलें। नल किस अक्षर से शुरू होता है? स्लेट पर वह अक्षर लिखें।",
+    "expected_hi": "न",
+    "listen_for": [],
+    "shows_hi": "शब्द की पहली ध्वनि सुनकर सही अक्षर पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) र  2) ग। 'गाय' किस अक्षर से शुरू होता है? उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "मिलते-जुलते विकल्पों में से पहली ध्वनि का अक्षर चुनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर अक्षर कार्ड बनाएँ: क, म, प, ब, स (हर जोड़ी के लिए एक सेट)।",
+   "आम, केला, पत्ता, बटन, सेब जैसी चीज़ें इकट्ठा करें या उनके नाम पर्चियों पर लिखें।",
+   "बोर्ड पर बड़े अक्षर लिखने की जगह रखें: म, घ, प, ब।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर अक्षर से शुरू होने वाली एक चीज़ का नाम साथी को बताएँ। फिर सुने गए शब्द का पहला अक्षर लिखें।",
+   "instructions_en": "Tell your partner one thing that starts with each letter. Then write the first letter of each word you hear.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "पहली ध्वनि का उदाहरण:",
+    "example_text": "म → मछली"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा अक्षर कार्ड देखकर उस अक्षर से शुरू होने वाली चीज़ का नाम बोलता है, और चीज़ का नाम सुनकर उसके पहले अक्षर का कार्ड उठाता है।",
+    "task_en": "The child looks at a letter card and names a thing starting with it, and hears a thing's name and picks the card of its first letter.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "अक्षर कार्ड (पर्चियों पर)",
+     "आम, केला, पत्ता",
+     "बटन",
+     "सेब"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के अक्षर से शब्द बताता है और शब्द सुनकर सही अक्षर उठाता है।",
+     "partial_hi": "कुछ अक्षरों में सही है, या सिर्फ़ एक तरफ़ से कर पाता है।",
+     "not_yet_hi": "अक्षर और ध्वनि को जोड़ नहीं पाता।",
+     "achieved_en": "Names a word for a letter and picks the right letter for a word, without help.",
+     "partial_en": "Right for some letters, or only one direction.",
+     "not_yet_en": "Cannot link letters to sounds yet."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "क से शुरू होने वाली एक चीज़ का नाम बोलें।",
+     "answer": "कमल / केला / कबूतर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "'सेब' सुनें। पहला अक्षर लिखें।",
+     "answer": "स",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "'बतख' सुनें। पहला अक्षर लिखें।",
+     "answer": "ब",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "प से शुरू होने वाली एक चीज़ का नाम बोलें।",
+     "answer": "पतंग / पानी / पत्ता",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'आम' सुनें। पहला अक्षर लिखें।",
+     "answer": "आ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0266,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,108 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.5.1__normal__long",
+ "skill_id": "N3.5.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'दो रेखाएँ एक बिंदु पर मिलें तो कोण बनता है।' कॉपी का कोना दिखाएँ और कहें: 'यह समकोण है, बिल्कुल सीधा कोना।' बोर्ड पर घड़ी बनाकर 3 बजे की सुइयाँ दिखाएँ (समकोण), फिर 1 बजे (कॉपी के कोने से छोटा: न्यूनकोण) और 4 बजे (कॉपी के कोने से बड़ा: अधिककोण)। हर बार कॉपी का कोना सुइयों के बीच रखकर मिलाएँ।",
+   "we_do_hi": "बोर्ड पर घड़ी में 9 बजे, 2 बजे और 5 बजे की सुइयाँ एक-एक करके बनाएँ। हर बार बच्चे अपनी कॉपी का कोना हवा में रखकर मिलाएँ। फिर उनसे पूछें: 'कोना बराबर है, छोटा है या बड़ा?' इसके बाद सबके साथ नाम तय करें: समकोण, न्यूनकोण या अधिककोण। उँगलियों का संकेत सिखाएँ: 1 उँगली समकोण, 2 न्यूनकोण, 3 अधिककोण।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' बच्चे कॉपी के कोने से मिलाकर हर कोण का नाम लिखें। घूमकर देखें कि कौन कोना मिलाए बिना अंदाज़े से लिख रहा है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "घड़ी में 8 बजे हैं। सुइयों के बीच का कोण कौन-सा है? 1) समकोण 2) न्यूनकोण 3) अधिककोण। उँगलियों पर दिखाएँ।",
+    "expected_hi": "3 (अधिककोण)",
+    "listen_for": [],
+    "shows_hi": "बच्चा समकोण से बड़े कोण को पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "घड़ी में 11 बजे हैं। सुइयों के बीच का कोण कौन-सा है? 1) समकोण 2) न्यूनकोण 3) अधिककोण।",
+    "expected_hi": "2 (न्यूनकोण)",
+    "listen_for": [],
+    "shows_hi": "बच्चा समकोण से छोटे कोण को पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर सुइयों वाली एक बड़ी घड़ी बनाने की जगह रखें।",
+   "हर बच्चे के पास कॉपी हो, ताकि उसका कोना कोण मापने में काम आए।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर कोण को अपनी कॉपी के कोने से मिलाएँ। फिर उसका नाम लिखें: समकोण, न्यूनकोण या अधिककोण।",
+   "instructions_en": "Compare each angle with the corner of your notebook and write its name: right, acute or obtuse.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "किताब का कोना कौन-सा कोण है? ___",
+     "answer": "समकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "घड़ी में 7 बजे हैं। सुइयों के बीच का कोण: ___",
+     "answer": "अधिककोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "घड़ी में 10 बजे हैं। सुइयों के बीच का कोण: ___",
+     "answer": "न्यूनकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "जो कोण समकोण से छोटा हो, उसका नाम लिखें: ___",
+     "answer": "न्यूनकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "जो कोण समकोण से बड़ा हो, उसका नाम लिखें: ___",
+     "answer": "अधिककोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "चौकोर टाइल का कोना कौन-सा कोण है? ___",
+     "answer": "समकोण",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "ada21d1ba8c4",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0318,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

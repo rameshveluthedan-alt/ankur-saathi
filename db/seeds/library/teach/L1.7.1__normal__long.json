@@ -1,0 +1,116 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.7.1__normal__long",
+ "skill_id": "L1.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने अक्षरों पर शिरोरेखा लगाना सीखा था।' बोर्ड पर बड़े आकार में 'ख' लिखें और हर चरण बोलें: 'पहले यह गोल भाग, फिर खड़ी पाई, सबसे अंत में ऊपर शिरोरेखा।' इसी तरह 'ध' और 'ई' लिखकर दिखाएँ कि हर अक्षर की ऊँचाई बराबर है और मुँह सही दिशा में है।",
+   "we_do_hi": "बोर्ड पर 'भ' और 'घ' साथ-साथ लिखें और बच्चों से पूछें: 'दोनों में क्या अंतर है?' फिर बच्चे हवा में उँगली से 'ठ' बनाएँ, इसके बाद कॉपी में तीन बार लिखें। शिक्षक घूमकर देखें कि शिरोरेखा अंत में लगी है और अक्षर उल्टा नहीं है।",
+   "you_do_hi": "'अब अपनी वर्कशीट पर काम करें।' पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर पहले उन बच्चों को देखें जिनकी शिरोरेखा छूट रही है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) म 2) भ। 'भालू' का पहला अक्षर कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा मिलते-जुलते अक्षरों की बनावट पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'कमल' शब्द ऊपर की रेखा के बिना लिखें। क्या यह सही लिखा है? स्लेट पर सही या गलत लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि शब्द पर शिरोरेखा ज़रूरी है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर चार रेखाओं वाला लेखन-क्षेत्र बनाएँ, ताकि अक्षरों की ऊँचाई बराबर दिखे।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति छापकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अक्षर साफ़ लिखें। अक्षर पूरा बनाकर अंत में ऊपर शिरोरेखा लगाएँ।",
+   "instructions_en": "Write each letter neatly. Complete the letter first, then add the headline (shirorekha) at the end.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "अक्षर लिखने का उदाहरण:",
+    "example_text": "ग — पहले अक्षर बनाएँ, फिर ऊपर शिरोरेखा लगाएँ"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह अक्षर देखकर तीन बार लिखें: च",
+     "answer": "च च च",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ये अक्षर शिरोरेखा के साथ लिखें: प ष",
+     "answer": "प ष",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "ये स्वर लिखें: उ ऊ ए",
+     "answer": "उ ऊ ए",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "ये अक्षर लिखें: झ ञ",
+     "answer": "झ ञ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "ये अक्षर लिखें: ण ऋ",
+     "answer": "ण ऋ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "eec295f4869a",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0211,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

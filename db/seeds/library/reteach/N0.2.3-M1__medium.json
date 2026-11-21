@@ -1,0 +1,126 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N0.2.3-M1__medium",
+ "skill_id": "N0.2.3",
+ "domain_id": "numeracy",
+ "mode": "N0.2.3-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने अंक पहचानना सीखा था।' बोर्ड पर बड़ा 9 लिखें और गलत तरीका दिखाएँ: 'देखिए, कोई इसे छह पढ़ ले तो गलती है, क्योंकि इसका गोला ऊपर है।' फिर उसी 9 पर उँगली से गोला ऊपर, डंडी नीचे दिखाकर कहें 'यह नौ है', पास में 6 लिखें, 'छह का गोला नीचे बैठा है', और गलत पढ़ने वाली बात मिटा दें ताकि बोर्ड पर सिर्फ़ सही 6 और 9 रहें।",
+   "we_do_hi": "बोर्ड पर 6 लिखें और उसके नीचे 'नौ' लिखें, फिर बच्चों से पूछें: 'क्या यह सही पढ़ा है? गोला कहाँ है?' और साथ में सुधार कर 'छह' लिखें। इसके बाद 9 के नीचे 'छह' लिखकर उसी तरह सुधारें। अंत में एक नया अंक 6 दिखाएँ और बच्चे हवा में उँगली से गोला नीचे बनाते हुए उसे पहचानें।",
+   "you_do_hi": "हर जोड़ी को अंक-कार्ड या कागज़ की पर्चियाँ दें, जिन पर 6 और 9 कई बार लिखे हों; एक बच्चा पर्ची उठाकर दिखाए, दूसरा अंक बोले और छह-नौ अलग ढेर में रखे। पर्चियाँ न हों तो बच्चे कॉपी में वर्कशीट का सवाल 1 करें; बाकी काम अगले खंड में अपनी जगह पर पूरा करें। पहले उन बच्चों के पास शांति से जाएँ जिन्हें यह गलती होती थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बड़ा 9 लिखें। 'यह कौन सा अंक है? उतनी उँगलियाँ दिखाएँ।'",
+    "expected_hi": "9 उँगलियाँ",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M1",
+      "misconception_name_hi": "6 और 9 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 6 and 9",
+      "detect_en": "Consistently reads 6 as 9 or vice versa; other numerals are correct",
+      "wrong_answer_hi": "6 उँगलियाँ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 9 2) 6। 'इनमें छह कौन सा है? 1 या 2 उँगली दिखाएँ।'",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M1",
+      "misconception_name_hi": "6 और 9 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 6 and 9",
+      "detect_en": "Consistently reads 6 as 9 or vice versa; other numerals are correct",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की छोटी पर्चियाँ: हर जोड़ी के लिए 6 पर्चियाँ (3 पर 6, 3 पर 9) बड़े अक्षरों में लिखें।",
+   "बोर्ड पर पहले से बड़ा 6 और 9 लिखने की जगह छोड़ें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अंक को पहचानें और कहे अनुसार काम करें।",
+   "instructions_en": "Recognise each numeral and do what is asked.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "sheet_kind": "observed",
+   "observe": {
+    "task_hi": "बच्चा 6 और 9 की मिली-जुली पर्चियाँ उठाकर हर अंक का नाम बोले और उन्हें दो ढेर में छाँटे।",
+    "task_en": "The child picks mixed 6 and 9 slips, names each numeral and sorts them into two piles.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियाँ जिन पर अंक लिखे हों",
+     "बोर्ड पर लिखे अंक"
+    ],
+    "look_for": {
+     "achieved_hi": "हर पर्ची पर 6 और 9 सही बोलता है और सही ढेर में रखता है",
+     "partial_hi": "कुछ पर्चियों पर 6 और 9 उलट देता है या संकेत से ठीक करता है",
+     "not_yet_hi": "6 और 9 का अंतर नहीं कर पाता",
+     "achieved_en": "Names every 6 and 9 correctly and sorts them right",
+     "partial_en": "Swaps 6 and 9 on some slips or corrects with a hint",
+     "not_yet_en": "Cannot tell 6 from 9"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बोर्ड पर लिखे अंकों में से हर 6 पर गोला लगाएँ: 6 9 6 3 9 6",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बोर्ड पर लिखे अंकों में से हर 9 पर गोला लगाएँ: 9 6 9 6 1 9",
+     "answer": "",
+     "diagnostic_for_misconception": "N0.2.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "शिक्षक 6 या 9 बोलें, बच्चे उस अंक के उतने ही गोले बनाएँ: नौ",
+     "answer": "",
+     "diagnostic_for_misconception": "N0.2.3-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बोर्ड पर लिखे अंकों में से हर 5 पर गोला लगाएँ: 2 5 5 2 7 5",
+     "answer": "",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "worksheets.progressor problem 4: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7a1bceac38c0",
+ "created": "2026-11-21T06:08:11Z",
+ "cost_usd": 0.0274,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,117 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.1__normal__medium",
+ "skill_id": "N1.2.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर 1 से 100 का गिनती चार्ट लगाएँ या दस-दस की पंक्तियों में लिखें। 21 से 40 तक धीरे बोलें और हर दहाई बदलने पर रुककर उँगली रखें: 'उनतीस के बाद तीस, उनतालीस के बाद चालीस।' बच्चों से कहें: 'सुनें, हर नौ के बाद नई दहाई शुरू होती है।'",
+   "we_do_hi": "चार्ट पर उँगली रखते हुए 41 से 70 तक बच्चों के साथ गिनें, फिर हर दहाई बदलने पर रुककर पूछें: 'उनचास के बाद क्या आता है?' अब 71 से 100 तक बारी-बारी से गिनें: शिक्षक एक संख्या बोलें, बच्चे अगली संख्या बोलें। जहाँ अटकें, वहाँ चार्ट पर उँगली रखकर फिर से बोलें।",
+   "you_do_hi": "हर जोड़ी को तीलियाँ या कंकड़ दें। जोड़ी में एक बच्चा 1 से 100 तक गिनती बोले और हर दस पर एक तीली अलग रखे, दूसरा बच्चा सुने, फिर बारी बदलें। इस ब्लॉक में पहली बारी शुरू करें, बाकी अपनी जगह पर अगले ब्लॉक में पूरी करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: उनसठ। इसके बाद कौन-सी संख्या आती है? स्लेट पर अंकों में लिखें।",
+    "expected_hi": "60",
+    "listen_for": [],
+    "shows_hi": "बच्चा दहाई बदलने पर सही अगली संख्या जानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: नवासी। इसके बाद कौन-सी संख्या आती है? स्लेट पर अंकों में लिखें।",
+    "expected_hi": "90",
+    "listen_for": [],
+    "shows_hi": "बच्चा ऊँची दहाई पर भी क्रम नहीं तोड़ता।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 1 से 100 का गिनती चार्ट दस-दस की पंक्तियों में लिखें या चार्ट लगाएँ।",
+   "हर जोड़ी के लिए 10 तीलियाँ या 10 कंकड़ इकट्ठा करें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "खाली जगह में छूटी हुई संख्या लिखें। फिर गिनती बोलकर जाँचें।",
+   "instructions_en": "Write the missing number in each gap. Then say the count aloud to check.",
+   "required_count": 3,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा 1 से 100 तक गिनती बोले और हर दस पर एक तीली अलग रखे।",
+    "task_en": "The child recites 1 to 100, setting aside one stick at every ten.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "तीलियाँ",
+     "कंकड़",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना रुके 100 तक गिनता है, 29 से 30 और 39 से 40 सही बोलता है",
+     "partial_hi": "100 तक पहुँचता है पर दहाई बदलने पर अटकता है, खुद सुधार लेता है",
+     "not_yet_hi": "50 के बाद नहीं बोल पाता या दहाई पर बार-बार गलती करता है",
+     "achieved_en": "Recites to 100 fluently, crosses 29 to 30 and 39 to 40 correctly",
+     "partial_en": "Reaches 100 but stumbles at decade changes, self-corrects",
+     "not_yet_en": "Stops before 50 or errs often at decade changes"
+    }
+   },
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "18, 19, ___, 21",
+     "answer": "20",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "38, 39, ___, 41",
+     "answer": "40",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "68, 69, ___, 71",
+     "answer": "70",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "97, 98, ___, 100",
+     "answer": "99",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "the progressor lesson (i_do_hi) says «दस» (= 10) beside the number 100",
+   "the progressor lesson (we_do_hi) says «उनचास» (= 49) beside the number 41",
+   "the progressor lesson (you_do_hi) says «दस» (= 10) beside the number 100",
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 21",
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 39",
+   "worksheets.progressor problem 3 repeats a number the lesson or anchor already used: 71"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.023,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

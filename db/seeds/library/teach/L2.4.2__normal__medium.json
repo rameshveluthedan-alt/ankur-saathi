@@ -1,0 +1,120 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.4.2__normal__medium",
+ "skill_id": "L2.4.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर पाँच शब्द लिखें: और, लेकिन, इसलिए, क्योंकि, फिर। हर शब्द पर उँगली रखकर एक बार में पूरा पढ़ें, अक्षर तोड़कर नहीं: 'देखिए, यह शब्द हम एक नज़र में पहचानते हैं: लेकिन।' फिर एक छोटा वाक्य लिखकर पढ़ें: 'बारिश हुई, इसलिए हम घर रहे।'",
+   "we_do_hi": "बोर्ड के शब्दों पर अलग-अलग क्रम में उँगली रखें, बच्चे एक-एक करके पूरा शब्द पढ़ें। जो बच्चा अक्षर जोड़कर पढ़े, उससे कहें: 'शब्द को पूरा देखें, फिर बोलें।' अब दो नए शब्द जोड़ें: हालाँकि, जब और इन्हें भी बारी-बारी से पढ़वाएँ।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें (और, लेकिन, इसलिए, क्योंकि, हालाँकि, फिर, जब, तब, पर, भी)। एक बच्चा कार्ड दिखाए, दूसरा तुरंत पढ़े, फिर बारी बदलें; कार्ड न हों तो बोर्ड से वर्कशीट के शब्द कॉपी में लिखकर जोड़ी में पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) लेकिन 2) क्योंकि। एक शब्द बोलें: क्योंकि। यह कौन-सा है? उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "लंबे योजक शब्द को देखकर तुरंत पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'मैं थका था, ___ सो गया।' 1) इसलिए 2) हालाँकि। कौन-सा शब्द आएगा? उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "योजक शब्द पढ़कर उसका अर्थ समझता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: और, लेकिन, इसलिए, क्योंकि, फिर।",
+   "हर जोड़ी के लिए कागज़ की 10 पर्चियाँ: और, लेकिन, इसलिए, क्योंकि, हालाँकि, फिर, जब, तब, पर, भी।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द को एक बार में पूरा पढ़ें। साथी को पढ़कर सुनाएँ।",
+   "instructions_en": "Read each word in one go. Read aloud to your partner.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी के दिखाए शब्द-कार्ड तुरंत पढ़ें, अक्षर तोड़े बिना।",
+    "task_en": "Read the word cards your partner shows, instantly, without sounding out letters.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "लगभग सारे शब्द, लेकिन और हालाँकि भी, तुरंत पढ़ता है।",
+     "partial_hi": "छोटे शब्द तुरंत पढ़ता है, लंबे योजक अक्षर जोड़कर पढ़ता है।",
+     "not_yet_hi": "कई छोटे शब्द भी अटककर या मदद से पढ़ता है।",
+     "achieved_en": "Reads almost all words instantly, including लेकिन and हालाँकि.",
+     "partial_en": "Reads short words instantly, sounds out longer connectors.",
+     "not_yet_en": "Stumbles even on many short words or needs help."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: और, भी, पर, तब",
+     "answer": "और, भी, पर, तब",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: लेकिन, इसलिए, क्योंकि, हालाँकि",
+     "answer": "लेकिन, इसलिए, क्योंकि, हालाँकि",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "वाक्य पढ़ें और जोड़ने वाला शब्द लिखें: 'धूप तेज़ थी, फिर भी हम खेले।'",
+     "answer": "फिर भी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "वाक्य पढ़ें और जोड़ने वाला शब्द लिखें: 'माँ आईं तो हम खुश हुए।'",
+     "answer": "तो",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.026,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

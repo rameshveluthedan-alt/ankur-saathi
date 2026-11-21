@@ -1,0 +1,112 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.5.2__normal__long",
+ "skill_id": "L2.5.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने वाक्य साफ़-साफ़ पढ़ना सीखा था; आज हम चिह्नों पर रुकना सीखेंगे। बोर्ड पर लिखें: 'माँ बाज़ार गई। तुम कहाँ जा रहे हो? वाह, कितना सुंदर फूल है!' हर वाक्य दो बार पढ़कर सुनाएँ: पूर्ण विराम पर रुकें, प्रश्न पर आवाज़ ऊपर उठाएँ, और विस्मयादिबोधक पर ख़ुशी से बोलें।",
+   "we_do_hi": "बोर्ड पर लिखें: 'आज बारिश हुई। क्या छाता लाए हो? अरे, सब भीग गए!' बच्चों से पूछें कि हर वाक्य के अंत में कौन-सा चिह्न है और वहाँ आवाज़ कैसी होगी। फिर एक-एक वाक्य पर उँगली रखकर शिक्षक के साथ धीरे पढ़ें, बीच-बीच में दो-तीन बच्चों को अकेले पढ़ने दें।",
+   "you_do_hi": "बच्चे वर्कशीट खोलें: पहले कठिन शब्द साथी को पढ़कर सुनाएँ, फिर अनुच्छेद तीन बार धीरे-धीरे पढ़ें और हर बार डिब्बे में सही का निशान लगाएँ। इसके बाद जोड़ी में पढ़ें और प्रश्न 1 से 3 के उत्तर लिखें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'पापा घर आए' और अंत में कोई चिह्न न लगाएँ। इस वाक्य के अंत में कौन-सा चिह्न आएगा? स्लेट पर लिखें: 1) । 2) ?",
+    "expected_hi": "1) ।",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि बताने वाला वाक्य पूर्ण विराम पर पूरा होता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'तुम्हारा नाम क्या है' बिना चिह्न के। इसे पढ़ते समय अंत में आवाज़ ऊपर उठेगी या नीचे जाएगी? उँगली दिखाएँ: 1 ऊपर, 2 नीचे।",
+    "expected_hi": "1 ऊपर",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि प्रश्न वाले वाक्य में आवाज़ ऊपर उठती है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do के तीन वाक्य लिखें: 'माँ बाज़ार गई। तुम कहाँ जा रहे हो? वाह, कितना सुंदर फूल है!'",
+   "बोर्ड पर We Do के तीन वाक्य लिखें: 'आज बारिश हुई। क्या छाता लाए हो? अरे, सब भीग गए!'",
+   "हर बच्चे के लिए एक वर्कशीट और स्लेट तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार धीरे-धीरे पढ़ें: । पर रुकें, ? पर आवाज़ ऊपर उठाएँ, ! पर भाव से बोलें। फिर प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the hard words to a partner. Read the passage aloud three times: pause at ।, raise your voice at ?, speak with feeling at !. Then answer the questions.",
+   "required_count": 3,
+   "sheet_kind": "fluency",
+   "example_block": null,
+   "passage_block": {
+    "title": "मेले की सैर",
+    "text": "रविवार को रीना अपने दादा जी के साथ मेले गई। मेले में बहुत भीड़ थी। रीना ने पूछा, दादा जी, झूला कहाँ है? दादा जी ने उसे बड़ा झूला दिखाया। वाह, कितना ऊँचा झूला है! रीना ख़ुशी से झूले पर बैठी। फिर दोनों ने मीठी जलेबी खाई।"
+   },
+   "warmup_words": [
+    "रविवार",
+    "दादा जी",
+    "मेले",
+    "भीड़",
+    "झूला",
+    "ऊँचा",
+    "ख़ुशी",
+    "जलेबी"
+   ],
+   "expression_sentences": [
+    "बाहर ठंडी हवा चल रही है।",
+    "क्या तुमने खाना खा लिया?",
+    "अरे, कितनी सुंदर तितली है!",
+    "चलो, अब घर चलें।"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "रीना किसके साथ मेले गई?",
+     "answer": "दादा जी के साथ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "रीना ने दादा जी से किस चीज़ के बारे में पूछा?",
+     "answer": "झूला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "दोनों ने अंत में क्या खाया?",
+     "answer": "जलेबी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 8 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "725bb02735b4",
+ "created": "2026-11-21T06:08:40Z",
+ "cost_usd": 0.0254,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

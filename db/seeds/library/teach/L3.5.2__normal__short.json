@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.5.2__normal__short",
+ "skill_id": "L3.5.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'अरे, बारिश आ गई! क्या तुमने छाता लिया?' पहले एक-एक शब्द रुककर सपाट आवाज़ में पढ़ें, फिर पूरे भाव से पढ़ें: '!' पर आवाज़ में खुशी, '?' पर आवाज़ ऊपर उठाएँ। बच्चों से कहें: 'सुनें, दूसरी बार पढ़ना कहानी जैसा लगा, क्योंकि आवाज़ चिह्न के साथ बदली।' इसके बाद एक प्रश्न पूछें: 'किस वाक्य के अंत में आवाज़ ऊपर गई?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे वर्कशीट के कठिन शब्द साथी को धीरे से पढ़कर सुनाएँ, फिर अनुच्छेद एक बार धीमी आवाज़ में भाव के साथ पढ़ें। बाकी दो बार पढ़ना, जोड़ी में पढ़ना, भाव वाले वाक्य और प्रश्न 1 से 3 वे अगले खंड में अपनी जगह पर करें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'तुम कहाँ जा रहे हो?' इस वाक्य के अंत में आवाज़ कैसी होगी? 1) ऊपर उठेगी 2) नीचे गिरेगी। उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि प्रश्न वाले वाक्य के अंत में आवाज़ ऊपर उठती है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'वाह कितना सुंदर मोर है' इसके अंत में कौन-सा चिह्न लगेगा? 1) । 2) ! स्लेट पर संख्या लिखें।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि खुशी या आश्चर्य वाले वाक्य में विस्मयादिबोधक चिह्न आता है और आवाज़ में जोश होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'अरे, बारिश आ गई! क्या तुमने छाता लिया?'",
+   "समूह के हर बच्चे के लिए वर्कशीट की एक प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार धीमी आवाज़ में भाव के साथ पढ़ें और हर बार एक खाने में सही का निशान लगाएँ। फिर जोड़ी में पढ़ें: एक पढ़े, साथी उँगली से साथ चले। अंत में प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the hard words to a partner. Read the passage aloud softly three times with expression, ticking a box each time. Then read in pairs: one reads, the partner follows with a finger. Finally answer the questions.",
+   "required_count": 3,
+   "sheet_kind": "fluency",
+   "example_block": null,
+   "passage_block": {
+    "title": "मेले की सैर",
+    "text": "रविवार को रीना अपने दादाजी के साथ मेले में गई। वहाँ बड़ा झूला था। रीना ने कहा, 'वाह! कितना ऊँचा झूला है!' दादाजी ने पूछा, 'क्या तुम इस पर बैठोगी?' रीना थोड़ा डरी, फिर हँसकर बोली, 'हाँ, बैठूँगी!' झूले से उसे पूरा मेला दिखाई दिया।"
+   },
+   "warmup_words": [
+    "रविवार",
+    "दादाजी",
+    "कितना",
+    "ऊँचा",
+    "बैठोगी",
+    "बैठूँगी",
+    "दिखाई"
+   ],
+   "expression_sentences": [
+    "अरे, मेरी पेंसिल कहाँ गई?",
+    "वाह! आज तो छुट्टी है!",
+    "चलो, अब घर चलते हैं।",
+    "क्या तुमने खाना खाया?"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "रीना किसके साथ मेले में गई?",
+     "answer": "दादाजी के साथ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "मेले में रीना ने क्या देखा जो बहुत ऊँचा था?",
+     "answer": "झूला",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "रीना मेले में किस दिन गई?",
+     "answer": "रविवार",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 7 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "547e1d30e23b",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.0238,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

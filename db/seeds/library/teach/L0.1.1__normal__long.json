@@ -1,0 +1,119 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.1.1__normal__long",
+ "skill_id": "L0.1.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने ध्यान से सुनना सीखा था।' बच्चों से कहें: 'देखिए, अब दो काम एक साथ करते हैं: पहले किताब उठाते हैं, फिर मेज़ पर रखते हैं।' दोनों काम करके दिखाएँ और उँगली पर गिनें: 'पहला काम, दूसरा काम।'",
+   "we_do_hi": "पूरे समूह से एक-एक करके दो चरण वाले निर्देश करवाएँ: 'खड़े हो जाएँ, फिर ताली बजाएँ', 'हाथ ऊपर करें, फिर सिर छुएँ'। हर निर्देश एक बार बोलें, फिर बच्चे करें। बाद में पूछें: 'पहला काम क्या था? दूसरा काम क्या था?'",
+   "you_do_hi": "हर जोड़ी को एक पत्ती, एक कंकड़ और एक बोतल का ढक्कन दें। एक बच्चा दो चरण वाला निर्देश सुनकर करे (जैसे 'कंकड़ उठाएँ, फिर ढक्कन के पास रखें'), फिर बारी बदलें; चीज़ें न हों तो कॉपी वाला अभ्यास कराएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'नाक छुएँ, फिर कान छुएँ।' दूसरा काम नाक है या कान? उँगली दिखाएँ: 1 नाक, 2 कान।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा दोनों चरण याद रखकर दूसरे काम को पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "सुनें: 'आँखें बंद करें, फिर एक उँगली उठाएँ।' अब यही दोनों काम करके दिखाएँ।",
+    "expected_hi": "आँखें बंद, एक उँगली ऊपर",
+    "listen_for": [],
+    "shows_hi": "बच्चा एक बार सुनकर दोनों काम सही क्रम में करता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए एक पत्ती, एक कंकड़ और एक बोतल का ढक्कन इकट्ठा करें।",
+   "दो चरण वाले 5-6 निर्देश पहले से सोचकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक निर्देश बोलें। बच्चे सुनकर दोनों काम कॉपी में या बोर्ड पर करें।",
+   "instructions_en": "The teacher reads each instruction aloud. Children listen and do both steps in their notebook or on the board.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "दो चरण वाला निर्देश एक बार सुनकर दोनों काम सही क्रम में करना, जैसे 'कंकड़ उठाएँ, फिर ढक्कन के पास रखें'।",
+    "task_en": "Hear a 2-step instruction once and do both steps in order, e.g. 'Pick up the pebble, then put it next to the bottle cap'.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "पत्तियाँ",
+     "कंकड़",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "एक बार सुनकर दोनों काम सही क्रम में करता है",
+     "partial_hi": "एक काम करता है या दोबारा सुनने पर करता है",
+     "not_yet_hi": "एक काम भी ठीक से नहीं करता",
+     "achieved_en": "Does both steps in order after hearing once",
+     "partial_en": "Does one step, or needs repetition",
+     "not_yet_en": "Does not do even one step correctly"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सुनें: 'एक गोला बनाएँ, फिर उसमें रंग भरें।'",
+     "answer": "रंग भरा हुआ गोला",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सुनें: 'एक लकीर खींचें, फिर उसके ऊपर एक बिंदु लगाएँ।'",
+     "answer": "लकीर और उसके ऊपर एक बिंदु",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सुनें: 'दो छोटे गोले बनाएँ, फिर उनके बीच एक तारा बनाएँ।'",
+     "answer": "दो गोले और बीच में तारा",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सुनें: 'एक चौकोर बनाएँ, फिर उसके नीचे एक लकीर खींचें।'",
+     "answer": "चौकोर और उसके नीचे लकीर",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0247,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

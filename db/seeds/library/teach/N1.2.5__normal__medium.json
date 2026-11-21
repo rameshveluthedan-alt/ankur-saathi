@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.5__normal__medium",
+ "skill_id": "N1.2.5",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 63 ___ 58। बच्चों को दिखाएँ: 'पहले दहाई देखें: 6 दहाई, 5 दहाई से ज़्यादा हैं, इसलिए 63 > 58।' फिर लिखें 42 ___ 47 और बताएँ: 'दहाई बराबर हैं, तो इकाई देखें: 2 कम है 7 से, इसलिए 42 < 47; चिह्न का खुला मुँह बड़ी संख्या की ओर रहता है।'",
+   "we_do_hi": "बोर्ड पर एक-एक करके लिखें: 71 ___ 39, 85 ___ 85, 26 ___ 29। हर बार बच्चों से पूछें: 'पहले क्या देखें?' और 'दहाई बराबर हो तो फिर क्या देखें?'। बच्चे बताएँ, शिक्षक सही चिह्न भरें।",
+   "you_do_hi": "बच्चे अपनी कॉपी में वर्कशीट का सवाल 1 हल करें, फिर सवाल 2 और 3। पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बाकी काम बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 54 और 45। कौन-सी संख्या बड़ी है? अपनी स्लेट पर लिखें।",
+    "expected_hi": "54",
+    "listen_for": [],
+    "shows_hi": "बच्चा दहाई देखकर बड़ी संख्या पहचानता है, अंकों के क्रम से भ्रमित नहीं होता।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 36 ___ 31। खाली जगह में सही चिह्न स्लेट पर लिखें।",
+    "expected_hi": ">",
+    "listen_for": [],
+    "shows_hi": "दहाई बराबर होने पर बच्चा इकाई की तुलना करके सही चिह्न लगाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 63 ___ 58 और 42 ___ 47।",
+   "बोर्ड के कोने में तीनों चिह्न लिखें: >  <  ="
+  ],
+  "worksheet": {
+   "instructions_hi": "दोनों संख्याओं की तुलना करें। पहले दहाई देखें, दहाई बराबर हो तो इकाई देखें। खाली जगह में >, < या = लिखें।",
+   "instructions_en": "Compare the two numbers. Look at the tens first; if the tens are equal, look at the ones. Write >, < or = in the blank.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "25 ___ 52",
+    "answer": "<",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "5",
+    "row2_t": "5",
+    "row2_o": "2",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "82 ___ 47",
+     "answer": ">",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "53 ___ 58",
+     "answer": "<",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "66 ___ 66",
+     "answer": "=",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "38 ___ 83",
+     "answer": "<",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "95 ___ 92",
+     "answer": ">",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "40 ___ 14",
+     "answer": ">",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 47",
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 58"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "70022d173132",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0293,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

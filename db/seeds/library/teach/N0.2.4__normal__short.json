@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.4__normal__short",
+ "skill_id": "N0.2.4",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर बड़ा-बड़ा 3 लिखें और हर मोड़ बोलते हुए लिखें: 'ऊपर से शुरू, गोल घुमाव, फिर दूसरा गोल घुमाव।' इसी तरह 7 लिखें: 'ऊपर सीधी लकीर, फिर तिरछी नीचे।' अंत में बच्चों से पूछें: 'हवा में उँगली से 3 बनाएँ', और देखें कि घुमाव सही ओर है।",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। घूमकर देखें कि अंक ऊपर से शुरू हो रहे हैं और उल्टे नहीं बन रहे। जो बच्चे काम पूरा न कर पाएँ, वे अगले ब्लॉक में अपनी जगह पर बाकी काम पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर पाँच बिंदियाँ बनाएँ: ● ● ● ● ●। 'स्लेट पर इतनी बिंदियों का अंक लिखें।'",
+    "expected_hi": "5",
+    "listen_for": [],
+    "shows_hi": "बच्चा गिनती को सही अंक के रूप में लिख सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: आठ। 'स्लेट पर यह अंक लिखें।'",
+    "expected_hi": "8",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुने हुए अंक को सही आकार में लिख सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर बड़े अंक लिखने के लिए जगह खाली रखें।",
+   "हर बच्चे के पास स्लेट और चॉक या कॉपी-पेंसिल हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "दिए गए अंक को ध्यान से देखें और बॉक्स में वही अंक लिखें। अंक ऊपर से लिखना शुरू करें।",
+   "instructions_en": "Look at the given numeral and write the same numeral in the box. Start writing from the top.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "2 लिखें",
+    "answer": "2",
+    "show_pv_grid": false,
+    "pv_columns": 1,
+    "row1_t": "",
+    "row1_o": "2",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "1 लिखें",
+     "answer": "1",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "3 लिखें",
+     "answer": "3",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "9 लिखें",
+     "answer": "9",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "4 लिखें",
+     "answer": "4",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "6 लिखें",
+     "answer": "6",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "7 लिखें",
+     "answer": "7",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "fe3fd8edfdab",
+ "created": "2026-11-21T05:59:04Z",
+ "cost_usd": 0.0182,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

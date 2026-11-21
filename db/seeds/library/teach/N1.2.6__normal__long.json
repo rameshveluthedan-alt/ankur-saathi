@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.6__normal__long",
+ "skill_id": "N1.2.6",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने दो संख्याओं में बड़ी और छोटी पहचानी थी।' बोर्ड पर लिखें: 34, 18, 52 और बोलें: 'देखिए, पहले दहाई देखते हैं: 1 सबसे छोटी है, फिर 3, फिर 5।' बढ़ते क्रम में लिखें: 18, 34, 52 और बताएँ कि दहाई बराबर हो तो इकाई देखते हैं।",
+   "we_do_hi": "बोर्ड पर लिखें: 67, 61, 29, 85 और बच्चों से पूछें: 'सबसे बड़ी संख्या कौन सी है?' बच्चों के साथ मिलकर घटते क्रम में लिखें: 85, 67, 61, 29। 67 और 61 पर रुककर पूछें: 'दहाई बराबर है, अब क्या देखें?'",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' घूमकर देखें कि बच्चे पहले दहाई और फिर इकाई की तुलना कर रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 47, 74, 39। इनमें सबसे छोटी संख्या लिखें।",
+    "expected_hi": "39",
+    "listen_for": [],
+    "shows_hi": "बच्चा दहाई देखकर सबसे छोटी संख्या पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 92, 56, 81 2) 92, 81, 56। घटते क्रम में कौन सा सही है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा घटते क्रम का अर्थ समझता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखकर रखें: 34, 18, 52 (I Do) और 67, 61, 29, 85 (We Do)।",
+   "हर बच्चे के पास स्लेट या कॉपी का पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "संख्याओं को दिए गए क्रम में लिखें। पहले दहाई देखें, दहाई बराबर हो तो इकाई देखें।",
+   "instructions_en": "Write the numbers in the given order. Compare tens first; if the tens are equal, compare ones.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "बढ़ते क्रम में लिखें: 52, 24, 37",
+    "answer": "24, 37, 52",
+    "show_pv_grid": false,
+    "pv_columns": 2
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बढ़ते क्रम में लिखें: 43, 15, 70, 28",
+     "answer": "15, 28, 43, 70",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "घटते क्रम में लिखें: 36, 91, 54, 19",
+     "answer": "91, 54, 36, 19",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "बढ़ते क्रम में लिखें: 64, 46, 61, 49, 66",
+     "answer": "46, 49, 61, 64, 66",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "घटते क्रम में लिखें: 25, 72, 27, 77",
+     "answer": "77, 72, 27, 25",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बढ़ते क्रम में लिखें: 88, 9, 50, 33, 41",
+     "answer": "9, 33, 41, 50, 88",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "घटते क्रम में लिखें: 13, 31, 39, 93, 17",
+     "answer": "93, 39, 31, 17, 13",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 3 repeats a number the lesson or anchor already used: 61"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "c122c8feb1bb",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0286,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

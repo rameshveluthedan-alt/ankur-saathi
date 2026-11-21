@@ -1,0 +1,150 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.3.2__normal__long",
+ "skill_id": "N1.3.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "याद दिलाएँ: 'कल हमने गिनकर घटाना सीखा था।' बोर्ड पर लिखें 12 - 4 और 12 छड़ियाँ दिखाएँ (10 का एक गट्ठा और 2 खुली छड़ियाँ)। गट्ठा खोलकर 4 छड़ियाँ एक-एक गिनकर हटाएँ, बची छड़ियाँ गिनें और लिखें 12 - 4 = 8; फिर कहें: 'पहले बड़ी संख्या की छड़ियाँ रखते हैं, उसमें से घटाते हैं। ऊपर के अंकों को उलटकर नहीं घटाते।'",
+   "we_do_hi": "बोर्ड पर लिखें 13 - 7। बच्चों से पूछें: 'कितनी छड़ियाँ रखें? कितनी हटाएँ?' और उनके कहने पर 7 छड़ियाँ हटाकर उत्तर 6 लिखें। इसके बाद 9 - 6 बच्चे उँगलियों से करें और उत्तर 3 कॉपी में लिखें।",
+   "you_do_hi": "कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' बच्चे ज़रूरत हो तो छड़ियों या उँगलियों से गिनें। घूमते हुए सवाल 2 और 3 पर ध्यान दें: अगर उत्तर 10 से बड़ा है, तो बच्चे ने अंकों को उलटकर घटाया है, उससे छड़ियों से दोबारा करवाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर उत्तर लिखें: 11 - 4",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.2-M1",
+      "misconception_name_hi": "क्रम की परवाह किए बिना छोटे से बड़ा घटाता है",
+      "misconception_name_en": "Subtracts smaller from larger regardless of order",
+      "detect_en": "When given impossible single-digit subtractions or mixed problems, child always does larger minus smaller",
+      "wrong_answer_hi": "13"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "13 - 8: 5 या 15? उँगलियों पर दिखाएँ: 5 हो तो 1 उँगली, 15 हो तो 2 उँगलियाँ।",
+    "expected_hi": "5 (1 उँगली)",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.2-M1",
+      "misconception_name_hi": "क्रम की परवाह किए बिना छोटे से बड़ा घटाता है",
+      "misconception_name_en": "Subtracts smaller from larger regardless of order",
+      "detect_en": "When given impossible single-digit subtractions or mixed problems, child always does larger minus smaller",
+      "wrong_answer_hi": "15 (2 उँगलियाँ)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "18 छड़ियाँ: 10 छड़ियों का एक गट्ठा (रबर बैंड से बँधा) और 8 खुली छड़ियाँ।",
+   "बोर्ड पर पहले से लिखें: 12 - 4, 13 - 7, 9 - 6।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में घटाएँ और उत्तर लिखें। ज़रूरत हो तो उँगलियों या छड़ियों से गिनें।",
+   "instructions_en": "Subtract and write the answer. Use fingers or sticks to count if needed.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "11 - 5 = ___",
+    "answer": "6",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "1",
+    "row1_o": "1",
+    "row2_t": "",
+    "row2_o": "5",
+    "answer_t": "",
+    "answer_o": "6"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "9 - 4 = ___",
+     "answer": "5",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "14 - 6 = ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "15 - 8 = ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "17 - 8 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "10 - 4 = ___",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "मीना के पास 13 आम थे। उसने 9 आम बाँट दिए। अब कितने आम बचे?",
+     "answer": "4",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 13"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "53272f7fbc55",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.035,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

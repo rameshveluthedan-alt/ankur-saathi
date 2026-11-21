@@ -1,0 +1,181 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N0.2.2-M3__short",
+ "skill_id": "N0.2.2",
+ "domain_id": "numeracy",
+ "mode": "N0.2.2-M3",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने चीज़ों को एक-एक छूकर गिना था। मेज़ पर 6 कंकड़ रखें, एक-एक छूकर 1 से 6 तक गिनें, फिर पूछें 'कितने हैं?' और दोबारा 1, 2, 3... गिनना शुरू कर दें: 'देखिए, यह ठीक नहीं, हमने तो अभी गिना था!' अब वही 6 कंकड़ फिर गिनें, आख़िरी कंकड़ पर रुककर कहें 'आख़िरी संख्या 6 है, इसलिए कुल 6 कंकड़ हैं' और कंकड़ों के चारों ओर हाथ घुमाएँ।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को 5 से 9 कंकड़, बटन या बोतल के ढक्कन दें: एक बच्चा गिने, दूसरा पूछे 'कितने हैं?' और गिनने वाला बिना दोबारा गिने आख़िरी संख्या बताए, फिर बारी बदलें। चीज़ें न हों तो वर्कशीट के सवाल बोर्ड पर बनाकर करवाएँ; राउंड में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार दोबारा गिनती शुरू की थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 5 गोले बनाएँ और एक-एक पर उँगली रखकर 1, 2, 3, 4, 5 बोलें। पूछें: 'कितने गोले हैं?' उँगलियों पर दिखाएँ।",
+    "expected_hi": "5",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M3",
+      "misconception_name_hi": "गणनांक की समझ नहीं",
+      "misconception_name_en": "No cardinality understanding",
+      "detect_en": "After counting 7 objects, when asked \"how many are there?\" child does not say 7 or restarts counting",
+      "wrong_answer_hi": "1 उँगली (फिर से गिनती शुरू)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर 8 तारे बनाएँ और एक-एक छूकर 1 से 8 तक गिनें। पूछें: 'कुल कितने तारे हैं: 1) 8 2) 1?' उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1) 8",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.2-M3",
+      "misconception_name_hi": "गणनांक की समझ नहीं",
+      "misconception_name_en": "No cardinality understanding",
+      "detect_en": "After counting 7 objects, when asked \"how many are there?\" child does not say 7 or restarts counting",
+      "wrong_answer_hi": "2) 1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "6 कंकड़ I Do के लिए।",
+   "हर जोड़ी के लिए 5 से 9 कंकड़, बटन या बोतल के ढक्कन।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को एक बार छूकर गिनें। फिर बताएँ कि कुल कितनी हैं।",
+   "instructions_en": "Touch each object once while counting. Then say how many there are in all.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "sheet_kind": "observed",
+   "observe": {
+    "task_hi": "बच्चा 7 कंकड़ एक-एक छूकर गिने; फिर पूछें 'कितने हैं?' और देखें कि वह बिना दोबारा गिने 7 बताता है।",
+    "task_en": "The child counts 7 pebbles touching each once; when asked 'how many?', the child says 7 without recounting.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "हर कंकड़ एक बार छूता है और पूछने पर तुरंत 7 बताता है।",
+     "partial_hi": "ठीक गिनता है, पर 'कितने?' पर दोबारा गिनकर या मदद से 7 बताता है।",
+     "not_yet_hi": "गिनती में छोड़ता या दोहराता है, या पूछने पर कोई और संख्या बताता है।",
+     "achieved_en": "Touches each pebble once and says 7 at once when asked.",
+     "partial_en": "Counts correctly but recounts or needs help before saying 7.",
+     "not_yet_en": "Skips or double-counts, or gives another number when asked."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "item_type": "symbol_grid",
+     "grid": [
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      }
+     ],
+     "target": {
+      "s": "○"
+     },
+     "problem_hi": "सभी ○ पर गोला लगाएँ। फिर गिनकर बताएँ कितने हैं।",
+     "answer": "4 (खाने 1, 2, 3, 4)",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "matches": [
+      1,
+      2,
+      3,
+      4
+     ],
+     "board_hi": "○  ○  ○  ○"
+    },
+    {
+     "number": 2,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "★",
+      "count": 6
+     },
+     "b": {
+      "s": "★",
+      "count": 3
+     },
+     "ask": "more",
+     "problem_hi": "हर डिब्बे के तारे गिनें। जिस डिब्बे में ज़्यादा हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": "N0.2.2-M3",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ★★★★★★   |   ख: ★★★"
+    },
+    {
+     "number": 3,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "●",
+      "count": 5
+     },
+     "b": {
+      "s": "●",
+      "count": 9
+     },
+     "ask": "less",
+     "problem_hi": "हर डिब्बे की बिंदियाँ गिनें। जिस डिब्बे में कम हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": "N0.2.2-M3",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ●●●●●   |   ख: ●●●●●●●●●"
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (3 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "ca26747745d4",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0283,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

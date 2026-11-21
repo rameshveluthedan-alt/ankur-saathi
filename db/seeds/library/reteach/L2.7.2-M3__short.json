@@ -1,0 +1,154 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.7.2-M3__short",
+ "skill_id": "L2.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.7.2-M3",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने जुड़े हुए वाक्य लिखे थे। बोर्ड पर लिखें: 'मेरी गाय काली है। मेरी गाय अच्छी है। मेरी गाय प्यारी है।' और पूछें: 'देखिए, हर वाक्य एक जैसा शुरू होता है, बात आगे नहीं बढ़ी।' फिर इसे मिटाकर लिखें: 'मेरी गाय काली है। वह रोज़ घास खाती है। हम उसका दूध पीते हैं।' और बताएँ कि अब हर वाक्य नई बात कहता है।",
+   "we_do_hi": "",
+   "you_do_hi": "वर्कशीट के सवाल 1 से 4 पहले करें; सवाल 1 में वर्कशीट पर दिए विषय 'मेरा स्कूल' पर वाक्य लिखें। जो जल्दी ख़त्म करें, वे सवाल 5 करें। शिक्षक पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने कल वाक्य दोहराए थे, सामान्य चक्कर के हिस्से के रूप में।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) मेरा घर बड़ा है। मेरा घर सुंदर है।  2) मेरा घर बड़ा है। उसमें चार कमरे हैं। किसमें बात आगे बढ़ती है? उंगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M3",
+      "misconception_name_hi": "एक ही शुरुआत या बात दोहराना",
+      "misconception_name_en": "Repeats the same sentence start or idea",
+      "detect_en": "Three or more sentences begin with the same words, or two sentences say the same thing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मेरी गुड़िया छोटी है। मेरी गुड़िया छोटी है। उसके बाल लंबे हैं।' कौन-सा वाक्य हटाना चाहिए? उसकी संख्या लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M3",
+      "misconception_name_hi": "एक ही शुरुआत या बात दोहराना",
+      "misconception_name_en": "Repeats the same sentence start or idea",
+      "detect_en": "Three or more sentences begin with the same words, or two sentences say the same thing",
+      "wrong_answer_hi": "3"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर गाय वाले तीन दोहराए वाक्य पहले से लिख लें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर वाक्य में नई बात लिखें। वाक्य के अंत में । लगाएँ।",
+   "instructions_en": "Write a new idea in each sentence. Put । at the end of each sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा स्कूल",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य विषय पर",
+     "item_en": "All sentences on the topic"
+    },
+    {
+     "item_hi": "हर वाक्य की शुरुआत अलग",
+     "item_en": "Each sentence begins differently"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of each sentence"
+    },
+    {
+     "item_hi": "वाक्य 'और / फिर / क्योंकि' से जुड़े",
+     "item_en": "Sentences joined with और / फिर / क्योंकि"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने स्कूल पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा स्कूल"
+    },
+    {
+     "number": 2,
+     "problem_hi": "कौन-सा वाक्य दोबारा वही बात कहता है? उसकी संख्या लिखें: (1) मेरा बस्ता नीला है। (2) उसमें किताबें हैं। (3) मेरा बस्ता नीला है।",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "सही शब्द चुनकर लिखें: मेरी दादी कहानी सुनाती हैं। (मेरी दादी / वे) रोज़ मंदिर जाती हैं।",
+     "answer": "वे",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "दोनों वाक्य जोड़कर लिखें (और / लेकिन): राम खेलता है। राम गाता है।",
+     "answer": "राम खेलता है और गाता है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "number": 5,
+     "problem_hi": "अपनी पसंद के फल पर 3 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "94a7fcd7ffd3",
+ "created": "2026-11-21T06:08:11Z",
+ "cost_usd": 0.0261,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

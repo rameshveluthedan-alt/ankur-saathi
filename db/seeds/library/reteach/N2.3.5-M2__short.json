@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.5-M2__short",
+ "skill_id": "N2.3.5",
+ "domain_id": "numeracy",
+ "mode": "N2.3.5-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने सवाल पढ़कर तय किया था कि जोड़ना है या घटाना।' बोर्ड पर लिखें: दुकान में 52 पेन थे, 27 बिक गए। कितने पेन बचे? 52 − 27 = 35। बच्चों से कहें: 'देखिए, यहाँ इकाई में 2 में से 7 नहीं घटा, बड़े में से छोटा घटा दिया, यही गलती है।' अब इसी सवाल को 1 दहाई उधार लेकर हल करें: 12 − 7 = 5, 4 − 2 = 2, उत्तर 25। फिर गलत हल मिटा दें, बोर्ड पर केवल सही हल रहे, और समूह से एक प्रश्न पूछें: 'इकाई में ऊपर की संख्या छोटी हो तो क्या करेंगे?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट का सवाल 1 अभी हल करें; सवाल 2 और 3, फिर बाकी सवाल अपनी जगह पर पूरे करें।' पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने पिछली बार गणना में गलती की थी, सामान्य चक्कर के हिस्से के रूप में। अगर दिखाएँ-प्रश्न में एक-चौथाई से अधिक बच्चों का उत्तर गलत हो, तो वर्कशीट से पहले वही चरण छड़ियों से दोबारा दिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर लिखें: टोकरी में 64 आम थे, 38 बिक गए। कितने बचे? 64 − 38",
+    "expected_hi": "26",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M2",
+      "misconception_name_hi": "सही संक्रिया पर गणना में त्रुटि",
+      "misconception_name_en": "Correct operation but cannot compute",
+      "detect_en": "Operation symbol is correct, but answer is wrong due to carry/borrow errors — diagnose the underlying operation misconception",
+      "wrong_answer_hi": "34"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 46 + 37 = 73। सही या गलत?",
+    "expected_hi": "गलत, 83",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M2",
+      "misconception_name_hi": "सही संक्रिया पर गणना में त्रुटि",
+      "misconception_name_en": "Correct operation but cannot compute",
+      "detect_en": "Operation symbol is correct, but answer is wrong due to carry/borrow errors — diagnose the underlying operation misconception",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: दुकान में 52 पेन थे, 27 बिक गए। कितने पेन बचे?",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।",
+   "दहाई की गड्डियाँ और खुली छड़ियाँ पास रखें, यदि चरण दोबारा दिखाना पड़े।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। तय करें कि जोड़ना है या घटाना, फिर दहाई-इकाई के बॉक्स में हल करें। हासिल को उसकी जगह पर लिखें।",
+   "instructions_en": "Read each problem carefully. Decide whether to add or subtract, then solve in the Tens-Ones box. Write the carry in its place.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "एक कक्षा में 27 लड़के और 15 लड़कियाँ हैं। कुल कितने बच्चे हैं? 27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "रीना के पास 34 टॉफ़ियाँ थीं। माँ ने 23 और दीं। अब कितनी टॉफ़ियाँ हैं?",
+     "answer": "57",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बगीचे में 73 फूल थे। 46 फूल तोड़ लिए गए। कितने फूल बचे?",
+     "answer": "27",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.5-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "थैले में 38 कंचे थे। 47 कंचे और डाले। अब कितने कंचे हैं? ___",
+     "answer": "85",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.5-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पेड़ पर 81 चिड़ियाँ थीं। 34 उड़ गईं। कितनी चिड़ियाँ बचीं? ___",
+     "answer": "47",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पुस्तकालय में 56 किताबें थीं। 24 किताबें और आईं। अब कितनी किताबें हैं? ___",
+     "answer": "80",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "किसान के पास 62 भेड़ें थीं। उसने 19 भेड़ें बेच दीं। अब उसके पास कितनी भेड़ें हैं?",
+     "answer": "43",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 27"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "e78d1a2d2512",
+ "created": "2026-11-21T06:05:34Z",
+ "cost_usd": 0.0379,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,125 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.4.1__normal__short",
+ "skill_id": "N2.4.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों को मेज़ की लंबाई बित्ते से नापकर दिखाएँ: अंगूठा वहीं रखें जहाँ छोटी उँगली थी, बीच में कोई जगह न छोड़ें, और हर बित्ता गिनते जाएँ। अंत में बोलें: 'यह मेज़ पाँच बित्ते लंबी है।' बच्चों से पूछें: 'नाप के साथ हमने कौन-सा शब्द बोला?'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को एक कॉपी, एक बस्ता और एक झाड़ू की तीली दें; वे बित्ते से कॉपी या बस्ता नापें और नाप इकाई के नाम के साथ बोलें, जैसे 'चार बित्ते'। जो जल्दी कर लें, वे कक्षा के दरवाज़े से खिड़की तक कदमों से नापें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर बनाएँ: एक रेखा पर तीन बित्ते, बीच में खाली जगह छोड़कर। दूसरी रेखा पर तीन बित्ते, एक-दूसरे से सटाकर। किसका नाप सही है, 1 या 2? उँगली दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि नापते समय इकाइयों के बीच जगह नहीं छोड़ते।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक मेज़ सात बित्ते लंबी है। उँगलियों पर दिखाएँ: कितने बित्ते?",
+    "expected_hi": "7",
+    "listen_for": [],
+    "shows_hi": "बच्चा नाप को इकाइयों की गिनती के रूप में समझता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कक्षा की चीज़ें तैयार रखें: कॉपी, बस्ता, झाड़ू की तीलियाँ (हर जोड़ी के लिए एक-एक)।",
+   "बोर्ड पर CFU के लिए दो रेखाएँ बनाने की जगह रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को अपने बित्ते या कदम से नापें। बीच में जगह न छोड़ें। नाप इकाई के नाम के साथ लिखें।",
+   "instructions_en": "Measure each object with your handspan or footsteps. Leave no gaps. Write the measurement with the unit name.",
+   "required_count": 3,
+   "example_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "अपने बित्ते से बस्ते की लंबाई नापें, बीच में जगह न छोड़ें, और नाप बोलें, जैसे 'चार बित्ते'।",
+    "task_en": "Measure the length of a school bag with handspans, leaving no gaps, and say the measurement with the unit, e.g. 'four handspans'.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कॉपी",
+     "बस्ता",
+     "झाड़ू की तीली",
+     "पेंसिल बॉक्स"
+    ],
+    "look_for": {
+     "achieved_hi": "बित्ते सटाकर रखता है, सही गिनता है और इकाई का नाम बोलता है",
+     "partial_hi": "नापता है पर बीच में जगह छोड़ता है या इकाई का नाम नहीं बोलता",
+     "not_yet_hi": "हाथ कहीं भी रखता है, नापना नहीं समझता",
+     "achieved_en": "Places handspans end to end, counts correctly and names the unit",
+     "partial_en": "Measures but leaves gaps or does not name the unit",
+     "not_yet_en": "Places hands randomly; does not understand measuring"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपनी कॉपी की लंबाई बित्ते से नापें और लिखें: ___ बित्ते",
+     "answer": "",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "अपने बस्ते की लंबाई बित्ते से नापें और लिखें: ___ बित्ते",
+     "answer": "",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "कक्षा के दरवाज़े से अपनी जगह तक कदमों से नापें और लिखें: ___ कदम",
+     "answer": "",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "item_type": "compare_bars",
+     "a": 9,
+     "b": 5,
+     "ask": "longer",
+     "problem_hi": "जो पट्टी लंबी है, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ▬▬▬▬▬▬▬▬▬   |   ख: ▬▬▬▬▬"
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (1 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0243,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

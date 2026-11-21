@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.2__normal__medium",
+ "skill_id": "N1.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों के सामने 14 कंकड़ एक पंक्ति में रखें। हर कंकड़ को छूकर एक तरफ़ खिसकाते हुए धीरे-धीरे गिनें: 'एक, दो, तीन...' और अंत में कहें: 'आखिरी संख्या चौदह है, तो कुल चौदह कंकड़ हैं।' दिखाएँ कि हर चीज़ को एक ही बार छूना है, न छोड़ना है, न दोबारा गिनना है।",
+   "we_do_hi": "अब 17 बटन एक पंक्ति में रखें और बच्चों से कहें: 'मेरे साथ गिनें, मैं जिस बटन को खिसकाऊँ, उसी पर एक संख्या बोलें।' एक-एक बच्चे से बारी-बारी अगली संख्या बुलवाएँ। अंत में पूछें: 'कुल कितने बटन हैं?' और आखिरी संख्या दोहराने को कहें।",
+   "you_do_hi": "हर जोड़ी को गिनती की तीलियाँ दें; तीलियाँ न हों तो कंकड़, बटन और बोतल के ढक्कन मिलाकर 20 तक चीज़ें दें। एक बच्चा 11 से 20 के बीच की चीज़ें छूकर और खिसकाकर गिने और बताए 'कुल कितनी', फिर साथी गिने। चीज़ें न हों तो बोर्ड पर बनी वर्कशीट कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 12 गोले बनाएँ और हर गोले को छूकर गिनें। फिर पूछें: 'कुल कितने गोले हैं?' संख्या उँगलियों से या स्लेट पर दिखाएँ।",
+    "expected_hi": "12",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि आखिरी गिनी संख्या ही कुल संख्या है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 16 डंडियाँ एक पंक्ति में बनाएँ। बच्चे अपनी जगह से गिनें और कुल संख्या स्लेट पर लिखें।",
+    "expected_hi": "16",
+    "listen_for": [],
+    "shows_hi": "बच्चा 15 के बाद भी हर चीज़ को एक ही बार गिनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "14 कंकड़ और 17 बटन (I Do और We Do के लिए)।",
+   "हर जोड़ी के लिए 20 चीज़ों का ढेर: गिनती की तीलियाँ या कंकड़, बटन, बोतल के ढक्कन।",
+   "बोर्ड पर वर्कशीट के चित्र बनाने की जगह रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ को एक बार छूकर गिनें और कुल संख्या लिखें।",
+   "instructions_en": "Touch each object once while counting and write how many in all.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा 11 से 20 के बीच की चीज़ें छूकर, खिसकाकर एक-एक करके गिने और बताए कि कुल कितनी हैं।",
+    "task_en": "The child counts 11 to 20 objects, touching and moving each one, then says how many in all.",
+    "kit_materials_hi": [
+     "गिनती की तीलियाँ"
+    ],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "20 तक हर चीज़ को एक बार छूकर सही गिनता है और कुल संख्या बताता है।",
+     "partial_hi": "गिनता है, पर 15 के बाद चीज़ छोड़ता या दोबारा गिनता है, या कुल नहीं बता पाता।",
+     "not_yet_hi": "10 से आगे एक-एक करके नहीं गिन पाता।",
+     "achieved_en": "Counts up to 20 touching each object once and states the total.",
+     "partial_en": "Counts but skips or double-counts after 15, or cannot say the total.",
+     "not_yet_en": "Cannot count beyond 10 with one-to-one tagging."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "●",
+      "count": 11
+     },
+     "b": {
+      "s": "●",
+      "count": 8
+     },
+     "ask": "more",
+     "problem_hi": "दोनों डिब्बों के गोले गिनें। जिस डिब्बे में ज़्यादा हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ●●●●●●●●●●●   |   ख: ●●●●●●●●"
+    },
+    {
+     "number": 2,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "★",
+      "count": 13
+     },
+     "b": {
+      "s": "★",
+      "count": 15
+     },
+     "ask": "less",
+     "problem_hi": "दोनों डिब्बों के सितारे गिनें। जिस डिब्बे में कम हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ★★★★★★★★★★★★★   |   ख: ★★★★★★★★★★★★★★★"
+    },
+    {
+     "number": 3,
+     "problem_hi": "कॉपी में 18 डंडियाँ बनाएँ और हर डंडी के नीचे उसकी संख्या लिखें।",
+     "answer": "18",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 3: the question states its own answer (18)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (2 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "33c55e3d75fe",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0258,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

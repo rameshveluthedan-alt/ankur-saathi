@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.3__normal__short",
+ "skill_id": "N1.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर दहाई-इकाई का बॉक्स बनाएँ। 'तेरह' बोलें, बॉक्स में दहाई में 1 और इकाई में 3 लिखें, और कहें: 'देखिए, तेरह में एक दहाई और तीन इकाई, इसलिए पहले 1 फिर 3।' इसी तरह 'बावन' बोलकर दहाई में 5 और इकाई में 2 लिखें, फिर उँगली रखकर बाएँ से दाएँ पढ़ें।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में सवाल 1 से 3 शुरू करवाएँ, बाकी काम बच्चे अगले समय में अपनी जगह पर पूरा करें। घूमते हुए देखें कि कौन अंक उलटा लिख रहा है और कौन ग्यारह से उन्नीस में अटक रहा है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "एक संख्या बोलें: चौबीस। बोर्ड पर लिखें: 1) 24 2) 42। सही संख्या का नंबर उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M1",
+      "misconception_name_hi": "लिखते समय अंक उलटना (13 के लिए 31 लिखता है)",
+      "misconception_name_en": "Digit reversal in writing (writes 31 for 13)",
+      "detect_en": "Consistently writes digits in wrong order: \"thirteen\" → writes 31; but reads 31 correctly as thirty-one",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: अठारह। स्लेट पर यह संख्या अंकों में लिखें।",
+    "expected_hi": "18",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M2",
+      "misconception_name_hi": "किशोर संख्याओं (11-19) में भ्रम",
+      "misconception_name_en": "Teen number confusion (11-19)",
+      "detect_en": "Errors concentrated in 11-19 range; numbers 20+ are written correctly",
+      "wrong_answer_hi": "80"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दहाई-इकाई का एक बड़ा बॉक्स पहले से बना लें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "संख्या का नाम पढ़ें और उसे अंकों में लिखें। पहले दहाई का अंक, फिर इकाई का अंक लिखें।",
+   "instructions_en": "Read the number name and write it in digits. Write the tens digit first, then the ones digit.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "सत्ताईस लिखिए",
+    "answer": "27",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "2",
+    "answer_o": "7"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बयालीस लिखिए",
+     "answer": "42",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "अड़तीस लिखिए",
+     "answer": "38",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "सत्रह लिखिए",
+     "answer": "17",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "उनसठ लिखिए",
+     "answer": "59",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पंद्रह लिखिए",
+     "answer": "15",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "इक्यासी लिखिए",
+     "answer": "81",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6a56dfc0edf2",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.0302,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

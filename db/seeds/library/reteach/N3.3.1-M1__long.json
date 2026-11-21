@@ -1,0 +1,141 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.1-M1__long",
+ "skill_id": "N3.3.1",
+ "domain_id": "numeracy",
+ "mode": "N3.3.1-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने हासिल के साथ तीन अंकों का जोड़ सीखा था।' बोर्ड पर 158 + 276 को गलत तरीके से हल करें: इकाई 8 + 6 = 14, 4 लिखें और 1 हासिल दहाई पर; दहाई 5 + 7 + 1 = 13, सिर्फ़ 3 लिखें और हासिल छोड़ दें; उत्तर 334 आता है। बच्चों से कहें: 'देखिए, दहाई में भी 13 बना था, उसका 1 सैकड़ा कहाँ गया?' अब यही सवाल फिर से सही तरीके से हल करें: दहाई का 1 हासिल सैकड़े के ऊपर लिखें, 1 + 2 + 1 = 4, उत्तर 434 आता है। फिर गलत हल मिटा दें, बोर्ड पर सिर्फ़ सही हल रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 249 + 183 = 332। बच्चों से पूछें: 'दहाई में कितना बना? हासिल कहाँ गया?' सब मिलकर ठीक करें: 9 + 3 = 12, 4 + 8 + 1 = 13, 2 + 1 + 1 = 4, उत्तर 432। फिर एक नया सवाल साथ में हल करें: 365 + 278। हर स्तंभ में बच्चों से पूछें: 'हासिल बना? उसे कहाँ लिखेंगे?' उत्तर 643 है।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' सामान्य चक्कर के दौरान सबसे पहले उन बच्चों के पास शांति से जाएँ जिनसे कल यह गलती हुई थी, और सवाल 2 और 3 में सैकड़े के ऊपर लिखा हासिल देखें। अगर show-me में चौथाई से ज़्यादा बच्चों के उत्तर गलत हों, तो You Do से पहले दहाई से सैकड़े का हासिल छड़ियों से दोबारा दिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 287 + 146",
+    "expected_hi": "433",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.1-M1",
+      "misconception_name_hi": "एक हासिल सही पर दोहरे हासिल में गलती",
+      "misconception_name_en": "Single carry works but double carry fails",
+      "detect_en": "Problems with carry in ones only are correct; problems with carry in both ones AND tens are wrong — tens-to-hundreds carry is dropped",
+      "wrong_answer_hi": "333"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 376 + 258 = 534। यह सही है या गलत? गलत हो तो सही उत्तर लिखें।",
+    "expected_hi": "गलत, 634",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.1-M1",
+      "misconception_name_hi": "एक हासिल सही पर दोहरे हासिल में गलती",
+      "misconception_name_en": "Single carry works but double carry fails",
+      "detect_en": "Problems with carry in ones only are correct; problems with carry in both ones AND tens are wrong — tens-to-hundreds carry is dropped",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से सैकड़ा-दहाई-इकाई के बॉक्स में 158 + 276 लिख कर रखें।",
+   "We Do के लिए बोर्ड के एक कोने में 249 + 183 = 332 और 365 + 278 लिख कर रखें।",
+   "ज़रूरत पड़ने पर दोबारा दिखाने के लिए TLM-001 छड़ियों के बंडल पास रखें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रहे।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल जोड़ें। इकाई से शुरू करें। हासिल बने तो उसे अगले स्तंभ के ऊपर लिखें, दहाई से सैकड़े का हासिल भी।",
+   "instructions_en": "Add each problem. Start from the ones. Write every carry above the next column, including the carry from tens to hundreds.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "168 + 254 = ___",
+    "answer": "422",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "1",
+    "row1_t": "6",
+    "row1_o": "8",
+    "row2_h": "2",
+    "row2_t": "5",
+    "row2_o": "4",
+    "answer_h": "4",
+    "answer_t": "2",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "236 + 147",
+     "answer": "383",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "375 + 148",
+     "answer": "523",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N3.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "594 + 286 = ___",
+     "answer": "880",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "263 + 158 = ___",
+     "answer": "421",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "349 + 475 = ___",
+     "answer": "824",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "स्कूल के पुस्तकालय में 286 किताबें थीं। 157 नई किताबें और आईं। अब पुस्तकालय में कुल कितनी किताबें हैं?",
+     "answer": "443",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6fe94b94f18b",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0364,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

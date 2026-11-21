@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.2.3__normal__short",
+ "skill_id": "N3.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 5372 ___ 5328। बच्चों को दिखाएँ: 'पहले हज़ार देखते हैं, दोनों में 5 है; फिर सैकड़ा, दोनों में 3 है; फिर दहाई, 7 बड़ा है 2 से, इसलिए 5372 बड़ी है', और खाली जगह में > लिखें। अंत में समूह से एक सवाल पूछें: 'दोनों संख्याओं में सबसे पहले कौन-सा अंक देखेंगे?'",
+   "we_do_hi": "",
+   "you_do_hi": "वर्कशीट का सवाल 1 कॉपी में करें। सवाल 2 और 3 बच्चे अपनी जगह पर अगले ब्लॉक में पूरे करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 4809  2) 4890। इनमें बड़ी संख्या कौन-सी है? 1 या 2 उँगली दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "हज़ार और सैकड़ा बराबर हों तो बच्चा दहाई का अंक मिलाकर तुलना करता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 7016 ___ 7061। खाली जगह में > या < स्लेट पर लिखें।",
+    "expected_hi": "<",
+    "listen_for": [],
+    "shows_hi": "बच्चा बाएँ से अंक मिलाकर सही निशान चुनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 5372 ___ 5328"
+  ],
+  "worksheet": {
+   "instructions_hi": "दोनों संख्याओं के बीच > या < लिखें। क्रम वाले सवालों में संख्याएँ बताए गए क्रम में लिखें।",
+   "instructions_en": "Write > or < between the two numbers. In ordering questions, write the numbers in the order asked.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3456 ___ 6345",
+     "answer": "<",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "8217 ___ 8172",
+     "answer": ">",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "छोटे से बड़े क्रम में लिखें: 4073, 4307, 4037",
+     "answer": "4037, 4073, 4307",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "9504 ___ 9540",
+     "answer": "<",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बड़े से छोटे क्रम में लिखें: 1628, 1862, 1268",
+     "answer": "1862, 1628, 1268",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक गाँव में 2745 लोग रहते हैं और दूसरे गाँव में 2754 लोग। किस गाँव में ज़्यादा लोग हैं? पहला या दूसरा लिखें।",
+     "answer": "दूसरा",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2563540108e0",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0274,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

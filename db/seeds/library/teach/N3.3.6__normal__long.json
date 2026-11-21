@@ -1,0 +1,141 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.3.6__normal__long",
+ "skill_id": "N3.3.6",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने गुणा और घटाव के सवाल हल किए थे।' बोर्ड पर लिखें: 4 डिब्बों में 15-15 आम हैं। 9 आम खराब निकले। कितने अच्छे आम बचे? सवाल के नीचे लिखें 'पहला चरण: 4 × 15 = 60', फिर 'दूसरा चरण: 60 - 9 = 51', और बोलें: 'देखिए, 60 पर हम रुकते नहीं, क्योंकि सवाल पूछता है कि कितने बचे।'",
+   "we_do_hi": "बोर्ड पर लिखें: 5 पैकेट में 18-18 बिस्कुट हैं। 14 बिस्कुट खा लिए। कितने बचे? बच्चों से पूछें: 'पहले क्या पता करना है? फिर क्या?' बच्चे कॉपी में दोनों चरण लिखें: 5 × 18 = 90, फिर 90 - 14 = 76। हर बच्चा उत्तर के नीचे पूरा उत्तर लिखे: 76 बिस्कुट।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' हर सवाल में 'पहला चरण' और 'दूसरा चरण' अलग-अलग लिखें। घूमते हुए देखें कि कोई बच्चा पहले चरण के उत्तर पर ही तो नहीं रुक रहा।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "3 थैलों में 10-10 आम हैं। 7 आम और आए। अब कुल कितने आम हैं: 30 या 37?",
+    "expected_hi": "37",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "30"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "6 डिब्बों में 12-12 पेंसिल हैं। 15 पेंसिल बाँट दीं। कितनी पेंसिल बचीं?",
+    "expected_hi": "57",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "72"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का सवाल पहले से लिख लें: 4 डिब्बों में 15-15 आम, 9 आम खराब।",
+   "बोर्ड के एक कोने में लिखें: 'पहला चरण' और 'दूसरा चरण'।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। पहला चरण और दूसरा चरण अलग-अलग लिखें, फिर पूरा उत्तर लिखें।",
+   "instructions_en": "Read each problem carefully. Write step 1 and step 2 separately, then write the full answer.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "2 थैलों में 30-30 टॉफ़ी हैं। 12 टॉफ़ी बाँट दीं। कितनी बचीं? पहला चरण: 2 × 30 = 60, दूसरा चरण: 60 - 12 = 48",
+    "answer": "48",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "4",
+    "answer_o": "8"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 कतारों में 14-14 पौधे हैं। 6 पौधे और लगाए। अब कुल कितने पौधे हैं?",
+     "answer": "48",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "5 बोरियों में 24-24 किलो चावल है। 35 किलो चावल बिक गया। कितना चावल बचा?",
+     "answer": "85",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "7 पैकेट में 36-36 गुब्बारे हैं। 48 गुब्बारे फूट गए। कितने गुब्बारे बचे?",
+     "answer": "204",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "6 बसों में 45-45 यात्री हैं। 38 यात्री उतर गए। अब कितने यात्री बसों में हैं?",
+     "answer": "232",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "8 टोकरियों में 15-15 अंडे हैं। 27 अंडे और आए। अब कुल कितने अंडे हैं?",
+     "answer": "147",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "रीना के पास 150 रुपये हैं। उसने 40-40 रुपये की 3 किताबें खरीदीं। उसके पास कितने रुपये बचे?",
+     "answer": "30",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "644fc751f636",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0355,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.5-M1__long",
+ "skill_id": "N2.3.5",
+ "domain_id": "numeracy",
+ "mode": "N2.3.5-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कहानी वाले सवाल हल किए थे।' बोर्ड पर लिखें: 'रीना के पास 52 टॉफ़ियाँ थीं, उसने 17 टॉफ़ियाँ दोस्तों को दे दीं। कितनी बचीं?' पहले 52 + 17 = 69 लिखकर बोलें: 'देखिए, यहाँ जोड़ दिया, पर दे देने से टॉफ़ियाँ कम होती हैं, बढ़ती नहीं।' इसी सवाल को 52 − 17 = 35 से हल करें, 'दे दीं' शब्द पर गोला बनाएँ, फिर 52 + 17 = 69 वाली गलत पंक्ति मिटा दें, ताकि बोर्ड पर सिर्फ़ सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'पेड़ पर 64 चिड़ियाँ थीं, 23 उड़ गईं। कितनी बचीं?' और नीचे 64 + 23 = 87। बच्चों से पूछें कि कौन-सा शब्द बताता है कि चीज़ें कम हुईं, फिर साथ मिलकर 64 − 23 = 41 करें। इसी तरह 'रवि के पास 70 रुपये थे, 26 रुपये खो गए' और 70 + 26 = 96 को साथ में 70 − 26 = 44 में सुधारें, फिर नया सवाल साथ हल करें: 'थैले में 38 आम थे, माँ ने 25 और डाले। अब कितने?' (38 + 25 = 63, यहाँ चीज़ें बढ़ीं)।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; हर सवाल में पहले वह शब्द रेखांकित करें जो बताता है कि चीज़ें बढ़ीं या घटीं। जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' चक्कर लगाते समय पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार घटाने की जगह जोड़ा था, किसी का नाम लिए बिना। अगर show-me में चौथाई से ज़्यादा बच्चों ने जोड़ दिया हो, तो You Do से पहले छड़ियों से एक घटाव का सवाल फिर से करके दिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'मीना के पास 46 गुब्बारे थे, 19 गुब्बारे फूट गए। कितने बचे?' कौन-सा सही है: 1) 46 + 19  2) 46 − 19? उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M1",
+      "misconception_name_hi": "संक्रिया चयन त्रुटि: घटाने की बजाय जोड़ता है",
+      "misconception_name_en": "Operation selection error: adds when should subtract",
+      "detect_en": "Computation is correct but operation is wrong; \"gave away\" / \"ate\" / \"lost\" problems are solved with addition",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'बस में 53 लोग थे, 28 लोग उतर गए। अब बस में कितने लोग हैं?' स्लेट पर उत्तर लिखें।",
+    "expected_hi": "25",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M1",
+      "misconception_name_hi": "संक्रिया चयन त्रुटि: घटाने की बजाय जोड़ता है",
+      "misconception_name_en": "Operation selection error: adds when should subtract",
+      "detect_en": "Computation is correct but operation is wrong; \"gave away\" / \"ate\" / \"lost\" problems are solved with addition",
+      "wrong_answer_hi": "81"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिख लें: I Do का सवाल (रीना और 52 टॉफ़ियाँ) और We Do के दो सवाल अपनी गलत पंक्तियों 64 + 23 = 87 और 70 + 26 = 96 के साथ।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।",
+   "दहाई की गड्डियाँ और खुली छड़ियाँ पास रखें, ज़रूरत पड़ने पर घटाव फिर से दिखाने के लिए।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। जो शब्द बताता है कि चीज़ें बढ़ीं या घटीं, उसे रेखांकित करें। फिर जोड़ें या घटाएँ और उत्तर लिखें। जोड़ में हासिल हो तो उसे हासिल वाली जगह पर लिखें।",
+   "instructions_en": "Read each problem carefully. Underline the word that tells whether things increased or decreased. Then add or subtract and write the answer. If there is a carry in an addition, write it in the carry cell.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "कक्षा में 27 लड़के और 15 लड़कियाँ हैं। कुल कितने बच्चे हैं? 27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "खेत में 36 गायें थीं। 28 और गायें आ गईं। अब कितनी गायें हैं?",
+     "answer": "64",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "दुकान में 72 पेंसिलें थीं। 35 पेंसिलें बिक गईं। कितनी पेंसिलें बचीं?",
+     "answer": "37",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.5-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "राजू के पास 60 कंचे थे। 24 कंचे खो गए। कितने कंचे बचे? ___",
+     "answer": "36",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.5-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "नीता ने 45 फूल तोड़े। फिर 39 फूल और तोड़े। कुल कितने फूल हुए? ___",
+     "answer": "84",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पेटी में 91 केले थे। 48 केले खा लिए गए। कितने केले बचे? ___",
+     "answer": "43",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "ट्रेन में 58 यात्री थे। एक स्टेशन पर 19 यात्री उतर गए। अब ट्रेन में कितने यात्री हैं?",
+     "answer": "39",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 64",
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 35"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "704250201037",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0473,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

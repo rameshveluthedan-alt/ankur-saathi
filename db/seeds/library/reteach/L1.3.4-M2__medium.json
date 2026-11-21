@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.4-M2__medium",
+ "skill_id": "L1.3.4",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.4-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अक्षर जोड़कर शब्द पढ़ना सीखा था। बोर्ड पर 'मटर' लिखें और पहले अक्षर पर उँगली रखकर कहें: 'देखिए, म देखकर ही मकान बोल दिया, यह गलत है, बाकी अक्षर देखे ही नहीं।' फिर हर अक्षर के नीचे उँगली चलाते हुए बोलें 'म-ट-र, मटर' और 'मकान' वाली बात मिटा दें, बोर्ड पर केवल मटर रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'नमक'। बच्चों से कहें: 'न देखकर नल पढ़ा गया, आप हर अक्षर पर उँगली रखें और बताएँ कि सही क्या है।' इसके बाद नया शब्द 'पवन' लिखें और साथ में उँगली चलाते हुए अक्षर जोड़कर पढ़ें।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें (बरफ, सड़क, घर, जल, खटमल)। एक बच्चा उँगली रखकर अक्षर जोड़ते हुए साथी को शब्द पढ़कर सुनाए, फिर बारी बदलें। जिन्होंने पिछली बार पहले अक्षर से अंदाज़ा लगाया था, उनके पास सामान्य चक्कर में पहले शांति से जाएँ; बाकी शब्द अगले ब्लॉक में अपनी जगह पूरे करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: कलम। यह शब्द कौन-सा है? 1) कमरा 2) कलम। उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.4-M2",
+      "misconception_name_hi": "डिकोड करने की बजाय पहले अक्षर से शब्द अनुमान लगाता है",
+      "misconception_name_en": "Guesses word from first letter instead of decoding",
+      "detect_en": "Reads कमल as \"कमरा\" or \"काम\" — guesses a known word starting with क instead of decoding",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'रथ' और उसके नीचे 'रथ = रसगुल्ला'। क्या यह पढ़ना सही है? स्लेट पर सही या गलत लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.4-M2",
+      "misconception_name_hi": "डिकोड करने की बजाय पहले अक्षर से शब्द अनुमान लगाता है",
+      "misconception_name_en": "Guesses word from first letter instead of decoding",
+      "detect_en": "Reads कमल as \"कमरा\" or \"काम\" — guesses a known word starting with क instead of decoding",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर शब्द-कार्ड लिखें: बरफ, सड़क, घर, जल, खटमल (हर जोड़ी के लिए एक सेट)।",
+   "बोर्ड पर लिखने के लिए शब्द तैयार रखें: मटर, नमक, पवन।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द पर उँगली रखें, अक्षर जोड़ें और साथी को शब्द पढ़कर सुनाएँ।",
+   "instructions_en": "Put a finger on each word, blend the letters and read the word aloud to a partner.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "अक्षर जोड़कर पढ़ने का उदाहरण:",
+    "example_text": "ह + र = हर"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "शब्द-कार्ड पर उँगली रखकर अक्षर जोड़ते हुए साथी को पाँच शब्द पढ़कर सुनाएँ।",
+    "task_en": "Read five word cards aloud to a partner, blending the letters with a finger under each.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "पाँच में से चार शब्द बिना मदद के जोड़कर सही पढ़ता है।",
+     "partial_hi": "धीरे पढ़ता है, खुद सुधारता है, दो-तीन शब्द सही।",
+     "not_yet_hi": "पहले अक्षर से दूसरा शब्द बोल देता है या अक्षर जोड़ नहीं पाता।",
+     "achieved_en": "Blends and reads 4 of 5 words correctly without help.",
+     "partial_en": "Reads slowly with self-correction; 2-3 words right.",
+     "not_yet_en": "Guesses from the first letter or cannot blend."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: घर",
+     "answer": "घर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: कमल",
+     "answer": "कमल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.4-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: सड़क",
+     "answer": "सड़क",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.4-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: जल",
+     "answer": "जल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: बरफ",
+     "answer": "बरफ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "3ec9a39be083",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0275,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

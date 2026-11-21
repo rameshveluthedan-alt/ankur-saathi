@@ -1,0 +1,129 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.2.2__normal__long",
+ "skill_id": "L0.2.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'पिछली बार हमने शब्दों को ध्यान से सुना था।' बच्चों से कहें: 'देखिए, शब्द के हर टुकड़े पर एक ताली बजती है।' धीरे-धीरे बोलें और ताली बजाएँ: घर (घ-र, 2 ताली), कमल (क-म-ल, 3 ताली), फिर अँगुलियों पर तालियाँ गिनकर दिखाएँ।",
+   "we_do_hi": "बच्चों से कहें: 'अब हम साथ में ताली बजाएँगे।' शब्द बोलें: नल, बतख, जलेबी। हर शब्द पहले शिक्षक धीरे बोलें, फिर बच्चे साथ ताली बजाएँ, फिर बच्चों से पूछें 'कितनी ताली?' और जवाब के लिए अँगुलियाँ दिखवाएँ।",
+   "you_do_hi": "हर जोड़ी को 5 कंकड़ या बटन दें। शिक्षक एक शब्द बोलें (जैसे पतंग, आम, टमाटर); एक बच्चा ताली बजाए और हर ताली पर एक कंकड़ आगे रखे, फिर साथी गिनकर जाँचे और बारी बदलें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "यह शब्द सुनें: 'मछली'। कितनी ताली बजेगी? अँगुलियों पर दिखाएँ।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा तीन टुकड़ों वाले शब्द के सभी टुकड़े सुनकर गिन पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "'दूध' में कितनी ताली बजेगी: 1 या 2? अँगुलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि छोटे शब्द में भी एक से ज़्यादा टुकड़े हो सकते हैं।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए 5 कंकड़, बटन या बोतल के ढक्कन इकट्ठा करें।",
+   "बोलने के लिए शब्द चुन लें: पतंग, आम, टमाटर, गमला, फल।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "शिक्षक एक शब्द बोलें; बच्चा शब्द दोहराए, हर टुकड़े पर ताली बजाए और हर ताली पर एक कंकड़ आगे रखे, फिर बताए कि कितनी ताली हुईं।",
+    "task_en": "The teacher says a word; the child repeats it, claps once per syllable, moves one pebble per clap, and says how many claps.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "बीज"
+    ],
+    "look_for": {
+     "achieved_hi": "दो और तीन टुकड़ों वाले शब्दों पर बिना मदद के सही गिनती में ताली बजाता है।",
+     "partial_hi": "दो टुकड़ों वाले शब्द सही करता है, तीन टुकड़ों वाले में मदद चाहिए।",
+     "not_yet_hi": "हर शब्द पर एक ही ताली या बिना क्रम के ताली बजाता है।",
+     "achieved_en": "Claps correct syllables for 2- and 3-syllable words without help.",
+     "partial_en": "Correct on 2-syllable words, needs help on 3-syllable words.",
+     "not_yet_en": "Claps once per word or claps randomly."
+    }
+   },
+   "instructions_hi": "शिक्षक शब्द बोलें। बच्चे हर टुकड़े पर ताली बजाएँ और बताएँ कि कितनी ताली हुईं।",
+   "instructions_en": "The teacher says each word. Children clap once per syllable and say how many claps.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "ताली बजाएँ: 'कप'",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ताली बजाएँ: 'गमला'",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "ताली बजाएँ: 'बकरी'",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "ताली बजाएँ: 'फल'",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "ताली बजाएँ: 'मटर'",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:02:08Z",
+ "cost_usd": 0.0248,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

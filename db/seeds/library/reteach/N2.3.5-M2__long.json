@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.5-M2__long",
+ "skill_id": "N2.3.5",
+ "domain_id": "numeracy",
+ "mode": "N2.3.5-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने शब्द-सवाल में सही चिह्न चुनना सीखा था; आज देखेंगे कि चिह्न सही होने पर भी जवाब गलत कैसे हो जाता है। बोर्ड पर लिखें: 'दुकान में 52 पेन थे, 17 बिक गए। कितने बचे?' फिर 52 - 17 = 45 लिखकर बताएँ कि इकाई में 2 में से 7 नहीं घटता, इसलिए 7 - 2 कर दिया गया, यह गलत है। अब यही सवाल दहाई-इकाई के बॉक्स में छड़ियों से हल करें: एक दहाई खोलकर 12 - 7 = 5, फिर 4 - 1 = 3, उत्तर 35; इसके बाद गलत हल मिटा दें, बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर दो गलत हल लिखें और बच्चों के साथ गलती ढूँढें: '38 + 46 = 74' (हासिल छूट गया, सही 84) और '81 - 47 = 46' (छोटी संख्या में से बड़ी घटा दी गई, सही 34)। हर हल के लिए बच्चों से पूछें: 'चिह्न सही है? गलती किस अंक में है?' फिर एक नया सवाल साथ में हल करें: 'मोहन के पास 29 कंचे थे, 35 और मिले। कुल कितने?' उत्तर 64।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। हर सवाल में पहले चिह्न लिखें, फिर हासिल या उधार दहाई-इकाई के बॉक्स में दिखाएँ। सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार गणना में गलती की थी।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर लिखें: 'बस में 54 लोग थे, 18 उतर गए।' बोर्ड पर लिखें: 54 - 18। उत्तर स्लेट पर लिखें।",
+    "expected_hi": "36",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M2",
+      "misconception_name_hi": "सही संक्रिया पर गणना में त्रुटि",
+      "misconception_name_en": "Correct operation but cannot compute",
+      "detect_en": "Operation symbol is correct, but answer is wrong due to carry/borrow errors — diagnose the underlying operation misconception",
+      "wrong_answer_hi": "44"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 57 + 26 = 73। सही या गलत? गलत हो तो सही उत्तर लिखें।",
+    "expected_hi": "गलत, 83",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.5-M2",
+      "misconception_name_hi": "सही संक्रिया पर गणना में त्रुटि",
+      "misconception_name_en": "Correct operation but cannot compute",
+      "detect_en": "Operation symbol is correct, but answer is wrong due to carry/borrow errors — diagnose the underlying operation misconception",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "दहाई के बंडल और खुली छड़ियाँ (52 तक दिखाने लायक)",
+   "बोर्ड पर पहले से लिखें: पेन वाला शब्द-सवाल और दो गलत हल 38 + 46 = 74 तथा 81 - 47 = 46",
+   "हर बच्चे के लिए स्लेट या कॉपी का पन्ना"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। पहले जोड़ या घटाव का चिह्न लिखें, फिर हल करें। हासिल या उधार बॉक्स में दिखाएँ।",
+   "instructions_en": "Read each problem carefully. First write the + or - sign, then solve. Show the carry or borrow.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "रीना के पास 36 मोती थे, 27 और मिले। कुल कितने मोती हुए? 36 + 27 = ___",
+    "answer": "63",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "3",
+    "row1_o": "6",
+    "row2_t": "2",
+    "row2_o": "7",
+    "answer_t": "6",
+    "answer_o": "3"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "एक पेड़ पर 24 चिड़ियाँ थीं, 15 और आ गईं। कुल कितनी चिड़ियाँ हुईं?",
+     "answer": "39",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "कक्षा में 83 कॉपियाँ थीं, 27 बाँट दीं। कितनी कॉपियाँ बचीं?",
+     "answer": "56",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": "N2.3.5-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "खेत में 39 गायें और 48 बकरियाँ हैं। कुल कितने जानवर हैं?",
+     "answer": "87",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": "N2.3.5-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "मेले में 56 गुब्बारे थे, 19 फूट गए। कितने गुब्बारे बचे?",
+     "answer": "37",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "टोकरी में 45 आम थे, 25 और रखे गए। कुल कितने आम हुए?",
+     "answer": "70",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "पुस्तकालय में 91 किताबें थीं, 46 बच्चे ले गए। कितनी किताबें बचीं?",
+     "answer": "45",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 5 repeats a number the lesson or anchor already used: 45",
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 45"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f26e3d82c771",
+ "created": "2026-11-21T06:07:42Z",
+ "cost_usd": 0.0415,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

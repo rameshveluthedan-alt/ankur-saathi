@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.2.1__normal__medium",
+ "skill_id": "L0.2.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'आज हम ऐसे शब्द सुनेंगे जिनकी आवाज़ आख़िर में एक जैसी होती है।' धीरे-धीरे बोलें: 'मोर, चोर' और आख़िरी आवाज़ 'ओर' पर ज़ोर दें; फिर बोलें: 'मोर, पेड़' और बताएँ कि इनकी आख़िरी आवाज़ अलग है। एक और जोड़ी दिखाएँ: 'टोपी, मोती, गाय' बोलकर कहें: 'देखिए, टोपी और मोती में आख़िर में ई की आवाज़ है, गाय अलग है।'",
+   "we_do_hi": "तीन शब्द बोलें: 'नाक, काक, फूल' और बच्चों से पूछें कि कौन से दो शब्दों की आख़िरी आवाज़ एक जैसी है। फिर बोलें: 'आम, नाम, घर' और एक-एक बच्चे से उत्तर सुनें; जिसे कठिन लगे, उसके लिए शब्द दो बार धीरे बोलें। हर सही उत्तर पर बोलें: 'हाँ, दोनों के आख़िर में एक जैसी आवाज़ है।'",
+   "you_do_hi": "बच्चों को जोड़ियों में बिठाएँ और हर जोड़ी को कागज़ की पर्चियाँ दें जिन पर पहले से चित्र बने हों: मछली, तितली, केला; नाव, गाँव, पेन। बच्चे बारी-बारी से तीनों चित्रों के नाम बोलें और तुकबंदी वाली दो पर्चियाँ अलग रखें; पर्चियाँ न हों तो बोर्ड पर वर्कशीट का सवाल 1 बोलकर करवाएँ और बाकी सवाल अगले समय में अपनी जगह पर पूरे करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'खेल, रेल'। क्या इनकी आख़िरी आवाज़ एक जैसी है? हाँ हो तो 1 उँगली, नहीं हो तो 2 उँगलियाँ दिखाएँ।",
+    "expected_hi": "1 (हाँ)",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो शब्दों की आख़िरी आवाज़ मिलाकर तुकबंदी पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'दाल, बाल, कप'। कौन सा शब्द बाकी दो से मेल नहीं खाता? पहला हो तो 1, दूसरा हो तो 2, तीसरा हो तो 3 उँगलियाँ दिखाएँ।",
+    "expected_hi": "3 (कप)",
+    "listen_for": [],
+    "shows_hi": "बच्चा तीन शब्दों में से अलग आख़िरी आवाज़ वाला शब्द पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर चित्र बनाएँ: मछली, तितली, केला; नाव, गाँव, पेन (हर जोड़ी के लिए एक सेट)।",
+   "बोलने के लिए शब्दों की सूची तैयार रखें: मोर-चोर-पेड़, टोपी-मोती-गाय, नाक-काक-फूल, आम-नाम-घर।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "शिक्षक हर सवाल के तीन शब्द बोलें। बच्चे तुकबंदी वाले दो शब्द बताएँ।",
+   "instructions_en": "The teacher says the three words of each item aloud. The child names the two words that rhyme.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "तुकबंदी का उदाहरण:",
+    "example_text": "मोर - चोर"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा तीन चित्र-पर्चियों के नाम बोलकर तुकबंदी वाली दो पर्चियाँ अलग रखता है और दोनों नाम बोलता है।",
+    "task_en": "The child names three picture slips aloud, sets apart the two that rhyme, and says both names.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "चित्र बनी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखे शब्द-कार्ड"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के पाँच में से कम से कम चार सेट में सही तुकबंदी जोड़ी चुनता है।",
+     "partial_hi": "दो या तीन सेट में सही चुनता है, या शब्द कई बार सुनने पर ही चुनता है।",
+     "not_yet_hi": "तुकबंदी वाली जोड़ी नहीं पहचान पाता।",
+     "achieved_en": "Picks the correct rhyming pair in at least 4 of 5 sets without help.",
+     "partial_en": "Picks correctly in 2-3 sets, or only after hearing the words repeatedly.",
+     "not_yet_en": "Cannot identify the rhyming pair."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सुनें और बताएँ: मछली, तितली, केला",
+     "answer": "मछली - तितली",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सुनें और बताएँ: नाव, गाँव, पेन",
+     "answer": "नाव - गाँव",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सुनें और बताएँ: हाथी, बिल्ली, साथी",
+     "answer": "हाथी - साथी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सुनें और बताएँ: गाना, खाना, दूध",
+     "answer": "गाना - खाना",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "सुनें और बताएँ: चिड़िया, किताब, गुड़िया",
+     "answer": "चिड़िया - गुड़िया",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:09:50Z",
+ "cost_usd": 0.0295,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

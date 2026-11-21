@@ -1,0 +1,137 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N0.2.3-M1__short",
+ "skill_id": "N0.2.3",
+ "domain_id": "numeracy",
+ "mode": "N0.2.3-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अंक 1 से 9 पहचानना सीखा था। बोर्ड पर बड़ा 6 लिखें और उसके नीचे लिखें 'नौ', फिर बोलें: 'देखिए, यह पढ़ना गलत है: 6 का गोला नीचे बैठा है, तो यह छह है।' अब 'नौ' मिटाकर 'छह' लिखें, पास में 9 लिखें और बोलें: '9 का गोला ऊपर टँगा है, यह नौ है।' गलत वाली पंक्ति पूरी मिटा दें, बोर्ड पर केवल 6 छह और 9 नौ रहने दें; इसके बाद पूछें: 'गोला नीचे हो तो कौन-सा अंक?'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को अंक कार्ड 1 से 9 दें; कार्ड न हों तो कागज़ की पर्चियों पर अंक लिखकर दें। एक बच्चा कार्ड उठाए, दूसरा अंक का नाम बोले, फिर बारी बदलें; 6 और 9 के कार्ड बार-बार मिलाएँ। चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्हें 6 और 9 में भ्रम था; जो जल्दी कर लें, वे कार्ड 1 से 9 क्रम में लगाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर बड़ा लिखें: 9। यह कौन-सा अंक है? 1) छह 2) नौ। उँगली पर दिखाएँ।",
+    "expected_hi": "2) नौ",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M1",
+      "misconception_name_hi": "6 और 9 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 6 and 9",
+      "detect_en": "Consistently reads 6 as 9 or vice versa; other numerals are correct",
+      "wrong_answer_hi": "1) छह"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 3   6   8। इनमें छह कौन-सा है? उतनी उँगलियाँ दिखाएँ जितनी उसकी जगह है: पहला, दूसरा या तीसरा।",
+    "expected_hi": "दूसरा (2 उँगलियाँ)",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M1",
+      "misconception_name_hi": "6 और 9 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 6 and 9",
+      "detect_en": "Consistently reads 6 as 9 or vice versa; other numerals are correct",
+      "wrong_answer_hi": "कोई नहीं / गलत अंक चुनना"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "अंक कार्ड 1 से 9 (हर जोड़ी के लिए एक सेट), या कागज़ की पर्चियों पर अंक 1 से 9 लिखकर",
+   "बोर्ड पर बड़े अंक 6 और 9 लिखने की जगह खाली रखें",
+   "फ्लैश कार्ड बनाएँ: मोटे कागज़ को ताश के पत्ते के आकार में काटें। एक तरफ़ अंक लिखें, दूसरी तरफ़ उतने बिंदु या दहाई-इकाई के चित्र बनाएँ। पाठ में ये कार्ड दिखाए जाएँगे: प्रगतिशील समूह के लिए 1। कुल 1 कार्ड।"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक अंक का नाम बोलें; बच्चे सही अंक पर गोला लगाएँ।",
+   "instructions_en": "The teacher says a numeral name; children circle the right numeral.",
+   "required_count": 3,
+   "example_block": null,
+   "practice": true,
+   "observe": {
+    "task_hi": "अंक कार्ड 1 से 9 मिलाकर रखें; बच्चा एक-एक कार्ड उठाकर अंक का नाम बोले।",
+    "task_en": "Mix numeral cards 1 to 9; the child picks each card and says the numeral's name.",
+    "kit_materials_hi": [
+     "अंक कार्ड"
+    ],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अंक",
+     "स्लेट पर लिखे अंक"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी 9 अंक बिना मदद सही बोलता है, 6 और 9 भी",
+     "partial_hi": "6 से 8 अंक सही, 6/9 या 2/5 में अटकता है",
+     "not_yet_hi": "6 से कम अंक सही पहचानता है",
+     "achieved_en": "Names all 9 numerals correctly without help, including 6 and 9",
+     "partial_en": "Names 6-8 correctly, mixes 6/9 or 2/5",
+     "not_yet_en": "Names fewer than 6 numerals correctly"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "शिक्षक बोलें 'तीन'। सही अंक पर गोला लगाएँ: 3   7   1",
+     "answer": "3",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "शिक्षक बोलें 'छह'। सही अंक पर गोला लगाएँ: 9   6   8",
+     "answer": "6",
+     "diagnostic_for_misconception": "N0.2.3-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "शिक्षक बोलें 'नौ'। सही अंक पर गोला लगाएँ: 6   4   9",
+     "answer": "9",
+     "diagnostic_for_misconception": "N0.2.3-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "शिक्षक बोलें 'पाँच'। सही अंक पर गोला लगाएँ: 2   5   7",
+     "answer": "5",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "शिक्षक बोलें 'आठ'। सही अंक पर गोला लगाएँ: 1   8   4",
+     "answer": "8",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 1: the question states its own answer (3)",
+   "worksheets.progressor (observed) problem 2: the question states its own answer (6)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (9)",
+   "worksheets.progressor (observed) problem 4: the question states its own answer (5)",
+   "worksheets.progressor (observed) problem 5: the question states its own answer (8)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)",
+   "place value: flash cards listed from the lesson: progressor 1"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "853f8f0fae7e",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0263,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

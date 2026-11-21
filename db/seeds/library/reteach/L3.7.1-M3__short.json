@@ -1,0 +1,148 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.7.1-M3__short",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.7.1-M3",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने एक विषय पर अनुच्छेद लिखना सीखा था।' बोर्ड पर विषय 'मेरी गाय' और ये दो वाक्य लिखें: 'मेरी गाय सफ़ेद है। वह घास खाती है।' फिर कहें: 'देखिए, ये केवल दो वाक्य हैं। अनुच्छेद में पाँच से सात वाक्य चाहिए।' इसी विषय पर तीन वाक्य और जोड़ें: 'पहले वह सुबह दूध देती है। फिर हम उसे पानी पिलाते हैं। अंत में शाम को वह बाड़े में सो जाती है।' पाँचों वाक्य गिनवाएँ और ऊपर के दो-वाक्य वाले हिस्से का नीचे वाला अधूरा नमूना मिटा दें, ताकि बोर्ड पर केवल पूरा अनुच्छेद रहे।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट पर दिए विषय पर लिखें।' पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। पिछली बार कम वाक्य लिखने वाले बच्चों के पास शांति से पहले जाएँ और उनसे पूछें: 'अभी तक कितने वाक्य हुए? अगला वाक्य क्या होगा?'"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मुझे बारिश अच्छी लगती है। बारिश में मोर नाचता है।' इसमें कितने वाक्य हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "5"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "विषय 'मेरा बस्ता' पर अनुच्छेद के लिए कितने वाक्य ठीक हैं? 1) दो वाक्य 2) छह वाक्य। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर विषय 'मेरी गाय' और उसके दो वाक्य पहले से लिखकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "दिए गए विषय पर जुड़े हुए वाक्य लिखें। हर वाक्य के अंत में पूर्ण विराम (।) लगाएँ।",
+   "instructions_en": "Write connected sentences on the given topic. End every sentence with a full stop (।).",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा स्कूल",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 5 वाक्य",
+     "item_en": "At least 5 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य स्कूल के बारे में",
+     "item_en": "All sentences about the school"
+    },
+    {
+     "item_hi": "पहला वाक्य विषय बताता है और अंत में एक समापन वाक्य",
+     "item_en": "First sentence names the topic and there is a closing sentence"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop (।) after every sentence"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'मेरा स्कूल' विषय पर 5-7 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा स्कूल"
+    },
+    {
+     "number": 2,
+     "problem_hi": "इसमें कितने वाक्य हैं? गिनकर संख्या लिखें: 'मेरा घर छोटा है। उसमें दो कमरे हैं। आँगन में तुलसी है।'",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "अनुच्छेद में कम से कम कितने वाक्य होने चाहिए? (2 / 5)",
+     "answer": "5",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "खाली जगह में सही शब्द लिखें: 'पहले हम मैदान गए। ___ हमने खो-खो खेला।' (फिर / और)",
+     "answer": "फिर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'मेरी पतंग' विषय पर 5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 6,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "3b39cf83ba8a",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0265,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

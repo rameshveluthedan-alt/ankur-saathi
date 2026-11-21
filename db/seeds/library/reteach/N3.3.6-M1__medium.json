@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.6-M1__medium",
+ "skill_id": "N3.3.6",
+ "domain_id": "numeracy",
+ "mode": "N3.3.6-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने दो चरण वाले सवाल हल किए थे।' बोर्ड पर लिखें: '3 पैकेट, हर पैकेट में 14 पेन। 9 पेन बाँट दिए। कितने बचे?' पहले अधूरा हल लिखें: 3 × 14 = 42, उत्तर 42। फिर पूछें: 'सवाल क्या पूछता है? बचे हुए पेन। क्या 9 पेन घटाए?' अब इसी सवाल को पूरा हल करें: चरण 1: 3 × 14 = 42, चरण 2: 42 − 9 = 33, उत्तर 33। अधूरा हल मिटा दें, ताकि बोर्ड पर केवल सही हल रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: '5 थैलियाँ, हर थैली में 11 कंचे। 6 कंचे और मिले। कुल कितने?' उत्तर: 55। बच्चों से पूछें: 'कौन-सा चरण छूट गया?' सब मिलकर 55 + 6 = 61 करें। फिर नया सवाल साथ में करें: '2 डिब्बे, हर डिब्बे में 24 लड्डू। 13 लड्डू खा लिए। कितने बचे?' बच्चे बताएँ कि पहला चरण क्या है और दूसरा क्या: 2 × 24 = 48, 48 − 13 = 35।",
+   "you_do_hi": "बच्चों से कहें: 'हर सवाल में दो चरण लिखें, चरण 1 और चरण 2।' पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ, जिन्होंने पिछली बार एक ही चरण किया था।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: '4 डिब्बे, हर डिब्बे में 15 लड्डू। 9 लड्डू बँट गए। कितने बचे?' 1) 60 2) 51",
+    "expected_hi": "2) 51",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "1) 60"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: '3 थैले, हर थैले में 20 आम। 8 आम और आए। कुल कितने आम?'",
+    "expected_hi": "68",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "60"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड के एक कोने में लिखें: 'चरण 1 ... चरण 2 ... उत्तर'",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। पहले चरण 1 लिखें, फिर चरण 2। दूसरे चरण का जोड़ बॉक्स में करें और हासिल ऊपर लिखें।",
+   "instructions_en": "Read each problem carefully. Write step 1, then step 2. Do the second-step addition in the box and write the carry on top.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "4 पैकेट हैं, हर पैकेट में 13 बिस्कुट। 19 बिस्कुट और लाए। कुल कितने बिस्कुट?",
+     "answer": "71",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "3 थैलियाँ हैं, हर थैली में 16 टॉफ़ी। 27 टॉफ़ी और मिलीं। कुल कितनी टॉफ़ी?",
+     "answer": "75",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "6 पंक्तियाँ हैं, हर पंक्ति में 15 पौधे। 23 पौधे सूख गए। कितने पौधे बचे? = ___",
+     "answer": "67",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "5 बक्से हैं, हर बक्से में 14 पेंसिल। 18 पेंसिल बाँट दीं। कितनी पेंसिल बचीं? = ___",
+     "answer": "52",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "2 कक्षाएँ हैं, हर कक्षा में 38 बच्चे। 9 बच्चे और आए। कुल कितने बच्चे? = ___",
+     "answer": "85",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "7 डिब्बे हैं, हर डिब्बे में 12 अंडे। 11 अंडे टूट गए। कितने अंडे बचे?",
+     "answer": "73",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 13",
+   "worksheets.progressor problem 4 repeats a number the lesson or anchor already used: 14",
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 11"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a91d24ea4b0e",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.1232,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

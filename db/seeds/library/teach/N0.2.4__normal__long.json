@@ -1,0 +1,113 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.2.4__normal__long",
+ "skill_id": "N0.2.4",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने 1 से 9 तक गिनती बोली थी, आज हम अंक लिखेंगे।' बोर्ड पर बड़ा 2, 3 और 5 धीरे-धीरे लिखें और हर बार बोलें: 'ऊपर से शुरू, देखिए मुँह किस तरफ़ खुलता है।' हर अंक के पास उतने ही बिंदु बनाएँ और बच्चों के साथ गिनें।",
+   "we_do_hi": "बच्चे पहले उँगली से हवा में आपके साथ 4, 6 और 9 बनाएँ। फिर हर बच्चा स्लेट पर वही अंक लिखे और आप घूमकर देखें कि शुरुआत ऊपर से हो रही है। जिसका अंक उल्टा बने, उसके साथ बोर्ड का अंक देखकर दोबारा हवा में बनाएँ।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। जिन सवालों में संख्या का नाम लिखा है, उन्हें शिक्षक पढ़कर सुनाएँ। घूमते समय देखें कि अंक उल्टे तो नहीं बन रहे, खासकर 3 और 9।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो रूप लिखें: 1) सीधा 3  2) उल्टा 3, जिसका मुँह बाईं ओर खुले। कौन सा सही है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा 3 का सही रुख़ पहचानता है और उल्टे अंक से अलग कर पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: सात। स्लेट पर उसका अंक लिखें।",
+    "expected_hi": "7",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुनी हुई संख्या को सही अंक में लिख पाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर बच्चे के लिए स्लेट और चॉक या कॉपी-पेंसिल",
+   "बोर्ड पर बड़े आकार में 2, 3 और 5 लिखने की जगह छोड़ें, हर अंक के पास उतने बिंदु"
+  ],
+  "worksheet": {
+   "instructions_hi": "बिंदु गिनें या शिक्षक से संख्या सुनें, फिर खाली जगह में अंक लिखें।",
+   "instructions_en": "Count the dots or listen to the number, then write the numeral in the space.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "● ● गिनकर अंक लिखें",
+    "answer": "2",
+    "show_pv_grid": false,
+    "pv_columns": 1
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "● ● ● ● गिनकर अंक लिखें: ___",
+     "answer": "4",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "तीन लिखें: ___",
+     "answer": "3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "नौ लिखें: ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "● ● ● ● ● ● गिनकर अंक लिखें: ___",
+     "answer": "6",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "सात लिखें: ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "● ● ● ● ● ● ● ● गिनकर अंक लिखें: ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2bcf8952a386",
+ "created": "2026-11-21T06:03:32Z",
+ "cost_usd": 0.0288,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

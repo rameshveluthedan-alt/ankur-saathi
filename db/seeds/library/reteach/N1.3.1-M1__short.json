@@ -1,0 +1,154 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.3.1-M1__short",
+ "skill_id": "N1.3.1",
+ "domain_id": "numeracy",
+ "mode": "N1.3.1-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने जोड़ना सीखा था, आज छोटा रास्ता देखेंगे। बोर्ड पर 6 + 3 लिखें और पहले लंबा रास्ता गिनकर दिखाएँ: 'एक, दो, तीन, चार, पाँच, छह... सात, आठ, नौ', फिर कहें: 'देखिए, 6 तक दोबारा गिनने में कितना समय लगा।' अब वही सवाल सही तरीके से करें: '6 मन में रखें, आगे 3 उँगलियाँ: सात, आठ, नौ', बोर्ड पर 6 + 3 = 9 लिखें, लंबी गिनती मिटा दें और समूह से पूछें: '4 + 3 में गिनती किस संख्या से शुरू करेंगे?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट के सवाल 1 से 3 पहले हल करें, बड़ी संख्या मन में रखकर आगे गिनें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में सवाल 1 से 3 शुरू होंगे, बाकी काम बच्चे अगले हिस्से में अपनी जगह पर पूरा करें। घूमते हुए पहले उन बच्चों के पास शांति से जाएँ जो कल 1 से गिन रहे थे, और देखें कि वे बड़ी संख्या से गिनती शुरू कर रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 5 + 4। आगे गिनते समय सबसे पहले कौन-सी संख्या बोलेंगे? स्लेट पर लिखें।",
+    "expected_hi": "6",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M1",
+      "misconception_name_hi": "आगे गिनने की बजाय पूरा गिनना",
+      "misconception_name_en": "Counting-all instead of counting-on",
+      "detect_en": "Child is slow and uses fingers from 1; accuracy may be fine but strategy is inefficient and will fail for larger numbers",
+      "wrong_answer_hi": "1"
+     },
+     {
+      "misconception_id": "N1.3.1-M2",
+      "misconception_name_hi": "आगे गिनते समय एक की त्रुटि",
+      "misconception_name_en": "Off-by-one error in counting-on",
+      "detect_en": "Answers are consistently exactly 1 less than correct: 5+3=7, 4+2=5, 6+3=8",
+      "wrong_answer_hi": "5"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "compute",
+    "question_hi": "9 + 2",
+    "expected_hi": "11",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M2",
+      "misconception_name_hi": "आगे गिनते समय एक की त्रुटि",
+      "misconception_name_en": "Off-by-one error in counting-on",
+      "detect_en": "Answers are consistently exactly 1 less than correct: 5+3=7, 4+2=5, 6+3=8",
+      "wrong_answer_hi": "10"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 6 + 3",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना"
+  ],
+  "worksheet": {
+   "instructions_hi": "बड़ी संख्या मन में रखें और आगे गिनकर जोड़ें। उत्तर खाली जगह में लिखें।",
+   "instructions_en": "Keep the bigger number in your head and count on to add. Write the answer in the blank.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "7 + 4 = ___ (7 मन में: आठ, नौ, दस, ग्यारह)",
+    "answer": "11",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "7",
+    "row2_t": "",
+    "row2_o": "4",
+    "answer_t": "1",
+    "answer_o": "1"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "5 + 2 = ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "8 + 4 = ___",
+     "answer": "12",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "7 + 6 = ___",
+     "answer": "13",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.3.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "3 + 5 = ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "9 + 6 = ___",
+     "answer": "15",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "6 + 8 = ___",
+     "answer": "14",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "b594dae6870e",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.0341,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

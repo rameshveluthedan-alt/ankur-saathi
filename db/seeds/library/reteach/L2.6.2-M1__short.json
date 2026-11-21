@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.6.2-M1__short",
+ "skill_id": "L2.6.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.6.2-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अनुच्छेद का मुख्य विचार ढूँढना सीखा था। बोर्ड पर लिखें: 'मीना के पास लाल पतंग थी। उसने पतंग अपने भाई को दी। भाई बहुत खुश हुआ। मीना भी मुस्कराई।' पहले कहें: 'मीना के पास लाल पतंग थी', फिर बच्चों को बताएँ कि यह सिर्फ़ एक बात है, पूरी कहानी नहीं; फिर सही बताएँ: 'मीना ने अपनी चीज़ भाई के साथ बाँटी', और गलत वाक्य मिटा दें।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को बोर्ड से एक छोटा अनुच्छेद पढ़ने को कहें और साथी को एक वाक्य में बताने को कहें कि पूरा अनुच्छेद किस बारे में है; पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार कोई एक बात बताई थी। कागज़ की पर्चियों पर लिखे अनुच्छेद दें; पर्चियाँ न हों तो वर्कशीट के सवाल 1 से 3 कॉपी में करें, बाकी काम अगले समय अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'राजू रोज़ पौधों को पानी देता है। वह सूखी पत्तियाँ हटाता है। पौधे हरे-भरे हो गए।' यह किस बारे में है? 1) राजू पौधों की देखभाल करता है 2) पत्तियाँ सूखी थीं",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.2-M1",
+      "misconception_name_hi": "मुख्य विचार की बजाय कोई विवरण बताता है",
+      "misconception_name_en": "Gives a detail instead of the main idea",
+      "detect_en": "Response is factually correct but is a detail, not the main idea: \"The boy had a red ball\" instead of \"A boy learns to share\"",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'बारिश आई। बच्चों ने काग़ज़ की नाव बनाई। सबने पानी में नाव चलाई और खूब हँसे।' मुख्य बात: 'बच्चों ने नाव बनाई' — सही या गलत?",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.2-M1",
+      "misconception_name_hi": "मुख्य विचार की बजाय कोई विवरण बताता है",
+      "misconception_name_en": "Gives a detail instead of the main idea",
+      "detect_en": "Response is factually correct but is a detail, not the main idea: \"The boy had a red ball\" instead of \"A boy learns to share\"",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर मीना और पतंग वाला अनुच्छेद लिखें।",
+   "जोड़ियों के लिए कागज़ की पर्चियों पर वर्कशीट के अनुच्छेद लिखकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अनुच्छेद पढ़ें और बताएँ कि पूरा अनुच्छेद किस बारे में है।",
+   "instructions_en": "Read each paragraph and tell what the whole paragraph is about.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "अनुच्छेद पढ़कर साथी को एक वाक्य में बताएँ कि वह किस बारे में है।",
+    "task_en": "Read a paragraph and tell a partner its main idea in one sentence.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "अनुच्छेद लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखे अनुच्छेद"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद पूरे अनुच्छेद की मुख्य बात अपने शब्दों में बताता है",
+     "partial_hi": "कोई एक बात बताता है, या मदद से मुख्य बात तक पहुँचता है",
+     "not_yet_hi": "कुछ नहीं बताता या अलग-अलग बातें दोहराता है",
+     "achieved_en": "States the main idea in own words without help",
+     "partial_en": "Gives a detail, or reaches the main idea with help",
+     "not_yet_en": "Says nothing or repeats random details"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: 'सोनू ने सड़क पर गिरा बटुआ देखा। उसने बटुआ पुलिस को दे दिया। सबने सोनू की तारीफ़ की।' बताएँ: यह किस बारे में है?",
+     "answer": "सोनू ईमानदार है",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: 'गाँव में मेला लगा। झूले थे, मिठाई थी, खिलौने थे। सबने खूब मज़ा किया।' यह किस बारे में है? 1) मिठाई 2) गाँव के मेले में मज़ा",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: 'चिड़िया तिनके लाई। उसने पेड़ पर घोंसला बनाया। उसमें अंडे रखे।' यह किस बारे में है? 1) चिड़िया ने घोंसला बनाया 2) तिनके",
+     "answer": "1",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: 'टीना रोज़ दाँत साफ़ करती है। वह हाथ धोकर खाना खाती है। वह साफ़ कपड़े पहनती है।' बताएँ: यह किस बारे में है?",
+     "answer": "टीना सफ़ाई रखती है",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 2: the question states its own answer (2)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (1)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4d932dcc82cb",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0283,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

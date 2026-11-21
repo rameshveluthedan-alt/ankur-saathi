@@ -1,0 +1,144 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.7.1-M1__short",
+ "skill_id": "L2.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.7.1-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने बोलकर लिखे वाक्यों में मात्रा लगाना सीखा था। बोर्ड पर लिखें 'चिडिया' और पढ़कर सुनाएँ: 'चि-डि-या, पर हम बोलते हैं चि-ड़ि-या, आखिरी आवाज़ लंबी है: या से पहले ड़ी में खिंचाव सुनें'। फिर वही शब्द सही लिखें 'चिड़िया', दूसरा उदाहरण 'मुली' को 'मूली' करें ('मू' लंबा खींचकर बोलें), और गलत रूप मिटा दें ताकि बोर्ड पर केवल सही शब्द रहें।",
+   "we_do_hi": "",
+   "you_do_hi": "हर वाक्य दो बार धीरे बोलें, बच्चे वर्कशीट की पंक्ति 1, 2, 3 पर लिखें; इस ब्लॉक में पहले तीन वाक्य, बाकी अपनी जगह पर अगले ब्लॉक में। लिखते समय पहले उन बच्चों के पास शांति से जाएँ जिन्होंने छोटी-बड़ी मात्रा में गलती की थी, सामान्य चक्कर के हिस्से के रूप में। अगर एक चौथाई से अधिक बच्चे show-me में गलत थे, तो लिखवाने से पहले एक शब्द और लंबा-छोटा खींचकर बोलकर दिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) दिन  2) दीन। अब बोलें: 'आज का दिन अच्छा है।' इसमें कौन-सा शब्द है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.1-M1",
+      "misconception_name_hi": "छोटी-बड़ी मात्रा में भ्रम (ि/ी, ु/ू)",
+      "misconception_name_en": "Confuses short and long vowel matras (ि/ी, ु/ू)",
+      "detect_en": "The same pair is wrong in two or more dictated words; the consonants are right",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'पुल' और 'पूल'। एक शब्द बोलें: 'नदी पर पुल है।' स्लेट पर केवल प की मात्रा लिखें: ु या ू?",
+    "expected_hi": "ु",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.1-M1",
+      "misconception_name_hi": "छोटी-बड़ी मात्रा में भ्रम (ि/ी, ु/ू)",
+      "misconception_name_en": "Confuses short and long vowel matras (ि/ी, ु/ू)",
+      "detect_en": "The same pair is wrong in two or more dictated words; the consonants are right",
+      "wrong_answer_hi": "ू"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड का एक कोना खाली रखें: 'चिडिया' और 'मुली' लिखकर सुधारने और फिर मिटाने के लिए।",
+   "हर बच्चे के लिए एक श्रुतलेख वर्कशीट और स्लेट या कॉपी का पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक जो वाक्य बोलें, उसे ध्यान से सुनें और सही पंक्ति पर लिखें। छोटी और बड़ी मात्रा का ध्यान रखें।",
+   "instructions_en": "Listen to each sentence the teacher reads and write it on the matching line. Take care with short and long matras.",
+   "required_count": 5,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "dictation",
+   "dictation_sentences": [
+    "मीना खीर खाती है।",
+    "सूरज रोज़ निकलता है।",
+    "दादी ने पूरी बनाई।",
+    "गुड़िया की चुनरी नीली है।",
+    "भालू पेड़ पर चढ़ा।"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "वाक्य 1",
+     "answer": "मीना खीर खाती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 2,
+     "problem_hi": "वाक्य 2",
+     "answer": "सूरज रोज़ निकलता है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 3,
+     "problem_hi": "वाक्य 3",
+     "answer": "दादी ने पूरी बनाई।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 4,
+     "problem_hi": "वाक्य 4",
+     "answer": "गुड़िया की चुनरी नीली है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 5,
+     "problem_hi": "वाक्य 5",
+     "answer": "भालू पेड़ पर चढ़ा।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "re-teach: no core problem reveals L2.7.1-M1"
+  ],
+  "repairs": [
+   "sheet: progressor: dictation sheet built from 5 sentence(s), none printed for the child"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "faa7da666aae",
+ "created": "2026-11-21T06:10:43Z",
+ "cost_usd": 0.025,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

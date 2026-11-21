@@ -1,0 +1,136 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.3.1-M2__short",
+ "skill_id": "N1.3.1",
+ "domain_id": "numeracy",
+ "mode": "N1.3.1-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने बड़ी संख्या से आगे गिनकर जोड़ना सीखा था।' बोर्ड पर लिखें: 6 + 3, और पहले गलत तरीका दिखाएँ: 'छह, सात, आठ' बोलते हुए तीन उँगलियाँ उठाएँ और 8 लिखें। बच्चों से कहें: 'देखिए, यहाँ छह को भी एक गिनती मान लिया, इसलिए उत्तर एक कम आया।' फिर उसी सवाल को सही करें: 'छह मन में रखें, अब आगे गिनें: सात, आठ, नौ', हर गिनती पर एक उँगली उठाएँ और 9 लिखें। गलत लिखा 8 मिटा दें, ताकि बोर्ड पर केवल 6 + 3 = 9 रहे। अंत में समूह से एक छोटा प्रश्न पूछें: 'पहली गिनती कौन सी संख्या होगी, छह या सात?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' सबसे पहले उन बच्चों के पास शांति से जाएँ जिनके उत्तर पिछली बार एक कम आए थे, और देखें कि वे अगली संख्या से गिनती शुरू कर रहे हैं। जो बच्चे यहाँ पूरा न कर पाएँ, वे बाकी वर्कशीट अगले ब्लॉक में अपनी जगह पर पूरी करें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर लिखें: 5 + 2। उत्तर स्लेट पर लिखें।",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M2",
+      "misconception_name_hi": "आगे गिनते समय एक की त्रुटि",
+      "misconception_name_en": "Off-by-one error in counting-on",
+      "detect_en": "Answers are consistently exactly 1 less than correct: 5+3=7, 4+2=5, 6+3=8",
+      "wrong_answer_hi": "6"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 8 + 3 = 10। यह सही है या गलत?",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "N1.3.1-M2",
+      "misconception_name_hi": "आगे गिनते समय एक की त्रुटि",
+      "misconception_name_en": "Off-by-one error in counting-on",
+      "detect_en": "Answers are consistently exactly 1 less than correct: 5+3=7, 4+2=5, 6+3=8",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड के ऊपर 0 से 18 तक की संख्या-पट्टी लिख लें, ताकि आगे गिनते समय बच्चे उसे देख सकें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "बड़ी संख्या मन में रखें और अगली संख्या से आगे गिनें। उत्तर लिखें।",
+   "instructions_en": "Keep the bigger number in your head and count on from the next number. Write the answer.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "8 + 4 = ___",
+    "answer": "12",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "8",
+    "row2_t": "",
+    "row2_o": "4",
+    "answer_t": "1",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 + 4",
+     "answer": "7",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "6 + 2",
+     "answer": "8",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N1.3.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "9 + 5 = ___",
+     "answer": "14",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N1.3.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "7 + 6 = ___",
+     "answer": "13",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "5 + 5 = ___",
+     "answer": "10",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 8 आम हैं। उसमें 7 आम और रखे गए। अब टोकरी में कुल कितने आम हैं?",
+     "answer": "15",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9c822fb2491e",
+ "created": "2026-11-21T05:59:03Z",
+ "cost_usd": 0.0339,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

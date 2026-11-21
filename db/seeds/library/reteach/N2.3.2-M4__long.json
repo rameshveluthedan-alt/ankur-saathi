@@ -1,0 +1,136 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.2-M4__long",
+ "skill_id": "N2.3.2",
+ "domain_id": "numeracy",
+ "mode": "N2.3.2-M4",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने हासिल वाला जोड़ सीखा था।' बोर्ड पर 46 + 37 लिखें और पहले दहाई जोड़कर दिखाएँ: 4 + 3 = 7 लिखें, फिर इकाई 6 + 7 = 13, तो उत्तर 713 बन गया। बच्चों से कहें: 'देखिए, 13 के 1 को रखने की जगह ही नहीं बची। इसलिए हमेशा इकाई से शुरू करते हैं।' अब वही सवाल फिर से करें: 6 + 7 = 13, इकाई में 3 लिखें और 1 हासिल दहाई के ऊपर रखें, फिर 4 + 3 + 1 = 8, उत्तर 83। इसके बाद गलत हल मिटा दें, ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 25 + 38 = 513 और बच्चों से पूछें: 'किस घर से शुरू किया गया?' बच्चों के साथ इकाई से दोबारा हल करें: 5 + 8 = 13, 3 लिखें, 1 हासिल; 2 + 3 + 1 = 6, उत्तर 63। फिर नया सवाल 29 + 44 साथ में हल करें। हर कदम पर पूछें: 'पहले कौन-सा घर?' उत्तर 73 आएगा।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' घूमते समय सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार दहाई से शुरू किया था, और देखें कि उन्होंने पहले इकाई जोड़ी है। अगर show-me में चौथाई से अधिक बच्चे गलत उत्तर दिखाएँ, तो You Do से पहले छड़ियों से यह कदम फिर से समझाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 56 + 28",
+    "expected_hi": "84",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M4",
+      "misconception_name_hi": "बाएँ से दाएँ जोड़ना (पहले दहाई, फिर इकाई)",
+      "misconception_name_en": "Adds left-to-right (tens first, then ones)",
+      "detect_en": "Tens digit is correct for no-carry scenario but wrong when carry is needed; child may cross out and rewrite",
+      "wrong_answer_hi": "714"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 38 + 47 = 715। सही या गलत? सही उत्तर भी लिखें।",
+    "expected_hi": "गलत, 85",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M4",
+      "misconception_name_hi": "बाएँ से दाएँ जोड़ना (पहले दहाई, फिर इकाई)",
+      "misconception_name_en": "Adds left-to-right (tens first, then ones)",
+      "detect_en": "Tens digit is correct for no-carry scenario but wrong when carry is needed; child may cross out and rewrite",
+      "wrong_answer_hi": "सही, 715"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से दहाई-इकाई का बॉक्स बनाकर रखें, जिसमें हासिल लिखने की जगह भी हो।",
+   "ज़रूरत पड़ने पर दोबारा समझाने के लिए दस-दस की 9 गड्डियाँ और 10 खुली छड़ियाँ (TLM-001) पास रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल पहले इकाई से जोड़ें। हासिल को उसके बॉक्स में लिखें, फिर दहाई जोड़ें।",
+   "instructions_en": "Always add the ones first. Write the carry in its box, then add the tens.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "35 + 26",
+     "answer": "61",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "58 + 37",
+     "answer": "95",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.2-M4"
+    },
+    {
+     "number": 3,
+     "problem_hi": "64 + 26 = ___",
+     "answer": "90",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.2-M4"
+    },
+    {
+     "number": 4,
+     "problem_hi": "17 + 45 = ___",
+     "answer": "62",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "39 + 33 = ___",
+     "answer": "72",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक बगीचे में 28 गुलाब और 47 गेंदे के फूल हैं। कुल कितने फूल हैं?",
+     "answer": "75",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "21baddf04caf",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0349,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

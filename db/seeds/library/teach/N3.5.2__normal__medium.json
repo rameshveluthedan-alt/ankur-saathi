@@ -1,0 +1,128 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.5.2__normal__medium",
+ "skill_id": "N3.5.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर एक आयत बनाएँ और उसकी भुजाओं पर लिखें: लंबाई 8 सेमी, चौड़ाई 2 सेमी। पहले वह तरीका दिखाएँ जिसमें भूल होती है: 8 + 2 = 10 सेमी। बच्चों से कहें: 'देखिए, हमने केवल दो भुजाएँ जोड़ीं, पर आयत की चार भुजाएँ हैं।' फिर उँगली से चारों भुजाओं के चारों ओर घूमें और लिखें: 8 + 2 + 8 + 2 = 20 सेमी, यानी 2 × (8 + 2) = 20 सेमी। अंत में गलत पंक्ति मिटा दें, ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर एक वर्ग बनाएँ और उसकी हर भुजा पर 3 सेमी लिखें। बच्चों से पूछें: 'कितनी भुजाएँ हैं?' फिर साथ मिलकर जोड़ें: 3 + 3 + 3 + 3 = 12 सेमी। इसके बाद एक त्रिभुज बनाएँ और उसकी भुजाओं पर 2 सेमी, 3 सेमी और 4 सेमी लिखें। बच्चे हर भुजा पर उँगली रखकर गिनें, फिर सब मिलकर जोड़ें: 2 + 3 + 4 = 9 सेमी।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' पहले उन बच्चों के पास जाएँ जिन्होंने आयत में केवल दो भुजाएँ जोड़ी थीं। यह काम इतने समय में पूरा नहीं होगा, इसलिए बच्चे बाकी सवाल अगले समय में अपनी जगह पर पूरे करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "एक आयत की लंबाई 9 सेमी और चौड़ाई 5 सेमी है। इसका परिमाप कितना है: 1) 14 सेमी 2) 28 सेमी?",
+    "expected_hi": "2) 28 सेमी",
+    "listen_for": [
+     {
+      "misconception_id": "N3.5.2-M1",
+      "misconception_name_hi": "आयत का परिमाप: केवल 2 भुजाएँ जोड़ना",
+      "misconception_name_en": "Adds only 2 sides for rectangle perimeter",
+      "detect_en": "Answer is exactly half the correct perimeter",
+      "wrong_answer_hi": "1) 14 सेमी"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक आयत की लंबाई 7 सेमी और चौड़ाई 4 सेमी है। इसका परिमाप कितना है?",
+    "expected_hi": "22 सेमी",
+    "listen_for": [
+     {
+      "misconception_id": "N3.5.2-M1",
+      "misconception_name_hi": "आयत का परिमाप: केवल 2 भुजाएँ जोड़ना",
+      "misconception_name_en": "Adds only 2 sides for rectangle perimeter",
+      "detect_en": "Answer is exactly half the correct perimeter",
+      "wrong_answer_hi": "11 सेमी"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से एक आयत, एक वर्ग और एक त्रिभुज बना लें, उनकी भुजाओं पर नाप लिखने की जगह छोड़कर।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर आकृति की सभी भुजाएँ जोड़कर उसका परिमाप लिखें। उत्तर के साथ सेमी या मीटर भी लिखें।",
+   "instructions_en": "Add all the sides of each shape to find its perimeter. Write the unit (cm or m) with each answer.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "वर्ग की हर भुजा 4 सेमी है। परिमाप = ___",
+     "answer": "16 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "आयत की लंबाई 6 सेमी, चौड़ाई 3 सेमी है। परिमाप = ___",
+     "answer": "18 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.5.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "आयत की लंबाई 10 सेमी, चौड़ाई 5 सेमी है। परिमाप = ___",
+     "answer": "30 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.5.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "त्रिभुज की भुजाएँ 6 सेमी, 7 सेमी और 8 सेमी हैं। परिमाप = ___",
+     "answer": "21 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "वर्ग की हर भुजा 9 सेमी है। परिमाप = ___",
+     "answer": "36 सेमी",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक आयताकार बगीचा 12 मीटर लंबा और 8 मीटर चौड़ा है। उसके चारों ओर बाड़ लगानी है। कितने मीटर बाड़ लगेगी?",
+     "answer": "40 मीटर",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 12",
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "327d076e47fd",
+ "created": "2026-11-21T06:08:11Z",
+ "cost_usd": 0.0931,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

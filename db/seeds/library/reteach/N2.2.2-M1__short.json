@@ -1,0 +1,138 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.2.2-M1__short",
+ "skill_id": "N2.2.2",
+ "domain_id": "numeracy",
+ "mode": "N2.2.2-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने सैकड़ा, दहाई और इकाई सीखे थे।' बोर्ड पर लिखें: 403 = 43 और 403 = 400 + 30, फिर बच्चों से कहें: 'देखिए, यहाँ बीच का शून्य छूट गया, इसलिए संख्या बदल गई।' इसके बाद दहाई-इकाई के बॉक्स में (सैकड़ा जोड़कर) 4, 0, 3 लिखकर दिखाएँ: 403 = 400 + 0 + 3, 'दहाई में कुछ नहीं, इसलिए वहाँ शून्य लिखते हैं', और गलत पंक्तियाँ मिटा दें ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट का सवाल 1 हल करें; सवाल 2 और 3 अपनी जगह पर अगले समय में पूरे करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार बीच के शून्य में गलती की थी, सामान्य चक्कर के हिस्से की तरह। अगर शो-मी में चौथाई से अधिक बच्चे गलत दिखाएँ, तो वह कदम अभी बॉक्स में दोबारा करके दिखाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बच्चों से पूछें: 'तीन सौ सात को अंकों में कैसे लिखेंगे? 1) 37 2) 307' उंगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2) 307",
+    "listen_for": [
+     {
+      "misconception_id": "N2.2.2-M1",
+      "misconception_name_hi": "बीच में शून्य से भ्रम (जैसे 305)",
+      "misconception_name_en": "Zero in middle causes confusion (e.g., 305)",
+      "detect_en": "Errors concentrated on numbers with internal zero; other 3-digit numbers are fine",
+      "wrong_answer_hi": "1) 37"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 504। बच्चों से पूछें: 'इसमें कितनी दहाई हैं?' स्लेट पर संख्या लिखें।",
+    "expected_hi": "0",
+    "listen_for": [
+     {
+      "misconception_id": "N2.2.2-M1",
+      "misconception_name_hi": "बीच में शून्य से भ्रम (जैसे 305)",
+      "misconception_name_en": "Zero in middle causes confusion (e.g., 305)",
+      "detect_en": "Errors concentrated on numbers with internal zero; other 3-digit numbers are fine",
+      "wrong_answer_hi": "5"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर सैकड़ा, दहाई, इकाई के तीन बॉक्स पहले से बना लें।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को सैकड़ा, दहाई और इकाई में लिखें। जिस स्थान पर कुछ नहीं है, वहाँ 0 लिखें।",
+   "instructions_en": "Write each number in hundreds, tens and ones. Write 0 in a place that has nothing.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "206 = 200 + 0 + 6",
+    "answer": "200 + 0 + 6",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "2",
+    "row1_t": "0",
+    "row1_o": "6",
+    "row2_h": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_h": "2",
+    "answer_t": "0",
+    "answer_o": "6"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "352 = ___ + ___ + ___",
+     "answer": "300 + 50 + 2",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "708 = ___ + ___ + ___",
+     "answer": "700 + 0 + 8",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N2.2.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पाँच सौ नौ अंकों में लिखें: ___",
+     "answer": "509",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.2.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "461 = ___ + ___ + ___",
+     "answer": "400 + 60 + 1",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "905 = ___ + ___ + ___",
+     "answer": "900 + 0 + 5",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "623 = ___ + ___ + ___",
+     "answer": "600 + 20 + 3",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "07da6493ec36",
+ "created": "2026-11-21T06:08:11Z",
+ "cost_usd": 0.0337,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

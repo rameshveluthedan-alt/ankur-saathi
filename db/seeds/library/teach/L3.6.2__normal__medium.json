@@ -1,0 +1,126 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.6.2__normal__medium",
+ "skill_id": "L3.6.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'बारिश हुई, इसलिए सड़क गीली हो गई।' बच्चों को दिखाएँ: 'बारिश हुई' कारण है, यानी क्यों हुआ; 'सड़क गीली हो गई' प्रभाव है, यानी क्या हुआ। 'कारण' के नीचे एक रेखा और 'प्रभाव' के नीचे दो रेखाएँ खींचें, और बताएँ कि 'इसलिए' और 'क्योंकि' जैसे शब्द इन दोनों को जोड़ते हैं।",
+   "we_do_hi": "बोर्ड पर लिखें: 'मोहन देर से उठा, इसलिए उसकी बस छूट गई।' बच्चों से पूछें: 'क्या हुआ?' और 'क्यों हुआ?' फिर बच्चों के बताने पर कारण के नीचे एक रेखा और प्रभाव के नीचे दो रेखाएँ खींचें।",
+   "you_do_hi": "'अब अपनी वर्कशीट खोलें और पहले सवाल 1 से 3 हल करें।' जो बच्चे जल्दी ख़त्म करें, वे बाकी सवाल करें। सवाल 1 पढ़ते समय घूमकर देखें कि बच्चे कारण और प्रभाव सही पहचान रहे हैं या नहीं; बाकी काम बच्चे अगले समय में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'धूप तेज़ थी, इसलिए बच्चे पेड़ के नीचे बैठे।' इसमें कारण क्या है? 1) धूप तेज़ थी 2) बच्चे पेड़ के नीचे बैठे। उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि कारण वह बात है जिसकी वजह से कुछ होता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'गिलास गिरा, इसलिए टूट गया।' इसमें प्रभाव क्या है? 1) गिलास गिरा 2) गिलास टूट गया। उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि प्रभाव वह है जो कारण के बाद होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का वाक्य 'बारिश हुई, इसलिए सड़क गीली हो गई।' और We Do का वाक्य 'मोहन देर से उठा, इसलिए उसकी बस छूट गई।' पहले से लिख लें।",
+   "हर बच्चे के लिए एक वर्कशीट की प्रति तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "कहानी ध्यान से पढ़ें। फिर हर सवाल का उत्तर लिखें।",
+   "instructions_en": "Read the story carefully. Then answer each question.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "रानी का बगीचा",
+    "text": "रानी रोज़ पौधों को पानी देती थी, इसलिए उसके बगीचे में सुंदर फूल खिले। एक दिन तेज़ आँधी आई, इसलिए एक पौधा गिर गया। रानी उदास हो गई क्योंकि वह पौधा उसे बहुत प्यारा था। उसके भाई ने पौधे को लकड़ी से बाँध दिया, इसलिए पौधा फिर सीधा खड़ा हो गया। रानी खुश हो गई।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "रानी के बगीचे में सुंदर फूल क्यों खिले?",
+     "answer": "क्योंकि रानी रोज़ पौधों को पानी देती थी।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "तेज़ आँधी आने से क्या हुआ?",
+     "answer": "एक पौधा गिर गया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "रानी उदास क्यों हो गई?",
+     "answer": "क्योंकि उसका प्यारा पौधा गिर गया था।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पौधा फिर सीधा कैसे खड़ा हो गया?",
+     "answer": "भाई ने पौधे को लकड़ी से बाँध दिया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "भाई के पौधा बाँधने से क्या हुआ?",
+     "answer": "पौधा फिर सीधा खड़ा हो गया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "कहानी के अंत में रानी खुश क्यों हो गई?",
+     "answer": "क्योंकि उसका पौधा फिर सीधा खड़ा हो गया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "19bb8f65c007",
+ "created": "2026-11-21T06:02:07Z",
+ "cost_usd": 0.0252,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

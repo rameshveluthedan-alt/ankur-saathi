@@ -1,0 +1,126 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.4.2__normal__long",
+ "skill_id": "N3.4.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल की एक बात याद कराएँ: 'घड़ी में छोटी सुई घंटा बताती है, बड़ी सुई मिनट।' कागज़ की घड़ी पर छोटी सुई 4 पर और बड़ी सुई 12 पर रखें और कहें: 'छोटी सुई 4 पर, बड़ी सुई 12 पर, तो 4 बजे हैं।' फिर बड़ी सुई 6 पर और छोटी सुई 4 और 5 के बीच रखें और कहें: 'बड़ी सुई 6 पर है, यानी आधा घंटा बीत गया: साढ़े चार बजे हैं।'",
+   "we_do_hi": "घड़ी पर छोटी सुई 9 पर और बड़ी सुई 12 पर रखें, बच्चों से पूछें: 'छोटी सुई कहाँ है? बड़ी सुई कहाँ है? कितने बजे?' फिर बड़ी सुई 3 पर रखकर बताएँ कि यह सवा का समय है, और 9 बजकर 15 मिनट मिलकर पढ़ें। अंत में एक बच्चे को बुलाकर घड़ी पर 2 बजे बनवाएँ, बाकी बच्चे देखकर बताएँ कि सुइयाँ सही जगह हैं या नहीं।",
+   "you_do_hi": "हर जोड़ी को कागज़ की घड़ी दें; न हो तो गत्ते का गोला, दो तीलियाँ (एक छोटी, एक बड़ी) और एक बटन मिलाकर दें। शिक्षक एक समय बोलें, एक बच्चा सुइयाँ लगाए और दूसरा पढ़कर बताए, फिर बारी बदलें; घड़ी न हो तो वर्कशीट के काम कॉपी में करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर घड़ी बनाएँ: छोटी सुई 7 पर, बड़ी सुई 12 पर। कितने बजे हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "7 बजे",
+    "listen_for": [],
+    "shows_hi": "बच्चा छोटी सुई से घंटा पढ़ता है और बड़ी सुई को 12 पर पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर घड़ी बनाएँ: बड़ी सुई 6 पर, छोटी सुई 2 और 3 के बीच। 1) 2 बजे 2) साढ़े दो बजे। उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि बड़ी सुई 6 पर हो तो आधा घंटा बीता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "एक बड़ी कागज़ की घड़ी, जिसकी दोनों सुइयाँ घूमें (छोटी और बड़ी सुई अलग लंबाई की)।",
+   "हर जोड़ी के लिए एक कागज़ की घड़ी, या गत्ते का गोला, दो तीलियाँ और एक बटन।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर घड़ी कॉपी में बनाएँ और बताए गए समय पर छोटी और बड़ी सुई बनाएँ।",
+   "instructions_en": "Draw each clock in your notebook and draw the short and long hands for the given time.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "observe": {
+    "task_hi": "शिक्षक एक समय बोलें (जैसे 3 बजे, साढ़े छह बजे, 8 बजकर 15 मिनट); बच्चा घड़ी पर सुइयाँ लगाए और फिर लगी हुई घड़ी पढ़कर समय बताए।",
+    "task_en": "The teacher says a time (such as 3 o'clock, half past six, quarter past 8); the child sets the hands on the clock and then reads a set clock aloud.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "गत्ते का गोला",
+     "दो तीलियाँ (एक छोटी, एक बड़ी)",
+     "बटन"
+    ],
+    "look_for": {
+     "achieved_hi": "घंटा, आधा घंटा और सवा का समय बिना मदद के सही लगाता और पढ़ता है।",
+     "partial_hi": "पूरे घंटे सही पढ़ता है, पर आधे घंटे या सवा पर बड़ी सुई की जगह में उलझता है।",
+     "not_yet_hi": "छोटी और बड़ी सुई में अंतर नहीं कर पाता या घंटा नहीं पढ़ पाता।",
+     "achieved_en": "Sets and reads hours, half-hours and quarter-hours correctly without help.",
+     "partial_en": "Reads hours correctly but confuses the long hand's position for half or quarter past.",
+     "not_yet_en": "Cannot tell the hour hand from the minute hand or read the hour."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "घड़ी बनाएँ और 5 बजे की सुइयाँ बनाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "घड़ी बनाएँ और साढ़े दस बजे की सुइयाँ बनाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "घड़ी बनाएँ और 1 बजकर 15 मिनट की सुइयाँ बनाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "घड़ी बनाएँ और 12 बजे की सुइयाँ बनाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "घड़ी बनाएँ और साढ़े तीन बजे की सुइयाँ बनाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing",
+   "worksheets.progressor problem 4: answer missing",
+   "worksheets.progressor problem 5: answer missing",
+   "worksheets.progressor problem 3 repeats a number the lesson or anchor already used: 15",
+   "worksheets.progressor problem 4 repeats a number the lesson or anchor already used: 12",
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a9a9acd5df95",
+ "created": "2026-11-21T06:09:37Z",
+ "cost_usd": 0.0289,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

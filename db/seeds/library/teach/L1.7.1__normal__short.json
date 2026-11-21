@@ -1,0 +1,105 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.7.1__normal__short",
+ "skill_id": "L1.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर बड़े अक्षर में 'ग' लिखें: पहले बायाँ हिस्सा, फिर खड़ी पाई, अंत में ऊपर की रेखा (शिरोरेखा)। बच्चों से कहें: 'देखिए, हर अक्षर के ऊपर रेखा लगती है और अक्षर पूरी पंक्ति में बराबर ऊँचा रहता है।' इसके बाद 'ध' और 'ई' लिखकर दिखाएँ और ध्यान दिलाएँ कि अक्षर उल्टा न बने।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'अब अपनी वर्कशीट निकालें और सवाल 1 से शुरू करें।' इस छोटे समय में बच्चे सवाल 1 पूरा करें; सवाल 2 और 3 तथा बाकी अतिरिक्त सवाल अगले ब्लॉक में अपनी जगह पर पूरे करें। घूमकर देखें कि हर अक्षर पर शिरोरेखा है और कोई अक्षर उल्टा तो नहीं बना।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो तरह से 'म' लिखें: 1) ऊपर रेखा के साथ 'म' 2) ऊपर रेखा के बिना 'म'। कौन-सा सही लिखा है? उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि अक्षर पर शिरोरेखा लगती है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "एक अक्षर बोलें: 'ख'। स्लेट पर यह अक्षर लिखें।",
+    "expected_hi": "ख",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुना हुआ अक्षर सही आकार में, शिरोरेखा के साथ लिख सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर चार रेखाओं वाली पंक्ति खींचें, ताकि अक्षर की ऊँचाई दिखाई जा सके।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अक्षर को साफ़ लिखें। हर अक्षर के ऊपर रेखा (शिरोरेखा) लगाएँ।",
+   "instructions_en": "Write each letter neatly. Draw the top line (shirorekha) on every letter.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "अक्षर लिखने का उदाहरण:",
+    "example_text": "प → पहले आकार, फिर खड़ी पाई, फिर ऊपर की रेखा"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "ये स्वर सुंदर अक्षरों में लिखें: अ, आ, इ, उ, ए",
+     "answer": "अ आ इ उ ए",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "ये व्यंजन शिरोरेखा के साथ लिखें: क, च, ट, त, न",
+     "answer": "क च ट त न",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "ये व्यंजन ध्यान से लिखें, कोई अक्षर उल्टा न बने: ङ, झ, ठ, ढ, क्ष",
+     "answer": "ङ झ ठ ढ क्ष",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "ये व्यंजन लिखें: ब, ल, व, स, ह",
+     "answer": "ब ल व स ह",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "086803bde11c",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0199,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

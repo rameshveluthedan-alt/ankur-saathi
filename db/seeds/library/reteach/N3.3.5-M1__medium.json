@@ -1,0 +1,150 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.5-M1__medium",
+ "skill_id": "N3.3.5",
+ "domain_id": "numeracy",
+ "mode": "N3.3.5-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों से कहें: 'कल हमने बराबर बाँटना सीखा था।' बोर्ड पर लिखें: 18 ÷ 3 = 15, और बताएँ कि यहाँ 18 में से 3 घटा दिया गया है, जबकि भाग का मतलब 18 को 3 बराबर समूहों में बाँटना है। फिर 18 छड़ियाँ 3 ढेरों में एक-एक करके बाँटें, हर ढेर गिनें, बोर्ड पर 18 ÷ 3 = 6 लिखें और गलत लाइन मिटा दें।",
+   "we_do_hi": "बोर्ड पर लिखें: 20 ÷ 4 = 16, और बच्चों से पूछें: 'क्या यहाँ बाँटा गया या घटाया गया?' फिर बच्चे 20 छड़ियाँ 4 ढेरों में बाँटें और सही उत्तर 5 तक पहुँचें। इसके बाद नया सवाल साथ में करें: 21 ÷ 7, यानी 21 छड़ियाँ 7 ढेरों में बाँटें, उत्तर 3।",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट का सवाल 1 अभी हल करें; सवाल 2 और 3 अपनी जगह पर पूरे करें, जो जल्दी ख़त्म करें वे बाकी सवाल करें।' इस दौरान बच्चों के बीच घूमते समय सबसे पहले उन बच्चों के पास जाएँ जिन्होंने पिछली बार घटाया था, बिना नाम लिए, चुपके से नहीं बल्कि सामान्य चक्कर की तरह। अगर चौथाई से ज़्यादा बच्चे शो-मी में घटाव वाला उत्तर दिखाएँ, तो पहले छड़ियों से बाँटना फिर से करवाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर उत्तर लिखें: 35 ÷ 5",
+    "expected_hi": "7",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M1",
+      "misconception_name_hi": "भाग को घटाव समझना",
+      "misconception_name_en": "Confuses division with subtraction",
+      "detect_en": "Answer equals dividend minus divisor consistently",
+      "wrong_answer_hi": "30"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "32 ÷ 4: 8 या 28? उंगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1) 8",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.5-M1",
+      "misconception_name_hi": "भाग को घटाव समझना",
+      "misconception_name_en": "Confuses division with subtraction",
+      "detect_en": "Answer equals dividend minus divisor consistently",
+      "wrong_answer_hi": "2) 28"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "हर 4 बच्चों के लिए 21 छड़ियों का एक सेट (सबसे बड़ा उदाहरण 21 है)।",
+   "शिक्षक के लिए 18 छड़ियाँ, I Do में बाँटने के लिए।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में बराबर बाँटें और उत्तर लिखें। याद रखें: भाग का मतलब बराबर समूह बनाना है, घटाना नहीं।",
+   "instructions_en": "Share equally and write the answer. Remember: division means making equal groups, not subtracting.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "16 ÷ 4 = ___",
+    "answer": "4",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": "4"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "14 ÷ 2 = ___",
+     "answer": "7",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "48 ÷ 6 = ___",
+     "answer": "8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "90 ÷ 10 = ___",
+     "answer": "9",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N3.3.5-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "24 ÷ 2 = ___",
+     "answer": "12",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "50 ÷ 5 = ___",
+     "answer": "10",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "30 लड्डू 6 डिब्बों में बराबर रखें। एक डिब्बे में कितने लड्डू आएँगे?",
+     "answer": "5",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2c26b128c2cd",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0363,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

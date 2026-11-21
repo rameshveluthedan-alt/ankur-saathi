@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.7.2-M3__medium",
+ "skill_id": "L1.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.7.2-M3",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने मात्रा वाले शब्द लिखे थे।' बोर्ड पर 'पतंग' के अक्षर अलग-अलग लिखें, ऊपर की रेखा बिना, और बोलें: 'देखिए, अक्षर ठीक हैं, पर ऊपर की रेखा नहीं है, इसलिए यह शब्द नहीं, अलग-अलग अक्षर लगते हैं।' फिर पास में वही 'पतंग' लिखें, पहले अक्षर बनाएँ, फिर पूरे शब्द के ऊपर एक लंबी रेखा खींचें; इसके बाद पहला 'पतंग' मिटा दें ताकि केवल सही शब्द बोर्ड पर रहे।",
+   "we_do_hi": "बोर्ड पर 'नमक' और 'सड़क' बिना ऊपर की रेखा के लिखें; बच्चों से पूछें कि क्या छूटा है, और उनके बताने पर हर शब्द पर एक ही लंबी रेखा खींचें। फिर 'घर' बोलें: बच्चे कॉपी में अक्षर लिखें और अंत में पूरे शब्द पर एक रेखा खींचें। कहें: 'पहले अक्षर, फिर पूरे शब्द पर एक रेखा।'",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 शुरू करें; जो जल्दी पूरा करें, वे बाकी सवाल करें।' इस छोटे समय में सवाल 1 और 2 पूरे हों; बाकी बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें। घूमते हुए पहले उन बच्चों की कॉपी शांति से देखें जिनकी पिछली बार ऊपर की रेखा छूटी थी।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 'कलम' पूरे शब्द पर एक रेखा के साथ, 2) 'कलम' बिना ऊपर की रेखा के, अक्षर अलग-अलग। सही शब्द कौन-सा है, 1 या 2? उँगलियों पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M3",
+      "misconception_name_hi": "लिखित शब्दों में शिरोरेखा छूटना",
+      "misconception_name_en": "Missing shirorekha (headline) in written words",
+      "detect_en": "All letters are individually correct but float without the connecting headline; word looks like separate letters",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'जल' लिखें, 'ज' के ऊपर रेखा हो पर 'ल' के ऊपर नहीं। सही है या गलत? स्लेट पर लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L1.7.2-M3",
+      "misconception_name_hi": "लिखित शब्दों में शिरोरेखा छूटना",
+      "misconception_name_en": "Missing shirorekha (headline) in written words",
+      "detect_en": "All letters are individually correct but float without the connecting headline; word looks like separate letters",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से जगह रखें: एक ओर गलत शब्द के लिए, दूसरी ओर सही शब्द के लिए।",
+   "हर बच्चे के पास स्लेट या कॉपी का खाली पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द ध्यान से लिखें। अक्षर बनाकर पूरे शब्द के ऊपर एक रेखा खींचें।",
+   "instructions_en": "Write each word carefully. Form the letters, then draw one headline over the whole word.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "शब्द लिखने का उदाहरण:",
+    "example_text": "ब + त + ख = बतख (पूरे शब्द पर एक रेखा)"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "जोड़कर एक शब्द लिखें: म + ो + र",
+     "answer": "मोर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "जोड़कर एक शब्द लिखें, पूरे शब्द पर एक रेखा के साथ: ब + स",
+     "answer": "बस",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "जोड़कर एक शब्द लिखें, पूरे शब्द पर एक रेखा के साथ: ट + म + ा + ट + र",
+     "answer": "टमाटर",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.7.2-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "जोड़कर एक शब्द लिखें: ग + ा + य",
+     "answer": "गाय",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "जोड़कर एक शब्द लिखें: फ + ू + ल",
+     "answer": "फूल",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats wording from the lesson or anchor: «पूरे शब्द पर एक रेखा»",
+   "worksheets.progressor problem 3 repeats wording from the lesson or anchor: «पूरे शब्द पर एक रेखा»"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "e5efcfa9a916",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.025,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

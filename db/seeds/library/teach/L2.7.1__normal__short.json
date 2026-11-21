@@ -1,0 +1,142 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.7.1__normal__short",
+ "skill_id": "L2.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: गीत, फूल, हैं। हर शब्द धीरे बोलें और बच्चों से कहें: 'सुनें, ई और ऊ की आवाज़ लंबी है, इसलिए बड़ी मात्रा लगेगी; हैं में आखिर में बिंदी की आवाज़ है।' फिर बोर्ड पर 'हम खेत गए।' लिखें और हर शब्द के बीच की जगह पर उँगली रखकर दिखाएँ: 'हर शब्द के बाद थोड़ी जगह छोड़ें।'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट निकालें, हर वाक्य ध्यान से सुनें।' हर वाक्य दो बार धीरे बोलें, बच्चे उसे वर्कशीट की लाइन 1, 2, 3 पर लिखें; अभी पहले दो वाक्य लिखवाएँ, बाकी वाक्य समूह अगले ब्लॉक में अपनी जगह पर पूरे करेगा। लिखते समय घूमकर देखें कि बड़ी मात्रा, बिंदी और शब्दों के बीच जगह सही है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) सुरज 2) सूरज। कौन-सा शब्द सही लिखा है? उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "2) सूरज",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.1-M1",
+      "misconception_name_hi": "छोटी-बड़ी मात्रा में भ्रम (ि/ी, ु/ू)",
+      "misconception_name_en": "Confuses short and long vowel matras (ि/ी, ु/ू)",
+      "detect_en": "The same pair is wrong in two or more dictated words; the consonants are right",
+      "wrong_answer_hi": "1) सुरज"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: बच्चे गाना गाते है। यह वाक्य सही लिखा है या गलत? स्लेट पर 'सही' या 'गलत' लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.1-M2",
+      "misconception_name_hi": "अनुस्वार, चंद्रबिंदु या मात्रा छोड़ देना (ं, ँ, े/ै)",
+      "misconception_name_en": "Leaves out the nasal sign or a matra (ं, ँ, े/ै)",
+      "detect_en": "Missing ं/ँ or े↔ै in two or more words; often in है/हैं, में/मैं",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखकर रखें: गीत, फूल, हैं और 'हम खेत गए।'",
+   "हर बच्चे के लिए श्रुतलेख वर्कशीट और स्लेट या कॉपी का एक पन्ना"
+  ],
+  "worksheet": {
+   "instructions_hi": "शिक्षक जो वाक्य बोलें, उसे ध्यान से सुनें और सही लाइन पर लिखें। बड़ी-छोटी मात्रा, बिंदी और शब्दों के बीच जगह का ध्यान रखें।",
+   "instructions_en": "Listen to each sentence the teacher reads and write it on the matching line. Take care with long and short matras, the bindi, and spaces between words.",
+   "required_count": 5,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "dictation",
+   "dictation_sentences": [
+    "मीना पानी पीती है।",
+    "दादी पूरी बनाती हैं।",
+    "मैं नदी में नहाता हूँ।",
+    "चूहा बिल में गया।",
+    "हम सब मेला देखेंगे।"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "वाक्य 1",
+     "answer": "मीना पानी पीती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 2,
+     "problem_hi": "वाक्य 2",
+     "answer": "दादी पूरी बनाती हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 3,
+     "problem_hi": "वाक्य 3",
+     "answer": "मैं नदी में नहाता हूँ।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 4,
+     "problem_hi": "वाक्य 4",
+     "answer": "चूहा बिल में गया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    },
+    {
+     "number": 5,
+     "problem_hi": "वाक्य 5",
+     "answer": "हम सब मेला देखेंगे।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "dictation": true
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: dictation sheet built from 5 sentence(s), none printed for the child"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "79de6812414f",
+ "created": "2026-11-21T06:10:14Z",
+ "cost_usd": 0.0793,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,150 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.2-M3__long",
+ "skill_id": "N2.3.2",
+ "domain_id": "numeracy",
+ "mode": "N2.3.2-M3",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने हासिल के साथ जोड़ सीखा था; आज देखेंगे कि हासिल में कौन-सा अंक जाता है। बोर्ड पर दहाई-इकाई के बॉक्स में 26 + 19 लिखें, इकाई जोड़ें: 6 + 9 = 15, फिर हासिल में 5 लिखकर दहाई जोड़ें: 2 + 1 + 5 = 8, उत्तर 85, और कहें: 'देखिए, 15 में 1 दहाई है और 5 इकाई; 5 तो इकाई है, वह दहाई में नहीं जा सकता।' अब वही सवाल दोबारा करें: 15 में से 5 इकाई के बॉक्स में, 1 दहाई हासिल बनकर दहाई के बॉक्स में ऊपर, 2 + 1 + 1 = 4, उत्तर 45; फिर गलत हल मिटा दें ताकि बोर्ड पर केवल सही हल रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 29 + 34 = 83 और 15 + 37 = 62, बच्चों से पूछें: 'इकाई का जोड़ कितना है, उसमें दहाई कितनी है, और हासिल में कौन-सा अंक जाना चाहिए?' बच्चों के साथ दोनों को ठीक करें: 63 और 52, हर बार 10 की गड्डी दिखाकर कहें 'हासिल हमेशा दहाई का अंक है।' अंत में नया सवाल साथ में हल करें: 18 + 57, बच्चे हर कदम बताएँ।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने कल हासिल में इकाई का अंक रखा था, और उनके सवाल 2 का हासिल देखें। अगर दिखाएँ-प्रश्नों में चौथाई से अधिक बच्चे गलत हों, तो You Do से पहले वही कदम छड़ियों से दोबारा कराएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "37 + 16 कितना होगा: 53 या 73?",
+    "expected_hi": "53",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M3",
+      "misconception_name_hi": "गलत अंक हासिल रखना",
+      "misconception_name_en": "Carries wrong digit",
+      "detect_en": "Tens column is consistently 1 more than expected (double-carry effect)",
+      "wrong_answer_hi": "73"
+     },
+     {
+      "misconception_id": "N2.3.2-M1",
+      "misconception_name_hi": "हासिल भूलना: हासिल छोड़ देता है",
+      "misconception_name_en": "Place-value carry-over confusion: drops the carry",
+      "detect_en": "Answer is exactly 10 less than correct. Ones column has a 2-digit number written, or only ones digit is written but tens carry is missing. Consistent across 3+ problems.",
+      "wrong_answer_hi": "43"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "compute",
+    "question_hi": "बोर्ड पर लिखें: 33 + 49। जोड़कर उत्तर लिखें।",
+    "expected_hi": "82",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M3",
+      "misconception_name_hi": "गलत अंक हासिल रखना",
+      "misconception_name_en": "Carries wrong digit",
+      "detect_en": "Tens column is consistently 1 more than expected (double-carry effect)",
+      "wrong_answer_hi": "92"
+     },
+     {
+      "misconception_id": "N2.3.2-M2",
+      "misconception_name_hi": "पूरा इकाई योग लिखना, हासिल न रखना",
+      "misconception_name_en": "Writes full ones sum without carrying",
+      "detect_en": "Answer has 3 digits where 2 expected, or ones column shows 2 digits (e.g., 34+28 → 512 where ones shows 12)",
+      "wrong_answer_hi": "712"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "10-10 छड़ियों की कुछ गड्डियाँ और खुली छड़ियाँ (बोर्ड पर दिखाने के लिए)",
+   "बोर्ड पर दहाई-इकाई का बॉक्स बनाकर रखें, ऊपर हासिल की जगह के साथ"
+  ],
+  "worksheet": {
+   "instructions_hi": "इकाई से जोड़ना शुरू करें। हासिल के बॉक्स में केवल दहाई का अंक लिखें।",
+   "instructions_en": "Start adding from the ones. Write only the tens digit in the carry box.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "32 + 19",
+     "answer": "51",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "26 + 38",
+     "answer": "64",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.2-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "18 + 25 = ___",
+     "answer": "43",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.2-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "41 + 29 = ___",
+     "answer": "70",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "55 + 36 = ___",
+     "answer": "91",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 37 आम हैं। दूसरी टोकरी में 24 आम हैं। दोनों टोकरियों में कुल कितने आम हैं?",
+     "answer": "61",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "a02e37429378",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0428,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

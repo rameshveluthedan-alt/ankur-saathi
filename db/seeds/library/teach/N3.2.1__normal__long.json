@@ -1,0 +1,109 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.2.1__normal__long",
+ "skill_id": "N3.2.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने सौ तक की संख्याएँ पढ़ी थीं, आज हम हज़ार वाली संख्याएँ पढ़ेंगे।' बोर्ड पर हज़ार-सौ-दहाई-इकाई का बॉक्स बनाकर उसमें 2345 लिखें, फिर हर अंक की ओर इशारा करके बोलें: 'देखिए, 2 हज़ार, 3 सौ, 4 दहाई, 5 इकाई। हम इसे पढ़ते हैं: दो हज़ार तीन सौ पैंतालीस।' इसके बाद बोलें: 'सात हज़ार अस्सी' और बॉक्स में 7080 लिखकर दिखाएँ कि सौ और इकाई के खाली स्थान पर 0 लिखते हैं।",
+   "we_do_hi": "बोर्ड पर 4072 लिखें। बच्चों से एक-एक स्थान का अंक पूछें और बच्चे कॉपी में पूरी संख्या शब्दों में लिखें। फिर बोलें: 'छह हज़ार तीन सौ।' बच्चे बॉक्स में अंक भरें और सबके साथ जाँचें कि दहाई और इकाई में 0 लिखा गया है।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। घूमते हुए देखें कि खाली स्थान पर 0 लिखा जा रहा है या नहीं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 3816। इसमें सौ के स्थान पर कौन-सा अंक है?",
+    "expected_hi": "8",
+    "listen_for": [],
+    "shows_hi": "बच्चा चार अंकों की संख्या में हर अंक का स्थान पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोलें: छह हज़ार चालीस। सही संख्या कौन-सी है? 1) 6400 2) 6040",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि खाली सौ के स्थान पर 0 लिखा जाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर हज़ार-सौ-दहाई-इकाई का बड़ा बॉक्स पहले से बना लें।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को ध्यान से पढ़ें। शब्दों में लिखी संख्या को अंकों में लिखें, और अंकों वाली संख्या को शब्दों में लिखें। खाली स्थान पर 0 लिखना न भूलें।",
+   "instructions_en": "Read each number carefully. Write number words in digits, and digits in words. Remember to write 0 in an empty place.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "तीन हज़ार चार सौ पच्चीस अंकों में लिखें = ___",
+     "answer": "3425",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पाँच हज़ार छह सौ सात अंकों में लिखें = ___",
+     "answer": "5607",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सात हज़ार नौ अंकों में लिखें = ___",
+     "answer": "7009",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "आठ हज़ार दो सौ इकतीस अंकों में लिखें = ___",
+     "answer": "8231",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "6 हज़ार, 0 सौ, 5 दहाई और 4 इकाई से बनी संख्या लिखें = ___",
+     "answer": "6054",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "1962 को शब्दों में लिखें।",
+     "answer": "एक हज़ार नौ सौ बासठ",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "89ffa956b349",
+ "created": "2026-11-21T06:10:44Z",
+ "cost_usd": 0.0295,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

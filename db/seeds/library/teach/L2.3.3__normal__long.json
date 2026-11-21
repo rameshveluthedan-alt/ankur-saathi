@@ -1,0 +1,136 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.3.3__normal__long",
+ "skill_id": "L2.3.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने मात्रा वाले शब्द पढ़े थे।' बोर्ड पर लिखें: जगत् और जगत। दोनों पढ़कर सुनाएँ और बच्चों से कहें: 'देखिए, नीचे की इस छोटी तिरछी रेखा को हलन्त कहते हैं; यह आख़िरी अक्षर को आधा कर देती है, इसलिए त् पर आवाज़ रुक जाती है।' फिर महत्, विद्वान्, श्रीमान् लिखें, हर शब्द दो बार धीरे पढ़ें और हलन्त वाले अक्षर पर उँगली रखें।",
+   "we_do_hi": "बोर्ड पर लिखें: सम्राट्, पश्चात्, भगवान्, क्षत्रिय। हर शब्द पर पहले बच्चों से पूछें: 'हलन्त कहाँ है?', फिर एक-एक बच्चे से पढ़वाएँ, सबसे एक साथ नहीं। जहाँ बच्चा आख़िर में 'अ' की आवाज़ जोड़ दे, वहाँ हलन्त पर उँगली रखकर शब्द फिर से धीरे पढ़वाएँ।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियाँ दें, जिन पर ये शब्द लिखे हों: अर्थात्, जगत्, सम्राट्, विद्वान्, महत्, पश्चात्। एक बच्चा पर्ची उठाकर पढ़े, साथी सुने और बताए कि हलन्त वाला अक्षर आधा पढ़ा गया या नहीं, फिर दोनों बारी बदलें; पर्चियाँ न हों तो वर्कशीट के शब्द कॉपी में लिखकर पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) महत्  2) महत। जिस शब्द के आख़िर में आवाज़ आधी रुकती है, उसका नंबर उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा हलन्त का चिह्न पहचानता है और जानता है कि वह आख़िरी अक्षर को आधा करता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: अर्थात्। इस शब्द का आख़िरी अक्षर पूरा पढ़ा जाता है या आधा? स्लेट पर लिखें: पूरा या आधा।",
+    "expected_hi": "आधा",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि हलन्त वाला अक्षर बिना 'अ' की आवाज़ के पढ़ा जाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: जगत्, जगत, महत्, विद्वान्, श्रीमान्, सम्राट्, पश्चात्, भगवान्, क्षत्रिय",
+   "हर जोड़ी के लिए 6 कागज़ की पर्चियाँ: अर्थात्, जगत्, सम्राट्, विद्वान्, महत्, पश्चात्"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द अपने साथी को पढ़कर सुनाएँ। हलन्त वाले अक्षर पर आवाज़ आधी रखें।",
+   "instructions_en": "Read each word aloud to your partner. Say the letter with the halant as a half sound.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी को हलन्त वाले शब्द पढ़कर सुनाएँ: अर्थात्, जगत्, सम्राट्, विद्वान्, महत्, पश्चात्।",
+    "task_en": "Read halant words aloud to a partner: अर्थात्, जगत्, सम्राट्, विद्वान्, महत्, पश्चात्.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "शब्द लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना मदद के, हलन्त वाले अक्षर को आधा करके पढ़ता है।",
+     "partial_hi": "कुछ शब्द ठीक पढ़ता है, कुछ के आख़िर में 'अ' की आवाज़ जोड़ देता है।",
+     "not_yet_hi": "हलन्त पर ध्यान नहीं देता; जगत् को जगत पढ़ता है।",
+     "achieved_en": "Reads all words correctly with the halant letter as a half sound, without help.",
+     "partial_en": "Reads some correctly but adds a schwa at the end of others.",
+     "not_yet_en": "Ignores the halant; reads जगत् as जगत."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: जगत्",
+     "answer": "जगत् (त् आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: अर्थात्",
+     "answer": "अर्थात् (त् आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: विद्वान्",
+     "answer": "विद्वान् (न् आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: सम्राट्",
+     "answer": "सम्राट् (ट् आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: पश्चात्",
+     "answer": "पश्चात् (त् आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "इस शब्द में हलन्त किस अक्षर पर है? साथी को बताएँ: महत्",
+     "answer": "त्",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0302,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

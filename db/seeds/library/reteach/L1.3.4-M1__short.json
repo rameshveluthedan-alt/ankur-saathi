@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.4-M1__short",
+ "skill_id": "L1.3.4",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.4-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अक्षर जोड़कर शब्द पढ़ना सीखा था। बोर्ड पर 'नमक' लिखें और पहले अलग-अलग पढ़ें: 'न... म... क...', फिर बच्चों से कहें: 'देखिए, ऐसे रुक-रुककर पढ़ने से शब्द नहीं बना।' अब उँगली अक्षरों के नीचे बिना रुके खिसकाते हुए धीरे से फिर तेज़ी से पढ़ें: 'नऽमऽक... नमक', फिर अलग-अलग वाली पढ़ाई की याद मिटाकर बोर्ड पर केवल 'नमक' और उसके नीचे खिंची लकीर रहने दें।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को शब्द-पर्चियाँ दें (कागज़ की पर्चियों पर लिखे शब्द: घर, बतख, सड़क, पानी, नदी); पर्चियाँ न हों तो वर्कशीट के सवाल 1 से 3 पहले करें, जो जल्दी ख़त्म करें वे बाकी करें। एक बच्चा उँगली खिसकाते हुए शब्द जोड़कर पढ़े, साथी सुने, फिर बारी बदलें; शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्हें कल जोड़ने में कठिनाई हुई थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "यह शब्द बोलकर सुनाएँ: 'ग... ल... त...'। यह कौन-सा शब्द बना? 1) गलत 2) गमला। उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.4-M1",
+      "misconception_name_hi": "अक्षर अलग-अलग पढ़ता है पर शब्द में जोड़ नहीं पाता",
+      "misconception_name_en": "Decodes letters individually but cannot blend into word",
+      "detect_en": "Says \"क-म-ल\" but cannot say \"कमल\" — the blending step fails",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'जल' और 'कलम'। शिक्षक धीरे बोलें: 'क... ल... म...'। जुड़ा हुआ शब्द कौन-सा है? 1) जल 2) कलम। उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.4-M2",
+      "misconception_name_hi": "डिकोड करने की बजाय पहले अक्षर से शब्द अनुमान लगाता है",
+      "misconception_name_en": "Guesses word from first letter instead of decoding",
+      "detect_en": "Reads कमल as \"कमरा\" or \"काम\" — guesses a known word starting with क instead of decoding",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 'नमक' लिखने की जगह छोड़ें।",
+   "कागज़ की पर्चियों पर शब्द लिखें: घर, बतख, सड़क, पानी, नदी (हर जोड़ी के लिए एक सेट)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को उँगली रखकर अक्षर जोड़ते हुए साथी को पढ़कर सुनाएँ।",
+   "instructions_en": "Read each word aloud to your partner, blending the letters while moving your finger.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "अक्षर जोड़ने का उदाहरण:",
+    "example_text": "क + म + ल = कमल"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा पाँच शब्द-पर्चियाँ उँगली खिसकाते हुए जोड़कर साथी को पढ़कर सुनाए।",
+    "task_en": "The child reads five word slips aloud to a partner, blending the sounds while moving a finger.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की शब्द-पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "पाँच में से चार शब्द बिना रुके जोड़कर पढ़ता है।",
+     "partial_hi": "धीरे-धीरे, खुद सुधारकर दो-तीन शब्द पढ़ता है।",
+     "not_yet_hi": "अक्षर अलग-अलग बोलता है, शब्द नहीं बना पाता।",
+     "achieved_en": "Blends and reads 4 of 5 words smoothly.",
+     "partial_en": "Reads 2-3 words slowly with self-correction.",
+     "not_yet_en": "Says letters separately but cannot blend into a word."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: घर",
+     "answer": "घर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "अक्षर जोड़कर पढ़ें: ब + त + ख",
+     "answer": "बतख",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: सड़क",
+     "answer": "सड़क",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.4-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: पानी",
+     "answer": "पानी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: नदी",
+     "answer": "नदी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "bfb86c72cfee",
+ "created": "2026-11-21T06:01:34Z",
+ "cost_usd": 0.027,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

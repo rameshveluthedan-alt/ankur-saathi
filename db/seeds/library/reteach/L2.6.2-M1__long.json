@@ -1,0 +1,148 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.6.2-M1__long",
+ "skill_id": "L2.6.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.6.2-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने सीखा था कि मुख्य बात पूरे अनुच्छेद की बात होती है।' बोर्ड पर लिखें: 'रानी के पास एक गुड़िया है। गुड़िया की लाल फ्रॉक है। रानी उसके बाल बनाती है। वह उसे रोज़ कहानी सुनाती है। रानी को गुड़िया बहुत प्यारी है।' पहले कहें: 'मुख्य बात: गुड़िया की लाल फ्रॉक है', फिर समझाएँ: 'यह सही है, पर यह बस एक छोटी बात है।' इसके बाद सही मुख्य बात बोलें, 'रानी अपनी गुड़िया को बहुत प्यार करती है', और गलत वाक्य मिटा दें, ताकि बोर्ड पर केवल सही बात रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'मोहन रोज़ पेड़ों को पानी देता है। वह पत्ते साफ़ करता है। वह नए पौधे लगाता है। उसे पेड़ बहुत अच्छे लगते हैं।' इसके नीचे लिखें: 'मुख्य बात: मोहन पत्ते साफ़ करता है।' बच्चों से पूछें: 'क्या यह पूरे अनुच्छेद की बात है?' फिर सब मिलकर इसे ठीक करें: 'मोहन पेड़ों की देखभाल करता है।' इसके बाद नया अनुच्छेद साथ में पढ़ें, 'बारिश आई। बच्चे नाचने लगे। मेंढक टर्राए। सब खुश हो गए।', और मिलकर मुख्य बात बताएँ: 'बारिश से सब खुश हुए।'",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखा एक छोटा अनुच्छेद दें; पर्चियाँ न हों तो बोर्ड पर लिखा अनुच्छेद दें। एक बच्चा अनुच्छेद पढ़े और दूसरा उसकी मुख्य बात एक वाक्य में बताए, फिर दोनों बारी बदलें। पर्चियाँ न हों तो बच्चे वर्कशीट के सवाल 1 से 3 पहले करें और जो जल्दी ख़त्म करें, वे बाकी सवाल करें। घूमते हुए पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार विवरण बताया था। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 'राजू ने पौधा लगाया। उसने रोज़ पानी दिया।' मुख्य बात क्या है? 1) राजू पौधे की देखभाल करता है 2) पानी",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.2-M1",
+      "misconception_name_hi": "मुख्य विचार की बजाय कोई विवरण बताता है",
+      "misconception_name_en": "Gives a detail instead of the main idea",
+      "detect_en": "Response is factually correct but is a detail, not the main idea: \"The boy had a red ball\" instead of \"A boy learns to share\"",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'माँ खाना बनाती हैं। माँ कपड़े धोती हैं।' मुख्य बात: 'माँ कपड़े धोती हैं।' सही या गलत?",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L2.6.2-M1",
+      "misconception_name_hi": "मुख्य विचार की बजाय कोई विवरण बताता है",
+      "misconception_name_en": "Gives a detail instead of the main idea",
+      "detect_en": "Response is factually correct but is a detail, not the main idea: \"The boy had a red ball\" instead of \"A boy learns to share\"",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "I Do और We Do के अनुच्छेद बोर्ड पर लिखने के लिए तैयार रखें।",
+   "हर जोड़ी के लिए एक कागज़ की पर्ची पर एक छोटा अनुच्छेद लिखें (वर्कशीट के सवाल 1 से 5 के अनुच्छेद काम में लें)।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर अनुच्छेद साथी को पढ़कर सुनाएँ। फिर उसकी मुख्य बात एक वाक्य में बताएँ।",
+   "instructions_en": "Read each paragraph to your partner. Then tell its main idea in one sentence.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी को एक छोटा अनुच्छेद पढ़कर सुनाएँ और उसकी मुख्य बात एक वाक्य में बताएँ।",
+    "task_en": "Read a short paragraph to a partner and tell its main idea in one sentence.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "अनुच्छेद लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखा अनुच्छेद"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के पूरे अनुच्छेद की बात अपने शब्दों में बताता है",
+     "partial_hi": "केवल एक छोटी बात बताता है, या मदद से मुख्य बात तक पहुँचता है",
+     "not_yet_hi": "कुछ नहीं बताता या बिखरी हुई बातें दोहराता है",
+     "achieved_en": "States the whole paragraph's message in own words without help",
+     "partial_en": "Gives only a detail, or reaches the main idea with help",
+     "not_yet_en": "Says nothing or repeats random details"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'सीमा रोज़ स्कूल जाती है। वह मन लगाकर पढ़ती है। वह गृहकार्य समय पर करती है। उसे पढ़ना अच्छा लगता है।' मुख्य बात बताएँ।",
+     "answer": "सीमा को पढ़ना अच्छा लगता है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "'अमन के पास एक कुत्ता है। कुत्ते का नाम मोती है। अमन उसे खाना देता है। वह उसे घुमाने ले जाता है।' मुख्य बात बताएँ।",
+     "answer": "अमन अपने कुत्ते का ध्यान रखता है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "'गाँव में मेला लगा। वहाँ झूले थे। मिठाई की दुकानें थीं। बच्चों ने गुब्बारे लिए। सबने खूब मज़ा किया।' मुख्य बात बताएँ।",
+     "answer": "गाँव के मेले में सबने मज़ा किया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.6.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "'दादाजी बगीचे में काम करते हैं। वे फूल लगाते हैं। वे घास काटते हैं। बगीचा सुंदर दिखता है।' मुख्य बात बताएँ।",
+     "answer": "दादाजी बगीचे को सुंदर बनाते हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'सर्दी आ गई। लोग स्वेटर पहनते हैं। वे आग तापते हैं। गरम चाय पीते हैं।' मुख्य बात बताएँ।",
+     "answer": "सर्दी में लोग ठंड से बचते हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "7dcb22533d17",
+ "created": "2026-11-21T06:02:07Z",
+ "cost_usd": 0.1393,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

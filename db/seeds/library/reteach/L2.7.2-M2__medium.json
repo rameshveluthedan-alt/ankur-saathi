@@ -1,0 +1,152 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.7.2-M2__medium",
+ "skill_id": "L2.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "L2.7.2-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने किसी विषय पर जुड़े हुए वाक्य लिखे थे।' बोर्ड पर लिखें: 'आज बारिश हुई हम छाता लेकर बाहर गए' और धीरे पढ़कर दिखाएँ कि बिना पूर्ण विराम के पता नहीं चलता कि पहला वाक्य कहाँ खत्म हुआ। फिर इसी वाक्य को सही लिखें: 'आज बारिश हुई। हम छाता लेकर बाहर गए।', बताएँ कि हर वाक्य के अंत में खड़ी पाई (।) लगती है, और गलत वाली पंक्ति मिटा दें।",
+   "we_do_hi": "बोर्ड पर लिखें: 'मेरी गाय सफ़ेद है वह घास खाती है' और 'दादी कहानी सुनाती। हैं हम ध्यान से सुनते हैं'। बच्चों से पूछें कि पूर्ण विराम कहाँ होना चाहिए, और उनके बताने पर ठीक जगह लगाएँ, गलत लगा विराम मिटाएँ। फिर साथ में एक नया वाक्य-जोड़ा बनाएँ: 'पापा खेत पर गए। वे शाम को लौटे।'",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट के सवाल 2 और 3 पहले हल करें, फिर सवाल 1 का पहला वाक्य लिखें।' बाकी काम बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें। घूमते हुए सबसे पहले उन बच्चों की कॉपी देखें जिन्होंने पिछली बार पूर्ण विराम छोड़ा था, बिना किसी का नाम लिए।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'चिड़िया पेड़ पर बैठी है वह गाना गा रही है'। पहला वाक्य किस शब्द के बाद खत्म होता है? उस शब्द की गिनती लिखें।",
+    "expected_hi": "5",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M2",
+      "misconception_name_hi": "वाक्य कहाँ खत्म होता है, यह नहीं दिखाना",
+      "misconception_name_en": "Does not mark where a sentence ends",
+      "detect_en": "Two or more full stops missing or misplaced on the sheet",
+      "wrong_answer_hi": "9"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "कौन सा सही लिखा है? 1) माँ रोटी बनाती है। हम खाते हैं। 2) माँ रोटी। बनाती है हम खाते हैं।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M2",
+      "misconception_name_hi": "वाक्य कहाँ खत्म होता है, यह नहीं दिखाना",
+      "misconception_name_en": "Does not mark where a sentence ends",
+      "detect_en": "Two or more full stops missing or misplaced on the sheet",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखने के लिए I Do का वाक्य तैयार रखें: 'आज बारिश हुई हम छाता लेकर बाहर गए'।",
+   "We Do के दो गलत वाक्य पहले से कागज़ पर लिख लें, ताकि बोर्ड पर जल्दी लिख सकें।",
+   "हर बच्चे के लिए एक वर्कशीट की प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "ध्यान से पढ़ें और लिखें। हर वाक्य के अंत में पूर्ण विराम (।) लगाएँ।",
+   "instructions_en": "Read carefully and write. Put a full stop (।) at the end of every sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा स्कूल",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य स्कूल के बारे में",
+     "item_en": "All sentences about the school"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of every sentence"
+    },
+    {
+     "item_hi": "वाक्य 'और / फिर / क्योंकि' से जुड़े",
+     "item_en": "Sentences joined with और / फिर / क्योंकि"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने स्कूल पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा स्कूल"
+    },
+    {
+     "number": 2,
+     "problem_hi": "पूर्ण विराम (।) सही जगह लगाकर फिर से लिखें: बिल्ली दूध पीती है वह सो जाती है",
+     "answer": "बिल्ली दूध पीती है। वह सो जाती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "गलत जगह लगा पूर्ण विराम ठीक करके लिखें: राजू साइकिल। चलाता है वह बाज़ार जाता है",
+     "answer": "राजू साइकिल चलाता है। वह बाज़ार जाता है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "सही शब्द चुनकर दोनों वाक्य जोड़ें (और / लेकिन): सोनू ने खाना खाया। सोनू ने पानी पिया।",
+     "answer": "और",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "अपने मनपसंद खेल पर 3 वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "81fdbbea45f5",
+ "created": "2026-11-21T06:01:24Z",
+ "cost_usd": 0.0301,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

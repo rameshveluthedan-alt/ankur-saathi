@@ -1,0 +1,123 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.3.2__normal__medium",
+ "skill_id": "N3.3.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर सैकड़ा-दहाई-इकाई का बॉक्स बनाकर 532 − 218 लिखें। कहें: 'देखिए, इकाई में 2 में से 8 नहीं घटता, इसलिए दहाई से 1 दहाई उधार लेते हैं: 3 दहाई की 2 दहाई बचीं, इकाई 12 हो गई; 12 − 8 = 4, 2 − 1 = 1, 5 − 2 = 3।' उत्तर 314 लिखकर बताएँ कि हर बार इकाई से शुरू करते हैं।",
+   "we_do_hi": "बोर्ड पर 641 − 375 लिखें और हर कदम पर बच्चों से पूछें: 'क्या 1 में से 5 घटेगा? किससे उधार लेंगे?' इकाई के बाद दहाई में भी उधार लें: बच्चे बताएँ कि 6 सैकड़े के 5 बचे और दहाई 13 हो गई। उत्तर 266 मिलकर लिखें।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। इस छोटे समय में सवाल 1 शुरू करें, बाकी सवाल अपनी जगह पर अगले समय में पूरे करें। शिक्षक घूमकर देखें कि उधार लेने पर ऊपर की संख्या काटकर एक कम लिखी जा रही है।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 463 − 128",
+    "expected_hi": "335",
+    "listen_for": [],
+    "shows_hi": "बच्चा इकाई में उधार लेकर दहाई को एक कम कर पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "724 − 359: 365 या 435? उँगली पर 1 या 2 दिखाएँ: 1) 365 2) 435",
+    "expected_hi": "1) 365",
+    "listen_for": [],
+    "shows_hi": "बच्चा इकाई और दहाई, दोनों में उधार सही ले पाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर सैकड़ा-दहाई-इकाई का बॉक्स बनाकर रखें।",
+   "बोर्ड के एक कोने में 532 − 218 और 641 − 375 लिखकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "घटाएँ। उधार लेने पर ऊपर की संख्या काटकर नई संख्या लिखें।",
+   "instructions_en": "Subtract. When you borrow, cross out the top digit and write the new number.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "352 − 127 = ___",
+    "answer": "225",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "3",
+    "row1_t": "5",
+    "row1_o": "2",
+    "row2_h": "1",
+    "row2_t": "2",
+    "row2_o": "7",
+    "answer_h": "2",
+    "answer_t": "2",
+    "answer_o": "5"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "645 − 328",
+     "answer": "317",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "529 − 274",
+     "answer": "255",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "813 − 456 = ___",
+     "answer": "357",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "970 − 385 = ___",
+     "answer": "585",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "702 − 248 = ___",
+     "answer": "454",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक स्कूल में 436 कॉपियाँ थीं। 179 कॉपियाँ बच्चों को बाँटी गईं। कितनी कॉपियाँ बचीं?",
+     "answer": "257",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "5c831ce3567e",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0291,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

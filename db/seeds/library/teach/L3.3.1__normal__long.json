@@ -1,0 +1,136 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.3.1__normal__long",
+ "skill_id": "L3.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने आधे अक्षर वाले शब्द पढ़े थे।' बोर्ड पर लिखें: स्वतंत्रता। उँगली रखकर टुकड़ों में पढ़कर दिखाएँ: 'देखिए, स्व - तं - त्र - ता', फिर पूरा शब्द एक साथ पढ़ें और समझाएँ कि आधा अक्षर अगले अक्षर से जुड़कर बोला जाता है।",
+   "we_do_hi": "बोर्ड पर लिखें: विद्यालय, पुस्तकालय। हर शब्द को बच्चों के साथ टुकड़ों में बाँटें (वि - द्या - ल - य) और फिर पूरा शब्द एक बार पढ़कर सुनाएँ। इसके बाद एक-एक बच्चे से बारी-बारी पूरा शब्द पढ़वाएँ और ठीक पढ़ने पर सराहना करें।",
+   "you_do_hi": "बच्चे जोड़ियों में बैठें। हर जोड़ी को शब्द-पर्चियाँ दें: अध्यापक, सर्वोत्तम, प्रधानमंत्री, रसोईघर, त्योहार, क्षत्रिय। एक बच्चा पढ़े, दूसरा सुने, फिर बारी बदलें; पर्चियाँ न हों तो वर्कशीट के शब्द कॉपी में लिखकर पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: प्रश्न। इस शब्द में पहला आधा अक्षर कौन-सा है? स्लेट पर वह अक्षर लिखें।",
+    "expected_hi": "प्",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि आधा अक्षर अगले अक्षर से जुड़कर पढ़ा जाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "एक शब्द बोलें: 'विद्यार्थी'। बोर्ड पर लिखें: 1) विद्यार्थी 2) विधार्थी। सही लिखा शब्द कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि द्य में आधा द और य जुड़े हैं।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर ये शब्द लिखें, हर जोड़ी के लिए एक सेट: अध्यापक, सर्वोत्तम, प्रधानमंत्री, रसोईघर, त्योहार, क्षत्रिय।",
+   "बोर्ड पर पहले से लिखें: स्वतंत्रता, विद्यालय, पुस्तकालय।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द ध्यान से पढ़ें। फिर अपने साथी को पढ़कर सुनाएँ।",
+   "instructions_en": "Read each word carefully. Then read it aloud to your partner.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी को छह कठिन शब्द पढ़कर सुनाएँ: अध्यापक, सर्वोत्तम, प्रधानमंत्री, रसोईघर, त्योहार, क्षत्रिय।",
+    "task_en": "Read six complex words aloud to a partner: adhyapak, sarvottam, pradhanmantri, rasoighar, tyohar, kshatriya.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "शब्द-पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना रुके, ठीक पढ़ता है।",
+     "partial_hi": "ज़्यादातर शब्द पढ़ता है, पर दोहरे संयुक्त अक्षर पर रुकता है।",
+     "not_yet_hi": "शब्द छोड़ देता है या दूसरा शब्द बोल देता है।",
+     "achieved_en": "Reads all words correctly without stopping.",
+     "partial_en": "Reads most words but hesitates on double conjuncts.",
+     "not_yet_en": "Skips words or says a different word."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: अध्यापक",
+     "answer": "अध्यापक",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: सर्वोत्तम",
+     "answer": "सर्वोत्तम",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: प्रधानमंत्री",
+     "answer": "प्रधानमंत्री",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "रसोईघर किन दो शब्दों से बना है? लिखें।",
+     "answer": "रसोई + घर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: त्योहार",
+     "answer": "त्योहार",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: क्षत्रिय",
+     "answer": "क्षत्रिय",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T05:59:28Z",
+ "cost_usd": 0.0275,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

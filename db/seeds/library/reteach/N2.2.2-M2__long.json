@@ -1,0 +1,138 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.2.2-M2__long",
+ "skill_id": "N2.2.2",
+ "domain_id": "numeracy",
+ "mode": "N2.2.2-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने सैकड़ा, दहाई और इकाई को अलग-अलग लिखना सीखा था।' बोर्ड पर लिखें: 362 = 3 + 6 + 2, और बच्चों से कहें: 'देखिए, यहाँ 3 को केवल 3 लिखा है, पर 3 सैकड़े के स्थान पर है, इसलिए उसका मान 300 है; 6 दहाई के स्थान पर है, इसलिए उसका मान 60 है।' अब इसी संख्या को सही लिखें: 362 = 300 + 60 + 2, फिर गलत पंक्ति मिटा दें ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर दो गलत पंक्तियाँ लिखें: 518 = 5 + 1 + 8 और 274 = 2 + 7 + 4। बच्चों से पूछें: 'पहला अंक किस स्थान पर है? उसका मान क्या है?' फिर उनके साथ दोनों को सुधारकर 500 + 10 + 8 और 200 + 70 + 4 लिखें। इसके बाद नई संख्या 693 लें और बच्चों के साथ मिलकर 600 + 90 + 3 लिखें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' जिन बच्चों से पिछली बार यह गलती हुई थी, उनके पास सबसे पहले जाएँ। यह सामान्य चक्कर का हिस्सा हो और बिना नाम लिए, शांति से हो। अगर दिखाएँ वाले सवालों में चौथाई से अधिक बच्चे गलत उत्तर दिखाएँ, तो वर्कशीट से पहले बंडल वाली छड़ियों से यह कदम फिर से समझाएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "457 का विस्तारित रूप कौन-सा है? 1) 4 + 5 + 7   2) 400 + 50 + 7। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N2.2.2-M2",
+      "misconception_name_hi": "विस्तारित रूप में त्रुटि: अंकित मान और स्थानीय मान में भ्रम",
+      "misconception_name_en": "Expanded form errors: confuses face value and place value",
+      "detect_en": "Expanded form consistently uses face values not place values; but child can read the number correctly",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 839 = 800 + ___ + 9। खाली जगह में क्या आएगा? स्लेट पर लिखें।",
+    "expected_hi": "30",
+    "listen_for": [
+     {
+      "misconception_id": "N2.2.2-M2",
+      "misconception_name_hi": "विस्तारित रूप में त्रुटि: अंकित मान और स्थानीय मान में भ्रम",
+      "misconception_name_en": "Expanded form errors: confuses face value and place value",
+      "detect_en": "Expanded form consistently uses face values not place values; but child can read the number correctly",
+      "wrong_answer_hi": "3"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "TLM-001 की 10-10 की बंडल वाली छड़ियाँ और खुली छड़ियाँ पास रखें, ताकि ज़रूरत पड़ने पर फिर से समझा सकें।",
+   "बोर्ड पर पहले से सैकड़ा-दहाई-इकाई का बॉक्स बना लें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को सैकड़ा, दहाई और इकाई के मान में तोड़कर लिखें। ध्यान रखें कि सैकड़े का अंक सौ के रूप में और दहाई का अंक दस के रूप में लिखा जाए।",
+   "instructions_en": "Write each number in expanded form using the place values of hundreds, tens and ones.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "246 = 200 + 40 + 6",
+    "answer": "200 + 40 + 6",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "2",
+    "row1_t": "4",
+    "row1_o": "6",
+    "row2_h": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_h": "200",
+    "answer_t": "40",
+    "answer_o": "6"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "135 = ___ + ___ + ___",
+     "answer": "100 + 30 + 5",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "678 = ___ + ___ + ___",
+     "answer": "600 + 70 + 8",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N2.2.2-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "400 + 90 + 2 = ___",
+     "answer": "492",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N2.2.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "251 = ___ + ___ + ___",
+     "answer": "200 + 50 + 1",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "913 = ___ + ___ + ___",
+     "answer": "900 + 10 + 3",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "700 + 80 + 4 = ___",
+     "answer": "784",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "69aa13b74dad",
+ "created": "2026-11-21T06:04:59Z",
+ "cost_usd": 0.0353,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

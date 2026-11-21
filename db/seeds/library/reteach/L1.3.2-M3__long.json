@@ -1,0 +1,143 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L1.3.2-M3__long",
+ "skill_id": "L1.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "L1.3.2-M3",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने मात्रा वाले अक्षर पढ़े थे; आज देखेंगे कि मात्रा किस अक्षर पर लगी है। बोर्ड पर लिखें: कमाल। पहले गलत तरीके से पढ़ें, 'का-मल', और बच्चों को दिखाएँ कि आ की मात्रा क पर नहीं, म पर लगी है; फिर उसी शब्द पर उँगली रखकर अक्षर-अक्षर सही पढ़ें: 'क-मा-ल, कमाल'। गलत पढ़ने की बात खत्म करें और बोर्ड पर केवल सही बँटवारा छोड़ें: क | मा | ल।",
+   "we_do_hi": "बोर्ड पर लिखें: बजाना और पास में लिखें 'बाजना'। बच्चों से पूछें कि मात्रा किस अक्षर पर है, और साथ में सुधारें: 'ब-जा-ना'। इसके बाद नया शब्द लिखें: सितारा। बच्चों के साथ हर अक्षर पर उँगली रखकर पढ़ें: 'सि-ता-रा'।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियाँ दें, जिन पर शब्द लिखे हों: पतीला, मकान, सलामी, गुलाब, कपूर, जलेबी। बच्चे बारी-बारी से साथी को शब्द पढ़कर सुनाएँ और मात्रा वाले अक्षर पर उँगली रखें; पर्चियाँ न हों तो वर्कशीट के सवाल 1 से 3 पहले पढ़ें। शिक्षक सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार यह गलती की थी। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: नमक, नाम। अब पढ़कर सुनाएँ: 'नाम'। आपने कौन सा शब्द सुना, 1) नमक या 2) नाम? उँगली दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M3",
+      "misconception_name_hi": "मात्रा पढ़ता है पर शब्द में गलत व्यंजन पर लगाता है",
+      "misconception_name_en": "Reads matra but adds it to wrong consonant in a word",
+      "detect_en": "When reading कमल + ा matra: reads कामल instead of कमाल. Pattern: matra migrates to first consonant.",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: पहाड़। आ की मात्रा कौन से अक्षर पर लगी है? स्लेट पर वह एक अक्षर लिखें।",
+    "expected_hi": "ह",
+    "listen_for": [
+     {
+      "misconception_id": "L1.3.2-M3",
+      "misconception_name_hi": "मात्रा पढ़ता है पर शब्द में गलत व्यंजन पर लगाता है",
+      "misconception_name_en": "Reads matra but adds it to wrong consonant in a word",
+      "detect_en": "When reading कमल + ा matra: reads कामल instead of कमाल. Pattern: matra migrates to first consonant.",
+      "wrong_answer_hi": "प"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखने के लिए तैयार रखें: कमाल, बजाना, सितारा।",
+   "हर जोड़ी के लिए छह कागज़ की पर्चियाँ बनाएँ: पतीला, मकान, सलामी, गुलाब, कपूर, जलेबी।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द साथी को पढ़कर सुनाएँ। मात्रा वाले अक्षर पर उँगली रखें।",
+   "instructions_en": "Read each word aloud to a partner. Put a finger on the letter that carries the matra.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा शब्द-पर्चियाँ साथी को पढ़कर सुनाए और बताए कि मात्रा किस अक्षर पर लगी है।",
+    "task_en": "The child reads word slips aloud to a partner and points to the letter that carries the matra.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की शब्द-पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द सही पढ़ता है, मात्रा सही अक्षर पर बोलता है",
+     "partial_hi": "कुछ शब्दों में मात्रा पहले अक्षर पर ले जाता है, बताने पर सुधार लेता है",
+     "not_yet_hi": "मात्रा वाले शब्द नहीं पढ़ पाता या केवल अक्षर पढ़ता है",
+     "achieved_en": "Reads all words correctly with the matra on the right letter",
+     "partial_en": "Moves the matra to the first letter in some words, corrects with help",
+     "not_yet_en": "Cannot read matra words, reads only bare letters"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: कपड़ा",
+     "answer": "क-प-ड़ा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: मकान",
+     "answer": "म-का-न",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: गुलाब",
+     "answer": "गु-ला-ब",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.2-M3"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: सलामी",
+     "answer": "स-ला-मी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: कपूर",
+     "answer": "क-पू-र",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "54155d409def",
+ "created": "2026-11-21T06:01:34Z",
+ "cost_usd": 0.0295,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

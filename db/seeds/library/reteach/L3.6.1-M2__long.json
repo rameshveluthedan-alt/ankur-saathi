@@ -1,0 +1,141 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.6.1-M2__long",
+ "skill_id": "L3.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.6.1-M2",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने सीखा था कि 'क्यों' का उत्तर कहानी के शब्दों से सोचकर देते हैं। बोर्ड पर लिखें: 'आज हवा बिल्कुल नहीं चल रही थी। सोनू पतंग लेकर छत पर गया। पतंग बार-बार नीचे गिर जाती थी।' इसके नीचे प्रश्न लिखें: 'पतंग नीचे क्यों गिर जाती थी?' पहले उत्तर लिखें 'धागा टूट गया था' और कहें: 'देखिए, कहानी में धागे की बात कहीं नहीं है, यह उत्तर अपने मन से लिखा है।' फिर पहली पंक्ति पर उंगली रखकर सही उत्तर लिखें: 'क्योंकि हवा नहीं चल रही थी।' अंत में गलत उत्तर मिटा दें, बोर्ड पर केवल सही उत्तर रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 'रात भर तेज़ बारिश हुई। सुबह आँगन में पानी भरा था। दादी ने चप्पल हाथ में ले लीं।' प्रश्न 'दादी ने चप्पल हाथ में क्यों लीं?' के आगे उत्तर लिखें 'चप्पल टूट गई थी'। बच्चों से पूछें: 'कहानी में यह कहाँ लिखा है?' और साथ मिलकर सुधारें: 'पानी में चप्पल भीग न जाएँ, इसलिए।' फिर नया उदाहरण साथ करें: 'दूध का कटोरा ऊँची अलमारी पर था। बिल्ली नीचे बैठकर म्याऊँ-म्याऊँ करती रही।' 'बिल्ली क्यों म्याऊँ करती रही?' (उत्तर: वह कटोरे तक नहीं पहुँच पा रही थी)।",
+   "you_do_hi": "बच्चों से कहें: 'पहले अनुच्छेद पढ़ें, फिर वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' शिक्षक सामान्य चक्कर में सबसे पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार अपने मन से उत्तर लिखे थे। उनसे पूछें: 'यह बात कहानी की किस पंक्ति में है? उस पर उंगली रखें।'"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सड़क पर बहुत भीड़ थी। पापा ने मेरा हाथ कसकर पकड़ लिया।' पापा ने हाथ क्यों पकड़ा? 1) भीड़ में खो न जाऊँ 2) मैं गिर गया था",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M2",
+      "misconception_name_hi": "पाठ से असंबंधित अनुमान लगाता है (केवल अपना ज्ञान प्रयोग करता है)",
+      "misconception_name_en": "Makes inferences unrelated to text (uses only personal knowledge)",
+      "detect_en": "Answer is plausible in general but contradicted by or unsupported by the specific text",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'आज घर में बिजली नहीं थी। नेहा ने मोमबत्ती जलाई।' नेहा ने मोमबत्ती क्यों जलाई? एक शब्द लिखें।",
+    "expected_hi": "रोशनी",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M2",
+      "misconception_name_hi": "पाठ से असंबंधित अनुमान लगाता है (केवल अपना ज्ञान प्रयोग करता है)",
+      "misconception_name_en": "Makes inferences unrelated to text (uses only personal knowledge)",
+      "detect_en": "Answer is plausible in general but contradicted by or unsupported by the specific text",
+      "wrong_answer_hi": "जन्मदिन"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: सोनू की पतंग वाला अनुच्छेद और उसका प्रश्न।",
+   "बोर्ड के दूसरे हिस्से में लिखें: दादी की चप्पल वाला अनुच्छेद और बिल्ली वाला अनुच्छेद।",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति और स्लेट या कॉपी।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद ध्यान से पढ़ें। हर प्रश्न का उत्तर अनुच्छेद की बातों से सोचकर लिखें।",
+   "instructions_en": "Read the passage carefully. Answer each question by thinking from what the passage says.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "मीना की छतरी",
+    "text": "दोपहर का समय था। आसमान में एक भी बादल नहीं था और धूप बहुत तेज़ थी। मीना को बाज़ार जाना था। उसने अपनी नीली छतरी खोली और चल पड़ी। रास्ते में उसका दोस्त राजू मिला। राजू का चेहरा पसीने से भीगा था। मीना ने अपनी छतरी राजू के सिर पर भी कर दी। राजू मुस्कुराया और बोला, 'अब ठंडक लग रही है।' बाज़ार पहुँचकर मीना ने दो ठंडे शरबत खरीदे।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "राजू को ठंडक क्यों लगने लगी?",
+     "answer": "मीना ने छतरी उसके सिर पर कर दी, उसे छाया मिली",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "मीना ने छतरी क्यों खोली?",
+     "answer": "धूप बहुत तेज़ थी, धूप से बचने के लिए",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "मीना ने दो शरबत क्यों खरीदे?",
+     "answer": "एक अपने लिए और एक राजू के लिए",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "राजू का चेहरा पसीने से क्यों भीगा था?",
+     "answer": "तेज़ धूप और गर्मी के कारण",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "कैसे पता चलता है कि उस दिन बारिश नहीं होने वाली थी?",
+     "answer": "आसमान में एक भी बादल नहीं था",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "मीना ने शरबत ठंडे ही क्यों लिए होंगे?",
+     "answer": "बहुत गर्मी थी, ठंडा शरबत पीकर ठंडक मिलती",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "b2d5faab2a4f",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0562,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.4-M3__medium",
+ "skill_id": "N2.3.4",
+ "domain_id": "numeracy",
+ "mode": "N2.3.4-M3",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने उधार लेकर घटाना सीखा था; आज देखेंगे कि उधार कब नहीं लेना है। बोर्ड पर 56 - 24 लिखें और गलत तरीका दिखाएँ: 'देखिए, यहाँ दहाई से उधार ले लिया, 16 - 4 = 12, 4 - 2 = 2, उत्तर 22। पर 6 तो 4 से बड़ा है, उधार की ज़रूरत ही नहीं थी।' अब वही सवाल सही करें: 'पहले इकाई देखें: ऊपर 6, नीचे 4, ऊपर बड़ा है तो सीधे घटाएँ: 6 - 4 = 2, 5 - 2 = 3, उत्तर 32।' फिर गलत तरीका मिटा दें, बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 78 - 25 = 43। बच्चों से पूछें: 'इकाई में ऊपर 8, नीचे 5, क्या उधार चाहिए?' साथ में सुधारें: 8 - 5 = 3, 7 - 2 = 5, सही उत्तर 53। फिर नया सवाल साथ में करें: 63 - 28। 'ऊपर 3, नीचे 8, अब उधार चाहिए': 13 - 8 = 5, 5 - 2 = 3, उत्तर 35।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; हर सवाल में पहले इकाई देखें कि उधार चाहिए या नहीं।' इस समय में सवाल 1 और 2 शुरू करें, बाकी अपनी जगह पर पूरा करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार बिना ज़रूरत उधार लिया था।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 87 - 43",
+    "expected_hi": "44",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M3",
+      "misconception_name_hi": "ज़रूरत न होने पर भी उधार लेना",
+      "misconception_name_en": "Borrows when not needed",
+      "detect_en": "Errors on problems that do NOT require borrowing but are presented mixed with borrowing problems; no-borrow problems now get wrong answers",
+      "wrong_answer_hi": "34"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "74 - 38: 36 या 46? स्लेट पर लिखें।",
+    "expected_hi": "36",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M2",
+      "misconception_name_hi": "उधार लेता है पर दहाई कम नहीं करता",
+      "misconception_name_en": "Borrows but does not reduce tens digit",
+      "detect_en": "Answer is exactly 10 more than correct. Ones column is right, tens column is 1 too high.",
+      "wrong_answer_hi": "46"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 56 - 24, 78 - 25 = 43 और 63 - 28",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में पहले इकाई देखें: ऊपर की संख्या छोटी हो तभी उधार लें। उधार लें तो दहाई में एक कम करें।",
+   "instructions_en": "In each sum, look at the ones first: borrow only when the top digit is smaller. When you borrow, reduce the tens by one.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "52 - 27 = ___",
+    "answer": "25",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "5",
+    "row1_o": "2",
+    "row2_t": "2",
+    "row2_o": "7",
+    "answer_t": "2",
+    "answer_o": "5"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "64 - 37",
+     "answer": "27",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "86 - 53",
+     "answer": "33",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.4-M3"
+    },
+    {
+     "number": 3,
+     "problem_hi": "82 - 48 = ___",
+     "answer": "34",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.4-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "45 - 19 = ___",
+     "answer": "26",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "70 - 24 = ___",
+     "answer": "46",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक दुकान में 93 टॉफ़ियाँ थीं। 55 टॉफ़ियाँ बिक गईं। दुकान में कितनी टॉफ़ियाँ बचीं?",
+     "answer": "38",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 53",
+   "worksheets.progressor problem 5 repeats a number the lesson or anchor already used: 24"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "da8630f438e4",
+ "created": "2026-11-21T06:02:47Z",
+ "cost_usd": 0.0404,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

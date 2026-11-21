@@ -1,0 +1,125 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.3.6__normal__short",
+ "skill_id": "N3.3.6",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: '4 डिब्बों में 15-15 लड्डू हैं। 9 लड्डू खा लिए। कितने लड्डू बचे?' पहले 4 × 15 = 60 लिखकर पूछें: 'क्या सवाल ख़त्म हुआ? नहीं, अभी खाए हुए लड्डू घटाने हैं।' फिर 60 − 9 = 51 लिखें और कहें: 'देखिए, यह सवाल दो कदम का है। पहला कदम, फिर दूसरा कदम।'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें। हर सवाल में पहले लिखें 'कदम 1', फिर 'कदम 2'। जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक पहले उन बच्चों के पास जाएँ जिन्होंने एक ही कदम करके उत्तर लिख दिया था।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: '3 पैकेट में 25-25 पेंसिल हैं। 6 पेंसिल बाँट दीं। कितनी पेंसिल बचीं?' उत्तर 69 है या 75?",
+    "expected_hi": "69",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "75"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'बस में 34 लोग थे। 12 लोग चढ़े, फिर 9 लोग उतरे। अब बस में कितने लोग हैं?' इस सवाल में कितने कदम लगेंगे? उँगलियों पर दिखाएँ: 1 या 2।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.6-M1",
+      "misconception_name_hi": "केवल एक चरण करता है",
+      "misconception_name_en": "Performs only one step",
+      "detect_en": "Answer matches the result of only the first operation; no evidence of second step attempted",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का लड्डू वाला सवाल पहले से लिख लें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल ध्यान से पढ़ें। पहले कदम 1 लिखें, फिर कदम 2 लिखें, फिर उत्तर लिखें।",
+   "instructions_en": "Read each problem carefully. Write step 1, then step 2, then the answer.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "राजू के पास 45 कंचे थे। उसे 28 कंचे और मिले। फिर उसने 20 कंचे दोस्त को दे दिए। अब राजू के पास कितने कंचे हैं?",
+     "answer": "53",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "7 पैकेट हैं। हर पैकेट में 14 बिस्कुट हैं। बच्चों ने 25 बिस्कुट खा लिए। कितने बिस्कुट बचे?",
+     "answer": "73",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "दुकान में 236 किलो चावल था। 5 बोरियाँ और आईं, हर बोरी में 40 किलो चावल है। अब दुकान में कुल कितने किलो चावल है?",
+     "answer": "436",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": "N3.3.6-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बगीचे में 8 कतारें हैं। हर कतार में 12 पौधे हैं। 15 पौधे सूख गए। कितने पौधे बचे?",
+     "answer": "81",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "सीमा के पास 150 रुपये थे। उसने 3 कॉपियाँ खरीदीं, हर कॉपी 35 रुपये की। उसके पास कितने रुपये बचे?",
+     "answer": "45",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "6 टोकरियों में 25-25 सेब हैं। 18 सेब और लाए गए। कुल कितने सेब हैं?",
+     "answer": "168",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 4 repeats a number the lesson or anchor already used: 15"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d4ad96e35410",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0312,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

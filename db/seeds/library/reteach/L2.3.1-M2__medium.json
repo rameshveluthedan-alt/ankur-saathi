@@ -1,0 +1,143 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L2.3.1-M2__medium",
+ "skill_id": "L2.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "L2.3.1-M2",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने संयुक्त अक्षर वाले शब्द पढ़े थे। बोर्ड पर लिखें: प्यार। पहले गलत तरीका पढ़कर सुनाएँ 'प-या-र', फिर बताएँ कि प और य के बीच 'अ' नहीं आता, आधा प्‌ य से जुड़ता है; अब सही पढ़ें 'प्या-र', फिर गलत पढ़ना मिटा दें ताकि बोर्ड पर केवल सही रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: सच्चा, और पूछें: 'क्या इसे स-च-चा पढ़ेंगे?' बच्चों के साथ ठीक करें: 'सच्-चा'। फिर नया शब्द साथ में पढ़ें: पत्ता, और आधे अक्षर पर उँगली रखकर दिखाएँ कि यहाँ 'अ' नहीं बोलना है।",
+   "you_do_hi": "जोड़ियों में बैठाएँ और हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें: क्या, स्कूल, बच्चा, मक्खी; जोड़ी में बच्चे बारी-बारी से कार्ड पढ़कर एक-दूसरे को सुनाएँ। कार्ड न हों तो वर्कशीट के शब्द कॉपी में लिखकर साथी को पढ़कर सुनाएँ; जिन बच्चों ने पिछली बार बीच में 'अ' जोड़ा था, उनके पास पहले शांति से जाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: ग्यारह। इसे कैसे पढ़ेंगे? 1) ग्या-रह 2) ग-या-रह। उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.3.1-M2",
+      "misconception_name_hi": "संयुक्त अक्षर में जहाँ ध्वनि लुप्त होनी चाहिए वहाँ अ जोड़ता है",
+      "misconception_name_en": "Adds schwa (inherent अ) where conjunct should suppress it",
+      "detect_en": "Reads विद्या as \"vidayaa\" instead of \"vidyaa\" — inserts schwa between द and य",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: अच्छा। इस शब्द को 'अ-च-छा' पढ़ना सही है या गलत? स्लेट पर सही या गलत लिखें।",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "L2.3.1-M2",
+      "misconception_name_hi": "संयुक्त अक्षर में जहाँ ध्वनि लुप्त होनी चाहिए वहाँ अ जोड़ता है",
+      "misconception_name_en": "Adds schwa (inherent अ) where conjunct should suppress it",
+      "detect_en": "Reads विद्या as \"vidayaa\" instead of \"vidyaa\" — inserts schwa between द and य",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर शब्द-कार्ड लिखें: क्या, स्कूल, बच्चा, मक्खी (हर जोड़ी के लिए एक सेट)",
+   "बोर्ड पर लिखने के लिए शब्द तैयार रखें: प्यार, सच्चा, पत्ता"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द को साथी को पढ़कर सुनाएँ। आधे अक्षर के बाद 'अ' न बोलें।",
+   "instructions_en": "Read each word aloud to your partner. Do not add 'a' after the half letter.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "जोड़ी में शब्द-कार्ड बारी-बारी से पढ़कर साथी को सुनाएँ।",
+    "task_en": "Take turns reading conjunct word cards aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना रुके और बीच में 'अ' जोड़े बिना पढ़ता है",
+     "partial_hi": "कुछ शब्द सही पढ़ता है, कुछ में मदद लेता है",
+     "not_yet_hi": "आधे अक्षर के बाद 'अ' जोड़ता है या अक्षर अलग-अलग पढ़ता है",
+     "achieved_en": "Reads all words smoothly without inserting a vowel",
+     "partial_en": "Reads some words correctly, needs help with others",
+     "not_yet_en": "Inserts a vowel after the half letter or splits letters"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: क्या",
+     "answer": "क्या",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: बच्चा",
+     "answer": "बच्-चा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.3.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: विद्या",
+     "answer": "विद्-या",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.3.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: मक्खी",
+     "answer": "मक्-खी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: स्कूल",
+     "answer": "स्कूल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "1e2641c9ff37",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0271,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

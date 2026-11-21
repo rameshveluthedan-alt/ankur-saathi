@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.2.3__normal__long",
+ "skill_id": "N3.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने 4 अंकों की संख्या में हजार, सैकड़ा, दहाई और इकाई पहचाने थे।' बोर्ड पर 4352 और 4325 एक के नीचे एक लिखें। फिर बायीं ओर से अंक मिलाते हुए बोलें: 'हजार बराबर, सैकड़ा बराबर, दहाई में 5 बड़ा है 2 से, इसलिए 4352 बड़ी है', और लिखें 4352 > 4325।",
+   "we_do_hi": "बोर्ड पर 6091 और 5987 लिखें और बच्चों से पूछें: 'सबसे पहले कौन-सा अंक देखें?' बच्चों से सुनकर हजार के अंक मिलाएँ और > का निशान लगाएँ। फिर 3408, 3480, 3048 लिखें और बच्चों के साथ अंक-दर-अंक मिलाकर छोटे से बड़े क्रम में लगाएँ: 3048, 3408, 3480।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' घूमकर देखें कि बच्चे बायीं ओर के अंक से तुलना शुरू कर रहे हैं। सवाल 3 पर ध्यान दें, जहाँ पहले दो अंक बराबर हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 5083 और 5038। इनमें बड़ी संख्या कौन-सी है? 1) 5083 2) 5038",
+    "expected_hi": "1) 5083",
+    "listen_for": [],
+    "shows_hi": "बच्चा हजार और सैकड़ा बराबर होने पर दहाई का अंक मिलाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 9210, 9102, 9201। इनमें सबसे छोटी संख्या स्लेट पर लिखें।",
+    "expected_hi": "9102",
+    "listen_for": [],
+    "shows_hi": "बच्चा तीन संख्याओं में सैकड़े के अंक से सबसे छोटी चुन लेता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर हजार, सैकड़ा, दहाई, इकाई के चार खानों वाली तालिका बनाकर रखें।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में संख्याओं को बायीं ओर के अंक से मिलाएँ, फिर उत्तर लिखें।",
+   "instructions_en": "Compare the numbers digit by digit starting from the left, then write the answer.",
+   "required_count": 3,
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "7215 और 5721 में बड़ी संख्या लिखें: ___",
+     "answer": "7215",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "2946 और 2964 में बड़ी संख्या लिखें: ___",
+     "answer": "2964",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "छोटे से बड़े क्रम में लिखें: 8103, 8013, 8130, 8031",
+     "answer": "8013, 8031, 8103, 8130",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "1999 और 2001 में छोटी संख्या लिखें: ___",
+     "answer": "1999",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बड़े से छोटे क्रम में लिखें: 5470, 5407, 5740",
+     "answer": "5740, 5470, 5407",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक गाँव में 3826 लोग रहते हैं और दूसरे गाँव में 3862 लोग रहते हैं। ज़्यादा लोग किस गाँव में हैं? वह संख्या लिखें।",
+     "answer": "3862",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f08e7b4dea62",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0288,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

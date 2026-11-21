@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.4.1__normal__long",
+ "skill_id": "L1.4.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने कुछ शब्द देखते ही पढ़े थे।' बोर्ड पर बड़े अक्षरों में लिखें: यह, वह, और, में, है। हर शब्द पर उँगली रखकर एक बार में पूरा पढ़ें, अक्षर तोड़े बिना: 'देखिए, यह शब्द हम एक नज़र में पढ़ते हैं: यह।'",
+   "we_do_hi": "बोर्ड पर नए शब्द जोड़ें: का, को, से, पर, था। एक शब्द पर उँगली रखें, बच्चे दो पल देखें, फिर एक-एक बच्चे से पूछें: 'यह कौन-सा शब्द है?' शब्दों का क्रम बदल-बदलकर दो बार दोहराएँ।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द-कार्ड दें (यह, वह, और, में, है, का, को, से, पर, था, ने, भी)। एक बच्चा कार्ड दिखाए, दूसरा तुरंत पढ़े, फिर बारी बदलें; कार्ड न हों तो बोर्ड से वर्कशीट के शब्द कॉपी में लिखकर साथी को पढ़कर सुनाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) और  2) में। अब बोलें: 'में'। कौन-सा शब्द है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा बोले गए शब्द को लिखे रूप में तुरंत पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) का  2) को। अब बोलें: 'को'। कौन-सा शब्द है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा मिलते-जुलते छोटे शब्दों में मात्रा देखकर फ़र्क़ करता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर शब्द-कार्ड बनाएँ: यह, वह, और, में, है, का, को, से, पर, था, ने, भी (हर जोड़ी के लिए एक सेट)।",
+   "बोर्ड पर बड़े अक्षरों के लिए जगह रखें।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "हर शब्द साथी को पढ़कर सुनाएँ। शब्द को टुकड़ों में न पढ़ें, एक बार में पढ़ें।",
+   "instructions_en": "Read each word aloud to your partner. Read the whole word at once, not letter by letter.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "साथी जो शब्द-कार्ड दिखाए, उसे तुरंत ज़ोर से पढ़ें।",
+    "task_en": "Read aloud at once each sight-word card a partner shows.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "ज़्यादातर शब्द देखते ही पूरा पढ़ता है, बिना रुके।",
+     "partial_hi": "कुछ शब्द तुरंत पढ़ता है, बाकी अक्षर जोड़कर धीरे पढ़ता है।",
+     "not_yet_hi": "ज़्यादातर शब्द अक्षर-अक्षर करके पढ़ता है या नहीं पढ़ पाता।",
+     "achieved_en": "Reads most words instantly as whole words.",
+     "partial_en": "Reads some instantly, sounds out the rest slowly.",
+     "not_yet_en": "Sounds out most words letter by letter or cannot read them."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: यह, वह, और",
+     "answer": "यह, वह, और",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: का, को, की",
+     "answer": "का, को, की",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "यह वाक्य साथी को पढ़कर सुनाएँ: वह घर में है।",
+     "answer": "वह घर में है।",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: से, पर, था",
+     "answer": "से, पर, था",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह वाक्य साथी को पढ़कर सुनाएँ: राम ने भी फल खाया।",
+     "answer": "राम ने भी फल खाया।",
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "d550c1af8073",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0257,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

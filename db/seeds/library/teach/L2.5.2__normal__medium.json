@@ -1,0 +1,110 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.5.2__normal__medium",
+ "skill_id": "L2.5.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'माँ बाज़ार गई। क्या तुम आओगे? वाह, कितना सुंदर मेला है!' पहले पूरा वाक्य बिना रुके एक साँस में पढ़कर सुनाएँ, फिर बच्चों से कहें: 'देखिए, अब हम चिह्न पर रुककर पढ़ते हैं।' । पर रुकें, ? पर आवाज़ ऊपर उठाएँ, ! पर आवाज़ में खुशी लाएँ।",
+   "we_do_hi": "बोर्ड पर लिखें: 'राजू खेत गया। तुम्हारा नाम क्या है? अरे, बारिश आ गई!' हर वाक्य पहले शिक्षक पढ़ें, फिर समूह साथ में दोहराए; हर चिह्न पर उँगली से हवा में रुकने का इशारा करें। बच्चों से पूछें: 'यहाँ आवाज़ ऊपर गई या नीचे?'",
+   "you_do_hi": "बच्चे वर्कशीट के कठिन शब्द साथी को पढ़कर सुनाएँ, फिर अनुच्छेद एक बार धीमी आवाज़ में पढ़ें। बाकी दो बार पढ़ना, जोड़ी में पढ़ना और प्रश्न 1 से 3 वे अगले खंड में अपनी जगह पर करें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मोर नाचता है' इसके अंत में कौन सा चिह्न लगेगा? 1) । 2) ? उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि बताने वाले वाक्य के अंत में पूर्ण विराम आता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'तुम कहाँ जा रहे हो' इसे पढ़ते समय अंत में आवाज़ ऊपर जाएगी या नीचे? स्लेट पर 'ऊपर' या 'नीचे' लिखें।",
+    "expected_hi": "ऊपर",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि प्रश्न पढ़ते समय आवाज़ ऊपर उठती है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do के तीन वाक्य पहले से लिख लें: 'माँ बाज़ार गई। क्या तुम आओगे? वाह, कितना सुंदर मेला है!'",
+   "हर बच्चे के लिए एक वर्कशीट की प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार पढ़ें। । पर रुकें, ? पर आवाज़ ऊपर उठाएँ, ! पर भाव से पढ़ें। फिर प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the hard words to a partner. Read the passage aloud three times, pausing at । raising your voice at ? and reading ! with feeling. Then answer the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "मेले की सैर",
+    "text": "रविवार को मीना अपने दादाजी के साथ मेले में गई। वहाँ बहुत भीड़ थी। मीना ने पूछा, दादाजी, क्या हम झूला झूलेंगे? दादाजी हँसकर बोले, हाँ, ज़रूर! मीना ने लाल गुब्बारा भी खरीदा। वाह, कितना मज़ा आया!"
+   },
+   "sheet_kind": "fluency",
+   "warmup_words": [
+    "रविवार",
+    "दादाजी",
+    "भीड़",
+    "झूलेंगे",
+    "ज़रूर",
+    "गुब्बारा",
+    "खरीदा"
+   ],
+   "expression_sentences": [
+    "आज बहुत ठंड है।",
+    "क्या तुमने खाना खाया?",
+    "अरे, कितनी सुंदर तितली है!",
+    "चलो, स्कूल चलें।"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मीना किसके साथ मेले में गई?",
+     "answer": "दादाजी के साथ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "मीना ने कौन से रंग का गुब्बारा खरीदा?",
+     "answer": "लाल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "मीना मेले में किस दिन गई?",
+     "answer": "रविवार",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 7 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f131fb1d4c16",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.0232,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

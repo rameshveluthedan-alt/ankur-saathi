@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.4-M1__long",
+ "skill_id": "N2.3.4",
+ "domain_id": "numeracy",
+ "mode": "N2.3.4-M1",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने उधार लेकर घटाना सीखा था। बोर्ड पर 53 - 28 लिखें और पहले गलत तरीका दिखाएँ: 'इकाई में 3 में से 8 नहीं घटता, तो 8 में से 3 घटा दिया, 5 आया; दहाई में 5 - 2 = 3, उत्तर 35।' बच्चों से कहें: 'ऊपर वाली संख्या में से ही घटाते हैं, उल्टा नहीं।' फिर इसी सवाल को छड़ियों से सही करें: 'एक दहाई खोलें, 13 - 8 = 5, दहाई में 4 - 2 = 2, उत्तर 25।' अंत में गलत हल मिटा दें, बोर्ड पर केवल सही हल रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 61 - 34 = 33 और 84 - 56 = 32। बच्चों से पूछें: 'इकाई में किसमें से किसको घटाया?' फिर साथ मिलकर दोनों सवाल सही करें: 61 - 34 = 27 और 84 - 56 = 28। इसके बाद एक नया सवाल साथ में हल करें: 91 - 47 = 44। हर कदम पर बच्चे बताएँ कि उधार कहाँ से लिया।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' शिक्षक घूमते समय सबसे पहले उन बच्चों के पास जाएँ जिन्होंने कल इकाई में उल्टा घटाया था, शांति से और सामान्य चक्कर के रूप में। अगर show-me में चौथाई से अधिक बच्चे गलत दिखाएँ, तो पहले छड़ियों से वह कदम दोबारा कराएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 66 - 29",
+    "expected_hi": "37",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M1",
+      "misconception_name_hi": "इकाई में छोटे से बड़ा घटाना (उल्टा)",
+      "misconception_name_en": "Smaller-from-larger reversal in ones column",
+      "detect_en": "In ones column, child always subtracts the smaller digit from the larger regardless of position. Tens column is unchanged (no borrowing attempted). Very common and persistent.",
+      "wrong_answer_hi": "43"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "85 - 29 का उत्तर क्या है: 56 या 64?",
+    "expected_hi": "56",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M1",
+      "misconception_name_hi": "इकाई में छोटे से बड़ा घटाना (उल्टा)",
+      "misconception_name_en": "Smaller-from-larger reversal in ones column",
+      "detect_en": "In ones column, child always subtracts the smaller digit from the larger regardless of position. Tens column is unchanged (no borrowing attempted). Very common and persistent.",
+      "wrong_answer_hi": "64"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "दहाई की गड्डियाँ और खुली छड़ियाँ (उधार दिखाने के लिए)",
+   "बोर्ड पर पहले से लिखें: 61 - 34 = 33 और 84 - 56 = 32"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल घटाएँ। इकाई में ऊपर का अंक छोटा हो तो दहाई से उधार लें।",
+   "instructions_en": "Subtract each problem. If the top ones digit is smaller, borrow from the tens.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "45 - 18 = ___",
+    "answer": "27",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "4",
+    "row1_o": "5",
+    "row2_t": "1",
+    "row2_o": "8",
+    "answer_t": "2",
+    "answer_o": "7"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "52 - 27",
+     "answer": "25",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "43 - 19",
+     "answer": "24",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "80 - 34 = ___",
+     "answer": "46",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.4-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "71 - 45 = ___",
+     "answer": "26",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "94 - 57 = ___",
+     "answer": "37",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 60 आम थे। 28 आम बिक गए। टोकरी में कितने आम बचे?",
+     "answer": "32",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 25",
+   "worksheets.progressor problem 3 repeats a number the lesson or anchor already used: 34",
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 28"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "23cd94c13959",
+ "created": "2026-11-21T06:03:59Z",
+ "cost_usd": 0.1052,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

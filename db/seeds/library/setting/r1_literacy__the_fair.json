@@ -1,0 +1,36 @@
+{
+ "format": 1,
+ "piece": "setting",
+ "key": "r1_literacy__the_fair",
+ "skill_id": null,
+ "domain_id": "r1_literacy",
+ "mode": "the fair",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "title_hi": "गाँव का मेला",
+  "title_en": "The Village Fair",
+  "theme": "the fair",
+  "board_hi": "बोर्ड के बीच में एक मेले का सादा चित्र बनाएँ: एक झूला, एक गुब्बारे वाला, एक जलेबी की दुकान और एक खिलौनों की दुकान। हर चीज़ के नीचे उसका नाम बड़े अक्षरों में लिखें: झूला, गुब्बारा, जलेबी, खिलौना। चित्र के दोनों ओर खाली जगह छोड़ें, ताकि बाद में शब्द, मात्राएँ या छोटे वाक्य लिखे जा सकें।",
+  "narration_hi": "देखें, आज हमारे गाँव में मेला लगा है! यहाँ झूला है, रंग-बिरंगे गुब्बारे हैं और गरम-गरम जलेबी भी है। आज हम इस मेले में घूमेंगे और यहाँ के शब्द पढ़ेंगे।",
+  "opening_question_hi": "मेले में आपको सबसे अच्छी चीज़ कौन-सी लगती है?",
+  "closing_question_hi": "आज मेले के किस शब्द को पढ़कर आपको सबसे ज़्यादा मज़ा आया?",
+  "materials_hi": [
+   "चॉक या बोर्ड मार्कर",
+   "रंगीन चॉक (गुब्बारों और झूले के लिए, अगर हो)"
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "8045f8e62371",
+ "created": "2026-11-21T06:05:34Z",
+ "cost_usd": 0.0071,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

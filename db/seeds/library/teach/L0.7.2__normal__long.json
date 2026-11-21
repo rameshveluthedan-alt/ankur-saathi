@@ -1,0 +1,211 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.7.2__normal__long",
+ "skill_id": "L0.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने कुछ अक्षर लिखना सीखा था; आज हम उन्हें शिरोरेखा के साथ सुंदर बनाएँगे। बोर्ड पर दो लाइनें खींचें और 'क', 'म', 'ल' धीरे-धीरे लिखें: पहले अक्षर का नीचे वाला हिस्सा, फिर ऊपर शिरोरेखा। हर अक्षर बनाते समय बोलें: 'देखिए, पहले यह गोला, फिर यह खड़ी लकीर, सबसे आख़िर में ऊपर की लकीर।'",
+   "we_do_hi": "बोर्ड पर 'न', 'स', 'र' लिखें और बच्चों से कहें: 'हवा में उँगली से मेरे साथ बनाएँ।' फिर बच्चे कॉपी में हर अक्षर एक बार लिखें और ऊपर शिरोरेखा खींचें। घूमकर देखें कि अक्षर दो लाइनों के बीच बराबर आकार के हैं और शिरोरेखा अक्षर को छू रही है।",
+   "you_do_hi": "बच्चों से कहें: 'अब अपनी वर्कशीट लें।' पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि शिरोरेखा सबसे आख़िर में खींची जा रही है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो रूप लिखें: 1) 'ग' बिना ऊपर की लकीर के 2) 'ग' ऊपर की लकीर के साथ। कौन-सा सही है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि अक्षर के ऊपर शिरोरेखा ज़रूरी है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "स्लेट पर 'प' लिखें, ऊपर की लकीर के साथ।",
+    "expected_hi": "प",
+    "listen_for": [],
+    "shows_hi": "बच्चा अक्षर की सही बनावट और शिरोरेखा अपने आप बना सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर चार लाइनें खींचकर रखें, अक्षर लिखने के लिए।",
+   "हर बच्चे के लिए स्लेट या कॉपी और पेंसिल।",
+   "हर बच्चे के लिए एक वर्कशीट।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अक्षर ध्यान से देखें और नीचे वैसा ही लिखें। सबसे आख़िर में ऊपर शिरोरेखा खींचें।",
+   "instructions_en": "Look at each letter carefully and write it below. Draw the headline (shirorekha) at the end.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "अक्षर लिखने का उदाहरण:",
+    "example_text": "ब"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'ज' लिखें।",
+     "answer": "ज",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": true,
+     "target_letter": "ज",
+     "letter_grid_cells": [
+      {
+       "prefilled": true,
+       "text": "ज"
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      }
+     ],
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "'ह' लिखें।",
+     "answer": "ह",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": true,
+     "target_letter": "ह",
+     "letter_grid_cells": [
+      {
+       "prefilled": true,
+       "text": "ह"
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      }
+     ],
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "'द' लिखें।",
+     "answer": "द",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": true,
+     "target_letter": "द",
+     "letter_grid_cells": [
+      {
+       "prefilled": true,
+       "text": "द"
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      }
+     ],
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "'च' लिखें।",
+     "answer": "च",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": true,
+     "target_letter": "च",
+     "letter_grid_cells": [
+      {
+       "prefilled": true,
+       "text": "च"
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      }
+     ],
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'व' लिखें।",
+     "answer": "व",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": true,
+     "target_letter": "व",
+     "letter_grid_cells": [
+      {
+       "prefilled": true,
+       "text": "व"
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      },
+      {
+       "prefilled": false
+      }
+     ],
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "bd88a4988764",
+ "created": "2026-11-21T05:57:58Z",
+ "cost_usd": 0.0235,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

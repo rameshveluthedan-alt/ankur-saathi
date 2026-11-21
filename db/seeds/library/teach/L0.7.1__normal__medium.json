@@ -1,0 +1,115 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.7.1__normal__medium",
+ "skill_id": "L0.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर चार-चार की पंक्ति में बनाएँ: खड़ी रेखा |, पड़ी रेखा —, गोला O, और अधूरा गोला (जैसे ( )। हर रेखा बनाते हुए बोलें: 'देखिए, खड़ी रेखा ऊपर से नीचे आती है, पड़ी रेखा बाएँ से दाएँ जाती है।' गोला ऊपर से शुरू करके धीरे-धीरे पूरा घुमाकर दिखाएँ।",
+   "we_do_hi": "बच्चों से कहें: 'अपनी उँगली हवा में उठाएँ, मेरे साथ ऊपर से नीचे खड़ी रेखा बनाएँ।' फिर पड़ी रेखा और गोला हवा में, फिर अपनी स्लेट पर बिंदुओं पर चलाकर बनवाएँ। घूमकर देखें कि रेखा ऊपर से और बाएँ से शुरू हो रही है।",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट पर काम करें।' पहले वर्कशीट के सवाल 1 से 3 करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। इस छोटे समय में सवाल 1 शुरू हो जाए, बाकी बच्चे अपनी जगह पर अगले समय में पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बनाएँ: |  और  —। 'खड़ी रेखा कौन सी है? पहली हो तो 1 उँगली, दूसरी हो तो 2 उँगली दिखाएँ।'",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा खड़ी और पड़ी रेखा का अंतर पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "'अपनी स्लेट पर एक गोला बनाएँ।'",
+    "expected_hi": "O",
+    "listen_for": [],
+    "shows_hi": "बच्चा घुमावदार रेखा बंद करके गोला बना सकता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर खड़ी रेखा, पड़ी रेखा, गोला और अधूरा गोला की बिंदुओं वाली एक-एक पंक्ति पहले से बनाएँ।",
+   "हर बच्चे के लिए स्लेट और चॉक या कॉपी-पेंसिल।"
+  ],
+  "worksheet": {
+   "instructions_hi": "बिंदुओं पर पेंसिल चलाएँ, फिर साथ में वैसी ही रेखा बनाएँ।",
+   "instructions_en": "Trace over the dots, then draw the same stroke beside it.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "रेखा बनाने का उदाहरण:",
+    "example_text": "| | | | |"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "खड़ी रेखा पर पेंसिल चलाएँ और वैसी ही बनाएँ: |",
+     "answer": "| | | | |",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पड़ी रेखा पर पेंसिल चलाएँ और वैसी ही बनाएँ: —",
+     "answer": "— — — — —",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "गोले पर पेंसिल चलाएँ और वैसा ही बनाएँ: O",
+     "answer": "O O O O O",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "टेढ़ी रेखा पर पेंसिल चलाएँ और वैसी ही बनाएँ: /",
+     "answer": "/ / / / /",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "लहर वाली रेखा पर पेंसिल चलाएँ और वैसी ही बनाएँ: ~",
+     "answer": "~ ~ ~ ~ ~",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "1683239c9ca1",
+ "created": "2026-11-21T06:02:08Z",
+ "cost_usd": 0.0207,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

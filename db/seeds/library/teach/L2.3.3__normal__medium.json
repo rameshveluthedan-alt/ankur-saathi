@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.3.3__normal__medium",
+ "skill_id": "L2.3.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: जगत्, महत्, विद्या। हलन्त का चिह्न दिखाएँ और कहें: 'देखिए, जिस अक्षर के नीचे यह छोटी तिरछी रेखा है, वह आधा बोला जाता है, उसमें अ की आवाज़ नहीं आती।' हर शब्द दो बार धीरे पढ़कर सुनाएँ: 'ज-ग-त्', फिर पूरा 'जगत्'।",
+   "we_do_hi": "बोर्ड पर लिखें: सत्, पश्चात्, बुद्धि, क्षत्रिय। हर शब्द में पहले बच्चों से पूछें कि आधा अक्षर कौन-सा है, फिर उँगली रखकर साथ में धीरे-धीरे पढ़ें। गलत आवाज़ आए तो उस अक्षर पर रुककर फिर से पढ़ें।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे शब्द दें: जगत्, महत्, विद्वान्, पश्चात्, शुद्ध, स्वच्छ। बच्चे बारी-बारी से साथी को शब्द पढ़कर सुनाएँ, बचे शब्द अगले खंड में अपनी जगह पर पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) भगवान  2) भगवान्। किस शब्द के अंत में न आधा बोला जाएगा? 1 या 2 उँगली दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा हलन्त का चिह्न पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: श्रीमान्। इस शब्द में कौन-सा अक्षर आधा बोला जाता है? स्लेट पर वह एक अक्षर लिखें।",
+    "expected_hi": "न",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि हलन्त वाला अक्षर बिना अ की आवाज़ के बोला जाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर ये शब्द लिखें: जगत्, महत्, विद्वान्, पश्चात्, शुद्ध, स्वच्छ (हर जोड़ी के लिए एक सेट)",
+   "बोर्ड पर लिखकर रखें: जगत्, महत्, विद्या"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द और वाक्य साथी को पढ़कर सुनाएँ। आधे अक्षर पर ध्यान दें।",
+   "instructions_en": "Read each word and sentence aloud to your partner. Pay attention to the half letters.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "हलन्त और आधे अक्षर वाले छह शब्द साथी को पढ़कर सुनाएँ।",
+    "task_en": "Read six words with halant and conjunct letters aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "शब्द लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद सारे शब्द सही पढ़ता है, हलन्त वाला अक्षर आधा बोलता है",
+     "partial_hi": "कुछ शब्द सही पढ़ता है, कहीं-कहीं आधे अक्षर में अ की आवाज़ जोड़ देता है",
+     "not_yet_hi": "जगत् को जगत की तरह पढ़ता है या शब्द नहीं पढ़ पाता",
+     "achieved_en": "Reads all words correctly without help, halant letter said as half",
+     "partial_en": "Reads some correctly, sometimes adds an a sound to the half letter",
+     "not_yet_en": "Reads जगत् as जगत or cannot read the words"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: जगत्",
+     "answer": "जगत् (त आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: विद्वान्",
+     "answer": "विद्वान् (द और न आधे)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: पश्चात्",
+     "answer": "पश्चात् (श और त आधे)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: महत्",
+     "answer": "महत् (त आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें: स्वच्छ",
+     "answer": "स्वच्छ (स और च आधे)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T05:59:04Z",
+ "cost_usd": 0.025,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

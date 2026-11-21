@@ -1,0 +1,152 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.4-M1__medium",
+ "skill_id": "N2.3.4",
+ "domain_id": "numeracy",
+ "mode": "N2.3.4-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने उधार लेकर घटाना सीखा था। आज उसी को पक्का करेंगे। बोर्ड पर दहाई-इकाई का बॉक्स बनाकर लिखें: 53 - 28, फिर पहले गलत तरीके से हल करें: इकाई में 8 - 3 = 5, दहाई में 5 - 2 = 3, उत्तर 35। बच्चों से कहें: 'देखिए, ऊपर 3 है और नीचे 8 है। हमने ऊपर के 3 में से 8 नहीं घटाया, उल्टा घटा दिया। 3 में से 8 नहीं घटता, इसलिए एक दहाई उधार लेनी है।' इसके बाद गलत हल मिटा दें और वही सवाल सही करें: एक दहाई का बंडल खोलकर दिखाएँ, 5 दहाई 4 हो जाती हैं, इकाई 13 हो जाती है, 13 - 8 = 5, 4 - 2 = 2, उत्तर 25। बोर्ड पर अब केवल सही हल रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 61 - 24 = 43 और बच्चों से पूछें: 'इकाई में ऊपर कौन-सा अंक है, नीचे कौन-सा? क्या 1 में से 4 घटता है?' बच्चों के साथ गलती ढूँढें और ठीक करें: एक दहाई उधार, 11 - 4 = 7, 5 - 2 = 3, सही उत्तर 37। फिर नया सवाल मिलकर हल करें: 72 - 45। हर कदम पर पूछें 'ऊपर का अंक छोटा है या बड़ा?', और उत्तर 27 तक साथ पहुँचें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस छोटे समय में सवाल 1 और 2 शुरू हो जाएँ; बाकी सवाल बच्चे अपनी जगह पर अगले समय में पूरे करें। घूमते हुए सबसे पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने पिछली बार उल्टा घटाया था, बिना किसी का नाम लिए। अगर show-me में चौथाई से अधिक बच्चे गलत उत्तर दिखाएँ, तो You Do से पहले छड़ियों से वही कदम दोबारा कराएँ।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 64 - 38",
+    "expected_hi": "26",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M1",
+      "misconception_name_hi": "इकाई में छोटे से बड़ा घटाना (उल्टा)",
+      "misconception_name_en": "Smaller-from-larger reversal in ones column",
+      "detect_en": "In ones column, child always subtracts the smaller digit from the larger regardless of position. Tens column is unchanged (no borrowing attempted). Very common and persistent.",
+      "wrong_answer_hi": "34"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "70 - 34: 36 या 44?",
+    "expected_hi": "36",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.4-M1",
+      "misconception_name_hi": "इकाई में छोटे से बड़ा घटाना (उल्टा)",
+      "misconception_name_en": "Smaller-from-larger reversal in ones column",
+      "detect_en": "In ones column, child always subtracts the smaller digit from the larger regardless of position. Tens column is unchanged (no borrowing attempted). Very common and persistent.",
+      "wrong_answer_hi": "44"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "दहाई के 7 बंडल (हर बंडल में 10 छड़ियाँ) और 10 खुली छड़ियाँ, I Do और We Do में दिखाने के लिए।",
+   "बोर्ड पर पहले से दहाई-इकाई का बॉक्स बनाकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में पहले इकाई देखें: ऊपर का अंक छोटा हो तो एक दहाई उधार लें। फिर घटाएँ।",
+   "instructions_en": "In each sum look at the ones first: if the top digit is smaller, borrow one ten. Then subtract.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "62 - 39 = ___",
+    "answer": "23",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "6",
+    "row1_o": "2",
+    "row2_t": "3",
+    "row2_o": "9",
+    "answer_t": "2",
+    "answer_o": "3"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "65 - 27",
+     "answer": "38",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "74 - 38",
+     "answer": "36",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "91 - 47 = ___",
+     "answer": "44",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N2.3.4-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "83 - 55 = ___",
+     "answer": "28",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "60 - 42 = ___",
+     "answer": "18",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "पेड़ पर 71 चिड़ियाँ बैठी थीं। 39 चिड़ियाँ उड़ गईं। अब पेड़ पर कितनी चिड़ियाँ बचीं?",
+     "answer": "32",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 27",
+   "worksheets.progressor problem 4 repeats a number the lesson or anchor already used: 28"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "46e3b49f173e",
+ "created": "2026-11-21T06:10:44Z",
+ "cost_usd": 0.039,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

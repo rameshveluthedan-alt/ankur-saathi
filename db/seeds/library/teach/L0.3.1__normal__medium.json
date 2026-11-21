@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.3.1__normal__medium",
+ "skill_id": "L0.3.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर बड़े अक्षरों में लिखें: ख  रव  म  भ। हर अक्षर पर उँगली रखकर उसकी ध्वनि बोलें और अंतर दिखाएँ: 'देखिए, ख में बीच की रेखा जुड़ी है, रव में र और व अलग हैं; भ में बाईं ओर छोटा घुमाव है, म में नहीं।' इसके बाद बिना क्रम के एक-एक अक्षर पर उँगली रखकर उसकी ध्वनि बोलें।",
+   "we_do_hi": "बोर्ड पर बिना क्रम के लिखें: घ  ध  श  स  ब  व  ग  ए। एक अक्षर पर उँगली रखें, बच्चों से पूछें 'यह कौन-सा अक्षर है?' और दो बच्चों से अलग-अलग ध्वनि बुलवाएँ। ध/घ और ब/व पर रुककर पूछें: 'दोनों में क्या अलग है?'",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियों पर लिखे अक्षर-कार्ड दें: क, ख, घ, ध, म, भ, श, स, ब, व, च, ज, ट, इ, उ, औ। एक बच्चा कार्ड फेंटकर बिना क्रम के एक कार्ड दिखाए, दूसरा उसकी ध्वनि बोले, फिर बारी बदलें; जो काम अधूरा रहे, वह अगले ब्लॉक में अपनी जगह पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) ख  2) रव। 'खरगोश' का पहला अक्षर कौन-सा है? उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M1",
+      "misconception_name_hi": "दिखने में मिलते-जुलते अक्षरों में भ्रम (ख/रव, ध/घ, म/भ, श/स)",
+      "misconception_name_en": "Confuses visually similar letters (ख/रव, ध/घ, म/भ, श/स)",
+      "detect_en": "Consistently misidentifies specific letter pairs; other letters are correct. Common pairs: ख↔रव, ध↔घ, म↔भ, श↔स, ब↔व",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर अकेला लिखें: घ। यह कौन-सा अक्षर है? स्लेट पर यही अक्षर लिखें या 'घड़ी' और 'धनुष' में से जिस शब्द से यह शुरू होता है, उसके लिए उँगली दिखाएँ: 1) घड़ी  2) धनुष।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L0.3.1-M1",
+      "misconception_name_hi": "दिखने में मिलते-जुलते अक्षरों में भ्रम (ख/रव, ध/घ, म/भ, श/स)",
+      "misconception_name_en": "Confuses visually similar letters (ख/रव, ध/घ, म/भ, श/स)",
+      "detect_en": "Consistently misidentifies specific letter pairs; other letters are correct. Common pairs: ख↔रव, ध↔घ, म↔भ, श↔स, ब↔व",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर 16 अक्षर-कार्ड का एक सेट हर जोड़ी के लिए बनाएँ: क, ख, घ, ध, म, भ, श, स, ब, व, च, ज, ट, इ, उ, औ।",
+   "बोर्ड पर पहले से लिखें: ख  रव  म  भ और बिना क्रम के: घ  ध  श  स  ब  व  ग  ए।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अक्षर अपने साथी को पढ़कर सुनाएँ। अक्षर क्रम में नहीं हैं। फिर बताएँ कि शब्द किस अक्षर से शुरू होता है।",
+   "instructions_en": "Read each letter aloud to your partner. The letters are not in order. Then say which letter the word begins with.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "अक्षर पहचानने का उदाहरण:",
+    "example_text": "क - कमल"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बिना क्रम के दिखाया गया हर अक्षर-कार्ड देखकर बच्चा उसकी ध्वनि बोले।",
+    "task_en": "The child names the sound of each letter card shown in random order.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे अक्षर-कार्ड",
+     "बोर्ड पर लिखे अक्षर"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना क्रम के 15 या अधिक अक्षर तुरंत सही बोलता है",
+     "partial_hi": "8 से 14 अक्षर सही बोलता है, ख/रव या म/भ जैसे जोड़े में उलझता है",
+     "not_yet_hi": "8 से कम अक्षर पहचानता है या क्रम से गिनकर पहुँचता है",
+     "achieved_en": "Names 15 or more letters correctly and instantly in random order",
+     "partial_en": "Names 8-14 letters, mixes up pairs like ख/रव or म/भ",
+     "not_yet_en": "Names fewer than 8 letters or recites the sequence to reach one"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "पढ़ें: च  ट  इ",
+     "answer": "च, ट, इ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पढ़ें: ख  भ  श",
+     "answer": "ख, भ, श",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पढ़ें: औ  घ  ज",
+     "answer": "औ, घ, ज",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L0.3.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें: व  उ  ध",
+     "answer": "व, उ, ध",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'मछली' किस अक्षर से शुरू होता है? म या भ - साथी को बताएँ।",
+     "answer": "म",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:00:58Z",
+ "cost_usd": 0.0286,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

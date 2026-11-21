@@ -1,0 +1,109 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.7.3__normal__short",
+ "skill_id": "L2.7.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर दो वाक्य लिखें: 'मोर नाच रहा है' और 'मोर कहाँ नाच रहा है'। पहले वाक्य के अंत में । लगाकर कहें: 'देखिए, बात पूरी हुई तो खड़ी पाई लगती है।' दूसरे के अंत में ? लगाकर कहें: 'यहाँ कुछ पूछा गया है, इसलिए प्रश्नचिह्न लगता है।'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' समय कम है, इसलिए अभी सवाल 1 शुरू करें और बाकी अगले ब्लॉक में अपनी जगह पर पूरा करें। घूमकर देखें कि प्रश्न वाले वाक्यों पर ? लगा है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'तुम्हारा नाम क्या है' इसके अंत में कौन-सा चिह्न लगेगा? 1) । 2) ?",
+    "expected_hi": "2) ?",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि प्रश्न वाले वाक्य के अंत में ? लगता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'आज बारिश हो रही है' इसके अंत में कौन-सा चिह्न लगेगा? 1) । 2) ?",
+    "expected_hi": "1) ।",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि बताने वाले वाक्य के अंत में पूर्ण विराम लगता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'मोर नाच रहा है' और 'मोर कहाँ नाच रहा है' (बिना चिह्न के)।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर वाक्य पढ़ें। वाक्य के अंत में सही चिह्न । या ? लिखें।",
+   "instructions_en": "Read each sentence. Write the correct mark । or ? at the end.",
+   "required_count": 3,
+   "sheet_kind": "usage",
+   "example_block": {
+    "problem_hi": "चिह्न लगाने का उदाहरण:",
+    "example_text": "तुम कब आओगे ?"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गाय घास खाती है __",
+     "answer": "।",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "तुम्हारी किताब कहाँ है __",
+     "answer": "?",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "क्या दादी घर पर हैं __",
+     "answer": "?",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "सूरज सुबह निकलता है __",
+     "answer": "।",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह आम किसने तोड़ा __",
+     "answer": "?",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "5356f3ccc3ca",
+ "created": "2026-11-21T06:06:03Z",
+ "cost_usd": 0.0175,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

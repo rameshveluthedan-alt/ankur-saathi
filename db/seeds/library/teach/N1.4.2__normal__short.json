@@ -1,0 +1,107 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.4.2__normal__short",
+ "skill_id": "N1.4.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर तीन चित्र बनाएँ: उगता सूरज, सिर के ऊपर सूरज, चाँद-तारे। बच्चों से कहें: 'देखिए, सुबह हम उठते हैं, दोपहर में खाना खाते हैं, रात को सोते हैं।' फिर पूछें: 'खाना खाने से पहले क्या होता है, सुबह या रात?'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को चार कागज़ की पर्चियाँ दें, जिन पर ये चित्र बने हों: उठना, स्कूल जाना, दोपहर का खाना, सोना। बच्चे पर्चियों को पहले से बाद के क्रम में रखें और 'पहले' और 'बाद में' बोलकर बताएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सूरज उगता है, तब कौन-सा समय होता है? सुबह हो तो 1 उँगली, रात हो तो 2 उँगलियाँ दिखाएँ।",
+    "expected_hi": "1 (सुबह)",
+    "listen_for": [],
+    "shows_hi": "बच्चा दिन के समय को उसकी पहचान से जोड़ता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "नहाना और स्कूल जाना: पहले क्या होता है? नहाना हो तो 1 उँगली, स्कूल जाना हो तो 2 उँगलियाँ दिखाएँ।",
+    "expected_hi": "1 (नहाना)",
+    "listen_for": [],
+    "shows_hi": "बच्चा दो घटनाओं में पहले और बाद को पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "चार कागज़ की पर्चियों का एक सेट हर जोड़ी के लिए: उठना, स्कूल जाना, दोपहर का खाना, सोना (सादे चित्र बनाएँ)",
+   "बोर्ड पर उगता सूरज, सिर के ऊपर सूरज और चाँद-तारे बनाने की जगह रखें"
+  ],
+  "worksheet": {
+   "instructions_hi": "घटनाओं को पहले से बाद के क्रम में रखें। बोर्ड से कॉपी में बनाकर करें।",
+   "instructions_en": "Put the events in order from first to last. Copy from the board into the notebook.",
+   "required_count": 3,
+   "example_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "चार चित्र-पर्चियाँ (उठना, स्कूल जाना, दोपहर का खाना, सोना) क्रम में रखें और 'पहले' और 'बाद में' बोलकर बताएँ।",
+    "task_en": "Arrange four picture slips (waking up, going to school, lunch, sleeping) in order and explain using 'before' and 'after'.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियाँ",
+     "चित्र वाले कार्ड",
+     "खाली डिब्बे के टुकड़े"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों पर्चियाँ सही क्रम में रखता है और पहले और बाद बोलकर बताता है",
+     "partial_hi": "दो-तीन पर्चियाँ सही रखता है या मदद से क्रम पूरा करता है",
+     "not_yet_hi": "सुबह और रात की पर्चियाँ भी सही नहीं रख पाता",
+     "achieved_en": "Orders all four slips correctly and explains with before/after",
+     "partial_en": "Orders two or three slips correctly, or completes with help",
+     "not_yet_en": "Cannot place even the morning and night slips correctly"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सुबह और रात का चित्र बनाएँ: सुबह वाले चित्र के नीचे 1 लिखें।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "दो चित्र बनाएँ: दाँत साफ़ करना, नाश्ता करना। जो पहले होता है, उस पर ✓ लगाएँ।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "तीन चित्र बनाएँ: उठना, दोपहर का खाना, सोना। इन्हें 1, 2, 3 क्रम से लिखें।",
+     "answer": "",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1: answer missing",
+   "worksheets.progressor problem 2: answer missing",
+   "worksheets.progressor problem 3: answer missing"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 3 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:02:08Z",
+ "cost_usd": 0.023,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,127 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.3.3__normal__short",
+ "skill_id": "L2.3.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: जगत्, महत्, विद्या, पत्ता। हलन्त की छोटी तिरछी रेखा दिखाकर कहें: 'देखिए, इस रेखा वाला अक्षर आधा बोला जाता है, उसके बाद अ की आवाज़ नहीं आती।' हर शब्द दो बार धीरे पढ़ें, फिर बच्चों से पूछें कि आधा अक्षर कौन-सा है।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियाँ दें जिन पर ये शब्द लिखे हों: विद्वान्, सत्य, बच्चा, पक्का, स्कूल, क्यारी। एक बच्चा पढ़े, दूसरा सुने, फिर बारी बदलें; पर्चियाँ न हों तो बच्चे बोर्ड से शब्द कॉपी में लिखकर पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) सत् 2) सत। किस शब्द के अंत में त आधा बोला जाता है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा हलन्त का चिह्न पहचानता है और जानता है कि उससे अक्षर आधा बोला जाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: बिल्ली। इस शब्द में कौन-सा अक्षर आधा है? स्लेट पर वह एक अक्षर लिखें।",
+    "expected_hi": "ल",
+    "listen_for": [],
+    "shows_hi": "बच्चा संयुक्त अक्षर में आधा अक्षर पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: जगत्, महत्, विद्या, पत्ता",
+   "हर जोड़ी के लिए कागज़ की पर्चियाँ: विद्वान्, सत्य, बच्चा, पक्का, स्कूल, क्यारी"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द अपने साथी को पढ़कर सुनाएँ। आधे अक्षर पर ध्यान दें।",
+   "instructions_en": "Read each word aloud to your partner. Pay attention to the half letters.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा हलन्त और संयुक्त अक्षर वाले छह शब्द साथी को पढ़कर सुनाए।",
+    "task_en": "The child reads six words with halant and conjunct letters aloud to a partner.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की शब्द-पर्चियाँ",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना मदद के सही पढ़ता है, आधा अक्षर आधा ही बोलता है।",
+     "partial_hi": "कुछ शब्द सही पढ़ता है, पर कहीं आधे अक्षर में अ जोड़ देता है।",
+     "not_yet_hi": "जगत् को जगत पढ़ता है या हर अक्षर पूरा बोलता है।",
+     "achieved_en": "Reads all words correctly without help, saying half letters as half.",
+     "partial_en": "Reads some words correctly but adds an a-sound to some half letters.",
+     "not_yet_en": "Reads जगत् as जगत or says every letter in full."
+    }
+   },
+   "example_block": null,
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: जगत्",
+     "answer": "जगत् (त आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: पक्का",
+     "answer": "पक्का (क आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: विद्वान्",
+     "answer": "विद्वान् (द और न आधे)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: स्कूल",
+     "answer": "स्कूल (स आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: सत्य",
+     "answer": "सत्य (त आधा)",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.0241,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

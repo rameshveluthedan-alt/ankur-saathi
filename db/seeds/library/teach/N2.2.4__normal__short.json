@@ -1,0 +1,118 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.2.4__normal__short",
+ "skill_id": "N2.2.4",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर 0 से 100 तक की संख्या-पट्टी बनाएँ। 'देखिए, 2 के गुणज में हम हर बार 2 आगे कूदते हैं: 2, 4, 6, 8, 10' बोलते हुए हर संख्या पर गोला लगाएँ। इसी तरह 10 के गुणज में 10, 20, 30 तक दिखाएँ, फिर समूह से पूछें: '30 के बाद कौन-सी संख्या आएगी?'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को तीलियाँ या कंकड़ दें। बच्चे 5-5 की ढेरियाँ बनाकर 5, 10, 15 बोलते हुए आगे गिनें, फिर साथी को 2-2 में गिनकर सुनाएँ; बाकी काम अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "5 के गुणज में गिनें: 35, 40, 45, ___। खाली जगह में कौन-सी संख्या आएगी?",
+    "expected_hi": "50",
+    "listen_for": [],
+    "shows_hi": "5-5 आगे गिन पाता है और 50 के पार जाने को तैयार है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "2 के गुणज में गिनें: 64, 66, 68, ___। अगली संख्या लिखें।",
+    "expected_hi": "70",
+    "listen_for": [],
+    "shows_hi": "2-2 की गिनती में दहाई बदलने पर भी सही आगे बढ़ता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर 0 से 100 तक की संख्या-पट्टी (दस-दस की पंक्तियों में) लिखें।",
+   "हर जोड़ी के लिए लगभग 25 तीलियाँ या कंकड़ रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "खाली जगह में सही संख्या लिखें। तीलियों से गिनकर देख सकते हैं।",
+   "instructions_en": "Fill in the missing numbers. You may count with sticks to check.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चा तीलियों की 5-5 की ढेरियाँ बनाकर 5, 10, 15 ... बोलते हुए 50 तक गिने, फिर 2-2 और 10-10 में आगे गिनकर बताए।",
+    "task_en": "The child makes piles of 5 sticks and counts aloud 5, 10, 15 ... up to 50, then counts on by 2s and by 10s.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "तीलियाँ",
+     "कंकड़",
+     "बीज",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "2, 5 और 10 के गुणज में बिना गलती 100 तक गिनता है।",
+     "partial_hi": "2 और 10 में सही गिनता है, पर 5 में अटकता है या 50 के बाद रुक जाता है।",
+     "not_yet_hi": "किसी भी गुणज में पहली पाँच संख्याओं से आगे नहीं गिन पाता।",
+     "achieved_en": "Counts by 2s, 5s and 10s to 100 without error.",
+     "partial_en": "Correct by 2s and 10s but slips with 5s or stops after 50.",
+     "not_yet_en": "Cannot go beyond the first five terms in any skip count."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "10 के गुणज में आगे लिखें: 10, 20, 30, ___, ___",
+     "answer": "40, 50",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "2 के गुणज में आगे लिखें: 22, 24, 26, ___, ___",
+     "answer": "28, 30",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "5 के गुणज में आगे लिखें: 55, 60, 65, ___, ___",
+     "answer": "70, 75",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "10 के गुणज में आगे लिखें: 60, 70, ___, ___",
+     "answer": "80, 90",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "5 के गुणज में आगे लिखें: 80, 85, ___, ___",
+     "answer": "90, 95",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0232,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.6.1-M1__short",
+ "skill_id": "L3.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.6.1-M1",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने क्यों वाले सवाल किए थे।' बोर्ड पर लिखें: 'आसमान में काले बादल थे। मीना ने छाता उठाया।' पूछें 'मीना ने छाता क्यों उठाया?', पहले बोर्ड पर गलत उत्तर लिखें 'मीना ने छाता उठाया', कहें 'यह तो कहानी का वाक्य है, कारण नहीं', फिर सही लिखें 'क्योंकि बारिश आने वाली थी', गलत उत्तर मिटा दें और अंत में समूह से एक छोटा सवाल पूछें।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे वर्कशीट का अनुच्छेद एक बार पढ़ें और सवाल 1 हल करें; सवाल 2 और 3 अगले समय अपनी जगह पर पूरे करें, फिर जो जल्दी ख़त्म करें वे बाकी सवाल करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली बार वाक्य उतारा था।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'राजू ने खाना नहीं खाया था। उसका पेट गुड़गुड़ कर रहा था।' राजू का पेट क्यों गुड़गुड़ कर रहा था? 1) उसका पेट गुड़गुड़ कर रहा था 2) उसे भूख लगी थी",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M1",
+      "misconception_name_hi": "अनुमानात्मक प्रश्न का तथ्यात्मक उत्तर देता है",
+      "misconception_name_en": "Gives literal answer to inferential question",
+      "detect_en": "Response is a copy from the text, not a reasoned answer. E.g., \"Why was Ram sad?\" → \"Ram went home\" (quotes text) instead of \"Because his friend moved away\" (infers)",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सोनू ने गिलास गिराया। फर्श पर दूध फैल गया।' फर्श पर दूध क्यों फैला? 1) गिलास गिर गया था 2) फर्श पर दूध फैल गया",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M1",
+      "misconception_name_hi": "अनुमानात्मक प्रश्न का तथ्यात्मक उत्तर देता है",
+      "misconception_name_en": "Gives literal answer to inferential question",
+      "detect_en": "Response is a copy from the text, not a reasoned answer. E.g., \"Why was Ram sad?\" → \"Ram went home\" (quotes text) instead of \"Because his friend moved away\" (infers)",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: 'आसमान में काले बादल थे। मीना ने छाता उठाया।'"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद ध्यान से पढ़ें। हर सवाल का उत्तर कारण बताकर लिखें, अनुच्छेद का वाक्य वैसे ही न उतारें।",
+   "instructions_en": "Read the passage carefully. Answer each question by giving a reason; do not just copy a sentence from the passage.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "गोलू का पौधा",
+    "text": "गोलू ने आँगन में एक पौधा लगाया। कई दिन वह उसे पानी देना भूल गया। पौधे के पत्ते पीले हो गए। गोलू उदास हो गया। अब वह रोज़ सुबह पौधे को पानी देता है। कुछ दिन बाद पौधे पर नए हरे पत्ते आ गए। गोलू खुशी से नाचने लगा।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "गोलू उदास क्यों हो गया?",
+     "answer": "क्योंकि उसके पौधे के पत्ते पीले हो गए थे",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पौधे के पत्ते पीले क्यों हो गए?",
+     "answer": "क्योंकि गोलू कई दिन पानी देना भूल गया था",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पौधे पर नए हरे पत्ते कैसे आए?",
+     "answer": "क्योंकि गोलू रोज़ सुबह उसे पानी देने लगा",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "गोलू खुशी से क्यों नाचने लगा?",
+     "answer": "क्योंकि उसका पौधा फिर से हरा हो गया",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "गोलू अब रोज़ सुबह पौधे को पानी क्यों देता है?",
+     "answer": "ताकि पौधा फिर से न मुरझाए",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "पौधे को हरा रखने के लिए क्या ज़रूरी है?",
+     "answer": "उसे रोज़ पानी देना",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "ec1245c64825",
+ "created": "2026-11-21T06:01:23Z",
+ "cost_usd": 0.0245,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

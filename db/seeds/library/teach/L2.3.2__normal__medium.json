@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.3.2__normal__medium",
+ "skill_id": "L2.3.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर तीन शब्द लिखें: आँख, हंस, दुःख। हर शब्द में निशान पर उँगली रखकर बताएँ: 'यह चंद्रबिंदु है, आवाज़ नाक से निकलती है', 'यह बिंदी है', 'यह विसर्ग है, हल्की ह जैसी आवाज़'। हर शब्द धीरे से दो बार पढ़कर सुनाएँ।",
+   "we_do_hi": "बोर्ड पर लिखें: चाँद, गंगा, अतः, ऊँट। हर शब्द पर बच्चों से पूछें: 'इसमें कौन-सा निशान है?', फिर एक-एक बच्चा शब्द पढ़े। अगर कोई हंस को हस पढ़े, तो निशान पर उँगली रखकर नाक वाली आवाज़ फिर से सुनाएँ।",
+   "you_do_hi": "हर जोड़ी को पर्चियों पर लिखे शब्द-कार्ड दें: माँ, बंदर, पुनः, गाँव, ठंड, सिंह। बच्चे बारी-बारी से साथी को कार्ड पढ़कर सुनाएँ और बताएँ कि उसमें कौन-सा निशान है; पर्चियाँ न हों तो वर्कशीट के शब्द कॉपी से पढ़ें, और जो बाकी रह जाए वह अगले ब्लॉक में अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) दात 2) दाँत। मुँह में जो होते हैं, वह शब्द कौन-सा है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा चंद्रबिंदु को पहचानकर सही शब्द चुनता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: पंख। इस शब्द में कौन-सा निशान है? स्लेट पर वह निशान बनाएँ।",
+    "expected_hi": "ं (बिंदी)",
+    "listen_for": [],
+    "shows_hi": "बच्चा अनुस्वार का निशान पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कागज़ की पर्चियों पर छह शब्द लिखें: माँ, बंदर, पुनः, गाँव, ठंड, सिंह (हर जोड़ी के लिए एक सेट)।",
+   "बोर्ड पर पहले से लिखें: आँख, हंस, दुःख और चाँद, गंगा, अतः, ऊँट।"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "शब्द साथी को पढ़कर सुनाएँ और बताएँ कि उसमें कौन-सा निशान है।",
+   "instructions_en": "Read each word aloud to your partner and name the mark in it.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "निशान पहचानने का उदाहरण:",
+    "example_text": "आँख - चंद्रबिंदु (ँ)"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "शब्द-कार्ड साथी को पढ़कर सुनाएँ और हर शब्द का निशान बताएँ।",
+    "task_en": "Read word cards aloud to a partner and name the mark in each word.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सभी शब्द नाक वाली आवाज़ और विसर्ग के साथ सही पढ़ता है",
+     "partial_hi": "शब्द पढ़ता है पर कुछ में निशान छोड़ देता है, जैसे बंदर को बदर",
+     "not_yet_hi": "निशानों को पहचान नहीं पाता, शब्द नहीं पढ़ पाता",
+     "achieved_en": "Reads all words correctly with nasal sound and visarg",
+     "partial_en": "Reads words but drops the mark in some, e.g. बदर for बंदर",
+     "not_yet_en": "Does not recognise the marks; cannot read the words"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: माँ",
+     "answer": "माँ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: बंदर",
+     "answer": "बंदर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: पुनः",
+     "answer": "पुनः",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पढ़ें और निशान बताएँ: गाँव",
+     "answer": "चंद्रबिंदु",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "पढ़ें और निशान बताएँ: ठंड",
+     "answer": "बिंदी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "पढ़ें और निशान बताएँ: दुःख",
+     "answer": "विसर्ग",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0267,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

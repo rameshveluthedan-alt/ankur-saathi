@@ -1,0 +1,134 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.5.2-M1__medium",
+ "skill_id": "N3.5.2",
+ "domain_id": "numeracy",
+ "mode": "N3.5.2-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने आयत का परिमाप निकाला था, यानी चारों भुजाओं का जोड़। बोर्ड पर 6 cm लंबा और 4 cm चौड़ा आयत बनाएँ और पहले यह लिखें: 6 + 4 = 10 cm। बच्चों से पूछें 'आयत की कितनी भुजाएँ हैं?' और चारों भुजाओं पर उँगली फेरकर दिखाएँ कि हमने केवल दो भुजाएँ जोड़ीं। फिर उसी आयत के लिए लिखें 6 + 4 + 6 + 4 = 20 cm, यानी 2 × (6 + 4) = 20 cm, और गलत लाइन मिटा दें ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: आयत 7 cm × 2 cm, परिमाप = 9 cm। बच्चों से पूछें 'कौन-सी भुजाएँ छूट गईं?' और साथ मिलकर ठीक करें: 7 + 2 + 7 + 2 = 18 cm। फिर एक नया आयत 8 cm × 5 cm बनाएँ और हर भुजा पर उसकी लंबाई लिखवाते हुए साथ में परिमाप निकालें: 26 cm।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' यहाँ अभी सवाल 1 और 2 शुरू करवाएँ, बाकी बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें। सामान्य चक्कर में पहले उन बच्चों की कॉपी शांति से देखें जिन्होंने कल केवल दो भुजाएँ जोड़ी थीं, किसी का नाम लिए बिना।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "एक आयत 9 cm लंबा और 3 cm चौड़ा है। इसका परिमाप कितने cm है?",
+    "expected_hi": "24 cm",
+    "listen_for": [
+     {
+      "misconception_id": "N3.5.2-M1",
+      "misconception_name_hi": "आयत का परिमाप: केवल 2 भुजाएँ जोड़ना",
+      "misconception_name_en": "Adds only 2 sides for rectangle perimeter",
+      "detect_en": "Answer is exactly half the correct perimeter",
+      "wrong_answer_hi": "12 cm"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: आयत 10 cm × 4 cm, परिमाप = 14 cm। सही या गलत?",
+    "expected_hi": "गलत",
+    "listen_for": [
+     {
+      "misconception_id": "N3.5.2-M1",
+      "misconception_name_hi": "आयत का परिमाप: केवल 2 भुजाएँ जोड़ना",
+      "misconception_name_en": "Adds only 2 sides for rectangle perimeter",
+      "detect_en": "Answer is exactly half the correct perimeter",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दो आयत बनाने की जगह रखें: 6 cm × 4 cm और 8 cm × 5 cm।",
+   "बोर्ड के एक कोने में लिखें: आयत 7 cm × 2 cm, परिमाप = 9 cm।",
+   "हर बच्चे के पास स्लेट या कॉपी का खाली पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर आकृति की सभी भुजाएँ जोड़कर परिमाप लिखें। आयत में चारों भुजाएँ गिनें।",
+   "instructions_en": "Add all the sides of each shape to find its perimeter. For a rectangle, count all four sides.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "आयत: लंबाई 4 cm, चौड़ाई 2 cm। परिमाप = 4 + 2 + 4 + 2 = 12 cm",
+    "answer": "12 cm",
+    "show_pv_grid": false,
+    "pv_columns": 2
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "वर्ग की हर भुजा 8 cm है। परिमाप = ___ cm",
+     "answer": "32",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "आयत: लंबाई 12 cm, चौड़ाई 5 cm। परिमाप = ___ cm",
+     "answer": "34",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.5.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "आयत: लंबाई 15 cm, चौड़ाई 4 cm। परिमाप = ___ cm",
+     "answer": "38",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.5.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "त्रिभुज की भुजाएँ 6 cm, 8 cm और 9 cm हैं। परिमाप = ___ cm",
+     "answer": "23",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "आयत: लंबाई 13 cm, चौड़ाई 7 cm। परिमाप = ___ cm",
+     "answer": "40",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक खेत आयत के आकार का है। वह 20 m लंबा और 10 m चौड़ा है। चारों ओर बाड़ लगाने के लिए कितने m तार चाहिए?",
+     "answer": "60",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f9719dd3d99a",
+ "created": "2026-11-21T06:05:34Z",
+ "cost_usd": 0.0346,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

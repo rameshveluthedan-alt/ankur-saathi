@@ -1,0 +1,130 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.7.3__normal__medium",
+ "skill_id": "L3.7.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर पत्र के चार हिस्से लिखें: 'प्रिय दादी जी,' फिर 'नमस्ते।' फिर दो वाक्य 'मैं ठीक हूँ। मेरी परीक्षा अच्छी हुई।' और अंत में 'आपकी पोती, सीमा'। हर हिस्से पर उँगली रखकर बच्चों को बताएँ: 'देखिए, पहले संबोधन, फिर नमस्ते, फिर अपनी बात, अंत में अपना नाम।'",
+   "we_do_hi": "बोर्ड पर लिखें: 'प्रिय मामा जी,' और बच्चों से पूछें कि अगली पंक्ति में क्या आएगा। बच्चों के सुझाव से दो वाक्य जोड़ें, जैसे 'हमारे स्कूल में खेल-दिवस था। मैंने दौड़ में भाग लिया।' फिर पूछें: 'अंत में क्या लिखेंगे?' और 'आपका भांजा, अमन' लिखें।",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट पर दिए विषय पर पत्र लिखना शुरू करें: पहले संबोधन और नमस्ते लिखें, फिर पहला वाक्य।' बाकी पत्र और सवाल 2 से 4 बच्चे अपनी जगह पर अगले समय में पूरा करें। घूमकर देखें कि हर बच्चे ने 'प्रिय' से शुरुआत की है।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "पत्र की पहली पंक्ति में क्या लिखते हैं? 1) प्रिय दीदी, 2) आपकी बहन, — उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि पत्र संबोधन से शुरू होता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'आपका दोस्त, राजू'। यह पत्र में कहाँ आएगा? 1) शुरू में 2) अंत में",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि पत्र का अंत अपने नाम से होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड के एक कोने में पत्र के चार हिस्से लिखकर रखें: संबोधन, नमस्ते, अपनी बात, अपना नाम।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "नीचे दिए काम ध्यान से करें। पत्र में संबोधन, नमस्ते, अपनी बात और अपना नाम ज़रूर लिखें।",
+   "instructions_en": "Do the tasks below carefully. In the letter, include the greeting, namaste, your message and your name.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "अपने दोस्त को अपने नए पालतू पिल्ले के बारे में पत्र",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "पत्र 'प्रिय' से शुरू है",
+     "item_en": "Letter begins with 'प्रिय'"
+    },
+    {
+     "item_hi": "नमस्ते लिखा है",
+     "item_en": "Namaste is written"
+    },
+    {
+     "item_hi": "कम से कम 3 वाक्य विषय पर",
+     "item_en": "At least 3 sentences on the topic"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "Full stop at the end of every sentence"
+    },
+    {
+     "item_hi": "अंत में अपना नाम लिखा है",
+     "item_en": "Own name written at the end"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने दोस्त को अपने नए पालतू पिल्ले के बारे में एक पत्र लिखें। इसमें 3-5 वाक्य हों।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "अपने दोस्त को अपने नए पालतू पिल्ले के बारे में पत्र"
+    },
+    {
+     "number": 2,
+     "problem_hi": "खाली जगह भरें (प्रिय / नमस्ते): ____ नानी जी,",
+     "answer": "प्रिय",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "सही जगह पूर्ण विराम (।) लगाकर लिखें: कल बारिश हुई हम नाव चलाने गए",
+     "answer": "कल बारिश हुई। हम नाव चलाने गए।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "पत्र के हिस्सों को सही क्रम में लिखें (क्रम के अक्षर): क) आपकी बेटी, रिया  ख) प्रिय पापा,  ग) मुझे आपकी याद आती है।",
+     "answer": "ख, ग, क",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6f61757cde77",
+ "created": "2026-11-21T06:10:43Z",
+ "cost_usd": 0.0251,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

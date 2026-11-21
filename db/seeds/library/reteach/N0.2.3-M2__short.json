@@ -1,0 +1,144 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N0.2.3-M2__short",
+ "skill_id": "N0.2.3",
+ "domain_id": "numeracy",
+ "mode": "N0.2.3-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने अंक पहचानना सीखा था। बोर्ड पर बड़ा 2 लिखें और कहें: 'देखिए, कोई इसे पाँच पढ़ सकता है, यह गलत है।' फिर उसी 2 पर उँगली फेरकर बोलें: 'दो का पेट ऊपर गोल है, नीचे सीधी लकीर; पाँच के ऊपर टोपी है, नीचे पेट।' बगल में 5 लिखकर दोनों दिखाएँ, फिर गलत पढ़ने की बात मिटा दें, बोर्ड पर सिर्फ़ सही 2 और 5 रहें।",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को अंक कार्ड 1 से 9 दें; कार्ड न हों तो कागज़ की पर्चियों पर 2, 5, 6, 9 लिखकर दें। एक बच्चा कार्ड उठाए, दूसरा अंक बोले और उतनी तीलियाँ या कंकड़ रखे; पहले उन बच्चों के पास शांति से जाएँ जिन्होंने कल 2 और 5 में भ्रम किया था। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बड़ा 5 लिखें। 'यह कौन सा अंक है? उतनी उँगलियाँ दिखाएँ।'",
+    "expected_hi": "5 उँगलियाँ",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M2",
+      "misconception_name_hi": "2 और 5 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 2 and 5",
+      "detect_en": "Reads 2 as 5 or vice versa; pattern is consistent across sessions",
+      "wrong_answer_hi": "2 उँगलियाँ"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 2   2) 5। 'दो कौन सा है? 1 या 2 उँगली दिखाएँ।'",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "N0.2.3-M2",
+      "misconception_name_hi": "2 और 5 में भ्रम",
+      "misconception_name_en": "Mirror confusion: 2 and 5",
+      "detect_en": "Reads 2 as 5 or vice versa; pattern is consistent across sessions",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "अंक कार्ड 1 से 9, हर जोड़ी के लिए एक सेट; न हों तो कागज़ की पर्चियों पर 2, 5, 6, 9 लिखें",
+   "हर जोड़ी के लिए 9 तीलियाँ या कंकड़",
+   "फ्लैश कार्ड बनाएँ: मोटे कागज़ को ताश के पत्ते के आकार में काटें। एक तरफ़ अंक लिखें, दूसरी तरफ़ उतने बिंदु या दहाई-इकाई के चित्र बनाएँ। पाठ में ये कार्ड दिखाए जाएँगे: प्रगतिशील समूह के लिए 1। कुल 1 कार्ड।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अंक देखें और उसके नीचे उतने गोले बनाएँ।",
+   "instructions_en": "Look at the numeral and draw that many circles below it.",
+   "required_count": 3,
+   "practice": true,
+   "example_block": null,
+   "observe": {
+    "task_hi": "बच्चा मिले-जुले क्रम में रखे अंक कार्ड उठाकर अंक का नाम बोले और उतनी तीलियाँ रखे, खासकर 2, 5, 6, 9।",
+    "task_en": "The child picks numeral cards in random order, names each numeral and places that many sticks, especially 2, 5, 6, 9.",
+    "kit_materials_hi": [
+     "अंक कार्ड"
+    ],
+    "local_materials_hi": [
+     "तीलियाँ",
+     "कंकड़",
+     "बोतल के ढक्कन",
+     "अंक लिखी कागज़ की पर्चियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे 9 अंक बिना मदद सही बोलता है, 2 और 5 में भ्रम नहीं",
+     "partial_hi": "6 से 8 अंक सही, 2 और 5 या 6 और 9 में कभी भ्रम",
+     "not_yet_hi": "6 से कम अंक पहचानता है",
+     "achieved_en": "Names all 9 numerals correctly without help, no 2/5 confusion",
+     "partial_en": "Names 6-8 numerals, sometimes confuses 2/5 or 6/9",
+     "not_yet_en": "Identifies fewer than 6 numerals"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "3 : उतने गोले बनाएँ।",
+     "answer": "3 गोले",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "5 : उतने गोले बनाएँ।",
+     "answer": "5 गोले",
+     "row_type": null,
+     "diagnostic_for_misconception": "N0.2.3-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "2 : उतने गोले बनाएँ।",
+     "answer": "2 गोले",
+     "row_type": null,
+     "diagnostic_for_misconception": "N0.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "7 : उतने गोले बनाएँ।",
+     "answer": "7 गोले",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "4 : उतने गोले बनाएँ।",
+     "answer": "4 गोले",
+     "row_type": null,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor (observed) problem 1: the question states its own answer (3 गोले)",
+   "worksheets.progressor (observed) problem 2: the question states its own answer (5 गोले)",
+   "worksheets.progressor (observed) problem 3: the question states its own answer (2 गोले)",
+   "worksheets.progressor (observed) problem 4: the question states its own answer (7 गोले)",
+   "worksheets.progressor (observed) problem 5: the question states its own answer (4 गोले)"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)",
+   "place value: flash cards listed from the lesson: progressor 1"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4696d8521ecb",
+ "created": "2026-11-21T05:58:26Z",
+ "cost_usd": 0.0248,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

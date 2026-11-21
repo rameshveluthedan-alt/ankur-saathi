@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "L3.6.1-M2__short",
+ "skill_id": "L3.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "L3.6.1-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने 'क्यों' और 'कैसे' के उत्तर पाठ से ढूँढना सीखा था। बोर्ड पर लिखें: 'राजू दौड़ता हुआ स्कूल पहुँचा। घंटी बज चुकी थी।' पूछें 'राजू क्यों दौड़ा?' और पहले गलत उत्तर लिखें: 'क्योंकि उसे दौड़ना पसंद है'। फिर बताएँ: 'यह बात पाठ में कहीं नहीं लिखी, यह अपने मन से सोचा उत्तर है।' इसके बाद उसी प्रश्न का सही उत्तर लिखें: 'क्योंकि उसे देर हो गई थी, घंटी बज चुकी थी।' 'घंटी बज चुकी थी' के नीचे रेखा खींचें और कहें: 'देखिए, सबूत पाठ में है।' गलत उत्तर मिटा दें, बोर्ड पर केवल सही उत्तर रहे। अंत में समूह से एक छोटा प्रश्न पूछें: 'हमें सबूत कहाँ से मिला?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे वर्कशीट का अनुच्छेद एक बार पढ़ें और सवाल 1 शुरू करें। सवाल 2 और 3 वे अगले खंड में अपनी जगह पर पूरा करें; जो जल्दी ख़त्म करें, वे सवाल 4 से 6 करें। शिक्षक सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जिन्होंने कल यह गलती की थी, और पूछें: 'यह बात पाठ में कहाँ लिखी है?'"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'गाय भूखी थी। रीना ने उसे घास दी।' रीना ने गाय को घास क्यों दी? 1) रीना को गाय अच्छी लगती है 2) गाय भूखी थी",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M2",
+      "misconception_name_hi": "पाठ से असंबंधित अनुमान लगाता है (केवल अपना ज्ञान प्रयोग करता है)",
+      "misconception_name_en": "Makes inferences unrelated to text (uses only personal knowledge)",
+      "detect_en": "Answer is plausible in general but contradicted by or unsupported by the specific text",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सोनू ने मोटा कोट पहना। बाहर बर्फ़ गिर रही थी।' सोनू ने कोट क्यों पहना? 1) बर्फ़ गिर रही थी, ठंड थी 2) कोट नया था",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M2",
+      "misconception_name_hi": "पाठ से असंबंधित अनुमान लगाता है (केवल अपना ज्ञान प्रयोग करता है)",
+      "misconception_name_en": "Makes inferences unrelated to text (uses only personal knowledge)",
+      "detect_en": "Answer is plausible in general but contradicted by or unsupported by the specific text",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'राजू दौड़ता हुआ स्कूल पहुँचा। घंटी बज चुकी थी।'",
+   "हर बच्चे के लिए वर्कशीट की एक प्रति और एक स्लेट या कॉपी का पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद ध्यान से पढ़ें। हर प्रश्न का उत्तर अनुच्छेद की बातों के आधार पर लिखें।",
+   "instructions_en": "Read the passage carefully. Answer each question using what the passage says.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "बारिश का दिन",
+    "text": "सुबह से तेज़ बारिश हो रही थी। मीना ने खिड़की से देखा कि आँगन में पानी भर गया है। उसकी साइकिल बाहर भीग रही थी। मीना ने छाता लिया और साइकिल को बरामदे में रख दिया। फिर उसने अपने गीले पैर तौलिए से पोंछे। माँ ने कहा, 'शाबाश, अब तुम्हारी साइकिल में जंग नहीं लगेगी।'"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मीना ने छाता क्यों लिया?",
+     "answer": "क्योंकि बाहर तेज़ बारिश हो रही थी।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "मीना ने साइकिल को बरामदे में क्यों रखा?",
+     "answer": "ताकि साइकिल बारिश में न भीगे।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "माँ ने मीना को 'शाबाश' क्यों कहा?",
+     "answer": "क्योंकि मीना ने साइकिल को भीगने और जंग लगने से बचाया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "आँगन में पानी क्यों भर गया?",
+     "answer": "सुबह से तेज़ बारिश हो रही थी।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "मीना को कैसे पता चला कि साइकिल भीग रही है?",
+     "answer": "उसने खिड़की से देखा।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "मीना के पैर गीले कैसे हुए?",
+     "answer": "साइकिल रखने बारिश में बाहर गई थी, इसलिए।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6bdf18970d34",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.0446,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

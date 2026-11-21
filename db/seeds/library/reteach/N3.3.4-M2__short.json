@@ -1,0 +1,137 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N3.3.4-M2__short",
+ "skill_id": "N3.3.4",
+ "domain_id": "numeracy",
+ "mode": "N3.3.4-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने 2 अंकों की संख्या को 1 अंक से गुणा करना सीखा था। बोर्ड पर 34 × 2 लिखें। पहले गलत तरीका दिखाएँ: इकाई 4 × 2 = 8, फिर दहाई में 3 + 2 = 5, उत्तर 58। बच्चों से कहें: 'देखिए, यहाँ दहाई में जोड़ दिया, गुणा नहीं किया।' अब वही सवाल सही करें: इकाई 4 × 2 = 8, दहाई 3 × 2 = 6, उत्तर 68। बच्चों से पूछें: 'दहाई में हम क्या करते हैं, जोड़ या गुणा?' फिर गलत हल मिटा दें, ताकि बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे पहले वर्कशीट का सवाल 1 हल करें। सवाल 2 और 3 वे अगले ब्लॉक में अपनी जगह पर पूरे करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें। राउंड में सबसे पहले, धीरे से, उन बच्चों के पास जाएँ जिन्होंने दहाई में जोड़ किया था, और देखें कि वे दहाई में भी गुणा कर रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 42 × 3",
+    "expected_hi": "126",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M2",
+      "misconception_name_hi": "एक अंक का गुणा करने की बजाय जोड़ना",
+      "misconception_name_en": "Adds instead of multiplying one digit",
+      "detect_en": "Ones column is correct (multiplied) but tens result looks like addition rather than multiplication",
+      "wrong_answer_hi": "76"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "15 × 4: 60 या 70?",
+    "expected_hi": "60",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M2",
+      "misconception_name_hi": "एक अंक का गुणा करने की बजाय जोड़ना",
+      "misconception_name_en": "Adds instead of multiplying one digit",
+      "detect_en": "Ones column is correct (multiplied) but tens result looks like addition rather than multiplication",
+      "wrong_answer_hi": "70"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 34 × 2",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो"
+  ],
+  "worksheet": {
+   "instructions_hi": "गुणा करें। पहले इकाई का गुणा करें, फिर दहाई का। दहाई में भी गुणा करें और हासिल जोड़ें। हासिल ऊपर वाले बॉक्स में लिखें।",
+   "instructions_en": "Multiply. First multiply the ones, then the tens. Multiply the tens too, then add the carry. Write the carry in the carry cell.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "26 × 3 = ___",
+    "answer": "78",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "6",
+    "row2_t": "",
+    "row2_o": "3",
+    "answer_t": "7",
+    "answer_o": "8"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "21 × 4",
+     "answer": "84",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "32 × 3",
+     "answer": "96",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N3.3.4-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "13 × 5 = ___",
+     "answer": "65",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.4-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "24 × 3 = ___",
+     "answer": "72",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "41 × 2 = ___",
+     "answer": "82",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक डिब्बे में 19 पेंसिल हैं। ऐसे 3 डिब्बों में कुल कितनी पेंसिल हैं?",
+     "answer": "57",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "8e83fa65131d",
+ "created": "2026-11-21T05:58:25Z",
+ "cost_usd": 0.0342,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

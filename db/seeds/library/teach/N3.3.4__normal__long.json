@@ -1,0 +1,145 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.3.4__normal__long",
+ "skill_id": "N3.3.4",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "याद दिलाएँ: 'हमने सीखा था कि 3 × 4 का मतलब 4 के 3 समूह।' बोर्ड पर 24 × 3 लिखें और 2 बंडल व 4 खुली छड़ियों के 3 समूह बनाकर दिखाएँ। बोलें: 'पहले इकाई: 4 × 3 = 12, यानी 1 दहाई और 2 इकाई; इकाई में 2 लिखें, 1 हासिल। फिर दहाई: 2 × 3 = 6, उसमें हासिल 1 जोड़ें, 7। उत्तर 72।'",
+   "we_do_hi": "बोर्ड पर 27 × 3 लिखें और हर कदम पर बच्चों से पूछें: 'इकाई में कितना गुणा? कितनी इकाई लिखें, कितना हासिल?' 7 × 3 = 21 पर 1 लिखें, 2 हासिल; फिर 2 × 3 = 6, हासिल जोड़कर 8, उत्तर 81। इसके बाद पूछें: 'दहाई के अंक के साथ भी गुणा करना है या जोड़ना?' और 16 × 5 = 80 साथ में हल करें।",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' हासिल वाले बॉक्स में हासिल लिखने को कहें। घूमते हुए देखें कि कोई दो गुणनफल पास-पास तो नहीं लिख रहा, और दहाई में गुणा हो रहा है, जोड़ नहीं।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 13 × 6",
+    "expected_hi": "78",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M1",
+      "misconception_name_hi": "प्रत्येक अंक को अलग-अलग गुणा करना, हासिल के बिना",
+      "misconception_name_en": "Multiplies each digit independently without carrying",
+      "detect_en": "Answer structure looks like concatenation of two separate products rather than proper column multiplication",
+      "wrong_answer_hi": "618"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 25 × 3 = 65। सही या गलत? गलत हो तो सही उत्तर लिखें।",
+    "expected_hi": "गलत, 75",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.4-M2",
+      "misconception_name_hi": "एक अंक का गुणा करने की बजाय जोड़ना",
+      "misconception_name_en": "Adds instead of multiplying one digit",
+      "detect_en": "Ones column is correct (multiplied) but tens result looks like addition rather than multiplication",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "10-10 छड़ियों के 8 बंडल और 25 खुली छड़ियाँ (24 × 3 और 27 × 3 दिखाने के लिए)।",
+   "बोर्ड पर पहले से दहाई-इकाई का बॉक्स बनाकर रखें, ऊपर हासिल लिखने की जगह के साथ।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल का गुणा करें। पहले इकाई का गुणा करें, फिर दहाई का। हासिल को हासिल वाले बॉक्स में लिखें और दहाई के गुणनफल में जोड़ें।",
+   "instructions_en": "Multiply each problem. Multiply the ones first, then the tens. Write the carry in the carry cell and add it to the tens product.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "15 × 4 = ___",
+    "answer": "60",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "1",
+    "row1_o": "5",
+    "row2_t": "",
+    "row2_o": "4",
+    "answer_t": "6",
+    "answer_o": "0"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "12 × 4",
+     "answer": "48",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "17 × 5",
+     "answer": "85",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N3.3.4-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "19 × 4 = ___",
+     "answer": "76",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N3.3.4-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "29 × 3 = ___",
+     "answer": "87",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "46 × 2 = ___",
+     "answer": "92",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक डिब्बे में 16 लड्डू हैं। ऐसे 6 डिब्बों में कुल कितने लड्डू हैं?",
+     "answer": "96",
+     "row_type": null,
+     "answer_type": "wide",
+     "show_pv_grid": false,
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats a number the lesson or anchor already used: 12",
+   "worksheets.progressor problem 6 repeats a number the lesson or anchor already used: 16",
+   "a possible self-correction ('यानी') in the text"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6768e90b98fb",
+ "created": "2026-11-21T06:01:35Z",
+ "cost_usd": 0.036,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

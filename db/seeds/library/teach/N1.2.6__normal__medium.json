@@ -1,0 +1,133 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.2.6__normal__medium",
+ "skill_id": "N1.2.6",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 45, 23, 67, 28। बच्चों से कहें: 'पहले दहाई देखें। जिसकी दहाई छोटी, वह संख्या छोटी।' दहाई 2 वाली दो संख्याएँ हैं, तो इकाई देखकर बोर्ड पर बढ़ते क्रम में लिखें: 23, 28, 45, 67।",
+   "we_do_hi": "बोर्ड पर लिखें: 81, 36, 39, 52। बच्चों से पूछें: 'सबसे बड़ी संख्या कौन-सी है? दहाई देखें।' फिर हर बार अगली बड़ी संख्या पूछते जाएँ और घटते क्रम में लिखें: 81, 52, 39, 36। बताएँ: 'घटते क्रम में हम बड़ी से छोटी की ओर चलते हैं।'",
+   "you_do_hi": "बच्चों से कहें: 'अपनी कॉपी में वर्कशीट का सवाल 1 हल करें। पहले दहाई देखें, फिर इकाई।' इस छोटे समय में सवाल 1 शुरू होता है। बाकी सवाल 2 और 3 बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें, और जो जल्दी ख़त्म करें, वे बाकी सवाल करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "कौन-सी संख्या बड़ी है: 58 या 85?",
+    "expected_hi": "85",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहले दहाई देखकर बड़ी संख्या पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 74, 47, 61। बढ़ते क्रम में सबसे पहले कौन-सी संख्या आएगी?",
+    "expected_hi": "47",
+    "listen_for": [],
+    "shows_hi": "बच्चा बढ़ते क्रम में सबसे छोटी संख्या से शुरू करता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 45, 23, 67, 28 (I Do) और 81, 36, 39, 52 (We Do)।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "संख्याओं को दिए गए क्रम में लिखें। पहले दहाई देखें, फिर इकाई।",
+   "instructions_en": "Write the numbers in the order asked. Look at the tens first, then the ones.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "बढ़ते क्रम में लिखें: 52, 25, 50",
+    "answer": "25, 50, 52",
+    "show_pv_grid": false,
+    "pv_columns": 2,
+    "row1_t": "",
+    "row1_o": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "",
+    "answer_o": ""
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "बढ़ते क्रम में लिखें: 34, 12, 56",
+     "answer": "12, 34, 56",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "बढ़ते क्रम में लिखें: 63, 36, 61, 16",
+     "answer": "16, 36, 61, 63",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "घटते क्रम में लिखें: 48, 84, 40, 89, 44",
+     "answer": "89, 84, 48, 44, 40",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "बढ़ते क्रम में लिखें: 71, 17, 27, 70, 7",
+     "answer": "7, 17, 27, 70, 71",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "घटते क्रम में लिखें: 95, 59, 65, 56",
+     "answer": "95, 65, 59, 56",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "बढ़ते क्रम में लिखें: 33, 30, 38, 13, 31",
+     "answer": "13, 30, 31, 33, 38",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 2 repeats a number the lesson or anchor already used: 36"
+  ],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "e66c74c0364b",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0296,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

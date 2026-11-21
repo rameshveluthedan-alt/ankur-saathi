@@ -1,0 +1,125 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.7.1__normal__medium",
+ "skill_id": "L1.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर चार लाइनें खींचें और 'ख' धीरे-धीरे लिखें, हर कदम बोलते हुए: 'पहले गोला, फिर खड़ी पाई, सबसे आख़िर में ऊपर शिरोरेखा।' इसके बाद 'घ' और 'ऋ' इसी तरह लिखें। बच्चों को दिखाएँ कि अक्षर दो लाइनों के बीच रहता है और शिरोरेखा पूरे अक्षर को ढकती है।",
+   "we_do_hi": "बच्चों से कहें: 'अपनी उँगली हवा में उठाएँ, हम साथ में भ लिखेंगे।' हर कदम गिनकर बोलें, फिर बच्चे स्लेट पर 'भ' और 'ऊ' लिखें। घूमकर देखें कि शिरोरेखा लगी है और अक्षर उल्टा नहीं बना।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। ये 5 मिनट बस शुरुआत हैं: बच्चे बाकी काम अगले ब्लॉक में अपनी जगह पर पूरा करें। शिक्षक घूमकर पहले उन बच्चों के पास जाएँ जिनकी शिरोरेखा छूट रही है।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर 'म' बिना ऊपर की लकीर के लिखें। इस अक्षर में क्या छूट गया है? स्लेट पर वह लकीर खींचकर दिखाएँ।",
+    "expected_hi": "शिरोरेखा",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि हर अक्षर पर शिरोरेखा लगती है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो अक्षर लिखें: 1) ज  2) ज का उल्टा (दर्पण जैसा) रूप। कौन सा सही है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा अक्षर की सही दिशा पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर चार लाइनों वाली पट्टी खींचें, जिसमें अक्षर लिखकर दिखाए जा सकें।",
+   "हर बच्चे के पास स्लेट और चॉक या कॉपी-पेंसिल हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर अक्षर साफ़ लिखें। ऊपर शिरोरेखा लगाना न भूलें।",
+   "instructions_en": "Write each letter neatly. Do not forget the top line (shirorekha).",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "अक्षर लिखने का उदाहरण:",
+    "example_text": "ग → ग ग ग"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "यह अक्षर तीन बार लिखें: क",
+     "answer": "क क क",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "शिरोरेखा लगाकर यह अक्षर तीन बार लिखें: प",
+     "answer": "प प प",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "यह स्वर तीन बार लिखें: इ",
+     "answer": "इ इ इ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "यह अक्षर तीन बार लिखें: झ",
+     "answer": "झ झ झ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "यह स्वर तीन बार लिखें: ओ",
+     "answer": "ओ ओ ओ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "यह अक्षर तीन बार लिखें: ढ",
+     "answer": "ढ ढ ढ",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2299a2747cc6",
+ "created": "2026-11-21T05:57:59Z",
+ "cost_usd": 0.0211,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

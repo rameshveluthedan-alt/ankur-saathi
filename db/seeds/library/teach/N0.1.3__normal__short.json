@@ -1,0 +1,162 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.1.3__normal__short",
+ "skill_id": "N0.1.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बच्चों के सामने दो ढेर रखें: एक में 4 कंकड़, दूसरे में 2 कंकड़। हर ढेर को उँगली रखकर गिनें और कहें: 'देखिए, इस ढेर में ज़्यादा हैं, उसमें कम हैं।' फिर दोनों ढेरों में 3-3 कंकड़ रखकर कहें: 'अब दोनों बराबर हैं।'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को कंकड़, बटन और बोतल के ढक्कन मिलाकर दें। बच्चे 5 तक की चीज़ों के दो ढेर बनाएँ और बताएँ कि किसमें ज़्यादा है, किसमें कम, या दोनों बराबर हैं। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो डिब्बे बनाएँ: पहले में 5 गोले, दूसरे में 4 गोले। किस डिब्बे में ज़्यादा हैं? उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "पास-पास की संख्याओं में भी ज़्यादा पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो डिब्बे बनाएँ: पहले में 2 तारे, दूसरे में 3 तारे। किस डिब्बे में कम हैं? उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "कम शब्द समझता है और सही डिब्बा चुनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "कंकड़, बटन और बोतल के ढक्कन: हर जोड़ी के लिए लगभग 10 चीज़ें",
+   "शिक्षक के लिए 7 कंकड़ (प्रदर्शन के लिए)"
+  ],
+  "worksheet": {
+   "instructions_hi": "दोनों डिब्बों को गिनें और जो पूछा है उस पर ✓ लगाएँ।",
+   "instructions_en": "Count both boxes and tick the one asked for.",
+   "required_count": 3,
+   "practice": true,
+   "example_block": null,
+   "observe": {
+    "task_hi": "दो ढेर बनाकर बताएँ कि किसमें ज़्यादा है, किसमें कम, या दोनों बराबर हैं।",
+    "task_en": "Make two groups of up to 5 objects and say which has more, which has less, or if they are the same.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "हर जोड़ी में ज़्यादा, कम और बराबर सही बताता है, 4 और 5 जैसी पास की संख्याओं में भी",
+     "partial_hi": "बड़े अंतर वाले ढेर सही बताता है, पास की संख्याओं में अटकता है",
+     "not_yet_hi": "3 से 5 तक के ढेरों में ज़्यादा और कम नहीं पहचान पाता",
+     "achieved_en": "Correctly says more, less or same for every pair, even close ones like 4 and 5",
+     "partial_en": "Correct when the difference is large, struggles with close quantities",
+     "not_yet_en": "Cannot tell more from less for groups of 3 to 5"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "●",
+      "count": 5
+     },
+     "b": {
+      "s": "●",
+      "count": 2
+     },
+     "ask": "more",
+     "problem_hi": "जिस डिब्बे में ज़्यादा हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ●●●●●   |   ख: ●●"
+    },
+    {
+     "number": 2,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "★",
+      "count": 3
+     },
+     "b": {
+      "s": "★",
+      "count": 4
+     },
+     "ask": "less",
+     "problem_hi": "जिस डिब्बे में कम हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: ★★★   |   ख: ★★★★"
+    },
+    {
+     "number": 3,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "△",
+      "count": 4
+     },
+     "b": {
+      "s": "△",
+      "count": 5
+     },
+     "ask": "more",
+     "problem_hi": "जिस डिब्बे में ज़्यादा हैं, उस पर ✓ लगाएँ।",
+     "answer": "ख",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: △△△△   |   ख: △△△△△"
+    },
+    {
+     "number": 4,
+     "item_type": "compare_boxes",
+     "a": {
+      "s": "□",
+      "count": 1
+     },
+     "b": {
+      "s": "□",
+      "count": 3
+     },
+     "ask": "less",
+     "problem_hi": "जिस डिब्बे में कम हैं, उस पर ✓ लगाएँ।",
+     "answer": "क",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "board_hi": "क: □   |   ख: □□□"
+    }
+   ],
+   "sheet_kind": "observed"
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (4 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:10:44Z",
+ "cost_usd": 0.024,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

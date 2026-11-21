@@ -1,0 +1,125 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.6.3__normal__medium",
+ "skill_id": "L2.6.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'आसमान में काले बादल छा गए। राधा ने खिड़की से बाहर देखा।' दोनों वाक्य दो बार पढ़कर सुनाएँ और कहें: 'देखिए, काले बादल हैं, तो आगे बारिश होगी। राधा छाता लेकर निकलेगी।' बच्चों को बताएँ कि अंदाज़ा कहानी की बात से जुड़ा होना चाहिए: 'बादल हैं, इसलिए बारिश।'",
+   "we_do_hi": "बोर्ड पर लिखें: 'मोनू की बिल्ली भूखी थी। रसोई में दूध का कटोरा रखा था।' बच्चों से पूछें: 'अब बिल्ली क्या करेगी?' दो बच्चों से उत्तर सुनें और पूछें: 'कहानी की किस बात से पता चला?' (भूखी है, दूध रखा है)।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियाँ दें, जिन पर दो-दो वाक्य की छोटी कहानियाँ लिखी हों; पर्चियाँ न हों तो बोर्ड पर लिखी कहानियाँ या वर्कशीट का पहला सवाल लें। एक बच्चा कहानी पढ़े, दूसरा बताए कि आगे क्या होगा और क्यों; फिर बारी बदलें, बाकी काम अपनी जगह पर अगले समय में पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'गोलू का गुब्बारा काँटेदार झाड़ी से टकराया।' आगे क्या होगा? 1) गुब्बारा फूट जाएगा 2) गुब्बारा बड़ा हो जाएगा। उँगलियों पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा कहानी की बात (काँटे) से जोड़कर अंदाज़ा लगाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सीमा ने बीज बोया और रोज़ पानी डाला।' कुछ दिन बाद क्या होगा? 1) पौधा निकलेगा 2) बीज उड़ जाएगा।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा घटनाओं के क्रम से आगे की बात सोचता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do की दो-दो वाक्य वाली कहानियाँ लिखें।",
+   "कागज़ की पर्चियों पर वर्कशीट की छोटी कहानियाँ लिखें, हर जोड़ी के लिए एक सेट।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर कहानी जोड़ीदार को पढ़कर सुनाएँ। बताएँ कि आगे क्या होगा और क्यों।",
+   "instructions_en": "Read each story to your partner. Say what will happen next and why.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": {
+    "problem_hi": "उदाहरण:",
+    "example_text": "पेड़ पर पका आम लटका था। हवा ज़ोर से चली। आगे: आम नीचे गिरेगा।"
+   },
+   "passage_block": null,
+   "observe": {
+    "task_hi": "दो वाक्य की छोटी कहानी पढ़कर जोड़ीदार को बताएँ कि आगे क्या होगा और कहानी की किस बात से पता चला।",
+    "task_en": "Read a two-sentence story and tell a partner what will happen next and which story detail shows it.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कहानी लिखी कागज़ की पर्चियाँ",
+     "बोर्ड पर लिखी छोटी कहानियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "कहानी की बात से जुड़ा अंदाज़ा बताता है और कारण भी बताता है",
+     "partial_hi": "अंदाज़ा बताता है पर कहानी से नहीं जोड़ पाता",
+     "not_yet_hi": "'पता नहीं' कहता है या पढ़ी हुई बात ही दोहराता है",
+     "achieved_en": "Gives a prediction linked to story events and says why",
+     "partial_en": "Predicts but cannot link it to the story",
+     "not_yet_en": "Says I don't know or repeats what happened"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मीना के हाथ से गिलास फिसला। आगे क्या होगा?",
+     "answer": "गिलास गिरेगा",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "कुत्ते ने दरवाज़े पर अजनबी को देखा। आगे क्या होगा?",
+     "answer": "कुत्ता भौंकेगा",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "स्कूल की घंटी बजी। छुट्टी का समय हो गया। आगे बच्चे क्या करेंगे?",
+     "answer": "घर जाएँगे",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "चूल्हे पर दूध उबल रहा था। माँ बाहर चली गईं। आगे क्या होगा?",
+     "answer": "दूध उफनकर गिरेगा",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4a9137e2ec9e",
+ "created": "2026-11-21T06:09:05Z",
+ "cost_usd": 0.0271,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

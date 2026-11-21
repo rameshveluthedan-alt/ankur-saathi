@@ -1,0 +1,168 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N1.5.1__normal__short",
+ "skill_id": "N1.5.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर एक बड़ा त्रिभुज और एक बड़ा आयत बनाएँ। उँगली रखकर हर भुजा गिनें: 'देखिए, एक, दो, तीन भुजाएँ', फिर हर कोने पर बिंदी लगाकर कोने गिनें। आयत के पास वर्ग बनाएँ और दिखाएँ: 'वर्ग की चारों भुजाएँ बराबर, आयत की दो लंबी और दो छोटी।'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को तीलियाँ, माचिस की डिब्बी और चूड़ी दें। बच्चे तीलियों से त्रिभुज, वर्ग और आयत बनाएँ और साथी को बताएँ कि हर आकृति में कितनी भुजाएँ और कितने कोने हैं; जिनके पास चीज़ें न हों, वे कॉपी में आकृतियाँ बनाकर भुजाएँ गिनें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर एक त्रिभुज बनाएँ। इसके कितने कोने हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा आकृति के कोने एक-एक करके गिन सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो आकृतियाँ बनाएँ: 1) चारों भुजाएँ बराबर 2) दो भुजाएँ लंबी, दो छोटी। वर्ग कौन-सा है? 1 या 2 उँगली दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा वर्ग और आयत में भुजाओं की लंबाई से अंतर पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए 4 तीलियाँ, एक माचिस की डिब्बी और एक चूड़ी जमा करें।",
+   "बोर्ड पर त्रिभुज, वर्ग और आयत बनाने की जगह रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर आकृति को कॉपी में बनाएँ और उसकी भुजाएँ और कोने गिनें।",
+   "instructions_en": "Draw each shape in your notebook and count its sides and corners.",
+   "required_count": 3,
+   "example_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा तीलियों से त्रिभुज, वर्ग और आयत बनाए और हर आकृति की भुजाएँ और कोने गिनकर बताए, और वर्ग और आयत का अंतर बताए।",
+    "task_en": "The child makes a triangle, square and rectangle with sticks, says the number of sides and corners of each, and tells how a square differs from a rectangle.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "तीलियाँ",
+     "माचिस की डिब्बी",
+     "चूड़ी",
+     "बोतल के ढक्कन"
+    ],
+    "look_for": {
+     "achieved_hi": "चारों आकृतियों की भुजाएँ और कोने सही बताता है, वर्ग और आयत का अंतर बताता है",
+     "partial_hi": "त्रिभुज और वर्ग सही गिनता है, आयत में उलझता है",
+     "not_yet_hi": "भुजाएँ या कोने गिन नहीं पाता",
+     "achieved_en": "States sides and corners of all four shapes correctly and tells square from rectangle",
+     "partial_en": "Counts triangle and square correctly but confuses the rectangle",
+     "not_yet_en": "Cannot count sides or corners"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "item_type": "symbol_grid",
+     "grid": [
+      {
+       "s": "△",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": null
+      }
+     ],
+     "target": {
+      "s": "△"
+     },
+     "problem_hi": "सभी △ पर गोला लगाएँ।",
+     "answer": "4 (खाने 1, 3, 6, 9)",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "matches": [
+      1,
+      3,
+      6,
+      9
+     ],
+     "board_hi": "बड़ा △  बड़ा □  छोटा △  बड़ा ○  छोटा □  बड़ा △  छोटा ○  बड़ा □  छोटा △"
+    },
+    {
+     "number": 2,
+     "problem_hi": "कॉपी में एक वर्ग बनाएँ। हर कोने पर एक बिंदी लगाएँ।",
+     "answer": "4 बिंदियाँ",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "कॉपी में एक आयत बनाएँ। लंबी भुजाओं पर लाल रंग भरें।",
+     "answer": "2 लंबी भुजाएँ लाल",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "कॉपी में एक त्रिभुज बनाएँ। हर भुजा के पास एक बिंदी लगाएँ।",
+     "answer": "3 बिंदियाँ",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (1 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "34ccde6f5c0b",
+ "created": "2026-11-21T06:00:21Z",
+ "cost_usd": 0.0252,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,147 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.2-M4__short",
+ "skill_id": "N2.3.2",
+ "domain_id": "numeracy",
+ "mode": "N2.3.2-M4",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने हासिल के साथ जोड़ना सीखा था। बोर्ड पर 46 + 38 लिखें और पहले गलत तरीका दिखाएँ: दहाई पहले 4 + 3 = 7 लिखें, फिर इकाई 6 + 8 = 14, तो उत्तर 714 बन जाता है। बच्चों को बताएँ: 'दहाई पहले लिख दी, तो हासिल 1 कहाँ रखें? जगह ही नहीं बची।' इसके बाद उसी सवाल को सही तरीके से करें: इकाई पहले 6 + 8 = 14, इकाई में 4 लिखें, हासिल 1 दहाई के ऊपर रखें, फिर दहाई 4 + 3 + 1 = 8, उत्तर 84। गलत हल मिटा दें, बोर्ड पर सिर्फ़ सही हल रहने दें। अंत में बच्चों से पूछें: 'पहले कौन जोड़ते हैं, इकाई या दहाई?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चों से कहें: 'पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें।' इस समय में सवाल 1 और 2 शुरू हो जाएँ, बाकी बच्चे अगले समय में अपनी जगह पर पूरा करें। सामान्य चक्कर में सबसे पहले उन बच्चों के पास जाएँ जिन्होंने पिछली बार दहाई पहले जोड़ी थी, और धीरे से पूछें: 'पहले कौन-सा अंक जोड़ा?'"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 36 + 47",
+    "expected_hi": "83",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M4",
+      "misconception_name_hi": "बाएँ से दाएँ जोड़ना (पहले दहाई, फिर इकाई)",
+      "misconception_name_en": "Adds left-to-right (tens first, then ones)",
+      "detect_en": "Tens digit is correct for no-carry scenario but wrong when carry is needed; child may cross out and rewrite",
+      "wrong_answer_hi": "713"
+     },
+     {
+      "misconception_id": "N2.3.2-M1",
+      "misconception_name_hi": "हासिल भूलना: हासिल छोड़ देता है",
+      "misconception_name_en": "Place-value carry-over confusion: drops the carry",
+      "detect_en": "Answer is exactly 10 less than correct. Ones column has a 2-digit number written, or only ones digit is written but tens carry is missing. Consistent across 3+ problems.",
+      "wrong_answer_hi": "73"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 25 + 69 = 814। सही या गलत? गलत हो तो सही उत्तर लिखें।",
+    "expected_hi": "गलत, 94",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M4",
+      "misconception_name_hi": "बाएँ से दाएँ जोड़ना (पहले दहाई, फिर इकाई)",
+      "misconception_name_en": "Adds left-to-right (tens first, then ones)",
+      "detect_en": "Tens digit is correct for no-carry scenario but wrong when carry is needed; child may cross out and rewrite",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से 46 + 38 दो बार लिखकर रखें: एक गलत तरीके के लिए, एक सही तरीके के लिए।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल में पहले इकाई जोड़ें, फिर दहाई। हासिल को हासिल वाले बॉक्स में लिखें।",
+   "instructions_en": "In every sum add the ones first, then the tens. Write the carry in the carry box.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "38 + 24",
+     "answer": "62",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "56 + 29",
+     "answer": "85",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.2-M4"
+    },
+    {
+     "number": 3,
+     "problem_hi": "63 + 27 = ___",
+     "answer": "90",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": "N2.3.2-M4"
+    },
+    {
+     "number": 4,
+     "problem_hi": "19 + 46 = ___",
+     "answer": "65",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "34 + 58 = ___",
+     "answer": "92",
+     "row_type": "plain",
+     "show_pv_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक पेड़ पर 28 तोते थे। 17 और तोते आ गए। अब पेड़ पर कुल कितने तोते हैं?",
+     "answer": "45",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "75293e294e79",
+ "created": "2026-11-21T06:00:21Z",
+ "cost_usd": 0.0351,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

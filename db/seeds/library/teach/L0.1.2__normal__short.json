@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L0.1.2__normal__short",
+ "skill_id": "L0.1.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक पेंसिल उठाकर दिखाएँ और पहले सिर्फ़ एक शब्द बोलें: 'पेंसिल।' फिर पूरा वाक्य बोलें: 'यह मेरी लाल पेंसिल है।' बच्चों से कहें: 'सुनें, पूरे वाक्य में बात साफ़ समझ आती है।'",
+   "we_do_hi": "",
+   "you_do_hi": "हर जोड़ी को एक पत्ती, एक कंकड़ और एक बोतल का ढक्कन दें। बच्चे बारी-बारी से एक चीज़ उठाएँ और साथी को उसके बारे में एक पूरा वाक्य बोलें, जैसे 'यह पत्ती हरे रंग की है।' कम से कम दो चीज़ों पर वाक्य बोलें; बाकी काम अगले खंड में अपनी जगह पर पूरा करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "सुनें: 1) 'गेंद।' 2) 'मेरे पास लाल गेंद है।' पूरा वाक्य कौन-सा है? उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा एक शब्द और पूरे वाक्य में अंतर पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "ध्यान से सुनें: 'बिल्ली दूध पीती है।' इस वाक्य में कितने शब्द हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा वाक्य के शब्द गिन पाता है और समझता है कि वाक्य कई शब्दों से बनता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "एक पेंसिल पास रखें।",
+   "हर जोड़ी के लिए एक पत्ती, एक कंकड़ और एक बोतल का ढक्कन इकट्ठा करें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर चीज़ के बारे में अपने साथी को एक पूरा वाक्य बोलें।",
+   "instructions_en": "Say one complete sentence to your partner about each object.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "पूरा वाक्य बोलने का उदाहरण:",
+    "example_text": "यह मेरी लाल पेंसिल है।"
+   },
+   "passage_block": null,
+   "sheet_kind": "observed",
+   "practice": true,
+   "observe": {
+    "task_hi": "बच्चा एक चीज़ उठाए और उसके बारे में साथी को चार या अधिक शब्दों का एक पूरा वाक्य बोले।",
+    "task_en": "The child picks up an object and tells a partner one complete sentence of four or more words about it.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "पत्तियाँ",
+     "कंकड़",
+     "बोतल के ढक्कन",
+     "बटन"
+    ],
+    "look_for": {
+     "achieved_hi": "बिना मदद के चार या अधिक शब्दों का पूरा वाक्य बोलता है।",
+     "partial_hi": "दो-तीन शब्द बोलता है या मदद से पूरा वाक्य बोलता है।",
+     "not_yet_hi": "एक शब्द बोलता है या इशारा करता है।",
+     "achieved_en": "Says a complete sentence of four or more words without help.",
+     "partial_en": "Says two or three words, or a full sentence only with help.",
+     "not_yet_en": "Says one word or only points."
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "एक पत्ती उठाएँ। साथी को इसके बारे में एक पूरा वाक्य बोलें।",
+     "answer": "चार या अधिक शब्दों का पूरा वाक्य",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "एक कंकड़ उठाएँ। साथी को इसके बारे में एक पूरा वाक्य बोलें।",
+     "answer": "चार या अधिक शब्दों का पूरा वाक्य",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को बताएँ कि आज सुबह आपने क्या खाया। पूरा वाक्य बोलें।",
+     "answer": "चार या अधिक शब्दों का पूरा वाक्य",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "एक बोतल का ढक्कन उठाएँ। साथी को इसके बारे में एक पूरा वाक्य बोलें।",
+     "answer": "चार या अधिक शब्दों का पूरा वाक्य",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [
+   "worksheets.progressor problem 1 repeats wording from the lesson or anchor: «बारे में एक पूरा वाक्य»",
+   "worksheets.progressor problem 2 repeats wording from the lesson or anchor: «बारे में एक पूरा वाक्य»",
+   "worksheets.progressor problem 4 repeats wording from the lesson or anchor: «बारे में एक पूरा वाक्य»"
+  ],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "9dac194a929d",
+ "created": "2026-11-21T06:02:47Z",
+ "cost_usd": 0.0244,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

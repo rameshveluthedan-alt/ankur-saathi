@@ -1,0 +1,152 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.7.1__normal__medium",
+ "skill_id": "L3.7.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर विषय लिखें: 'हमारा स्कूल'। बोर्ड पर पाँच वाक्य लिखें: 'हमारा स्कूल गाँव के पास है। पहले हम प्रार्थना करते हैं। फिर हम कक्षा में पढ़ते हैं। दोपहर में हम साथ खाना खाते हैं। अंत में हम खुशी से घर जाते हैं।' बच्चों को दिखाएँ: 'देखिए, पहला वाक्य विषय बताता है, बीच के वाक्य बात आगे बढ़ाते हैं, अंतिम वाक्य बात पूरी करता है।'",
+   "we_do_hi": "बोर्ड पर विषय लिखें: 'बारिश का दिन'। बच्चों से पूछें: 'पहला वाक्य क्या हो जो विषय बताए?' और उनके सुझाए वाक्य बोर्ड पर लिखें; फिर 'फिर' और 'अंत में' से दो वाक्य और जुड़वाएँ। हर वाक्य पर पूछें: 'क्या यह बारिश के बारे में है?' और हर वाक्य के अंत में पूर्ण विराम (।) लगवाएँ।",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट पर दिए विषय पर लिखना शुरू करें।' इस समय बच्चे सवाल 1 का पहला वाक्य लिखें, जो विषय बताए; बाकी वाक्य और सवाल 2 से 4 वे अगले समय में अपनी जगह पर पूरे करें। शिक्षक घूमकर देखें कि पहला वाक्य विषय का नाम लेता है।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "विषय है 'मेला'। कौन-सा वाक्य अनुच्छेद का पहला वाक्य होना चाहिए? 1) अंत में हम घर लौटे। 2) कल हम मेले में गए।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M2",
+      "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं",
+      "misconception_name_en": "No order: no beginning, middle and end",
+      "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मुझे आम पसंद है। आम मीठा होता है।' विषय 'मेरा फल' पर अनुच्छेद में कम से कम कितने वाक्य चाहिए? संख्या लिखें।",
+    "expected_hi": "5",
+    "listen_for": [
+     {
+      "misconception_id": "L3.7.1-M3",
+      "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं",
+      "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+      "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से विषय 'हमारा स्कूल' लिखकर रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "दिए गए विषय पर ध्यान से लिखें। हर वाक्य के अंत में पूर्ण विराम (।) लगाएँ।",
+   "instructions_en": "Write carefully on the given topic. Put a full stop (।) at the end of every sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा प्यारा पेड़",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 5 वाक्य",
+     "item_en": "At least 5 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य पेड़ के बारे में",
+     "item_en": "All sentences about the tree"
+    },
+    {
+     "item_hi": "पहला वाक्य विषय बताता है, अंतिम वाक्य बात पूरी करता है",
+     "item_en": "First sentence names the topic, last sentence closes"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of every sentence"
+    },
+    {
+     "item_hi": "'पहले / फिर / अंत में' जैसे शब्दों का प्रयोग",
+     "item_en": "Uses sequence words like first, then, finally"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "'मेरा प्यारा पेड़' विषय पर 5-7 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M3",
+     "writing_task": true,
+     "topic_hi": "मेरा प्यारा पेड़"
+    },
+    {
+     "number": 2,
+     "problem_hi": "विषय है 'मेरी बिल्ली'। कौन-सा वाक्य विषय पर नहीं है? उसकी संख्या लिखें: 1) मेरी बिल्ली भूरी है। 2) वह दूध पीती है। 3) आज बस देर से आई।",
+     "answer": "3",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "इन वाक्यों को सही क्रम में लगाकर संख्या लिखें: 1) अंत में हमने पौधे को पानी दिया। 2) पहले हमने गड्ढा खोदा। 3) फिर हमने पौधा लगाया।",
+     "answer": "2, 3, 1",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "खाली जगह में सही शब्द लिखें (पहले / अंत में): ___ हमने हाथ धोए, फिर खाना खाया।",
+     "answer": "पहले",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "'मेरी माँ' विषय पर 3 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 4,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6f61757cde77",
+ "created": "2026-11-21T06:06:51Z",
+ "cost_usd": 0.0281,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,147 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N1.2.3-M2__short",
+ "skill_id": "N1.2.3",
+ "domain_id": "numeracy",
+ "mode": "N1.2.3-M2",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने दो अंकों की संख्याएँ लिखी थीं।' बोर्ड पर 'चौदह' के लिए 40 लिखें और कहें: 'देखिए, यह चालीस है, चौदह नहीं। चौदह में एक दहाई और चार इकाई हैं।' एक बंडल और 4 खुली छड़ियाँ दिखाकर 14 लिखें, फिर 40 मिटा दें ताकि बोर्ड पर सिर्फ़ 14 रहे।",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बाकी सवाल बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें। शिक्षक पहले उन बच्चों के पास शांति से जाएँ जिन्होंने पिछली जाँच में यह गलती की थी।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: सोलह। स्लेट पर अंकों में लिखें।",
+    "expected_hi": "16",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M2",
+      "misconception_name_hi": "किशोर संख्याओं (11-19) में भ्रम",
+      "misconception_name_en": "Teen number confusion (11-19)",
+      "detect_en": "Errors concentrated in 11-19 range; numbers 20+ are written correctly",
+      "wrong_answer_hi": "60"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 18 2) 80। इनमें 'अठारह' कौन सी है? उँगलियों पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "N1.2.3-M2",
+      "misconception_name_hi": "किशोर संख्याओं (11-19) में भ्रम",
+      "misconception_name_en": "Teen number confusion (11-19)",
+      "detect_en": "Errors concentrated in 11-19 range; numbers 20+ are written correctly",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "10 छड़ियों का एक बंडल और 9 खुली छड़ियाँ",
+   "बोर्ड पर 'चौदह' शब्द पहले से लिखें"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या का नाम पढ़ें और उसे अंकों में दहाई-इकाई के बॉक्स में लिखें।",
+   "instructions_en": "Read each number name and write it in digits in the tens-ones box.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "इक्कीस लिखिए",
+    "answer": "21",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "1",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_t": "2",
+    "answer_o": "1"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "सैंतालीस लिखिए",
+     "answer": "47",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "सत्रह लिखिए",
+     "answer": "17",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.3-M2"
+    },
+    {
+     "number": 3,
+     "problem_hi": "उन्नीस लिखिए",
+     "answer": "19",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": "N1.2.3-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "पंद्रह लिखिए",
+     "answer": "15",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "बारह लिखिए",
+     "answer": "12",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "बासठ लिखिए",
+     "answer": "62",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "b7d8aeb35a5f",
+ "created": "2026-11-21T06:05:33Z",
+ "cost_usd": 0.0306,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

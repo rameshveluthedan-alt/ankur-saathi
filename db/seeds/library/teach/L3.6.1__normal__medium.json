@@ -1,0 +1,140 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.6.1__normal__medium",
+ "skill_id": "L3.6.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'बारिश शुरू हुई। मीना ने जल्दी से छाता खोला।' पूछें: 'मीना ने छाता क्यों खोला?' फिर बोलकर दिखाएँ: 'देखिए, पाठ में लिखा है कि बारिश शुरू हुई, इसलिए उत्तर है: ताकि वह भीगे नहीं।' समझाएँ कि क्यों वाले प्रश्न का उत्तर पाठ के संकेत से सोचकर बनता है, वाक्य दोहराकर नहीं।",
+   "we_do_hi": "बोर्ड पर लिखें: 'राजू ने खाना नहीं खाया था। वह बहुत थका हुआ था।' बच्चों से पूछें: 'राजू थका हुआ क्यों था?' पहले पूछें कि पाठ में कौन-सा संकेत है, फिर मिलकर उत्तर बनाएँ: क्योंकि उसने खाना नहीं खाया था।",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट का अनुच्छेद एक बार पढ़ें और सवाल 1 का उत्तर लिखें।' उत्तर में संकेत वाला शब्द ढूँढने में मदद करें। बाकी सवाल बच्चे अगले समय में अपनी जगह पर पूरे करें: पहले सवाल 1 से 3, जो जल्दी ख़त्म करें वे बाकी सवाल करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'सोनू ने कोट पहना, क्योंकि बाहर बहुत ठंड थी।' पूछें: सोनू ने कोट क्यों पहना? 1) सोनू ने कोट पहना  2) ठंड थी",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M1",
+      "misconception_name_hi": "अनुमानात्मक प्रश्न का तथ्यात्मक उत्तर देता है",
+      "misconception_name_en": "Gives literal answer to inferential question",
+      "detect_en": "Response is a copy from the text, not a reasoned answer. E.g., \"Why was Ram sad?\" → \"Ram went home\" (quotes text) instead of \"Because his friend moved away\" (infers)",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'आज गीता का जन्मदिन था। वह खुश होकर नाची।' पूछें: गीता क्यों नाची? 1) जन्मदिन था  2) उसे गाना आता है",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L3.6.1-M2",
+      "misconception_name_hi": "पाठ से असंबंधित अनुमान लगाता है (केवल अपना ज्ञान प्रयोग करता है)",
+      "misconception_name_en": "Makes inferences unrelated to text (uses only personal knowledge)",
+      "detect_en": "Answer is plausible in general but contradicted by or unsupported by the specific text",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do के दोनों वाक्य पहले से लिखें।",
+   "हर बच्चे के लिए एक वर्कशीट।"
+  ],
+  "worksheet": {
+   "instructions_hi": "अनुच्छेद पढ़ें। हर प्रश्न का उत्तर सोचकर लिखें।",
+   "instructions_en": "Read the passage. Think and write the answer to each question.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "पतंग",
+    "text": "रवि की पतंग पेड़ पर अटक गई। वह उदास होकर बैठ गया। उसकी बहन ने लंबी डंडी से पतंग निकाल दी। रवि हँस पड़ा। शाम को आसमान में बादल छा गए, इसलिए दोनों घर लौट आए।"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "रवि उदास क्यों हुआ?",
+     "answer": "पतंग पेड़ पर अटक गई थी",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "रवि हँस क्यों पड़ा?",
+     "answer": "बहन ने पतंग निकाल दी थी",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "दोनों घर क्यों लौट आए?",
+     "answer": "बादल छा गए थे",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.6.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "बहन ने पतंग कैसे निकाली?",
+     "answer": "लंबी डंडी से",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "रवि खुद पतंग क्यों नहीं निकाल पाया?",
+     "answer": "पतंग ऊँचे पेड़ पर अटकी थी",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "बहन के आने से पहले रवि कैसा महसूस कर रहा था?",
+     "answer": "उदास",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "2f7a9f208b64",
+ "created": "2026-11-21T06:09:37Z",
+ "cost_usd": 0.023,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}
