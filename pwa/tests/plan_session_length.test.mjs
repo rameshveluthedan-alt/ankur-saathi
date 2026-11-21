@@ -1,4 +1,4 @@
-// "Today's time" on the Plan screen (60 / 90 minutes; 45 hidden for now): the REAL Plan screen in a simulated browser with a fake server, plus the request the app builds.
+// "Today's time" on the Plan screen (45 / 60 / 90 minutes; 45 shown again on 21 Nov): the REAL Plan screen in a simulated browser with a fake server, plus the request the app builds.
 // The last choice is kept on the device and preselected; 90 on first use; the chosen time goes with every plan request (session_minutes), and nowhere else.
 // That the server lays the plan out for it is tested in backend/tests/test_session_minutes.py.
 //
@@ -53,7 +53,7 @@ let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${o
 console.log('the chooser');
 localStorage.clear();
 await mount();
-check('first use (nothing stored): two choices, 60 / 90 minutes, and 90 is selected', qa('[data-testid="session-length"] input[type="radio"]').map((i) => i.value).join() === '60,90' && chosen().join() === '90', chosen().join());
+check('first use (nothing stored): three choices, 45 / 60 / 90 minutes, and 90 is selected', qa('[data-testid="session-length"] input[type="radio"]').map((i) => i.value).join() === '45,60,90' && chosen().join() === '90', chosen().join());
 check('it sits above the skill list, with its heading and the one-line hint, in Hindi with the English hideable', (() => {
   const box = q('[data-testid="session-length"]'); const list = q('.competency-item');
   return box && list && (box.compareDocumentPosition(list) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING) && /आज का समय/.test(box.textContent)
@@ -80,7 +80,9 @@ await mount();
 check('a value this app does not offer ("30") falls back to 90', chosen().join() === '90', chosen().join());
 localStorage.setItem('session_minutes', '45');
 await mount();
-check('a phone that saved 45 before it was hidden opens on 90', chosen().join() === '90', chosen().join());
+check('"45" stored on the device: the screen opens with 45 preselected (shown again on 21 Nov)', chosen().join() === '45', chosen().join());
+call = await generate();
+check('...and sends 45', call[4].sessionMinutes === 45, JSON.stringify(call[4]));
 
 console.log('\nthe request');
 const bodies = [];
