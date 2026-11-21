@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "r1_literacy__L0.2.3",
+ "skill_id": "L0.2.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "r1_literacy__the_village_well",
+    "task_hi": "बोर्ड के चित्र में गाय की ओर इशारा करें और साफ़ बोलें: 'गाय'। बच्चों से पूछें: 'गाय शब्द किस ध्वनि से शुरू होता है?' इसके बाद यही करें: 'मटका', 'पेड़', 'बाल्टी'। हर शब्द दो बार धीरे बोलें, पहली ध्वनि पर थोड़ा ज़ोर दें, फिर बच्चे स्लेट पर पहला अक्षर लिखें या बोलकर बताएँ।",
+    "answer_hi": "गाय - ग, मटका - म, पेड़ - प, बाल्टी - ब"
+   },
+   {
+    "setting": "r1_literacy__the_class_picnic",
+    "task_hi": "दरी पर रखी टोकरी की चीज़ें दिखाएँ और बोलें: 'केला', 'आम', 'रोटी', 'लड्डू'। बच्चों से कहें: 'ध्यान से सुनें, जिस चीज़ का नाम ल से शुरू होता है, उसकी ओर इशारा करें।' फिर पूछें: 'केला और कमल, दोनों की पहली ध्वनि क्या है?'",
+    "answer_hi": "ल - लड्डू; केला और कमल - क"
+   },
+   {
+    "setting": "r1_literacy__the_river_bank",
+    "task_hi": "चित्र की चीज़ों के नाम एक-एक करके बोलें: 'नाव', 'मछली', 'बत्तख', 'घड़ा'। फिर बच्चों से पूछें: 'नाव और नदी, क्या दोनों एक ही ध्वनि से शुरू होते हैं? हाँ हो तो अँगूठा ऊपर करें।' इसके बाद पूछें: 'मछली किस ध्वनि से शुरू होती है?' बच्चे स्लेट पर अक्षर लिखें या बोलकर बताएँ।",
+    "answer_hi": "नाव - न, मछली - म, बत्तख - ब, घड़ा - घ; नाव और नदी - हाँ (न); मछली - म"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "675988b7236a",
+ "created": "2026-11-21T06:30:05Z",
+ "cost_usd": 0.0172,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "r1_literacy__a_letter_from_grandmother",
+  "r1_literacy__a_new_classmate",
+  "r1_literacy__a_visit_to_the_doctor",
+  "r1_literacy__festival_day",
+  "r1_literacy__harvest_time",
+  "r1_literacy__making_rotis",
+  "r1_literacy__rainy_season",
+  "r1_literacy__school_garden",
+  "r1_literacy__school_morning_assembly",
+  "r1_literacy__the_bus_ride",
+  "r1_literacy__the_class_picnic",
+  "r1_literacy__the_clever_crow",
+  "r1_literacy__the_cricket_match",
+  "r1_literacy__the_fair",
+  "r1_literacy__the_friendly_elephant",
+  "r1_literacy__the_honey_bees",
+  "r1_literacy__the_kite_contest",
+  "r1_literacy__the_lost_kitten",
+  "r1_literacy__the_moon_at_night",
+  "r1_literacy__the_old_banyan_tree",
+  "r1_literacy__the_post_office",
+  "r1_literacy__the_river_bank",
+  "r1_literacy__the_tailor_s_shop",
+  "r1_literacy__the_village_well",
+  "r1_literacy__village_market"
+ ]
+}

@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "r1_literacy__L3.7.2",
+ "skill_id": "L3.7.2",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "r1_literacy__a_new_classmate",
+    "task_hi": "बोर्ड पर दरवाज़े पर खड़ी नई बच्ची के चित्र के नीचे लिखें: 'नई दोस्त कक्षा में ___।' बच्चों को दो विकल्प दिखाएँ: 1) आया 2) आई। पूछें: 'नई दोस्त लड़की है, तो कौन-सा शब्द सही बैठेगा? स्लेट पर 1 या 2 लिखें।' फिर लिखें: 'उसका बस्ता ___ है।' विकल्प: 1) भारी 2) भारे नहीं, बल्कि 1) नया 2) नई। बच्चे फिर स्लेट पर 1 या 2 लिखें।",
+    "answer_hi": "आई (2); नया (1)"
+   },
+   {
+    "setting": "r1_literacy__making_rotis",
+    "task_hi": "बोर्ड पर रोटियों की टोकरी के नीचे लिखें: 'टोकरी में एक रोटी है।' फिर नीचे लिखें: 'टोकरी में पाँच ___ हैं।' बच्चों से पूछें: 'एक रोटी, तो पाँच क्या? स्लेट पर एक शब्द लिखें।' इसके बाद लिखें: 'तवे पर दो ___ रखे हैं।' विकल्प: 1) बेलन 2) तवे नहीं, 1) गिलास 2) गिलासें। बच्चे स्लेट पर 1 या 2 लिखें।",
+    "answer_hi": "रोटियाँ; गिलास (1)"
+   },
+   {
+    "setting": "r1_literacy__harvest_time",
+    "task_hi": "बोर्ड पर खेत के चित्र के नीचे तीन वाक्य लिखें: 'कल किसान ने फसल ___।', 'आज किसान फसल ___ है।', 'कल किसान अनाज बेचने ___।' नीचे शब्द लिखें: काटी, काट रहा, जाएगा। बच्चों से कहें: 'हर वाक्य के लिए सही शब्द स्लेट पर लिखें। कल, आज और आने वाला कल ध्यान से देखें।'",
+    "answer_hi": "काटी; काट रहा; जाएगा"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "675988b7236a",
+ "created": "2026-11-21T06:30:06Z",
+ "cost_usd": 0.0176,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "r1_literacy__a_letter_from_grandmother",
+  "r1_literacy__a_new_classmate",
+  "r1_literacy__a_visit_to_the_doctor",
+  "r1_literacy__festival_day",
+  "r1_literacy__harvest_time",
+  "r1_literacy__making_rotis",
+  "r1_literacy__rainy_season",
+  "r1_literacy__school_garden",
+  "r1_literacy__school_morning_assembly",
+  "r1_literacy__the_bus_ride",
+  "r1_literacy__the_class_picnic",
+  "r1_literacy__the_clever_crow",
+  "r1_literacy__the_cricket_match",
+  "r1_literacy__the_fair",
+  "r1_literacy__the_friendly_elephant",
+  "r1_literacy__the_honey_bees",
+  "r1_literacy__the_kite_contest",
+  "r1_literacy__the_lost_kitten",
+  "r1_literacy__the_moon_at_night",
+  "r1_literacy__the_old_banyan_tree",
+  "r1_literacy__the_post_office",
+  "r1_literacy__the_river_bank",
+  "r1_literacy__the_tailor_s_shop",
+  "r1_literacy__the_village_well",
+  "r1_literacy__village_market"
+ ]
+}

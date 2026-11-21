@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "numeracy__N3.5.2",
+ "skill_id": "N3.5.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__school_garden",
+    "task_hi": "बोर्ड पर गेंदे की क्यारी को एक आयत बनाकर दिखाएँ: लंबाई 6 मीटर, चौड़ाई 4 मीटर। बच्चों से पूछें: 'क्यारी के चारों ओर बाड़ लगानी है। कुल कितने मीटर बाड़ लगेगी?' बच्चे स्लेट पर चारों भुजाएँ जोड़कर उत्तर लिखें।",
+    "answer_hi": "20 मीटर"
+   },
+   {
+    "setting": "numeracy__building_a_hut",
+    "task_hi": "बोर्ड पर झोपड़ी के फ़र्श को एक वर्ग बनाकर दिखाएँ, हर भुजा 5 मीटर। बच्चों से कहें: 'रामू काका फ़र्श के चारों ओर रस्सी बाँधेंगे। कितने मीटर रस्सी चाहिए?' इसके बाद छत के तिकोने हिस्से की भुजाएँ लिखें: 3 मीटर, 4 मीटर, 5 मीटर, और पूछें: 'इस त्रिभुज का परिमाप कितना है?'",
+    "answer_hi": "वर्ग: 20 मीटर; त्रिभुज: 12 मीटर"
+   },
+   {
+    "setting": "numeracy__school_sports_day",
+    "task_hi": "बोर्ड पर मैदान में दौड़ का एक आयताकार रास्ता बनाएँ: लंबाई 9 मीटर, चौड़ाई 3 मीटर। बच्चों से पूछें: 'मैदान के किनारे-किनारे एक पूरा चक्कर लगाएँ तो कितने मीटर दौड़ेंगे?' बच्चे स्लेट पर उत्तर लिखें।",
+    "answer_hi": "24 मीटर"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dc764d165f0f",
+ "created": "2026-11-21T06:30:15Z",
+ "cost_usd": 0.0162,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bangle_stall",
+  "numeracy__bird_watching",
+  "numeracy__building_a_hut",
+  "numeracy__bus_journey",
+  "numeracy__classroom_library",
+  "numeracy__cricket_match",
+  "numeracy__farm_harvest",
+  "numeracy__festival_sweets",
+  "numeracy__fishing_pond",
+  "numeracy__kitchen_and_cooking",
+  "numeracy__kite_making",
+  "numeracy__milk_collection",
+  "numeracy__post_office",
+  "numeracy__rain_and_puddles",
+  "numeracy__school_canteen",
+  "numeracy__school_garden",
+  "numeracy__school_sports_day",
+  "numeracy__shop_counting_stock",
+  "numeracy__tailor_s_shop",
+  "numeracy__train_station",
+  "numeracy__tree_planting",
+  "numeracy__village_fair",
+  "numeracy__village_market",
+  "numeracy__water_from_the_well",
+  "numeracy__wedding_preparations"
+ ]
+}

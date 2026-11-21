@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "numeracy__N2.4.1",
+ "skill_id": "N2.4.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__school_sports_day",
+    "task_hi": "बोर्ड पर दौड़ की रेखा के पास लिखें: 'शुरू की रेखा से झंडे तक: 8 कदम। शुरू की रेखा से मटके तक: 5 कदम।' बच्चों से पूछें: 'कौन ज़्यादा दूर है, झंडा या मटका? और कितने कदम ज़्यादा चलना पड़ेगा?' बच्चे स्लेट पर उत्तर लिखें।",
+    "answer_hi": "झंडा; 3 कदम ज़्यादा"
+   },
+   {
+    "setting": "numeracy__tailor_s_shop",
+    "task_hi": "बोर्ड पर दुकान के पास लिखें: 'दर्ज़ी चाचा ने कपड़ा बित्ते से नापा: कुर्ते का कपड़ा 6 बित्ते, दुपट्टे का कपड़ा 9 बित्ते।' बच्चों से पूछें: 'कौन-सा कपड़ा लंबा है?' इसके बाद पूछें: 'अगर एक बच्चे का बित्ता छोटा हो, तो कुर्ते का कपड़ा 6 से ज़्यादा बित्ते आएगा या कम?'",
+    "answer_hi": "दुपट्टे का कपड़ा; ज़्यादा बित्ते"
+   },
+   {
+    "setting": "numeracy__school_garden",
+    "task_hi": "बोर्ड पर हर क्यारी के नीचे लिखें: गेंदा 7 कदम, टमाटर 4 कदम, भिंडी 6 कदम, पालक 3 कदम। बच्चों से पूछें: 'सबसे लंबी क्यारी कौन-सी है और सबसे छोटी कौन-सी?' बच्चे स्लेट पर दोनों नाम लिखें।",
+    "answer_hi": "सबसे लंबी: गेंदा; सबसे छोटी: पालक"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dc764d165f0f",
+ "created": "2026-11-21T06:30:06Z",
+ "cost_usd": 0.0164,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bangle_stall",
+  "numeracy__bird_watching",
+  "numeracy__building_a_hut",
+  "numeracy__bus_journey",
+  "numeracy__classroom_library",
+  "numeracy__cricket_match",
+  "numeracy__farm_harvest",
+  "numeracy__festival_sweets",
+  "numeracy__fishing_pond",
+  "numeracy__kitchen_and_cooking",
+  "numeracy__kite_making",
+  "numeracy__milk_collection",
+  "numeracy__post_office",
+  "numeracy__rain_and_puddles",
+  "numeracy__school_canteen",
+  "numeracy__school_garden",
+  "numeracy__school_sports_day",
+  "numeracy__shop_counting_stock",
+  "numeracy__tailor_s_shop",
+  "numeracy__train_station",
+  "numeracy__tree_planting",
+  "numeracy__village_fair",
+  "numeracy__village_market",
+  "numeracy__water_from_the_well",
+  "numeracy__wedding_preparations"
+ ]
+}

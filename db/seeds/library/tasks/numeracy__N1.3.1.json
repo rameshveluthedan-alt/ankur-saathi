@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "numeracy__N1.3.1",
+ "skill_id": "N1.3.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__bird_watching",
+    "task_hi": "बोर्ड पर पेड़ की डाल पर 6 तोते और तालाब में 5 बत्तखें बनाएँ। बच्चों से कहें: 'तोते और बत्तखें मिलाकर कुल कितने पक्षी हैं? 6 + 5 जोड़कर स्लेट पर लिखें।' इसके बाद 2 और तोते बनाएँ और पूछें: 'अब 8 तोते और 5 बत्तखें, कुल कितने?'",
+    "answer_hi": "11; फिर 13"
+   },
+   {
+    "setting": "numeracy__festival_sweets",
+    "task_hi": "बोर्ड पर लड्डू की थाली में 7 लड्डू और जलेबी की थाली में 4 जलेबियाँ बनाएँ। बच्चों से पूछें: 'दोनों थालियों में कुल कितनी मिठाइयाँ हैं? 7 + 4 स्लेट पर हल करें।' इसके बाद बर्फी की थाली में 9 बर्फी बनाएँ और पूछें: 'लड्डू और बर्फी मिलाकर कितनी? 7 + 9'",
+    "answer_hi": "11; 16"
+   },
+   {
+    "setting": "numeracy__fishing_pond",
+    "task_hi": "तालाब में 8 लाल मछलियाँ और 6 पीली मछलियाँ बनाएँ। बच्चों से कहें: 'लाल और पीली मछलियाँ मिलाकर कितनी हैं? 8 + 6 जोड़ें।' इसके बाद 3 नीली मछलियाँ बनाएँ और पूछें: 'पीली और नीली मिलाकर कितनी? 6 + 3'",
+    "answer_hi": "14; 9"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dc764d165f0f",
+ "created": "2026-11-21T06:30:05Z",
+ "cost_usd": 0.0158,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bangle_stall",
+  "numeracy__bird_watching",
+  "numeracy__building_a_hut",
+  "numeracy__bus_journey",
+  "numeracy__classroom_library",
+  "numeracy__cricket_match",
+  "numeracy__farm_harvest",
+  "numeracy__festival_sweets",
+  "numeracy__fishing_pond",
+  "numeracy__kitchen_and_cooking",
+  "numeracy__kite_making",
+  "numeracy__milk_collection",
+  "numeracy__post_office",
+  "numeracy__rain_and_puddles",
+  "numeracy__school_canteen",
+  "numeracy__school_garden",
+  "numeracy__school_sports_day",
+  "numeracy__shop_counting_stock",
+  "numeracy__tailor_s_shop",
+  "numeracy__train_station",
+  "numeracy__tree_planting",
+  "numeracy__village_fair",
+  "numeracy__village_market",
+  "numeracy__water_from_the_well",
+  "numeracy__wedding_preparations"
+ ]
+}

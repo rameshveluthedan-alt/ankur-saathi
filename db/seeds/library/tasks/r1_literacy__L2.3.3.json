@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "r1_literacy__L2.3.3",
+ "skill_id": "L2.3.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "r1_literacy__a_visit_to_the_doctor",
+    "task_hi": "दवाखाने की तख्ती के नीचे बोर्ड पर तीन शब्द लिखें: 'डॉक्टर', 'पट्टी', 'थर्मामीटर'। हर शब्द पर उँगली रखकर बच्चों से कहें: 'पहले आधा अक्षर देखें, फिर पूरा शब्द धीरे-धीरे पढ़ें।' इसके बाद पूछें: 'किस शब्द में ट के नीचे हलन्त वाला आधा ट है? स्लेट पर उस शब्द की संख्या लिखें: 1, 2 या 3।'",
+    "answer_hi": "पढ़ना: डॉक्टर, पट्टी, थर्मामीटर; हलन्त वाला आधा ट: 2 (पट्टी)"
+   },
+   {
+    "setting": "r1_literacy__festival_day",
+    "task_hi": "मेले के चित्र के पास बोर्ड पर लिखें: 'मिठाई', 'रंगोली', 'प्यारा', 'क्यारी'। बच्चों से कहें: 'हर शब्द पहले टुकड़ों में पढ़ें, फिर पूरा।' इसके बाद पूछें: 'प्यारा और क्यारी में पहला अक्षर आधा है। प्यारा में आधा अक्षर कौन-सा है? स्लेट पर वही एक अक्षर लिखें।'",
+    "answer_hi": "पढ़ना: मिठाई, रंगोली, प्यारा, क्यारी; आधा अक्षर: प्"
+   },
+   {
+    "setting": "r1_literacy__the_cricket_match",
+    "task_hi": "मैदान के नीचे बोर्ड पर लिखें: 'क्रिकेट', 'बल्ला', 'मैच', 'गेंद'। बच्चों से कहें: 'शब्द पढ़ें और ध्यान दें कि आधा अक्षर अगले अक्षर से कैसे जुड़ता है।' इसके बाद पूछें: 'बल्ला में ल्ल पढ़ते समय पहला ल आधा है या पूरा? उँगली दिखाएँ: 1 आधा, 2 पूरा।'",
+    "answer_hi": "पढ़ना: क्रिकेट, बल्ला, मैच, गेंद; उत्तर: 1 (आधा)"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "675988b7236a",
+ "created": "2026-11-21T06:30:06Z",
+ "cost_usd": 0.0181,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "r1_literacy__a_letter_from_grandmother",
+  "r1_literacy__a_new_classmate",
+  "r1_literacy__a_visit_to_the_doctor",
+  "r1_literacy__festival_day",
+  "r1_literacy__harvest_time",
+  "r1_literacy__making_rotis",
+  "r1_literacy__rainy_season",
+  "r1_literacy__school_garden",
+  "r1_literacy__school_morning_assembly",
+  "r1_literacy__the_bus_ride",
+  "r1_literacy__the_class_picnic",
+  "r1_literacy__the_clever_crow",
+  "r1_literacy__the_cricket_match",
+  "r1_literacy__the_fair",
+  "r1_literacy__the_friendly_elephant",
+  "r1_literacy__the_honey_bees",
+  "r1_literacy__the_kite_contest",
+  "r1_literacy__the_lost_kitten",
+  "r1_literacy__the_moon_at_night",
+  "r1_literacy__the_old_banyan_tree",
+  "r1_literacy__the_post_office",
+  "r1_literacy__the_river_bank",
+  "r1_literacy__the_tailor_s_shop",
+  "r1_literacy__the_village_well",
+  "r1_literacy__village_market"
+ ]
+}

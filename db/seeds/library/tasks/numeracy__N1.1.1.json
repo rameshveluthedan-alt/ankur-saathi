@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "numeracy__N1.1.1",
+ "skill_id": "N1.1.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__bangle_stall",
+    "task_hi": "बोर्ड पर एक डंडे पर चूड़ियाँ इस क्रम में बनाएँ: लाल, हरी, लाल, हरी, लाल, ___। बच्चों से पूछें: 'अगली चूड़ी किस रंग की होगी?' फिर दूसरे डंडे पर बनाएँ: लाल, हरी, पीली, लाल, हरी, ___। बच्चों से पूछें: 'अब अगली चूड़ी कौन-सी आएगी?' बच्चे स्लेट पर रंग का पहला अक्षर लिखें या उसी रंग का गोला बनाएँ।",
+    "answer_hi": "पहला डंडा: हरी चूड़ी; दूसरा डंडा: पीली चूड़ी"
+   },
+   {
+    "setting": "numeracy__train_station",
+    "task_hi": "बोर्ड पर रेलगाड़ी के डिब्बों पर निशान बनाएँ: गोला, गोला, तारा, गोला, गोला, तारा, गोला, गोला, ___। बच्चों से कहें: 'देखें, डिब्बों पर निशान एक क्रम में लगे हैं। अगले डिब्बे पर कौन-सा निशान आएगा? स्लेट पर बनाएँ।' इसके बाद बच्चों से कहें: 'अपना एक पैटर्न बनाएँ, जिसमें एक निशान दो बार आए और दूसरा एक बार।'",
+    "answer_hi": "तारा; अपना पैटर्न AAB जैसा, जैसे गोला, गोला, तारा"
+   },
+   {
+    "setting": "numeracy__school_garden",
+    "task_hi": "बोर्ड पर क्यारी के किनारे पौधे इस क्रम में बनाएँ: फूल, पत्ता, पत्ता, फूल, पत्ता, पत्ता, फूल, ___, ___। बच्चों से पूछें: 'अगले दो पौधे कौन-से लगेंगे?' बच्चे स्लेट पर अगले दो चित्र बनाएँ।",
+    "answer_hi": "पत्ता, पत्ता"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dc764d165f0f",
+ "created": "2026-11-21T06:30:05Z",
+ "cost_usd": 0.0172,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bangle_stall",
+  "numeracy__bird_watching",
+  "numeracy__building_a_hut",
+  "numeracy__bus_journey",
+  "numeracy__classroom_library",
+  "numeracy__cricket_match",
+  "numeracy__farm_harvest",
+  "numeracy__festival_sweets",
+  "numeracy__fishing_pond",
+  "numeracy__kitchen_and_cooking",
+  "numeracy__kite_making",
+  "numeracy__milk_collection",
+  "numeracy__post_office",
+  "numeracy__rain_and_puddles",
+  "numeracy__school_canteen",
+  "numeracy__school_garden",
+  "numeracy__school_sports_day",
+  "numeracy__shop_counting_stock",
+  "numeracy__tailor_s_shop",
+  "numeracy__train_station",
+  "numeracy__tree_planting",
+  "numeracy__village_fair",
+  "numeracy__village_market",
+  "numeracy__water_from_the_well",
+  "numeracy__wedding_preparations"
+ ]
+}

@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "numeracy__N3.3.4",
+ "skill_id": "N3.3.4",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__festival_sweets",
+    "task_hi": "बोर्ड पर लड्डू की थाली के नीचे लिखें: 'एक डिब्बे में 24 लड्डू'। बच्चों से पूछें: 'ऐसे 3 डिब्बों में कुल कितने लड्डू होंगे? अपनी स्लेट पर 24 × 3 हल करें।' इसके बाद पूछें: 'एक थाली में 15 जलेबी हैं, ऐसी 6 थालियों में कितनी जलेबी?' दो बच्चों से पूछें कि उन्होंने इकाई का गुणा पहले क्यों किया।",
+    "answer_hi": "24 × 3 = 72 लड्डू; 15 × 6 = 90 जलेबी"
+   },
+   {
+    "setting": "numeracy__train_station",
+    "task_hi": "बोर्ड पर हर डिब्बे के नीचे लिखें: 'हर डिब्बे में 32 लोग'। बच्चों से पूछें: 'रेलगाड़ी में 4 डिब्बे हैं। कुल कितने लोग बैठे हैं? स्लेट पर 32 × 4 हल करें।' इसके बाद पूछें: 'दूसरी रेलगाड़ी के एक डिब्बे में 18 लोग हैं, ऐसे 5 डिब्बों में कितने लोग?'",
+    "answer_hi": "32 × 4 = 128 लोग; 18 × 5 = 90 लोग"
+   },
+   {
+    "setting": "numeracy__farm_harvest",
+    "task_hi": "बोर्ड पर हर बोरी के नीचे लिखें: 'एक बोरी में 26 किलो गेहूँ'। बच्चों से पूछें: 'बैलगाड़ी पर ऐसी 3 बोरियाँ हैं। कुल कितने किलो गेहूँ है? स्लेट पर 26 × 3 हल करें।' इसके बाद पूछें: 'एक बोरी में 13 किलो चावल है, ऐसी 7 बोरियों में कितने किलो?' दो बच्चों से हासिल के बारे में पूछें।",
+    "answer_hi": "26 × 3 = 78 किलो; 13 × 7 = 91 किलो"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dc764d165f0f",
+ "created": "2026-11-21T06:30:05Z",
+ "cost_usd": 0.0175,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bangle_stall",
+  "numeracy__bird_watching",
+  "numeracy__building_a_hut",
+  "numeracy__bus_journey",
+  "numeracy__classroom_library",
+  "numeracy__cricket_match",
+  "numeracy__farm_harvest",
+  "numeracy__festival_sweets",
+  "numeracy__fishing_pond",
+  "numeracy__kitchen_and_cooking",
+  "numeracy__kite_making",
+  "numeracy__milk_collection",
+  "numeracy__post_office",
+  "numeracy__rain_and_puddles",
+  "numeracy__school_canteen",
+  "numeracy__school_garden",
+  "numeracy__school_sports_day",
+  "numeracy__shop_counting_stock",
+  "numeracy__tailor_s_shop",
+  "numeracy__train_station",
+  "numeracy__tree_planting",
+  "numeracy__village_fair",
+  "numeracy__village_market",
+  "numeracy__water_from_the_well",
+  "numeracy__wedding_preparations"
+ ]
+}

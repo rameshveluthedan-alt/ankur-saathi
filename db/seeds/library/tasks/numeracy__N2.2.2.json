@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "numeracy__N2.2.2",
+ "skill_id": "N2.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__farm_harvest",
+    "task_hi": "बोरियों के नीचे लिखें: गेहूँ 352, चावल 407। बच्चों से पूछें: 'गेहूँ की बोरी की संख्या में कितने सैकड़े, कितनी दहाई और कितनी इकाई हैं?' इसके बाद पूछें: 'चावल की संख्या में दहाई के स्थान पर कौन-सा अंक है?' बच्चे स्लेट पर लिखें।",
+    "answer_hi": "352: 3 सैकड़े, 5 दहाई, 2 इकाई; 407 में दहाई का अंक 0"
+   },
+   {
+    "setting": "numeracy__milk_collection",
+    "task_hi": "पहले डिब्बे के नीचे लिखें: 3 सैकड़े, 6 दहाई, 8 इकाई। बच्चों से कहें: 'इस डिब्बे में कितने लीटर दूध है? संख्या स्लेट पर लिखें।' इसके बाद बोर्ड पर लिखें: 500 + 20 + 9 और पूछें: 'दूसरे डिब्बे की संख्या क्या बनेगी?'",
+    "answer_hi": "368; 529"
+   },
+   {
+    "setting": "numeracy__train_station",
+    "task_hi": "रेलगाड़ी के डिब्बों पर लिखें: 615 और 274। बच्चों से कहें: 'पहले डिब्बे की संख्या को खोलकर लिखें, जैसे सैकड़ा + दहाई + इकाई।' इसके बाद पूछें: '274 में 7 का मान कितना है?' बच्चे स्लेट पर लिखें।",
+    "answer_hi": "600 + 10 + 5; 70"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dc764d165f0f",
+ "created": "2026-11-21T06:30:06Z",
+ "cost_usd": 0.0156,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bangle_stall",
+  "numeracy__bird_watching",
+  "numeracy__building_a_hut",
+  "numeracy__bus_journey",
+  "numeracy__classroom_library",
+  "numeracy__cricket_match",
+  "numeracy__farm_harvest",
+  "numeracy__festival_sweets",
+  "numeracy__fishing_pond",
+  "numeracy__kitchen_and_cooking",
+  "numeracy__kite_making",
+  "numeracy__milk_collection",
+  "numeracy__post_office",
+  "numeracy__rain_and_puddles",
+  "numeracy__school_canteen",
+  "numeracy__school_garden",
+  "numeracy__school_sports_day",
+  "numeracy__shop_counting_stock",
+  "numeracy__tailor_s_shop",
+  "numeracy__train_station",
+  "numeracy__tree_planting",
+  "numeracy__village_fair",
+  "numeracy__village_market",
+  "numeracy__water_from_the_well",
+  "numeracy__wedding_preparations"
+ ]
+}

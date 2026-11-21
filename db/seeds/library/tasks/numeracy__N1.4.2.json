@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "numeracy__N1.4.2",
+ "skill_id": "N1.4.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__farm_harvest",
+    "task_hi": "बोर्ड पर सूरज के पास तीन चित्र बनाएँ: 1) काका खेत में फ़सल काटते हैं, 2) काका बोरियाँ बैलगाड़ी पर रखते हैं, 3) काका रात को घर पर सोते हैं। चित्रों को मिलाकर बोर्ड पर इस क्रम में लिखें: 3, 1, 2। बच्चों से पूछें: 'पहले क्या हुआ? उसके बाद क्या हुआ? सबसे बाद में क्या हुआ? सही क्रम की संख्याएँ स्लेट पर लिखें।'",
+    "answer_hi": "1, 2, 3 (फ़सल काटना, बोरियाँ रखना, रात को सोना)"
+   },
+   {
+    "setting": "numeracy__water_from_the_well",
+    "task_hi": "कुएँ के पास तीन छोटे चित्र बनाएँ: सूरज उगता हुआ, सूरज सिर के ऊपर, चाँद और तारे। बच्चों से कहें: 'दादी पानी भरने सुबह जाती हैं। उँगली पर दिखाएँ: सुबह वाला चित्र 1 है, 2 है या 3?' फिर पूछें: 'रात को कुएँ पर कोई नहीं जाता। रात वाला चित्र कौन-सा है?'",
+    "answer_hi": "सुबह: 1 (सूरज उगता हुआ); रात: 3 (चाँद और तारे)"
+   },
+   {
+    "setting": "numeracy__bus_journey",
+    "task_hi": "सड़क पर तीन पड़ाव दिखाएँ: 'गाँव', 'मेला', 'कस्बा'। बच्चों से कहें: 'बस पहले गाँव से चलती है, फिर मेला आता है, फिर कस्बा।' पूछें: 'मेले से पहले बस कहाँ थी?' और 'मेले के बाद बस कहाँ जाएगी?' बच्चे बारी-बारी से हाथ उठाकर उत्तर बताएँ।",
+    "answer_hi": "मेले से पहले: गाँव; मेले के बाद: कस्बा"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dc764d165f0f",
+ "created": "2026-11-21T06:30:06Z",
+ "cost_usd": 0.0173,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bangle_stall",
+  "numeracy__bird_watching",
+  "numeracy__building_a_hut",
+  "numeracy__bus_journey",
+  "numeracy__classroom_library",
+  "numeracy__cricket_match",
+  "numeracy__farm_harvest",
+  "numeracy__festival_sweets",
+  "numeracy__fishing_pond",
+  "numeracy__kitchen_and_cooking",
+  "numeracy__kite_making",
+  "numeracy__milk_collection",
+  "numeracy__post_office",
+  "numeracy__rain_and_puddles",
+  "numeracy__school_canteen",
+  "numeracy__school_garden",
+  "numeracy__school_sports_day",
+  "numeracy__shop_counting_stock",
+  "numeracy__tailor_s_shop",
+  "numeracy__train_station",
+  "numeracy__tree_planting",
+  "numeracy__village_fair",
+  "numeracy__village_market",
+  "numeracy__water_from_the_well",
+  "numeracy__wedding_preparations"
+ ]
+}

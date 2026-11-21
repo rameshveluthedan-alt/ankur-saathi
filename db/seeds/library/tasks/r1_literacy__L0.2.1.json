@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "r1_literacy__L0.2.1",
+ "skill_id": "L0.2.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "r1_literacy__the_moon_at_night",
+    "task_hi": "बोर्ड पर चाँद और तारे की ओर इशारा करें। धीरे-धीरे तीन शब्द बोलें: 'तारा, सारा, घर'। बच्चों से कहें: 'ध्यान से सुनें। कौन-से दो शब्द एक जैसे बजते हैं? जिस शब्द की तुक नहीं मिलती, उसके लिए हाथ ऊपर करें।' फिर तीनों शब्द एक-एक करके दोबारा बोलें।",
+    "answer_hi": "तारा - सारा; तुक नहीं मिलती: घर"
+   },
+   {
+    "setting": "r1_literacy__the_village_well",
+    "task_hi": "बोर्ड पर गाय की ओर इशारा करें और बोलें: 'गाय'। फिर दो शब्द बोलें: '1) चाय 2) पेड़'। बच्चों से कहें: 'गाय से कौन-सा शब्द मिलता है? एक उँगली या दो उँगलियाँ दिखाएँ।' इसके बाद मटका के लिए यही करें: '1) झटका 2) कुआँ'।",
+    "answer_hi": "गाय - चाय (1); मटका - झटका (1)"
+   },
+   {
+    "setting": "r1_literacy__the_fair",
+    "task_hi": "बोर्ड पर झूले की ओर इशारा करें और बोलें: 'झूला'। फिर बच्चों से कहें: 'अब हम हर शब्द पर देखेंगे कि वह झूला से मिलता है या नहीं। जो शब्द झूला से मिले, उस पर ताली बजाएँ।' फिर एक-एक करके बोलें: 'फूला, जलेबी, भूला, गुब्बारा'।",
+    "answer_hi": "फूला, भूला (जलेबी और गुब्बारा पर ताली नहीं)"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "675988b7236a",
+ "created": "2026-11-21T06:30:15Z",
+ "cost_usd": 0.0163,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "r1_literacy__a_letter_from_grandmother",
+  "r1_literacy__a_new_classmate",
+  "r1_literacy__a_visit_to_the_doctor",
+  "r1_literacy__festival_day",
+  "r1_literacy__harvest_time",
+  "r1_literacy__making_rotis",
+  "r1_literacy__rainy_season",
+  "r1_literacy__school_garden",
+  "r1_literacy__school_morning_assembly",
+  "r1_literacy__the_bus_ride",
+  "r1_literacy__the_class_picnic",
+  "r1_literacy__the_clever_crow",
+  "r1_literacy__the_cricket_match",
+  "r1_literacy__the_fair",
+  "r1_literacy__the_friendly_elephant",
+  "r1_literacy__the_honey_bees",
+  "r1_literacy__the_kite_contest",
+  "r1_literacy__the_lost_kitten",
+  "r1_literacy__the_moon_at_night",
+  "r1_literacy__the_old_banyan_tree",
+  "r1_literacy__the_post_office",
+  "r1_literacy__the_river_bank",
+  "r1_literacy__the_tailor_s_shop",
+  "r1_literacy__the_village_well",
+  "r1_literacy__village_market"
+ ]
+}

@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "numeracy__N3.2.2",
+ "skill_id": "N3.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__milk_collection",
+    "task_hi": "बोर्ड पर लिखें: 'इस महीने डेयरी में 4352 लीटर दूध आया।' बच्चों से पूछें: '4352 में 3 का स्थानीय मान क्या है? स्लेट पर लिखें।' इसके बाद पूछें: '4 किस स्थान पर है: हज़ार, सैकड़ा, दहाई या इकाई?'",
+    "answer_hi": "300; 4 हज़ार के स्थान पर"
+   },
+   {
+    "setting": "numeracy__train_station",
+    "task_hi": "बोर्ड पर लिखें: 'आज रामपुर स्टेशन से 2716 यात्री गए।' बच्चों से कहें: '2716 को विस्तार रूप में स्लेट पर लिखें।' इसके बाद पूछें: 'इसमें कितने सैकड़े हैं?'",
+    "answer_hi": "2000 + 700 + 10 + 6; 7 सैकड़े"
+   },
+   {
+    "setting": "numeracy__farm_harvest",
+    "task_hi": "बोर्ड पर एक बोरी के नीचे लिखें: 'गेहूँ: 5000 + 600 + 0 + 8 दाने।' बच्चों से कहें: 'इसे एक संख्या में स्लेट पर लिखें।' इसके बाद पूछें: 'दहाई के स्थान पर कौन-सा अंक आया?'",
+    "answer_hi": "5608; दहाई के स्थान पर 0"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dc764d165f0f",
+ "created": "2026-11-21T06:30:05Z",
+ "cost_usd": 0.0149,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bangle_stall",
+  "numeracy__bird_watching",
+  "numeracy__building_a_hut",
+  "numeracy__bus_journey",
+  "numeracy__classroom_library",
+  "numeracy__cricket_match",
+  "numeracy__farm_harvest",
+  "numeracy__festival_sweets",
+  "numeracy__fishing_pond",
+  "numeracy__kitchen_and_cooking",
+  "numeracy__kite_making",
+  "numeracy__milk_collection",
+  "numeracy__post_office",
+  "numeracy__rain_and_puddles",
+  "numeracy__school_canteen",
+  "numeracy__school_garden",
+  "numeracy__school_sports_day",
+  "numeracy__shop_counting_stock",
+  "numeracy__tailor_s_shop",
+  "numeracy__train_station",
+  "numeracy__tree_planting",
+  "numeracy__village_fair",
+  "numeracy__village_market",
+  "numeracy__water_from_the_well",
+  "numeracy__wedding_preparations"
+ ]
+}

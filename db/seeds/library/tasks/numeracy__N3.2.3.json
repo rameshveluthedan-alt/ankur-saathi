@@ -1,0 +1,69 @@
+{
+ "format": 1,
+ "piece": "tasks",
+ "key": "numeracy__N3.2.3",
+ "skill_id": "N3.2.3",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__farm_harvest",
+    "task_hi": "बोरियों के नीचे खाली जगह में लिखें: गेहूँ 4523 किलो, चावल 4532 किलो, मक्का 3987 किलो, बाजरा 4508 किलो। बच्चों से पूछें: 'किस बोरी में सबसे ज़्यादा अनाज है? स्लेट पर उसका नाम लिखें।' फिर कहें: 'अब चारों संख्याएँ छोटी से बड़ी के क्रम में लिखें।'",
+    "answer_hi": "सबसे ज़्यादा: चावल; क्रम: 3987, 4508, 4523, 4532"
+   },
+   {
+    "setting": "numeracy__cricket_match",
+    "task_hi": "स्कोर-बोर्ड पर लिखें: 'लाल टीम: 1209 रन' और 'नीली टीम: 1290 रन' (पूरे मौसम के कुल रन)। बच्चों से पूछें: 'किस टीम के रन ज़्यादा हैं? स्लेट पर बड़ी संख्या लिखें।' फिर पूछें: 'दोनों संख्याओं के बीच कौन-सा निशान आएगा: 1) > 2) <?'",
+    "answer_hi": "नीली टीम, 1290; 1209 < 1290"
+   },
+   {
+    "setting": "numeracy__train_station",
+    "task_hi": "रेलगाड़ी के चार डिब्बों पर यात्रियों की गिनती लिखें: पहला डिब्बा 2075, दूसरा 2705, तीसरा 2057, चौथा 2750। बच्चों से कहें: 'किस डिब्बे में सबसे कम यात्री हैं? उँगलियों पर डिब्बे की संख्या दिखाएँ।' फिर कहें: 'अब चारों संख्याएँ बड़ी से छोटी के क्रम में स्लेट पर लिखें।'",
+    "answer_hi": "तीसरा डिब्बा (2057); क्रम: 2750, 2705, 2075, 2057"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "dc764d165f0f",
+ "created": "2026-11-21T06:30:15Z",
+ "cost_usd": 0.0168,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bangle_stall",
+  "numeracy__bird_watching",
+  "numeracy__building_a_hut",
+  "numeracy__bus_journey",
+  "numeracy__classroom_library",
+  "numeracy__cricket_match",
+  "numeracy__farm_harvest",
+  "numeracy__festival_sweets",
+  "numeracy__fishing_pond",
+  "numeracy__kitchen_and_cooking",
+  "numeracy__kite_making",
+  "numeracy__milk_collection",
+  "numeracy__post_office",
+  "numeracy__rain_and_puddles",
+  "numeracy__school_canteen",
+  "numeracy__school_garden",
+  "numeracy__school_sports_day",
+  "numeracy__shop_counting_stock",
+  "numeracy__tailor_s_shop",
+  "numeracy__train_station",
+  "numeracy__tree_planting",
+  "numeracy__village_fair",
+  "numeracy__village_market",
+  "numeracy__water_from_the_well",
+  "numeracy__wedding_preparations"
+ ]
+}
