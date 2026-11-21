@@ -82,6 +82,17 @@ check("every part is at least one minute", all(min(pace_plan(d).values()) >= 1 f
 check("nonsense gives no pace rather than an error", pace_plan(None) is None and pace_plan("x") is None)
 check("a computed shape carries each block's scaled pace", s90["pace"][0] == pace_plan(30) and s90["pace"][1] == pace_plan(22))
 
+print("the Plan screen's line under 'Today's time' says what the server will lay out")
+import re as _re
+js = open(os.path.join(ROOT, "pwa", "src", "services", "sessionShapes.js"), encoding="utf-8").read()
+screen = {int(m.group(1)): (int(m.group(2)), [int(x) for x in m.group(3).split(",")], int(m.group(4)))
+          for m in _re.finditer(r"(\d+): \{ anchor: (\d+), blocks: \[([\d, ]+)\], extras: (\d+) \}", js)}
+check("the screen's table has the three lengths", sorted(screen) == [45, 60, 90], screen)
+for m, (anchor, blocks, extras) in sorted(screen.items()):
+    s = session_shape(m)
+    check(f"{m} minutes: the screen says anchor {anchor}, blocks {blocks}, 3 + {extras}: the same as the server",
+          (anchor, sorted(blocks, reverse=True), extras) == (s["anchor"], sorted(s["blocks"], reverse=True), s["extras"]), (s["anchor"], s["blocks"], s["extras"]))
+
 print("the prompt uses it")
 src = open(os.path.join(ROOT, "prompts", "orchestrate.py"), encoding="utf-8").read()
 check("build_user_prompt takes the minutes from session_shape, not its own arithmetic", "session_shape(ctx.available_minutes" in src and "teaching_time * 4 // 10" not in src)
