@@ -1,0 +1,35 @@
+{
+ "format": 1,
+ "piece": "tasks_extra",
+ "key": "r1_literacy__L0.1.3__extra",
+ "skill_id": "L0.1.3",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "r1_literacy__rainy_season",
+    "task_hi": "बोर्ड के चित्र की ओर इशारा करके बच्चों से कहें: 'देखें, बारिश में क्या-क्या हुआ? पहले क्या हुआ, फिर क्या हुआ, और आख़िर में क्या हुआ? बारी-बारी से बताएँ।' पहले बादल पर उँगली रखें, फिर बूँदों पर, फिर नाव पर। हर बार पूछें: 'इसके बाद क्या हुआ?' जो बच्चा बोले, उससे तीनों बातें एक के बाद एक फिर से सुनें। उसकी सराहना करें: 'बहुत अच्छा, आपने तीनों बातें क्रम से बताईं।'",
+    "answer_hi": "तीन बातें इसी क्रम में: 1) पहले आसमान में काले बादल आए। 2) फिर बारिश की बूँदें गिरीं और रास्ते पर पानी भर गया। 3) आख़िर में पानी में कागज़ की नाव तैरने लगी।"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "6cf7e0c4cca1",
+ "created": "2026-11-21T07:19:52Z",
+ "cost_usd": 0.061,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "r1_literacy__rainy_season"
+ ]
+}

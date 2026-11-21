@@ -1,0 +1,35 @@
+{
+ "format": 1,
+ "piece": "tasks_extra",
+ "key": "numeracy__N2.2.1__extra",
+ "skill_id": "N2.2.1",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__farm_harvest",
+    "task_hi": "चारों बोरियों के नीचे ये संख्याएँ लिखें: गेहूँ 245, चावल 308, मक्का 570, दाल 199। गेहूँ की बोरी की ओर इशारा करके बच्चों से पूछें: 'इस बोरी पर कौन-सी संख्या लिखी है? पढ़कर बताएँ।' फिर चावल की बोरी की संख्या पढ़वाएँ। इसके बाद कहें: 'रामू काका ने मक्का की नई बोरी भरी, उसमें चार सौ छह दाने गिने गए। यह संख्या अपनी स्लेट पर लिखें।'",
+    "answer_hi": "गेहूँ: दो सौ पैंतालीस; चावल: तीन सौ आठ; स्लेट पर: 406"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "80e7823df2a4",
+ "created": "2026-11-21T07:22:10Z",
+ "cost_usd": 0.019,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__farm_harvest"
+ ]
+}

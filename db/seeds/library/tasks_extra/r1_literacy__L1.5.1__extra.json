@@ -1,0 +1,41 @@
+{
+ "format": 1,
+ "piece": "tasks_extra",
+ "key": "r1_literacy__L1.5.1__extra",
+ "skill_id": "L1.5.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "r1_literacy__the_moon_at_night",
+    "task_hi": "बोर्ड पर चित्र के नीचे तीन वाक्य लिखें: 'चाँद गोल है।', 'पेड़ पर उल्लू है।', 'खाट के पास दीया है।' पहले हर वाक्य उँगली रखकर एक बार उचित गति से पढ़कर सुनाएँ। फिर कहें: 'अब हम सब मिलकर हर वाक्य पढ़ेंगे, न बहुत तेज़, न रुक-रुक कर।' इसके बाद बच्चों से पूछें: 'उल्लू कहाँ बैठा है? वाक्य पढ़कर बताएँ।'",
+    "answer_hi": "पेड़ पर उल्लू है।"
+   },
+   {
+    "setting": "r1_literacy__village_market",
+    "task_hi": "बोर्ड पर हाट के नीचे तीन वाक्य लिखें: 'आम मीठा है।', 'मटका लाल है।', 'माँ केला लाई।' पहले हर वाक्य उँगली रखकर उचित गति से एक बार पढ़कर सुनाएँ। फिर कहें: 'अब हम सब साथ पढ़ेंगे, हर शब्द साफ़ बोलें और बीच में न अटकें।' इसके बाद पूछें: 'माँ क्या लाई? वाक्य पढ़कर बताएँ।'",
+    "answer_hi": "माँ केला लाई।"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "768e2af6424f",
+ "created": "2026-11-21T07:20:22Z",
+ "cost_usd": 0.0157,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "r1_literacy__the_moon_at_night",
+  "r1_literacy__village_market"
+ ]
+}

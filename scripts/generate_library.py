@@ -34,7 +34,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / "backend"), str(ROOT / "prompts"), str(ROOT / "scripts")]
 
 PILOT = ["N0.1.1", "N2.2.1", "N2.3.2", "L2.3.1", "L2.5.1", "L2.7.2", "N2.3.1", "N3.3.1", "L1.7.3", "L3.5.1"]
-KINDS = ("teach", "reteach", "independent", "setting", "tasks")
+KINDS = ("teach", "reteach", "independent", "setting", "tasks", "tasks_extra")
 # USD per million tokens: (input, output, cache read, cache write). The claude-api reference, Nov 2026; cache write assumed 1.25x input.
 PRICES = {"claude-opus-5-5": (4.0, 20.0, 0.20, 5.0), "claude-sonnet-5-5": (2.0, 10.0, 0.10, 2.5), "claude-haiku-5-5": (0.10, 0.50, 0.01, 0.125)}
 MAX_TOKENS = {"claude-opus-5-5": 20000}
@@ -126,6 +126,27 @@ def tasks_job(skill, settings):
     return Job("tasks", lpp.tasks_key(skill["domain_id"], skill["id"]), skill["domain_id"],
                lambda reasons: lpp.tasks_prompt(skill, settings, 3, reasons), lambda content: lpp.check_tasks_piece(content, skill, settings, 3),
                skill=skill, extra={"settings": sorted(settings)})
+
+
+def tasks_extra_job(skill, settings):
+    """The top-up: this skill's task in EACH of the given settings (the code chose them so that each usual skill trio shares one setting)."""
+    from app.services import library_parts as lpp
+    return Job("tasks_extra", lpp.tasks_extra_key(skill["domain_id"], skill["id"]), skill["domain_id"],
+               lambda reasons: lpp.tasks_extra_prompt(skill, settings, reasons), lambda content: lpp.check_tasks_piece(content, skill, settings, len(settings)),
+               skill=skill, extra={"settings": sorted(settings)})
+
+
+async def trio_gaps(db, root: Path) -> dict:
+    """{skill: [setting keys it needs a task in]} for the usual group skills of every skill (the trio the app derives)."""
+    from app.services import group_skills, library_parts as lpp
+    have = {}
+    for f in list((root / "tasks").glob("*.json")) + list((root / "tasks_extra").glob("*.json")):
+        rec = json.loads(f.read_text(encoding="utf-8"))
+        have.setdefault(rec["skill_id"], set()).update(t["setting"] for t in rec["content"].get("tasks") or [])
+    trios = []
+    for r in await db.fetch("SELECT id FROM competencies WHERE is_active ORDER BY id"):
+        trios.append((await group_skills.derived_beginner_id(db, r["id"]), r["id"], await group_skills.derived_proficient_id(db, r["id"])))
+    return {s: sorted(v) for s, v in lpp.trio_needs(trios, have).items()}
 
 
 def settings_of(root: Path, domain: str) -> dict:
@@ -232,6 +253,9 @@ async def recheck(db, root: Path, plan_service, log=print) -> dict:
             elif kind == "tasks":
                 st = settings_cache.setdefault(rec["domain_id"], settings_of(root, rec["domain_id"]))
                 job = tasks_job(skill, st)
+            elif kind == "tasks_extra":
+                st = settings_cache.setdefault(rec["domain_id"], settings_of(root, rec["domain_id"]))
+                job = tasks_extra_job(skill, {k: st[k] for k in rec.get("settings") or [] if k in st})
             res = job.check(rec["content"])
             rec["checks"] = res
             f.write_text(json.dumps(rec, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -261,6 +285,14 @@ async def build_jobs(db, args, root: Path, man: dict, plan_service) -> list:
             for theme in (themes or all_themes):
                 if theme in all_themes and not done(lpp.setting_key(domain, theme)):
                     jobs.append(setting_job(domain, theme))
+    if "tasks_extra" in kinds:
+        gaps = await trio_gaps(db, root)
+        for sid, keys in sorted(gaps.items()):
+            skill, _ = await skill_facts(db, sid)
+            st = settings_of(root, skill["domain_id"])
+            pick = {k: st[k] for k in keys if k in st}
+            if pick and not done(lpp.tasks_extra_key(skill["domain_id"], sid)):
+                jobs.append(tasks_extra_job(skill, pick))
     for sid in skills:
         skill, mistakes = await skill_facts(db, sid)
         if "teach" in kinds:

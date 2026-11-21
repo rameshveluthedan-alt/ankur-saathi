@@ -27,7 +27,7 @@ def _load(root: Path = ROOT) -> dict:
     key = str(root)
     if key in _INDEX:
         return _INDEX[key]
-    idx = {"teach": {}, "reteach": {}, "independent": {}, "setting": {}, "tasks": {}}
+    idx = {"teach": {}, "reteach": {}, "independent": {}, "setting": {}, "tasks": {}, "tasks_extra": {}}
     man_f = root / "MANIFEST.json"
     ok = {k for k, p in json.loads(man_f.read_text(encoding="utf-8"))["pieces"].items() if p.get("status") == "ok"} if man_f.is_file() else set()
     for kind in idx:
@@ -45,8 +45,8 @@ def _load(root: Path = ROOT) -> dict:
                 idx["independent"].setdefault(rec["skill_id"], []).append(c)
             elif kind == "setting":
                 idx["setting"][rec["key"]] = c
-            elif kind == "tasks":
-                idx["tasks"][rec["skill_id"]] = c.get("tasks") or []
+            elif kind in ("tasks", "tasks_extra"):                          # the top-up's tasks join the skill's own
+                idx["tasks"].setdefault(rec["skill_id"], []).extend(c.get("tasks") or [])
     _INDEX[key] = idx
     return idx
 

@@ -130,8 +130,7 @@
    "worksheets.progressor (observed) problem 5: the question states its own answer (4 गोले)"
   ],
   "repairs": [
-   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)",
-   "place value: flash cards listed from the lesson: progressor 1"
+   "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
   ]
  },
  "model": "claude-opus-5-5",

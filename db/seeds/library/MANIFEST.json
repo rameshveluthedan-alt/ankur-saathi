@@ -9443,7 +9443,7 @@
   "L0.1.1__1": {
    "cost_usd": 0.023,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9457,7 +9457,7 @@
   "L0.1.1__2": {
    "cost_usd": 0.0178,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9471,7 +9471,7 @@
   "L0.1.1__normal__long": {
    "cost_usd": 0.0247,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -9485,7 +9485,7 @@
   "L0.1.1__normal__medium": {
    "cost_usd": 0.0219,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -9499,7 +9499,7 @@
   "L0.1.1__normal__short": {
    "cost_usd": 0.0235,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -9513,7 +9513,7 @@
   "L0.1.2__1": {
    "cost_usd": 0.0148,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9527,7 +9527,7 @@
   "L0.1.2__2": {
    "cost_usd": 0.0137,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9541,7 +9541,7 @@
   "L0.1.2__normal__long": {
    "cost_usd": 0.0265,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -9555,7 +9555,7 @@
   "L0.1.2__normal__medium": {
    "cost_usd": 0.0271,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -9569,7 +9569,7 @@
   "L0.1.2__normal__short": {
    "cost_usd": 0.0244,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -9583,7 +9583,7 @@
   "L0.1.3__1": {
    "cost_usd": 0.0157,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9597,7 +9597,7 @@
   "L0.1.3__2": {
    "cost_usd": 0.0144,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9611,7 +9611,7 @@
   "L0.1.3__normal__long": {
    "cost_usd": 0.0277,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -9625,7 +9625,7 @@
   "L0.1.3__normal__medium": {
    "cost_usd": 0.0255,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -9639,7 +9639,7 @@
   "L0.1.3__normal__short": {
    "cost_usd": 0.0276,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -9653,7 +9653,7 @@
   "L0.2.1__1": {
    "cost_usd": 0.0155,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9667,7 +9667,7 @@
   "L0.2.1__2": {
    "cost_usd": 0.0129,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9681,7 +9681,7 @@
   "L0.2.1__normal__long": {
    "cost_usd": 0.0277,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -9695,7 +9695,7 @@
   "L0.2.1__normal__medium": {
    "cost_usd": 0.0295,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -9709,7 +9709,7 @@
   "L0.2.1__normal__short": {
    "cost_usd": 0.0237,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -9723,7 +9723,7 @@
   "L0.2.2__1": {
    "cost_usd": 0.0193,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9737,7 +9737,7 @@
   "L0.2.2__2": {
    "cost_usd": 0.0155,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9751,7 +9751,7 @@
   "L0.2.2__normal__long": {
    "cost_usd": 0.0248,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -9765,7 +9765,7 @@
   "L0.2.2__normal__medium": {
    "cost_usd": 0.0223,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -9779,7 +9779,7 @@
   "L0.2.2__normal__short": {
    "cost_usd": 0.024,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -9793,7 +9793,7 @@
   "L0.2.3__1": {
    "cost_usd": 0.0197,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9807,7 +9807,7 @@
   "L0.2.3__2": {
    "cost_usd": 0.0144,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9821,7 +9821,7 @@
   "L0.2.3__normal__long": {
    "cost_usd": 0.0249,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -9835,7 +9835,7 @@
   "L0.2.3__normal__medium": {
    "cost_usd": 0.0243,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -9849,7 +9849,7 @@
   "L0.2.3__normal__short": {
    "cost_usd": 0.0235,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -9863,7 +9863,7 @@
   "L0.3.1-M1__long": {
    "cost_usd": 0.0287,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L0.3.1-M1",
@@ -9877,7 +9877,7 @@
   "L0.3.1-M1__medium": {
    "cost_usd": 0.03,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L0.3.1-M1",
@@ -9891,7 +9891,7 @@
   "L0.3.1-M1__short": {
    "cost_usd": 0.0267,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L0.3.1-M1",
@@ -9905,7 +9905,7 @@
   "L0.3.1-M2__long": {
    "cost_usd": 0.0262,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L0.3.1-M2",
@@ -9919,7 +9919,7 @@
   "L0.3.1-M2__medium": {
    "cost_usd": 0.0285,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L0.3.1-M2",
@@ -9933,7 +9933,7 @@
   "L0.3.1-M2__short": {
    "cost_usd": 0.0255,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L0.3.1-M2",
@@ -9947,7 +9947,7 @@
   "L0.3.1__1": {
    "cost_usd": 0.0132,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9961,7 +9961,7 @@
   "L0.3.1__2": {
    "cost_usd": 0.0175,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -9975,7 +9975,7 @@
   "L0.3.1__normal__long": {
    "cost_usd": 0.0277,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -9989,7 +9989,7 @@
   "L0.3.1__normal__medium": {
    "cost_usd": 0.0286,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10003,7 +10003,7 @@
   "L0.3.1__normal__short": {
    "cost_usd": 0.0245,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10017,7 +10017,7 @@
   "L0.3.2__1": {
    "cost_usd": 0.0163,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10031,7 +10031,7 @@
   "L0.3.2__2": {
    "cost_usd": 0.0155,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10045,7 +10045,7 @@
   "L0.3.2__normal__long": {
    "cost_usd": 0.0266,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10059,7 +10059,7 @@
   "L0.3.2__normal__medium": {
    "cost_usd": 0.0264,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10073,7 +10073,7 @@
   "L0.3.2__normal__short": {
    "cost_usd": 0.0262,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10087,7 +10087,7 @@
   "L0.7.1__1": {
    "cost_usd": 0.0156,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10101,7 +10101,7 @@
   "L0.7.1__2": {
    "cost_usd": 0.0138,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10115,7 +10115,7 @@
   "L0.7.1__normal__long": {
    "cost_usd": 0.0224,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10129,7 +10129,7 @@
   "L0.7.1__normal__medium": {
    "cost_usd": 0.0207,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10143,7 +10143,7 @@
   "L0.7.1__normal__short": {
    "cost_usd": 0.0179,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10157,7 +10157,7 @@
   "L0.7.2__1": {
    "cost_usd": 0.0157,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10171,7 +10171,7 @@
   "L0.7.2__2": {
    "cost_usd": 0.0123,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10185,7 +10185,7 @@
   "L0.7.2__normal__long": {
    "cost_usd": 0.0235,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10199,7 +10199,7 @@
   "L0.7.2__normal__medium": {
    "cost_usd": 0.0236,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10213,7 +10213,7 @@
   "L0.7.2__normal__short": {
    "cost_usd": 0.0197,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10227,7 +10227,7 @@
   "L1.2.1__1": {
    "cost_usd": 0.0209,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10241,7 +10241,7 @@
   "L1.2.1__2": {
    "cost_usd": 0.0142,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10255,7 +10255,7 @@
   "L1.2.1__normal__long": {
    "cost_usd": 0.0277,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10269,7 +10269,7 @@
   "L1.2.1__normal__medium": {
    "cost_usd": 0.0253,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10283,7 +10283,7 @@
   "L1.2.1__normal__short": {
    "cost_usd": 0.0259,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10297,7 +10297,7 @@
   "L1.2.2__1": {
    "cost_usd": 0.0133,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10311,7 +10311,7 @@
   "L1.2.2__2": {
    "cost_usd": 0.0133,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10325,7 +10325,7 @@
   "L1.2.2__normal__long": {
    "cost_usd": 0.0229,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10339,7 +10339,7 @@
   "L1.2.2__normal__medium": {
    "cost_usd": 0.0242,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10353,7 +10353,7 @@
   "L1.2.2__normal__short": {
    "cost_usd": 0.0252,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10367,7 +10367,7 @@
   "L1.3.1__1": {
    "cost_usd": 0.014,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10381,7 +10381,7 @@
   "L1.3.1__2": {
    "cost_usd": 0.0138,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10395,7 +10395,7 @@
   "L1.3.1__normal__long": {
    "cost_usd": 0.0255,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10409,7 +10409,7 @@
   "L1.3.1__normal__medium": {
    "cost_usd": 0.0246,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10423,7 +10423,7 @@
   "L1.3.1__normal__short": {
    "cost_usd": 0.0262,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10437,7 +10437,7 @@
   "L1.3.2-M1__long": {
    "cost_usd": 0.0294,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.3.2-M1",
@@ -10451,7 +10451,7 @@
   "L1.3.2-M1__medium": {
    "cost_usd": 0.0303,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.3.2-M1",
@@ -10465,7 +10465,7 @@
   "L1.3.2-M1__short": {
    "cost_usd": 0.0258,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.3.2-M1",
@@ -10479,7 +10479,7 @@
   "L1.3.2-M2__long": {
    "cost_usd": 0.0288,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.3.2-M2",
@@ -10493,7 +10493,7 @@
   "L1.3.2-M2__medium": {
    "cost_usd": 0.0272,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.3.2-M2",
@@ -10507,7 +10507,7 @@
   "L1.3.2-M2__short": {
    "cost_usd": 0.0267,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.3.2-M2",
@@ -10521,7 +10521,7 @@
   "L1.3.2-M3__long": {
    "cost_usd": 0.0295,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.3.2-M3",
@@ -10535,7 +10535,7 @@
   "L1.3.2-M3__medium": {
    "cost_usd": 0.0284,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.3.2-M3",
@@ -10549,7 +10549,7 @@
   "L1.3.2-M3__short": {
    "cost_usd": 0.0279,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.3.2-M3",
@@ -10563,7 +10563,7 @@
   "L1.3.2__1": {
    "cost_usd": 0.0133,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10577,7 +10577,7 @@
   "L1.3.2__2": {
    "cost_usd": 0.0146,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10591,7 +10591,7 @@
   "L1.3.2__normal__long": {
    "cost_usd": 0.0274,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10605,7 +10605,7 @@
   "L1.3.2__normal__medium": {
    "cost_usd": 0.0269,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10619,7 +10619,7 @@
   "L1.3.2__normal__short": {
    "cost_usd": 0.0261,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10633,7 +10633,7 @@
   "L1.3.3-M1__long": {
    "cost_usd": 0.028,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.3.3-M1",
@@ -10647,7 +10647,7 @@
   "L1.3.3-M1__medium": {
    "cost_usd": 0.0299,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.3.3-M1",
@@ -10661,7 +10661,7 @@
   "L1.3.3-M1__short": {
    "cost_usd": 0.0268,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.3.3-M1",
@@ -10675,7 +10675,7 @@
   "L1.3.3-M2__long": {
    "cost_usd": 0.0287,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.3.3-M2",
@@ -10689,7 +10689,7 @@
   "L1.3.3-M2__medium": {
    "cost_usd": 0.0266,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.3.3-M2",
@@ -10703,7 +10703,7 @@
   "L1.3.3-M2__short": {
    "cost_usd": 0.0261,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.3.3-M2",
@@ -10717,7 +10717,7 @@
   "L1.3.3__1": {
    "cost_usd": 0.0149,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10731,7 +10731,7 @@
   "L1.3.3__2": {
    "cost_usd": 0.0168,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10745,7 +10745,7 @@
   "L1.3.3__normal__long": {
    "cost_usd": 0.028,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10759,7 +10759,7 @@
   "L1.3.3__normal__medium": {
    "cost_usd": 0.0277,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10773,7 +10773,7 @@
   "L1.3.3__normal__short": {
    "cost_usd": 0.0258,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10787,7 +10787,7 @@
   "L1.3.4-M1__long": {
    "cost_usd": 0.0375,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.3.4-M1",
@@ -10801,7 +10801,7 @@
   "L1.3.4-M1__medium": {
    "cost_usd": 0.029,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.3.4-M1",
@@ -10815,7 +10815,7 @@
   "L1.3.4-M1__short": {
    "cost_usd": 0.027,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.3.4-M1",
@@ -10829,7 +10829,7 @@
   "L1.3.4-M2__long": {
    "cost_usd": 0.0303,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.3.4-M2",
@@ -10843,7 +10843,7 @@
   "L1.3.4-M2__medium": {
    "cost_usd": 0.0275,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.3.4-M2",
@@ -10857,7 +10857,7 @@
   "L1.3.4-M2__short": {
    "cost_usd": 0.0275,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.3.4-M2",
@@ -10871,7 +10871,7 @@
   "L1.3.4__1": {
    "cost_usd": 0.0152,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10885,7 +10885,7 @@
   "L1.3.4__2": {
    "cost_usd": 0.014,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10899,7 +10899,7 @@
   "L1.3.4__normal__long": {
    "cost_usd": 0.0269,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10913,7 +10913,7 @@
   "L1.3.4__normal__medium": {
    "cost_usd": 0.0272,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10927,7 +10927,7 @@
   "L1.3.4__normal__short": {
    "cost_usd": 0.0264,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -10941,7 +10941,7 @@
   "L1.4.1__1": {
    "cost_usd": 0.0135,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10955,7 +10955,7 @@
   "L1.4.1__2": {
    "cost_usd": 0.0177,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -10969,7 +10969,7 @@
   "L1.4.1__normal__long": {
    "cost_usd": 0.0257,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -10983,7 +10983,7 @@
   "L1.4.1__normal__medium": {
    "cost_usd": 0.029,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -10997,7 +10997,7 @@
   "L1.4.1__normal__short": {
    "cost_usd": 0.0234,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11011,7 +11011,7 @@
   "L1.4.2__1": {
    "cost_usd": 0.0128,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11025,7 +11025,7 @@
   "L1.4.2__2": {
    "cost_usd": 0.0128,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11039,7 +11039,7 @@
   "L1.4.2__normal__long": {
    "cost_usd": 0.026,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -11053,7 +11053,7 @@
   "L1.4.2__normal__medium": {
    "cost_usd": 0.0266,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -11067,7 +11067,7 @@
   "L1.4.2__normal__short": {
    "cost_usd": 0.0223,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11081,7 +11081,7 @@
   "L1.5.1__1": {
    "cost_usd": 0.0118,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11095,7 +11095,7 @@
   "L1.5.1__2": {
    "cost_usd": 0.0141,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11109,7 +11109,7 @@
   "L1.5.1__normal__long": {
    "cost_usd": 0.0225,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -11123,7 +11123,7 @@
   "L1.5.1__normal__medium": {
    "cost_usd": 0.022,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -11137,7 +11137,7 @@
   "L1.5.1__normal__short": {
    "cost_usd": 0.0209,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11151,7 +11151,7 @@
   "L1.6.1__1": {
    "cost_usd": 0.0234,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11165,7 +11165,7 @@
   "L1.6.1__2": {
    "cost_usd": 0.0291,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11179,7 +11179,7 @@
   "L1.6.1__normal__long": {
    "cost_usd": 0.0264,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -11193,7 +11193,7 @@
   "L1.6.1__normal__medium": {
    "cost_usd": 0.0285,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -11207,7 +11207,7 @@
   "L1.6.1__normal__short": {
    "cost_usd": 0.0249,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11221,7 +11221,7 @@
   "L1.6.2__1": {
    "cost_usd": 0.0166,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11235,7 +11235,7 @@
   "L1.6.2__2": {
    "cost_usd": 0.0167,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11249,7 +11249,7 @@
   "L1.6.2__normal__long": {
    "cost_usd": 0.0275,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -11263,7 +11263,7 @@
   "L1.6.2__normal__medium": {
    "cost_usd": 0.0283,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -11277,7 +11277,7 @@
   "L1.6.2__normal__short": {
    "cost_usd": 0.0253,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11291,7 +11291,7 @@
   "L1.7.1__1": {
    "cost_usd": 0.0122,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11305,7 +11305,7 @@
   "L1.7.1__2": {
    "cost_usd": 0.0136,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11319,7 +11319,7 @@
   "L1.7.1__normal__long": {
    "cost_usd": 0.0211,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -11333,7 +11333,7 @@
   "L1.7.1__normal__medium": {
    "cost_usd": 0.0211,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -11347,7 +11347,7 @@
   "L1.7.1__normal__short": {
    "cost_usd": 0.0199,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11361,7 +11361,7 @@
   "L1.7.2-M1__long": {
    "cost_usd": 0.0243,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.7.2-M1",
@@ -11375,7 +11375,7 @@
   "L1.7.2-M1__medium": {
    "cost_usd": 0.0236,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.7.2-M1",
@@ -11389,7 +11389,7 @@
   "L1.7.2-M1__short": {
    "cost_usd": 0.0208,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.7.2-M1",
@@ -11403,7 +11403,7 @@
   "L1.7.2-M2__long": {
    "cost_usd": 0.0222,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.7.2-M2",
@@ -11417,7 +11417,7 @@
   "L1.7.2-M2__medium": {
    "cost_usd": 0.0225,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.7.2-M2",
@@ -11431,7 +11431,7 @@
   "L1.7.2-M2__short": {
    "cost_usd": 0.0205,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.7.2-M2",
@@ -11445,7 +11445,7 @@
   "L1.7.2-M3__long": {
    "cost_usd": 0.0257,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L1.7.2-M3",
@@ -11459,7 +11459,7 @@
   "L1.7.2-M3__medium": {
    "cost_usd": 0.025,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L1.7.2-M3",
@@ -11473,7 +11473,7 @@
   "L1.7.2-M3__short": {
    "cost_usd": 0.0228,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L1.7.2-M3",
@@ -11487,7 +11487,7 @@
   "L1.7.2__1": {
    "cost_usd": 0.0154,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11501,7 +11501,7 @@
   "L1.7.2__2": {
    "cost_usd": 0.0153,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11515,7 +11515,7 @@
   "L1.7.2__normal__long": {
    "cost_usd": 0.0212,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -11529,7 +11529,7 @@
   "L1.7.2__normal__medium": {
    "cost_usd": 0.0201,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -11543,7 +11543,7 @@
   "L1.7.2__normal__short": {
    "cost_usd": 0.0192,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11557,7 +11557,7 @@
   "L1.7.3__1": {
    "cost_usd": 0.0337,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11571,7 +11571,7 @@
   "L1.7.3__2": {
    "cost_usd": 0.0294,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11618,7 +11618,7 @@
   "L2.3.1-M1__long": {
    "cost_usd": 0.0325,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.3.1-M1",
@@ -11632,7 +11632,7 @@
   "L2.3.1-M1__medium": {
    "cost_usd": 0.0298,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.3.1-M1",
@@ -11646,7 +11646,7 @@
   "L2.3.1-M1__short": {
    "cost_usd": 0.0276,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.3.1-M1",
@@ -11660,7 +11660,7 @@
   "L2.3.1-M2__long": {
    "cost_usd": 0.0566,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.3.1-M2",
@@ -11674,7 +11674,7 @@
   "L2.3.1-M2__medium": {
    "cost_usd": 0.0271,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.3.1-M2",
@@ -11688,7 +11688,7 @@
   "L2.3.1-M2__short": {
    "cost_usd": 0.0273,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.3.1-M2",
@@ -11702,7 +11702,7 @@
   "L2.3.1__1": {
    "cost_usd": 0.0323,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11716,7 +11716,7 @@
   "L2.3.1__2": {
    "cost_usd": 0.033,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11763,7 +11763,7 @@
   "L2.3.2__1": {
    "cost_usd": 0.0155,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11777,7 +11777,7 @@
   "L2.3.2__2": {
    "cost_usd": 0.0142,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11791,7 +11791,7 @@
   "L2.3.2__normal__long": {
    "cost_usd": 0.0261,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -11805,7 +11805,7 @@
   "L2.3.2__normal__medium": {
    "cost_usd": 0.0267,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -11819,7 +11819,7 @@
   "L2.3.2__normal__short": {
    "cost_usd": 0.0239,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11833,7 +11833,7 @@
   "L2.3.3__1": {
    "cost_usd": 0.0144,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11847,7 +11847,7 @@
   "L2.3.3__2": {
    "cost_usd": 0.0142,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11861,7 +11861,7 @@
   "L2.3.3__normal__long": {
    "cost_usd": 0.0302,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -11875,7 +11875,7 @@
   "L2.3.3__normal__medium": {
    "cost_usd": 0.025,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -11889,7 +11889,7 @@
   "L2.3.3__normal__short": {
    "cost_usd": 0.0241,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11903,7 +11903,7 @@
   "L2.4.1__1": {
    "cost_usd": 0.0152,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11917,7 +11917,7 @@
   "L2.4.1__2": {
    "cost_usd": 0.0154,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11931,7 +11931,7 @@
   "L2.4.1__normal__long": {
    "cost_usd": 0.0278,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -11945,7 +11945,7 @@
   "L2.4.1__normal__medium": {
    "cost_usd": 0.0266,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -11959,7 +11959,7 @@
   "L2.4.1__normal__short": {
    "cost_usd": 0.0252,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -11973,7 +11973,7 @@
   "L2.4.2__1": {
    "cost_usd": 0.0151,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -11987,7 +11987,7 @@
   "L2.4.2__2": {
    "cost_usd": 0.0179,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12001,7 +12001,7 @@
   "L2.4.2__normal__long": {
    "cost_usd": 0.0303,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -12015,7 +12015,7 @@
   "L2.4.2__normal__medium": {
    "cost_usd": 0.026,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -12029,7 +12029,7 @@
   "L2.4.2__normal__short": {
    "cost_usd": 0.0287,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -12043,7 +12043,7 @@
   "L2.5.1-M1__long": {
    "cost_usd": 0.0473,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.5.1-M1",
@@ -12057,7 +12057,7 @@
   "L2.5.1-M1__medium": {
    "cost_usd": 0.0277,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.5.1-M1",
@@ -12071,7 +12071,7 @@
   "L2.5.1-M1__short": {
    "cost_usd": 0.025,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.5.1-M1",
@@ -12085,7 +12085,7 @@
   "L2.5.1-M2__long": {
    "cost_usd": 0.0428,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.5.1-M2",
@@ -12099,7 +12099,7 @@
   "L2.5.1-M2__medium": {
    "cost_usd": 0.0281,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.5.1-M2",
@@ -12113,7 +12113,7 @@
   "L2.5.1-M2__short": {
    "cost_usd": 0.0255,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.5.1-M2",
@@ -12127,7 +12127,7 @@
   "L2.5.1-M3__long": {
    "cost_usd": 0.0282,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.5.1-M3",
@@ -12141,7 +12141,7 @@
   "L2.5.1-M3__medium": {
    "cost_usd": 0.0278,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.5.1-M3",
@@ -12155,7 +12155,7 @@
   "L2.5.1-M3__short": {
    "cost_usd": 0.0249,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.5.1-M3",
@@ -12169,7 +12169,7 @@
   "L2.5.1__1": {
    "cost_usd": 0.0312,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12183,7 +12183,7 @@
   "L2.5.1__2": {
    "cost_usd": 0.0313,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12230,7 +12230,7 @@
   "L2.5.2__1": {
    "cost_usd": 0.0177,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12244,7 +12244,7 @@
   "L2.5.2__2": {
    "cost_usd": 0.016,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12258,7 +12258,7 @@
   "L2.5.2__normal__long": {
    "cost_usd": 0.0254,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -12272,7 +12272,7 @@
   "L2.5.2__normal__medium": {
    "cost_usd": 0.0232,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -12286,7 +12286,7 @@
   "L2.5.2__normal__short": {
    "cost_usd": 0.0252,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -12300,7 +12300,7 @@
   "L2.6.1-M1__long": {
    "cost_usd": 0.0253,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.6.1-M1",
@@ -12314,7 +12314,7 @@
   "L2.6.1-M1__medium": {
    "cost_usd": 0.0248,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.6.1-M1",
@@ -12328,7 +12328,7 @@
   "L2.6.1-M1__short": {
    "cost_usd": 0.0222,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.6.1-M1",
@@ -12342,7 +12342,7 @@
   "L2.6.1__1": {
    "cost_usd": 0.0155,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12356,7 +12356,7 @@
   "L2.6.1__2": {
    "cost_usd": 0.017,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12370,7 +12370,7 @@
   "L2.6.1__normal__long": {
    "cost_usd": 0.0205,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -12384,7 +12384,7 @@
   "L2.6.1__normal__medium": {
    "cost_usd": 0.0225,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -12398,7 +12398,7 @@
   "L2.6.1__normal__short": {
    "cost_usd": 0.0209,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -12412,7 +12412,7 @@
   "L2.6.2-M1__long": {
    "cost_usd": 0.1393,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.6.2-M1",
@@ -12426,7 +12426,7 @@
   "L2.6.2-M1__medium": {
    "cost_usd": 0.0423,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.6.2-M1",
@@ -12440,7 +12440,7 @@
   "L2.6.2-M1__short": {
    "cost_usd": 0.0283,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.6.2-M1",
@@ -12454,7 +12454,7 @@
   "L2.6.2__1": {
    "cost_usd": 0.0173,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12468,7 +12468,7 @@
   "L2.6.2__2": {
    "cost_usd": 0.0209,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12482,7 +12482,7 @@
   "L2.6.2__normal__long": {
    "cost_usd": 0.0313,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -12496,7 +12496,7 @@
   "L2.6.2__normal__medium": {
    "cost_usd": 0.0974,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -12510,7 +12510,7 @@
   "L2.6.2__normal__short": {
    "cost_usd": 0.0846,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -12524,7 +12524,7 @@
   "L2.6.3__1": {
    "cost_usd": 0.0157,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12538,7 +12538,7 @@
   "L2.6.3__2": {
    "cost_usd": 0.0162,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12552,7 +12552,7 @@
   "L2.6.3__normal__long": {
    "cost_usd": 0.0282,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -12566,7 +12566,7 @@
   "L2.6.3__normal__medium": {
    "cost_usd": 0.0271,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -12580,7 +12580,7 @@
   "L2.6.3__normal__short": {
    "cost_usd": 0.0262,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -12594,7 +12594,7 @@
   "L2.7.1-M1__long": {
    "cost_usd": 0.0942,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.7.1-M1",
@@ -12608,7 +12608,7 @@
   "L2.7.1-M1__medium": {
    "cost_usd": 0.086,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.7.1-M1",
@@ -12622,7 +12622,7 @@
   "L2.7.1-M1__short": {
    "cost_usd": 0.025,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.7.1-M1",
@@ -12636,7 +12636,7 @@
   "L2.7.1-M2__long": {
    "cost_usd": 0.0273,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.7.1-M2",
@@ -12650,7 +12650,7 @@
   "L2.7.1-M2__medium": {
    "cost_usd": 0.1398,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.7.1-M2",
@@ -12664,7 +12664,7 @@
   "L2.7.1-M2__short": {
    "cost_usd": 0.0986,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.7.1-M2",
@@ -12678,7 +12678,7 @@
   "L2.7.1-M3__long": {
    "cost_usd": 0.1032,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.7.1-M3",
@@ -12692,7 +12692,7 @@
   "L2.7.1-M3__medium": {
    "cost_usd": 0.0916,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.7.1-M3",
@@ -12706,7 +12706,7 @@
   "L2.7.1-M3__short": {
    "cost_usd": 0.0224,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.7.1-M3",
@@ -12720,7 +12720,7 @@
   "L2.7.1__1": {
    "cost_usd": 0.022,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12734,7 +12734,7 @@
   "L2.7.1__2": {
    "cost_usd": 0.0133,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12748,7 +12748,7 @@
   "L2.7.1__normal__long": {
    "cost_usd": 0.0928,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -12762,7 +12762,7 @@
   "L2.7.1__normal__medium": {
    "cost_usd": 0.084,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -12776,7 +12776,7 @@
   "L2.7.1__normal__short": {
    "cost_usd": 0.0793,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -12790,7 +12790,7 @@
   "L2.7.2-M1__long": {
    "cost_usd": 0.0274,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.7.2-M1",
@@ -12804,7 +12804,7 @@
   "L2.7.2-M1__medium": {
    "cost_usd": 0.0305,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.7.2-M1",
@@ -12818,7 +12818,7 @@
   "L2.7.2-M1__short": {
    "cost_usd": 0.0249,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.7.2-M1",
@@ -12832,7 +12832,7 @@
   "L2.7.2-M2__long": {
    "cost_usd": 0.028,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.7.2-M2",
@@ -12846,7 +12846,7 @@
   "L2.7.2-M2__medium": {
    "cost_usd": 0.0301,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.7.2-M2",
@@ -12860,7 +12860,7 @@
   "L2.7.2-M2__short": {
    "cost_usd": 0.0254,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.7.2-M2",
@@ -12874,7 +12874,7 @@
   "L2.7.2-M3__long": {
    "cost_usd": 0.029,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L2.7.2-M3",
@@ -12888,7 +12888,7 @@
   "L2.7.2-M3__medium": {
    "cost_usd": 0.0295,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L2.7.2-M3",
@@ -12902,7 +12902,7 @@
   "L2.7.2-M3__short": {
    "cost_usd": 0.0261,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L2.7.2-M3",
@@ -12916,7 +12916,7 @@
   "L2.7.2__1": {
    "cost_usd": 0.0243,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12930,7 +12930,7 @@
   "L2.7.2__2": {
    "cost_usd": 0.0259,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12977,7 +12977,7 @@
   "L2.7.3__1": {
    "cost_usd": 0.0141,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -12991,7 +12991,7 @@
   "L2.7.3__2": {
    "cost_usd": 0.0138,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13005,7 +13005,7 @@
   "L2.7.3__normal__long": {
    "cost_usd": 0.0208,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13019,7 +13019,7 @@
   "L2.7.3__normal__medium": {
    "cost_usd": 0.0202,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13033,7 +13033,7 @@
   "L2.7.3__normal__short": {
    "cost_usd": 0.0175,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13047,7 +13047,7 @@
   "L3.3.1__1": {
    "cost_usd": 0.0145,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13061,7 +13061,7 @@
   "L3.3.1__2": {
    "cost_usd": 0.0159,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13075,7 +13075,7 @@
   "L3.3.1__normal__long": {
    "cost_usd": 0.0275,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13089,7 +13089,7 @@
   "L3.3.1__normal__medium": {
    "cost_usd": 0.0268,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13103,7 +13103,7 @@
   "L3.3.1__normal__short": {
    "cost_usd": 0.0259,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13117,7 +13117,7 @@
   "L3.4.1__1": {
    "cost_usd": 0.0148,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13131,7 +13131,7 @@
   "L3.4.1__2": {
    "cost_usd": 0.0167,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13145,7 +13145,7 @@
   "L3.4.1__normal__long": {
    "cost_usd": 0.0282,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13159,7 +13159,7 @@
   "L3.4.1__normal__medium": {
    "cost_usd": 0.0252,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13173,7 +13173,7 @@
   "L3.4.1__normal__short": {
    "cost_usd": 0.0278,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13187,7 +13187,7 @@
   "L3.5.1__1": {
    "cost_usd": 0.0303,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13201,7 +13201,7 @@
   "L3.5.1__2": {
    "cost_usd": 0.0402,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13248,7 +13248,7 @@
   "L3.5.2__1": {
    "cost_usd": 0.0159,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13262,7 +13262,7 @@
   "L3.5.2__2": {
    "cost_usd": 0.0153,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13276,7 +13276,7 @@
   "L3.5.2__normal__long": {
    "cost_usd": 0.024,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13290,7 +13290,7 @@
   "L3.5.2__normal__medium": {
    "cost_usd": 0.0246,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13304,7 +13304,7 @@
   "L3.5.2__normal__short": {
    "cost_usd": 0.0238,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13318,7 +13318,7 @@
   "L3.6.1-M1__long": {
    "cost_usd": 0.0311,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L3.6.1-M1",
@@ -13332,7 +13332,7 @@
   "L3.6.1-M1__medium": {
    "cost_usd": 0.0285,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L3.6.1-M1",
@@ -13346,7 +13346,7 @@
   "L3.6.1-M1__short": {
    "cost_usd": 0.0245,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L3.6.1-M1",
@@ -13360,7 +13360,7 @@
   "L3.6.1-M2__long": {
    "cost_usd": 0.0562,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L3.6.1-M2",
@@ -13374,7 +13374,7 @@
   "L3.6.1-M2__medium": {
    "cost_usd": 0.0486,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L3.6.1-M2",
@@ -13388,7 +13388,7 @@
   "L3.6.1-M2__short": {
    "cost_usd": 0.0446,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L3.6.1-M2",
@@ -13402,7 +13402,7 @@
   "L3.6.1__1": {
    "cost_usd": 0.0153,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13416,7 +13416,7 @@
   "L3.6.1__2": {
    "cost_usd": 0.0184,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13430,7 +13430,7 @@
   "L3.6.1__normal__long": {
    "cost_usd": 0.1042,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13444,7 +13444,7 @@
   "L3.6.1__normal__medium": {
    "cost_usd": 0.023,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13458,7 +13458,7 @@
   "L3.6.1__normal__short": {
    "cost_usd": 0.0232,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13472,7 +13472,7 @@
   "L3.6.2__1": {
    "cost_usd": 0.017,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13486,7 +13486,7 @@
   "L3.6.2__2": {
    "cost_usd": 0.0158,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13500,7 +13500,7 @@
   "L3.6.2__normal__long": {
    "cost_usd": 0.0245,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13514,7 +13514,7 @@
   "L3.6.2__normal__medium": {
    "cost_usd": 0.0252,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13528,7 +13528,7 @@
   "L3.6.2__normal__short": {
    "cost_usd": 0.0241,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13542,7 +13542,7 @@
   "L3.6.3__1": {
    "cost_usd": 0.016,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13556,7 +13556,7 @@
   "L3.6.3__2": {
    "cost_usd": 0.0172,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13570,7 +13570,7 @@
   "L3.6.3__normal__long": {
    "cost_usd": 0.0304,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13584,7 +13584,7 @@
   "L3.6.3__normal__medium": {
    "cost_usd": 0.0959,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13598,7 +13598,7 @@
   "L3.6.3__normal__short": {
    "cost_usd": 0.029,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13612,7 +13612,7 @@
   "L3.6.4__1": {
    "cost_usd": 0.0153,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13626,7 +13626,7 @@
   "L3.6.4__2": {
    "cost_usd": 0.0185,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13640,7 +13640,7 @@
   "L3.6.4__normal__long": {
    "cost_usd": 0.0243,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13654,7 +13654,7 @@
   "L3.6.4__normal__medium": {
    "cost_usd": 0.0229,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13668,7 +13668,7 @@
   "L3.6.4__normal__short": {
    "cost_usd": 0.02,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13682,7 +13682,7 @@
   "L3.7.1-M1__long": {
    "cost_usd": 0.054,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L3.7.1-M1",
@@ -13696,7 +13696,7 @@
   "L3.7.1-M1__medium": {
    "cost_usd": 0.132,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L3.7.1-M1",
@@ -13710,7 +13710,7 @@
   "L3.7.1-M1__short": {
    "cost_usd": 0.0393,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L3.7.1-M1",
@@ -13724,7 +13724,7 @@
   "L3.7.1-M2__long": {
    "cost_usd": 0.0309,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L3.7.1-M2",
@@ -13738,7 +13738,7 @@
   "L3.7.1-M2__medium": {
    "cost_usd": 0.0449,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L3.7.1-M2",
@@ -13752,7 +13752,7 @@
   "L3.7.1-M2__short": {
    "cost_usd": 0.0247,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L3.7.1-M2",
@@ -13766,7 +13766,7 @@
   "L3.7.1-M3__long": {
    "cost_usd": 0.0325,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "L3.7.1-M3",
@@ -13780,7 +13780,7 @@
   "L3.7.1-M3__medium": {
    "cost_usd": 0.1184,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "L3.7.1-M3",
@@ -13794,7 +13794,7 @@
   "L3.7.1-M3__short": {
    "cost_usd": 0.0265,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "L3.7.1-M3",
@@ -13808,7 +13808,7 @@
   "L3.7.1__1": {
    "cost_usd": 0.0129,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13822,7 +13822,7 @@
   "L3.7.1__2": {
    "cost_usd": 0.0159,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13836,7 +13836,7 @@
   "L3.7.1__normal__long": {
    "cost_usd": 0.0297,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13850,7 +13850,7 @@
   "L3.7.1__normal__medium": {
    "cost_usd": 0.0281,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13864,7 +13864,7 @@
   "L3.7.1__normal__short": {
    "cost_usd": 0.0255,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13878,7 +13878,7 @@
   "L3.7.2__1": {
    "cost_usd": 0.017,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13892,7 +13892,7 @@
   "L3.7.2__2": {
    "cost_usd": 0.0168,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13906,7 +13906,7 @@
   "L3.7.2__normal__long": {
    "cost_usd": 0.0202,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13920,7 +13920,7 @@
   "L3.7.2__normal__medium": {
    "cost_usd": 0.0222,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -13934,7 +13934,7 @@
   "L3.7.2__normal__short": {
    "cost_usd": 0.0182,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -13948,7 +13948,7 @@
   "L3.7.3__1": {
    "cost_usd": 0.0122,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13962,7 +13962,7 @@
   "L3.7.3__2": {
    "cost_usd": 0.0146,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -13976,7 +13976,7 @@
   "L3.7.3__normal__long": {
    "cost_usd": 0.0244,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -13990,7 +13990,7 @@
   "L3.7.3__normal__medium": {
    "cost_usd": 0.0251,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14004,7 +14004,7 @@
   "L3.7.3__normal__short": {
    "cost_usd": 0.0239,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14018,7 +14018,7 @@
   "N0.1.1__1": {
    "cost_usd": 0.0319,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14032,7 +14032,7 @@
   "N0.1.1__2": {
    "cost_usd": 0.0315,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14079,7 +14079,7 @@
   "N0.1.2__1": {
    "cost_usd": 0.0141,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14093,7 +14093,7 @@
   "N0.1.2__2": {
    "cost_usd": 0.0131,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14107,7 +14107,7 @@
   "N0.1.2__normal__long": {
    "cost_usd": 0.0254,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14121,7 +14121,7 @@
   "N0.1.2__normal__medium": {
    "cost_usd": 0.0263,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14135,7 +14135,7 @@
   "N0.1.2__normal__short": {
    "cost_usd": 0.0234,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14149,7 +14149,7 @@
   "N0.1.3__1": {
    "cost_usd": 0.0186,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14163,7 +14163,7 @@
   "N0.1.3__2": {
    "cost_usd": 0.0172,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14177,7 +14177,7 @@
   "N0.1.3__normal__long": {
    "cost_usd": 0.03,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14191,7 +14191,7 @@
   "N0.1.3__normal__medium": {
    "cost_usd": 0.0277,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14205,7 +14205,7 @@
   "N0.1.3__normal__short": {
    "cost_usd": 0.024,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14219,7 +14219,7 @@
   "N0.2.1__1": {
    "cost_usd": 0.0138,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14233,7 +14233,7 @@
   "N0.2.1__2": {
    "cost_usd": 0.013,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14247,7 +14247,7 @@
   "N0.2.1__normal__long": {
    "cost_usd": 0.0219,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14261,7 +14261,7 @@
   "N0.2.1__normal__medium": {
    "cost_usd": 0.0234,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14275,7 +14275,7 @@
   "N0.2.1__normal__short": {
    "cost_usd": 0.021,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14289,7 +14289,7 @@
   "N0.2.2-M1__long": {
    "cost_usd": 0.0296,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N0.2.2-M1",
@@ -14303,7 +14303,7 @@
   "N0.2.2-M1__medium": {
    "cost_usd": 0.0325,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N0.2.2-M1",
@@ -14317,7 +14317,7 @@
   "N0.2.2-M1__short": {
    "cost_usd": 0.0262,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N0.2.2-M1",
@@ -14331,7 +14331,7 @@
   "N0.2.2-M2__long": {
    "cost_usd": 0.0337,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N0.2.2-M2",
@@ -14345,7 +14345,7 @@
   "N0.2.2-M2__medium": {
    "cost_usd": 0.0297,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N0.2.2-M2",
@@ -14359,7 +14359,7 @@
   "N0.2.2-M2__short": {
    "cost_usd": 0.0255,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N0.2.2-M2",
@@ -14373,7 +14373,7 @@
   "N0.2.2-M3__long": {
    "cost_usd": 0.0296,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N0.2.2-M3",
@@ -14387,7 +14387,7 @@
   "N0.2.2-M3__medium": {
    "cost_usd": 0.0316,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N0.2.2-M3",
@@ -14401,7 +14401,7 @@
   "N0.2.2-M3__short": {
    "cost_usd": 0.0283,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N0.2.2-M3",
@@ -14415,7 +14415,7 @@
   "N0.2.2__1": {
    "cost_usd": 0.0153,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14429,7 +14429,7 @@
   "N0.2.2__2": {
    "cost_usd": 0.0143,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14443,7 +14443,7 @@
   "N0.2.2__normal__long": {
    "cost_usd": 0.0287,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14457,7 +14457,7 @@
   "N0.2.2__normal__medium": {
    "cost_usd": 0.0282,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14471,7 +14471,7 @@
   "N0.2.2__normal__short": {
    "cost_usd": 0.0263,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14485,7 +14485,7 @@
   "N0.2.3-M1__long": {
    "cost_usd": 0.0256,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N0.2.3-M1",
@@ -14499,7 +14499,7 @@
   "N0.2.3-M1__medium": {
    "cost_usd": 0.0274,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N0.2.3-M1",
@@ -14513,7 +14513,7 @@
   "N0.2.3-M1__short": {
    "cost_usd": 0.0263,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N0.2.3-M1",
@@ -14527,7 +14527,7 @@
   "N0.2.3-M2__long": {
    "cost_usd": 0.0276,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N0.2.3-M2",
@@ -14541,7 +14541,7 @@
   "N0.2.3-M2__medium": {
    "cost_usd": 0.0283,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N0.2.3-M2",
@@ -14555,7 +14555,7 @@
   "N0.2.3-M2__short": {
    "cost_usd": 0.0248,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N0.2.3-M2",
@@ -14569,7 +14569,7 @@
   "N0.2.3__1": {
    "cost_usd": 0.0127,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14583,7 +14583,7 @@
   "N0.2.3__2": {
    "cost_usd": 0.012,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14597,7 +14597,7 @@
   "N0.2.3__normal__long": {
    "cost_usd": 0.0261,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14611,7 +14611,7 @@
   "N0.2.3__normal__medium": {
    "cost_usd": 0.0247,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14625,7 +14625,7 @@
   "N0.2.3__normal__short": {
    "cost_usd": 0.0248,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14639,7 +14639,7 @@
   "N0.2.4__1": {
    "cost_usd": 0.0143,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14653,7 +14653,7 @@
   "N0.2.4__2": {
    "cost_usd": 0.0137,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14667,7 +14667,7 @@
   "N0.2.4__normal__long": {
    "cost_usd": 0.0288,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14681,7 +14681,7 @@
   "N0.2.4__normal__medium": {
    "cost_usd": 0.0166,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14695,7 +14695,7 @@
   "N0.2.4__normal__short": {
    "cost_usd": 0.0182,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14709,7 +14709,7 @@
   "N0.5.1__1": {
    "cost_usd": 0.0143,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14723,7 +14723,7 @@
   "N0.5.1__2": {
    "cost_usd": 0.0154,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14737,7 +14737,7 @@
   "N0.5.1__normal__long": {
    "cost_usd": 0.0297,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14751,7 +14751,7 @@
   "N0.5.1__normal__medium": {
    "cost_usd": 0.0307,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14765,7 +14765,7 @@
   "N0.5.1__normal__short": {
    "cost_usd": 0.032,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14779,7 +14779,7 @@
   "N1.1.1__1": {
    "cost_usd": 0.0164,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14793,7 +14793,7 @@
   "N1.1.1__2": {
    "cost_usd": 0.0174,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14807,7 +14807,7 @@
   "N1.1.1__normal__long": {
    "cost_usd": 0.0321,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14821,7 +14821,7 @@
   "N1.1.1__normal__medium": {
    "cost_usd": 0.0209,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14835,7 +14835,7 @@
   "N1.1.1__normal__short": {
    "cost_usd": 0.0308,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14849,7 +14849,7 @@
   "N1.2.1__1": {
    "cost_usd": 0.0136,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14863,7 +14863,7 @@
   "N1.2.1__2": {
    "cost_usd": 0.0124,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14877,7 +14877,7 @@
   "N1.2.1__normal__long": {
    "cost_usd": 0.0364,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14891,7 +14891,7 @@
   "N1.2.1__normal__medium": {
    "cost_usd": 0.023,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14905,7 +14905,7 @@
   "N1.2.1__normal__short": {
    "cost_usd": 0.0214,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14919,7 +14919,7 @@
   "N1.2.2__1": {
    "cost_usd": 0.0124,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14933,7 +14933,7 @@
   "N1.2.2__2": {
    "cost_usd": 0.0145,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -14947,7 +14947,7 @@
   "N1.2.2__normal__long": {
    "cost_usd": 0.0255,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -14961,7 +14961,7 @@
   "N1.2.2__normal__medium": {
    "cost_usd": 0.0258,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -14975,7 +14975,7 @@
   "N1.2.2__normal__short": {
    "cost_usd": 0.0234,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -14989,7 +14989,7 @@
   "N1.2.3-M1__long": {
    "cost_usd": 0.0354,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N1.2.3-M1",
@@ -15003,7 +15003,7 @@
   "N1.2.3-M1__medium": {
    "cost_usd": 0.0348,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N1.2.3-M1",
@@ -15017,7 +15017,7 @@
   "N1.2.3-M1__short": {
    "cost_usd": 0.0327,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N1.2.3-M1",
@@ -15031,7 +15031,7 @@
   "N1.2.3-M2__long": {
    "cost_usd": 0.0375,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N1.2.3-M2",
@@ -15045,7 +15045,7 @@
   "N1.2.3-M2__medium": {
    "cost_usd": 0.0378,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N1.2.3-M2",
@@ -15059,7 +15059,7 @@
   "N1.2.3-M2__short": {
    "cost_usd": 0.0306,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N1.2.3-M2",
@@ -15073,7 +15073,7 @@
   "N1.2.3__1": {
    "cost_usd": 0.011,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15087,7 +15087,7 @@
   "N1.2.3__2": {
    "cost_usd": 0.0127,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15101,7 +15101,7 @@
   "N1.2.3__normal__long": {
    "cost_usd": 0.032,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15115,7 +15115,7 @@
   "N1.2.3__normal__medium": {
    "cost_usd": 0.0332,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -15129,7 +15129,7 @@
   "N1.2.3__normal__short": {
    "cost_usd": 0.0302,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -15143,7 +15143,7 @@
   "N1.2.4-M1__long": {
    "cost_usd": 0.0339,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N1.2.4-M1",
@@ -15157,7 +15157,7 @@
   "N1.2.4-M1__medium": {
    "cost_usd": 0.0343,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N1.2.4-M1",
@@ -15171,7 +15171,7 @@
   "N1.2.4-M1__short": {
    "cost_usd": 0.0323,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N1.2.4-M1",
@@ -15185,7 +15185,7 @@
   "N1.2.4-M2__long": {
    "cost_usd": 0.0337,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N1.2.4-M2",
@@ -15199,7 +15199,7 @@
   "N1.2.4-M2__medium": {
    "cost_usd": 0.0348,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N1.2.4-M2",
@@ -15213,7 +15213,7 @@
   "N1.2.4-M2__short": {
    "cost_usd": 0.0334,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N1.2.4-M2",
@@ -15227,7 +15227,7 @@
   "N1.2.4__1": {
    "cost_usd": 0.0137,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15241,7 +15241,7 @@
   "N1.2.4__2": {
    "cost_usd": 0.0122,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15255,7 +15255,7 @@
   "N1.2.4__normal__long": {
    "cost_usd": 0.0295,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15269,7 +15269,7 @@
   "N1.2.4__normal__medium": {
    "cost_usd": 0.0323,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -15283,7 +15283,7 @@
   "N1.2.4__normal__short": {
    "cost_usd": 0.0272,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -15297,7 +15297,7 @@
   "N1.2.5__1": {
    "cost_usd": 0.0127,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15311,7 +15311,7 @@
   "N1.2.5__2": {
    "cost_usd": 0.0112,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15325,7 +15325,7 @@
   "N1.2.5__normal__long": {
    "cost_usd": 0.0309,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15339,7 +15339,7 @@
   "N1.2.5__normal__medium": {
    "cost_usd": 0.0293,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -15353,7 +15353,7 @@
   "N1.2.5__normal__short": {
    "cost_usd": 0.0272,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -15367,7 +15367,7 @@
   "N1.2.6__1": {
    "cost_usd": 0.0101,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15381,7 +15381,7 @@
   "N1.2.6__2": {
    "cost_usd": 0.0133,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15395,7 +15395,7 @@
   "N1.2.6__normal__long": {
    "cost_usd": 0.0286,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15409,7 +15409,7 @@
   "N1.2.6__normal__medium": {
    "cost_usd": 0.0296,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -15423,7 +15423,7 @@
   "N1.2.6__normal__short": {
    "cost_usd": 0.0282,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -15437,7 +15437,7 @@
   "N1.3.1-M1__long": {
    "cost_usd": 0.128,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N1.3.1-M1",
@@ -15451,7 +15451,7 @@
   "N1.3.1-M1__medium": {
    "cost_usd": 0.0387,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N1.3.1-M1",
@@ -15465,7 +15465,7 @@
   "N1.3.1-M1__short": {
    "cost_usd": 0.0341,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N1.3.1-M1",
@@ -15479,7 +15479,7 @@
   "N1.3.1-M2__long": {
    "cost_usd": 0.0375,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N1.3.1-M2",
@@ -15493,7 +15493,7 @@
   "N1.3.1-M2__medium": {
    "cost_usd": 0.0348,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N1.3.1-M2",
@@ -15507,7 +15507,7 @@
   "N1.3.1-M2__short": {
    "cost_usd": 0.0339,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N1.3.1-M2",
@@ -15521,7 +15521,7 @@
   "N1.3.1-M3__long": {
    "cost_usd": 0.0358,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N1.3.1-M3",
@@ -15535,7 +15535,7 @@
   "N1.3.1-M3__medium": {
    "cost_usd": 0.0367,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N1.3.1-M3",
@@ -15549,7 +15549,7 @@
   "N1.3.1-M3__short": {
    "cost_usd": 0.0367,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N1.3.1-M3",
@@ -15563,7 +15563,7 @@
   "N1.3.1__1": {
    "cost_usd": 0.0144,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15577,7 +15577,7 @@
   "N1.3.1__2": {
    "cost_usd": 0.0131,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15591,7 +15591,7 @@
   "N1.3.1__normal__long": {
    "cost_usd": 0.0308,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15605,7 +15605,7 @@
   "N1.3.1__normal__medium": {
    "cost_usd": 0.1445,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -15619,7 +15619,7 @@
   "N1.3.1__normal__short": {
    "cost_usd": 0.03,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -15633,7 +15633,7 @@
   "N1.3.2-M1__long": {
    "cost_usd": 0.0397,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N1.3.2-M1",
@@ -15647,7 +15647,7 @@
   "N1.3.2-M1__medium": {
    "cost_usd": 0.0405,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N1.3.2-M1",
@@ -15661,7 +15661,7 @@
   "N1.3.2-M1__short": {
    "cost_usd": 0.0371,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N1.3.2-M1",
@@ -15675,7 +15675,7 @@
   "N1.3.2__1": {
    "cost_usd": 0.0159,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15689,7 +15689,7 @@
   "N1.3.2__2": {
    "cost_usd": 0.0142,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15703,7 +15703,7 @@
   "N1.3.2__normal__long": {
    "cost_usd": 0.035,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15717,7 +15717,7 @@
   "N1.3.2__normal__medium": {
    "cost_usd": 0.035,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -15731,7 +15731,7 @@
   "N1.3.2__normal__short": {
    "cost_usd": 0.028,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -15745,7 +15745,7 @@
   "N1.3.3__1": {
    "cost_usd": 0.0169,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15759,7 +15759,7 @@
   "N1.3.3__2": {
    "cost_usd": 0.0164,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15773,7 +15773,7 @@
   "N1.3.3__normal__long": {
    "cost_usd": 0.0309,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15787,7 +15787,7 @@
   "N1.3.3__normal__medium": {
    "cost_usd": 0.0419,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -15801,7 +15801,7 @@
   "N1.3.3__normal__short": {
    "cost_usd": 0.0283,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -15815,7 +15815,7 @@
   "N1.4.1__1": {
    "cost_usd": 0.0161,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15829,7 +15829,7 @@
   "N1.4.1__2": {
    "cost_usd": 0.0158,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15843,7 +15843,7 @@
   "N1.4.1__normal__long": {
    "cost_usd": 0.0273,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15857,7 +15857,7 @@
   "N1.4.1__normal__medium": {
    "cost_usd": 0.0926,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -15871,7 +15871,7 @@
   "N1.4.1__normal__short": {
    "cost_usd": 0.0932,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -15885,7 +15885,7 @@
   "N1.4.2__1": {
    "cost_usd": 0.0148,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15899,7 +15899,7 @@
   "N1.4.2__2": {
    "cost_usd": 0.0169,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15913,7 +15913,7 @@
   "N1.4.2__normal__long": {
    "cost_usd": 0.0258,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15927,7 +15927,7 @@
   "N1.4.2__normal__medium": {
    "cost_usd": 0.0266,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -15941,7 +15941,7 @@
   "N1.4.2__normal__short": {
    "cost_usd": 0.023,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -15955,7 +15955,7 @@
   "N1.5.1__1": {
    "cost_usd": 0.0141,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15969,7 +15969,7 @@
   "N1.5.1__2": {
    "cost_usd": 0.014,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -15983,7 +15983,7 @@
   "N1.5.1__normal__long": {
    "cost_usd": 0.0287,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -15997,7 +15997,7 @@
   "N1.5.1__normal__medium": {
    "cost_usd": 0.0261,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -16011,7 +16011,7 @@
   "N1.5.1__normal__short": {
    "cost_usd": 0.0252,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -16025,7 +16025,7 @@
   "N1.5.2__1": {
    "cost_usd": 0.0147,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16039,7 +16039,7 @@
   "N1.5.2__2": {
    "cost_usd": 0.0177,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16053,7 +16053,7 @@
   "N1.5.2__normal__long": {
    "cost_usd": 0.0247,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -16067,7 +16067,7 @@
   "N1.5.2__normal__medium": {
    "cost_usd": 0.0252,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -16081,7 +16081,7 @@
   "N1.5.2__normal__short": {
    "cost_usd": 0.0257,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -16095,7 +16095,7 @@
   "N2.2.1__1": {
    "cost_usd": 0.029,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16109,7 +16109,7 @@
   "N2.2.1__2": {
    "cost_usd": 0.0271,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16156,7 +16156,7 @@
   "N2.2.2-M1__long": {
    "cost_usd": 0.0421,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.2.2-M1",
@@ -16170,7 +16170,7 @@
   "N2.2.2-M1__medium": {
    "cost_usd": 0.0359,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.2.2-M1",
@@ -16184,7 +16184,7 @@
   "N2.2.2-M1__short": {
    "cost_usd": 0.0337,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.2.2-M1",
@@ -16198,7 +16198,7 @@
   "N2.2.2-M2__long": {
    "cost_usd": 0.0353,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.2.2-M2",
@@ -16212,7 +16212,7 @@
   "N2.2.2-M2__medium": {
    "cost_usd": 0.0301,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.2.2-M2",
@@ -16226,7 +16226,7 @@
   "N2.2.2-M2__short": {
    "cost_usd": 0.0311,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.2.2-M2",
@@ -16240,7 +16240,7 @@
   "N2.2.2__1": {
    "cost_usd": 0.0205,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16254,7 +16254,7 @@
   "N2.2.2__2": {
    "cost_usd": 0.0149,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16268,7 +16268,7 @@
   "N2.2.2__normal__long": {
    "cost_usd": 0.0318,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -16282,7 +16282,7 @@
   "N2.2.2__normal__medium": {
    "cost_usd": 0.0329,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -16296,7 +16296,7 @@
   "N2.2.2__normal__short": {
    "cost_usd": 0.0291,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -16310,7 +16310,7 @@
   "N2.2.3__1": {
    "cost_usd": 0.0136,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16324,7 +16324,7 @@
   "N2.2.3__2": {
    "cost_usd": 0.0145,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16338,7 +16338,7 @@
   "N2.2.3__normal__long": {
    "cost_usd": 0.0278,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -16352,7 +16352,7 @@
   "N2.2.3__normal__medium": {
    "cost_usd": 0.0272,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -16366,7 +16366,7 @@
   "N2.2.3__normal__short": {
    "cost_usd": 0.0245,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -16380,7 +16380,7 @@
   "N2.2.4__1": {
    "cost_usd": 0.014,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16394,7 +16394,7 @@
   "N2.2.4__2": {
    "cost_usd": 0.0175,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16408,7 +16408,7 @@
   "N2.2.4__normal__long": {
    "cost_usd": 0.0229,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -16422,7 +16422,7 @@
   "N2.2.4__normal__medium": {
    "cost_usd": 0.0263,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -16436,7 +16436,7 @@
   "N2.2.4__normal__short": {
    "cost_usd": 0.0232,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -16450,7 +16450,7 @@
   "N2.3.1-M1__long": {
    "cost_usd": 0.0369,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.1-M1",
@@ -16464,7 +16464,7 @@
   "N2.3.1-M1__medium": {
    "cost_usd": 0.0356,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.1-M1",
@@ -16478,7 +16478,7 @@
   "N2.3.1-M1__short": {
    "cost_usd": 0.0298,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.1-M1",
@@ -16492,7 +16492,7 @@
   "N2.3.1__1": {
    "cost_usd": 0.0276,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16506,7 +16506,7 @@
   "N2.3.1__2": {
    "cost_usd": 0.0282,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16553,7 +16553,7 @@
   "N2.3.2-M1__long": {
    "cost_usd": 0.0372,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.2-M1",
@@ -16567,7 +16567,7 @@
   "N2.3.2-M1__medium": {
    "cost_usd": 0.0581,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.2-M1",
@@ -16581,7 +16581,7 @@
   "N2.3.2-M1__short": {
    "cost_usd": 0.0346,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.2-M1",
@@ -16595,7 +16595,7 @@
   "N2.3.2-M2__long": {
    "cost_usd": 0.0415,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.2-M2",
@@ -16609,7 +16609,7 @@
   "N2.3.2-M2__medium": {
    "cost_usd": 0.0367,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.2-M2",
@@ -16623,7 +16623,7 @@
   "N2.3.2-M2__short": {
    "cost_usd": 0.0342,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.2-M2",
@@ -16637,7 +16637,7 @@
   "N2.3.2-M3__long": {
    "cost_usd": 0.0428,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.2-M3",
@@ -16651,7 +16651,7 @@
   "N2.3.2-M3__medium": {
    "cost_usd": 0.042,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.2-M3",
@@ -16665,7 +16665,7 @@
   "N2.3.2-M3__short": {
    "cost_usd": 0.0382,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.2-M3",
@@ -16679,7 +16679,7 @@
   "N2.3.2-M4__long": {
    "cost_usd": 0.0349,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.2-M4",
@@ -16693,7 +16693,7 @@
   "N2.3.2-M4__medium": {
    "cost_usd": 0.0391,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.2-M4",
@@ -16707,7 +16707,7 @@
   "N2.3.2-M4__short": {
    "cost_usd": 0.0351,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.2-M4",
@@ -16721,7 +16721,7 @@
   "N2.3.2__1": {
    "cost_usd": 0.0249,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16735,7 +16735,7 @@
   "N2.3.2__2": {
    "cost_usd": 0.0494,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16782,7 +16782,7 @@
   "N2.3.3__1": {
    "cost_usd": 0.0116,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16796,7 +16796,7 @@
   "N2.3.3__2": {
    "cost_usd": 0.0262,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16810,7 +16810,7 @@
   "N2.3.3__normal__long": {
    "cost_usd": 0.0253,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -16824,7 +16824,7 @@
   "N2.3.3__normal__medium": {
    "cost_usd": 0.0269,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -16838,7 +16838,7 @@
   "N2.3.3__normal__short": {
    "cost_usd": 0.0251,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -16852,7 +16852,7 @@
   "N2.3.4-M1__long": {
    "cost_usd": 0.1052,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.4-M1",
@@ -16866,7 +16866,7 @@
   "N2.3.4-M1__medium": {
    "cost_usd": 0.039,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.4-M1",
@@ -16880,7 +16880,7 @@
   "N2.3.4-M1__short": {
    "cost_usd": 0.0361,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.4-M1",
@@ -16894,7 +16894,7 @@
   "N2.3.4-M2__long": {
    "cost_usd": 0.036,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.4-M2",
@@ -16908,7 +16908,7 @@
   "N2.3.4-M2__medium": {
    "cost_usd": 0.0336,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.4-M2",
@@ -16922,7 +16922,7 @@
   "N2.3.4-M2__short": {
    "cost_usd": 0.0336,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.4-M2",
@@ -16936,7 +16936,7 @@
   "N2.3.4-M3__long": {
    "cost_usd": 0.038,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.4-M3",
@@ -16950,7 +16950,7 @@
   "N2.3.4-M3__medium": {
    "cost_usd": 0.0404,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.4-M3",
@@ -16964,7 +16964,7 @@
   "N2.3.4-M3__short": {
    "cost_usd": 0.0349,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.4-M3",
@@ -16978,7 +16978,7 @@
   "N2.3.4__1": {
    "cost_usd": 0.0116,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -16992,7 +16992,7 @@
   "N2.3.4__2": {
    "cost_usd": 0.0273,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17006,7 +17006,7 @@
   "N2.3.4__normal__long": {
    "cost_usd": 0.0325,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17020,7 +17020,7 @@
   "N2.3.4__normal__medium": {
    "cost_usd": 0.0345,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17034,7 +17034,7 @@
   "N2.3.4__normal__short": {
    "cost_usd": 0.0294,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17048,7 +17048,7 @@
   "N2.3.5-M1__long": {
    "cost_usd": 0.0473,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.5-M1",
@@ -17062,7 +17062,7 @@
   "N2.3.5-M1__medium": {
    "cost_usd": 0.041,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.5-M1",
@@ -17076,7 +17076,7 @@
   "N2.3.5-M1__short": {
    "cost_usd": 0.0435,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.5-M1",
@@ -17090,7 +17090,7 @@
   "N2.3.5-M2__long": {
    "cost_usd": 0.0415,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N2.3.5-M2",
@@ -17104,7 +17104,7 @@
   "N2.3.5-M2__medium": {
    "cost_usd": 0.045,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N2.3.5-M2",
@@ -17118,7 +17118,7 @@
   "N2.3.5-M2__short": {
    "cost_usd": 0.0379,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N2.3.5-M2",
@@ -17132,7 +17132,7 @@
   "N2.3.5__1": {
    "cost_usd": 0.0177,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17146,7 +17146,7 @@
   "N2.3.5__2": {
    "cost_usd": 0.0177,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17160,7 +17160,7 @@
   "N2.3.5__normal__long": {
    "cost_usd": 0.0404,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17174,7 +17174,7 @@
   "N2.3.5__normal__medium": {
    "cost_usd": 0.0416,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17188,7 +17188,7 @@
   "N2.3.5__normal__short": {
    "cost_usd": 0.0311,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17202,7 +17202,7 @@
   "N2.3.6__1": {
    "cost_usd": 0.0166,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17216,7 +17216,7 @@
   "N2.3.6__2": {
    "cost_usd": 0.0175,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17230,7 +17230,7 @@
   "N2.3.6__normal__long": {
    "cost_usd": 0.0998,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17244,7 +17244,7 @@
   "N2.3.6__normal__medium": {
    "cost_usd": 0.0337,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17258,7 +17258,7 @@
   "N2.3.6__normal__short": {
    "cost_usd": 0.0329,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17272,7 +17272,7 @@
   "N2.4.1__1": {
    "cost_usd": 0.0176,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17286,7 +17286,7 @@
   "N2.4.1__2": {
    "cost_usd": 0.0143,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17300,7 +17300,7 @@
   "N2.4.1__normal__long": {
    "cost_usd": 0.0257,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17314,7 +17314,7 @@
   "N2.4.1__normal__medium": {
    "cost_usd": 0.0255,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17328,7 +17328,7 @@
   "N2.4.1__normal__short": {
    "cost_usd": 0.0243,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17342,7 +17342,7 @@
   "N2.4.2__1": {
    "cost_usd": 0.0147,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17356,7 +17356,7 @@
   "N2.4.2__2": {
    "cost_usd": 0.014,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17370,7 +17370,7 @@
   "N2.4.2__normal__long": {
    "cost_usd": 0.0249,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17384,7 +17384,7 @@
   "N2.4.2__normal__medium": {
    "cost_usd": 0.0259,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17398,7 +17398,7 @@
   "N2.4.2__normal__short": {
    "cost_usd": 0.0213,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17412,7 +17412,7 @@
   "N2.4.3__1": {
    "cost_usd": 0.0139,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17426,7 +17426,7 @@
   "N2.4.3__2": {
    "cost_usd": 0.0165,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17440,7 +17440,7 @@
   "N2.4.3__normal__long": {
    "cost_usd": 0.0269,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17454,7 +17454,7 @@
   "N2.4.3__normal__medium": {
    "cost_usd": 0.0272,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17468,7 +17468,7 @@
   "N2.4.3__normal__short": {
    "cost_usd": 0.0258,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17482,7 +17482,7 @@
   "N2.5.1__1": {
    "cost_usd": 0.0171,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17496,7 +17496,7 @@
   "N2.5.1__2": {
    "cost_usd": 0.0138,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17510,7 +17510,7 @@
   "N2.5.1__normal__long": {
    "cost_usd": 0.0211,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17524,7 +17524,7 @@
   "N2.5.1__normal__medium": {
    "cost_usd": 0.023,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17538,7 +17538,7 @@
   "N2.5.1__normal__short": {
    "cost_usd": 0.0383,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17552,7 +17552,7 @@
   "N2.6.1__1": {
    "cost_usd": 0.0125,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17566,7 +17566,7 @@
   "N2.6.1__2": {
    "cost_usd": 0.0183,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17580,7 +17580,7 @@
   "N2.6.1__normal__long": {
    "cost_usd": 0.0304,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17594,7 +17594,7 @@
   "N2.6.1__normal__medium": {
    "cost_usd": 0.0413,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17608,7 +17608,7 @@
   "N2.6.1__normal__short": {
    "cost_usd": 0.0213,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17622,7 +17622,7 @@
   "N3.2.1__1": {
    "cost_usd": 0.0396,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17636,7 +17636,7 @@
   "N3.2.1__2": {
    "cost_usd": 0.0146,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17650,7 +17650,7 @@
   "N3.2.1__normal__long": {
    "cost_usd": 0.0295,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17664,7 +17664,7 @@
   "N3.2.1__normal__medium": {
    "cost_usd": 0.0177,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17678,7 +17678,7 @@
   "N3.2.1__normal__short": {
    "cost_usd": 0.026,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17692,7 +17692,7 @@
   "N3.2.2__1": {
    "cost_usd": 0.0159,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17706,7 +17706,7 @@
   "N3.2.2__2": {
    "cost_usd": 0.0168,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17720,7 +17720,7 @@
   "N3.2.2__normal__long": {
    "cost_usd": 0.0267,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17734,7 +17734,7 @@
   "N3.2.2__normal__medium": {
    "cost_usd": 0.0251,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17748,7 +17748,7 @@
   "N3.2.2__normal__short": {
    "cost_usd": 0.0229,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17762,7 +17762,7 @@
   "N3.2.3__1": {
    "cost_usd": 0.0154,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17776,7 +17776,7 @@
   "N3.2.3__2": {
    "cost_usd": 0.0435,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17790,7 +17790,7 @@
   "N3.2.3__normal__long": {
    "cost_usd": 0.0288,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17804,7 +17804,7 @@
   "N3.2.3__normal__medium": {
    "cost_usd": 0.0291,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17818,7 +17818,7 @@
   "N3.2.3__normal__short": {
    "cost_usd": 0.0274,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -17832,7 +17832,7 @@
   "N3.3.1-M1__long": {
    "cost_usd": 0.0364,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N3.3.1-M1",
@@ -17846,7 +17846,7 @@
   "N3.3.1-M1__medium": {
    "cost_usd": 0.0354,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N3.3.1-M1",
@@ -17860,7 +17860,7 @@
   "N3.3.1-M1__short": {
    "cost_usd": 0.0358,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N3.3.1-M1",
@@ -17874,7 +17874,7 @@
   "N3.3.1__1": {
    "cost_usd": 0.0248,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17888,7 +17888,7 @@
   "N3.3.1__2": {
    "cost_usd": 0.0634,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17935,7 +17935,7 @@
   "N3.3.2__1": {
    "cost_usd": 0.0221,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17949,7 +17949,7 @@
   "N3.3.2__2": {
    "cost_usd": 0.0156,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -17963,7 +17963,7 @@
   "N3.3.2__normal__long": {
    "cost_usd": 0.0355,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -17977,7 +17977,7 @@
   "N3.3.2__normal__medium": {
    "cost_usd": 0.0291,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -17991,7 +17991,7 @@
   "N3.3.2__normal__short": {
    "cost_usd": 0.0252,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18005,7 +18005,7 @@
   "N3.3.3-M1__long": {
    "cost_usd": 0.0399,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N3.3.3-M1",
@@ -18019,7 +18019,7 @@
   "N3.3.3-M1__medium": {
    "cost_usd": 0.0412,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N3.3.3-M1",
@@ -18033,7 +18033,7 @@
   "N3.3.3-M1__short": {
    "cost_usd": 0.0965,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N3.3.3-M1",
@@ -18047,7 +18047,7 @@
   "N3.3.3-M2__long": {
    "cost_usd": 0.0264,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N3.3.3-M2",
@@ -18061,7 +18061,7 @@
   "N3.3.3-M2__medium": {
    "cost_usd": 0.0393,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N3.3.3-M2",
@@ -18075,7 +18075,7 @@
   "N3.3.3-M2__short": {
    "cost_usd": 0.0248,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N3.3.3-M2",
@@ -18089,7 +18089,7 @@
   "N3.3.3__1": {
    "cost_usd": 0.0145,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18103,7 +18103,7 @@
   "N3.3.3__2": {
    "cost_usd": 0.0163,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18117,7 +18117,7 @@
   "N3.3.3__normal__long": {
    "cost_usd": 0.0398,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -18131,7 +18131,7 @@
   "N3.3.3__normal__medium": {
    "cost_usd": 0.0234,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -18145,7 +18145,7 @@
   "N3.3.3__normal__short": {
    "cost_usd": 0.0249,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18159,7 +18159,7 @@
   "N3.3.4-M1__long": {
    "cost_usd": 0.0379,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N3.3.4-M1",
@@ -18173,7 +18173,7 @@
   "N3.3.4-M1__medium": {
    "cost_usd": 0.0326,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N3.3.4-M1",
@@ -18187,7 +18187,7 @@
   "N3.3.4-M1__short": {
    "cost_usd": 0.0322,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N3.3.4-M1",
@@ -18201,7 +18201,7 @@
   "N3.3.4-M2__long": {
    "cost_usd": 0.0375,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N3.3.4-M2",
@@ -18215,7 +18215,7 @@
   "N3.3.4-M2__medium": {
    "cost_usd": 0.037,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N3.3.4-M2",
@@ -18229,7 +18229,7 @@
   "N3.3.4-M2__short": {
    "cost_usd": 0.0342,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N3.3.4-M2",
@@ -18243,7 +18243,7 @@
   "N3.3.4__1": {
    "cost_usd": 0.0138,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18257,7 +18257,7 @@
   "N3.3.4__2": {
    "cost_usd": 0.0471,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18271,7 +18271,7 @@
   "N3.3.4__normal__long": {
    "cost_usd": 0.036,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -18285,7 +18285,7 @@
   "N3.3.4__normal__medium": {
    "cost_usd": 0.0297,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -18299,7 +18299,7 @@
   "N3.3.4__normal__short": {
    "cost_usd": 0.0256,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18313,7 +18313,7 @@
   "N3.3.5-M1__long": {
    "cost_usd": 0.0366,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N3.3.5-M1",
@@ -18327,7 +18327,7 @@
   "N3.3.5-M1__medium": {
    "cost_usd": 0.0363,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N3.3.5-M1",
@@ -18341,7 +18341,7 @@
   "N3.3.5-M1__short": {
    "cost_usd": 0.0334,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N3.3.5-M1",
@@ -18355,7 +18355,7 @@
   "N3.3.5-M2__long": {
    "cost_usd": 0.1242,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N3.3.5-M2",
@@ -18369,7 +18369,7 @@
   "N3.3.5-M2__medium": {
    "cost_usd": 0.1225,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N3.3.5-M2",
@@ -18383,7 +18383,7 @@
   "N3.3.5-M2__short": {
    "cost_usd": 0.1029,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N3.3.5-M2",
@@ -18397,7 +18397,7 @@
   "N3.3.5__1": {
    "cost_usd": 0.0133,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18411,7 +18411,7 @@
   "N3.3.5__2": {
    "cost_usd": 0.018,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18425,7 +18425,7 @@
   "N3.3.5__normal__long": {
    "cost_usd": 0.0347,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -18439,7 +18439,7 @@
   "N3.3.5__normal__medium": {
    "cost_usd": 0.0353,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -18453,7 +18453,7 @@
   "N3.3.5__normal__short": {
    "cost_usd": 0.0304,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18467,7 +18467,7 @@
   "N3.3.6-M1__long": {
    "cost_usd": 0.0397,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N3.3.6-M1",
@@ -18481,7 +18481,7 @@
   "N3.3.6-M1__medium": {
    "cost_usd": 0.1232,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N3.3.6-M1",
@@ -18495,7 +18495,7 @@
   "N3.3.6-M1__short": {
    "cost_usd": 0.0389,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N3.3.6-M1",
@@ -18509,7 +18509,7 @@
   "N3.3.6__1": {
    "cost_usd": 0.0151,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18523,7 +18523,7 @@
   "N3.3.6__2": {
    "cost_usd": 0.0191,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18537,7 +18537,7 @@
   "N3.3.6__normal__long": {
    "cost_usd": 0.0355,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -18551,7 +18551,7 @@
   "N3.3.6__normal__medium": {
    "cost_usd": 0.0346,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -18565,7 +18565,7 @@
   "N3.3.6__normal__short": {
    "cost_usd": 0.0312,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18579,7 +18579,7 @@
   "N3.4.1__1": {
    "cost_usd": 0.0168,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18593,7 +18593,7 @@
   "N3.4.1__2": {
    "cost_usd": 0.0186,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18607,7 +18607,7 @@
   "N3.4.1__normal__long": {
    "cost_usd": 0.0181,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -18621,7 +18621,7 @@
   "N3.4.1__normal__medium": {
    "cost_usd": 0.0215,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -18635,7 +18635,7 @@
   "N3.4.1__normal__short": {
    "cost_usd": 0.0276,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18649,7 +18649,7 @@
   "N3.4.2__1": {
    "cost_usd": 0.0177,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18663,7 +18663,7 @@
   "N3.4.2__2": {
    "cost_usd": 0.0152,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18677,7 +18677,7 @@
   "N3.4.2__normal__long": {
    "cost_usd": 0.0289,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -18691,7 +18691,7 @@
   "N3.4.2__normal__medium": {
    "cost_usd": 0.0273,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -18705,7 +18705,7 @@
   "N3.4.2__normal__short": {
    "cost_usd": 0.0293,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18719,7 +18719,7 @@
   "N3.4.3__1": {
    "cost_usd": 0.0168,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18733,7 +18733,7 @@
   "N3.4.3__2": {
    "cost_usd": 0.0185,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18747,7 +18747,7 @@
   "N3.4.3__normal__long": {
    "cost_usd": 0.0294,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -18761,7 +18761,7 @@
   "N3.4.3__normal__medium": {
    "cost_usd": 0.0267,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -18775,7 +18775,7 @@
   "N3.4.3__normal__short": {
    "cost_usd": 0.0218,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18789,7 +18789,7 @@
   "N3.5.1__1": {
    "cost_usd": 0.0165,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18803,7 +18803,7 @@
   "N3.5.1__2": {
    "cost_usd": 0.0145,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18817,7 +18817,7 @@
   "N3.5.1__normal__long": {
    "cost_usd": 0.0318,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -18831,7 +18831,7 @@
   "N3.5.1__normal__medium": {
    "cost_usd": 0.0307,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -18845,7 +18845,7 @@
   "N3.5.1__normal__short": {
    "cost_usd": 0.0286,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18859,7 +18859,7 @@
   "N3.5.2-M1__long": {
    "cost_usd": 0.0358,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "long",
    "mistake_id": "N3.5.2-M1",
@@ -18873,7 +18873,7 @@
   "N3.5.2-M1__medium": {
    "cost_usd": 0.0346,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "medium",
    "mistake_id": "N3.5.2-M1",
@@ -18887,7 +18887,7 @@
   "N3.5.2-M1__short": {
    "cost_usd": 0.041,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "reteach",
    "length": "short",
    "mistake_id": "N3.5.2-M1",
@@ -18901,7 +18901,7 @@
   "N3.5.2__1": {
    "cost_usd": 0.0155,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18915,7 +18915,7 @@
   "N3.5.2__2": {
    "cost_usd": 0.0183,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18929,7 +18929,7 @@
   "N3.5.2__normal__long": {
    "cost_usd": 0.0318,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -18943,7 +18943,7 @@
   "N3.5.2__normal__medium": {
    "cost_usd": 0.0931,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -18957,7 +18957,7 @@
   "N3.5.2__normal__short": {
    "cost_usd": 0.03,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -18971,7 +18971,7 @@
   "N3.6.1__1": {
    "cost_usd": 0.0178,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18985,7 +18985,7 @@
   "N3.6.1__2": {
    "cost_usd": 0.0197,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -18999,7 +18999,7 @@
   "N3.6.1__normal__long": {
    "cost_usd": 0.0419,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -19013,7 +19013,7 @@
   "N3.6.1__normal__medium": {
    "cost_usd": 0.0457,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -19027,7 +19027,7 @@
   "N3.6.1__normal__short": {
    "cost_usd": 0.0199,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -19041,7 +19041,7 @@
   "N3.6.2__1": {
    "cost_usd": 0.0183,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -19055,7 +19055,7 @@
   "N3.6.2__2": {
    "cost_usd": 0.0175,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "independent",
    "length": null,
    "mistake_id": null,
@@ -19069,7 +19069,7 @@
   "N3.6.2__normal__long": {
    "cost_usd": 0.0435,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "long",
    "mistake_id": null,
@@ -19083,7 +19083,7 @@
   "N3.6.2__normal__medium": {
    "cost_usd": 0.0404,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "medium",
    "mistake_id": null,
@@ -19097,7 +19097,7 @@
   "N3.6.2__normal__short": {
    "cost_usd": 0.0203,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "teach",
    "length": "short",
    "mistake_id": null,
@@ -19111,7 +19111,7 @@
   "numeracy__N0.1.1": {
    "cost_usd": 0.0211,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19125,7 +19125,7 @@
   "numeracy__N0.1.2": {
    "cost_usd": 0.0185,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19139,7 +19139,7 @@
   "numeracy__N0.1.3": {
    "cost_usd": 0.0144,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19153,7 +19153,7 @@
   "numeracy__N0.2.1": {
    "cost_usd": 0.0158,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19164,10 +19164,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:16Z"
   },
+  "numeracy__N0.2.1__extra": {
+   "cost_usd": 0.0613,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "7cc92ec1665b",
+   "skill_id": "N0.2.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:39Z"
+  },
   "numeracy__N0.2.2": {
    "cost_usd": 0.0163,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19181,7 +19195,7 @@
   "numeracy__N0.2.3": {
    "cost_usd": 0.0392,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19195,7 +19209,7 @@
   "numeracy__N0.2.4": {
    "cost_usd": 0.0171,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19206,10 +19220,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:05Z"
   },
+  "numeracy__N0.2.4__extra": {
+   "cost_usd": 0.0178,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "7339e4af1c8c",
+   "skill_id": "N0.2.4",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:46Z"
+  },
   "numeracy__N0.5.1": {
    "cost_usd": 0.0157,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19223,7 +19251,7 @@
   "numeracy__N1.1.1": {
    "cost_usd": 0.0172,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19237,7 +19265,7 @@
   "numeracy__N1.2.1": {
    "cost_usd": 0.016,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19248,10 +19276,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:05Z"
   },
+  "numeracy__N1.2.1__extra": {
+   "cost_usd": 0.0166,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "a38542f6689e",
+   "skill_id": "N1.2.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:52Z"
+  },
   "numeracy__N1.2.2": {
    "cost_usd": 0.0158,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19265,7 +19307,7 @@
   "numeracy__N1.2.3": {
    "cost_usd": 0.0164,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19279,7 +19321,7 @@
   "numeracy__N1.2.4": {
    "cost_usd": 0.0169,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19293,7 +19335,7 @@
   "numeracy__N1.2.5": {
    "cost_usd": 0.0159,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19307,7 +19349,7 @@
   "numeracy__N1.2.6": {
    "cost_usd": 0.0152,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19321,7 +19363,7 @@
   "numeracy__N1.3.1": {
    "cost_usd": 0.0158,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19332,10 +19374,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:05Z"
   },
+  "numeracy__N1.3.1__extra": {
+   "cost_usd": 0.015,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "13e5b5911ef4",
+   "skill_id": "N1.3.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:57Z"
+  },
   "numeracy__N1.3.2": {
    "cost_usd": 0.0174,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19349,7 +19405,7 @@
   "numeracy__N1.3.3": {
    "cost_usd": 0.0166,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19363,7 +19419,7 @@
   "numeracy__N1.4.1": {
    "cost_usd": 0.0178,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19377,7 +19433,7 @@
   "numeracy__N1.4.2": {
    "cost_usd": 0.0173,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19391,7 +19447,7 @@
   "numeracy__N1.5.1": {
    "cost_usd": 0.0173,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19405,7 +19461,7 @@
   "numeracy__N1.5.2": {
    "cost_usd": 0.0165,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19416,10 +19472,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:15Z"
   },
+  "numeracy__N1.5.2__extra": {
+   "cost_usd": 0.0123,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "374bd8024909",
+   "skill_id": "N1.5.2",
+   "status": "ok",
+   "updated": "2026-11-21T07:22:02Z"
+  },
   "numeracy__N2.2.1": {
    "cost_usd": 0.02,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19430,10 +19500,24 @@
    "status": "ok",
    "updated": "2026-11-21T05:17:48Z"
   },
+  "numeracy__N2.2.1__extra": {
+   "cost_usd": 0.019,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "80e7823df2a4",
+   "skill_id": "N2.2.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:22:10Z"
+  },
   "numeracy__N2.2.2": {
    "cost_usd": 0.0156,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19444,10 +19528,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:06Z"
   },
+  "numeracy__N2.2.2__extra": {
+   "cost_usd": 0.0108,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "f7d3bf8216fa",
+   "skill_id": "N2.2.2",
+   "status": "ok",
+   "updated": "2026-11-21T07:22:13Z"
+  },
   "numeracy__N2.2.3": {
    "cost_usd": 0.0159,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19461,7 +19559,7 @@
   "numeracy__N2.2.4": {
    "cost_usd": 0.017,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19475,7 +19573,7 @@
   "numeracy__N2.3.1": {
    "cost_usd": 0.0198,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19489,7 +19587,7 @@
   "numeracy__N2.3.2": {
    "cost_usd": 0.0184,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19503,7 +19601,7 @@
   "numeracy__N2.3.3": {
    "cost_usd": 0.0164,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19517,7 +19615,7 @@
   "numeracy__N2.3.4": {
    "cost_usd": 0.0158,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19528,10 +19626,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:06Z"
   },
+  "numeracy__N2.3.4__extra": {
+   "cost_usd": 0.0164,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "8f9d59227abf",
+   "skill_id": "N2.3.4",
+   "status": "ok",
+   "updated": "2026-11-21T07:22:18Z"
+  },
   "numeracy__N2.3.5": {
    "cost_usd": 0.0167,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19545,7 +19657,7 @@
   "numeracy__N2.3.6": {
    "cost_usd": 0.0173,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19559,7 +19671,7 @@
   "numeracy__N2.4.1": {
    "cost_usd": 0.0164,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19573,7 +19685,7 @@
   "numeracy__N2.4.2": {
    "cost_usd": 0.0159,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19584,10 +19696,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:07Z"
   },
+  "numeracy__N2.4.2__extra": {
+   "cost_usd": 0.0111,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "5af58d65e070",
+   "skill_id": "N2.4.2",
+   "status": "ok",
+   "updated": "2026-11-21T07:22:22Z"
+  },
   "numeracy__N2.4.3": {
    "cost_usd": 0.0185,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19601,7 +19727,7 @@
   "numeracy__N2.5.1": {
    "cost_usd": 0.0187,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19615,7 +19741,7 @@
   "numeracy__N2.6.1": {
    "cost_usd": 0.0162,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19629,7 +19755,7 @@
   "numeracy__N3.2.1": {
    "cost_usd": 0.0164,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19643,7 +19769,7 @@
   "numeracy__N3.2.2": {
    "cost_usd": 0.0149,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19657,7 +19783,7 @@
   "numeracy__N3.2.3": {
    "cost_usd": 0.0168,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19671,7 +19797,7 @@
   "numeracy__N3.3.1": {
    "cost_usd": 0.0182,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19685,7 +19811,7 @@
   "numeracy__N3.3.2": {
    "cost_usd": 0.0166,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19699,7 +19825,7 @@
   "numeracy__N3.3.3": {
    "cost_usd": 0.016,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19713,7 +19839,7 @@
   "numeracy__N3.3.4": {
    "cost_usd": 0.0175,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19727,7 +19853,7 @@
   "numeracy__N3.3.5": {
    "cost_usd": 0.0174,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19741,7 +19867,7 @@
   "numeracy__N3.3.6": {
    "cost_usd": 0.0169,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19752,10 +19878,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:05Z"
   },
+  "numeracy__N3.3.6__extra": {
+   "cost_usd": 0.0161,
+   "domain_id": "numeracy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "22ce698ce59a",
+   "skill_id": "N3.3.6",
+   "status": "ok",
+   "updated": "2026-11-21T07:22:27Z"
+  },
   "numeracy__N3.4.1": {
    "cost_usd": 0.0169,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19769,7 +19909,7 @@
   "numeracy__N3.4.2": {
    "cost_usd": 0.0178,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19783,7 +19923,7 @@
   "numeracy__N3.4.3": {
    "cost_usd": 0.0167,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19797,7 +19937,7 @@
   "numeracy__N3.5.1": {
    "cost_usd": 0.0162,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19811,7 +19951,7 @@
   "numeracy__N3.5.2": {
    "cost_usd": 0.0162,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19825,7 +19965,7 @@
   "numeracy__N3.6.1": {
    "cost_usd": 0.0185,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19839,7 +19979,7 @@
   "numeracy__N3.6.2": {
    "cost_usd": 0.0163,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -19853,7 +19993,7 @@
   "numeracy__bangle_stall": {
    "cost_usd": 0.0105,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19867,7 +20007,7 @@
   "numeracy__bird_watching": {
    "cost_usd": 0.0097,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19881,7 +20021,7 @@
   "numeracy__building_a_hut": {
    "cost_usd": 0.0089,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19895,7 +20035,7 @@
   "numeracy__bus_journey": {
    "cost_usd": 0.0198,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19909,7 +20049,7 @@
   "numeracy__classroom_library": {
    "cost_usd": 0.0098,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19923,7 +20063,7 @@
   "numeracy__cricket_match": {
    "cost_usd": 0.0096,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19937,7 +20077,7 @@
   "numeracy__farm_harvest": {
    "cost_usd": 0.0096,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19951,7 +20091,7 @@
   "numeracy__festival_sweets": {
    "cost_usd": 0.0084,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19965,7 +20105,7 @@
   "numeracy__fishing_pond": {
    "cost_usd": 0.0093,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19979,7 +20119,7 @@
   "numeracy__kitchen_and_cooking": {
    "cost_usd": 0.0074,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -19993,7 +20133,7 @@
   "numeracy__kite_making": {
    "cost_usd": 0.0091,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20007,7 +20147,7 @@
   "numeracy__milk_collection": {
    "cost_usd": 0.0093,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20021,7 +20161,7 @@
   "numeracy__post_office": {
    "cost_usd": 0.0099,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20035,7 +20175,7 @@
   "numeracy__rain_and_puddles": {
    "cost_usd": 0.0084,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20049,7 +20189,7 @@
   "numeracy__school_canteen": {
    "cost_usd": 0.0099,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20063,7 +20203,7 @@
   "numeracy__school_garden": {
    "cost_usd": 0.0187,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20077,7 +20217,7 @@
   "numeracy__school_sports_day": {
    "cost_usd": 0.0096,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20091,7 +20231,7 @@
   "numeracy__shop_counting_stock": {
    "cost_usd": 0.0084,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20105,7 +20245,7 @@
   "numeracy__tailor_s_shop": {
    "cost_usd": 0.0103,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20119,7 +20259,7 @@
   "numeracy__train_station": {
    "cost_usd": 0.0108,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20133,7 +20273,7 @@
   "numeracy__tree_planting": {
    "cost_usd": 0.0093,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20147,7 +20287,7 @@
   "numeracy__village_fair": {
    "cost_usd": 0.0101,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20161,7 +20301,7 @@
   "numeracy__village_market": {
    "cost_usd": 0.0655,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20175,7 +20315,7 @@
   "numeracy__water_from_the_well": {
    "cost_usd": 0.0083,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20189,7 +20329,7 @@
   "numeracy__wedding_preparations": {
    "cost_usd": 0.0334,
    "domain_id": "numeracy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20203,7 +20343,7 @@
   "r1_literacy__L0.1.1": {
    "cost_usd": 0.0423,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20217,7 +20357,7 @@
   "r1_literacy__L0.1.2": {
    "cost_usd": 0.0192,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20231,7 +20371,7 @@
   "r1_literacy__L0.1.3": {
    "cost_usd": 0.0172,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20242,10 +20382,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:05Z"
   },
+  "r1_literacy__L0.1.3__extra": {
+   "cost_usd": 0.061,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "6cf7e0c4cca1",
+   "skill_id": "L0.1.3",
+   "status": "ok",
+   "updated": "2026-11-21T07:19:52Z"
+  },
   "r1_literacy__L0.2.1": {
    "cost_usd": 0.0163,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20256,10 +20410,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:15Z"
   },
+  "r1_literacy__L0.2.1__extra": {
+   "cost_usd": 0.0114,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "6ef6e1083171",
+   "skill_id": "L0.2.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:19:56Z"
+  },
   "r1_literacy__L0.2.2": {
    "cost_usd": 0.0162,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20273,7 +20441,7 @@
   "r1_literacy__L0.2.3": {
    "cost_usd": 0.0172,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20287,7 +20455,7 @@
   "r1_literacy__L0.3.1": {
    "cost_usd": 0.0168,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20301,7 +20469,7 @@
   "r1_literacy__L0.3.2": {
    "cost_usd": 0.0162,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20315,7 +20483,7 @@
   "r1_literacy__L0.7.1": {
    "cost_usd": 0.0189,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20329,7 +20497,7 @@
   "r1_literacy__L0.7.2": {
    "cost_usd": 0.0176,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20340,10 +20508,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:05Z"
   },
+  "r1_literacy__L0.7.2__extra": {
+   "cost_usd": 0.0127,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "61c83dabda19",
+   "skill_id": "L0.7.2",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:01Z"
+  },
   "r1_literacy__L1.2.1": {
    "cost_usd": 0.0156,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20354,10 +20536,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:16Z"
   },
+  "r1_literacy__L1.2.1__extra": {
+   "cost_usd": 0.0104,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "fcdcea6558e5",
+   "skill_id": "L1.2.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:05Z"
+  },
   "r1_literacy__L1.2.2": {
    "cost_usd": 0.0166,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20371,7 +20567,7 @@
   "r1_literacy__L1.3.1": {
    "cost_usd": 0.0156,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20382,10 +20578,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:07Z"
   },
+  "r1_literacy__L1.3.1__extra": {
+   "cost_usd": 0.0107,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "e2f12edbfe42",
+   "skill_id": "L1.3.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:08Z"
+  },
   "r1_literacy__L1.3.2": {
    "cost_usd": 0.0182,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20399,7 +20609,7 @@
   "r1_literacy__L1.3.3": {
    "cost_usd": 0.0173,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20413,7 +20623,7 @@
   "r1_literacy__L1.3.4": {
    "cost_usd": 0.1014,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20427,7 +20637,7 @@
   "r1_literacy__L1.4.1": {
    "cost_usd": 0.017,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20438,10 +20648,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:15Z"
   },
+  "r1_literacy__L1.4.1__extra": {
+   "cost_usd": 0.0102,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "17f0bed90c8d",
+   "skill_id": "L1.4.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:12Z"
+  },
   "r1_literacy__L1.4.2": {
    "cost_usd": 0.0177,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20452,10 +20676,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:05Z"
   },
+  "r1_literacy__L1.4.2__extra": {
+   "cost_usd": 0.0152,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "ebd0a755c9e0",
+   "skill_id": "L1.4.2",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:17Z"
+  },
   "r1_literacy__L1.5.1": {
    "cost_usd": 0.0186,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20466,10 +20704,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:06Z"
   },
+  "r1_literacy__L1.5.1__extra": {
+   "cost_usd": 0.0157,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "768e2af6424f",
+   "skill_id": "L1.5.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:22Z"
+  },
   "r1_literacy__L1.6.1": {
    "cost_usd": 0.0181,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20480,10 +20732,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:16Z"
   },
+  "r1_literacy__L1.6.1__extra": {
+   "cost_usd": 0.0115,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "480bae41f9d4",
+   "skill_id": "L1.6.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:26Z"
+  },
   "r1_literacy__L1.6.2": {
    "cost_usd": 0.0193,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20497,7 +20763,7 @@
   "r1_literacy__L1.7.1": {
    "cost_usd": 0.0166,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20508,10 +20774,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:05Z"
   },
+  "r1_literacy__L1.7.1__extra": {
+   "cost_usd": 0.011,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "5cf080566711",
+   "skill_id": "L1.7.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:30Z"
+  },
   "r1_literacy__L1.7.2": {
    "cost_usd": 0.0158,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20522,10 +20802,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:15Z"
   },
+  "r1_literacy__L1.7.2__extra": {
+   "cost_usd": 0.017,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "3a1310204d32",
+   "skill_id": "L1.7.2",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:35Z"
+  },
   "r1_literacy__L1.7.3": {
    "cost_usd": 0.0234,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20539,7 +20833,7 @@
   "r1_literacy__L2.3.1": {
    "cost_usd": 0.0201,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20550,10 +20844,24 @@
    "status": "ok",
    "updated": "2026-11-21T05:18:59Z"
   },
+  "r1_literacy__L2.3.1__extra": {
+   "cost_usd": 0.0177,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "06783c0d30e4",
+   "skill_id": "L2.3.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:41Z"
+  },
   "r1_literacy__L2.3.2": {
    "cost_usd": 0.0153,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20564,10 +20872,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:06Z"
   },
+  "r1_literacy__L2.3.2__extra": {
+   "cost_usd": 0.0133,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "b1b590a5ef00",
+   "skill_id": "L2.3.2",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:46Z"
+  },
   "r1_literacy__L2.3.3": {
    "cost_usd": 0.0181,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20581,7 +20903,7 @@
   "r1_literacy__L2.4.1": {
    "cost_usd": 0.0175,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20595,7 +20917,7 @@
   "r1_literacy__L2.4.2": {
    "cost_usd": 0.0171,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20609,7 +20931,7 @@
   "r1_literacy__L2.5.1": {
    "cost_usd": 0.024,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20620,10 +20942,24 @@
    "status": "ok",
    "updated": "2026-11-21T05:19:34Z"
   },
+  "r1_literacy__L2.5.1__extra": {
+   "cost_usd": 0.0183,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "603947fd0991",
+   "skill_id": "L2.5.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:52Z"
+  },
   "r1_literacy__L2.5.2": {
    "cost_usd": 0.0168,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20637,7 +20973,7 @@
   "r1_literacy__L2.6.1": {
    "cost_usd": 0.0166,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20648,10 +20984,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:14Z"
   },
+  "r1_literacy__L2.6.1__extra": {
+   "cost_usd": 0.0161,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "53432ddc318a",
+   "skill_id": "L2.6.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:20:57Z"
+  },
   "r1_literacy__L2.6.2": {
    "cost_usd": 0.0191,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20662,10 +21012,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:06Z"
   },
+  "r1_literacy__L2.6.2__extra": {
+   "cost_usd": 0.0123,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "41b1b187cf90",
+   "skill_id": "L2.6.2",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:01Z"
+  },
   "r1_literacy__L2.6.3": {
    "cost_usd": 0.0169,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20679,7 +21043,7 @@
   "r1_literacy__L2.7.1": {
    "cost_usd": 0.0167,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20690,10 +21054,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:06Z"
   },
+  "r1_literacy__L2.7.1__extra": {
+   "cost_usd": 0.015,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "0274d0c892d2",
+   "skill_id": "L2.7.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:06Z"
+  },
   "r1_literacy__L2.7.2": {
    "cost_usd": 0.0242,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20707,7 +21085,7 @@
   "r1_literacy__L2.7.3": {
    "cost_usd": 0.0165,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20721,7 +21099,7 @@
   "r1_literacy__L3.3.1": {
    "cost_usd": 0.0168,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20735,7 +21113,7 @@
   "r1_literacy__L3.4.1": {
    "cost_usd": 0.0167,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20746,10 +21124,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:15Z"
   },
+  "r1_literacy__L3.4.1__extra": {
+   "cost_usd": 0.0111,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "4645c1a8ff68",
+   "skill_id": "L3.4.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:09Z"
+  },
   "r1_literacy__L3.5.1": {
    "cost_usd": 0.0239,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20760,10 +21152,24 @@
    "status": "ok",
    "updated": "2026-11-21T05:22:22Z"
   },
+  "r1_literacy__L3.5.1__extra": {
+   "cost_usd": 0.0216,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "511b6e8311ee",
+   "skill_id": "L3.5.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:17Z"
+  },
   "r1_literacy__L3.5.2": {
    "cost_usd": 0.0175,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20777,7 +21183,7 @@
   "r1_literacy__L3.6.1": {
    "cost_usd": 0.0168,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20788,10 +21194,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:15Z"
   },
+  "r1_literacy__L3.6.1__extra": {
+   "cost_usd": 0.0213,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "1304f481ea53",
+   "skill_id": "L3.6.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:23Z"
+  },
   "r1_literacy__L3.6.2": {
    "cost_usd": 0.0155,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20805,7 +21225,7 @@
   "r1_literacy__L3.6.3": {
    "cost_usd": 0.0212,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20819,7 +21239,7 @@
   "r1_literacy__L3.6.4": {
    "cost_usd": 0.0162,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20833,7 +21253,7 @@
   "r1_literacy__L3.7.1": {
    "cost_usd": 0.0224,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20844,10 +21264,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:15Z"
   },
+  "r1_literacy__L3.7.1__extra": {
+   "cost_usd": 0.0228,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "7c6808a72a77",
+   "skill_id": "L3.7.1",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:31Z"
+  },
   "r1_literacy__L3.7.2": {
    "cost_usd": 0.0176,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20858,10 +21292,24 @@
    "status": "ok",
    "updated": "2026-11-21T06:30:06Z"
   },
+  "r1_literacy__L3.7.2__extra": {
+   "cost_usd": 0.0115,
+   "domain_id": "r1_literacy",
+   "fatal": [],
+   "kind": "tasks_extra",
+   "length": null,
+   "mistake_id": null,
+   "mode": "normal",
+   "model": "claude-opus-5-5",
+   "prompt_version": "cc7fba27a982",
+   "skill_id": "L3.7.2",
+   "status": "ok",
+   "updated": "2026-11-21T07:21:35Z"
+  },
   "r1_literacy__L3.7.3": {
    "cost_usd": 0.02,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "tasks",
    "length": null,
    "mistake_id": null,
@@ -20875,7 +21323,7 @@
   "r1_literacy__a_letter_from_grandmother": {
    "cost_usd": 0.0089,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20889,7 +21337,7 @@
   "r1_literacy__a_new_classmate": {
    "cost_usd": 0.0083,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20903,7 +21351,7 @@
   "r1_literacy__a_visit_to_the_doctor": {
    "cost_usd": 0.0077,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20917,7 +21365,7 @@
   "r1_literacy__festival_day": {
    "cost_usd": 0.0087,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20931,7 +21379,7 @@
   "r1_literacy__harvest_time": {
    "cost_usd": 0.0084,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20945,7 +21393,7 @@
   "r1_literacy__making_rotis": {
    "cost_usd": 0.0091,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20959,7 +21407,7 @@
   "r1_literacy__rainy_season": {
    "cost_usd": 0.0084,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20973,7 +21421,7 @@
   "r1_literacy__school_garden": {
    "cost_usd": 0.0181,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -20987,7 +21435,7 @@
   "r1_literacy__school_morning_assembly": {
    "cost_usd": 0.0082,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21001,7 +21449,7 @@
   "r1_literacy__the_bus_ride": {
    "cost_usd": 0.0191,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21015,7 +21463,7 @@
   "r1_literacy__the_class_picnic": {
    "cost_usd": 0.0089,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21029,7 +21477,7 @@
   "r1_literacy__the_clever_crow": {
    "cost_usd": 0.0079,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21043,7 +21491,7 @@
   "r1_literacy__the_cricket_match": {
    "cost_usd": 0.0082,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21057,7 +21505,7 @@
   "r1_literacy__the_fair": {
    "cost_usd": 0.0071,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21071,7 +21519,7 @@
   "r1_literacy__the_friendly_elephant": {
    "cost_usd": 0.0082,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21085,7 +21533,7 @@
   "r1_literacy__the_honey_bees": {
    "cost_usd": 0.01,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21099,7 +21547,7 @@
   "r1_literacy__the_kite_contest": {
    "cost_usd": 0.0099,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21113,7 +21561,7 @@
   "r1_literacy__the_lost_kitten": {
    "cost_usd": 0.0092,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21127,7 +21575,7 @@
   "r1_literacy__the_moon_at_night": {
    "cost_usd": 0.0081,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21141,7 +21589,7 @@
   "r1_literacy__the_old_banyan_tree": {
    "cost_usd": 0.0104,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21155,7 +21603,7 @@
   "r1_literacy__the_post_office": {
    "cost_usd": 0.0098,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21169,7 +21617,7 @@
   "r1_literacy__the_river_bank": {
    "cost_usd": 0.0082,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21183,7 +21631,7 @@
   "r1_literacy__the_tailor_s_shop": {
    "cost_usd": 0.0085,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21197,7 +21645,7 @@
   "r1_literacy__the_village_well": {
    "cost_usd": 0.0086,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,
@@ -21211,7 +21659,7 @@
   "r1_literacy__village_market": {
    "cost_usd": 0.0661,
    "domain_id": "r1_literacy",
-   "fatal": null,
+   "fatal": [],
    "kind": "setting",
    "length": null,
    "mistake_id": null,

@@ -1,0 +1,35 @@
+{
+ "format": 1,
+ "piece": "tasks_extra",
+ "key": "r1_literacy__L3.4.1__extra",
+ "skill_id": "L3.4.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "r1_literacy__a_visit_to_the_doctor",
+    "task_hi": "बोर्ड पर दवाखाने के पास तीन नए शब्द लिखें: थर्मामीटर, दवाखाना, पट्टी। बच्चों से कहें: 'हर शब्द को टुकड़ों में तोड़कर पढ़ें, जैसे थर् - मा - मी - टर।' हर शब्द के टुकड़ों के नीचे उँगली रखकर पहले धीरे, फिर पूरा शब्द एक साथ पढ़वाएँ। इसके बाद पूछें: 'दवाखाना शब्द में कितने टुकड़े हैं?' बच्चे स्लेट पर संख्या लिखें।",
+    "answer_hi": "थर्-मा-मी-टर, द-वा-खा-ना, पट्-टी; दवाखाना में 4 टुकड़े"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "4645c1a8ff68",
+ "created": "2026-11-21T07:21:09Z",
+ "cost_usd": 0.0111,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "r1_literacy__a_visit_to_the_doctor"
+ ]
+}

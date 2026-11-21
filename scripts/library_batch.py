@@ -91,6 +91,9 @@ async def _rebuild(db, root, info, plan_service, cache):
     if kind == "tasks":
         st = gl.settings_of(root, info["domain"])
         return gl.tasks_job(skill, {k: v for k, v in st.items() if k in (info.get("settings") or st)})
+    if kind == "tasks_extra":
+        st = gl.settings_of(root, info["domain"])
+        return gl.tasks_extra_job(skill, {k: st[k] for k in info.get("settings") or [] if k in st})
     raise ValueError(kind)
 
 

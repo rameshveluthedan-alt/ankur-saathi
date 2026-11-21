@@ -223,3 +223,49 @@ def check_tasks_piece(piece: dict, skill: dict, settings: dict, n: int = 3) -> d
     piece["tasks"] = kept
     fatal = [] if len(kept) >= n else [f"only {len(kept)} usable task(s), {n} are needed"]
     return {"ok": not fatal, "fatal": fatal, "warnings": warnings, "repairs": repairs}
+
+
+# ── anchor-task top-up: tasks in SETTINGS GIVEN by the code (21 Nov) ─────────
+# Each skill first chose its own 3 settings, so for about half of the usual skill trios no setting had a task for all three groups. The code finds,
+# for each trio, the setting that best fits the Progressors' skill and asks the other skills for a task in exactly that setting.
+
+def tasks_extra_key(domain: str, skill_id: str) -> str:
+    return f"{domain}__{skill_id}__extra"
+
+
+EXTRA_FORMAT = """
+## WHAT TO WRITE: THIS SKILL'S TASK IN EACH OF THESE ANCHOR SETTINGS, FOR A LIBRARY
+The anchor is the whole-class opening that three groups share. Write the task a group working on THIS skill does inside EACH setting below,
+during the anchor (2-3 minutes, the whole group together, answered aloud or on slates). The task uses the setting's board picture and practises
+ONLY this skill, inside its number range and rules. Give the actual numbers or words. Plain Hindi; polite instructions to the teacher; words to the
+children in quotes; never a gendered 'मैं' verb.
+
+SETTINGS (key: title - board):
+{settings}
+
+Return ONE JSON object, nothing else:
+{{"tasks": [{{"setting": "<the key>", "task_hi": "...", "answer_hi": "the right answer(s), short"}}, ... one for EACH setting above ...]}}
+"""
+
+
+def tasks_extra_prompt(skill: dict, settings: dict, retry_reasons: list = None) -> str:
+    listing = "\n".join(f"- {k}: {v.get('title_hi')} - {str(v.get('board_hi') or '')[:160]}" for k, v in settings.items())
+    return skill_header(skill) + EXTRA_FORMAT.format(settings=listing) + _retry(retry_reasons)
+
+
+def trio_needs(trios: list, tasks_by_skill: dict) -> dict:
+    """{skill: set of settings it needs a task in} so that each trio (beginner, progressor, proficient skill ids) has ONE setting with a task for all
+    three. tasks_by_skill: {skill: set of settings it already has}. The setting chosen is the Progressors' setting already shared with most of the trio."""
+    needs = {}
+    for b, p, f in trios:
+        have = {s: tasks_by_skill.get(s, set()) | needs.get(s, set()) for s in (b, p, f)}
+        if have[b] & have[p] & have[f]:
+            continue
+        cands = sorted(have[p], key=lambda k: (-(k in have[b]) - (k in have[f]), k))
+        if not cands:
+            continue
+        pick = cands[0]
+        for s in (b, f):
+            if pick not in have[s]:
+                needs.setdefault(s, set()).add(pick)
+    return needs

@@ -97,6 +97,13 @@ async def main():
         r = lpp.check_tasks_piece(t2, s231, settings)
         check("a task breaking the skill's rule is dropped, and fewer than 3 is fatal", not r["ok"] and len(t2["tasks"]) == 2, r)
 
+        print("\nthe anchor-task top-up: one shared setting for each usual skill trio")
+        needs = lpp.trio_needs([("A", "B", "C"), ("B", "C", "D"), ("E", "E", "E")],
+                               {"A": {"x"}, "B": {"x", "y"}, "C": {"z"}, "D": {"y"}, "E": {"q"}})
+        check("each trio with no shared setting gets the Progressors' best-shared setting for the others (A-B-C: x for C; B-C-D: x for D)",
+              needs == {"C": {"x"}, "D": {"x"}}, needs)
+        check("...a trio of one skill (E-E-E) already shares its settings: nothing asked", "E" not in needs)
+
         print("\nthe generator's general path (normal calls), with a stand-in model")
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -1,0 +1,35 @@
+{
+ "format": 1,
+ "piece": "tasks_extra",
+ "key": "r1_literacy__L1.2.1__extra",
+ "skill_id": "L1.2.1",
+ "domain_id": "r1_literacy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "r1_literacy__the_class_picnic",
+    "task_hi": "बोर्ड पर बनी टोकरी की ओर इशारा करें और बच्चों से कहें: 'ध्यान से सुनें, हम टोकरी की एक चीज़ की आवाज़ें अलग-अलग बोलेंगे।' हर ध्वनि को धीरे और साफ़ बोलें: 'आ... म'। फिर कहें: 'इन आवाज़ों को जोड़कर शब्द बोलें।' इसके बाद यही करें: 'के... ला', 'रो... टी', 'तो... ता'। हर शब्द के बाद बच्चे बोर्ड पर उस चीज़ की ओर उँगली से इशारा करें।",
+    "answer_hi": "आम, केला, रोटी, तोता"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "fcdcea6558e5",
+ "created": "2026-11-21T07:20:05Z",
+ "cost_usd": 0.0104,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "r1_literacy__the_class_picnic"
+ ]
+}

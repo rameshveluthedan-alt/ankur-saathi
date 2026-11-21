@@ -1,0 +1,35 @@
+{
+ "format": 1,
+ "piece": "tasks_extra",
+ "key": "numeracy__N2.2.2__extra",
+ "skill_id": "N2.2.2",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__bus_journey",
+    "task_hi": "बोर्ड पर बस के 'मेला' पड़ाव के पास के खाली स्थान में लिखें: 'मेले में 247 लोग उतरे।' बच्चों से पूछें: 'इस संख्या में कितने सैकड़े, कितनी दहाई और कितनी इकाई हैं? अपनी स्लेट पर लिखें।' इसके बाद 'कस्बा' पड़ाव के पास लिखें: 300 + 50 + 8, और पूछें: 'कस्बे तक बस ने कुल इतने किलोमीटर की सवारी की। यह कौन-सी संख्या बनी? स्लेट पर लिखें।'",
+    "answer_hi": "247: 2 सैकड़े, 4 दहाई, 7 इकाई; 300 + 50 + 8 = 358"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "f7d3bf8216fa",
+ "created": "2026-11-21T07:22:13Z",
+ "cost_usd": 0.0108,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bus_journey"
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "format": 1,
+ "piece": "tasks_extra",
+ "key": "numeracy__N2.3.4__extra",
+ "skill_id": "N2.3.4",
+ "domain_id": "numeracy",
+ "mode": "normal",
+ "length": null,
+ "minutes": null,
+ "content": {
+  "tasks": [
+   {
+    "setting": "numeracy__bus_journey",
+    "task_hi": "बोर्ड पर 'गाँव' पड़ाव के पास लिखें: बस में 52 लोग। 'मेला' पड़ाव के पास लिखें: 27 लोग उतरे। बच्चों से पूछें: 'मेले के बाद बस में कितने लोग बचे? 52 − 27 स्लेट पर हल करें। इकाई में 2 में से 7 नहीं घटता, तो एक दहाई उधार लें।' इसके बाद 'कस्बा' पड़ाव के पास लिखें: 25 में से 18 लोग उतरे, और पूछें: '25 − 18 कितना होगा?'",
+    "answer_hi": "52 − 27 = 25; 25 − 18 = 7"
+   },
+   {
+    "setting": "numeracy__farm_harvest",
+    "task_hi": "बोरियों पर लिखें: गेहूँ 63, चावल 45, मक्का 81, दाल 36। बच्चों से पूछें: 'गेहूँ की बोरी में 63 किलो है, उसमें से 28 किलो बेच दिया। 63 − 28 स्लेट पर हल करें।' इसके बाद पूछें: 'मक्का की बोरी में 81 किलो है, 47 किलो बेच दिया। 81 − 47 कितना होगा?' बच्चों को याद दिलाएँ: 'इकाई में छोटी संख्या हो तो दहाई से एक उधार लें।'",
+    "answer_hi": "63 − 28 = 35; 81 − 47 = 34"
+   }
+  ]
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "8f9d59227abf",
+ "created": "2026-11-21T07:22:18Z",
+ "cost_usd": 0.0164,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null,
+ "settings": [
+  "numeracy__bus_journey",
+  "numeracy__farm_harvest"
+ ]
+}

@@ -126,9 +126,7 @@
   "ok": true,
   "fatal": [],
   "warnings": [],
-  "repairs": [
-   "worksheet: progressor problem 1: 3 + 4 -> 39 + 36 (copies an example solved in the lesson)"
-  ]
+  "repairs": []
  },
  "model": "claude-opus-5-5",
  "prompt_version": "1d5870a0837a",
