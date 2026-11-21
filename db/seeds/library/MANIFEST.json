@@ -1,6 +1,7 @@
 {
  "batches": [
   {
+   "collected": "2026-11-21T05:34:00Z",
    "created": "2026-11-21T05:22:24Z",
    "estimate_usd": 0.16,
    "id": "msgbatch_01HCVwbUb9pp77SDCz92nFsg",
@@ -44,6 +45,6199 @@
    },
    "model": "claude-opus-5-5",
    "pieces": 4,
+   "status": "collected"
+  },
+  {
+   "created": "2026-11-21T05:34:28Z",
+   "estimate_usd": 16.43,
+   "id": "msgbatch_01AzmuDi3kJS8auM46LeXALd",
+   "map": {
+    "p00c75c78552a8d7d6a420eee": {
+     "domain": "numeracy",
+     "key": "N1.2.4__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "p0262517631a9e98b2319708d": {
+     "domain": "numeracy",
+     "key": "N1.4.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.4.1"
+    },
+    "p02acd96de4a73fc569f54bad": {
+     "domain": "numeracy",
+     "key": "N1.3.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.3.2"
+    },
+    "p02ef0310ff27bd42933949ca": {
+     "domain": "r1_literacy",
+     "key": "L2.5.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.5.2"
+    },
+    "p030738feb182c2d58f0f844f": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_lost_kitten",
+     "kind": "setting",
+     "length": null,
+     "mode": "the lost kitten",
+     "settings": null,
+     "skill_id": null
+    },
+    "p03675100081c37f9491f9d8b": {
+     "domain": "numeracy",
+     "key": "N3.3.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.3.2"
+    },
+    "p03a1bc9fcee285a56f9dafef": {
+     "domain": "numeracy",
+     "key": "N0.2.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "p03a3047fc1dde6662c5b79fc": {
+     "domain": "numeracy",
+     "key": "N0.2.4__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.4"
+    },
+    "p03c6981f6e12b4b28625ed6f": {
+     "domain": "r1_literacy",
+     "key": "L0.1.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.1.1"
+    },
+    "p03cee32eee238f61bec1a27b": {
+     "domain": "numeracy",
+     "key": "N3.3.5__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "p0459423a35696288b673a946": {
+     "domain": "numeracy",
+     "key": "N1.5.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.5.1"
+    },
+    "p0465ac2626cd439c1fb27764": {
+     "domain": "numeracy",
+     "key": "N2.3.4__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p04ec1da2a7c22e6af6f73437": {
+     "domain": "numeracy",
+     "key": "N1.2.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "p05677572b31b242e572455e9": {
+     "domain": "r1_literacy",
+     "key": "L2.6.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.6.2"
+    },
+    "p0649a0d67eb39bb6f9ed8026": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "p070d9c7ec8e746def6cf8f98": {
+     "domain": "numeracy",
+     "key": "N1.2.3-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N1.2.3-M1",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "p07535a46a482007b56642b9d": {
+     "domain": "numeracy",
+     "key": "N0.2.3-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N0.2.3-M2",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "p078e3300caf0919afe8ada9f": {
+     "domain": "r1_literacy",
+     "key": "L3.6.4__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.4"
+    },
+    "p0804b2456d6df89a7cffb36c": {
+     "domain": "numeracy",
+     "key": "N1.4.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.4.2"
+    },
+    "p0878a0b9a541917affc458ad": {
+     "domain": "numeracy",
+     "key": "numeracy__water_from_the_well",
+     "kind": "setting",
+     "length": null,
+     "mode": "water from the well",
+     "settings": null,
+     "skill_id": null
+    },
+    "p0887810f7c9df63765459722": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "p08d332e2a25613eb6b90f452": {
+     "domain": "numeracy",
+     "key": "N1.3.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.3.3"
+    },
+    "p08e09f783e14b78329771753": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "p08fa7dbae267d04b3eb74bed": {
+     "domain": "r1_literacy",
+     "key": "L0.1.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.1.3"
+    },
+    "p0908c5cdf86866f951103427": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "p09faa25accc0a1d689363fa1": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2-M3__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.3.2-M3",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "p0a34a5f2e15dae189c4895f2": {
+     "domain": "numeracy",
+     "key": "N3.3.6-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N3.3.6-M1",
+     "settings": null,
+     "skill_id": "N3.3.6"
+    },
+    "p0a4eab9c697d870a288e1f7c": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_river_bank",
+     "kind": "setting",
+     "length": null,
+     "mode": "the river bank",
+     "settings": null,
+     "skill_id": null
+    },
+    "p0a6248ec78682b5c541471ca": {
+     "domain": "numeracy",
+     "key": "N2.2.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.2.3"
+    },
+    "p0a8d961ece8db5d1a0776669": {
+     "domain": "r1_literacy",
+     "key": "L3.3.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.3.1"
+    },
+    "p0ab53778e50b63bc4fc923d3": {
+     "domain": "numeracy",
+     "key": "N1.5.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.5.1"
+    },
+    "p0ac2ae1e395af68305060cbc": {
+     "domain": "r1_literacy",
+     "key": "L1.4.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.4.1"
+    },
+    "p0acfd0d42648e499ee2e8cc9": {
+     "domain": "r1_literacy",
+     "key": "L2.7.2-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.7.2-M3",
+     "settings": null,
+     "skill_id": "L2.7.2"
+    },
+    "p0af8041aeb57a09798a3a498": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L3.7.1-M1",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "p0c7b43b3da5ad35b4a78a724": {
+     "domain": "numeracy",
+     "key": "N3.3.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "p0cce46d52a9bfcfc822437b2": {
+     "domain": "numeracy",
+     "key": "N2.3.4-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.4-M2",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p0d3e8d5a562b3f674e2cbc2f": {
+     "domain": "r1_literacy",
+     "key": "L1.4.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.4.2"
+    },
+    "p0d8c83c252d79bbe7c266ac3": {
+     "domain": "numeracy",
+     "key": "N2.2.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "p0e76b5b8ebd7c241bec17fdb": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.7.1-M2",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "p0e95d5f2a00b7d720e8d4125": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.7.1-M2",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "p0ecb9dbca3a83bc432379749": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p0f4bb4c14c360ca8b21c8910": {
+     "domain": "numeracy",
+     "key": "N0.1.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N0.1.3"
+    },
+    "p0f82c8f3fd9aba2aa0ef172f": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.3.4-M2",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p10089950187b7b55117df6d2": {
+     "domain": "numeracy",
+     "key": "N2.3.4__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p10c310c1d3a496b6dce78eed": {
+     "domain": "numeracy",
+     "key": "N2.3.4__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p1181e8855e4a2269b9b6d7d6": {
+     "domain": "r1_literacy",
+     "key": "L0.2.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.2.1"
+    },
+    "p11bcd61747b233290156b6c9": {
+     "domain": "numeracy",
+     "key": "N1.3.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N1.3.1-M1",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "p11d4841acef7352a81734940": {
+     "domain": "r1_literacy",
+     "key": "L2.4.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.4.1"
+    },
+    "p12c2bf41974d92cb0873d9c0": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "p132aade5895efc77e47c529f": {
+     "domain": "r1_literacy",
+     "key": "L0.2.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.2.3"
+    },
+    "p133102af912189ffa27a6af6": {
+     "domain": "r1_literacy",
+     "key": "L0.2.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.2.2"
+    },
+    "p13567947e9da8f755784b3fd": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "p1380e839b857b9d25d0ce991": {
+     "domain": "r1_literacy",
+     "key": "L3.4.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.4.1"
+    },
+    "p13e7c55d5d19bd34da1bdb4f": {
+     "domain": "r1_literacy",
+     "key": "L2.6.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.6.1-M1",
+     "settings": null,
+     "skill_id": "L2.6.1"
+    },
+    "p14cc002bded59dcaeb240d4a": {
+     "domain": "numeracy",
+     "key": "N1.3.1-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N1.3.1-M3",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "p1603c2540cbb71f34f61eeb9": {
+     "domain": "r1_literacy",
+     "key": "L1.5.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.5.1"
+    },
+    "p16fce491195600837ee9aecf": {
+     "domain": "r1_literacy",
+     "key": "L1.3.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.1"
+    },
+    "p173acfa6196193e2a1c5f146": {
+     "domain": "numeracy",
+     "key": "N2.5.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.5.1"
+    },
+    "p17729499eac55ac5f9c2cb96": {
+     "domain": "numeracy",
+     "key": "N3.3.5__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "p17840f5cf97d1e78c054abcf": {
+     "domain": "r1_literacy",
+     "key": "L1.4.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.4.2"
+    },
+    "p179ace0a519bd48537983904": {
+     "domain": "numeracy",
+     "key": "N3.3.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "p182c51f8e57f849c538c58fa": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L0.3.1-M1",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "p18622ca57d90004e68647067": {
+     "domain": "numeracy",
+     "key": "N0.1.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.1.2"
+    },
+    "p190fe9c3a16d91b0f4a67ad7": {
+     "domain": "r1_literacy",
+     "key": "L0.7.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.7.1"
+    },
+    "p19123e09968e0d475907048e": {
+     "domain": "r1_literacy",
+     "key": "L1.2.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.2.1"
+    },
+    "p1919250c084faddb101a3e29": {
+     "domain": "r1_literacy",
+     "key": "L2.7.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.7.3"
+    },
+    "p19468733a78cb9242abe444d": {
+     "domain": "r1_literacy",
+     "key": "L2.3.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.3.2"
+    },
+    "p1a9e2d4605f5e797d5d9221a": {
+     "domain": "numeracy",
+     "key": "N0.2.3-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N0.2.3-M1",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "p1b01bb9da5f03492ddda511d": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "p1b92da7e5b539d1de9f58306": {
+     "domain": "r1_literacy",
+     "key": "L3.6.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.2"
+    },
+    "p1bcdcf099126c46f56ce0231": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_honey_bees",
+     "kind": "setting",
+     "length": null,
+     "mode": "the honey bees",
+     "settings": null,
+     "skill_id": null
+    },
+    "p1bf99fe9d7f1c3cdddc1611a": {
+     "domain": "numeracy",
+     "key": "N1.2.3-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N1.2.3-M2",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "p1c1b776cfe96bfa4b8ba8c6e": {
+     "domain": "numeracy",
+     "key": "N0.5.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N0.5.1"
+    },
+    "p1c7eab63ca92fd27c40f29f0": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_clever_crow",
+     "kind": "setting",
+     "length": null,
+     "mode": "the clever crow",
+     "settings": null,
+     "skill_id": null
+    },
+    "p1ca4c5c1b8be324cdf5c5ba1": {
+     "domain": "numeracy",
+     "key": "N2.3.5-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.5-M2",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "p1d0b9519462e63f87a099d9b": {
+     "domain": "numeracy",
+     "key": "numeracy__tailor_s_shop",
+     "kind": "setting",
+     "length": null,
+     "mode": "tailor's shop",
+     "settings": null,
+     "skill_id": null
+    },
+    "p1ed2acfd6d2e9b2f55301341": {
+     "domain": "numeracy",
+     "key": "N2.4.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.4.1"
+    },
+    "p1ee712244eda771d3d765b1d": {
+     "domain": "numeracy",
+     "key": "N2.3.5-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N2.3.5-M2",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "p1efa067112747b84474381fe": {
+     "domain": "r1_literacy",
+     "key": "L2.7.2-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.7.2-M1",
+     "settings": null,
+     "skill_id": "L2.7.2"
+    },
+    "p1fad2cea0090b35a352cebeb": {
+     "domain": "numeracy",
+     "key": "N0.2.2-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N0.2.2-M1",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p1fdb31decc516223457a6eb4": {
+     "domain": "numeracy",
+     "key": "N2.5.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.5.1"
+    },
+    "p1fdd80f39438aca702997cec": {
+     "domain": "r1_literacy",
+     "key": "L1.4.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.4.2"
+    },
+    "p205b321680368852cdf4c92f": {
+     "domain": "numeracy",
+     "key": "N3.3.4-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N3.3.4-M2",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "p2256741ae3052f4c7ebbbd7b": {
+     "domain": "r1_literacy",
+     "key": "L0.3.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.3.2"
+    },
+    "p226cd964f52f5585c7a264ef": {
+     "domain": "numeracy",
+     "key": "N1.2.3-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N1.2.3-M1",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "p228855fbaa376e049785048e": {
+     "domain": "r1_literacy",
+     "key": "L3.6.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.3"
+    },
+    "p22e2c01975b6d86e392ebb4d": {
+     "domain": "r1_literacy",
+     "key": "L2.7.2-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.7.2-M3",
+     "settings": null,
+     "skill_id": "L2.7.2"
+    },
+    "p2385c18b6c94853cb5315e06": {
+     "domain": "numeracy",
+     "key": "N0.2.4__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.4"
+    },
+    "p238c4c507405a27d31cac455": {
+     "domain": "numeracy",
+     "key": "N1.2.6__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.6"
+    },
+    "p23a99c5e30004e67f1f27a2e": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L3.6.1-M2",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "p23d311d91414a114beee7d66": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p24515d648396292040945a72": {
+     "domain": "r1_literacy",
+     "key": "L2.7.2-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.7.2-M2",
+     "settings": null,
+     "skill_id": "L2.7.2"
+    },
+    "p24efd3f2c0c7ea351a60b84e": {
+     "domain": "numeracy",
+     "key": "N1.2.3-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N1.2.3-M1",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "p251d28be58834a551752ce86": {
+     "domain": "r1_literacy",
+     "key": "L2.7.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.7.3"
+    },
+    "p253aac2ec9956c1781ca1e2d": {
+     "domain": "r1_literacy",
+     "key": "L2.5.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.5.2"
+    },
+    "p2607ed532b886da617da3a4e": {
+     "domain": "numeracy",
+     "key": "N1.2.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "p262815218657ea84509643e2": {
+     "domain": "r1_literacy",
+     "key": "L2.3.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.3.1-M1",
+     "settings": null,
+     "skill_id": "L2.3.1"
+    },
+    "p2662c586be7b5457a4a0ca3e": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "p2696ac18c77e86978e8993a6": {
+     "domain": "r1_literacy",
+     "key": "L2.6.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.6.1"
+    },
+    "p26acc6fad68b090630d27cac": {
+     "domain": "numeracy",
+     "key": "N1.2.4-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N1.2.4-M1",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "p26c111e4408925975068c3ab": {
+     "domain": "numeracy",
+     "key": "N1.3.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N1.3.1-M1",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "p2731fe80c84519cde83f23fc": {
+     "domain": "numeracy",
+     "key": "N1.5.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.5.1"
+    },
+    "p2737f96b8f89c77ae8bbabcb": {
+     "domain": "r1_literacy",
+     "key": "L0.2.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.2.2"
+    },
+    "p27c3841df3619f4c32eab778": {
+     "domain": "numeracy",
+     "key": "N1.2.5__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.5"
+    },
+    "p28462dd6f9c4f19db19550a3": {
+     "domain": "numeracy",
+     "key": "N1.5.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.5.2"
+    },
+    "p28f2a5ac9162c20d7cc21846": {
+     "domain": "numeracy",
+     "key": "N1.4.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.4.2"
+    },
+    "p28f517db8c8e410830568a8b": {
+     "domain": "r1_literacy",
+     "key": "L2.7.2-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.7.2-M2",
+     "settings": null,
+     "skill_id": "L2.7.2"
+    },
+    "p29044bc3677c4af7e330e364": {
+     "domain": "numeracy",
+     "key": "N0.2.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N0.2.1"
+    },
+    "p290b1698884a702d7d2f2024": {
+     "domain": "numeracy",
+     "key": "numeracy__festival_sweets",
+     "kind": "setting",
+     "length": null,
+     "mode": "festival sweets",
+     "settings": null,
+     "skill_id": null
+    },
+    "p29aa8bd98153d2631c3bb66c": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.3.2-M2",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "p29ee7758bef5483a0457565a": {
+     "domain": "numeracy",
+     "key": "N2.4.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.4.3"
+    },
+    "p29fb3f478afd609d81b2995a": {
+     "domain": "r1_literacy",
+     "key": "L1.7.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.7.1"
+    },
+    "p2ad737ae5ea42653a115827d": {
+     "domain": "r1_literacy",
+     "key": "L1.5.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.5.1"
+    },
+    "p2af0d16bd05fe1efd3e23b4d": {
+     "domain": "numeracy",
+     "key": "N0.2.2-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N0.2.2-M1",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p2b1532e5db7248a4e744266d": {
+     "domain": "r1_literacy",
+     "key": "L2.6.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.6.3"
+    },
+    "p2b62a87893e895fbc62fc03e": {
+     "domain": "r1_literacy",
+     "key": "L3.7.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.7.2"
+    },
+    "p2c23b547e26cb3cd333a8e8c": {
+     "domain": "numeracy",
+     "key": "N3.3.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.3.2"
+    },
+    "p2ce54daf2de2176f3809b7fc": {
+     "domain": "numeracy",
+     "key": "N3.5.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.5.2"
+    },
+    "p2cfb87a44d7a51b82bd52a23": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "p2d11a45b803ca71d0fef00d2": {
+     "domain": "numeracy",
+     "key": "N0.2.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.1"
+    },
+    "p2e3cf69145a76124f4582d49": {
+     "domain": "numeracy",
+     "key": "N1.2.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.2"
+    },
+    "p2e774a6fe2257160faa3e425": {
+     "domain": "numeracy",
+     "key": "N2.3.5-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.5-M1",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "p2f57a96524fa6e5d2ee44ebd": {
+     "domain": "numeracy",
+     "key": "N0.1.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.1.3"
+    },
+    "p2f96b17f68d7b45943dbddb4": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_fair",
+     "kind": "setting",
+     "length": null,
+     "mode": "the fair",
+     "settings": null,
+     "skill_id": null
+    },
+    "p301bda5d8406ff9474ebc659": {
+     "domain": "numeracy",
+     "key": "N2.3.2-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.2-M3",
+     "settings": null,
+     "skill_id": "N2.3.2"
+    },
+    "p30809a3a73470142af6b92ca": {
+     "domain": "numeracy",
+     "key": "N0.2.3-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N0.2.3-M1",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "p309de561277ac6c68a6f3cb0": {
+     "domain": "numeracy",
+     "key": "N1.5.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.5.2"
+    },
+    "p3105f28a8601a95ef7940089": {
+     "domain": "numeracy",
+     "key": "numeracy__kitchen_and_cooking",
+     "kind": "setting",
+     "length": null,
+     "mode": "kitchen and cooking",
+     "settings": null,
+     "skill_id": null
+    },
+    "p31d0775f20c96c0ce139631c": {
+     "domain": "r1_literacy",
+     "key": "L3.7.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.7.2"
+    },
+    "p3257d3844513f548793efdeb": {
+     "domain": "r1_literacy",
+     "key": "L2.4.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.4.1"
+    },
+    "p32f8f83d019d9e5a0b284365": {
+     "domain": "r1_literacy",
+     "key": "L0.7.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.7.2"
+    },
+    "p334394d1ac195633d923cfd2": {
+     "domain": "r1_literacy",
+     "key": "L3.7.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.7.3"
+    },
+    "p33710ae11bdf115c6cbdf349": {
+     "domain": "r1_literacy",
+     "key": "L1.2.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.2.2"
+    },
+    "p339efb87a81fa8f9fca96578": {
+     "domain": "r1_literacy",
+     "key": "L0.2.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.2.2"
+    },
+    "p33ff9f210e8919e4691c50bb": {
+     "domain": "r1_literacy",
+     "key": "L1.6.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.6.2"
+    },
+    "p342cb24ede8ba919983cef2a": {
+     "domain": "numeracy",
+     "key": "N3.2.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.2.3"
+    },
+    "p3445281993c9ca06f3accf78": {
+     "domain": "r1_literacy",
+     "key": "L1.4.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.4.1"
+    },
+    "p345a1576152cb2c73b75743b": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L0.3.1-M2",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "p34667ff0c74e737e67595a7c": {
+     "domain": "r1_literacy",
+     "key": "L0.7.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.7.2"
+    },
+    "p3498b35d05176239eac4cf8e": {
+     "domain": "r1_literacy",
+     "key": "L1.5.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.5.1"
+    },
+    "p34fd9837a2cf700cf1786532": {
+     "domain": "r1_literacy",
+     "key": "L2.7.2-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.7.2-M1",
+     "settings": null,
+     "skill_id": "L2.7.2"
+    },
+    "p35e9f3067f28ac786d5fdf9c": {
+     "domain": "numeracy",
+     "key": "N1.5.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.5.1"
+    },
+    "p36ccadec454ce6d8f02acffb": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "p36e2437913a22c545a0f42f6": {
+     "domain": "r1_literacy",
+     "key": "L1.6.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.6.1"
+    },
+    "p36f382d64cf1c8263ea72f61": {
+     "domain": "numeracy",
+     "key": "N1.2.4__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "p36fa1c706c78633830825765": {
+     "domain": "numeracy",
+     "key": "N1.3.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N1.3.1-M1",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "p37a9b8279701c07fc8a9395a": {
+     "domain": "numeracy",
+     "key": "N3.3.5-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N3.3.5-M1",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "p3829e93f5fc1581a3f73211b": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "p383f5c0010533f17e54a3d34": {
+     "domain": "numeracy",
+     "key": "N2.3.5-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.5-M1",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "p387183225b42a7e9389c1660": {
+     "domain": "numeracy",
+     "key": "N2.6.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.6.1"
+    },
+    "p3935c6b07b37bd66f0292c69": {
+     "domain": "r1_literacy",
+     "key": "L0.2.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.2.1"
+    },
+    "p394506fad67f9a1b8cc7eeb7": {
+     "domain": "numeracy",
+     "key": "N2.3.4__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p396db8ea64dec208ca3d1902": {
+     "domain": "numeracy",
+     "key": "N2.4.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.4.3"
+    },
+    "p3972c9605aad792990c9a929": {
+     "domain": "r1_literacy",
+     "key": "L1.6.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.6.2"
+    },
+    "p39ce2e00da0e05e8902fdd7c": {
+     "domain": "r1_literacy",
+     "key": "L1.2.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.2.2"
+    },
+    "p39d623492d6f84b43b14624e": {
+     "domain": "numeracy",
+     "key": "N1.1.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.1.1"
+    },
+    "p3a48ba2dbbf129cedf6494a8": {
+     "domain": "numeracy",
+     "key": "N0.2.2-M3__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N0.2.2-M3",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p3a6fa3d74af56d3332d2cb3b": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L3.7.1-M2",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "p3ac4d665a6099857f3bee58f": {
+     "domain": "r1_literacy",
+     "key": "L2.5.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.5.2"
+    },
+    "p3ad40eeaa5d2a5c6033be019": {
+     "domain": "numeracy",
+     "key": "N2.4.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.4.2"
+    },
+    "p3b633e888620a3f7c51821cb": {
+     "domain": "r1_literacy",
+     "key": "L3.5.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.5.2"
+    },
+    "p3bc66559bd8041f6a2b41a84": {
+     "domain": "r1_literacy",
+     "key": "L2.3.1-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.3.1-M2",
+     "settings": null,
+     "skill_id": "L2.3.1"
+    },
+    "p3c4a947ef302f1062d080d1e": {
+     "domain": "numeracy",
+     "key": "N3.6.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.6.1"
+    },
+    "p3c52b81ce4e2b50c7de1f726": {
+     "domain": "numeracy",
+     "key": "numeracy__village_fair",
+     "kind": "setting",
+     "length": null,
+     "mode": "village fair",
+     "settings": null,
+     "skill_id": null
+    },
+    "p3c79059f3d8ba406d9f6957c": {
+     "domain": "r1_literacy",
+     "key": "L0.1.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.1.3"
+    },
+    "p3d56b260c74bdd159e624ebf": {
+     "domain": "numeracy",
+     "key": "N2.3.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.1-M1",
+     "settings": null,
+     "skill_id": "N2.3.1"
+    },
+    "p3de11a6a3beb208e35599fa2": {
+     "domain": "numeracy",
+     "key": "numeracy__building_a_hut",
+     "kind": "setting",
+     "length": null,
+     "mode": "building a hut",
+     "settings": null,
+     "skill_id": null
+    },
+    "p3e93fba2485121c7165b81bc": {
+     "domain": "numeracy",
+     "key": "N0.2.3-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N0.2.3-M1",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "p3e9d3a4590b3ec8f283d46b2": {
+     "domain": "numeracy",
+     "key": "N2.3.6__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.6"
+    },
+    "p3eadd26497a58254690b4c69": {
+     "domain": "numeracy",
+     "key": "N2.3.2-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.2-M1",
+     "settings": null,
+     "skill_id": "N2.3.2"
+    },
+    "p3f12685b17a223c89fd50bbe": {
+     "domain": "numeracy",
+     "key": "N3.3.4__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "p3f5e4114e30de8bc0a20974f": {
+     "domain": "numeracy",
+     "key": "N2.3.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.3"
+    },
+    "p3fab6818eecdfea1192b6ba9": {
+     "domain": "numeracy",
+     "key": "N3.3.5__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "p3fd538518855a68a0d4e3912": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_moon_at_night",
+     "kind": "setting",
+     "length": null,
+     "mode": "the moon at night",
+     "settings": null,
+     "skill_id": null
+    },
+    "p3fee372cd3141a71dbcb4fbf": {
+     "domain": "r1_literacy",
+     "key": "L3.4.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.4.1"
+    },
+    "p3fefb5e959e1442b14c0c104": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.3.2-M2",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "p3ffa9333f4f9800c3038aba3": {
+     "domain": "r1_literacy",
+     "key": "L0.2.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.2.1"
+    },
+    "p4007e73561d4ceca79e58f17": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.3.4-M1",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p407906b854affcec1f91bbb0": {
+     "domain": "numeracy",
+     "key": "N3.2.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.2.2"
+    },
+    "p40a2bbb49c63a09b46a10d83": {
+     "domain": "numeracy",
+     "key": "N3.5.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.5.2"
+    },
+    "p4111f9cb3f19ff66895f3e01": {
+     "domain": "numeracy",
+     "key": "N0.2.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p413bdafdd02bc0d772351542": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.7.2-M1",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "p4178e5cb6b5dbc2a28603521": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "p41e00014d9e80e436aca2f65": {
+     "domain": "numeracy",
+     "key": "N3.5.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.5.1"
+    },
+    "p427fe5dc4d89280916467bec": {
+     "domain": "numeracy",
+     "key": "N3.3.5-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N3.3.5-M1",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "p429d26a50401f14d7a13431a": {
+     "domain": "r1_literacy",
+     "key": "L0.3.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.3.2"
+    },
+    "p42a49e3af16452a7d6ffc1d7": {
+     "domain": "numeracy",
+     "key": "N3.6.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.6.2"
+    },
+    "p440bc324e6c0a44d1260eb46": {
+     "domain": "r1_literacy",
+     "key": "L2.3.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.3.3"
+    },
+    "p44ffa7a64e9c5433a986135b": {
+     "domain": "r1_literacy",
+     "key": "L2.6.2-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.6.2-M1",
+     "settings": null,
+     "skill_id": "L2.6.2"
+    },
+    "p450484589ed8974315154a25": {
+     "domain": "numeracy",
+     "key": "N2.3.5__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "p4608dd5fed222802cd4f1005": {
+     "domain": "numeracy",
+     "key": "N1.2.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.1"
+    },
+    "p4626c058063ef87d3b17a73b": {
+     "domain": "r1_literacy",
+     "key": "L2.5.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.5.2"
+    },
+    "p464051b7808f0ae5f4fbe572": {
+     "domain": "numeracy",
+     "key": "N3.4.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.4.1"
+    },
+    "p46426a3b8eaa42b7017d7c68": {
+     "domain": "numeracy",
+     "key": "N3.6.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.6.2"
+    },
+    "p47000f8acfb516cdb70f2e19": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__harvest_time",
+     "kind": "setting",
+     "length": null,
+     "mode": "harvest time",
+     "settings": null,
+     "skill_id": null
+    },
+    "p47865a4bee7858abfc2f67aa": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.3.3-M1",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "p47cef585664a3c355a1bf91f": {
+     "domain": "r1_literacy",
+     "key": "L0.1.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.1.1"
+    },
+    "p47f5241d4063a0d0dd5bb796": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1-M3__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.7.1-M3",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "p488285038f29793222f72175": {
+     "domain": "numeracy",
+     "key": "N1.3.1-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N1.3.1-M2",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "p48980324d8d96cb28e972616": {
+     "domain": "numeracy",
+     "key": "N3.2.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.2.2"
+    },
+    "p4899b013038acc963bd3a132": {
+     "domain": "r1_literacy",
+     "key": "L1.5.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.5.1"
+    },
+    "p498d5ef9ebb33b3b2d1b5d6b": {
+     "domain": "r1_literacy",
+     "key": "L1.7.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.7.1"
+    },
+    "p49d35f6afac96f93ef450079": {
+     "domain": "numeracy",
+     "key": "N2.6.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.6.1"
+    },
+    "p49f93df98dedc62776648cee": {
+     "domain": "numeracy",
+     "key": "N3.3.5-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N3.3.5-M2",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "p4b3b5bd0bc35c59689936bf0": {
+     "domain": "numeracy",
+     "key": "N3.4.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.4.1"
+    },
+    "p4b5c8a90bede3875ed09d36b": {
+     "domain": "numeracy",
+     "key": "N3.3.3-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N3.3.3-M2",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "p4bb3e97a0d2edbfa2f5e79d3": {
+     "domain": "numeracy",
+     "key": "N1.4.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.4.1"
+    },
+    "p4c40d2b430c11ecfbb0e9905": {
+     "domain": "numeracy",
+     "key": "N3.3.4__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "p4c4d7fc15f83f1bfd162a2ed": {
+     "domain": "numeracy",
+     "key": "N0.2.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p4c883ab5b8424126377cba74": {
+     "domain": "numeracy",
+     "key": "N2.5.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.5.1"
+    },
+    "p4cc2709bc72f15a29442a70c": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "p4cf63dd0ab7db438070d6249": {
+     "domain": "numeracy",
+     "key": "N0.1.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N0.1.3"
+    },
+    "p4d3e15b14dfa000cd2c2021a": {
+     "domain": "numeracy",
+     "key": "N2.3.5__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "p4d77fd36dc0f07ee91157a62": {
+     "domain": "r1_literacy",
+     "key": "L2.3.1-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.3.1-M2",
+     "settings": null,
+     "skill_id": "L2.3.1"
+    },
+    "p4d7ab26c5010446376bcc668": {
+     "domain": "r1_literacy",
+     "key": "L0.2.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.2.2"
+    },
+    "p4dafebe53fa611e47750bd88": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L3.7.1-M3",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "p4dbd6799901f890ff3818e01": {
+     "domain": "numeracy",
+     "key": "N3.3.5__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "p4dfad5b0f1235d6fba0b0559": {
+     "domain": "r1_literacy",
+     "key": "L3.3.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.3.1"
+    },
+    "p4e1ed4d1b50af844d27a7b4d": {
+     "domain": "r1_literacy",
+     "key": "L2.3.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.3.1-M1",
+     "settings": null,
+     "skill_id": "L2.3.1"
+    },
+    "p4e650c2ea6600de4fea3e447": {
+     "domain": "numeracy",
+     "key": "N3.3.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N3.3.1-M1",
+     "settings": null,
+     "skill_id": "N3.3.1"
+    },
+    "p4e7bd65a04a64dec6e7425c6": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_village_well",
+     "kind": "setting",
+     "length": null,
+     "mode": "the village well",
+     "settings": null,
+     "skill_id": null
+    },
+    "p4eb939c68b167f7e4e2e6c5f": {
+     "domain": "r1_literacy",
+     "key": "L2.6.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.6.1"
+    },
+    "p4fe2f81a73ff92ff5b58f28a": {
+     "domain": "numeracy",
+     "key": "N1.2.4-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N1.2.4-M2",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "p50a4d82f8a78305c6a28cbf1": {
+     "domain": "numeracy",
+     "key": "N2.3.2-M4__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.2-M4",
+     "settings": null,
+     "skill_id": "N2.3.2"
+    },
+    "p50d04fadd09be2d4e5ddced1": {
+     "domain": "r1_literacy",
+     "key": "L1.2.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.2.1"
+    },
+    "p5126923eb2cedbbf3e545bbd": {
+     "domain": "r1_literacy",
+     "key": "L3.3.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.3.1"
+    },
+    "p51807c5b6f8d2e191eb9b50d": {
+     "domain": "numeracy",
+     "key": "N0.2.2-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N0.2.2-M2",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p51aaba6992ab1867a416847c": {
+     "domain": "r1_literacy",
+     "key": "L0.1.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.1.1"
+    },
+    "p51ce293ecf24a1702f151e1d": {
+     "domain": "numeracy",
+     "key": "N1.3.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "p52597b4e4cf2890c9670ed23": {
+     "domain": "numeracy",
+     "key": "N1.2.4__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "p531bbb22dd7b62301a09660a": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L3.6.1-M2",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "p5331e559b6c7308d263758e0": {
+     "domain": "numeracy",
+     "key": "N1.3.1-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N1.3.1-M2",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "p534822f3a502e03f84baed5e": {
+     "domain": "numeracy",
+     "key": "N3.3.4-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N3.3.4-M2",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "p54827d9a24453dc20dea8b9c": {
+     "domain": "r1_literacy",
+     "key": "L2.7.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.7.3"
+    },
+    "p549894eaa3782abd3b4c9510": {
+     "domain": "numeracy",
+     "key": "N1.2.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.2"
+    },
+    "p54a5c8b957f1a08dc6d73212": {
+     "domain": "numeracy",
+     "key": "N2.2.4__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.2.4"
+    },
+    "p553d5124aca181b95da634a4": {
+     "domain": "r1_literacy",
+     "key": "L2.6.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.6.3"
+    },
+    "p5606b89d62a42b99df753429": {
+     "domain": "numeracy",
+     "key": "N2.5.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.5.1"
+    },
+    "p5623c22ecb3d76b1d3349896": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__a_new_classmate",
+     "kind": "setting",
+     "length": null,
+     "mode": "a new classmate",
+     "settings": null,
+     "skill_id": null
+    },
+    "p562a773ad60cf9d98b0fc090": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L0.3.1-M2",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "p57987cdde2f02082dce4bee3": {
+     "domain": "numeracy",
+     "key": "N0.2.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.1"
+    },
+    "p57cc377b4b44dcc57063627f": {
+     "domain": "numeracy",
+     "key": "N3.4.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.4.1"
+    },
+    "p58c651ee957c1f7e3f3b7d92": {
+     "domain": "numeracy",
+     "key": "N1.3.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "p5949e1c882c085b01f40c1e1": {
+     "domain": "numeracy",
+     "key": "N1.2.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.2.2"
+    },
+    "p597f301336c9ba61a0c618c7": {
+     "domain": "numeracy",
+     "key": "N2.6.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.6.1"
+    },
+    "p59b2fed4b1747cafc5421b42": {
+     "domain": "numeracy",
+     "key": "N2.3.5-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N2.3.5-M1",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "p59d20750ae3948b0577bff58": {
+     "domain": "r1_literacy",
+     "key": "L3.3.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.3.1"
+    },
+    "p5a0e7ea048597406fe3e42c7": {
+     "domain": "numeracy",
+     "key": "N2.4.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.4.1"
+    },
+    "p5a2676b38f268eb60d528a34": {
+     "domain": "numeracy",
+     "key": "N3.5.2-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N3.5.2-M1",
+     "settings": null,
+     "skill_id": "N3.5.2"
+    },
+    "p5a56fdd11aea032cd490aa2a": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p5a8056449d8560400992d4ed": {
+     "domain": "r1_literacy",
+     "key": "L2.6.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.6.2"
+    },
+    "p5abd6bad2153f48914d5874c": {
+     "domain": "numeracy",
+     "key": "N3.3.4-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N3.3.4-M1",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "p5b0a72324bf30c12fe7f8f82": {
+     "domain": "numeracy",
+     "key": "N2.3.2-M4__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.2-M4",
+     "settings": null,
+     "skill_id": "N2.3.2"
+    },
+    "p5b1f2dc1a3a5b60f71c9969c": {
+     "domain": "numeracy",
+     "key": "N2.3.5__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "p5bd70f0e8f39e2107cb5073c": {
+     "domain": "numeracy",
+     "key": "N3.3.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.2"
+    },
+    "p5c5ba1de05cb3de302fd03e3": {
+     "domain": "r1_literacy",
+     "key": "L2.6.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.6.3"
+    },
+    "p5cab21cd27099500706d6b2a": {
+     "domain": "r1_literacy",
+     "key": "L1.5.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.5.1"
+    },
+    "p5cf7979bee0c5d6985b9e887": {
+     "domain": "numeracy",
+     "key": "N3.2.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.2.2"
+    },
+    "p5e2836ab5f585eb520dd5c32": {
+     "domain": "numeracy",
+     "key": "N1.2.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "p5eb6301c908fa1672f9079cb": {
+     "domain": "numeracy",
+     "key": "N3.5.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.5.2"
+    },
+    "p5eb70c2ae4bd58fc5bd22eee": {
+     "domain": "numeracy",
+     "key": "N2.3.4-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.4-M3",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p5f3c3ce74b5a89ca8fe2efb0": {
+     "domain": "numeracy",
+     "key": "N0.1.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.1.2"
+    },
+    "p6054bb09a9aafc5e4df9840e": {
+     "domain": "r1_literacy",
+     "key": "L1.4.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.4.1"
+    },
+    "p6094abdc3dd9a87c7599f14c": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.7.2-M1",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "p60c2ba0f62797612f3273323": {
+     "domain": "numeracy",
+     "key": "numeracy__bird_watching",
+     "kind": "setting",
+     "length": null,
+     "mode": "bird watching",
+     "settings": null,
+     "skill_id": null
+    },
+    "p60dcb8b2a5bcb7a34076f47a": {
+     "domain": "numeracy",
+     "key": "N1.2.4-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N1.2.4-M1",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "p610dc7dd3dc88462a22537b0": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L0.3.1-M2",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "p6125585be32af9fba801ba50": {
+     "domain": "numeracy",
+     "key": "N1.4.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.4.1"
+    },
+    "p616354eff5f9b53c626173f3": {
+     "domain": "numeracy",
+     "key": "N2.3.4-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.4-M1",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p618a5a113475e3f66c2ce517": {
+     "domain": "r1_literacy",
+     "key": "L0.7.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.7.2"
+    },
+    "p61a1ed706cdb5c502859d8f3": {
+     "domain": "r1_literacy",
+     "key": "L1.4.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.4.2"
+    },
+    "p61ae42c3def8b3924ca59287": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L3.6.1-M1",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "p61e2edd93440fdbfb129a1da": {
+     "domain": "numeracy",
+     "key": "numeracy__train_station",
+     "kind": "setting",
+     "length": null,
+     "mode": "train station",
+     "settings": null,
+     "skill_id": null
+    },
+    "p61e599a22521b75d73f3ab69": {
+     "domain": "numeracy",
+     "key": "N1.1.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.1.1"
+    },
+    "p61ee29697ab8934d7445b538": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "p621b815f912336aae0d2cd9a": {
+     "domain": "r1_literacy",
+     "key": "L0.1.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.1.3"
+    },
+    "p62ea01ee1fe4c0508442de39": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.3.4-M2",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p6308e214385626b71e27a281": {
+     "domain": "r1_literacy",
+     "key": "L2.6.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.6.1"
+    },
+    "p630a1f2b106e765bf2dec3ec": {
+     "domain": "numeracy",
+     "key": "N2.3.4-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.4-M3",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p6411bf2130811bed04238ec5": {
+     "domain": "numeracy",
+     "key": "N2.4.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.4.2"
+    },
+    "p64dc8ac29944b227536aff94": {
+     "domain": "numeracy",
+     "key": "N3.2.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.2.1"
+    },
+    "p6532bb2d04b71fb7510f8b76": {
+     "domain": "r1_literacy",
+     "key": "L2.4.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.4.2"
+    },
+    "p6597db606f8b8ceddcd50381": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L3.7.1-M2",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "p65b98769092cec31f0f9dbe5": {
+     "domain": "numeracy",
+     "key": "N1.2.6__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.2.6"
+    },
+    "p65bc9eb35e6de37cc64eea41": {
+     "domain": "numeracy",
+     "key": "N0.2.2-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N0.2.2-M2",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p65ff65eb12b3044eb76eaf48": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_friendly_elephant",
+     "kind": "setting",
+     "length": null,
+     "mode": "the friendly elephant",
+     "settings": null,
+     "skill_id": null
+    },
+    "p66d632e0584aa9a538b11169": {
+     "domain": "r1_literacy",
+     "key": "L2.5.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.5.1-M1",
+     "settings": null,
+     "skill_id": "L2.5.1"
+    },
+    "p67364659daac4088816ddb16": {
+     "domain": "r1_literacy",
+     "key": "L2.3.1-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.3.1-M2",
+     "settings": null,
+     "skill_id": "L2.3.1"
+    },
+    "p677e696f99412315ba4cc6cb": {
+     "domain": "numeracy",
+     "key": "N2.3.5-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.5-M2",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "p67c0b7c00275280282cd7d3d": {
+     "domain": "numeracy",
+     "key": "N2.3.4__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p67dc027e869b6979e0be975d": {
+     "domain": "numeracy",
+     "key": "numeracy__wedding_preparations",
+     "kind": "setting",
+     "length": null,
+     "mode": "wedding preparations",
+     "settings": null,
+     "skill_id": null
+    },
+    "p67dea92a34ac5dbb7160f8f2": {
+     "domain": "numeracy",
+     "key": "N1.2.6__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.2.6"
+    },
+    "p681953206b153e5819d3ca95": {
+     "domain": "numeracy",
+     "key": "N3.3.6-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N3.3.6-M1",
+     "settings": null,
+     "skill_id": "N3.3.6"
+    },
+    "p68336d3e863bf5213662953c": {
+     "domain": "numeracy",
+     "key": "N1.3.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.3.3"
+    },
+    "p69c99983d0a9fe1542b01203": {
+     "domain": "numeracy",
+     "key": "N0.2.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N0.2.1"
+    },
+    "p6a705fa4d35c5c66bef9cd37": {
+     "domain": "numeracy",
+     "key": "N3.4.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.4.2"
+    },
+    "p6add8f78805d040ec44d5e63": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "p6b1e078f8465e8f05d326175": {
+     "domain": "numeracy",
+     "key": "N1.3.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.3.2"
+    },
+    "p6b85f28aaaf11e12dd0d6704": {
+     "domain": "numeracy",
+     "key": "N2.4.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.4.3"
+    },
+    "p6bdf7b498cac0dc2f91c670a": {
+     "domain": "numeracy",
+     "key": "N3.6.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.6.1"
+    },
+    "p6c5bd3e850c8fceff3c2a113": {
+     "domain": "r1_literacy",
+     "key": "L2.5.1-M3__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.5.1-M3",
+     "settings": null,
+     "skill_id": "L2.5.1"
+    },
+    "p6c6606011d0da987d810a9f9": {
+     "domain": "numeracy",
+     "key": "N3.6.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.6.1"
+    },
+    "p6c9df292757e4850594c5a3c": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__a_letter_from_grandmother",
+     "kind": "setting",
+     "length": null,
+     "mode": "a letter from grandmother",
+     "settings": null,
+     "skill_id": null
+    },
+    "p6d3f191f9c1eca7b282bc50f": {
+     "domain": "r1_literacy",
+     "key": "L3.7.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.7.2"
+    },
+    "p6eefa9c4cca86d2c034d89e3": {
+     "domain": "numeracy",
+     "key": "N0.2.2-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N0.2.2-M2",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p6f5d7d82f83ed44b04ca34e1": {
+     "domain": "numeracy",
+     "key": "N2.3.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.1-M1",
+     "settings": null,
+     "skill_id": "N2.3.1"
+    },
+    "p700fa6af59d44989d81f8759": {
+     "domain": "r1_literacy",
+     "key": "L2.5.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.5.1-M1",
+     "settings": null,
+     "skill_id": "L2.5.1"
+    },
+    "p70311a7682bb232fc7ad7686": {
+     "domain": "r1_literacy",
+     "key": "L3.7.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.7.2"
+    },
+    "p70576ff686496e0385c32517": {
+     "domain": "numeracy",
+     "key": "N1.2.4-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N1.2.4-M2",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "p707b79886aaa51607cd783d6": {
+     "domain": "r1_literacy",
+     "key": "L2.7.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.7.3"
+    },
+    "p70a05bbab694dfbbe430683d": {
+     "domain": "numeracy",
+     "key": "N3.2.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.2.3"
+    },
+    "p70b7d9f8888e2b1930213eeb": {
+     "domain": "r1_literacy",
+     "key": "L2.6.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.6.3"
+    },
+    "p711afb1eb6e82f32158de9d2": {
+     "domain": "numeracy",
+     "key": "N0.2.4__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N0.2.4"
+    },
+    "p7122c8d1332186eec9d0a381": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.7.1-M3",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "p713142271b27f569074999d1": {
+     "domain": "numeracy",
+     "key": "N1.3.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.3.3"
+    },
+    "p7138ac4496757742e521111f": {
+     "domain": "numeracy",
+     "key": "N3.3.6__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.3.6"
+    },
+    "p7163a8fc18a50548dd65aa6e": {
+     "domain": "r1_literacy",
+     "key": "L2.5.1-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.5.1-M3",
+     "settings": null,
+     "skill_id": "L2.5.1"
+    },
+    "p718cb206e7ae852ace7360c1": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "p71b719f8d4e3529cb4858f8d": {
+     "domain": "numeracy",
+     "key": "N2.3.6__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.3.6"
+    },
+    "p7296339937a279a2e9201f17": {
+     "domain": "numeracy",
+     "key": "N3.2.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.2.1"
+    },
+    "p72c193c1995f5e87a6622f0e": {
+     "domain": "r1_literacy",
+     "key": "L0.7.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.7.1"
+    },
+    "p73021da68451c40600782a5f": {
+     "domain": "numeracy",
+     "key": "numeracy__rain_and_puddles",
+     "kind": "setting",
+     "length": null,
+     "mode": "rain and puddles",
+     "settings": null,
+     "skill_id": null
+    },
+    "p7356f9d83a990c611e5e1fae": {
+     "domain": "numeracy",
+     "key": "N1.2.3-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N1.2.3-M2",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "p735a450353db31459a36a394": {
+     "domain": "numeracy",
+     "key": "N2.2.2-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.2.2-M1",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "p739e03f4075202c366d66020": {
+     "domain": "numeracy",
+     "key": "N2.3.2-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.2-M1",
+     "settings": null,
+     "skill_id": "N2.3.2"
+    },
+    "p73d55a467a4546925a52da40": {
+     "domain": "numeracy",
+     "key": "N1.3.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.3.2"
+    },
+    "p7416da2c9e3f07acced9065b": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "p7434db5bd7c5bb7ef4805814": {
+     "domain": "r1_literacy",
+     "key": "L3.6.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.6.2"
+    },
+    "p744e764d2a40666e6a71c527": {
+     "domain": "r1_literacy",
+     "key": "L3.6.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.3"
+    },
+    "p74bde752d39b329358a76eee": {
+     "domain": "r1_literacy",
+     "key": "L0.7.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.7.1"
+    },
+    "p7521126418cd47d4b6684dcf": {
+     "domain": "numeracy",
+     "key": "N1.3.1-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N1.3.1-M2",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "p77274ab6e6689ca2a5a796e9": {
+     "domain": "r1_literacy",
+     "key": "L0.2.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.2.1"
+    },
+    "p77741163035e4eb43950725b": {
+     "domain": "r1_literacy",
+     "key": "L1.2.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.2.1"
+    },
+    "p77d41f017e04a181598b0230": {
+     "domain": "r1_literacy",
+     "key": "L1.4.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.4.2"
+    },
+    "p789407514254b9f998cd99d3": {
+     "domain": "r1_literacy",
+     "key": "L3.7.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.7.3"
+    },
+    "p790165416dfaf1dd1fe5a567": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2-M3__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.7.2-M3",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "p790d9c0eeb782a03f73bbab0": {
+     "domain": "numeracy",
+     "key": "N0.1.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.1.3"
+    },
+    "p791c7e153485358c9260d085": {
+     "domain": "r1_literacy",
+     "key": "L0.2.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.2.3"
+    },
+    "p7923f6f850b7cb485bc23561": {
+     "domain": "r1_literacy",
+     "key": "L1.3.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.1"
+    },
+    "p79884ae30c8d67196e8b40c7": {
+     "domain": "r1_literacy",
+     "key": "L3.6.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.6.3"
+    },
+    "p79c354e3b6fb1a6b41f9c74b": {
+     "domain": "numeracy",
+     "key": "N2.4.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.4.1"
+    },
+    "p79fe19bc050a34ebca090f94": {
+     "domain": "numeracy",
+     "key": "N3.5.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.5.1"
+    },
+    "p7a7c75ca53482da0088e6e0d": {
+     "domain": "numeracy",
+     "key": "N0.2.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "p7abae8b9a0b88929ba9e048c": {
+     "domain": "r1_literacy",
+     "key": "L0.1.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.1.3"
+    },
+    "p7be3ce0c776bd1c6cb4aa669": {
+     "domain": "numeracy",
+     "key": "N0.2.2-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N0.2.2-M3",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p7c58c475df875ccb4b335a12": {
+     "domain": "r1_literacy",
+     "key": "L3.4.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.4.1"
+    },
+    "p7cbca59f64343048f43bad41": {
+     "domain": "r1_literacy",
+     "key": "L2.3.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.3.1-M1",
+     "settings": null,
+     "skill_id": "L2.3.1"
+    },
+    "p7d7a0a47b84d981b6b33712e": {
+     "domain": "numeracy",
+     "key": "N0.2.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "p7dc838a92dfd49b1aa0f290f": {
+     "domain": "r1_literacy",
+     "key": "L2.3.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.3.2"
+    },
+    "p7e050be548d40af470fe8df3": {
+     "domain": "numeracy",
+     "key": "N1.5.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.5.2"
+    },
+    "p7e2788184bd3126ec595db99": {
+     "domain": "numeracy",
+     "key": "N2.3.2-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.3.2-M2",
+     "settings": null,
+     "skill_id": "N2.3.2"
+    },
+    "p7e40b8b8bcd2099d3052bc7e": {
+     "domain": "numeracy",
+     "key": "N1.2.5__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.2.5"
+    },
+    "p7e84dbb019c5a7d4c18beebc": {
+     "domain": "r1_literacy",
+     "key": "L3.6.4__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.4"
+    },
+    "p7ec54204f650ed944107da5c": {
+     "domain": "r1_literacy",
+     "key": "L0.2.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.2.2"
+    },
+    "p80085f534d5ddfc989840662": {
+     "domain": "numeracy",
+     "key": "N1.2.3-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N1.2.3-M2",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "p8058bf25d2721fe0ed666d33": {
+     "domain": "r1_literacy",
+     "key": "L3.3.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.3.1"
+    },
+    "p805b137083d28de6c21be6d6": {
+     "domain": "r1_literacy",
+     "key": "L0.1.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.1.2"
+    },
+    "p811bd1b4e4c412e28adf36a2": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "p812e34e844c449272d994ad2": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.7.1-M1",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "p813ebb5e4925a2877f935a2d": {
+     "domain": "numeracy",
+     "key": "N3.2.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.2.2"
+    },
+    "p816f12516c26a5614d9f1743": {
+     "domain": "numeracy",
+     "key": "numeracy__milk_collection",
+     "kind": "setting",
+     "length": null,
+     "mode": "milk collection",
+     "settings": null,
+     "skill_id": null
+    },
+    "p81a247e8a73355d058600280": {
+     "domain": "r1_literacy",
+     "key": "L2.4.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.4.1"
+    },
+    "p824bda8929b801b705da8222": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L0.3.1-M1",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "p82e74dfac6a4bb6462dcf157": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "p82f70226686e6ca800195be5": {
+     "domain": "numeracy",
+     "key": "N3.3.4-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N3.3.4-M1",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "p83785a3234632b87cec01073": {
+     "domain": "r1_literacy",
+     "key": "L3.4.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.4.1"
+    },
+    "p83e11f6a2aa913cc91e3548e": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.3.4-M2",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p841373b2167a5e49175175d7": {
+     "domain": "numeracy",
+     "key": "N1.1.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.1.1"
+    },
+    "p84e7c982d9e2f576ad1db863": {
+     "domain": "numeracy",
+     "key": "N2.3.4-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N2.3.4-M2",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p851f70666d420af2acaa2612": {
+     "domain": "numeracy",
+     "key": "N0.2.3-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N0.2.3-M2",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "p854a808d75d3e66dc49d39bb": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__festival_day",
+     "kind": "setting",
+     "length": null,
+     "mode": "festival day",
+     "settings": null,
+     "skill_id": null
+    },
+    "p85d33c5fbed14df6de0eaa7e": {
+     "domain": "numeracy",
+     "key": "N1.2.4-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N1.2.4-M2",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "p874fd68cd52a6811839fb4c8": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__school_morning_assembly",
+     "kind": "setting",
+     "length": null,
+     "mode": "school morning assembly",
+     "settings": null,
+     "skill_id": null
+    },
+    "p878dd8bfef20daafb4e103a5": {
+     "domain": "numeracy",
+     "key": "N3.3.3-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N3.3.3-M1",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "p87a104bcc4fe561b5a5208e3": {
+     "domain": "numeracy",
+     "key": "N3.3.6__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.6"
+    },
+    "p87ed2a3d4719d468b663464a": {
+     "domain": "numeracy",
+     "key": "numeracy__bangle_stall",
+     "kind": "setting",
+     "length": null,
+     "mode": "bangle stall",
+     "settings": null,
+     "skill_id": null
+    },
+    "p8968060ed5ecbd3ec26fd9d7": {
+     "domain": "numeracy",
+     "key": "N3.6.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.6.2"
+    },
+    "p89a85721a87ddffca63b0884": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.7.1-M2",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "p8a125fdd8d6c0e15708c29a5": {
+     "domain": "numeracy",
+     "key": "numeracy__kite_making",
+     "kind": "setting",
+     "length": null,
+     "mode": "kite making",
+     "settings": null,
+     "skill_id": null
+    },
+    "p8a35a0323511b2b039ecde21": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p8aa988a7f321ff7ca2380a65": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.3.4-M1",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p8aaa0c4abe9a7e38b3b62b92": {
+     "domain": "numeracy",
+     "key": "N2.2.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "p8afa3de572074f81cecb36d0": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_cricket_match",
+     "kind": "setting",
+     "length": null,
+     "mode": "the cricket match",
+     "settings": null,
+     "skill_id": null
+    },
+    "p8ba81f179596073bfe625d2d": {
+     "domain": "r1_literacy",
+     "key": "L0.1.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.1.2"
+    },
+    "p8c0d808c87f0fde5ccb1c1f7": {
+     "domain": "numeracy",
+     "key": "N2.4.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.4.1"
+    },
+    "p8d06e20b0260bea8abdd16f1": {
+     "domain": "numeracy",
+     "key": "N2.2.2-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.2.2-M2",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "p8d2e39a1fefb41f824e4e1d8": {
+     "domain": "numeracy",
+     "key": "N2.5.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.5.1"
+    },
+    "p8d4ed1e28535bd935b25411a": {
+     "domain": "r1_literacy",
+     "key": "L2.3.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.3.2"
+    },
+    "p8e816018e56ba61c6dac13f5": {
+     "domain": "numeracy",
+     "key": "N3.2.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.2.1"
+    },
+    "p8eb15c7870f1bb29a66c34e8": {
+     "domain": "numeracy",
+     "key": "N1.4.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.4.2"
+    },
+    "p8eb1e6b9a3ef8248ac59001a": {
+     "domain": "r1_literacy",
+     "key": "L0.1.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.1.1"
+    },
+    "p8f25e8088038a4cfc039cc0c": {
+     "domain": "numeracy",
+     "key": "N0.2.4__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N0.2.4"
+    },
+    "p8f2a1ca08271c24e291aaf08": {
+     "domain": "numeracy",
+     "key": "N1.2.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.1"
+    },
+    "p8f4497713d8e0eadd6200635": {
+     "domain": "r1_literacy",
+     "key": "L2.4.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.4.2"
+    },
+    "p8fa3070e2516603fc7f78ad3": {
+     "domain": "numeracy",
+     "key": "N0.1.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.1.2"
+    },
+    "p9005fe26fe0165066e0b2b74": {
+     "domain": "numeracy",
+     "key": "N3.2.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.2.3"
+    },
+    "p901eb44d6a0c9f5d6a2fce95": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.3.4-M1",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "p90332de1a3e71a667f497731": {
+     "domain": "numeracy",
+     "key": "N2.3.4-M3__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N2.3.4-M3",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p90b3d02115fcdf8e882553c4": {
+     "domain": "numeracy",
+     "key": "N2.3.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.3"
+    },
+    "p90b85b5f8986bff2ba504fce": {
+     "domain": "numeracy",
+     "key": "N2.2.2-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N2.2.2-M1",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "p91a1179340cba2d0254063c5": {
+     "domain": "r1_literacy",
+     "key": "L2.7.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.7.3"
+    },
+    "p91eed52c5b5a745bded54fc9": {
+     "domain": "numeracy",
+     "key": "N3.5.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.5.1"
+    },
+    "p926ec0615e97209fabfdb929": {
+     "domain": "numeracy",
+     "key": "N1.4.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.4.2"
+    },
+    "p92ae718a492b5cc7ee5f2e4b": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.3.2-M2",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "p92af75256ba8ffe631f90a54": {
+     "domain": "numeracy",
+     "key": "N2.2.2-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.2.2-M2",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "p933e47dc79eed1abc6bbdaaa": {
+     "domain": "numeracy",
+     "key": "numeracy__tree_planting",
+     "kind": "setting",
+     "length": null,
+     "mode": "tree planting",
+     "settings": null,
+     "skill_id": null
+    },
+    "p939d79b08cf3651a27b6c179": {
+     "domain": "numeracy",
+     "key": "N3.2.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.2.1"
+    },
+    "p943d81149b19c104afc0fb88": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "p956d81881579832bbebfb1c6": {
+     "domain": "numeracy",
+     "key": "N2.3.6__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.3.6"
+    },
+    "p95e017af9e978897552654ff": {
+     "domain": "numeracy",
+     "key": "N2.2.4__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.2.4"
+    },
+    "p95ec0c1a1b2614d1d105e0e2": {
+     "domain": "numeracy",
+     "key": "N1.2.5__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.5"
+    },
+    "p961f40cd8e721f0b261eac92": {
+     "domain": "r1_literacy",
+     "key": "L1.6.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.6.1"
+    },
+    "p962ef89c52b8516501bb9946": {
+     "domain": "r1_literacy",
+     "key": "L1.4.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.4.1"
+    },
+    "p96817c2afe78484464613a36": {
+     "domain": "numeracy",
+     "key": "N0.2.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p96d2796c9e4bdea423fa06b0": {
+     "domain": "numeracy",
+     "key": "N3.3.3-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N3.3.3-M1",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "p970451776f5101a0b331c942": {
+     "domain": "numeracy",
+     "key": "N3.3.6__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.6"
+    },
+    "p9763b8fddaa51af3695e01ac": {
+     "domain": "numeracy",
+     "key": "N1.3.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.3.3"
+    },
+    "p976ec5b50b30c0f8c0d297d7": {
+     "domain": "r1_literacy",
+     "key": "L3.5.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.5.2"
+    },
+    "p981c5612e9652cc966982088": {
+     "domain": "numeracy",
+     "key": "N1.3.2-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N1.3.2-M1",
+     "settings": null,
+     "skill_id": "N1.3.2"
+    },
+    "p9827b51c881ac9d2357559b2": {
+     "domain": "r1_literacy",
+     "key": "L1.6.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.6.1"
+    },
+    "p98643ca6594defbac5aa6079": {
+     "domain": "r1_literacy",
+     "key": "L0.2.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.2.1"
+    },
+    "p98baeebd464da73d5dc98c26": {
+     "domain": "r1_literacy",
+     "key": "L2.5.1-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.5.1-M2",
+     "settings": null,
+     "skill_id": "L2.5.1"
+    },
+    "p99072ba256bb584855c4d1ba": {
+     "domain": "numeracy",
+     "key": "N3.4.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.4.3"
+    },
+    "p990de30088cac3e474ab0370": {
+     "domain": "numeracy",
+     "key": "N3.5.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.5.1"
+    },
+    "p996d613864c9f6a435684c84": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.3.2-M1",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "p9a1ad223ba56e3ecdfbf102c": {
+     "domain": "numeracy",
+     "key": "N3.2.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.2.2"
+    },
+    "p9a51aac844ab19eb36ee3b07": {
+     "domain": "r1_literacy",
+     "key": "L0.3.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.3.2"
+    },
+    "p9a652628b7bd4fcb27999495": {
+     "domain": "r1_literacy",
+     "key": "L3.7.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.7.3"
+    },
+    "p9a96c642c9272eccfcbe1687": {
+     "domain": "numeracy",
+     "key": "N2.4.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.4.1"
+    },
+    "p9aa0c7d39e6e89d973f6c721": {
+     "domain": "r1_literacy",
+     "key": "L1.6.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.6.2"
+    },
+    "p9b98d979dc32b953dd9ed1a8": {
+     "domain": "numeracy",
+     "key": "N3.4.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.4.1"
+    },
+    "p9bc6f3f2257507cfcd3def3f": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "p9c0e549eb7bc47147d9b865a": {
+     "domain": "r1_literacy",
+     "key": "L2.5.1-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.5.1-M2",
+     "settings": null,
+     "skill_id": "L2.5.1"
+    },
+    "p9c1c93c15f604bbbaff7b0b8": {
+     "domain": "numeracy",
+     "key": "N3.2.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.2.3"
+    },
+    "p9d0843d9a2c148c10f17f7c8": {
+     "domain": "numeracy",
+     "key": "N0.5.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N0.5.1"
+    },
+    "p9d671ca12c159250b9eb6c54": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "p9da4c4b60f5126a9ecd05b7c": {
+     "domain": "r1_literacy",
+     "key": "L2.6.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.6.1-M1",
+     "settings": null,
+     "skill_id": "L2.6.1"
+    },
+    "p9dd625b43af07ecfdfe54662": {
+     "domain": "numeracy",
+     "key": "N2.3.4-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.4-M2",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "p9e00cd16682b7284e4222bfb": {
+     "domain": "numeracy",
+     "key": "N3.4.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.4.2"
+    },
+    "p9f193b157b78d470aba05157": {
+     "domain": "numeracy",
+     "key": "N1.1.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.1.1"
+    },
+    "p9f4199624699f542bf2b0f8f": {
+     "domain": "numeracy",
+     "key": "N0.2.2-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N0.2.2-M1",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "p9f56e55e21919578cd5081fa": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L0.3.1-M1",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "p9f9299d1c960425823fea8a3": {
+     "domain": "numeracy",
+     "key": "N3.3.3-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N3.3.3-M2",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "pa07a65faf9e2520884954509": {
+     "domain": "r1_literacy",
+     "key": "L3.6.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.2"
+    },
+    "pa09ee1e187f3b45a44c02f46": {
+     "domain": "numeracy",
+     "key": "N0.2.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "pa0aa04077d1f7bf218fa69e6": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "pa0dfc8a6a39bfa6716b25996": {
+     "domain": "numeracy",
+     "key": "N3.3.6-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N3.3.6-M1",
+     "settings": null,
+     "skill_id": "N3.3.6"
+    },
+    "pa10c0ae963b6adfd285b2d69": {
+     "domain": "numeracy",
+     "key": "N2.3.4-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.4-M1",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "pa148a81cb09a674965dd6be6": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.7.2-M2",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "pa19aa6e5984395e7a2189e10": {
+     "domain": "numeracy",
+     "key": "N1.2.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.2.1"
+    },
+    "pa2327eca819a3980d7fec0a9": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L3.7.1-M3",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "pa245ef090dd8b7a1fc0c4f1c": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "pa28515e4c44364592746c255": {
+     "domain": "r1_literacy",
+     "key": "L3.7.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.7.2"
+    },
+    "pa31b60f0cadf26117e39d8ef": {
+     "domain": "numeracy",
+     "key": "N2.6.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.6.1"
+    },
+    "pa3a468f7b3b68e7e0988848f": {
+     "domain": "numeracy",
+     "key": "N3.6.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.6.2"
+    },
+    "pa407f9f25a7d5890ec0ecc05": {
+     "domain": "numeracy",
+     "key": "N0.1.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N0.1.2"
+    },
+    "pa416d49f53a600e6b0ab43da": {
+     "domain": "r1_literacy",
+     "key": "L2.4.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.4.1"
+    },
+    "pa455907a459bd27701d481d9": {
+     "domain": "numeracy",
+     "key": "N1.3.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "pa5364c1cff314b26df56d774": {
+     "domain": "numeracy",
+     "key": "N2.4.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.4.3"
+    },
+    "pa56167ed07c0dbd7bb9a3ea0": {
+     "domain": "numeracy",
+     "key": "N2.3.5__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "pa5620eb1781a37d89f9926a2": {
+     "domain": "numeracy",
+     "key": "N3.3.4-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N3.3.4-M1",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "pa5a89126bcf687fd0a738711": {
+     "domain": "numeracy",
+     "key": "N2.6.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.6.1"
+    },
+    "pa63fef5f562c6bec8b69138a": {
+     "domain": "r1_literacy",
+     "key": "L0.1.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.1.2"
+    },
+    "pa76627818778b7579a10ec2b": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L3.7.1-M1",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "pa7ff70d024295817a474918c": {
+     "domain": "r1_literacy",
+     "key": "L0.2.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.2.3"
+    },
+    "pa86097ef43eacf6cb5e23293": {
+     "domain": "numeracy",
+     "key": "N1.2.5__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.2.5"
+    },
+    "pa8841847e6fa5792b5d1feaf": {
+     "domain": "r1_literacy",
+     "key": "L0.7.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.7.2"
+    },
+    "pa968f21b05d0c6a02d573080": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.7.2-M1",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "pa9799a046e75ff4f9ccabb04": {
+     "domain": "r1_literacy",
+     "key": "L2.4.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.4.2"
+    },
+    "pa981a7664c57440282bd3773": {
+     "domain": "numeracy",
+     "key": "N3.4.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.4.3"
+    },
+    "pa9a0de039830a72073a8e2a2": {
+     "domain": "numeracy",
+     "key": "N0.2.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "pa9bb8da7dbca9c497304d161": {
+     "domain": "numeracy",
+     "key": "N3.3.5-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N3.3.5-M2",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "pa9c5d7af3fd876e1474f381e": {
+     "domain": "numeracy",
+     "key": "N2.2.2-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N2.2.2-M2",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "paa98690e85ec7d10760906fb": {
+     "domain": "r1_literacy",
+     "key": "L2.3.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.3.3"
+    },
+    "paadef6559ad2831318747167": {
+     "domain": "numeracy",
+     "key": "N1.3.1-M3__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N1.3.1-M3",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "pac43d35963ae4a9b199e278b": {
+     "domain": "numeracy",
+     "key": "N3.6.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.6.1"
+    },
+    "pac5c88fc412583bfdea488ba": {
+     "domain": "r1_literacy",
+     "key": "L2.6.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.6.1"
+    },
+    "pac84cd3014ff26bf59dcf932": {
+     "domain": "numeracy",
+     "key": "N1.2.4__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "pac9c7489aa65c01286c88e1b": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_post_office",
+     "kind": "setting",
+     "length": null,
+     "mode": "the post office",
+     "settings": null,
+     "skill_id": null
+    },
+    "pad9cd7b7f3719709d01df070": {
+     "domain": "numeracy",
+     "key": "N3.4.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.4.3"
+    },
+    "pae124f8ca7c0d4e64b8e33f8": {
+     "domain": "r1_literacy",
+     "key": "L1.6.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.6.2"
+    },
+    "pae33fc23eca083b155ccf8af": {
+     "domain": "r1_literacy",
+     "key": "L3.6.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.3"
+    },
+    "pae4b232d5c6c053752cee336": {
+     "domain": "numeracy",
+     "key": "N1.5.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.5.2"
+    },
+    "pae5747645b39351f4bfb7d1b": {
+     "domain": "numeracy",
+     "key": "N1.2.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "pae60f5750d0d977227efcd1e": {
+     "domain": "numeracy",
+     "key": "N1.2.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.1"
+    },
+    "paed20c9e51ece09a028e1626": {
+     "domain": "numeracy",
+     "key": "N2.3.6__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.6"
+    },
+    "paf814dc4a1a68f7be54fd2ba": {
+     "domain": "numeracy",
+     "key": "N1.3.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "pb024928ec05e4eb135600e75": {
+     "domain": "numeracy",
+     "key": "N3.3.6__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.3.6"
+    },
+    "pb07f0880975b43a8156cfe17": {
+     "domain": "r1_literacy",
+     "key": "L2.5.1-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.5.1-M3",
+     "settings": null,
+     "skill_id": "L2.5.1"
+    },
+    "pb08265797fc12a13d8d2e124": {
+     "domain": "numeracy",
+     "key": "N1.3.2-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N1.3.2-M1",
+     "settings": null,
+     "skill_id": "N1.3.2"
+    },
+    "pb1b192259a9511e173552792": {
+     "domain": "numeracy",
+     "key": "N1.2.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.2"
+    },
+    "pb1e737a5fd7b2453f7601fb7": {
+     "domain": "r1_literacy",
+     "key": "L1.3.4__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.4"
+    },
+    "pb245928961152f454afa9009": {
+     "domain": "r1_literacy",
+     "key": "L1.2.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.2.1"
+    },
+    "pb35eedaf9d779ec2bc6e8dc2": {
+     "domain": "r1_literacy",
+     "key": "L0.3.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.3.1"
+    },
+    "pb365459e85c562f13366e278": {
+     "domain": "numeracy",
+     "key": "numeracy__farm_harvest",
+     "kind": "setting",
+     "length": null,
+     "mode": "farm harvest",
+     "settings": null,
+     "skill_id": null
+    },
+    "pb389e8ce5804cd2b59e2cf02": {
+     "domain": "numeracy",
+     "key": "N3.3.6__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.6"
+    },
+    "pb4709586be26dfbe6ca6f9ed": {
+     "domain": "r1_literacy",
+     "key": "L1.2.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.2.2"
+    },
+    "pb4bb12ddc90b13581dc7c6bc": {
+     "domain": "numeracy",
+     "key": "N1.4.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.4.1"
+    },
+    "pb4dc7ebe53d233db074245cd": {
+     "domain": "numeracy",
+     "key": "numeracy__fishing_pond",
+     "kind": "setting",
+     "length": null,
+     "mode": "fishing pond",
+     "settings": null,
+     "skill_id": null
+    },
+    "pb555494ce3220902fd6fc299": {
+     "domain": "numeracy",
+     "key": "N2.2.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.2.3"
+    },
+    "pb5d32f2462fd53a5333d2332": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.3.3-M2",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "pb5e15c8eeb8575e4156b8368": {
+     "domain": "numeracy",
+     "key": "N1.3.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.3.2"
+    },
+    "pb62f4eb7d7c31f85c751959e": {
+     "domain": "numeracy",
+     "key": "N0.2.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "pb6c874db8f85da1b3a4c7885": {
+     "domain": "numeracy",
+     "key": "N2.2.4__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.2.4"
+    },
+    "pb6fd778f0dc1e05778f76993": {
+     "domain": "numeracy",
+     "key": "N2.3.2-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.2-M3",
+     "settings": null,
+     "skill_id": "N2.3.2"
+    },
+    "pb74423d1fc63532e9c7cd165": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L3.7.1-M2",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "pb797bc420904798909dac5a7": {
+     "domain": "numeracy",
+     "key": "N2.3.2-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N2.3.2-M2",
+     "settings": null,
+     "skill_id": "N2.3.2"
+    },
+    "pb8051e1c462262d493a0217f": {
+     "domain": "numeracy",
+     "key": "N2.4.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.4.2"
+    },
+    "pb85008ba7d80b53ddd552045": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.7.2-M3",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "pb8562c228e0271ee90f0b16b": {
+     "domain": "numeracy",
+     "key": "N2.2.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.2.3"
+    },
+    "pb8ccd1bb5baf0362b9eb9270": {
+     "domain": "r1_literacy",
+     "key": "L2.7.2-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.7.2-M2",
+     "settings": null,
+     "skill_id": "L2.7.2"
+    },
+    "pb95613f549a0d871bde7724a": {
+     "domain": "r1_literacy",
+     "key": "L2.3.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.3.2"
+    },
+    "pb9b9e7e4105527b773ba576c": {
+     "domain": "numeracy",
+     "key": "N3.3.4__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "pba0e89b8f0b104c9eec0196c": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L3.6.1-M1",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "pba410584bcb13f29e189f997": {
+     "domain": "numeracy",
+     "key": "N2.3.5__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.3.5"
+    },
+    "pba603b6975d4a75820712dec": {
+     "domain": "numeracy",
+     "key": "N1.2.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N1.2.2"
+    },
+    "pbadf61fe144bbe10364032aa": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.7.1-M3",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "pbb00ff616081eb1bee151c75": {
+     "domain": "r1_literacy",
+     "key": "L1.3.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.1"
+    },
+    "pbb7cc3815a1a06d22bd67de8": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "pbbb07707d88e88d4d697c2bc": {
+     "domain": "r1_literacy",
+     "key": "L0.1.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.1.3"
+    },
+    "pbbc47061ceed20adccd9c14f": {
+     "domain": "numeracy",
+     "key": "N3.5.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.5.1"
+    },
+    "pbc1c363d435cbdacf2e697bb": {
+     "domain": "r1_literacy",
+     "key": "L3.5.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.5.2"
+    },
+    "pbc90fa20f53c7392ecfccdb3": {
+     "domain": "numeracy",
+     "key": "N3.3.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.2"
+    },
+    "pbca5e8a9f16ae141bc37c74a": {
+     "domain": "r1_literacy",
+     "key": "L2.7.2-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.7.2-M1",
+     "settings": null,
+     "skill_id": "L2.7.2"
+    },
+    "pbcdb5ee90143170f4419b23c": {
+     "domain": "numeracy",
+     "key": "N3.5.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.5.2"
+    },
+    "pbce3401c53ba217c831db492": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "pbd75416dbd213cf545cf1610": {
+     "domain": "numeracy",
+     "key": "N2.2.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.2.3"
+    },
+    "pbd94442d69b5d77b8ebad7de": {
+     "domain": "r1_literacy",
+     "key": "L1.6.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.6.1"
+    },
+    "pbd969016551facf1e6af42f4": {
+     "domain": "numeracy",
+     "key": "numeracy__cricket_match",
+     "kind": "setting",
+     "length": null,
+     "mode": "cricket match",
+     "settings": null,
+     "skill_id": null
+    },
+    "pbe070119548afa59fefa1ca7": {
+     "domain": "numeracy",
+     "key": "N1.2.5__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.5"
+    },
+    "pbf4bb792e463cc8af35316b3": {
+     "domain": "numeracy",
+     "key": "N3.5.2-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N3.5.2-M1",
+     "settings": null,
+     "skill_id": "N3.5.2"
+    },
+    "pbf5c9b079c564a8cf0a52fc0": {
+     "domain": "numeracy",
+     "key": "N3.3.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "pbfcf6aa731928dfcbc051d74": {
+     "domain": "numeracy",
+     "key": "N3.3.5__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "pc00ed720bef1fb8ed49a959e": {
+     "domain": "numeracy",
+     "key": "numeracy__post_office",
+     "kind": "setting",
+     "length": null,
+     "mode": "post office",
+     "settings": null,
+     "skill_id": null
+    },
+    "pc07f438d3a9a5be50fa80ef9": {
+     "domain": "numeracy",
+     "key": "N1.3.1-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N1.3.1-M3",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "pc0800e7cd33989826468ce59": {
+     "domain": "numeracy",
+     "key": "N1.2.6__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.6"
+    },
+    "pc1ab4bcac550094fe7dc5d8c": {
+     "domain": "r1_literacy",
+     "key": "L1.6.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.6.2"
+    },
+    "pc1b3ce097198f246c4c8ec52": {
+     "domain": "numeracy",
+     "key": "N3.2.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.2.3"
+    },
+    "pc242a89fab9671c15aee82e3": {
+     "domain": "r1_literacy",
+     "key": "L2.7.2-M3__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.7.2-M3",
+     "settings": null,
+     "skill_id": "L2.7.2"
+    },
+    "pc2c1b8c8a7218510bc046c05": {
+     "domain": "r1_literacy",
+     "key": "L2.4.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.4.2"
+    },
+    "pc33af74a04b8958f5d9649c6": {
+     "domain": "numeracy",
+     "key": "N2.2.2-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N2.2.2-M1",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "pc355998520bf1a1c8404b55a": {
+     "domain": "r1_literacy",
+     "key": "L1.2.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.2.1"
+    },
+    "pc39e3401fb4a045816b5dc91": {
+     "domain": "numeracy",
+     "key": "N3.3.5-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N3.3.5-M2",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "pc44600616ba7c0371fe431a2": {
+     "domain": "numeracy",
+     "key": "N3.4.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.4.2"
+    },
+    "pc45670f1f22d63cfbaaa7a91": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.3.2-M1",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "pc4a9591ad67354168d86f599": {
+     "domain": "r1_literacy",
+     "key": "L2.4.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.4.1"
+    },
+    "pc62bbaec167ec79bd5b2cef0": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.7.2-M3",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "pc66edb04eef34c4bad829127": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.3.3-M2",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "pc777dda4aae58f47a867bc61": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L3.6.1-M2",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "pc7c132804e36c85a7db1d785": {
+     "domain": "r1_literacy",
+     "key": "L2.4.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.4.2"
+    },
+    "pc8b417b7753d8d6667bf8c4d": {
+     "domain": "numeracy",
+     "key": "N0.2.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.1"
+    },
+    "pc9e49589f0ec5ecd55edf7ba": {
+     "domain": "r1_literacy",
+     "key": "L2.6.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.6.2"
+    },
+    "pca039e71a53dc2b98a3387c2": {
+     "domain": "r1_literacy",
+     "key": "L2.5.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.5.2"
+    },
+    "pcacbf6b42fc891269bd46cfe": {
+     "domain": "numeracy",
+     "key": "N1.2.4-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N1.2.4-M1",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "pcaf681d0d795bcadf651384a": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1-M3__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L3.7.1-M3",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "pcb13bdb3f63821e9c37667b1": {
+     "domain": "numeracy",
+     "key": "N1.5.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.5.2"
+    },
+    "pcb4b519eef2cd099d608d676": {
+     "domain": "r1_literacy",
+     "key": "L2.3.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.3.2"
+    },
+    "pcb6d10c61b1879953f14903e": {
+     "domain": "r1_literacy",
+     "key": "L3.7.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.7.3"
+    },
+    "pcbf39291eaf2d89f1a5feeca": {
+     "domain": "numeracy",
+     "key": "N1.4.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.4.1"
+    },
+    "pcbf642c7f0b410ec88fdd7fd": {
+     "domain": "numeracy",
+     "key": "N0.2.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "pcc14dc172cfdd5a9dfc65407": {
+     "domain": "r1_literacy",
+     "key": "L0.1.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.1.2"
+    },
+    "pcc782104410d81579a3ca9e8": {
+     "domain": "numeracy",
+     "key": "N3.4.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.4.3"
+    },
+    "pcd8ee55a0e056406c7874726": {
+     "domain": "numeracy",
+     "key": "N2.3.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.3.3"
+    },
+    "pcf9b79993fad03cab3155b52": {
+     "domain": "numeracy",
+     "key": "N1.5.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.5.1"
+    },
+    "pd069b9a4c9ccc818a82c2986": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "pd23ce806550d3e40e27b2405": {
+     "domain": "numeracy",
+     "key": "N2.2.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "pd2918bf42c475cd4cfddb6ae": {
+     "domain": "numeracy",
+     "key": "N3.2.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.2.1"
+    },
+    "pd2a7c8d3d3c0ff91ad7d4927": {
+     "domain": "numeracy",
+     "key": "N1.3.2-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N1.3.2-M1",
+     "settings": null,
+     "skill_id": "N1.3.2"
+    },
+    "pd2ac3e5b6790e4b1ec8b9bbe": {
+     "domain": "numeracy",
+     "key": "N3.3.3-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N3.3.3-M2",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "pd2bcd66d4f44ca6255a59a25": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L3.7.1-M1",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "pd2e83488f1c3905bb3104cfc": {
+     "domain": "numeracy",
+     "key": "N0.5.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.5.1"
+    },
+    "pd31c3119d33b70d457da5e76": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2-M3__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.3.2-M3",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "pd405346abab7866cac3aa62d": {
+     "domain": "r1_literacy",
+     "key": "L3.4.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.4.1"
+    },
+    "pd5a199179ad04ad0685200fe": {
+     "domain": "r1_literacy",
+     "key": "L0.7.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.7.2"
+    },
+    "pd840d866693c681c2ed1b2a5": {
+     "domain": "numeracy",
+     "key": "N2.2.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.2.3"
+    },
+    "pd84fcb69d0e743f1d81fec9d": {
+     "domain": "numeracy",
+     "key": "N2.3.4-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N2.3.4-M1",
+     "settings": null,
+     "skill_id": "N2.3.4"
+    },
+    "pd8654ca7d9e8374c4150249d": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.7.2-M2",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "pd93ced6afcf73ffde778560c": {
+     "domain": "r1_literacy",
+     "key": "L1.7.1__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.7.1"
+    },
+    "pd9731033b27d9cbc895446a3": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "pd9daff0fa0b0c7264f44fae1": {
+     "domain": "numeracy",
+     "key": "N2.4.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.4.3"
+    },
+    "pd9f9f14e98ee5e764bcd27f2": {
+     "domain": "numeracy",
+     "key": "N1.1.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.1.1"
+    },
+    "pdae17dfbbf85017629401247": {
+     "domain": "r1_literacy",
+     "key": "L3.6.4__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.6.4"
+    },
+    "pdb3d9fd801cf94183ccb16dc": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.7.1-M1",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "pdb6d0c181db7e3cb84825c5a": {
+     "domain": "r1_literacy",
+     "key": "L1.2.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.2.2"
+    },
+    "pdbca4232b109b7ddd1816217": {
+     "domain": "r1_literacy",
+     "key": "L3.6.4__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.4"
+    },
+    "pdbca86fff40d2435a4cbc554": {
+     "domain": "numeracy",
+     "key": "numeracy__classroom_library",
+     "kind": "setting",
+     "length": null,
+     "mode": "classroom library",
+     "settings": null,
+     "skill_id": null
+    },
+    "pdc0501f70d87b9aa8fa69912": {
+     "domain": "numeracy",
+     "key": "N3.3.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "pdc06f12ef88ba600165814fd": {
+     "domain": "numeracy",
+     "key": "N3.3.5-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N3.3.5-M1",
+     "settings": null,
+     "skill_id": "N3.3.5"
+    },
+    "pdc460b1946f05872df2258a4": {
+     "domain": "r1_literacy",
+     "key": "L3.7.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.7.1"
+    },
+    "pdd9ab9f207cf5b01d8c3ce31": {
+     "domain": "numeracy",
+     "key": "N3.3.1-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N3.3.1-M1",
+     "settings": null,
+     "skill_id": "N3.3.1"
+    },
+    "pde8089a1bc5c43d71e55a012": {
+     "domain": "r1_literacy",
+     "key": "L1.7.2-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.7.2-M2",
+     "settings": null,
+     "skill_id": "L1.7.2"
+    },
+    "pdedab2380a3d3f44a15e8e04": {
+     "domain": "numeracy",
+     "key": "N3.3.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N3.3.1-M1",
+     "settings": null,
+     "skill_id": "N3.3.1"
+    },
+    "pdfd0831951b6ba74f1d7d0dc": {
+     "domain": "numeracy",
+     "key": "N2.2.4__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.2.4"
+    },
+    "pdff0195e2d2365bc07dd5df0": {
+     "domain": "r1_literacy",
+     "key": "L3.6.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.2"
+    },
+    "pdff995807e251995ce7c1d02": {
+     "domain": "numeracy",
+     "key": "N0.1.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N0.1.2"
+    },
+    "pe035d14273e6ab6e62688287": {
+     "domain": "r1_literacy",
+     "key": "L0.2.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.2.3"
+    },
+    "pe08fabddfdba50a214e48b47": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.3.2-M3",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "pe14f6792fd2d911769b82a7a": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L2.7.1-M1",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "pe167345412426a4bf2a6378e": {
+     "domain": "r1_literacy",
+     "key": "L2.3.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.3.3"
+    },
+    "pe1886cf62419f5f7270facaf": {
+     "domain": "numeracy",
+     "key": "N0.2.2-M3__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N0.2.2-M3",
+     "settings": null,
+     "skill_id": "N0.2.2"
+    },
+    "pe1af9996c914b7c99b1647db": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.3.2-M1",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "pe2527c1f49439549447e1f10": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__making_rotis",
+     "kind": "setting",
+     "length": null,
+     "mode": "making rotis",
+     "settings": null,
+     "skill_id": null
+    },
+    "pe2c9e4854d6e1448a054a9d3": {
+     "domain": "numeracy",
+     "key": "N1.3.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.3.2"
+    },
+    "pe2e45299a246baf713338a96": {
+     "domain": "numeracy",
+     "key": "N3.4.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.4.3"
+    },
+    "pe30384212dec2ff826d288bb": {
+     "domain": "r1_literacy",
+     "key": "L0.1.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.1.2"
+    },
+    "pe30712d6590f3713887378bb": {
+     "domain": "r1_literacy",
+     "key": "L2.6.2-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.6.2-M1",
+     "settings": null,
+     "skill_id": "L2.6.2"
+    },
+    "pe30e10ed5bddc083334873a4": {
+     "domain": "numeracy",
+     "key": "N1.2.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.2.3"
+    },
+    "pe3966b6d4339abe705c19fe3": {
+     "domain": "numeracy",
+     "key": "N2.4.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N2.4.2"
+    },
+    "pe452021c2ec0e073f5ea3675": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "pe4998f9f0869af9176e18fc0": {
+     "domain": "numeracy",
+     "key": "N2.3.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N2.3.1-M1",
+     "settings": null,
+     "skill_id": "N2.3.1"
+    },
+    "pe499c7750a082ce2afcfbebe": {
+     "domain": "r1_literacy",
+     "key": "L2.5.1-M2__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.5.1-M2",
+     "settings": null,
+     "skill_id": "L2.5.1"
+    },
+    "pe4ed59bb237d8107ec319abb": {
+     "domain": "numeracy",
+     "key": "N3.3.3-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N3.3.3-M1",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "pe539ee26948774427fafe01f": {
+     "domain": "numeracy",
+     "key": "N3.3.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.3.3"
+    },
+    "pe576e7812056429970dd8ce5": {
+     "domain": "r1_literacy",
+     "key": "L1.6.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.6.1"
+    },
+    "pe5a75ab57209695df3c6749c": {
+     "domain": "numeracy",
+     "key": "numeracy__school_sports_day",
+     "kind": "setting",
+     "length": null,
+     "mode": "school sports day",
+     "settings": null,
+     "skill_id": null
+    },
+    "pe6f8f02f6e5ca81f3bcb2ecd": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L1.3.3-M2",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "pe6f96d3c0ea3c000684310cd": {
+     "domain": "numeracy",
+     "key": "N3.4.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.4.1"
+    },
+    "pe803f836cc7b431efdea9307": {
+     "domain": "numeracy",
+     "key": "N1.2.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N1.2.1"
+    },
+    "pe86353245d8065d17f0b1baa": {
+     "domain": "numeracy",
+     "key": "N3.4.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.4.2"
+    },
+    "pe88386e05b78e0e0f65d87ee": {
+     "domain": "numeracy",
+     "key": "N2.2.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "pe88da60d7a742593df95d045": {
+     "domain": "r1_literacy",
+     "key": "L1.2.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.2.2"
+    },
+    "pe98b1dafb83e8bb418022103": {
+     "domain": "numeracy",
+     "key": "N2.4.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.4.2"
+    },
+    "pe9bddf35c81a143e22623b70": {
+     "domain": "numeracy",
+     "key": "N3.5.2-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "N3.5.2-M1",
+     "settings": null,
+     "skill_id": "N3.5.2"
+    },
+    "peaaf0a5580242fdd30f8733e": {
+     "domain": "r1_literacy",
+     "key": "L2.6.2-M1__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "L2.6.2-M1",
+     "settings": null,
+     "skill_id": "L2.6.2"
+    },
+    "peb1e64879d8e348d596ea6ac": {
+     "domain": "numeracy",
+     "key": "N2.3.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.3"
+    },
+    "peb78a8f3b246bbf9d5327ef5": {
+     "domain": "numeracy",
+     "key": "N0.2.4__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.2.4"
+    },
+    "pec078cf3ac0e2c36b42a3906": {
+     "domain": "r1_literacy",
+     "key": "L2.5.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.5.1-M1",
+     "settings": null,
+     "skill_id": "L2.5.1"
+    },
+    "pec86e80fedc33d64e9c38531": {
+     "domain": "numeracy",
+     "key": "N0.2.3-M2__long",
+     "kind": "reteach",
+     "length": "long",
+     "mode": "N0.2.3-M2",
+     "settings": null,
+     "skill_id": "N0.2.3"
+    },
+    "pec8e549fd5a5e0dcf1628208": {
+     "domain": "r1_literacy",
+     "key": "L2.7.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.7.1"
+    },
+    "pedfe7ccb337faaf99b83873e": {
+     "domain": "r1_literacy",
+     "key": "L1.3.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.3.1"
+    },
+    "pee2d00f5f0f761f24cc64d7a": {
+     "domain": "r1_literacy",
+     "key": "L1.4.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.4.1"
+    },
+    "peebd7796a82828e0c6e99dd7": {
+     "domain": "numeracy",
+     "key": "N3.5.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.5.2"
+    },
+    "peefe0d432a3f5e2921f73cd2": {
+     "domain": "numeracy",
+     "key": "N2.3.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N2.3.3"
+    },
+    "pef0abfe9290e9b0447478347": {
+     "domain": "r1_literacy",
+     "key": "L1.3.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.2"
+    },
+    "pef181c3124ad1a67173cea1b": {
+     "domain": "r1_literacy",
+     "key": "L0.3.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.3.2"
+    },
+    "pef8142e6b0598f7a0548b4f3": {
+     "domain": "r1_literacy",
+     "key": "L2.6.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.6.2"
+    },
+    "pef89e52073be17f853c3d374": {
+     "domain": "numeracy",
+     "key": "N3.3.4-M2__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "N3.3.4-M2",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "pef9494c70ef5872b34cb974e": {
+     "domain": "r1_literacy",
+     "key": "L0.7.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.7.1"
+    },
+    "pefe97dcbf300b5523a9573ca": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L1.3.3-M1",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "pf022228fe1d200a73dde5ab1": {
+     "domain": "r1_literacy",
+     "key": "L1.3.1__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L1.3.1"
+    },
+    "pf0433c6eaebd6f9274951dd2": {
+     "domain": "numeracy",
+     "key": "N1.4.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.4.2"
+    },
+    "pf05989d55fe201d5ae512693": {
+     "domain": "r1_literacy",
+     "key": "L2.6.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.6.1"
+    },
+    "pf083ae10516082218ecf27e6": {
+     "domain": "numeracy",
+     "key": "N3.6.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.6.2"
+    },
+    "pf08fc08dc9c45f15f50bec55": {
+     "domain": "r1_literacy",
+     "key": "L2.6.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.6.3"
+    },
+    "pf11bf403fe2850158cd170be": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_kite_contest",
+     "kind": "setting",
+     "length": null,
+     "mode": "the kite contest",
+     "settings": null,
+     "skill_id": null
+    },
+    "pf1788a8c0ea434062f3bbc9f": {
+     "domain": "r1_literacy",
+     "key": "L0.1.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.1.1"
+    },
+    "pf21ccf3261482c538863390c": {
+     "domain": "r1_literacy",
+     "key": "L2.6.1-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L2.6.1-M1",
+     "settings": null,
+     "skill_id": "L2.6.1"
+    },
+    "pf26e4e460ab96f6eb29dc765": {
+     "domain": "r1_literacy",
+     "key": "L3.7.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L3.7.3"
+    },
+    "pf28ac841eca8155c84022dec": {
+     "domain": "numeracy",
+     "key": "N2.3.6__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.3.6"
+    },
+    "pf2fd5b021ccfc79480b16a5e": {
+     "domain": "r1_literacy",
+     "key": "L3.6.4__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.6.4"
+    },
+    "pf339407ce8e075c99b55faeb": {
+     "domain": "numeracy",
+     "key": "N0.5.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.5.1"
+    },
+    "pf36ec7bd7588e3c53bfbb8a2": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_tailor_s_shop",
+     "kind": "setting",
+     "length": null,
+     "mode": "the tailor's shop",
+     "settings": null,
+     "skill_id": null
+    },
+    "pf3e1c77dd4b8c634724df255": {
+     "domain": "numeracy",
+     "key": "N1.3.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.3.1"
+    },
+    "pf410509d25f206f30547c0bf": {
+     "domain": "r1_literacy",
+     "key": "L3.5.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.5.2"
+    },
+    "pf4c43add7828383dee8d1a00": {
+     "domain": "numeracy",
+     "key": "N3.3.4__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "pf52392f30b2313f16fe19607": {
+     "domain": "numeracy",
+     "key": "N2.2.4__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.2.4"
+    },
+    "pf62e5dea8bb46d64ed722048": {
+     "domain": "numeracy",
+     "key": "N3.6.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "N3.6.1"
+    },
+    "pf6f5bb523f0c4d2346c736f2": {
+     "domain": "numeracy",
+     "key": "N1.2.4__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.4"
+    },
+    "pf738f73b0e4f0af200e9df5b": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1-M1__medium",
+     "kind": "reteach",
+     "length": "medium",
+     "mode": "L3.6.1-M1",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    },
+    "pf7accae92c52030ab9ba02cc": {
+     "domain": "numeracy",
+     "key": "N3.4.2__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.4.2"
+    },
+    "pf815048ca7fc77e7378c3e7b": {
+     "domain": "r1_literacy",
+     "key": "L3.6.2__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.6.2"
+    },
+    "pf960f55d713d8d6288139146": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_class_picnic",
+     "kind": "setting",
+     "length": null,
+     "mode": "the class picnic",
+     "settings": null,
+     "skill_id": null
+    },
+    "pf9747abcd17f990131d98ab5": {
+     "domain": "numeracy",
+     "key": "N2.2.2__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N2.2.2"
+    },
+    "pf9c5d2cca9500271ee502b26": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__rainy_season",
+     "kind": "setting",
+     "length": null,
+     "mode": "rainy season",
+     "settings": null,
+     "skill_id": null
+    },
+    "pf9e0b8364045c06942b10dcf": {
+     "domain": "numeracy",
+     "key": "numeracy__shop_counting_stock",
+     "kind": "setting",
+     "length": null,
+     "mode": "shop counting stock",
+     "settings": null,
+     "skill_id": null
+    },
+    "pfa0466e761a6a482923bda82": {
+     "domain": "numeracy",
+     "key": "N3.3.4__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "N3.3.4"
+    },
+    "pfa1d9237f1e844f3dc150c8c": {
+     "domain": "r1_literacy",
+     "key": "L2.6.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L2.6.2"
+    },
+    "pfa22e4357e8e02c613a63eb7": {
+     "domain": "r1_literacy",
+     "key": "L0.3.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L0.3.2"
+    },
+    "pfa3e195e30a7a6bc19741989": {
+     "domain": "r1_literacy",
+     "key": "L1.7.1__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.7.1"
+    },
+    "pfa54cf4b034df0716fd95e1b": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__a_visit_to_the_doctor",
+     "kind": "setting",
+     "length": null,
+     "mode": "a visit to the doctor",
+     "settings": null,
+     "skill_id": null
+    },
+    "pfab5b8bd6d43c791a1ea8e98": {
+     "domain": "r1_literacy",
+     "key": "L0.2.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L0.2.3"
+    },
+    "pfb2b9019e72412cb62ee5268": {
+     "domain": "numeracy",
+     "key": "numeracy__school_canteen",
+     "kind": "setting",
+     "length": null,
+     "mode": "school canteen",
+     "settings": null,
+     "skill_id": null
+    },
+    "pfbe4c46bfbcee7b134d168ba": {
+     "domain": "r1_literacy",
+     "key": "L2.3.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L2.3.3"
+    },
+    "pfc14baccda1a3c44cfa1bdda": {
+     "domain": "r1_literacy",
+     "key": "L1.7.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L1.7.1"
+    },
+    "pfc1e4ef5cd7563461b2ad5e4": {
+     "domain": "r1_literacy",
+     "key": "L3.6.3__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L3.6.3"
+    },
+    "pfc473f8dfcfe14550fdc6a2b": {
+     "domain": "numeracy",
+     "key": "N1.2.6__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.2.6"
+    },
+    "pfd4ce9cee4e5b2cd524bc043": {
+     "domain": "numeracy",
+     "key": "N0.1.3__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.1.3"
+    },
+    "pfd5606de0869f59d70776ed3": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "pfdc5f78e32b960ff561c3dd6": {
+     "domain": "r1_literacy",
+     "key": "L3.5.2__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.5.2"
+    },
+    "pfe3c80b24f3d7ced738c0b0e": {
+     "domain": "r1_literacy",
+     "key": "L0.7.1__2",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 2",
+     "settings": null,
+     "skill_id": "L0.7.1"
+    },
+    "pfe5727aee077e9b0b5a6864c": {
+     "domain": "r1_literacy",
+     "key": "L2.3.3__1",
+     "kind": "independent",
+     "length": null,
+     "mode": "variant 1",
+     "settings": null,
+     "skill_id": "L2.3.3"
+    },
+    "pfeba0381e898b63ae9b1b31b": {
+     "domain": "numeracy",
+     "key": "N0.5.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N0.5.1"
+    },
+    "pff17c8ebd3124e3a3fd21200": {
+     "domain": "numeracy",
+     "key": "N1.3.3__normal__long",
+     "kind": "teach",
+     "length": "long",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N1.3.3"
+    },
+    "pff60850bd817a1bbcc7079d3": {
+     "domain": "r1_literacy",
+     "key": "L1.3.3-M1__short",
+     "kind": "reteach",
+     "length": "short",
+     "mode": "L1.3.3-M1",
+     "settings": null,
+     "skill_id": "L1.3.3"
+    },
+    "pff91c50fdfdc6d9002efe94b": {
+     "domain": "r1_literacy",
+     "key": "r1_literacy__the_old_banyan_tree",
+     "kind": "setting",
+     "length": null,
+     "mode": "the old banyan tree",
+     "settings": null,
+     "skill_id": null
+    },
+    "pffd06648710f1f18992691e6": {
+     "domain": "numeracy",
+     "key": "N3.3.2__normal__short",
+     "kind": "teach",
+     "length": "short",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "N3.3.2"
+    },
+    "pfff58272ce5fa592ab08bc3a": {
+     "domain": "r1_literacy",
+     "key": "L3.6.1__normal__medium",
+     "kind": "teach",
+     "length": "medium",
+     "mode": "normal",
+     "settings": null,
+     "skill_id": "L3.6.1"
+    }
+   },
+   "model": "claude-opus-5-5",
+   "pieces": 687,
    "status": "submitted"
   }
  ],
@@ -536,6 +6730,62 @@
    "skill_id": "N2.3.1",
    "status": "ok",
    "updated": "2026-11-21T04:42:47Z"
+  },
+  "N2.3.2-M1__medium": {
+   "cost_usd": 0.0581,
+   "domain_id": "numeracy",
+   "fatal": null,
+   "kind": "reteach",
+   "length": "medium",
+   "mistake_id": "N2.3.2-M1",
+   "mode": "N2.3.2-M1",
+   "model": "claude-opus-5-5",
+   "prompt_version": "1e6cae8c3364",
+   "skill_id": "N2.3.2",
+   "status": "ok",
+   "updated": "2026-11-21T05:34:00Z"
+  },
+  "N2.3.2-M2__medium": {
+   "cost_usd": 0.0367,
+   "domain_id": "numeracy",
+   "fatal": null,
+   "kind": "reteach",
+   "length": "medium",
+   "mistake_id": "N2.3.2-M2",
+   "mode": "N2.3.2-M2",
+   "model": "claude-opus-5-5",
+   "prompt_version": "5866efddbfbb",
+   "skill_id": "N2.3.2",
+   "status": "ok",
+   "updated": "2026-11-21T05:34:00Z"
+  },
+  "N2.3.2-M3__medium": {
+   "cost_usd": 0.042,
+   "domain_id": "numeracy",
+   "fatal": null,
+   "kind": "reteach",
+   "length": "medium",
+   "mistake_id": "N2.3.2-M3",
+   "mode": "N2.3.2-M3",
+   "model": "claude-opus-5-5",
+   "prompt_version": "aff3c64f8982",
+   "skill_id": "N2.3.2",
+   "status": "ok",
+   "updated": "2026-11-21T05:34:00Z"
+  },
+  "N2.3.2-M4__medium": {
+   "cost_usd": 0.0391,
+   "domain_id": "numeracy",
+   "fatal": null,
+   "kind": "reteach",
+   "length": "medium",
+   "mistake_id": "N2.3.2-M4",
+   "mode": "N2.3.2-M4",
+   "model": "claude-opus-5-5",
+   "prompt_version": "a1d6cfc23484",
+   "skill_id": "N2.3.2",
+   "status": "ok",
+   "updated": "2026-11-21T05:34:00Z"
   },
   "N2.3.2__1": {
    "cost_usd": 0.0249,

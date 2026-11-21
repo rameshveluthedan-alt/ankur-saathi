@@ -252,7 +252,8 @@ async def build_jobs(db, args, root: Path, man: dict, plan_service) -> list:
         skills = PILOT if args.pilot else [s.strip() for s in (args.skills or "").split(",") if s.strip()]
     lengths = [l.strip() for l in args.lengths.split(",") if l.strip() in lp.LENGTHS]
     kinds = [k.strip() for k in args.kinds.split(",") if k.strip() in KINDS]
-    done = (lambda key: not args.redo and man["pieces"].get(key, {}).get("status") == "ok")
+    waiting = {m["key"] for b in man.get("batches") or [] if b.get("status") != "collected" for m in (b.get("map") or {}).values()}
+    done = (lambda key: key in waiting or (not args.redo and man["pieces"].get(key, {}).get("status") == "ok"))     # a piece in an open batch is not asked for twice
     jobs = []
     if "setting" in kinds:
         themes = [t.strip() for t in (args.themes or "").split(",") if t.strip()]

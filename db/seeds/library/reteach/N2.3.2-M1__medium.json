@@ -1,0 +1,137 @@
+{
+ "format": 1,
+ "piece": "reteach",
+ "key": "N2.3.2-M1__medium",
+ "skill_id": "N2.3.2",
+ "domain_id": "numeracy",
+ "mode": "N2.3.2-M1",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "कल हमने हासिल वाला जोड़ सीखा था, आज उसे पक्का करेंगे। बोर्ड पर लिखें: 46 + 37 = 73, और बताएँ: 'देखिए, 6 + 7 = 13 हुआ, 3 लिखा, पर 1 हासिल दहाई में नहीं जोड़ा, इसलिए 73 गलत है।' अब 73 मिटाकर वही सवाल दहाई-इकाई के बॉक्स में दोबारा करें: 3 लिखें, 1 हासिल दहाई के ऊपर लिखें, 4 + 3 + 1 = 8, उत्तर 83; बोर्ड पर केवल सही तरीका रहे।",
+   "we_do_hi": "बोर्ड पर लिखें: 25 + 48 = 63 और 58 + 16 = 64, बच्चों से पूछें: 'हासिल कहाँ छूटा?' दोनों को साथ मिलकर ठीक करें: 73 और 74। फिर नया सवाल 39 + 27 साथ में हल करें, हर बार पूछें: 'हासिल कहाँ लिखेंगे?'",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बाकी सवाल बच्चे अगले ब्लॉक में अपनी जगह पर पूरे करें। सामान्य चक्कर में पहले उन बच्चों के पास शांति से जाएँ जो हासिल भूलते हैं, और देखें कि हासिल दहाई के ऊपर लिखा है या नहीं।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 18 + 47",
+    "expected_hi": "65",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M1",
+      "misconception_name_hi": "हासिल भूलना: हासिल छोड़ देता है",
+      "misconception_name_en": "Place-value carry-over confusion: drops the carry",
+      "detect_en": "Answer is exactly 10 less than correct. Ones column has a 2-digit number written, or only ones digit is written but tens carry is missing. Consistent across 3+ problems.",
+      "wrong_answer_hi": "55"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "64 + 28: 82 या 92? उत्तर लिखें।",
+    "expected_hi": "92",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M1",
+      "misconception_name_hi": "हासिल भूलना: हासिल छोड़ देता है",
+      "misconception_name_en": "Place-value carry-over confusion: drops the carry",
+      "detect_en": "Answer is exactly 10 less than correct. Ones column has a 2-digit number written, or only ones digit is written but tens carry is missing. Consistent across 3+ problems.",
+      "wrong_answer_hi": "82"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से एक दहाई-इकाई का बॉक्स बनाकर रखें।",
+   "बोर्ड के कोने में लिखकर रखें: 25 + 48 = 63 और 58 + 16 = 64।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले इकाई जोड़ें। इकाई का योग 10 या उससे ज़्यादा हो तो हासिल को दहाई के ऊपर वाले खाली स्थान में लिखें, फिर दहाई जोड़ें।",
+   "instructions_en": "Add the ones first. If the ones make 10 or more, write the carry in the carry cell above the tens, then add the tens.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "36 + 18",
+     "answer": "54",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "47 + 23",
+     "answer": "70",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "29 + 56 = ___",
+     "answer": "85",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.2-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "48 + 34 = ___",
+     "answer": "82",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "26 + 67 = ___",
+     "answer": "93",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक टोकरी में 17 आम हैं और दूसरी टोकरी में 59 आम हैं। कुल कितने आम हैं?",
+     "answer": "76",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "1e6cae8c3364",
+ "created": "2026-11-21T05:34:00Z",
+ "cost_usd": 0.0581,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}
