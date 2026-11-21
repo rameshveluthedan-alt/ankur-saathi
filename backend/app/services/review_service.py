@@ -27,7 +27,8 @@ from vision_analysis import (
 # "between_tools" turns off up-front thinking (see plan_service.py for details).
 # Revisit once we test with real worksheet photos: handwriting extraction may
 # benefit from some thinking, in which case use adaptive + output_config effort.
-CLAUDE_THINKING_BODY = {"thinking": {"type": "between_tools"}}
+CLAUDE_THINKING_BODY = {"thinking": {"type": "between_tools"}}      # kept for old imports; the call uses thinking_body(model)
+from app.services.model_options import thinking_body
 
 
 async def record_teacher_decisions(db, teacher_id: str, plan_date: date, domain_id: str, decisions: dict, stage: str = "first"):
@@ -278,7 +279,7 @@ async def call_vision(photo_bytes_list: list, vision_prompt: str, on_usage=None)
         max_tokens=12000,
         system=VISION_SYSTEM_PROMPT,
         messages=[{"role": "user", "content": content}],
-        extra_body=CLAUDE_THINKING_BODY,
+        extra_body=thinking_body(settings.claude_vision_model),
     )
     usage = {"input_tokens": getattr(response.usage, "input_tokens", 0), "output_tokens": getattr(response.usage, "output_tokens", 0)}
     if on_usage:

@@ -51,7 +51,8 @@ from baseline_assessment import compute_groups
 # Sent via extra_body because the pinned SDK (0.34.0) predates this parameter.
 # To test thinking later, try:
 #   {"thinking": {"type": "adaptive"}, "output_config": {"effort": "medium"}}
-CLAUDE_THINKING_BODY = {"thinking": {"type": "between_tools"}}
+CLAUDE_THINKING_BODY = {"thinking": {"type": "between_tools"}}      # kept for old imports; the calls use thinking_body(model) (app/services/model_options.py)
+from app.services.model_options import thinking_body
 
 
 _STICK_WORDS = ("छड़ी", "छड़ियों", "छड़ियाँ")
@@ -585,7 +586,7 @@ async def repair_stick_overflows(client, model: str, plan: dict) -> tuple[dict, 
             model=model, max_tokens=2500,
             system="You make one small correction to a teacher's talking point in a Hindi lesson plan. Output JSON only.",
             messages=[{"role": "user", "content": user}],
-            extra_body=CLAUDE_THINKING_BODY,
+            extra_body=thinking_body(model),
         )
         text = next((b.text for b in response.content if getattr(b, "type", None) == "text"), "")
         print(f"   Stick repair call: usage={response.usage}")
@@ -898,7 +899,7 @@ async def topup_cfu(client, model: str, plan_json: dict, cfu_kb: dict, deficient
             model=model, max_tokens=4000,
             system="You write check-for-understanding questions for a Hindi classroom lesson plan. Output JSON only.",
             messages=[{"role": "user", "content": render_topup(cfu_kb, detected or {}, needs)}],
-            extra_body=CLAUDE_THINKING_BODY,
+            extra_body=thinking_body(model),
         )
         text = next((b.text for b in response.content if getattr(b, "type", None) == "text"), "")
         print(f"   CFU top-up call for {', '.join(needs)}: usage={response.usage}")
@@ -1321,7 +1322,7 @@ async def generate_dainik_yojana(
                 max_tokens=settings.claude_max_tokens,
                 system=system_prompt,
                 messages=[{"role": "user", "content": user_prompt}],
-                extra_body=CLAUDE_THINKING_BODY,
+                extra_body=thinking_body(settings.claude_model),
             )
             await ai_budget.record(db, teacher_id, "plan", settings.claude_model, response.usage)     # paid for, whatever happens to the reply next
 
