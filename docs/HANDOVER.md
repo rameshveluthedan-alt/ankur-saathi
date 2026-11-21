@@ -1,6 +1,6 @@
 # Handover: where the work stands, and how to continue it
 
-**Written 21 Nov 2026** at the end of a long working session (Claude Code with the project lead), so that a new session, or a person, can
+**Written 21 Nov 2026** (updated the same day after the Opus test) at the end of a long working session (Claude Code with the project lead), so that a new session, or a person, can
 continue exactly where the work stopped. **Read sections 1-3 first.** Section 6 is the work list: each item has a status, the next action,
 and where its details are. Update this file (and its date) whenever an item moves.
 
@@ -36,8 +36,8 @@ and where its details are. Update this file (and its date) whenever an item move
 | Placement spec (the next big feature) | the lead's "Placement slice_ spec.pdf"; text in `C:\dev\ankur-scratch\placement_spec\spec.txt` |
 | Project state, honestly labelled | `docs/STATUS.md`, `docs/KNOWN_ISSUES.md`, `docs/ROADMAP.md` |
 
-**API credits:** the Anthropic credits expire on **30 Nov 2026**; no new credits are known. Work that needs real AI calls goes first (section 6).
-Real-AI spend 19-21 Nov on prompt v2 and model tests: about **$2.90** (Sonnet $2.65, Haiku $0.20, example test $0.02).
+**API credits:** the Anthropic credits expire on **30 Nov 2026**; no new credits are known. Work that needs real AI calls goes first (section 6). **The code's default credit date is now 30 Nov** (it was 20 Nov while live already had 30 Nov; from 21 Nov every lab run and test refused AI calls as 'expired' until this was fixed). After 30 Nov the live app makes no AI calls: it serves the six recorded plans, and photo marking stops.
+Real-AI spend 19-21 Nov on prompt v2 and model tests: about **$4.05** (Sonnet $2.65, Haiku $0.20, example test $0.02, Opus $1.15).
 
 ## 3. If you are a new session: do this first
 
@@ -78,7 +78,7 @@ Status: ✅ done · 🔶 waiting on someone · ⏳ next · ⬜ not started.
 
 | # | Item | Status | Next action | Details |
 |---|---|---|---|---|
-| 1 | **Generate the block library** (the only big job that needs the credits) | ⏳ | the lead approves `docs/drafts/BLOCK_LIBRARY_PLAN.md` §7 (caps $3 pilot / $40 total, Sonnet, 3 lengths); then build the generator and checks (~1.5-2 days, no AI), pilot, full run with Message Batches **by 29 Nov** | `docs/drafts/BLOCK_LIBRARY_PLAN.md` |
+| 1 | **Generate the block library** (the only big job that needs the credits) | ⏳ | **Step 1 built (21 Nov, no AI): TEACH blocks.** `backend/app/services/library_pieces.py` (keys, the per-piece prompt, the checks: the app's own checks on a one-group plan + answer keys computed by code), `scripts/generate_library.py` (manifest, resume, retry once with reasons, cost cap, metered as `library`; `--dry-run` shows a prompt with no call), `backend/tests/test_library_generator.py`. **Next:** the lead decides plan §7 and checks the Console credit; then the paid pilot (`AI_ENABLED=true ... generate_library.py --env-file .env --pilot --max-usd 3`, Opus); then re-teach blocks, independent activities, anchors (same pattern), Message Batches for the full run **by 29 Nov** | `docs/drafts/BLOCK_LIBRARY_PLAN.md` |
 | 2 | Prompt v2: the lead's own review on screen | 🔶 lead | start the lab servers (AI off), run `docs/drafts/prompt_v2_runs/tools/load_for_review.py --env-file .env` from `backend/` to date the plans today; accounts V245NA ... V290NB, password 4826 | §4; folder README |
 | 3 | Prompt v2: questions for Vaishnavi | 🔶 Vaishnavi | (a) the short You Do "start in the block, finish at your place next block"; (b) N0.1.1: Proficients' second sorting rule; (c) how much board writing is realistic before class; (d) new Hindi lines: the weekly-plan note "ऐप में अभी एक नमूना साप्ताहिक योजना है, राज्य की आधिकारिक योजना नहीं।" and the reminder "… समूह: स्वतंत्र अभ्यास (तुम करो) के दौरान …"; (e) extras 1/2/3 at 45/60/90 | §4 |
 | 4 | Show the 45-minute option again | ⬜ | after #2/#3: `pwa/src/services/preferences.js` (`SESSION_MINUTES = [60, 90]` → add 45) | KNOWN_ISSUES "45-minute plans are hidden" |
@@ -104,8 +104,9 @@ Status: ✅ done · 🔶 waiting on someone · ⏳ next · ⬜ not started.
 | Haiku 5.5, thinking medium | all 4 plans spent the whole 24,000-token budget thinking: no plan | — |
 | Haiku 5.5, thinking low | better observed sheets and show-me questions in some plans; one fluency plan with empty sheets; still extra minutes | ~$0.009 |
 | Haiku 5.5 + a REVIEWED example in the prompt (N2.3.2) | the teaching approach and Hindi style followed the reviewed plan closely; structure (show-me questions, minutes) did not improve | ~$0.006 |
+| **Opus 5.5, effort low** (thinking cannot be off; output budget 40,000) | the same four 45-minute plans: no worksheet repairs, fewer show-me questions dropped, no gendered 'मैं', no warnings on the observed sheet; taught writing by showing the mistake first; kept the 7-minute block realistic; ~90 s a plan | ~$0.27-0.30 |
 
-**Conclusions:** Sonnet stays the main model. Reviewed L2 content improves what a small model writes; structure needs code (#6); show-me
+**Conclusions:** Sonnet stays the main model for LIVE plans (cost and speed); **Opus 5.5 is chosen for the block library** (#1), which is generated once, reused for years and reviewed, at ≈ $28 with Message Batches. Reviewed L2 content improves what a small model writes; structure needs code (#6); show-me questions need a capable model or a reviewed question bank. Haiku is a possible cheap fallback for maths skills, behind the code checks. A model is switched with `CLAUDE_MODEL` (and its thinking setting comes from `model_options.py`). Gemini: not tested yet (#7).
 questions need a capable model or a reviewed question bank. Haiku is a possible cheap fallback for maths skills, behind the code checks.
 Opus 5.5 cannot switch thinking off (effort `low` only), so it needs a larger output budget. Gemini: not tested yet (#7).
 

@@ -38,7 +38,8 @@ def functions(path):
 
 
 # 1. where the app calls the AI at all
-allowed = {"backend/app/services/plan_service.py", "backend/app/services/review_service.py", "prompts/orchestrate.py"}
+allowed = {"backend/app/services/plan_service.py", "backend/app/services/review_service.py", "prompts/orchestrate.py",
+           "scripts/generate_library.py"}      # the block-library generator: every call goes through ai_budget.record (kind 'library')
 for base in ("backend/app", "prompts", "scripts"):
     for path in sorted((ROOT / base).rglob("*.py")):
         rel = str(path.relative_to(ROOT)).replace("\\", "/")

@@ -43,7 +43,7 @@ class Settings(BaseSettings):
     ai_enabled: bool = True                     # false = no calls at all (recorded sample plans are still served)
     ai_allocation_usd: float = 500.0            # the credit the organisers gave (15 Oct 2026). Raise it if the extra credit is granted
     ai_spend_offset_usd: float = 3.0            # spent before the meter existed (an estimate: plans generated while developing)
-    ai_credit_expires: str = "2026-11-20"       # keys stop working after this date
+    ai_credit_expires: str = "2026-11-30"       # keys stop working after this date
     ai_reserve_usd: float = 250.0               # kept back for evaluators: development cannot spend into it
     ai_reserve_from: str = "2026-11-01"         # from this date the reserve is released (the evaluation window)
     ai_final_margin_usd: float = 10.0           # never spend the last few dollars

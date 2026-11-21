@@ -26,7 +26,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from app.core.config import get_settings
 
-KINDS = ("plan", "plan_repair", "vision")
+KINDS = ("plan", "plan_repair", "vision", "library")
 
 MESSAGES = {
     "disabled": "AI अभी बंद है। (The AI is switched off for now.)",

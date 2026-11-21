@@ -161,8 +161,8 @@ async def main():
         before = calls["plan"]
         check("...but a recorded plan is still served", (await gen(B, D(5)))["served_from"] == "sample" and calls["plan"] == before)
         reset_settings(**S_)
-        b.NOW_OVERRIDE = datetime(2026, 11, 21, 12, tzinfo=tz)
-        check("after the credits expire (20 Nov) no call is made", await reason(B) == "expired")
+        b.NOW_OVERRIDE = datetime(2026, 12, 1, 12, tzinfo=tz)
+        check("after the credits expire (30 Nov) no call is made", await reason(B) == "expired")
         reset_settings(ai_cap_teacher_daily_usd=0.0, ai_cap_school_daily_usd=0.0, ai_cap_global_daily_usd=0.0)
         check("with every daily cap at zero a normal call is stopped", await reason(B) == "global_daily")
         b.operator_mode(True)

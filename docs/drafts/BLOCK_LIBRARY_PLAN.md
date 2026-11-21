@@ -34,25 +34,31 @@ second variant of the teach blocks for the most-taught skills is a phase-2 optio
 
 ## 3. The model, and the cost cap
 
-- **Model: Claude Sonnet 5.5, thinking off** (`between_tools`, app/services/model_options.py). Reason: the library is reused for years, so
-  quality matters more than the cost per piece, and Haiku 5.5 skipped show-me questions and broke observed and fluency sheets in the 20-21 Nov
-  tests (docs/HANDOVER.md, "Model tests").
+- **Model: Claude Opus 5.5, effort `low`** (its thinking cannot be switched off; app/services/model_options.py), output budget 40,000 tokens.
+  Changed from Sonnet on 21 Nov after the side-by-side test (docs/HANDOVER.md §7): on the same four 45-minute plans Opus needed no worksheet
+  repairs, dropped fewer show-me questions, wrote no gendered 'मैं', had no warnings on the observed sheet, taught the writing skill by showing
+  the mistake first, and kept the 7-minute block realistic. The library is reused for years and reviewed by the education lead, so cleaner first
+  drafts are worth twice the price. (Haiku 5.5 was ruled out: it skipped show-me questions and broke observed and fluency sheets.)
 - **The fixed rules are the app's own cached system prompt** (prompt v2): the same Hindi style, show-me rules, sheet rules. A new, short
   per-piece prompt asks for ONE piece in a fixed JSON shape.
 - **Message Batches** (half price) for the full run; the pilot runs as normal calls so problems show at once.
-- **Estimate** (Sonnet $2 in / $10 out per million, cache reads $0.10; a teach block about 3,000 output tokens):
+- **Estimate** (Opus $4 in / $20 out per million, cache reads $0.20; measured: a full plan ≈ $0.27-0.30, i.e. about $0.09 per group's block;
+  a separate teach block with its worksheet is estimated at about 3,500 output tokens):
 
-| Piece | Each | All |
+| Piece | Each (Opus) | All |
 |---|---|---|
-| Teach and re-teach blocks (495) | ≈ $0.035 | ≈ $17 |
-| Independent activities (202) | ≈ $0.006 | ≈ $1.2 |
-| Anchor settings (50) | ≈ $0.012 | ≈ $0.6 |
-| Anchor tasks (350) | ≈ $0.005 | ≈ $1.8 |
-| Re-generations of pieces that fail a check (assume 20%) | | ≈ $4 |
-| **Total, normal calls** | | **≈ $25** |
-| **With Message Batches (half price)** | | **≈ $13** |
+| Teach and re-teach blocks (495) | ≈ $0.08 | ≈ $40 |
+| Independent activities (202) | ≈ $0.013 | ≈ $2.6 |
+| Anchor settings (50) | ≈ $0.025 | ≈ $1.3 |
+| Anchor tasks (350) | ≈ $0.011 | ≈ $3.9 |
+| Re-generations of pieces that fail a check (assume 15%) | | ≈ $7 |
+| **Total, normal calls** | | **≈ $55** |
+| **With Message Batches (half price)** | | **≈ $28** |
+| (Sonnet 5.5 instead, with batches, for comparison) | | (≈ $13) |
 
 - **Hard cap: $40** for the whole job (the generator stops and reports); **pilot cap: $3.** The meter records every call (kind `library`).
+  With Opus the cap holds only with Message Batches; if the remaining credit is short, the fallback is Opus for the most-taught skills'
+  teach and re-teach blocks and Sonnet for the rest (≈ $18-22). **Check the remaining credit in the Anthropic Console first.**
 
 ## 4. Where each piece is stored
 
@@ -93,7 +99,9 @@ The app's own checks, run on each piece as on a plan:
 
 ## 7. Decisions for the user (before step 2)
 
-1. Approve the **cost caps** ($3 pilot, $40 total) and **Sonnet 5.5** as the model.
+1. Approve the **cost caps** ($3 pilot, $40 total) and **Opus 5.5 with Message Batches** as the model (≈ $28; Sonnet ≈ $13 as the fallback).
+1a. Approve **one version of each teach block per skill**, written at the Progressor level of scaffolding (today's skill, scaffolding faded);
+   a skill taught to Beginners or Proficients uses the same block. Level-specific versions (e.g. a Beginner grid sheet) are a phase-2 option.
 2. Approve **three nominal lengths** (7 / 14 / 22) instead of every exact length.
 3. Approve **phase 1 without** generated general re-teach blocks (skills with no recorded mistakes use the teach block + a re-teach note).
 4. Whether the education lead can review the pilot sample before the full run (it would improve the prompts; it can also come later).
