@@ -163,6 +163,29 @@ async def main():
             man5["pieces"]["x"] = {"kind": "teach", "status": "ok", "cost_usd": 39.9, "model": "claude-opus-5-5"}
             check("over the cap: the batch is not submitted", await lb.submit([gl.independent_job(s231, 1)], root, man5, "claude-opus-5-5", "sk-test", 40.0, http=httpx.AsyncClient(transport=httpx.MockTransport(api)), log=lambda *a: None) is None)
         await db.execute("DELETE FROM ai_usage WHERE kind = 'library' AND teacher_id IS NULL AND created_at > now() - interval '5 minutes' AND input_tokens = 4000 AND output_tokens = 1000")
+
+        print("\nthe daily caps are for teachers: the library job does not use them up")
+        from app.services import ai_budget
+
+        class Rollback(Exception):
+            pass
+        try:
+            async with db.transaction():
+                await db.execute("INSERT INTO ai_usage (kind, model, input_tokens, output_tokens) VALUES ('library', 'claude-opus-5-5', 0, 3000000)")   # $30 at the meter's price
+                try:
+                    await ai_budget.check(db, None, "plan")
+                    check("a $30 library job today: a teacher's call is still allowed", True)
+                except ai_budget.AICapReached as e:
+                    check("a $30 library job today: a teacher's call is still allowed", False, e.reason)
+                await db.execute("INSERT INTO ai_usage (kind, model, input_tokens, output_tokens) VALUES ('plan', 'claude-sonnet-5-5', 0, 3000000)")    # $30 of plans
+                try:
+                    await ai_budget.check(db, None, "plan")
+                    check("...but $30 of teachers' plans today reaches the daily cap", False)
+                except ai_budget.AICapReached as e:
+                    check("...but $30 of teachers' plans today reaches the daily cap", e.reason == "global_daily", e.reason)
+                raise Rollback()
+        except Rollback:
+            pass
     finally:
         await db.close()
 

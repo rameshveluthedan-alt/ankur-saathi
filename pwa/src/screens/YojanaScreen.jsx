@@ -320,6 +320,12 @@ export default function YojanaScreen() {
 
   return (
     <div className="screen">
+      {currentPlan.served_from === 'library' && (
+        <div data-testid="library-banner" className="note note-info">
+          🧩 <b><Bi hi="तैयार हिस्सों से बनी योजना" en="Plan from the ready-made library" inline /></b>: <Bi hi="आज AI के बिना, कोड ने हर समूह के कौशल के तैयार हिस्सों से यह योजना बनाई है। ये हिस्से AI ने लिखे हैं और अभी शिक्षा विशेषज्ञ की समीक्षा बाकी है।"
+            en="With no AI today, the app built this plan from ready-made pieces for each group's skill. The pieces were drafted by AI and are not yet reviewed by the education lead." inline />
+        </div>
+      )}
       {currentPlan.served_from === 'sample' && (
         <div data-testid="sample-banner" className="note note-info">
           📄 <b><Bi hi="नमूना योजना" en="Sample plan" inline /></b>: <Bi hi="AI की सीमा पूरी होने से यह इसी कौशल की पहले से बनी योजना है। समूह और वर्कशीट आपकी कक्षा के हिसाब से जाँचे गए हैं।"

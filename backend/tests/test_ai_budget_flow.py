@@ -137,7 +137,7 @@ async def main():
         print("4. the school cap and the global cap")
         reset_settings(ai_cap_teacher_daily_usd=1000, ai_cap_school_daily_usd=0.999 * await b._spent(db, "school_id = (SELECT school_id FROM teachers WHERE id = $1) AND created_at >= $2", A, since()))
         check("another teacher of the SAME school is stopped by the school's cap", await reason(B) == "school_daily")
-        reset_settings(ai_cap_teacher_daily_usd=1000, ai_cap_school_daily_usd=1000, ai_cap_global_daily_usd=0.999 * await b._spent(db, "created_at >= $1", since()))
+        reset_settings(ai_cap_teacher_daily_usd=1000, ai_cap_school_daily_usd=1000, ai_cap_global_daily_usd=0.999 * await b._spent(db, "created_at >= $1 AND kind <> 'library'", since()))   # the daily caps leave out the library job
         check("everyone is stopped by the global daily cap (the kill switch)", await reason(B) == "global_daily" and await reason(A) == "global_daily")
 
         print("5. the reserve rule")

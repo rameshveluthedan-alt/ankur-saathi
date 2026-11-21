@@ -228,7 +228,7 @@ def run_checks(root: Path, final: bool = False, deadline: str = DEADLINE, histor
         text = read_text(root / p)
         if text is None:
             continue
-        for m in re.finditer(r"(?<![\d.])[6-9]\d{9}(?!\d)", text):
+        for m in re.finditer(r"(?<![\w.])[6-9]\d{9}(?!\w)", text):          # a number standing alone (not ten digits inside a hash such as 'd8974315154a')
             if m.group(0) not in allowed and not m.group(0).startswith("9000000") and not looks_fake(m.group(0)):
                 phones.setdefault(m.group(0)[:3] + "xxxxxxx", set()).add(p)
         for m in re.finditer(r"[\w.+-]+@([\w-]+(?:\.[\w-]+)+)", text):

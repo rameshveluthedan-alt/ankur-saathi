@@ -7,6 +7,8 @@ Operator tools for sign-in (docs/AUTH.md and docs/DEMO_ACCESS.md). An account is
   python scripts/auth_admin.py set-pin --code MPT101 --pin 482600 [--fixed] [--demo]      (--pin is the PASSWORD: the option keeps its old name)
   python scripts/auth_admin.py unlock --code MPT101
   python scripts/auth_admin.py list
+  python scripts/auth_admin.py create-school --school PILOT-01 --leader PLA001 --teachers PLT001,PLT002 [--grades 1,2,3]   a REAL school (temporary passwords shown once)
+  python scripts/auth_admin.py create-account --school PILOT-01 --code PLT003                                            one more teacher in a real school
 
 The demo accounts hold FICTIONAL data only. Their passwords are published to reviewers, so they are not secrets:
   * the shared demo accounts have a FIXED password (cannot be changed or reset), so one reviewer cannot lock out another;
@@ -21,6 +23,7 @@ for _stream in (_sys.stdout, _sys.stderr):          # a pipe on Windows uses a l
         _stream.reconfigure(encoding="utf-8", errors="replace")
 
 import argparse
+import re
 import asyncio
 import os
 import sys
@@ -124,9 +127,80 @@ async def cmd_list(db, args):
         print(f"  {auth.display_code(r['code']):<12}{r['school_code']:<14}{r['role']:<14}{'yes' if r['has_pin'] else 'NO ':<10}{'yes ' if r['is_demo'] else '    '}{'yes  ' if r['pin_fixed'] else '     '}{'yes   ' if r['must_change_pin'] else '      '}{'LOCKED' if r['locked'] else ''}")
 
 
+def _real_code_problem(code: str, school: str = None):
+    """Why a code cannot be a REAL account (None if it can): not a valid employee code, a demo-style test code, or the demo school."""
+    if school is not None and school.strip().upper() == DEMO_SCHOOL:
+        return f"{DEMO_SCHOOL} is the demo school: real accounts go in a school of their own"
+    if code is None:
+        return None
+    norm = auth.normalise_code(code)
+    if not norm:
+        return f"{code!r} is not an employee code (six letters or digits, for example PLT001)"
+    if re.match(TEST_CODE_RE, norm) or norm in (DEMO_TEACHER, LEADER, PRACTICE):
+        return f"{norm} looks like a demo or test account code: choose another (for example PLT001)"
+    return None
+
+
+async def _new_account(db, code: str, school: str, grades: list) -> dict:
+    """Register one REAL account (the first in a new school becomes its leader) and give it a temporary password it must change."""
+    me = await rs.register_teacher(db, code, school, grades, enforce_join=False)
+    temp = auth.temporary_pin()
+    await set_pin(db, code, temp, fixed=False, demo=False, must_change=True, school=school.strip().upper())
+    role = await db.fetchval("SELECT role FROM teachers WHERE id = $1", me["teacher_id"])
+    return {"code": auth.normalise_code(code), "role": role, "temporary_password": temp}
+
+
+async def cmd_create_school(db, args):
+    """A REAL school: its leader (school_admin) and its teachers, each with a temporary password shown ONCE and changed at the first sign-in."""
+    school = (args.school or "").strip().upper()
+    teachers = [c.strip() for c in (args.teachers or "").split(",") if c.strip()]
+    problems = [p for p in [_real_code_problem(None, school), _real_code_problem(args.leader)] + [_real_code_problem(c) for c in teachers] if p]
+    if await db.fetchval("SELECT 1 FROM schools WHERE school_code = $1", school):
+        problems.append(f"the school {school} already exists: add teachers with create-account")
+    codes = [auth.normalise_code(c) for c in [args.leader] + teachers if auth.normalise_code(c)]
+    if len(set(codes)) != len(codes):
+        problems.append("the same code is given twice")
+    taken = [r["phone_hash"] for r in await db.fetch("SELECT phone_hash FROM teachers WHERE phone_hash = ANY($1::text[])", codes)]
+    if taken:
+        problems.append("already in use: " + ", ".join(taken))
+    if problems:
+        sys.exit("Nothing was created:\n  - " + "\n  - ".join(problems))
+    grades = [g.strip() for g in (args.grades or "1,2,3").split(",") if g.strip()]
+    made = [await _new_account(db, args.leader, school, grades)]
+    for c in teachers:
+        made.append(await _new_account(db, c, school, grades))
+    _print_made(school, made)
+
+
+async def cmd_create_account(db, args):
+    """One more REAL account in an existing real school (a teacher)."""
+    school = (args.school or "").strip().upper()
+    problem = _real_code_problem(args.code, school)
+    if not await db.fetchval("SELECT 1 FROM schools WHERE school_code = $1", school):
+        problem = problem or f"the school {school} does not exist: create it with create-school"
+    if not problem and await db.fetchval("SELECT 1 FROM teachers WHERE phone_hash = $1", auth.normalise_code(args.code)):
+        problem = f"{auth.normalise_code(args.code)} is already in use"
+    if problem:
+        sys.exit(f"Nothing was created: {problem}")
+    made = await _new_account(db, args.code, school, [g.strip() for g in (args.grades or "1,2,3").split(",") if g.strip()])
+    _print_made(school, [made])
+
+
+def _print_made(school: str, made: list):
+    print(f"\nSchool {school}. Give each person their code and temporary password IN PERSON (it is shown only now):")
+    for m in made:
+        print(f"  {m['code']:<8} {('school leader' if m['role'] == 'school_admin' else m['role']):<14} temporary password: {m['temporary_password']}")
+    print("At the first sign-in each one chooses their own password (6-12 letters or digits). The school leader confirms the consent statement once,\n"
+          "and can later unlock or reset a teacher's password. Each teacher then uploads the class register (Profile).")
+
+
 async def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("command", choices=["demo-setup", "restore-practice", "set-pin", "unlock", "list"])
+    ap.add_argument("command", choices=["demo-setup", "restore-practice", "set-pin", "unlock", "list", "create-school", "create-account"])
+    ap.add_argument("--school", help="create-school / create-account: the school code (3 to 25 letters, digits or dashes)")
+    ap.add_argument("--leader", help="create-school: the school leader's employee code")
+    ap.add_argument("--teachers", help="create-school: the teachers' employee codes, comma-separated")
+    ap.add_argument("--grades", help="create-school / create-account: the grades taught, e.g. 1,2,3 (default)")
     ap.add_argument("--code", "--phone", dest="code", help="the employee code, for example MPT101 (--phone is the old name of this option)")
     ap.add_argument("--pin", help="the password")
     ap.add_argument("--fixed", action="store_true", help="a shared demo account: the password cannot be changed or reset")
@@ -141,9 +215,14 @@ async def main():
         ap.error("--code is required")
     if args.command == "set-pin" and not args.pin:
         ap.error("--pin is required")
+    if args.command == "create-school" and not (args.school and args.leader):
+        ap.error("create-school needs --school and --leader (and usually --teachers)")
+    if args.command == "create-account" and not (args.school and args.code):
+        ap.error("create-account needs --school and --code")
     db = await ac.connect(args)
     try:
-        await {"demo-setup": cmd_demo_setup, "restore-practice": cmd_restore_practice, "set-pin": cmd_set_pin, "unlock": cmd_unlock, "list": cmd_list}[args.command](db, args)
+        await {"demo-setup": cmd_demo_setup, "restore-practice": cmd_restore_practice, "set-pin": cmd_set_pin, "unlock": cmd_unlock, "list": cmd_list,
+               "create-school": cmd_create_school, "create-account": cmd_create_account}[args.command](db, args)
     finally:
         await db.close()
 

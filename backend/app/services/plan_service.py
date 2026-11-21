@@ -1292,16 +1292,33 @@ async def generate_dainik_yojana(
 
     # ── Call Claude, unless the AI limit is reached: then a recorded plan for the same skill goes through the SAME checks and repairs ──
     ai_budget.bind(db, teacher_id)
-    served_from, recorded = "ai", None
+    served_from, recorded, library_plan = "ai", None, None
     try:
+        if os.environ.get("PLAN_SOURCE", "").strip().lower() == "library":      # a test, or (later) offline-first: plans from the library with no AI call
+            raise ai_budget.AICapReached("disabled")
         await ai_budget.check(db, teacher_id, "plan")
     except ai_budget.AICapReached:
-        recorded = ai_budget.sample_plan_for(competency_id)
-        if recorded is None:
-            raise
-        served_from = "sample"
+        # no AI: first a plan built by code from the recorded-block library (any skill, any choices); else a recorded plan for the same skill
+        if os.environ.get("LIBRARY_FALLBACK", "1") != "0":
+            try:
+                from app.services import library_assembler
+                prev = await db.fetchval("""SELECT plan_content->'library'->>'setting' FROM daily_plans WHERE teacher_id = $1 AND domain_id = $2
+                                            AND plan_date < $3 ORDER BY plan_date DESC LIMIT 1""", teacher_id, domain_id, plan_date)
+                library_plan = library_assembler.assemble(ctx, plan_date, avoid_setting=prev)
+            except Exception as e:                      # the library must never break the fallback that exists
+                print(f"   Library plan skipped: {type(e).__name__}: {e}")
+        if library_plan is not None:
+            served_from = "library"
+        else:
+            recorded = ai_budget.sample_plan_for(competency_id)
+            if recorded is None:
+                raise
+            served_from = "sample"
     client = None
-    if served_from == "sample":
+    if served_from == "library":
+        plan_json = library_plan
+        print("   No AI: a plan built from the recorded-block library")
+    elif served_from == "sample":
         plan_json = copy.deepcopy(recorded)
         print("   AI limit reached: serving a recorded sample plan for this skill")
     else:
@@ -1451,11 +1468,11 @@ async def generate_dainik_yojana(
 
     # Check for understanding: the model writes the questions, the CODE decides which a teacher may use (arithmetic, mistake IDs, no reuse, the skill's own rule)
     try:
-        if getattr(settings, "cfu_enabled", True) and served_from == "ai" and ctx.cfu_kb:
+        if getattr(settings, "cfu_enabled", True) and served_from in ("ai", "library") and ctx.cfu_kb:
             cfu_keep = {g: v["cfu"] for g, v in group_layout(ctx)[2].items()}         # 2 per block, or 1 in a short session (prompt v2, step 3)
             cfu_lines, cfu_stats = clean_plan_cfu(plan_json, ctx.cfu_kb, cfu_keep)
             deficient = [g for g, st in cfu_stats.items() if st["kept"] < st.get("wanted", MIN_ITEMS)]
-            if deficient and os.environ.get("CFU_TOPUP", "1") != "0":         # CFU_TOPUP=0 switches the extra call off
+            if deficient and client is not None and os.environ.get("CFU_TOPUP", "1") != "0":         # CFU_TOPUP=0 switches the extra call off; no top-up without the AI
                 added = await topup_cfu(client, settings.claude_model, plan_json, ctx.cfu_kb, deficient, cfu_lines, ctx.cfu_detected)
                 if added:
                     lines2, stats2 = clean_plan_cfu(plan_json, ctx.cfu_kb, cfu_keep)       # the new questions are judged by the same checks
@@ -1484,7 +1501,7 @@ async def generate_dainik_yojana(
         print(f"   Hindi style after the CFU step skipped: {type(e).__name__}: {e}")
 
     validation_warnings = validate_plan_shape(plan_json, domain_id,                  # an AI plan is checked for the 3 + N sheet; a recorded plan keeps its older shape
-                                              extras=session_shape(ctx.available_minutes)["extras"] if served_from == "ai" else None, sheet_kinds=ctx.sheet_kinds)
+                                              extras=session_shape(ctx.available_minutes)["extras"] if served_from in ("ai", "library") else None, sheet_kinds=ctx.sheet_kinds)
     validation_warnings += writing_sheets.check_writing_sheets(plan_json, ctx.group_skill_ids, domain_id)
     validation_warnings += hindi_style.check_teacher_text(plan_json)          # a gendered "मैं" left in the teacher's lines, a Hindi mark named wrongly (15 Nov)
     if decided_groups is not None and any(b.get("type") == "reteach" for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or []):
@@ -1511,7 +1528,7 @@ async def generate_dainik_yojana(
 
     # The observation reminders are written by code from the groups' sheet kinds (prompt v2, step 6): the screens only ask WHETHER a
     # group is observed today, and the observed sheet's own task says what to watch. A recorded plan keeps its reviewed reminders.
-    if served_from == "ai":
+    if served_from in ("ai", "library"):
         rp = plan_json.get("review_prompts")
         if not isinstance(rp, dict):
             rp = plan_json["review_prompts"] = {}
@@ -1537,7 +1554,7 @@ async def generate_dainik_yojana(
     
     plan_json["served_from"] = served_from          # 'ai', or 'sample' when the AI limit was reached: the screen says so
     # the plan's length, read by the plan screen's time chip: the time the teacher chose (not the AI's own total_minutes); a recorded sample plan keeps the length it was made for (90 for the six today)
-    plan_json["session_minutes"] = ctx.available_minutes if served_from == "ai" else int(plan_json.get("session_minutes") or SAMPLE_PLAN_MINUTES)
+    plan_json["session_minutes"] = ctx.available_minutes if served_from in ("ai", "library") else int(plan_json.get("session_minutes") or SAMPLE_PLAN_MINUTES)
     await db.execute("""
         INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
                                  plan_content, explainability, groups_snapshot, 
@@ -1557,7 +1574,7 @@ async def generate_dainik_yojana(
         json.dumps(plan_json, ensure_ascii=False),
         json.dumps(explainability, ensure_ascii=False),
         json.dumps(groups_snapshot, ensure_ascii=False),
-        generation_time_ms, settings.claude_model if served_from == "ai" else "sample-replay",
+        generation_time_ms, settings.claude_model if served_from == "ai" else ("library" if served_from == "library" else "sample-replay"),
     )
     
     return {

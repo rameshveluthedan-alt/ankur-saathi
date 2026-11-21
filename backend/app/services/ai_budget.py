@@ -179,14 +179,16 @@ async def check(db, teacher_id, kind: str = "plan"):
         if _operator.get():
             return
         since = day_start()
-        if await _spent(db, "created_at >= $1", since) >= s.ai_cap_global_daily_usd:
+        # the DAILY caps are for teachers' use: the operator's block-library job (kind 'library') has its own cap in scripts/generate_library.py,
+        # so it never uses up a day's allowance (found 21 Nov: the library's run filled the lab's $20 day). It still counts in the TOTAL above.
+        if await _spent(db, "created_at >= $1 AND kind <> 'library'", since) >= s.ai_cap_global_daily_usd:
             raise AICapReached("global_daily")
         who = await db.fetchrow("SELECT school_id, pin_fixed FROM teachers WHERE id = $1", teacher_id) if teacher_id else None
         if who:
-            if await _spent(db, "school_id = $1 AND created_at >= $2", who["school_id"], since) >= s.ai_cap_school_daily_usd:
+            if await _spent(db, "school_id = $1 AND created_at >= $2 AND kind <> 'library'", who["school_id"], since) >= s.ai_cap_school_daily_usd:
                 raise AICapReached("school_daily")
             cap = s.ai_cap_shared_demo_daily_usd if who["pin_fixed"] else s.ai_cap_teacher_daily_usd
-            if await _spent(db, "teacher_id = $1 AND created_at >= $2", teacher_id, since) >= cap:
+            if await _spent(db, "teacher_id = $1 AND created_at >= $2 AND kind <> 'library'", teacher_id, since) >= cap:
                 raise AICapReached("teacher_daily")
     except AICapReached:
         raise

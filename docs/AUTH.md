@@ -37,6 +37,13 @@ link cannot carry it. Without this a password screen would protect nothing, sinc
 | `PIN_HASH_ITERATIONS` | PBKDF2 cost (default 600000); stored with each hash, so it can be raised later |
 | `VITE_DEMO_HINT` | the app shows the published demo accounts on the login screen unless this is `false`. Set it to `false` for a real school |
 
+## Real accounts (a pilot school)
+The operator makes them, never in the demo school and never with a demo-style code (MPT101-MPT199):
+`python scripts/auth_admin.py create-school --school PILOT-01 --leader PLA001 --teachers PLT001,PLT002 [--grades 1,2,3]` creates the school, its
+leader (the school's admin) and its teachers, each with a temporary password printed ONCE: give it in person. At the first sign-in each person
+chooses their own password; the leader confirms the consent statement once. `create-account --school PILOT-01 --code PLT003` adds a teacher.
+Codes already in use, a code given twice, an existing school and the demo school are refused before anything is made (`backend/tests/test_real_accounts.py`).
+
 ## Demo and test accounts
 `is_demo` accounts show a banner (fictional data only). `pin_fixed` accounts are **shared**, so their password cannot be changed or
 reset: otherwise one tester could lock out the others. One practice account (MPT199) can be changed, reset and locked freely.
