@@ -111,9 +111,8 @@ def main():
     nav = " ".join(f"<a href='#{s}_{m}'>{s} {m}</a>" for s, m, f in files if f.is_file())
     body = "".join(plan_html(s, m, json.loads(f.read_text(encoding="utf-8"))) for s, m, f in files if f.is_file())
     doc = (f"<!doctype html><html lang=hi><head><meta charset=utf-8><title>Prompt v2: the 12 test plans</title><style>{CSS}</style></head><body>"
-           "<h1>Prompt v2: the 12 test plans (real model, 19-20 Nov 2026)</h1>"
-           "<p>Four skills at 45, 60 and 90 minutes, as the app saved them after all its code checks. The 60- and 90-minute plans of N2.3.2 and L2.7.2 "
-           "and the 60-minute plans were made before the last fixes (60 minutes then added up to 59); the 45-minute ones are the final version. "
+           "<h1>Prompt v2: the 12 test plans (real model, made with the final code, 20-21 Nov 2026)</h1>"
+           "<p>Four skills at 45, 60 and 90 minutes, as the app saved them after all its code checks. "
            "Core problems are in black, extras in grey; the green answers are the answer key; the brown code is the mistake a core problem reveals.</p>"
            f"<nav>{nav}</nav>{body}</body></html>")
     out.write_text(doc, encoding="utf-8")

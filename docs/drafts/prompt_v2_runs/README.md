@@ -19,13 +19,15 @@ on them, on a scratch class of 30 in the lab database (rolls 1-8 Beginners, 9-20
   an English word in Devanagari ('ट्रंग ट्विस्टर'), a length other than the block's ('about 25 minutes' in a 13-minute block), and 45-minute
   You Do tasks that could not fit in 5 minutes. The fixes: the prompt rules; code that rewrites the teacher's quoted 'मैं' sentences to the
   'हम' form and flags any left; a short You Do (and a short fluency You Do) only STARTS the task; 0-minute blocks and unknown group keys removed.
-- Still in the 60- and 90-minute plans here (made before those fixes, and before the lost minute was fixed: 60 adds up to 59): 'मेला में' for
-  'मेले में' in a board sentence (L2.7.2_90), 'धीरे-धीरे पढ़ें या पढ़ें' (L2.5.1_60), 'about 25 minutes' (N0.1.1_60), a 'dakshta' key (L2.7.2_90).
-  One-off Hindi slips like the first two are for the review (and the planned second AI pass, roadmap §12), not a rule.
+- **All 12 were made again on 21 Nov with the final code** (after the second AI-assisted review): every session adds up exactly (45 / 60 / 90),
+  no 0-minute block, no stray keys, every block has its show-me questions, no gendered 'मैं', no self-correction. The second review also found an
+  'odd one out' item with no single answer (now dropped by code) and photo samples listed for practice-only sheets (now empty).
+- Open for the education lead (teaching, not code): N0.1.1's three groups on one skill (Proficients sort by a second rule); the board load in
+  45-minute plans; 'कठिन शब्द' for Beginners' warm-up words; 'पैसे' for rupee prices.
 - `CHECKS_201126.txt` covers the plans in this folder (the per-plan cost lines are of the version kept).
-- Cost of all the runs: about $2.65 (19 plans, seven of them repeats).
+- Cost of all the runs: about $3.80 (28 plans, sixteen of them repeats).
 
 **To read them on screen** (lab only, AI off): `C:\dev\ankur-scratch\v2_run\load_for_review.py` loads them into six review accounts
-(V245NA ... V290NB, password 4826), dated the day it is run.
+(V245NA ... V290NB, password 4826), dated the day it is run. `tools/make_review_html.py` writes `REVIEW_PLANS_v2.html`, a readable copy of all 12.
 
 These are for review (the team and the education lead). They are not recorded sample plans: nothing in the app reads this folder.
