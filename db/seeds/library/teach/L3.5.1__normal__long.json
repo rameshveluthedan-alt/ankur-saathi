@@ -1,0 +1,105 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.5.1__normal__long",
+ "skill_id": "L3.5.1",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने रुककर और भाव से पढ़ना सीखा था।' बोर्ड पर लिखें: 'बारिश आई तो मोर नाचने लगा।' इसे पहले अटक-अटककर पढ़ें, फिर सही गति से, पूरे वाक्य को एक साथ जोड़कर, पूर्ण विराम पर रुककर पढ़ें; बच्चों से पूछें कि कौन-सा पढ़ना समझ में आया।",
+   "we_do_hi": "बोर्ड पर लिखें: 'सुबह सूरज निकला। चिड़िया पेड़ पर गाने लगी।' बच्चे पहले उँगली रखकर धीरे-धीरे शब्द पहचानें, फिर हर वाक्य के अंत में रुककर पढ़ें। कठिन शब्द 'निकला' पर रुककर उसे टुकड़ों में पढ़वाएँ, फिर पूरा वाक्य दोबारा पढ़वाएँ।",
+   "you_do_hi": "बच्चे वर्कशीट खोलें, पहले कठिन शब्द साथी को पढ़कर सुनाएँ, फिर अनुच्छेद तीन बार धीमी आवाज़ में पढ़ें और हर बार एक डिब्बे में सही का निशान लगाएँ। इसके बाद जोड़ी में पढ़ें और फिर प्रश्न 1 से 3 के उत्तर लिखें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'माँ बाज़ार गई। वह आम लाई।' इसे पढ़कर सुनाएँ। माँ क्या लाई? स्लेट पर एक शब्द लिखें।",
+    "expected_hi": "आम",
+    "listen_for": [],
+    "shows_hi": "बच्चा पढ़ी हुई बात का अर्थ समझ रहा है, केवल शब्द नहीं बोल रहा।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'राजू खेत गया उसने गाय देखी।' पढ़ते समय किस शब्द के बाद रुकना चाहिए? उस शब्द की गिनती स्लेट पर लिखें।",
+    "expected_hi": "3",
+    "listen_for": [],
+    "shows_hi": "बच्चा वाक्य का अंत पहचानकर सही जगह रुक सकता है, जो धाराप्रवाह पढ़ने के लिए ज़रूरी है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का वाक्य लिखें: 'बारिश आई तो मोर नाचने लगा।'",
+   "बोर्ड पर We Do के दो वाक्य लिखें: 'सुबह सूरज निकला। चिड़िया पेड़ पर गाने लगी।'",
+   "हर बच्चे के लिए फ़्लुएंसी वर्कशीट की एक प्रति रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार धीमी आवाज़ में पढ़ें और हर बार एक डिब्बे में निशान लगाएँ। फिर जोड़ी में पढ़ें: एक पढ़े, साथी उँगली से साथ चले और जिस शब्द में मदद लगी उस पर निशान लगाए। अंत में प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the hard words to a partner. Read the passage aloud softly three times, ticking a box each time. Then read in pairs: one reads, the partner follows with a finger and marks any word that needed help. Finally answer the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "बगीचे की सैर",
+    "text": "रविवार को मीना अपने दादाजी के साथ बगीचे में गई। वहाँ रंग-बिरंगे फूल खिले थे। एक पेड़ पर तोता बैठा था। मीना ने तोते को अमरूद खाते देखा। दादाजी ने बताया कि पेड़ हमें छाया और फल देते हैं। मीना ने घर लौटकर एक छोटा पौधा लगाया।"
+   },
+   "sheet_kind": "fluency",
+   "warmup_words": [
+    "रविवार",
+    "दादाजी",
+    "बगीचे",
+    "रंग-बिरंगे",
+    "अमरूद",
+    "छाया",
+    "लौटकर",
+    "पौधा"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मीना किसके साथ बगीचे में गई?",
+     "answer": "दादाजी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "तोता क्या खा रहा था?",
+     "answer": "अमरूद",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "मीना ने घर लौटकर क्या लगाया?",
+     "answer": "पौधा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 8 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:46:50Z",
+ "cost_usd": 0.0496,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

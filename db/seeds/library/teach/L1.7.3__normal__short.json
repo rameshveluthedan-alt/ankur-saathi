@@ -1,0 +1,114 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.7.3__normal__short",
+ "skill_id": "L1.7.3",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'राम घर जाता है।' हर शब्द के बाद एक उँगली रखकर खाली जगह दिखाएँ और बच्चों से कहें: 'देखिए, हर शब्द के बाद एक उँगली जितनी जगह छोड़ते हैं, और वाक्य के अंत में पूर्ण विराम लगाते हैं।' फिर बच्चों से पूछें: 'इस वाक्य में कितने शब्द हैं?'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे कॉपी में वर्कशीट के सवाल 1 से 3 पहले लिखें; हर शब्द के बाद उँगली रखकर जगह छोड़ें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें। बाकी काम बच्चे अगले ब्लॉक में अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर दो वाक्य लिखें: 1) 'गाय घास खाती है।' 2) 'गायघास खातीहै।' किस वाक्य में शब्दों के बीच सही जगह है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि हर शब्द के बाद खाली जगह छोड़ी जाती है।",
+    "grounded": false
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'बिल्ली दूध पीती है' (अंत में कोई निशान नहीं)। वाक्य के अंत में कौन-सा निशान लगेगा? स्लेट पर निशान लिखें।",
+    "expected_hi": "।",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि वाक्य पूर्ण विराम से ख़त्म होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'राम घर जाता है।'",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना और चॉक या पेंसिल।"
+  ],
+  "worksheet": {
+   "instructions_hi": "शब्दों को अलग-अलग करके वाक्य साफ़ लिखें। हर शब्द के बाद एक उँगली जितनी जगह छोड़ें और अंत में पूर्ण विराम (।) लगाएँ।",
+   "instructions_en": "Rewrite each sentence with a finger-space between words and a full stop (।) at the end.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "जगह छोड़कर लिखने का उदाहरण:",
+    "example_text": "सीताफूलतोड़तीहै → सीता फूल तोड़ती है।"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अलग-अलग करके लिखें: माँरोटीबनातीहै",
+     "answer": "माँ रोटी बनाती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "अलग-अलग करके लिखें: चिड़ियापेड़परबैठीहै",
+     "answer": "चिड़िया पेड़ पर बैठी है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "अलग-अलग करके लिखें: बच्चेमैदानमेंखेलतेहैं",
+     "answer": "बच्चे मैदान में खेलते हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "अलग-अलग करके लिखें: मोरनाचताहै",
+     "answer": "मोर नाचता है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "अलग-अलग करके लिखें: पापाबसचलातेहैं",
+     "answer": "पापा बस चलाते हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:45:06Z",
+ "cost_usd": 0.041,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,146 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.7.2__normal__medium",
+ "skill_id": "L2.7.2",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर विषय लिखें: 'हमारा स्कूल'। बोर्ड पर लिखें: 'हमारा स्कूल बड़ा है। स्कूल में एक बगीचा है और उसमें फूल खिलते हैं। हम वहाँ खेलते हैं क्योंकि मैदान खुला है।' हर वाक्य पढ़कर सुनाएँ, फिर 'और', 'क्योंकि' और हर पूर्ण विराम (।) पर उँगली रखकर बताएँ कि वाक्य यहाँ जुड़ते हैं और यहाँ खत्म होते हैं।",
+   "we_do_hi": "बोर्ड पर विषय लिखें: 'बारिश का दिन'। बच्चों से एक-एक वाक्य पूछें और बोर्ड पर लिखें; हर वाक्य के बाद पूछें: 'यहाँ क्या लगेगा?' और '।' लगाएँ। दो वाक्यों को 'और' या 'फिर' से जोड़ने में बच्चों की मदद लें, और ध्यान दिलाएँ कि हर वाक्य नई बात से शुरू हो।",
+   "you_do_hi": "बच्चों से कहें: 'वर्कशीट पर दिए विषय मेरा घर पर लिखना शुरू करें।' इस 5 मिनट में बच्चे पहले वर्कशीट के सवाल 1 में पहले दो वाक्य लिखें; बाकी सवाल 1 से 3 वे अगले खंड में अपनी जगह पर पूरा करें, और जो जल्दी ख़त्म करें, वे सवाल 4 करें। घूमकर देखें कि हर वाक्य के अंत में । है।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'माँ खाना बनाती है। माँ कपड़े धोती है।' इन दोनों को जोड़ने के लिए कौन-सा शब्द लगेगा? 1) और 2) ।",
+    "expected_hi": "1) और",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M1",
+      "misconception_name_hi": "वाक्य अलग-अलग लिखना, जोड़ने वाले शब्द नहीं",
+      "misconception_name_en": "Writes separate sentences with no joining words",
+      "detect_en": "Three or more sentences on the topic, none joined by और / फिर / क्योंकि / लेकिन",
+      "wrong_answer_hi": "2) ।"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'आज छुट्टी है हम पार्क जाएँगे' (बिना पूर्ण विराम)। किस नंबर के शब्द के बाद । लगेगा?",
+    "expected_hi": "3",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M2",
+      "misconception_name_hi": "वाक्य कहाँ खत्म होता है, यह नहीं दिखाना",
+      "misconception_name_en": "Does not mark where a sentence ends",
+      "detect_en": "Two or more full stops missing or misplaced on the sheet",
+      "wrong_answer_hi": "6"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखकर रखें: विषय 'हमारा स्कूल' और उसके तीन वाक्य।",
+   "बोर्ड के एक कोने में जोड़ने वाले शब्द लिखें: और, फिर, क्योंकि, लेकिन।",
+   "हर बच्चे के लिए एक वर्कशीट की प्रति।"
+  ],
+  "worksheet": {
+   "instructions_hi": "वर्कशीट पर दिए विषय पर जुड़े हुए वाक्य लिखें। हर वाक्य के अंत में । लगाएँ।",
+   "instructions_en": "Write connected sentences on the given topic. Put a full stop (।) at the end of every sentence.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा घर",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य विषय पर",
+     "item_en": "All sentences on the topic"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of every sentence"
+    },
+    {
+     "item_hi": "वाक्य 'और / फिर / क्योंकि' से जुड़े",
+     "item_en": "Sentences joined with और / फिर / क्योंकि"
+    },
+    {
+     "item_hi": "हर वाक्य अलग शुरुआत से",
+     "item_en": "Each sentence starts differently"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने घर पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा घर"
+    },
+    {
+     "number": 2,
+     "problem_hi": "खाली जगह में सही शब्द लिखें (और / लेकिन): राजू ने हाथ धोए ___ खाना खाया।",
+     "answer": "और",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "जहाँ वाक्य खत्म होता है, वहाँ । लगाकर फिर से लिखें: रात हो गई चाँद निकल आया",
+     "answer": "रात हो गई। चाँद निकल आया।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "इन वाक्यों को सही क्रम में लगाकर उनके नंबर लिखें: (क) फिर वह बस से स्कूल गई। (ख) सुबह मीना जल्दी उठी। (ग) उसने नहाकर नाश्ता किया।",
+     "answer": "ख, ग, क",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:42:02Z",
+ "cost_usd": 0.0548,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,114 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.7.3__normal__medium",
+ "skill_id": "L1.7.3",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'मोर नाच रहा है।' हर शब्द के बाद एक उँगली रखकर खाली जगह दिखाएँ और कहें: 'देखिए, हर शब्द के बाद एक उँगली जितनी जगह छोड़ते हैं, और वाक्य के अंत में पूर्ण विराम (।) लगाते हैं।' फिर बच्चों के साथ शब्द गिनें: चार शब्द।",
+   "we_do_hi": "बोर्ड पर बिना जगह लिखें: 'गायघासखातीहै' और बच्चों से पूछें: 'पहला शब्द कहाँ ख़त्म होता है?' बच्चों के बताने पर हर शब्द के बीच जगह छोड़कर दोबारा लिखें: 'गाय घास खाती है।' अंत में पूछें: 'वाक्य के अंत में क्या लगाएँ?' और पूर्ण विराम लगाएँ।",
+   "you_do_hi": "बच्चे वर्कशीट के सवाल 1 से 3 कॉपी में लिखना शुरू करें; हर शब्द के बाद एक उँगली की जगह छोड़ें। इस समय में पहला सवाल पूरा करें, बाकी अपनी जगह पर अगले समय में पूरे करें। शिक्षक घूमकर देखें कि शब्दों के बीच जगह और अंत में पूर्ण विराम है या नहीं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'बिल्ली दूध पीती है।' इस वाक्य में कितने शब्द हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा खाली जगह देखकर शब्द अलग-अलग पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) राम घर गया। 2) रामघरगया। किस वाक्य में शब्दों के बीच सही जगह है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि शब्दों के बीच खाली जगह छोड़नी होती है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'मोर नाच रहा है।' और 'गायघासखातीहै'",
+   "हर बच्चे के पास स्लेट और चॉक या कॉपी-पेंसिल हो"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द के बाद एक उँगली जितनी जगह छोड़ें। वाक्य के अंत में पूर्ण विराम (।) लगाएँ।",
+   "instructions_en": "Leave a finger space after each word. End each sentence with a full stop (।).",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "शब्दों के बीच जगह छोड़कर लिखने का उदाहरण:",
+    "example_text": "बंदर केला खाता है।"
+   },
+   "passage_block": null,
+   "sheet_kind": "formation",
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "शब्दों के बीच जगह छोड़कर वाक्य लिखें: मछली पानी में तैरती है",
+     "answer": "मछली पानी में तैरती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "शब्द अलग करके वाक्य दोबारा लिखें: मीनापतंगउड़ातीहै",
+     "answer": "मीना पतंग उड़ाती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "इन शब्दों से वाक्य बनाकर लिखें: सूरज, निकलता, सुबह, है",
+     "answer": "सुबह सूरज निकलता है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "शब्द अलग करके वाक्य दोबारा लिखें: तोताहराहै",
+     "answer": "तोता हरा है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "शब्दों के बीच जगह छोड़कर वाक्य लिखें: दादी कहानी सुनाती हैं",
+     "answer": "दादी कहानी सुनाती हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:45:23Z",
+ "cost_usd": 0.0442,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

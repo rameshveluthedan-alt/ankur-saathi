@@ -1,0 +1,120 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.5.1__normal__medium",
+ "skill_id": "L2.5.1",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'रीना ने / झूला झूला / और गुब्बारा खरीदा।' पहले हर शब्द पर बराबर रुककर पढ़ें, फिर शब्द-समूहों में जोड़कर सहज गति से पढ़ें। बच्चों से पूछें: 'कौन-सा पढ़ना बात करने जैसा लगा?' और बताएँ कि हम शब्दों को छोटे-छोटे समूहों में जोड़कर पढ़ते हैं।",
+   "we_do_hi": "बोर्ड पर लिखें: 'दादा जी ने / उसे / गरम जलेबी खिलाई।' पहले यह वाक्य समूहों में पढ़कर सुनाएँ, फिर बच्चे जोड़ी में बारी-बारी से यही वाक्य उसी तरह पढ़ें। घूमकर सुनें और जहाँ बच्चा हर शब्द पर रुके, वहाँ उँगली से समूह दिखाकर दोबारा पढ़वाएँ।",
+   "you_do_hi": "बच्चे वर्कशीट खोलें, पहले ऊपर के कठिन शब्द साथी को धीरे से पढ़कर सुनाएँ, फिर अनुच्छेद एक बार धीमी आवाज़ में पढ़ें। बाकी दो बार पढ़ना, जोड़ी में पढ़ना और प्रश्न 1 से 3 वे अगले ब्लॉक में अपनी जगह पर करें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'मीना ने बगीचे में फूल देखे।' पढ़ते समय पहली बार किस नंबर के शब्द के बाद रुकेंगे? स्लेट पर नंबर लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M1",
+      "misconception_name_hi": "वाक्यांश बनाए बिना शब्द-दर-शब्द पढ़ना",
+      "misconception_name_en": "Word-by-word reading without phrasing",
+      "detect_en": "CWPM may be adequate but reading sounds robotic; equal pause between all words regardless of meaning units",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'गाय घास खाती है।' इसे जल्दी से पढ़कर सुनाएँ: 'गाय घर खाती है।' बोर्ड का कौन-सा शब्द गलत पढ़ा गया? स्लेट पर वह शब्द लिखें।",
+    "expected_hi": "घास",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M3",
+      "misconception_name_hi": "तेज़ पढ़ता है पर बार-बार गलतियाँ (गति शुद्धता पर भारी)",
+      "misconception_name_en": "Reads fast but with frequent errors (speed over accuracy)",
+      "detect_en": "CWPM ≥40 but accuracy below 85%; errors are substitutions and skips rather than slow decoding",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do और We Do के दोनों वाक्य शब्द-समूहों के बीच तिरछी रेखा लगाकर लिखें।",
+   "हर बच्चे के लिए एक वर्कशीट और एक स्लेट या कॉपी तैयार रखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार धीमी आवाज़ में पढ़ें और हर बार एक खाने में सही का निशान लगाएँ। फिर जोड़ी में पढ़ें: एक पढ़े, साथी उँगली से साथ चले और जिस शब्द पर मदद लगी उस पर निशान लगाए। अंत में प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "Read the hard words to a partner. Read the passage aloud softly three times, ticking a box each time. Then read in pairs: one reads, the partner follows with a finger and marks any word that needed help. Then answer the questions.",
+   "required_count": 3,
+   "sheet_kind": "fluency",
+   "example_block": null,
+   "passage_block": {
+    "title": "मेले की सैर",
+    "text": "रविवार को रीना अपने दादा जी के साथ मेले में गई। मेले में बहुत भीड़ थी। रीना ने झूला झूला और गुब्बारे वाले से एक लाल गुब्बारा खरीदा। दादा जी ने उसे गरम जलेबी खिलाई। शाम को दोनों खुशी-खुशी घर लौट आए।"
+   },
+   "warmup_words": [
+    "रविवार",
+    "भीड़",
+    "झूला",
+    "गुब्बारे",
+    "खरीदा",
+    "जलेबी",
+    "खुशी-खुशी",
+    "लौट"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "रीना किसके साथ मेले में गई?",
+     "answer": "दादा जी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "रीना का गुब्बारा किस रंग का था?",
+     "answer": "लाल",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "दादा जी ने रीना को क्या खिलाया?",
+     "answer": "जलेबी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 8 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:40:59Z",
+ "cost_usd": 0.0744,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,328 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N0.1.1__normal__long",
+ "skill_id": "N0.1.1",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने चीज़ों के रंग देखे थे।' मेज़ पर लाल और पीले ढक्कन मिलाकर रखें और कहें: 'देखिए, अब हम रंग से छाँटते हैं: लाल ढक्कन यहाँ, पीले ढक्कन वहाँ।' छाँटने के बाद नियम बोलें: 'हमने रंग से छाँटा।'",
+   "we_do_hi": "बड़े और छोटे कंकड़ मिलाकर रखें और बच्चों से पूछें: 'यह कंकड़ किस ढेर में जाएगा, बड़े में या छोटे में?' एक-एक करके बच्चे कंकड़ सही ढेर में रखें। अंत में बच्चों से पूछें: 'हमने किस नियम से छाँटा?'",
+   "you_do_hi": "हर जोड़ी को कंकड़, बटन और बोतल के ढक्कन मिलाकर दें और कहें: 'इन्हें एक नियम से छाँटें और नियम बताएँ।' जहाँ चीज़ें न हों, वहाँ बच्चे वर्कशीट के सवाल 1 से 3 कॉपी में बनाकर करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर बनाएँ: ○ ○ △ ○ △। इनमें कितने △ हैं? उँगलियों पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा आकृति के आधार पर चीज़ें पहचानकर अलग कर पाता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर एक बड़ा ○ और एक छोटा ○ बनाएँ। बड़ा ○ कौन-सा है: 1 या 2? उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा आकार के आधार पर बड़ा और छोटा पहचानता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "हर जोड़ी के लिए कंकड़, बटन और बोतल के ढक्कन मिलाकर एक ढेर (लगभग 12 चीज़ें)",
+   "I Do के लिए लाल और पीले ढक्कन, We Do के लिए बड़े और छोटे कंकड़",
+   "CFU के लिए आकृतियाँ बोर्ड पर बनाने की जगह खाली रखें"
+  ],
+  "worksheet": {
+   "sheet_kind": "observed",
+   "practice": true,
+   "instructions_hi": "चीज़ों को एक नियम से छाँटें।",
+   "instructions_en": "Sort the objects by one rule.",
+   "required_count": 3,
+   "observe": {
+    "task_hi": "कंकड़, बटन और ढक्कन को एक नियम (रंग, आकार या आकृति) से छाँटें और नियम बताएँ।",
+    "task_en": "Sort pebbles, buttons and bottle caps by one rule (colour, size or shape) and say the rule.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "पत्तियाँ"
+    ],
+    "look_for": {
+     "achieved_hi": "एक ही नियम से सारी चीज़ें सही छाँटता है और नियम बताता है",
+     "partial_hi": "मदद से छाँटता है या 1-2 चीज़ें गलत ढेर में रखता है",
+     "not_yet_hi": "चीज़ें बिना नियम के मिला देता है",
+     "achieved_en": "Sorts all objects correctly by one rule and says the rule",
+     "partial_en": "Sorts with help or makes 1-2 errors",
+     "not_yet_en": "Groups objects randomly"
+    }
+   },
+   "example_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "item_type": "symbol_grid",
+     "grid": [
+      {
+       "s": "△",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": null
+      }
+     ],
+     "target": {
+      "s": "△"
+     },
+     "problem_hi": "सभी △ पर गोला लगाएँ।",
+     "answer": "4 (खाने 1, 3, 6, 8)",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "matches": [
+      1,
+      3,
+      6,
+      8
+     ],
+     "board_hi": "बड़ा △  बड़ा ○  छोटा △  छोटा □  छोटा ○  बड़ा △  बड़ा □  छोटा △"
+    },
+    {
+     "number": 2,
+     "item_type": "symbol_grid",
+     "grid": [
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": null
+      }
+     ],
+     "target": {
+      "size": "big"
+     },
+     "problem_hi": "सभी बड़ी आकृतियों पर गोला लगाएँ।",
+     "answer": "4 (खाने 1, 4, 5, 7)",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "matches": [
+      1,
+      4,
+      5,
+      7
+     ],
+     "board_hi": "बड़ा ○  छोटा □  छोटा ○  बड़ा △  बड़ा □  छोटा △  बड़ा ○  छोटा □"
+    },
+    {
+     "number": 3,
+     "item_type": "symbol_grid",
+     "grid": [
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "★",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": null
+      }
+     ],
+     "target": {
+      "odd_one_out": true
+     },
+     "problem_hi": "जो अलग है उसे काटें।",
+     "answer": "खाना 4",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "matches": [
+      4
+     ],
+     "board_hi": "○  ○  ○  ★  ○  ○  ○  ○"
+    },
+    {
+     "number": 4,
+     "item_type": "symbol_grid",
+     "grid": [
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "◇",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "◇",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": null
+      },
+      {
+       "s": "◇",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": null
+      },
+      {
+       "s": "◇",
+       "size": "big",
+       "colour": null
+      }
+     ],
+     "target": {
+      "s": "◇"
+     },
+     "problem_hi": "सभी ◇ पर गोला लगाएँ।",
+     "answer": "4 (खाने 2, 4, 6, 8)",
+     "diagnostic_for_misconception": null,
+     "row_type": null,
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "matches": [
+      2,
+      4,
+      6,
+      8
+     ],
+     "board_hi": "बड़ा □  छोटा ◇  छोटा □  बड़ा ◇  बड़ा □  छोटा ◇  छोटा □  बड़ा ◇"
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 4 item(s) (4 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "21be61919548",
+ "created": "2026-11-21T04:36:46Z",
+ "cost_usd": 0.0591,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

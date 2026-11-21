@@ -1,0 +1,121 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.2.1__normal__long",
+ "skill_id": "N2.2.1",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने दो अंकों की संख्या में दहाई और इकाई पहचानी थी।' बोर्ड पर सैकड़ा-दहाई-इकाई का बॉक्स बनाएँ, उसमें 3, 4, 6 लिखें और 346 को बाएँ से दाएँ पढ़कर सुनाएँ: पहले सैकड़ा, फिर बाकी संख्या। इसके बाद बॉक्स में 4, 0, 2 लिखें और बताएँ: 'दहाई में 0 है, इसलिए हम सैकड़े के बाद सीधे इकाई बोलते हैं।'",
+   "we_do_hi": "बोर्ड पर 573 लिखें; बच्चे बताएँ कितने सैकड़े, कितनी दहाई और कितनी इकाई हैं, फिर सब मिलकर संख्या पढ़ें। इसके बाद बोलें: 'आठ सौ दस'; बच्चे कॉपी में बॉक्स बनाकर अंक लिखें, फिर बोर्ड पर 810 लिखकर मिलान करवाएँ। पूछें: 'इकाई के बॉक्स में क्या आया?'",
+   "you_do_hi": "'अब अपनी वर्कशीट पर काम करें।' पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि 0 वाली संख्याओं में बच्चे 0 सही बॉक्स में लिख रहे हैं।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "एक संख्या बोलें: चार सौ सत्ताईस। बच्चे इसे अंकों में लिखें।",
+    "expected_hi": "427",
+    "listen_for": [],
+    "shows_hi": "बच्चा सुनी हुई तीन अंकों की संख्या सैकड़ा, दहाई, इकाई के क्रम में लिख सकता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 750 2) 705। 'सात सौ पाँच' कौन-सी संख्या है? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा जानता है कि बीच में दहाई न हो तो वहाँ 0 लिखा जाता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर सैकड़ा-दहाई-इकाई का बॉक्स बनाकर रखें।",
+   "हर बच्चे के लिए एक वर्कशीट और स्लेट या कॉपी।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर संख्या को सैकड़ा, दहाई, इकाई के बॉक्स में अंकों में लिखें। जहाँ अंक दिए हैं, वहाँ संख्या शब्दों में लिखें।",
+   "instructions_en": "Write each number in digits in the hundreds-tens-ones boxes. Where digits are given, write the number in words.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "एक सौ चौंसठ लिखिए",
+    "answer": "164",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "1",
+    "row1_t": "6",
+    "row1_o": "4",
+    "row2_h": "",
+    "row2_t": "",
+    "row2_o": "",
+    "answer_h": "1",
+    "answer_t": "6",
+    "answer_o": "4"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "दो सौ सैंतालीस लिखिए",
+     "answer": "247",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पाँच सौ नौ लिखिए",
+     "answer": "509",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "830 को शब्दों में लिखिए",
+     "answer": "आठ सौ तीस",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "तीन सौ छप्पन लिखिए",
+     "answer": "356",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "नौ सौ चार लिखिए",
+     "answer": "904",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "612 को शब्दों में लिखिए",
+     "answer": "छह सौ बारह",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "21be61919548",
+ "created": "2026-11-21T04:38:00Z",
+ "cost_usd": 0.0626,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

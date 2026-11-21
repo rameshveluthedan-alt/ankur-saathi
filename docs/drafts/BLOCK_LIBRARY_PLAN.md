@@ -99,6 +99,8 @@ The app's own checks, run on each piece as on a plan:
 
 ## 7. Decisions for the user (before step 2)
 
+**Decided 21 Nov 2026 (the project lead): points 1, 1a, 2 and 3 approved; the pilot approved.** Remaining credit is about $350 by the lead's estimate from tracked usage (not checked in the Console). Point 4 (the education lead's review before the full run) is open.
+
 1. Approve the **cost caps** ($3 pilot, $40 total) and **Opus 5.5 with Message Batches** as the model (≈ $28; Sonnet ≈ $13 as the fallback).
 1a. Approve **one version of each teach block per skill**, written at the Progressor level of scaffolding (today's skill, scaffolding faded);
    a skill taught to Beginners or Proficients uses the same block. Level-specific versions (e.g. a Beginner grid sheet) are a phase-2 option.

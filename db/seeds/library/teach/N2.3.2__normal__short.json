@@ -1,0 +1,141 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N2.3.2__normal__short",
+ "skill_id": "N2.3.2",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 36 + 47। पहले इकाई जोड़ें: 6 + 7 = 13, इकाई में 3 लिखें और 1 हासिल दहाई के ऊपर लिखें। फिर दहाई: 3 + 4 + 1 = 8, उत्तर 83; बच्चों से पूछें: 'हमने पहले कौन-सा बॉक्स जोड़ा?'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। समय कम है, इसलिए यहाँ सवाल 1 शुरू करें और बाकी अपनी जगह पर अगले ब्लॉक में पूरा करें। पहले उन बच्चों की कॉपी देखें जिनके दहाई में हासिल का 1 नहीं दिख रहा।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "स्लेट पर हल करें: 45 + 29",
+    "expected_hi": "74",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M1",
+      "misconception_name_hi": "हासिल भूलना: हासिल छोड़ देता है",
+      "misconception_name_en": "Place-value carry-over confusion: drops the carry",
+      "detect_en": "Answer is exactly 10 less than correct. Ones column has a 2-digit number written, or only ones digit is written but tens carry is missing. Consistent across 3+ problems.",
+      "wrong_answer_hi": "64"
+     },
+     {
+      "misconception_id": "N2.3.2-M2",
+      "misconception_name_hi": "पूरा इकाई योग लिखना, हासिल न रखना",
+      "misconception_name_en": "Writes full ones sum without carrying",
+      "detect_en": "Answer has 3 digits where 2 expected, or ones column shows 2 digits (e.g., 34+28 → 512 where ones shows 12)",
+      "wrong_answer_hi": "614"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "27 + 65: 82 या 92? उँगली पर 1 या 2 दिखाएँ।",
+    "expected_hi": "2 (92)",
+    "listen_for": [
+     {
+      "misconception_id": "N2.3.2-M1",
+      "misconception_name_hi": "हासिल भूलना: हासिल छोड़ देता है",
+      "misconception_name_en": "Place-value carry-over confusion: drops the carry",
+      "detect_en": "Answer is exactly 10 less than correct. Ones column has a 2-digit number written, or only ones digit is written but tens carry is missing. Consistent across 3+ problems.",
+      "wrong_answer_hi": "1 (82)"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर दहाई-इकाई का बॉक्स बनाकर 36 + 47 लिखें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले इकाई जोड़ें, हासिल दहाई के ऊपर लिखें, फिर दहाई जोड़ें।",
+   "instructions_en": "Add the ones first, write the carry above the tens, then add the tens.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "27 + 15 = ___",
+    "answer": "42",
+    "show_pv_grid": true,
+    "pv_columns": 2,
+    "row1_t": "2",
+    "row1_o": "7",
+    "row2_t": "1",
+    "row2_o": "5",
+    "answer_t": "4",
+    "answer_o": "2"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "38 + 24",
+     "answer": "62",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "46 + 37",
+     "answer": "83",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 2,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N2.3.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "19 + 56 = ___",
+     "answer": "75",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N2.3.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "53 + 39 = ___",
+     "answer": "92",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "64 + 26 = ___",
+     "answer": "90",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "रानी के पास 28 मोती हैं। उसे 25 मोती और मिले। अब उसके पास कितने मोती हैं?",
+     "answer": "53",
+     "row_type": null,
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "21be61919548",
+ "created": "2026-11-21T04:38:10Z",
+ "cost_usd": 0.0361,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -1,0 +1,114 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L1.7.3__normal__long",
+ "skill_id": "L1.7.3",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने शब्द लिखे थे, आज हम पूरा वाक्य लिखेंगे।' बोर्ड पर लिखें: 'मोर नाच रहा है।' हर शब्द के बाद दो उँगली जितनी खाली जगह छोड़ते हुए दिखाएँ और अंत में पूर्ण विराम (।) लगाएँ; फिर उँगली रखकर शब्द गिनें: 'एक, दो, तीन, चार शब्द।'",
+   "we_do_hi": "बोर्ड पर बिना खाली जगह के लिखें: 'गायघासखातीहै' और बच्चों से पूछें कि शब्द कहाँ अलग होंगे; उनके बताने पर सही रूप लिखें: 'गाय घास खाती है।' इसके बाद बच्चों के साथ नया वाक्य बनाएँ: 'बच्चे खेल रहे हैं।' हर शब्द के बाद बच्चे कॉपी में दो उँगली रखकर खाली जगह छोड़ें और अंत में । लगाएँ।",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। शिक्षक घूमकर देखें कि शब्दों के बीच खाली जगह है और वाक्य के अंत में । लगा है।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'पेड़ पर तोता है।' इस वाक्य में कितने शब्द हैं? स्लेट पर संख्या लिखें।",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा खाली जगह देखकर शब्दों को अलग पहचानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 1) 'माँखानापकातीहै।' 2) 'माँ खाना पकाती है।' कौन सा वाक्य ठीक से लिखा है? उँगली से 1 या 2 दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [],
+    "shows_hi": "बच्चा समझता है कि शब्दों के बीच खाली जगह ज़रूरी है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'गायघासखातीहै' (बिना खाली जगह के)।",
+   "हर बच्चे के लिए स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द के बाद खाली जगह छोड़ें और वाक्य के अंत में । लगाएँ।",
+   "instructions_en": "Leave a space after every word and put a पूर्ण विराम (।) at the end of the sentence.",
+   "required_count": 3,
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "खाली जगह छोड़कर लिखने का उदाहरण:",
+    "example_text": "चिड़िया उड़ती है।"
+   },
+   "passage_block": null,
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "इस वाक्य को खाली जगह छोड़कर लिखें: 'राम दूध पीता है।'",
+     "answer": "राम दूध पीता है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "शब्द अलग करके सही वाक्य लिखें: 'मछलीपानीमेंरहतीहै'",
+     "answer": "मछली पानी में रहती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "इन शब्दों से वाक्य लिखें और अंत में । लगाएँ: 'कुत्ता' 'भौंकता' 'है'",
+     "answer": "कुत्ता भौंकता है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 4,
+     "problem_hi": "शब्द अलग करके सही वाक्य लिखें: 'दादीकहानीसुनातीहै'",
+     "answer": "दादी कहानी सुनाती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "इन शब्दों से वाक्य लिखें और अंत में । लगाएँ: 'बिल्ली' 'दूध' 'पीती' 'है'",
+     "answer": "बिल्ली दूध पीती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:45:38Z",
+ "cost_usd": 0.0442,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

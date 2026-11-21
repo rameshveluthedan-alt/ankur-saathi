@@ -1,0 +1,155 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.7.2__normal__long",
+ "skill_id": "L2.7.2",
+ "mode": "normal",
+ "length": "long",
+ "minutes": 22,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने पूरे वाक्य और पूर्ण विराम सीखा था।' बोर्ड पर लिखें: 'मेरी गाय सफ़ेद है। वह घास खाती है। वह दूध देती है।' फिर बच्चों के सामने बोलकर दिखाएँ: 'देखिए, हम इन्हें और से जोड़ते हैं, और नई बात से शुरू करते हैं' और बोर्ड पर लिखें: 'मेरी गाय सफ़ेद है। वह घास खाती है और हमें दूध देती है। सुबह दादी उसे पानी पिलाती हैं।'",
+   "we_do_hi": "बोर्ड पर लिखें: 'बारिश हुई हम घर में रहे' और बच्चों से पूछें कि पूर्ण विराम कहाँ लगेगा, फिर उसे सही जगह लगाएँ। इसके बाद बोर्ड पर लिखें: 'मेरा बस्ता नीला है। मेरा बस्ता बड़ा है।' बच्चों के साथ दूसरे वाक्य की शुरुआत बदलें और दोनों वाक्य 'और' से जोड़ें। आख़िर में मिलकर 'सुबह की धूप' पर एक जुड़ा हुआ वाक्य बनाएँ, जिसमें 'फिर' आए।",
+   "you_do_hi": "बच्चों से कहें: 'अब वर्कशीट खोलें।' पहले वर्कशीट के सवाल 1 से 4 करें; सवाल 1 में 'मेरा मनपसंद त्योहार' पर 3-5 जुड़े हुए वाक्य लिखें, और जो जल्दी ख़त्म करें, वे सवाल 5 करें। घूमकर देखें कि वाक्य 'और / फिर / क्योंकि' से जुड़े हैं और हर वाक्य के अंत में । लगा है।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'राजू ने खाना खाया ___ वह खेलने गया।' खाली जगह में कौन-सा शब्द आएगा? 1) फिर 2) गेंद। उँगली से बताएँ।",
+    "expected_hi": "1) फिर",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M1",
+      "misconception_name_hi": "वाक्य अलग-अलग लिखना, जोड़ने वाले शब्द नहीं",
+      "misconception_name_en": "Writes separate sentences with no joining words",
+      "detect_en": "Three or more sentences on the topic, none joined by और / फिर / क्योंकि / लेकिन",
+      "wrong_answer_hi": "2) गेंद"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'आज छुट्टी है हम पार्क जाएँगे'। पूर्ण विराम किस शब्द के बाद लगेगा? उस शब्द का नंबर स्लेट पर लिखें।",
+    "expected_hi": "3",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M2",
+      "misconception_name_hi": "वाक्य कहाँ खत्म होता है, यह नहीं दिखाना",
+      "misconception_name_en": "Does not mark where a sentence ends",
+      "detect_en": "Two or more full stops missing or misplaced on the sheet",
+      "wrong_answer_hi": "5"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: 'मेरी गाय सफ़ेद है। वह घास खाती है। वह दूध देती है।'",
+   "बोर्ड के कोने में जोड़ने वाले शब्द लिखें: और, फिर, क्योंकि, लेकिन"
+  ],
+  "worksheet": {
+   "instructions_hi": "दिए गए विषय पर जुड़े हुए वाक्य लिखें। हर वाक्य के अंत में । लगाएँ।",
+   "instructions_en": "Write connected sentences on the given topic. Put । at the end of each sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा मनपसंद त्योहार",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य त्योहार के बारे में",
+     "item_en": "All sentences about the festival"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "। at the end of every sentence"
+    },
+    {
+     "item_hi": "कम से कम एक बार 'और / फिर / क्योंकि'",
+     "item_en": "Uses और / फिर / क्योंकि at least once"
+    },
+    {
+     "item_hi": "हर वाक्य की शुरुआत एक जैसी नहीं",
+     "item_en": "Sentences do not all start the same way"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने मनपसंद त्योहार पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा मनपसंद त्योहार"
+    },
+    {
+     "number": 2,
+     "problem_hi": "खाली जगह भरें: 'मीना बाज़ार गई ___ उसने आम ख़रीदे।' (और / लेकिन)",
+     "answer": "और",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "सही जगह पर । लगाकर लिखें: 'पेड़ पर चिड़िया बैठी है वह गाना गाती है'",
+     "answer": "पेड़ पर चिड़िया बैठी है। वह गाना गाती है।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "'मेरा दोस्त अमन है।' के बाद कौन-सा वाक्य अच्छा है? 1) मेरा दोस्त अमन है। 2) वह मेरे साथ खेलता है।",
+     "answer": "2",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M3"
+    },
+    {
+     "number": 5,
+     "problem_hi": "अपने स्कूल के बग़ीचे पर 3 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 5,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:42:23Z",
+ "cost_usd": 0.0582,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

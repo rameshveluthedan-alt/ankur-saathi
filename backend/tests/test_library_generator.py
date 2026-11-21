@@ -122,6 +122,21 @@ async def main():
             man4 = gl.load_manifest(root)
             todo = [(s, l) for s in ["N2.3.2"] for l in ("short", "medium", "long") if man4["pieces"].get(lp.teach_key(s, l), {}).get("status") != "ok"]
             check("a new run skips what is done (resume): the failed and the missing pieces are left to make", todo == [("N2.3.2", "short"), ("N2.3.2", "medium")], todo)
+
+            print("\nre-teach pieces (one per recorded mistake)")
+            m1 = next(m for m in mistakes if m["id"].endswith("-M1"))
+            fake5 = Fake([fresh()])
+            st5 = await gl.generate_one(fake5, "claude-opus-5-5", db, skill, mistakes, "medium", root, man, [0.0], 3.0, plan_service, log=lambda *a: None, reteach=m1)
+            f5 = root / "reteach" / f"{m1['id']}__medium.json"
+            rec5 = json.loads(f5.read_text(encoding="utf-8")) if f5.is_file() else {}
+            check("the prompt says it is a re-teach of that mistake, by the system's re-teach rules", f"RE-TEACH of ONE recorded mistake: {m1['id']}" in fake5.calls[0]["messages"][0]["content"])
+            check("its own file and key, with the mistake as the mode", st5 == "ok" and rec5.get("key") == f"{m1['id']}__medium" and rec5.get("mode") == m1["id"] and rec5.get("piece") == "reteach", (st5, rec5.get("key")))
+            check("the manifest records the mistake", gl.load_manifest(root)["pieces"][f"{m1['id']}__medium"]["mistake_id"] == m1["id"])
+            p6 = fresh()
+            for p in p6["worksheet"]["problems"]:
+                p["diagnostic_for_misconception"] = None
+            r6 = lp.check_teach_piece(p6, skill, mistakes, "medium", plan_service, reteach=m1)
+            check("a re-teach whose core reveals another mistake is warned about (not rejected)", r6["ok"] and any(f"no core problem reveals {m1['id']}" in w for w in r6["warnings"]), r6["warnings"])
         n = await db.fetchval("SELECT count(*) FROM ai_usage WHERE kind = 'library' AND teacher_id IS NULL AND created_at > now() - interval '5 minutes'")
         check("every call was metered as 'library'", n >= 4, n)
         await db.execute("DELETE FROM ai_usage WHERE kind = 'library' AND teacher_id IS NULL AND created_at > now() - interval '5 minutes' AND input_tokens = 5000 AND output_tokens = 3000")

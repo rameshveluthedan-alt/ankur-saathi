@@ -1,0 +1,139 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "N3.3.1__normal__short",
+ "skill_id": "N3.3.1",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर सैकड़ा-दहाई-इकाई का बॉक्स बनाकर 158 + 274 लिखें। बोलें: 'इकाई में 8 + 4 = 12, 2 लिखते हैं, 1 हासिल दहाई के ऊपर; दहाई में 5 + 7 + 1 = 13, 3 लिखते हैं, 1 हासिल सैकड़ा के ऊपर; सैकड़ा में 1 + 2 + 1 = 4, उत्तर 432।' अंत में बच्चों से पूछें: 'दहाई से बना हासिल किसके ऊपर लिखा?' और दोनों हासिल पर उँगली रखकर दिखाएँ।",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 हल करें; जो जल्दी ख़त्म करें, वे बाकी सवाल करें। सवाल 2 और 3 में देखें कि बच्चे सैकड़ा के ऊपर दूसरा हासिल लिख रहे हैं। जो काम यहाँ पूरा न हो, बच्चे उसे अपनी जगह पर पूरा करें।"
+  },
+  "cfu": [
+   {
+    "kind": "compute",
+    "question_hi": "276 + 148",
+    "expected_hi": "424",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.1-M1",
+      "misconception_name_hi": "एक हासिल सही पर दोहरे हासिल में गलती",
+      "misconception_name_en": "Single carry works but double carry fails",
+      "detect_en": "Problems with carry in ones only are correct; problems with carry in both ones AND tens are wrong — tens-to-hundreds carry is dropped",
+      "wrong_answer_hi": "324"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "spot_error",
+    "question_hi": "बोर्ड पर देखें: 359 + 263 = 522। सही या गलत? गलत हो तो सही उत्तर लिखें।",
+    "expected_hi": "गलत, 622",
+    "listen_for": [
+     {
+      "misconception_id": "N3.3.1-M1",
+      "misconception_name_hi": "एक हासिल सही पर दोहरे हासिल में गलती",
+      "misconception_name_en": "Single carry works but double carry fails",
+      "detect_en": "Problems with carry in ones only are correct; problems with carry in both ones AND tens are wrong — tens-to-hundreds carry is dropped",
+      "wrong_answer_hi": "सही"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर सैकड़ा-दहाई-इकाई का बॉक्स बनाकर 158 + 274 पहले से लिख लें।",
+   "हर बच्चे के पास स्लेट या कॉपी का एक पन्ना हो।"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर सवाल जोड़ें। हासिल को ऊपर वाले बॉक्स में लिखें, दहाई से बना हासिल सैकड़ा के ऊपर लिखें।",
+   "instructions_en": "Add each sum. Write each carry in the carry cell; the carry from the tens goes above the hundreds.",
+   "required_count": 3,
+   "example_block": {
+    "problem_hi": "147 + 286 = ___",
+    "answer": "433",
+    "show_pv_grid": true,
+    "pv_columns": 3,
+    "row1_h": "1",
+    "row1_t": "4",
+    "row1_o": "7",
+    "row2_h": "2",
+    "row2_t": "8",
+    "row2_o": "6",
+    "answer_h": "4",
+    "answer_t": "3",
+    "answer_o": "3"
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "236 + 145",
+     "answer": "381",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "368 + 457",
+     "answer": "825",
+     "row_type": "grid",
+     "show_pv_grid": true,
+     "pv_columns": 3,
+     "pv_row2": true,
+     "diagnostic_for_misconception": "N3.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "274 + 196 = ___",
+     "answer": "470",
+     "row_type": "plain",
+     "diagnostic_for_misconception": "N3.3.1-M1"
+    },
+    {
+     "number": 4,
+     "problem_hi": "529 + 184 = ___",
+     "answer": "713",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "345 + 278 = ___",
+     "answer": "623",
+     "row_type": "plain",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "एक स्कूल में 386 कॉपियाँ थीं। 257 कॉपियाँ और आईं। अब कुल कितनी कॉपियाँ हैं?",
+     "answer": "643",
+     "row_type": null,
+     "answer_type": "wide",
+     "word_problem_text": null,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "21be61919548",
+ "created": "2026-11-21T04:44:00Z",
+ "cost_usd": 0.0572,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

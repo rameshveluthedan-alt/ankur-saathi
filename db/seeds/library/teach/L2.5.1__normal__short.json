@@ -1,0 +1,118 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.5.1__normal__short",
+ "skill_id": "L2.5.1",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'मीना ने / बगीचे में / लाल फूल देखे।' पहले हर शब्द के बाद रुककर पढ़ें, फिर टुकड़ों में जोड़कर सहज गति से पढ़ें। बच्चों से पूछें: 'कौन-सा पढ़ना बात करने जैसा लगा?'",
+   "we_do_hi": "",
+   "you_do_hi": "वर्कशीट के कठिन शब्द साथी को धीरे-धीरे पढ़कर सुनाएँ, फिर अनुच्छेद एक बार पढ़ें। बाकी दो बार पढ़ना, जोड़ी में पढ़ना और प्रश्न 1 से 3 बच्चे अगले ब्लॉक में अपनी जगह पर करें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'दादी ने रसोई में गरम रोटी बनाई।' पहला रुकना किस शब्द के बाद होगा? उस शब्द की संख्या लिखें।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M1",
+      "misconception_name_hi": "वाक्यांश बनाए बिना शब्द-दर-शब्द पढ़ना",
+      "misconception_name_en": "Word-by-word reading without phrasing",
+      "detect_en": "CWPM may be adequate but reading sounds robotic; equal pause between all words regardless of meaning units",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "यह वाक्य दो तरह से पढ़कर सुनाएँ: 'चिड़िया पेड़ पर बैठी है।' 1) हर शब्द के बाद रुककर 2) 'चिड़िया / पेड़ पर बैठी है' । कौन-सा पढ़ना सही है? उँगली पर दिखाएँ।",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.5.1-M1",
+      "misconception_name_hi": "वाक्यांश बनाए बिना शब्द-दर-शब्द पढ़ना",
+      "misconception_name_en": "Word-by-word reading without phrasing",
+      "detect_en": "CWPM may be adequate but reading sounds robotic; equal pause between all words regardless of meaning units",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर लिखें: 'मीना ने / बगीचे में / लाल फूल देखे।'",
+   "प्रगतिशील समूह के हर बच्चे के लिए एक वर्कशीट।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार धीरे-धीरे पढ़ें और हर बार एक खाने में सही का निशान लगाएँ। इसके बाद जोड़ी में पढ़ें: एक पढ़े, साथी उँगली से शब्दों के साथ चले और जिस शब्द में मदद लगी उस पर निशान लगाए। अंत में प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "First read the hard words to a partner. Read the passage aloud softly three times, ticking a box each time. Then read in pairs: one reads, the partner follows with a finger and marks any word that needed help. Then answer the questions.",
+   "required_count": 3,
+   "sheet_kind": "fluency",
+   "example_block": null,
+   "passage_block": {
+    "title": "बगीचे में एक दिन",
+    "text": "रविवार को मीना अपनी दादी के साथ बगीचे गई। वहाँ बहुत सारे रंग-बिरंगे फूल खिले थे। एक पेड़ पर छोटी चिड़िया गाना गा रही थी। मीना ने दादी से पूछा कि चिड़िया कहाँ रहती है। दादी ने हँसकर कहा कि उसका घोंसला इसी पेड़ पर है। शाम को दोनों खुश होकर घर लौट आईं।"
+   },
+   "warmup_words": [
+    "रविवार",
+    "रंग-बिरंगे",
+    "चिड़िया",
+    "घोंसला",
+    "हँसकर",
+    "लौट"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "मीना किसके साथ बगीचे गई?",
+     "answer": "दादी",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "पेड़ पर कौन गाना गा रही थी?",
+     "answer": "चिड़िया",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "चिड़िया का घोंसला कहाँ है?",
+     "answer": "पेड़ पर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 6 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:40:31Z",
+ "cost_usd": 0.0446,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

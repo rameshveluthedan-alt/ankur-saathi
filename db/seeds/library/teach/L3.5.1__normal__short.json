@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L3.5.1__normal__short",
+ "skill_id": "L3.5.1",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'शाम को हम पार्क गए, वहाँ बहुत ठंडी हवा चल रही थी।' पहले इसे अटक-अटक कर, एक-एक शब्द अलग पढ़कर सुनाएँ, फिर इसे सहज गति से, अल्पविराम पर छोटा और पूर्णविराम पर पूरा रुककर पढ़ें। बच्चों से कहें: 'देखिए, अच्छा पाठक बात करने की तरह पढ़ता है और चिह्न पर रुकता है।'",
+   "we_do_hi": "",
+   "you_do_hi": "बच्चे वर्कशीट के कठिन शब्द साथी को धीमे स्वर में पढ़कर सुनाएँ, फिर अनुच्छेद एक बार धीरे-धीरे पढ़ें। बाकी दो बार पढ़ना, जोड़ी में पढ़ना और प्रश्न 1 से 3 बच्चे अगले ब्लॉक में अपनी जगह पर करें। ऐप में दिखाए गए बच्चों को एक-एक मिनट पढ़ते हुए सुनें।"
+  },
+  "cfu": [
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'आज बहुत बारिश हुई, इसलिए हम घर पर रहे।' किस नंबर के शब्द के बाद रुकना है? वह नंबर लिखें।",
+    "expected_hi": "4",
+    "listen_for": [],
+    "shows_hi": "बच्चा अल्पविराम देखकर सही जगह रुकना जानता है।",
+    "grounded": false
+   },
+   {
+    "kind": "choose",
+    "question_hi": "यह वाक्य दो तरह पढ़कर सुनाएँ: 'चिड़िया पेड़ पर बैठी है।' पहली बार सहज गति से, दूसरी बार एक-एक शब्द अटककर। कौन-सा पढ़ना अच्छा था: 1 या 2? उँगली पर दिखाएँ।",
+    "expected_hi": "1",
+    "listen_for": [],
+    "shows_hi": "बच्चा पहचानता है कि धाराप्रवाह पढ़ना सहज और बोलने जैसा होता है।",
+    "grounded": false
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का वाक्य लिखकर रखें: 'शाम को हम पार्क गए, वहाँ बहुत ठंडी हवा चल रही थी।'",
+   "हर बच्चे के लिए वर्कशीट और स्लेट या कॉपी का एक पन्ना।"
+  ],
+  "worksheet": {
+   "instructions_hi": "पहले कठिन शब्द साथी को पढ़कर सुनाएँ। फिर अनुच्छेद तीन बार धीमे स्वर में पढ़ें और हर बार एक खाने में सही का निशान लगाएँ। फिर जोड़ी में पढ़ें: एक पढ़े, साथी उँगली रखकर साथ चले और जिस शब्द में मदद लगी उस पर निशान लगाए। अंत में प्रश्नों के उत्तर लिखें।",
+   "instructions_en": "First read the hard words aloud to a partner. Then read the passage softly three times, ticking a box each time. Then read in pairs: one reads, the partner follows with a finger and marks any word that needed help. Finally answer the questions.",
+   "required_count": 3,
+   "example_block": null,
+   "passage_block": {
+    "title": "मेले की सैर",
+    "text": "रविवार को रीना अपने दादाजी के साथ मेले गई। मेले में बहुत भीड़ थी। चारों ओर रंग-बिरंगे गुब्बारे और खिलौने बिक रहे थे। रीना ने झूले पर बैठने की ज़िद की। दादाजी ने उसे बड़े झूले पर बिठाया। झूला ऊपर गया, तो रीना ज़ोर से हँसी। लौटते समय दादाजी ने उसके लिए एक लाल चश्मा खरीदा। रीना ने कहा, 'आज का दिन सबसे अच्छा था।'"
+   },
+   "sheet_kind": "fluency",
+   "warmup_words": [
+    "रंग-बिरंगे",
+    "खिलौने",
+    "भीड़",
+    "ज़िद",
+    "बिठाया",
+    "ज़ोर",
+    "लौटते",
+    "चश्मा"
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "रीना किसके साथ मेले गई?",
+     "answer": "दादाजी के साथ",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "रीना किस पर बैठी?",
+     "answer": "बड़े झूले पर",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 3,
+     "problem_hi": "दादाजी ने रीना के लिए क्या खरीदा?",
+     "answer": "लाल चश्मा",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "practice": true
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: reading-aloud practice sheet, 8 warm-up words, 3 question(s)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:46:06Z",
+ "cost_usd": 0.0681,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

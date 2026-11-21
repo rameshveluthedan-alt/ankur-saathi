@@ -1,0 +1,152 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.7.2__normal__short",
+ "skill_id": "L2.7.2",
+ "mode": "normal",
+ "length": "short",
+ "minutes": 7,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर लिखें: 'मेरी गाय का नाम गौरी है। वह घास खाती है और दूध देती है।' बच्चों को दिखाएँ कि 'और' दो बातों को जोड़ता है और हर वाक्य के अंत में । लगता है। फिर पूछें: 'दूसरा वाक्य किस शब्द से जुड़ा है?'",
+   "we_do_hi": "",
+   "you_do_hi": "पहले वर्कशीट का सवाल 1 शुरू करें: वर्कशीट पर दिए विषय पर पहला वाक्य लिखें। बाकी वाक्य और सवाल 2 से 4 बच्चे अपनी जगह पर अगले समय में पूरे करें। शिक्षक पहले उन बच्चों के पास जाएँ जिनके वाक्य में । नहीं दिख रहा।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'राजू खेलता है। राजू गाना गाता है।' इन्हें जोड़ने के लिए कौन-सा शब्द ठीक है? 1) और 2) लेकिन",
+    "expected_hi": "1) और",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M1",
+      "misconception_name_hi": "वाक्य अलग-अलग लिखना, जोड़ने वाले शब्द नहीं",
+      "misconception_name_en": "Writes separate sentences with no joining words",
+      "detect_en": "Three or more sentences on the topic, none joined by और / फिर / क्योंकि / लेकिन",
+      "wrong_answer_hi": "कोई शब्द नहीं, वाक्य अलग ही रहें"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "answer",
+    "question_hi": "बोर्ड पर लिखें: 'आज बारिश हुई हम घर में रहे' पूर्ण विराम किस शब्द के बाद लगेगा? शब्द की संख्या लिखें।",
+    "expected_hi": "3",
+    "listen_for": [
+     {
+      "misconception_id": "L2.7.2-M2",
+      "misconception_name_hi": "वाक्य कहाँ खत्म होता है, यह नहीं दिखाना",
+      "misconception_name_en": "Does not mark where a sentence ends",
+      "detect_en": "Two or more full stops missing or misplaced on the sheet",
+      "wrong_answer_hi": "6"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर I Do का वाक्य और तीनों show-me वाक्य पहले से लिखकर ढक दें।"
+  ],
+  "worksheet": {
+   "instructions_hi": "ध्यान से पढ़ें और लिखें। वाक्यों को जोड़ें और हर वाक्य के अंत में । लगाएँ।",
+   "instructions_en": "Read carefully and write. Join sentences and put a full stop at the end of each sentence.",
+   "required_count": 4,
+   "example_block": null,
+   "passage_block": null,
+   "sheet_kind": "composition",
+   "writing_task": {
+    "topic_hi": "मेरा स्कूल",
+    "lines": 8
+   },
+   "checklist": [
+    {
+     "item_hi": "कम से कम 3 वाक्य",
+     "item_en": "At least 3 sentences"
+    },
+    {
+     "item_hi": "सभी वाक्य स्कूल के बारे में",
+     "item_en": "All sentences about the school"
+    },
+    {
+     "item_hi": "हर वाक्य के अंत में ।",
+     "item_en": "A full stop at the end of every sentence"
+    },
+    {
+     "item_hi": "कम से कम एक बार 'और / फिर / क्योंकि'",
+     "item_en": "At least one joining word used"
+    },
+    {
+     "item_hi": "हर वाक्य की शुरुआत अलग",
+     "item_en": "Sentences begin differently"
+    }
+   ],
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "अपने स्कूल पर 3-5 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null,
+     "writing_task": true,
+     "topic_hi": "मेरा स्कूल"
+    },
+    {
+     "number": 2,
+     "problem_hi": "सही शब्द से जोड़ें: 'माँ ने खाना बनाया ___ हमने खाया।' (और / लेकिन)",
+     "answer": "और",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "पूर्ण विराम लगाकर लिखें: 'मोर नाचता है उसके पंख सुंदर हैं'",
+     "answer": "मोर नाचता है। उसके पंख सुंदर हैं।",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "किस वाक्य में नई बात है? 'मेरी पतंग लाल है।' के बाद लिखें: 1) मेरी पतंग लाल है। 2) वह ऊँची उड़ती है।",
+     "answer": "2",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M3"
+    },
+    {
+     "number": 5,
+     "problem_hi": "अतिरिक्त: अपने पसंदीदा खेल पर 3 जुड़े हुए वाक्य लिखें।",
+     "answer": "CHECKLIST",
+     "row_type": null,
+     "answer_type": "lines",
+     "answer_lines": 5,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": []
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:41:44Z",
+ "cost_usd": 0.0482,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}

@@ -27,6 +27,19 @@ def teach_key(skill_id: str, length: str) -> str:
     return f"{skill_id}__normal__{length}"
 
 
+def reteach_key(mistake_id: str, length: str) -> str:
+    """A re-teach block for ONE recorded mistake (its skill is in the mistake's ID: N2.3.2-M1)."""
+    return f"{mistake_id}__{length}"
+
+
+RETEACH_SECTION = """
+## THIS BLOCK IS A RE-TEACH of ONE recorded mistake: {mid} {name}
+Children in this group made this mistake at the last check. Write the block by the RE-TEACH RULES in the system instructions (the mistake first,
+then the right way; find and fix; erase the wrong working; visit the children who made it quietly, never naming them). Aim the show-me questions
+and core problems 2 and 3 of the worksheet at THIS mistake first (set diagnostic_for_misconception to {mid} on them).
+"""
+
+
 def piece_path(root, kind: str, key: str):
     return root / kind / f"{key}.json"
 
@@ -49,7 +62,7 @@ Return ONE JSON object, nothing else:
 """
 
 
-def teach_prompt(skill: dict, mistakes: list, length: str, pace_text: str, kind_rules: str, retry_reasons: list = None) -> str:
+def teach_prompt(skill: dict, mistakes: list, length: str, pace_text: str, kind_rules: str, retry_reasons: list = None, reteach: dict = None) -> str:
     """The per-piece user message. skill: {id, name_en, name_hi, grade_level, assessment_modality, apna_criteria, number_range, problem_types,
     domain_id}. mistakes: the skill's recorded mistakes (dicts), most important first. kind_rules: writing_sheets.prompt_section for this skill
     (empty for a maths or reading sheet)."""
@@ -83,6 +96,8 @@ def teach_prompt(skill: dict, mistakes: list, length: str, pace_text: str, kind_
         lines.append("  No mistakes are recorded for this skill: STILL write the 3 show-me questions, testing the skill's key idea; leave listen_for as [] and fill shows_hi.")
     if kind_rules:
         lines.append("\n" + kind_rules)
+    if reteach:
+        lines.append(RETEACH_SECTION.format(mid=reteach["id"], name=reteach.get("name_hi") or ""))
     lines.append(TEACH_FORMAT.format(minutes=minutes, pace=pace_text, sheet_rule=sheet_rule,
                                      we_do_note=(' (a block under 10 minutes has NO We Do: leave "we_do_hi" as "")' if short else "")))
     if retry_reasons:
@@ -119,7 +134,7 @@ def compute_answer_keys(ws: dict) -> list:
     return log
 
 
-def check_teach_piece(piece: dict, skill: dict, mistakes: list, length: str, plan_service) -> dict:
+def check_teach_piece(piece: dict, skill: dict, mistakes: list, length: str, plan_service, reteach: dict = None) -> dict:
     """Run the app's own checks on a teach piece (changed in place where the checks repair). Returns {ok, fatal: [...], warnings: [...],
     repairs: [...]}. fatal = the piece cannot be used (it is generated again once, with these reasons). plan_service is passed in (it imports
     this module's caller chain; passing it avoids an import cycle)."""
@@ -162,7 +177,7 @@ def check_teach_piece(piece: dict, skill: dict, mistakes: list, length: str, pla
     warnings += hindi_style.check_teacher_text(mini)
     kinds = writing_sheets.group_kinds(gsk, domain)
     shape = [w for w in plan_service.validate_plan_shape(mini, domain, extras=3, sheet_kinds=kinds)
-             if GROUP in w and "teach blocks should cover" not in w]
+             if GROUP in w and "teach blocks should cover" not in w and not w.startswith("anchor.")]    # a piece has no anchor
     warnings += shape
     warnings += writing_sheets.check_writing_sheets(mini, gsk, domain)
     text = json.dumps(mini, ensure_ascii=False)
@@ -175,11 +190,17 @@ def check_teach_piece(piece: dict, skill: dict, mistakes: list, length: str, pla
     piece["prep_hi"] = mini.get("prep_hi") or []
     if any(w for w in warnings if "required_count" in w or "problems missing" in w):
         fatal.append("the worksheet's shape is wrong: " + "; ".join(w for w in warnings if "required_count" in w or "problems missing" in w))
+    if reteach and not fatal:
+        core = [p.get("diagnostic_for_misconception") for p in (piece["worksheet"].get("problems") or [])[:3] if isinstance(p, dict)]
+        if reteach["id"] not in core:
+            warnings.append(f"re-teach: no core problem reveals {reteach['id']}")
+        if not any((x.get("misconception_id") == reteach["id"]) for q in piece["cfu"] for x in (q.get("listen_for") or [])):
+            warnings.append(f"re-teach: no show-me question listens for {reteach['id']}")
     return {"ok": not fatal, "fatal": fatal, "warnings": warnings, "repairs": repairs}
 
 
-def record(key: str, kind: str, skill_id: str, length: str, content: dict, checks: dict, model: str, pversion: str, cost: float, created: str) -> dict:
+def record(key: str, kind: str, skill_id: str, length: str, content: dict, checks: dict, model: str, pversion: str, cost: float, created: str, mode: str = "normal") -> dict:
     """The file written for one piece (docs/drafts/BLOCK_LIBRARY_PLAN.md §4)."""
-    return {"format": FORMAT_VERSION, "piece": kind, "key": key, "skill_id": skill_id, "mode": "normal", "length": length,
+    return {"format": FORMAT_VERSION, "piece": kind, "key": key, "skill_id": skill_id, "mode": mode, "length": length,
             "minutes": LENGTHS[length], "content": copy.deepcopy(content), "checks": checks, "model": model, "prompt_version": pversion,
             "created": created, "cost_usd": round(cost, 4), "review_status": "ai_drafted", "reviewed_by": None, "review_notes": None}

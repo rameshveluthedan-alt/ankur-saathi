@@ -1,0 +1,151 @@
+{
+ "format": 1,
+ "piece": "teach",
+ "key": "L2.3.1__normal__medium",
+ "skill_id": "L2.3.1",
+ "mode": "normal",
+ "length": "medium",
+ "minutes": 14,
+ "content": {
+  "talking_points": {
+   "i_do_hi": "बोर्ड पर 'पत्र' लिखें और 'त्र' पर उँगली रखें। बच्चों से कहें: 'देखिए, त और र मिलकर एक साथ बोलते हैं: त्र। इसलिए पत्र पढ़ते हैं, प-त-र नहीं।' इसके बाद 'क्षमा' और 'श्रम' इसी तरह जुड़ी ध्वनि से पढ़कर सुनाएँ।",
+   "we_do_hi": "बोर्ड पर लिखें: 'मित्र, कक्षा, विद्या'। पहले संयुक्त अक्षर पर उँगली रखें और बच्चे आपके साथ धीरे-धीरे उसे जोड़कर पढ़ें, फिर पूरा शब्द एक बार में पढ़ें। 'विद्या' पर रुककर पूछें: 'द और य के बीच अ बोलना है क्या?' और जुड़ी ध्वनि से पढ़वाएँ।",
+   "you_do_hi": "हर जोड़ी को कागज़ की पर्चियाँ दें, जिन पर ये शब्द लिखे हों: पत्र, क्षेत्र, ज्ञान, श्रीमान, विद्यालय, शक्ति। बच्चे बारी-बारी से साथी को शब्द पढ़कर सुनाएँ और जो शब्द अभी पढ़ना बाकी है, उसे अपनी जगह पर अगले समय में पूरा करें; पर्चियाँ न हों तो वर्कशीट के शब्द बोर्ड से कॉपी में लिखकर पढ़ें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+  },
+  "cfu": [
+   {
+    "kind": "choose",
+    "question_hi": "बोर्ड पर लिखें: 'प्रकाश'। पहले अक्षर में कौन-से दो अक्षर जुड़े हैं? 1) प और र 2) प और क",
+    "expected_hi": "1",
+    "listen_for": [
+     {
+      "misconception_id": "L2.3.1-M1",
+      "misconception_name_hi": "संयुक्त अक्षरों को अलग-अलग पढ़ता है",
+      "misconception_name_en": "Reads conjunct consonants as separate letters",
+      "detect_en": "Breaks down conjuncts into component letters consistently; reads विद्यालय as \"vi-da-ya-la-ya\" instead of \"vidyalay\"",
+      "wrong_answer_hi": "2"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   },
+   {
+    "kind": "choose",
+    "question_hi": "'चक्र' शब्द कैसे बोलते हैं? 1) च-क-र 2) चक्-र",
+    "expected_hi": "2",
+    "listen_for": [
+     {
+      "misconception_id": "L2.3.1-M2",
+      "misconception_name_hi": "संयुक्त अक्षर में जहाँ ध्वनि लुप्त होनी चाहिए वहाँ अ जोड़ता है",
+      "misconception_name_en": "Adds schwa (inherent अ) where conjunct should suppress it",
+      "detect_en": "Reads विद्या as \"vidayaa\" instead of \"vidyaa\" — inserts schwa between द and य",
+      "wrong_answer_hi": "1"
+     }
+    ],
+    "shows_hi": "",
+    "grounded": true
+   }
+  ],
+  "prep_hi": [
+   "बोर्ड पर पहले से लिखें: पत्र, क्षमा, श्रम और मित्र, कक्षा, विद्या",
+   "हर जोड़ी के लिए 6 कागज़ की पर्चियाँ: पत्र, क्षेत्र, ज्ञान, श्रीमान, विद्यालय, शक्ति"
+  ],
+  "worksheet": {
+   "instructions_hi": "हर शब्द साथी को पढ़कर सुनाएँ। संयुक्त अक्षर को जोड़कर एक साथ बोलें।",
+   "instructions_en": "Read each word aloud to your partner. Say the conjunct letters together as one sound.",
+   "required_count": 3,
+   "sheet_kind": "observed",
+   "practice": true,
+   "example_block": null,
+   "passage_block": null,
+   "observe": {
+    "task_hi": "बच्चा साथी को छह संयुक्त अक्षर वाले शब्द पढ़कर सुनाए: पत्र, क्षेत्र, ज्ञान, श्रीमान, विद्यालय, शक्ति।",
+    "task_en": "The child reads six conjunct words aloud to a partner: पत्र, क्षेत्र, ज्ञान, श्रीमान, विद्यालय, शक्ति.",
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कागज़ की पर्चियों पर लिखे शब्द-कार्ड",
+     "बोर्ड पर लिखे शब्द"
+    ],
+    "look_for": {
+     "achieved_hi": "सारे शब्द बिना रुके, संयुक्त अक्षर जोड़कर पढ़ता है",
+     "partial_hi": "त्र, क्ष वाले शब्द पढ़ता है, पर विद्यालय या शक्ति पर अटकता है",
+     "not_yet_hi": "संयुक्त अक्षर को अलग-अलग अक्षर बोलकर पढ़ता है",
+     "achieved_en": "Reads all words smoothly, saying conjuncts together",
+     "partial_en": "Reads त्र and क्ष words but stumbles on विद्यालय or शक्ति",
+     "not_yet_en": "Breaks conjuncts into separate letters"
+    }
+   },
+   "problems": [
+    {
+     "number": 1,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: पत्र",
+     "answer": "पत्र",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 2,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: प्रकाश",
+     "answer": "प्रकाश",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.3.1-M1"
+    },
+    {
+     "number": 3,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: विद्यालय",
+     "answer": "विद्यालय",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.3.1-M2"
+    },
+    {
+     "number": 4,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: क्षेत्र",
+     "answer": "क्षेत्र",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 5,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: ज्ञान",
+     "answer": "ज्ञान",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "number": 6,
+     "problem_hi": "साथी को पढ़कर सुनाएँ: शक्ति",
+     "answer": "शक्ति",
+     "row_type": "plain",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ]
+  }
+ },
+ "checks": {
+  "ok": true,
+  "fatal": [],
+  "warnings": [],
+  "repairs": [
+   "sheet: progressor: observed task, practice sheet with 6 item(s) (0 drawn by the code)"
+  ]
+ },
+ "model": "claude-opus-5-5",
+ "prompt_version": "399578d90053",
+ "created": "2026-11-21T04:39:58Z",
+ "cost_usd": 0.0572,
+ "review_status": "ai_drafted",
+ "reviewed_by": null,
+ "review_notes": null
+}
