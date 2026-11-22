@@ -1,65 +1,65 @@
-# Plans with no connection: the library assembler on the phone (build plan, 22 Nov 2026)
+# Plans with no connection (build plan, 22 Nov 2026; revised the same day)
 
-**Goal:** a teacher with no signal can still make the next class's plan. The block library (`db/seeds/library`, 880 checked pieces) is built
-into a plan by CODE with no AI (`backend/app/services/library_assembler.py`), so the same can run on the phone. No AI credits are needed for
-any of this.
+**Goal:** a teacher with no signal can still make the next class's plan, and, when online, can choose a quick plan from the block library
+(`db/seeds/library`, 880 checked pieces; no AI call) instead of the AI plan. No AI credits are needed for any of this.
 
-## Decided (22 Nov, with the lead)
+## The approach: C (B now, A later), decided 22 Nov with the lead
 
-1. **A server bundle, downloaded at sign-in** (not built into the app): the library and every skill's ladder and sheet kind come from the
-   server, so a library fix or a change to the reviewed skill bridges reaches phones without an app deploy. About 0.5 MB compressed
-   (4.25 MB as stored), refreshed only when its version changes.
-2. **Stored in IndexedDB** (not localStorage, whose ~5 MB cap the library nearly fills), with `navigator.storage.persist()` asked for, so
-   the browser does not clear it under storage pressure.
-3. **A visible status on the Plan screen:** "✓ ऑफ़लाइन योजना तैयार" when the bundle and the class are on the phone, and a "download now"
-   tap when a weak signal interrupted the download at sign-in.
-4. **A parity test:** the same inputs give the SAME plan JSON on the server (Python) and on the phone (JavaScript), so the two assemblers
-   can never drift apart silently.
-5. **Worksheets of an offline plan: an in-app view** (each group's problems, with the answers for the teacher) to copy onto the board, the
+A library plan is the assembler's output PLUS the server's own repairs, which change what the teacher sees: on a literacy sheet the passage
+and its questions come from the passage bank; worksheet numbers are replaced (a sum too big for the Beginners' sticks, a number the lesson
+already used) with their Hindi number words; the show-me questions are checked and trimmed to the session's count. That is some 2,000 lines
+of Python, still being refined.
+
+- **B, now: the server PREPARES the plans the phone may need,** through its own pipeline (about 0.06 s and 8 KB compressed each, measured),
+  and the phone stores them. Offline, the phone opens the prepared plan that matches the teacher's choices. It is the server's plan by
+  construction: nothing is ported, nothing can drift.
+- **A, later, only if classroom use shows the need:** the assembler and its repairs ported to the phone, for ANY skill offline, with a parity
+  test. Not built now.
+
+## Decided
+
+1. **What is prepared:** for each subject, the suggested skill (moving on, and the re-teach where the app suggests one, from the evidence of
+   the last online visit) and the next 3 skills on its ladder (moving on), at 45, 60 and 90 minutes, for the next 3 school days: about 90
+   plans, some 6 s of server work, about 0.7 MB to download (about 4 MB stored).
+2. **Prepared plans are not the teacher's plans:** the server builds them WITHOUT storing them; only the one used offline is uploaded and
+   stored.
+3. **When they are prepared:** at sign-in, and when the Plan screen opens online, at most once a day, or sooner when their inputs changed
+   (the class's groups, the suggestions after a review, the library's version). A version tells the phone whether anything changed.
+4. **Stored in IndexedDB** (not localStorage, whose ~5 MB cap is too small), with `navigator.storage.persist()` asked for. They hold the
+   class's roll numbers, so they are removed at sign-out; if a plan made offline is not yet uploaded, sign-out asks first.
+5. **The Plan screen says what works offline:** a status line, "✓ ऑफ़लाइन योजना तैयार" (with the date it was prepared) or a
+   "download now" tap; offline, the prepared skills carry "ऑफ़लाइन उपलब्ध" and the rest are greyed out, and so is the re-teach choice where
+   none was prepared.
+6. **An outage longer than the buffer:** the phone uses the last prepared day's plan for the chosen skill, dated for the day it is used (only
+   the anchor setting and the independent activities rotate by date).
+7. **Worksheets of an offline plan: an in-app view** (each group's problems, with the answers for the teacher) to copy onto the board, the
    app's default "no printer" way. The printable pages stay a server feature.
-6. **Upload and store on reconnect,** so the review, the ticks and the next plan's re-teach evidence work for that day. Each offline plan
-   carries a client-made id, so a retry on a flaky network never stores it twice. If the server already has a plan for that day, the
-   server's is kept and the teacher is told.
-
-7. **A choice when online too (added 22 Nov):** beside "आज की योजना बनाएँ" (the AI plan, as now), a second, smaller button
-   "⚡ तैयार हिस्सों से जल्दी योजना" builds the plan from the library in seconds with no AI call: online the SERVER builds it (the request
-   asks for the library), offline the PHONE does. Both are the same plan (the parity test). A teacher in a hurry, or the team stretching the
-   credits, can use it; after the credits end it is what every plan is anyway.
-
-## What the phone needs
-
-| | From | Private? | Kept |
-|---|---|---|---|
-| The library (ok pieces only), every skill's ladder (Beginner / Proficient defaults and the options), sheet kind, names | `GET /api/offline/bundle` (signed-in; a version, 304 when unchanged) | no children's data | across sign-out |
-| The class's groups (counts, roll numbers) and the re-teach suggestions per subject | the Plan screen's own requests (`/plan/groups`, `/plan/proposal`), saved when it loads them online | yes | removed at sign-out |
-| Plans made offline, until uploaded | made on the phone | yes | until uploaded; sign-out asks first if any is unsent |
+8. **Upload and store on reconnect,** so the review, the ticks and the next plan's evidence work for that day. Each offline plan carries a
+   client-made id, so a retry on a flaky network never stores it twice. If the server already has a plan for that day, the server's is kept
+   and the teacher is told. The photo sample is worked out on the server at upload, for the date the plan was used.
+9. **A choice online too:** beside "आज की योजना बनाएँ" (the AI plan, as now) a second, smaller button "⚡ तैयार हिस्सों से जल्दी योजना"
+   asks the server for a library plan (no AI, a few seconds). Offline, the main button opens the prepared plan.
 
 ## Steps (each its own commit, asked first)
 
-1. **Server: one finishing step and the bundle.** The steps the server applies to a library plan after assembly (the pace stamp, the
-   observation reminders, the last block's "अगली कक्षा में", the reading-sheet story line, the session length) move into one function, so
-   the phone port has one list to copy and the parity test one thing to compare. `GET /api/offline/bundle` with its version. The plan
-   request takes `source: "library"` (decision 7): the server builds from the library with no AI call, whatever the AI's state. Tests.
-2. **The phone's assembler** (`pwa/src/offline/`): the session layout (`session_shape`, `group_slots`, the 3 + N extras; `pacePlan` is
-   already on the phone), the priority group, `assemble` and the finishing step, ported. **The parity test**
-   (`backend/tests/test_offline_parity.py`): for a spread of inputs (skills of both subjects and every sheet kind × 45 / 60 / 90 × move
-   on / re-teach, several dates) the Python plan and the plan from node running the phone's code are compared field by field.
-3. **Storage on the phone:** IndexedDB (bundle, class, offline plans), `persist()`, the download at sign-in and the refresh, the status
-   line with "download now", the class saved when the Plan screen loads it, everything private removed at sign-out.
-4. **The Plan screen offline:** when the network check says offline (or the request fails for want of a network) and the bundle and class
-   are ready, "आज की योजना बनाएँ" builds the plan on the phone with the teacher's choices (skills, re-teach, time), saves it, and opens it.
-   The "⚡ जल्दी योजना" button (decision 7): online it asks the server for a library plan; offline it does the same as above.
-   The Teach screen labels it ("📴 बिना इंटरनेट के बनी योजना: इंटरनेट मिलते ही भेजी जाएगी") and shows its worksheets in the app.
-5. **Upload:** `POST /api/plan/offline` (the client id, the inputs, the groups as the phone had them, the plan): the server checks the
-   plan's shape, adds the photo sample from the groups, stores it as `served_from: library_offline`, and answers the same for a repeat of
-   the same id; a different plan already stored for that day is kept, and the phone says so. The phone sends waiting plans whenever the
-   network check finds the server, then replaces its copy with the stored one. Tests (server and phone).
-6. **Docs:** an offline section in the teacher-facing help and in `docs/HANDOVER.md`; the new Hindi lines go to the education lead.
+1. **Server: library plans on request, and prepared plans.** The plan request takes `source: "library"` (decision 9). The pipeline can build
+   a plan without storing it. `GET /api/offline/prepared/{teacher}` (signed-in, the teacher's own) returns the prepared plans of decision 1
+   with their inputs (skill, length, re-teach, date) and a version; 304 when unchanged. Tests.
+2. **Storage on the phone:** IndexedDB, `persist()`, the download at sign-in and when the Plan screen opens, the status line and "download
+   now", removal at sign-out (asking first if a plan is waiting to be sent).
+3. **The Plan screen:** the "⚡" button; offline, the badges and the greyed-out choices, and "आज की योजना बनाएँ" opening the matching prepared
+   plan (decision 6 past the buffer), saved as an offline plan; the Teach screen's label ("📴 बिना इंटरनेट के बनी योजना: इंटरनेट मिलते ही भेजी
+   जाएगी") and the in-app worksheet view.
+4. **Upload:** `POST /api/plan/offline` (client id, inputs, plan): owner and shape checked, photo sample added, stored as
+   `served_from: library_offline`; the same answer for a repeat of the same id; a plan already stored for that day is kept and the phone says
+   so. The phone sends waiting plans whenever the network check finds the server, then shows the stored one. Tests (server and phone).
+5. **Docs:** an offline section in the teacher-facing help and in `docs/HANDOVER.md`; the new Hindi lines go to the education lead.
 
 ## Limits (said plainly)
 
-- A teacher who has never been online since signing in on that phone (or whose browser cleared its storage) cannot plan offline until the
+- Offline, only the prepared skills can be chosen (the suggested one and the next three on each ladder); any other skill needs the internet.
+- A teacher who has not been online since signing in on that phone (or whose browser cleared its storage) cannot plan offline until the
   next connection; the status line shows it.
-- An offline plan is built from the class's groups as they were at the last online visit; the next upload brings the server up to date.
+- Offline plans use the class's groups and suggestions as they were at the last online visit.
 - Photo marking and the review still need the internet; an offline plan is reviewed after it is uploaded.
-- Library plans are AI-drafted pieces not yet reviewed, labelled as such, the same as on the server.
+- Library plans are AI-drafted pieces not yet reviewed, labelled as such, online and offline.
