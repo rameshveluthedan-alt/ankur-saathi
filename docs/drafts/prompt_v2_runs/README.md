@@ -31,6 +31,10 @@ on them, on a scratch class of 30 in the lab database (rolls 1-8 Beginners, 9-20
   words otherwise. The three plans the checks still flagged (N0.1.1_60, N0.1.1_90: आकार / आकृति; N2.3.2_45: 'पैसे', 'दहाई ऊपर दहाई के
   नीचे') were then made again ($0.44, appended to `CHECKS_221126.txt`): every आकार in them now means size. One flag remains in N0.1.1_60
   (an I Do that shows things differing in colour, size AND shape, then sorts by colour or size): read and found correct, a cautious flag.
+- **22 Nov, the fourth AI-assisted review** (found the set ready for the pilot) named three small items, now repaired by code and applied to
+  the stored files: a gendered verb in a quote with the subject left out ('इसे यहाँ रखता हूँ' -> 'रखते हैं'); 'finish in the next block' in
+  the session's LAST block (-> 'अगली कक्षा में'; also in L2.5.1_45, which the review missed); 'शिक्षक हर कहानी बोलकर सुनाएँगे' on a
+  reading-aloud sheet, where the children read one passage themselves (removed; also in L2.5.1_60). No new AI call.
 - Open for the education lead (teaching, not code): N0.1.1's three groups on one skill (Proficients sort by a second rule); the board load in
   45-minute plans; 'कठिन शब्द' for Beginners' warm-up words; 'पैसे' for rupee prices; the आकार / आकृति convention.
 - `CHECKS_201126.txt` covers the other six; `CHECKS_221126.txt` the six plans made on 22 Nov (L2.5.1_45, L2.7.2_45, N0.1.1_45, then N0.1.1_60, N0.1.1_90, N2.3.2_45).

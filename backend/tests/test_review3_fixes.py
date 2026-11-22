@@ -101,6 +101,30 @@ check("soften_plan applies it to a transition script", "लेकर जाए�
 src = open(os.path.join(ROOT, "backend", "app", "services", "library_assembler.py"), encoding="utf-8").read()
 check("the library assembler's own transition says 'आएँ'", "शिक्षक के पास आएँ;" in src and "शिक्षक के पास आए;" not in src)
 
+print("\nthe fourth review (22 Nov): three small items")
+check("a quote with the subject left out: 'इसे यहाँ रखता हूँ' -> 'रखते हैं'",
+      hs.neutral_quotes("कहें: 'देखिए, यह लाल है, इसे यहाँ रखता हूँ। यह नीला है, इसे वहाँ रखते हैं।'")[0] == "कहें: 'देखिए, यह लाल है, इसे यहाँ रखते हैं। यह नीला है, इसे वहाँ रखते हैं।'")
+check("...and 'छाँट रही हूँ' with no 'मैं' -> 'छाँट रहे हैं'", hs.neutral_quotes("कहें: 'अब रंग से छाँट रही हूँ।'")[0] == "कहें: 'अब रंग से छाँट रहे हैं।'")
+check("a quote with no 'हूँ' verb is untouched ('बच्चा पढ़ता है')", hs.neutral_quotes("कहें: 'राजू रोज़ पढ़ता है।'")[1] == 0)
+check("a letter read aloud keeps its 'रहती हूँ'", hs.neutral_quotes("पत्र पढ़कर सुनाएँ: 'मेरा नाम सीमा है, गाँव में रहती हूँ।'")[1] == 0)
+check("the check also finds it", any("first person" in w for w in hs.check_teacher_text(
+      {"rotation_schedule": {"blocks": [{"talking_points": {"i_do_hi": "कहें: 'इसे यहाँ रखता हूँ।'"}}]}})))
+from app.services.plan_service import fix_last_block_carryover, drop_stray_story_cue
+plan = {"rotation_schedule": {"blocks": [
+    {"type": "teach", "teach_group": "beginner", "talking_points": {"you_do_hi": "बाकी अगले ब्लॉक में अपनी जगह पर करें।"}},
+    {"type": "transition"},
+    {"type": "teach", "teach_group": "proficient", "talking_points": {"you_do_hi": "बाकी सवाल अपनी जगह पर, अगले ब्लॉक में पूरे करें।"}}]}}
+lines = fix_last_block_carryover(plan)
+b = plan["rotation_schedule"]["blocks"]
+check("the LAST block: 'अगले ब्लॉक में' -> 'अगली कक्षा में'", b[2]["talking_points"]["you_do_hi"] == "बाकी सवाल अपनी जगह पर, अगली कक्षा में पूरे करें।" and len(lines) == 1)
+check("an earlier block keeps 'अगले ब्लॉक में' (there is one)", "अगले ब्लॉक में" in b[0]["talking_points"]["you_do_hi"])
+cue = "फिर जोड़ी में पढ़ें। अंत में नीचे के प्रश्नों के उत्तर लिखें। शिक्षक हर कहानी बोलकर सुनाएँगे।"
+plan = {"worksheets": {"beginner": {"instructions_hi": cue}, "progressor": {"instructions_hi": cue}}}
+drop_stray_story_cue(plan, {"beginner": "fluency", "progressor": "comprehension"})
+check("a reading-aloud sheet loses 'शिक्षक हर कहानी बोलकर सुनाएँगे।'", plan["worksheets"]["beginner"]["instructions_hi"] == "फिर जोड़ी में पढ़ें। अंत में नीचे के प्रश्नों के उत्तर लिखें।")
+check("another kind of sheet (listening) keeps it", plan["worksheets"]["progressor"]["instructions_hi"] == cue)
+check("the prompt says it: the last block has no next block", "LAST block there is no next block" in orchestrate_src if (orchestrate_src := open(os.path.join(ROOT, "prompts", "orchestrate.py"), encoding="utf-8").read()) else False)
+
 print("\n5. the rules are in the prompt")
 import orchestrate
 sec = orchestrate.HINDI_STYLE_SECTION

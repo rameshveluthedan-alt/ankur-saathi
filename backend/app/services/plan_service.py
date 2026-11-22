@@ -401,6 +401,41 @@ def drop_answer_examples(plan: dict) -> list[str]:
     return lines
 
 
+# A short You Do STARTS the task and the group finishes "in the next block" (prompt v2). The session's LAST teach block has no next block
+# (the fourth review, 22 Nov: "बाकी सवाल अपनी जगह पर, अगले ब्लॉक में पूरे करें" in the Proficients' 38:00-45:00 block), so there it is the next class.
+_NEXT_BLOCK = re.compile(r"अगले (?:ब्लॉक|समय) में")
+
+
+def fix_last_block_carryover(plan: dict) -> list[str]:
+    """In the last teach block of the session, 'अगले ब्लॉक में' / 'अगले समय में' becomes 'अगली कक्षा में'. In place."""
+    teach = [b for b in (plan.get("rotation_schedule") or {}).get("blocks") or [] if isinstance(b, dict) and b.get("type") == "teach"]
+    if not teach:
+        return []
+    last, lines = teach[-1], []
+    for k, v in list((last.get("talking_points") or {}).items()):
+        if isinstance(v, str) and _NEXT_BLOCK.search(v):
+            last["talking_points"][k] = _NEXT_BLOCK.sub("अगली कक्षा में", v)
+            lines.append(f"{last.get('teach_group')} {k}: the last block has no next block: 'अगली कक्षा में'")
+    return lines
+
+
+# "शिक्षक हर कहानी बोलकर सुनाएँगे।" on a READING-ALOUD sheet (the fourth review, 22 Nov: the sheet has one passage the children read themselves;
+# the line belongs to a listening sheet, where the teacher does read the stories). Removed from fluency sheets only.
+_STORY_CUE = re.compile(r"\s*शिक्षक[^।]{0,30}कहानि?[यी]?[ाँ]*[^।]{0,30}(?:सुनाएँगे|सुनाएँ)।")
+
+
+def drop_stray_story_cue(plan: dict, sheet_kinds: dict) -> list[str]:
+    lines = []
+    for g, ws in (plan.get("worksheets") or {}).items():
+        if (sheet_kinds or {}).get(g) != "fluency" or not isinstance(ws, dict):
+            continue
+        text = ws.get("instructions_hi")
+        if isinstance(text, str) and _STORY_CUE.search(text):
+            ws["instructions_hi"] = _STORY_CUE.sub("", text).strip()
+            lines.append(f"{g}: a 'the teacher reads each story' line removed from a reading-aloud sheet")
+    return lines
+
+
 def tidy_plan_structure(plan: dict) -> list[str]:
     """Remove what the model sometimes adds that nothing reads (found in the v2 review, 20 Nov): a 0-minute block, and a group key other than
     beginner / progressor / proficient in the independent activities (e.g. 'dakshta', repeating the Proficients' text). Returns log lines."""
@@ -1454,6 +1489,8 @@ async def generate_dainik_yojana(
             print(f"   Worksheet repair: {line}")
         for line in drop_answer_examples(plan_json):
             print(f"   Worksheet repair: {line}")
+        for line in fix_last_block_carryover(plan_json) + drop_stray_story_cue(plan_json, ctx.sheet_kinds):
+            print(f"   Wording repair: {line}")
     except Exception as e:      # never let a repair break plan generation
         print(f"   Worksheet repair skipped: {type(e).__name__}: {e}")
 

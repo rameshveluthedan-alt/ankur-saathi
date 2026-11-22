@@ -89,7 +89,7 @@
    },
    "required_count": 3,
    "instructions_en": "The teacher tells each story aloud. Copy the sentences from the board, read them twice with a partner, then answer the questions.",
-   "instructions_hi": "शिक्षक हर कहानी बोलकर सुनाएँगे। बोर्ड से वाक्य कॉपी करें, जोड़ी में दो-दो बार पढ़ें। फिर दिए गए प्रश्नों के उत्तर लिखें।"
+   "instructions_hi": "बोर्ड से वाक्य कॉपी करें, जोड़ी में दो-दो बार पढ़ें। फिर दिए गए प्रश्नों के उत्तर लिखें।"
   },
   "proficient": {
    "practice": true,

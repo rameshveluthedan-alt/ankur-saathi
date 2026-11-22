@@ -280,7 +280,7 @@ _WRITTEN_BEFORE = re.compile(r"(लिख|बोर्ड|वाक्य|पढ
 def _gendered_in_quotes(text: str):
     for m in _QUOTED.finditer(text):
         inner = m.group(2)
-        if "मैं" in inner and _GENDERED_ME.search(inner) and not _WRITTEN_BEFORE.search(text[:m.start()]):
+        if ("मैं" in inner or _ME_HOON.search(inner)) and _GENDERED_ME.search(inner) and not _WRITTEN_BEFORE.search(text[:m.start()]):
             return _GENDERED_ME.search(inner).group(0)
     return None
 # Hindi marks named wrongly (15 Nov, a live plan: "'है' पर ऊपर दो बिंदी वाला ै"): ै is the ऐ की मात्रा (two strokes); a बिंदी is ं
@@ -305,6 +305,7 @@ def _one_form(m) -> str:
 # verb neutral. The check above looks for a gendered verb, so this got through; such a sentence becomes 'हम ...'.
 _PLURAL_VERB = re.compile(rf"(?:(?<![{_D}])(?:रहे|चुके) हैं|[{_D}]+ते हैं|[{_D}]+(?:ेंगे|एँगे))(?![{_D}])")
 _ME_WORD = re.compile(rf"(?<![{_D}])मैं(?![{_D}])")
+_ME_HOON = re.compile(rf"(?<![{_D}])(?:[{_D}]+(?:ता|ती)|रहा|रही|चुका|चुकी) हूँ(?![{_D}])")       # a gendered verb with 'हूँ': only 'मैं' takes it
 _SENT_PARTS = re.compile(r"[^।?!]*[।?!]?")
 
 
@@ -317,8 +318,20 @@ def neutral_quotes(text: str) -> tuple:
     def fix(m):
         nonlocal n
         inner = m.group(2)
-        if "मैं" not in inner or _WRITTEN_BEFORE.search(m.string[:m.start()]):
+        if _WRITTEN_BEFORE.search(m.string[:m.start()]):
             return m.group(0)
+        if "मैं" not in inner:
+            # the subject left out ('देखिए, यह लाल है, इसे यहाँ रखता हूँ', the fourth review, 22 Nov): a 'हूँ' verb is still the teacher's own
+            # first person, so its gendered form becomes the neutral plural ('रखते हैं'); a verb with no 'हूँ' is not first person and is left
+            one = _SLASH_PAIR.sub(_one_form, inner)
+            if not _ME_HOON.search(one):
+                return m.group(0)
+            new = one
+            for pat, rep in _ME_VERBS:
+                new = pat.sub(rep, new)
+            if new != inner:
+                n += 1
+            return m.group(1) + new + m.group(3)
         if not _GENDERED_ME.search(_SLASH_PAIR.sub(_one_form, inner)):
             # no gendered verb: only a sentence whose verb is already plural changes its 'मैं' (a 'मैं' with no verb of its own is left)
             new = "".join(_ME_WORD.sub("हम", s) if _ME_WORD.search(s) and _PLURAL_VERB.search(s) else s for s in _SENT_PARTS.findall(inner))

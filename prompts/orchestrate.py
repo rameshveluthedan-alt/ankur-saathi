@@ -564,7 +564,7 @@ Rules:
 - Every problem must have ONE checkable answer (the photo analysis compares against the answer key). Do NOT include open-ended items such as "make your own problem".
 - Compute every answer. State which columns carry only after verifying by computing, and never ask for something impossible (e.g. a carry in every column of a 3-digit sum). In a skill whose number range ends at 99, the TOTAL of every sum on the sheet also stays at 99 or less.
 - Size each independent activity to the length of the teach block it runs beside (PART C gives the minutes), and say what fast finishers do. Never write a length other than PART C's (no 'about 25 minutes' in a 13-minute block).
-- A You Do of 5 minutes or less STARTS the group's task: ask only for what fits (for example the first sentence of the writing task, or one reading of the passage and problem 1), and say that the group finishes the rest at its own place in the next block. Never pack several tasks into a short You Do. Do not label an activity shorter than the block.
+- A You Do of 5 minutes or less STARTS the group's task: ask only for what fits (for example the first sentence of the writing task, or one reading of the passage and problem 1), and say that the group finishes the rest at its own place in the next block (in the session's LAST block there is no next block: say 'अगली कक्षा में'). Never pack several tasks into a short You Do. Do not label an activity shorter than the block.
 """
 
 _SCHEMA_WORKSHEET_NUMERACY = """
