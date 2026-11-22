@@ -378,6 +378,29 @@ def _problem_from_bank(q: dict, number: int) -> dict:
     return p
 
 
+# "इन वाक्यों को सही क्रम में लिखिए (संख्याएँ लिखें, जैसे 3, 1, 2)" when the answer IS 3, 1, 2 (the third review of the v2 plans, 22 Nov): an
+# example list of numbers that is an answer on the same sheet gives it away. The example is removed; the instruction around it stays.
+_EXAMPLE_LIST = re.compile(r"\s*[,،]?\s*जैसे\s+(\d+(?:\s*[,،]\s*\d+)+)")
+
+
+def drop_answer_examples(plan: dict) -> list[str]:
+    """Remove a 'जैसे 3, 1, 2' example from a worksheet problem when those numbers are the answer of a problem on the same sheet. In place."""
+    lines = []
+    for g, ws in (plan.get("worksheets") or {}).items():
+        probs = [p for p in (ws or {}).get("problems") or [] if isinstance(p, dict)]
+        answers = {tuple(re.findall(r"\d+", str(p.get("answer")))) for p in probs if len(re.findall(r"\d+", str(p.get("answer") or ""))) >= 2}
+        for p in probs:
+            for key in ("problem_hi", "word_problem_text"):
+                text = p.get(key)
+                if not isinstance(text, str):
+                    continue
+                new = _EXAMPLE_LIST.sub(lambda m: "" if tuple(re.findall(r"\d+", m.group(1))) in answers else m.group(0), text)
+                if new != text:
+                    p[key] = re.sub(r"\(\s*\)", "", new).strip()
+                    lines.append(f"{g} problem {p.get('number')}: an example that was an answer on the sheet removed")
+    return lines
+
+
 def tidy_plan_structure(plan: dict) -> list[str]:
     """Remove what the model sometimes adds that nothing reads (found in the v2 review, 20 Nov): a 0-minute block, and a group key other than
     beginner / progressor / proficient in the independent activities (e.g. 'dakshta', repeating the Proficients' text). Returns log lines."""
@@ -1429,6 +1452,8 @@ async def generate_dainik_yojana(
     try:
         for line in repair_worksheet_numbers(plan_json):
             print(f"   Worksheet repair: {line}")
+        for line in drop_answer_examples(plan_json):
+            print(f"   Worksheet repair: {line}")
     except Exception as e:      # never let a repair break plan generation
         print(f"   Worksheet repair skipped: {type(e).__name__}: {e}")
 
@@ -1507,6 +1532,7 @@ async def generate_dainik_yojana(
                                               extras=session_shape(ctx.available_minutes)["extras"] if served_from in ("ai", "library") else None, sheet_kinds=ctx.sheet_kinds)
     validation_warnings += writing_sheets.check_writing_sheets(plan_json, ctx.group_skill_ids, domain_id)
     validation_warnings += hindi_style.check_teacher_text(plan_json)          # a gendered "मैं" left in the teacher's lines, a Hindi mark named wrongly (15 Nov)
+    validation_warnings += hindi_style.check_size_shape(plan_json, (ctx.group_skill_ids or {}).values())          # आकार (size) vs आकृति (shape) in a sorting skill (22 Nov)
     if decided_groups is not None and any(b.get("type") == "reteach" for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or []):
         validation_warnings.append("a separate re-teach block was written, but the teacher decided the re-teach is the group's main block")
     plan_json["coverage"] = await get_coverage(db, competency_id)      # shown on the plan screen

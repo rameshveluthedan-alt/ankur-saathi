@@ -158,7 +158,7 @@ def assemble(ctx, plan_date=None, avoid_setting: str = None, root: Path = ROOT):
         if i < len(rotation) - 1 and trans:
             m = trans.pop(0)
             blocks.append({"type": "transition", "time_start": _clock(t), "duration_minutes": m,
-                           "script_hi": "अपना काम रोकें। अगला समूह शिक्षक के पास आए; बाकी समूह अपनी जगह पर अपना काम जारी रखें।"})
+                           "script_hi": "अपना काम रोकें। अगला समूह शिक्षक के पास आएँ; बाकी समूह अपनी जगह पर अपना काम जारी रखें।"})
             t += m
 
     # the worksheets: a 3 + N sheet keeps the core and the extras this session has time for; other sheets as made

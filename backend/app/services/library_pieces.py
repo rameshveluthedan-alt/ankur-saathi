@@ -167,6 +167,7 @@ def check_teach_piece(piece: dict, skill: dict, mistakes: list, length: str, pla
         repairs += [f"worksheet: {l}" for l in plan_service.repair_worksheet_numbers(mini)]
         repairs += [f"place value: {l}" for l in repair_place_value(mini)]
         repairs += [f"answer key: {l}" for l in compute_answer_keys(mini["worksheets"][GROUP])]
+    repairs += [f"example: {l}" for l in plan_service.drop_answer_examples(mini)]
     repairs += [f"diagnostic: {l}" for l in plan_service.clean_worksheet_diagnostics(mini, kb)]
     lines, stats = clean_plan_cfu(mini, kb, {GROUP: 2})
     st = stats.get(GROUP) or {}
@@ -175,6 +176,7 @@ def check_teach_piece(piece: dict, skill: dict, mistakes: list, length: str, pla
     hindi_style.soften_plan(mini)
     hindi_style.neutral_quotes_in_plan(mini)
     warnings += hindi_style.check_teacher_text(mini)
+    warnings += hindi_style.check_size_shape(mini, [skill["id"]])
     kinds = writing_sheets.group_kinds(gsk, domain)
     shape = [w for w in plan_service.validate_plan_shape(mini, domain, extras=3, sheet_kinds=kinds)
              if GROUP in w and "teach blocks should cover" not in w and not w.startswith("anchor.")]    # a piece has no anchor

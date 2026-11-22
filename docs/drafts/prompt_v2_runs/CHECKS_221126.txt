@@ -1,0 +1,54 @@
+
+=== L2.5.1_45  (served_from=ai, session_minutes=45)
+  call (plan, 58.7 s): in 8382, out 10783, cache read 0, cache write 10450  $0.1507  stop=end_turn
+  cost $0.1507
+  blocks: anchor 5, teach/beginner 16, transition 2, teach/progressor 14, transition 1, teach/proficient 7 = 45 min
+  beginner   L1.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[('1', '3')]
+  progressor L2.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[('1', '3')]
+  proficient L3.5.1   fluency      rc=3 n=3 diags=[]  you_do ranges=[('1', '3')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch, Assumption for today, resources); observation reminders: 0
+  validation warnings (0): none
+   log: CFU: beginner: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: progressor question 1 dropped: question too long for a show-me | «बोर्ड पर लिखें: 'मोहन ने / स्कूल में / किताब पढ़ी।' शिक्षक दो तरह से प» → «2»
+   log: CFU: progressor: 1 question(s) beyond the 1 allowed were left out
+   log: CFU: proficient: 2 question(s) beyond the 1 allowed were left out
+   log: CFU kept: beginner 1/3, progressor 1/3, proficient 1/3
+  ISSUES: none
+
+=== L2.7.2_45  (served_from=ai, session_minutes=45)
+  call (plan, 57.8 s): in 6195, out 10286, cache read 10450, cache write 0  $0.1163  stop=end_turn
+  cost $0.1163
+  blocks: anchor 5, teach/beginner 16, transition 2, teach/progressor 14, transition 1, teach/proficient 7 = 45 min
+  beginner   L1.7.3   formation    rc=4 n=4 diags=[]  you_do ranges=[('1', '3')]
+  progressor L2.7.2   composition  rc=4 n=4 diags=[(1, 'L2.7.2-M1'), (2, 'L2.7.2-M1'), (3, 'L2.7.2-M2')]  you_do ranges=[('3', '5')]
+  proficient L3.7.1   composition  rc=4 n=4 diags=[(1, 'L3.7.1-M3'), (2, 'L3.7.1-M1'), (3, 'L3.7.1-M2')]  you_do ranges=[('5', '7')]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch for, Assumptions for today, resources); observation reminders: 0
+  validation warnings (6): worksheets.beginner problem 1 repeats wording from the lesson or anchor: «शब्दों के बीच जगह छोड़कर»; worksheets.beginner problem 2 repeats wording from the lesson or anchor: «शब्दों के बीच जगह छोड़कर»; worksheets.beginner problem 3 repeats wording from the lesson or anchor: «शब्दों के बीच जगह छोड़कर»; worksheets.beginner problem 4 repeats wording from the lesson or anchor: «शब्दों के बीच जगह छोड़कर»; the independent-practice passage «मेरा स्कूल» for progressor is not mentioned in what the other groups do; the independent-practice passage «पानी बचाओ» for proficient is not mentioned in what the other groups do
+   log: CFU: beginner question 2 dropped: the answer says 4 but there are 1 words in the quoted sentence | «बोर्ड पर लिखें: 'हमबागजातेहैं'। पूछें: इस वाक्य में कितने शब्द हैं? उँ» → «4»
+   log: CFU: beginner: 1 question(s) beyond the 1 allowed were left out
+   log: CFU: progressor question 3 dropped: question too long for a show-me | «बोर्ड पर लिखें: 1) 'मेरी माँ अच्छी है। मेरी माँ सुंदर है। मेरी माँ प्य» → «2»
+   log: CFU: progressor: 1 question(s) beyond the 1 allowed were left out
+   log: CFU: proficient question 1 dropped: a question about the structure or purpose of a paragraph is too abstract for Class 2 and 3: ask about punctuation, sequence or a missing full stop | «बोर्ड पर लिखें विषय 'मेरी पाठशाला'
+   log: CFU: proficient question 2 dropped: question too long for a show-me | «बोर्ड पर लिखें: 1) 'पहले हमने रंग लाए। फिर चित्र बनाया। अंत में सबने द» → «1»
+   log: CFU kept: beginner 1/3, progressor 1/3, proficient 1/3
+  ISSUES: none
+
+=== N0.1.1_45  (served_from=ai, session_minutes=45)
+  call (plan, 63.8 s): in 4892, out 11998, cache read 0, cache write 10349  $0.1556  stop=end_turn
+  cost $0.1556
+  blocks: anchor 5, teach/beginner 16, transition 2, teach/progressor 14, transition 1, teach/proficient 7 = 45 min
+  beginner   N0.1.1   observed     rc=3 n=3 diags=[]  you_do ranges=[]
+  progressor N0.1.1   observed     rc=3 n=4 diags=[]  you_do ranges=[]
+  proficient N0.1.1   observed     rc=3 n=4 diags=[]  you_do ranges=[]
+  explainability items: 5 (Why these three groups, Why this rotation order, What to watch for today, Assumptions for today, resources); observation reminders: 3
+  validation warnings (0): none
+   log: CFU: beginner: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: progressor: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: proficient: 2 question(s) beyond the 1 allowed were left out
+   log: CFU kept: beginner 1/3, progressor 1/3, proficient 1/3
+  ISSUES: none
+
+TOTAL $0.423 over 3 plans
+  ('L2.5.1_45', 0, 0.1507)
+  ('L2.7.2_45', 0, 0.1163)
+  ('N0.1.1_45', 0, 0.1556)

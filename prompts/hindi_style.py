@@ -75,6 +75,39 @@ _POLITE_VERB_RE = re.compile(_word("(" + "|".join(re.escape(k) for k in sorted(P
 # 'दो' is also the number two ('दो अंकों के जोड़'), so it is changed ONLY as the verb 'give', after the words that go with it, at the end of a clause
 _GIVE_RE = re.compile(rf"(?<![{_DEV}])((?:को|वापस|इसे|उसे|उन्हें|दे) )दो(?=\s*(?:[।,?!.;:]|$)|\s+(?:और|फिर)(?![{_DEV}]))")
 
+# a group addressed in an instruction takes the respectful plural, like everything else said to the class (22 Nov, the third review of the v2
+# plans: "शुरुआती समूह अपनी जगह पर वर्कशीट लेकर जाए। प्रगतिशील समूह मेरे पास आएँ।" mixed the two in one script). Only a verb that ends its clause
+# (before । ; ! ? , or 'और') in a clause that names a समूह, so 'बच्चे', a story's 'बादल आए' or 'जाएगा' are never touched.
+GROUP_VERBS = {
+    "जाए": "जाएँ", "आए": "आएँ", "करे": "करें", "रखे": "रखें", "बैठे": "बैठें", "लौटे": "लौटें", "बताए": "बताएँ", "छाँटे": "छाँटें",
+    "पढ़े": "पढ़ें", "लिखे": "लिखें", "बनाए": "बनाएँ", "दिखाए": "दिखाएँ", "सुनाए": "सुनाएँ", "खोले": "खोलें", "गिने": "गिनें", "जोड़े": "जोड़ें",
+}
+# समूह must be the SUBJECT: not 'समूह को / से / के / में / पर / ने' (the group is then an object: 'हर बच्चा ... समूह को सुनाए' is right), not a
+# relative 'जो समूह ... करे, वह ...', not 'हर समूह ... बताए' (each group: the singular, like 'हर बच्चा लिखे'), and no other subject ('हर बच्चा', 'एक बच्चा', 'मॉनिटर', 'वह') between it and the verb.
+_GROUP_VERB_RE = re.compile(rf"((?<!जो )(?<!हर )समूह(?![{_DEV}])(?!\s+(?:को|से|के|की|का|में|पर|ने)(?![{_DEV}]))[^।;!?\n'‘\"“«]{{0,90}}?\s)("
+                            + "|".join(sorted(GROUP_VERBS, key=len, reverse=True)) + rf")(?![{_DEV}])(?=\s*(?:[।;!?,]|और(?![{_DEV}])|$))")
+_OTHER_SUBJECT = re.compile(rf"(?<![{_DEV}])(?:हर बच्चा|एक बच्चा|मॉनिटर|वह|वे|बच्चे)(?![{_DEV}])")
+
+
+def polite_group_verbs(text: str) -> tuple:
+    """(text, n): 'प्रगतिशील समूह ... छाँटे और ... बताए।' -> '... छाँटें और ... बताएँ।'. Idempotent."""
+    total = 0
+
+    def fix(m):
+        nonlocal total
+        if _OTHER_SUBJECT.search(m.group(1)):
+            return m.group(0)
+        total += 1
+        return m.group(1) + GROUP_VERBS[m.group(2)]
+
+    for _ in range(6):                     # one verb per pass in each clause; a clause rarely has more than two
+        new = _GROUP_VERB_RE.sub(fix, text)
+        if new == text:
+            break
+        text = new
+    return text, total
+
+
 # the Tens | Ones frame: only in a sentence about place value, and only the whole word
 _PLACE_CUES = ("दहाई", "इकाई", "सैकड़ा", "हज़ार", "हासिल", "कॉलम", "रेखा", "बिंदु")
 _FRAME_PHRASE = re.compile(rf"दहाई\s*[|\-]\s*इकाई का {_word('खाना')}")
@@ -126,6 +159,8 @@ def soften_text(text: str, *, polite: bool = True, frame: bool = True, protect_q
         new, n = _POLITE_VERB_RE.subn(lambda m: POLITE_VERBS[m.group(1)], new)
         changes += ["respectful"] * n
         new, n = _GIVE_RE.subn(r"\1दें", new)
+        changes += ["respectful"] * n
+        new, n = polite_group_verbs(new)
         changes += ["respectful"] * n
     if frame:
         new = _soften_frame(new, changes)
@@ -255,7 +290,22 @@ _WRONG_MARK = re.compile(rf"(?:बिंदी|बिंदियों|बि�
 
 _ME_VERBS = [(re.compile(rf"([{_D}]+)(?:ता|ती) हूँ(?![{_D}])"), r"\1ते हैं"),         # छाँटता/छाँटती हूँ -> छाँटते हैं
              (re.compile(rf"([{_D}]+)(?:ूँगा|ूँगी)(?![{_D}])"), r"\1ेंगे"),            # छाँटूँगा/छाँटूँगी -> छाँटेंगे
+             (re.compile(rf"([{_D}]+)ऊँ(?:गा|गी)(?![{_D}])"), r"\1एँगे"),              # दिखाऊँगा/दिखाऊँगी -> दिखाएँगे
              (re.compile(r"(?:रहा|रही) हूँ"), "रहे हैं"), (re.compile(r"(?:चुका|चुकी) हूँ"), "चुके हैं")]
+# a paired form in a quote ('मैं छाँट रहा/रही हूँ') is first made one form, so the plural is not left half-done ('रहा/रहे हैं', found 22 Nov)
+_SLASH_PAIR = re.compile(rf"(?<![{_D}/])([{_D}]+)/([{_D}]+)(?![{_D}/])")
+
+
+def _one_form(m) -> str:
+    a, b = m.group(1), m.group(2)
+    return a if len(a) == len(b) and a[:-1] == b[:-1] and {a[-1], b[-1]} == {"ा", "ी"} else m.group(0)
+
+
+# 'मैं' with a verb that is ALREADY plural ('देखिए, मैं रंग देखकर छाँट रहे हैं।', the v2 review, 22 Nov): the model kept 'मैं' and made only the
+# verb neutral. The check above looks for a gendered verb, so this got through; such a sentence becomes 'हम ...'.
+_PLURAL_VERB = re.compile(rf"(?:(?<![{_D}])(?:रहे|चुके) हैं|[{_D}]+ते हैं|[{_D}]+(?:ेंगे|एँगे))(?![{_D}])")
+_ME_WORD = re.compile(rf"(?<![{_D}])मैं(?![{_D}])")
+_SENT_PARTS = re.compile(r"[^।?!]*[।?!]?")
 
 
 def neutral_quotes(text: str) -> tuple:
@@ -267,9 +317,15 @@ def neutral_quotes(text: str) -> tuple:
     def fix(m):
         nonlocal n
         inner = m.group(2)
-        if "मैं" not in inner or not _GENDERED_ME.search(inner) or _WRITTEN_BEFORE.search(m.string[:m.start()]):
+        if "मैं" not in inner or _WRITTEN_BEFORE.search(m.string[:m.start()]):
             return m.group(0)
-        new = re.sub(rf"(?<![{_D}])मैं(?![{_D}])", "हम", inner)
+        if not _GENDERED_ME.search(_SLASH_PAIR.sub(_one_form, inner)):
+            # no gendered verb: only a sentence whose verb is already plural changes its 'मैं' (a 'मैं' with no verb of its own is left)
+            new = "".join(_ME_WORD.sub("हम", s) if _ME_WORD.search(s) and _PLURAL_VERB.search(s) else s for s in _SENT_PARTS.findall(inner))
+            if new != inner:
+                n += 1
+            return m.group(1) + new + m.group(3)
+        new = _ME_WORD.sub("हम", _SLASH_PAIR.sub(_one_form, inner))
         for pat, rep in _ME_VERBS:
             new = pat.sub(rep, new)
         if new != inner:
@@ -300,6 +356,48 @@ def neutral_quotes_in_plan(plan: dict) -> int:
 
     visit(plan)
     return total
+
+
+# आकार is SIZE (बड़ा/छोटा) and आकृति is SHAPE (गोल, तिकोना, चौकोर) where a skill sorts by both (N0.1.1: "रंग, आकार, आकृति"). The third review of the
+# v2 plans (22 Nov) found "गोल एक तरफ़, चौकोर दूसरी तरफ़ ... मेरा नियम है आकार" and a show-me question "आकार के नियम से" whose expected answer was
+# the shape pair. Only those skills: in geometry 'किस आकार का है: गोला या घन' is ordinary Hindi. A check for the review, not a repair (the
+# meaning, not a word, is wrong). Flagged: आकार, no आकृति, and either two different shapes or a shape with no size word.
+SIZE_SHAPE_SKILLS = {"N0.1.1"}
+_AAKAAR = re.compile(rf"(?<![{_D}])आकार(?![{_D}])")
+_SHAPES = re.compile(rf"(?<![{_D}])(गोल|गोला|गोले|गोली|चौकोर|तिकोन[ाीे]|त्रिभुज|वर्ग|वृत्त|आयत|तारा|तारे|तारों)(?![{_D}])")
+_SIZES = re.compile(rf"(?<![{_D}])(?:बड़[ाीे]|छोट[ाीे]|बड़े-छोटे|लंब[ाीे]|मोट[ाीे]|पतल[ाीे])(?![{_D}])")
+_SHAPE_STEM = {"गोला": "गोल", "गोले": "गोल", "गोली": "गोल", "तिकोना": "तिकोन", "तिकोनी": "तिकोन", "तिकोने": "तिकोन", "तारे": "तारा", "तारों": "तारा"}
+
+
+def _size_shape_mixed(text: str) -> bool:
+    if not _AAKAAR.search(text) or "आकृति" in text:
+        return False
+    shapes = {_SHAPE_STEM.get(s, s) for s in _SHAPES.findall(text)}
+    return len(shapes) >= 2 or (len(shapes) == 1 and not _SIZES.search(text))
+
+
+def check_size_shape(plan: dict, skill_ids) -> list:
+    """Warnings where a sorting skill's teacher text calls a SHAPE rule 'आकार'. A show-me question is read with its answer and what it shows."""
+    if not SIZE_SHAPE_SKILLS & {s for s in (skill_ids or []) if s}:
+        return []
+    out = []
+    for i, b in enumerate((plan.get("rotation_schedule") or {}).get("blocks") or []):
+        for k, v in (b.get("talking_points") or {}).items():
+            if isinstance(v, str) and _size_shape_mixed(v):
+                out.append(f"blocks[{i}].talking_points.{k}: 'आकार' used with shapes («{_AAKAAR.search(v).group(0)}»): आकार is size (बड़ा/छोटा), आकृति is shape (गोल, चौकोर)")
+        for k in ("script_hi", "other_groups_hi"):
+            if isinstance(b.get(k), str) and _size_shape_mixed(b[k]):
+                out.append(f"blocks[{i}].{k}: 'आकार' used with shapes: आकार is size (बड़ा/छोटा), आकृति is shape (गोल, चौकोर)")
+        for j, q in enumerate(b.get("cfu") or []):
+            if not isinstance(q, dict):
+                continue
+            asked = " ".join(str(q.get(k) or "") for k in ("question_hi", "expected_hi"))
+            shows = str(q.get("shows_hi") or "")
+            # the question names one rule and what it shows names the other ('आकार के नियम से' / 'आकृति के नियम से जोड़ी'): flagged too
+            crossed = bool(_AAKAAR.search(asked)) and "आकृति" not in asked and "आकृति" in shows
+            if _size_shape_mixed(asked + " " + shows) or _size_shape_mixed(asked) or crossed:
+                out.append(f"blocks[{i}].cfu[{j}]: a show-me question names 'आकार' with shapes: check that the expected answer sorts by SIZE (आकार), not shape (आकृति)")
+    return out
 
 
 def check_teacher_text(plan: dict) -> list:

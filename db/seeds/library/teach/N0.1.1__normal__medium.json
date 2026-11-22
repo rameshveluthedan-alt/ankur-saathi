@@ -273,7 +273,9 @@
  "checks": {
   "ok": true,
   "fatal": [],
-  "warnings": [],
+  "warnings": [
+   "blocks[0].cfu[0]: a show-me question names 'आकार' with shapes: check that the expected answer sorts by SIZE (आकार), not shape (आकृति)"
+  ],
   "repairs": [
    "sheet: progressor: observed task, practice sheet with 3 item(s) (3 drawn by the code)"
   ]

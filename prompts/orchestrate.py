@@ -475,7 +475,13 @@ HINDI_STYLE_SECTION = (
     "Never call ै or े a बिंदी.\n"
     "- Use 'स्वतंत्र अभ्यास' for independent practice.\n"
     "- In place-value and number-reading problems, never print the numeral beside its number word: write 'छत्तीस लिखिए', not 'छत्तीस (36) लिखिए'. "
-    "The system writes and checks every Hindi number word from its digits, so do not worry about spelling them.\n" + STYLE_PROMPT)
+    "The system writes and checks every Hindi number word from its digits, so do not worry about spelling them.\n"
+    "- An example in a problem must never be an answer on the sheet: write 'क्रम की संख्याएँ लिखें', not 'जैसे 3, 1, 2' when the answer is 3, 1, 2.\n"
+    "- When sorting or comparing objects, आकार means SIZE (बड़ा/छोटा) and आकृति means SHAPE (गोल, तिकोना, चौकोर, तारा): round things apart from "
+    "square ones is 'आकृति का नियम', never 'आकार'; big apart from small is 'आकार का नियम'. Check that each show-me question's expected answer "
+    "follows the rule the question names.\n"
+    "- A group addressed in an instruction takes the respectful plural, like the whole class: 'शुरुआती समूह अपनी जगह जाएँ', 'प्रगतिशील समूह मेरे "
+    "पास आएँ', 'दक्ष समूह छाँटें और बताएँ' (never 'जाए', 'आए', 'छाँटे').\n" + STYLE_PROMPT)
 
 
 _SYSTEM_ROLE = """You are the Ankur Saathi orchestration engine. You generate a complete Dainik Yojana (daily teaching plan) for an Indian FLN classroom using a station rotation model.
