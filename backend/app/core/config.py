@@ -51,6 +51,8 @@ class Settings(BaseSettings):
     ai_cap_school_daily_usd: float = 10.0
     ai_cap_teacher_daily_usd: float = 3.0
     ai_cap_shared_demo_daily_usd: float = 8.0   # a shared demo account (fixed PIN) is used by many reviewers
+    ai_model_prices: str = ""                    # JSON {"model": [in, out, cache_read, cache_write]}: corrects the per-model table (backend/app/services/model_prices.py)
+    # The AI_PRICE_* below are the FALLBACK: for a model not in that table, and for old meter rows with no model recorded
     ai_price_input_per_mtok: float = 2.0        # USD per million input tokens. CHECK Anthropic's pricing page for the model you use
     ai_price_output_per_mtok: float = 10.0      # USD per million output tokens (thinking tokens count as output)
     ai_price_cache_read_per_mtok: float = 0.10   # USD per million tokens read from the prompt cache (Sonnet 5.5: $0.10)

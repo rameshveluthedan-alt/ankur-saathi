@@ -62,7 +62,11 @@ async def cmd_status(db, args):
     hold = s.ai_reserve_usd if st["reserve_active"] else s.ai_final_margin_usd
     print(f"  usable right now           {money(max(st['available_now'], 0))}      (holding back {money(hold)}: " + (f"the evaluator reserve until {s.ai_reserve_from}" if st["reserve_active"] else "the final margin") + ")")
     print(f"  today                      {money(st['today'])}      (global cap {money(s.ai_cap_global_daily_usd)}, school {money(s.ai_cap_school_daily_usd)}, teacher {money(s.ai_cap_teacher_daily_usd)}, shared demo {money(s.ai_cap_shared_demo_daily_usd)})")
-    print(f"  prices in use              ${s.ai_price_input_per_mtok}/M input, ${s.ai_price_output_per_mtok}/M output  (check them against the real prices: calibrate)")
+    from app.services import model_prices as mp
+    print("  by model (each priced at its own rates, USD per million tokens: input / output / cache read / cache write)")
+    for m, (n, c) in sorted(st["by_model"].items(), key=lambda t: -t[1][1]):
+        p = mp.prices_for(m)
+        print(f"    {str(m or '(no model recorded)'):<22} {n:>5} calls  {money(c):>9}   {' / '.join(f'{x:g}' for x in p)}  from {mp.source_of(m)}")
     for pct in (50, 70, 80):
         if st["pct"] >= pct:
             print(f"  !! {pct}% of the allocation has been used" + ("  (the organisers are alerted at 80%)" if pct == 80 else ""))
@@ -106,16 +110,16 @@ async def cmd_calibrate(db, args):
     where, params = "TRUE", []
     if args.since:
         where, params = "created_at >= $1", [datetime.fromisoformat(args.since).replace(tzinfo=ab._tz())]
-    row = await db.fetchrow(f"SELECT {await ab._sums(db)}, count(*) AS n FROM ai_usage WHERE {where}", *params)
-    metered = ab._row_cost(row)
-    print(f"The meter counted {row['n']} calls: {row['i']:,} input and {row['o']:,} output tokens.")
-    print(f"At the prices in the settings (${s.ai_price_input_per_mtok}/M in, ${s.ai_price_output_per_mtok}/M out) that is {money(metered)}.")
+    rows = await db.fetch(f"SELECT model, {await ab._sums(db)}, count(*) AS n FROM ai_usage WHERE {where} GROUP BY model", *params)
+    metered = ab._rows_cost(rows)
+    print(f"The meter counted {sum(r['n'] for r in rows)} calls: {sum(r['i'] for r in rows):,} input and {sum(r['o'] for r in rows):,} output tokens.")
+    print(f"At each model's prices (backend/app/services/model_prices.py) that is {money(metered)}.")
     if metered <= 0:
         sys.exit("Nothing metered in that period, so there is nothing to compare.")
     f = args.actual_usd / metered
     print(f"What was actually spent: {money(args.actual_usd)}  ->  the prices are {'too low' if f > 1 else 'too high'} by a factor of {f:.2f}.")
-    print(f"If the input and output prices are off by the same factor, set  AI_PRICE_INPUT_PER_MTOK={s.ai_price_input_per_mtok * f:.2f}  AI_PRICE_OUTPUT_PER_MTOK={s.ai_price_output_per_mtok * f:.2f}")
-    print("(Better: take the real per-million prices for your model from Anthropic's pricing page. History is re-priced automatically, because tokens are what is stored.)")
+    print("Correct a model's prices with AI_MODEL_PRICES (JSON {\"model\": [in, out, cache_read, cache_write]}) or in model_prices.py, taking the real")
+    print("per-million prices from Anthropic's pricing page. History is re-priced automatically, because tokens are what is stored.")
 
 
 async def main():

@@ -13,7 +13,7 @@ When a cap is reached the app does not just fail. For a PLAN, a recorded plan fo
 the same checks and repairs as a fresh one and is clearly labelled as a sample. A PHOTO analysis cannot be faked, so it says why it
 cannot run.
 
-Tokens are the ground truth; money is computed from them with the CURRENT prices in the settings, so correcting a price corrects every
+Tokens are the ground truth; money is computed from them with the CURRENT prices of each call's model (model_prices), so correcting a price corrects every
 past estimate. If the meter table is missing (a database that has not loaded db/schema/10_ai_usage.sql) calls are NOT blocked, but a
 warning is printed: check `scripts/ai_usage.py status`.
 """
@@ -25,6 +25,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from app.core.config import get_settings
+from app.services import model_prices
 
 KINDS = ("plan", "plan_repair", "vision", "library")
 
@@ -81,14 +82,20 @@ def cache_tokens_of(usage) -> tuple:
     return get("cache_read_input_tokens"), get("cache_creation_input_tokens")
 
 
-def cost_usd(tokens_in: int, tokens_out: int, cache_read: int = 0, cache_write: int = 0) -> float:
-    s = get_settings()
-    return (tokens_in * s.ai_price_input_per_mtok + tokens_out * s.ai_price_output_per_mtok
-            + (cache_read or 0) * s.ai_price_cache_read_per_mtok + (cache_write or 0) * s.ai_price_cache_write_per_mtok) / 1_000_000
+def cost_usd(tokens_in: int, tokens_out: int, cache_read: int = 0, cache_write: int = 0, model: str = None) -> float:
+    """Priced by the MODEL that made the call (model_prices: the table, or the AI_PRICE_* settings for a model it does not know or None)."""
+    p_in, p_out, p_cr, p_cw = model_prices.prices_for(model)
+    return (tokens_in * p_in + tokens_out * p_out + (cache_read or 0) * p_cr + (cache_write or 0) * p_cw) / 1_000_000
 
 
 def _row_cost(r) -> float:
-    return cost_usd(r["i"], r["o"], r["cr"], r["cw"])
+    """One row of summed tokens; priced by its 'model' column when the query grouped by model."""
+    return cost_usd(r["i"], r["o"], r["cr"], r["cw"], r["model"] if "model" in r.keys() else None)
+
+
+def _rows_cost(rows) -> float:
+    """Rows of the same group, one per model (… GROUP BY …, model): their costs added up."""
+    return sum(_row_cost(r) for r in rows)
 
 
 # The cache columns (db/schema/10_ai_usage.sql) may be missing in a database made before prompt v2: then the sums read 0 for them, and
@@ -151,8 +158,8 @@ def available_usd(spent_total: float, today: date) -> float:
 # ── the meter ───────────────────────────────────────────────────────────────
 
 async def _spent(db, where: str = "TRUE", *args) -> float:
-    row = await db.fetchrow(f"SELECT {await _sums(db)} FROM ai_usage WHERE {where}", *args)
-    return _row_cost(row)
+    rows = await db.fetch(f"SELECT model, {await _sums(db)} FROM ai_usage WHERE {where} GROUP BY model", *args)
+    return _rows_cost(rows)
 
 
 def _warn_missing():
@@ -204,7 +211,7 @@ async def record(db, teacher_id, kind: str, model: str, usage):
     global _cache_cols
     tin, tout = tokens_of(usage)
     cread, cwrite = cache_tokens_of(usage)
-    est = round(cost_usd(tin, tout, cread, cwrite), 4)
+    est = round(cost_usd(tin, tout, cread, cwrite, model), 4)
     try:
         school_id = await db.fetchval("SELECT school_id FROM teachers WHERE id = $1", teacher_id) if teacher_id else None
         if (cread or cwrite) and not await _has_cache_cols(db):
@@ -302,14 +309,24 @@ async def status(db) -> dict:
     spent = s.ai_spend_offset_usd + metered
     since = day_start()
     sums = await _sums(db)
-    by_kind = {r["kind"]: (r["n"], _row_cost(r)) for r in await db.fetch(f"SELECT kind, count(*) AS n, {sums} FROM ai_usage GROUP BY kind")}
-    days = [(r["d"], r["n"], _row_cost(r)) for r in await db.fetch(
-        f"""SELECT (created_at AT TIME ZONE $1)::date AS d, count(*) AS n, {sums}
-           FROM ai_usage GROUP BY 1 ORDER BY 1 DESC LIMIT 10""", s.ai_timezone)]
-    top = sorted(((str(r["teacher_id"])[:8], r["n"], _row_cost(r)) for r in await db.fetch(
-        f"""SELECT teacher_id, count(*) AS n, {sums} FROM ai_usage WHERE created_at >= $1 GROUP BY teacher_id""", since)),
-        key=lambda t: -t[2])[:5]
+
+    def grouped(rows, key) -> dict:
+        """{group: (calls, cost)} from rows grouped by (group, model): each model's tokens at its own prices."""
+        out = {}
+        for r in rows:
+            n, c = out.get(r[key], (0, 0.0))
+            out[r[key]] = (n + r["n"], c + _row_cost(r))
+        return out
+
+    by_kind = grouped(await db.fetch(f"SELECT kind, model, count(*) AS n, {sums} FROM ai_usage GROUP BY kind, model"), "kind")
+    by_model = grouped(await db.fetch(f"SELECT model, count(*) AS n, {sums} FROM ai_usage GROUP BY model"), "model")
+    per_day = grouped(await db.fetch(f"""SELECT (created_at AT TIME ZONE $1)::date AS d, model, count(*) AS n, {sums}
+                                         FROM ai_usage GROUP BY 1, model""", s.ai_timezone), "d")
+    days = [(d, n, c) for d, (n, c) in sorted(per_day.items(), reverse=True)[:10]]
+    per_teacher = grouped(await db.fetch(f"""SELECT teacher_id, model, count(*) AS n, {sums} FROM ai_usage WHERE created_at >= $1
+                                             GROUP BY teacher_id, model""", since), "teacher_id")
+    top = sorted(((str(t)[:8], n, c) for t, (n, c) in per_teacher.items()), key=lambda t: -t[2])[:5]
     return {"allocation": s.ai_allocation_usd, "offset": s.ai_spend_offset_usd, "metered": metered, "spent": spent, "remaining": s.ai_allocation_usd - spent,
             "pct": 100 * spent / s.ai_allocation_usd if s.ai_allocation_usd else 0, "available_now": available_usd(metered, today),
             "reserve_active": today < date.fromisoformat(s.ai_reserve_from), "today": await _spent(db, "created_at >= $1", since),
-            "by_kind": by_kind, "days": days, "top_today": top, "calls": sum(n for n, _ in by_kind.values())}
+            "by_kind": by_kind, "by_model": by_model, "days": days, "top_today": top, "calls": sum(n for n, _ in by_kind.values())}

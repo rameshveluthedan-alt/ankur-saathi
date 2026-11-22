@@ -1,5 +1,5 @@
 -- A meter for every call to the AI, so spending can be capped and reported. Idempotent.
--- Tokens are the ground truth. Money is computed from them with the CURRENT prices in the settings (AI_PRICE_*), so correcting a
+-- Tokens are the ground truth. Money is computed from them with the CURRENT prices of each row's model (backend/app/services/model_prices.py), so correcting a
 -- price corrects every estimate, past and future. est_cost_usd is a convenience copy for reading the table by eye.
 CREATE TABLE IF NOT EXISTS ai_usage (
     id            BIGSERIAL PRIMARY KEY,

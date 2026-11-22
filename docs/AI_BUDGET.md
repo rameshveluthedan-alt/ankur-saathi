@@ -28,11 +28,11 @@ through exactly the same checks and repairs as a fresh one, is built for the tea
 no recorded plan says why it cannot run and which skills do have samples. **Photos** cannot be faked: the analysis says the limit was reached.
 
 **Metering:** every call records its tokens (per teacher and school). A reply that cannot be read is still counted, because it was paid for.
-Money is computed from tokens with the **current prices in the settings**, so correcting a price corrects every past estimate.
+Money is computed from tokens with the **current prices of the model that made each call** (the table in `backend/app/services/model_prices.py`; every meter row records its model), so plans and photos on different models are each priced right, and correcting a price corrects every past estimate.
 
 ## The prices are an assumption until checked
 The defaults ($2 per million input tokens, $10 per million output) are the batch script's old estimates, and the "about 12 cents a plan" figure rests on them.
-Take the real per-million prices for your model from Anthropic's pricing page, set `AI_PRICE_INPUT_PER_MTOK` and `AI_PRICE_OUTPUT_PER_MTOK`, and
+Take the real per-million prices for your model from Anthropic's pricing page and correct the model's line in `model_prices.py`, or, without a code change, set `AI_MODEL_PRICES` (JSON `{"model": [input, output, cache read, cache write]}`). The `AI_PRICE_*` settings are only the fallback, for a model the table does not know. And
 if the organisers can tell you what was actually spent over a period, `scripts/ai_usage.py calibrate --actual-usd X` says how far off the prices are.
 
 ## A suggested split of the $500
