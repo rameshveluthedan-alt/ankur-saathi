@@ -125,6 +125,15 @@ check("a reading-aloud sheet loses 'शिक्षक हर कहानी �
 check("another kind of sheet (listening) keeps it", plan["worksheets"]["progressor"]["instructions_hi"] == cue)
 check("the prompt says it: the last block has no next block", "LAST block there is no next block" in orchestrate_src if (orchestrate_src := open(os.path.join(ROOT, "prompts", "orchestrate.py"), encoding="utf-8").read()) else False)
 
+print("\nthe recorded-plan drafts' review (22 Nov): a self-correction left in the text is flagged for a reader")
+sc = hs.check_self_corrections({"anchor": {"beginner_participation_hi": "जैसे आम 24 और दूध 36 के बजाय सब्ज़ी 35 और केला 18 नहीं, बल्कि आम 24 और चावल 45: 24 + 45"},
+                                "rotation_schedule": {"blocks": [{"talking_points": {"we_do_hi": "बच्चों से कहें: 'हम एक संख्या बोलते हैं' के बजाय शिक्षक बोले 'सत्रह'।"}}]},
+                                "worksheets": {"progressor": {"problems": [{"problem_hi": "28 सेमी के बजाय चौड़ाई 2 सेमी रखें"}]}}})
+check("the reviewer's two lines and a printed problem are flagged", len(sc) == 3 and all("self-correction" in w for w in sc), sc)
+check("'यानी' too", len(hs.check_self_corrections({"prep_hi": ["चुपके से... यानी शांति से"]})) == 1)
+check("a field that is not the teacher's text (an answer) is not read", hs.check_self_corrections({"worksheets": {"g": {"problems": [{"answer": "नहीं, बल्कि 5"}]}}}) == [])
+check("the prompt asks for a worked example, not a search", "Work out an example BEFORE you write it" in orchestrate_src if (orchestrate_src := open(os.path.join(ROOT, "prompts", "orchestrate.py"), encoding="utf-8").read()) else False)
+
 print("\n5. the rules are in the prompt")
 import orchestrate
 sec = orchestrate.HINDI_STYLE_SECTION

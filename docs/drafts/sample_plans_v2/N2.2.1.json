@@ -1,0 +1,578 @@
+{
+ "anchor": {
+  "title_hi": "स्थानीय मान खज़ाना खोज: गुप्त संख्या",
+  "narration_hi": "आज हम एक खेल खेलेंगे। मेरे पास एक गुप्त संख्या है, उसे ढूँढना है। बोर्ड पर सुराग़ लिखे हैं: 'इसमें 3 सैकड़े हैं, 4 दहाइयाँ हैं और 5 इकाइयाँ हैं।' सोचें, वह संख्या कौन-सी है? फिर दूसरी गुप्त संख्या: 'इसमें 2 दहाइयाँ और 7 इकाइयाँ हैं।'",
+  "closing_question_hi": "अब अपने पास बैठे साथी के लिए अपनी एक गुप्त संख्या के सुराग़ बनाएँ और साथी से उसे ढुँढवाएँ। कौन-सा सुराग़ सबसे ज़्यादा काम आया?",
+  "opening_question_hi": "पहली गुप्त संख्या में 3 सैकड़े, 4 दहाइयाँ और 5 इकाइयाँ हैं। अपनी स्लेट पर वह संख्या लिखें और छिपा लें।",
+  "beginner_participation_hi": "शुरुआती समूह दो अंकों की गुप्त संख्या ढूँढे: 2 दहाइयाँ और 7 इकाइयाँ हैं तो संख्या क्या है? बंडल की छड़ियों से बनाकर देखें, फिर स्लेट पर लिखें।",
+  "proficient_participation_hi": "दक्ष समूह सुराग़ से संख्या ढूँढे, फिर बताए: 'इस संख्या से 10 ज़्यादा क्या होगा? 100 ज़्यादा क्या होगा?'",
+  "progressor_participation_hi": "प्रगतिशील समूह सुराग़ से तीन अंकों की संख्या लिखें, और फिर खोलकर लिखें, जैसे 345 = 300 + 40 + 5।"
+ },
+ "prep_hi": [
+  "फ्लैश कार्ड (TLM-007) बनाएँ: कार्ड-स्टॉक को ताश के पत्ते के आकार में काटें। आगे की तरफ़ अंक लिखें, पीछे उतने बिंदु बनाएँ। कुल 12 कार्ड: 13, 31, 17, 40, 25, 19, 46, 52, 61, 70, 85, 99।",
+  "बोर्ड पर लिखने के लिए रंगीन चॉक या अलग-अलग चॉक तैयार रखें। वर्कशीट बोर्ड से कॉपी होंगी (प्रिंटर नहीं है): तीनों समूहों के सवाल बड़े अक्षरों में बोर्ड के तीन हिस्सों में पहले से लिख लें।",
+  "संख्या चार्ट 1-100 (TLM-002) दीवार पर टाँगें या बोर्ड के पास रखें।",
+  "बंडल बनाने के लिए छड़ियाँ (तीलियाँ) और रबर बैंड तैयार रखें: 13 जैसी संख्या के लिए 1 बंडल और 3 खुली छड़ियाँ।"
+ ],
+ "coverage": {
+  "note": "Not yet run through the real model: the plan may need more editing.",
+  "tier": "untested"
+ },
+ "cfu_stats": {
+  "beginner": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 2,
+   "skill_has_mistakes": true
+  },
+  "proficient": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 0,
+   "skill_has_mistakes": false
+  },
+  "progressor": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 0,
+   "skill_has_mistakes": false
+  }
+ },
+ "worksheets": {
+  "beginner": {
+   "problems": [
+    {
+     "answer": "42",
+     "number": 1,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "4 दहाई 2 इकाई",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "23",
+     "number": 2,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "तेईस लिखिए",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": "N1.2.3-M1"
+    },
+    {
+     "answer": "16",
+     "number": 3,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "सोलह लिखिए",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": "N1.2.3-M2"
+    },
+    {
+     "answer": "68",
+     "number": 4,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "6 दहाई 8 इकाई",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "57",
+     "number": 5,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "सत्तावन लिखिए",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "81",
+     "number": 6,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "8 दहाई 1 इकाई",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": {
+    "answer": "25",
+    "row1_o": "5",
+    "row1_t": "2",
+    "row2_o": "",
+    "row2_t": "",
+    "answer_o": "5",
+    "answer_t": "2",
+    "problem_hi": "2 दहाई 5 इकाई = ___",
+    "pv_columns": 2,
+    "show_pv_grid": true
+   },
+   "required_count": 3,
+   "instructions_en": "Fill the tens-ones boxes and write the number.",
+   "instructions_hi": "संख्याएँ सुनकर या देखकर दहाई-इकाई के बॉक्स में भरें और संख्या लिखें।"
+  },
+  "proficient": {
+   "problems": [
+    {
+     "answer": "4,573",
+     "number": 1,
+     "row_type": "plain",
+     "problem_hi": "चार हज़ार पाँच सौ तिहत्तर को अंकों में लिखिए।",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "5,007",
+     "number": 2,
+     "row_type": "plain",
+     "problem_hi": "पाँच हज़ार सात को अंकों में लिखिए।",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "छह हज़ार तीन सौ आठ",
+     "number": 3,
+     "row_type": "plain",
+     "problem_hi": "6,308 को शब्दों में लिखिए।",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "9,090",
+     "number": 4,
+     "row_type": "plain",
+     "problem_hi": "नौ हज़ार नब्बे को अंकों में लिखिए।",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "4000 + 500 + 20 + 0",
+     "number": 5,
+     "row_type": "plain",
+     "problem_hi": "4,520 को खोलकर लिखिए: ___ + ___ + ___ + ___",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "दो हज़ार तीन सौ पचास रुपये; तीन हज़ार चार सौ आठ रुपये",
+     "number": 6,
+     "row_type": null,
+     "problem_hi": "एक दुकान में 2,350 रुपये की कमाई हुई और अगले दिन 3,408 रुपये की। दोनों रकमें शब्दों में लिखिए।",
+     "answer_type": "wide",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": null,
+   "required_count": 3,
+   "instructions_en": "Write and read numbers up to 9,999; mind every zero.",
+   "instructions_hi": "संख्याएँ अंकों में लिखें और पढ़ें। हर शून्य की जगह ध्यान से लिखें।"
+  },
+  "progressor": {
+   "problems": [
+    {
+     "answer": "368",
+     "number": 1,
+     "row_type": "plain",
+     "problem_hi": "तीन सौ अड़सठ को अंकों में लिखिए।",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "407",
+     "number": 2,
+     "row_type": "plain",
+     "problem_hi": "चार सौ सात को अंकों में लिखिए।",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "500 + 20 + 6",
+     "number": 3,
+     "row_type": "plain",
+     "problem_hi": "526 को खोलकर लिखिए: ___ + ___ + ___",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "720",
+     "number": 4,
+     "row_type": "plain",
+     "problem_hi": "सात सौ बीस को अंकों में लिखिए।",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "800 + 0 + 9",
+     "number": 5,
+     "row_type": "plain",
+     "problem_hi": "809 को खोलकर लिखिए: ___ + ___ + ___",
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "615",
+     "number": 6,
+     "row_type": "plain",
+     "problem_hi": "छह सौ पंद्रह को अंकों में लिखिए।",
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "example_block": {
+    "answer": "300 + 40 + 5",
+    "row1_h": "3",
+    "row1_o": "5",
+    "row1_t": "4",
+    "row2_h": "",
+    "row2_o": "",
+    "row2_t": "",
+    "answer_h": "3",
+    "answer_o": "5",
+    "answer_t": "4",
+    "problem_hi": "345 = ___ + ___ + ___",
+    "pv_columns": 3,
+    "show_pv_grid": true
+   },
+   "required_count": 3,
+   "instructions_en": "Write the numbers in digits and expand them.",
+   "instructions_hi": "संख्या पढ़कर या सुनकर अंकों में लिखें, और अंकों वाली संख्या को खोलकर लिखें।"
+  }
+ },
+ "group_skills": {
+  "beginner": "N1.2.3",
+  "proficient": "N3.2.1",
+  "progressor": "N2.2.1"
+ },
+ "explainability": {
+  "items": [
+   {
+    "body_en": "Beginners work on 2-digit numbers, Progressors on today's 3-digit goal, and Proficients extend to 4 digits, so each child learns at their own level.",
+    "body_hi": "शुरुआती समूह दो अंकों की संख्याओं पर काम करता है, प्रगतिशील आज के लक्ष्य (तीन अंकों की संख्याएँ) पर और दक्ष समूह चार अंकों तक आगे बढ़ता है। इस तरह हर बच्चा अपने स्तर पर सीखता है।",
+    "title_en": "Why these three groups",
+    "title_hi": "तीन समूह क्यों"
+   },
+   {
+    "body_en": "Beginners get the first and longest slot since they need the most support and attention is highest early in the session.",
+    "body_hi": "शुरुआती समूह को पहला और सबसे लंबा समय मिला क्योंकि उसे सबसे ज़्यादा सहारे की ज़रूरत है और बच्चों की ऊर्जा शुरू में ज़्यादा होती है।",
+    "title_en": "Why this rotation order",
+    "title_hi": "घुमाव का क्रम क्यों"
+   },
+   {
+    "body_en": "Watch for digit reversal (13 written as 31) and confusion in 11-19 among Beginners. Beginner problems 2 and 3 are designed to catch these.",
+    "body_hi": "शुरुआती समूह में अंक उलटना (13 की जगह 31) और 11 से 19 की संख्याओं में भ्रम देखें। शुरुआती वर्कशीट के सवाल 2 और 3 इन्हीं ग़लतियों को पकड़ने के लिए बने हैं।",
+    "title_en": "Mistakes to watch",
+    "title_hi": "किन ग़लतियों पर नज़र रखें"
+   },
+   {
+    "body_en": "With no printer, worksheets are copied from the board, so write each group's problems beforehand. Give special attention to numbers with zeros (e.g. 407, 5,007) for the Progressors and Proficients.",
+    "body_hi": "प्रिंटर न होने से वर्कशीट बोर्ड से कॉपी में उतारी जाएँगी, इसलिए हर समूह के सवाल बोर्ड पर पहले से लिख लें। प्रगतिशील और दक्ष समूह के लिए शून्य वाली संख्याओं (जैसे 407, 5,007) पर विशेष ध्यान दें।",
+    "title_en": "Assumption for today's plan",
+    "title_hi": "आज की धारणा"
+   },
+   {
+    "id": "resources",
+    "body_en": "**Anchor activity (whole class):** 'Place Value Treasure Hunt' was written for this very skill; it was adapted to today's numbers.\n**For each group:**\n• **Beginners** ('Reads and writes numerals 1 to 99'): practice on a worksheet at their own level.\n• **Progressors** ('Reads and writes 3-digit numbers (100–999)'): I Do and We Do, followed by You Do (worksheet practice) to build conceptual clarity and prevent errors.\n• **Proficients** ('Reads and writes numbers up to 9,999'): written practice on the board and the worksheet.\n**Materials (to prepare):** Number chart 1-100, Flash cards (numbers).\n**Weekly plan:** the app uses a representative weekly plan for now, not the state's official one.\n(Codes: ANC-N-004 · TLM-002 · TLM-007)",
+    "body_hi": "**एंकर गतिविधि (पूरी कक्षा के लिए):** «स्थानीय मान खज़ाना खोज» इसी कौशल के लिए लिखी गई थी; इसे आज की संख्याओं के हिसाब से ढाला गया।\n**हर समूह के लिए:**\n• **शुरुआती** («1 से 99 तक अंक पढ़ता और लिखता है»): अपने स्तर की वर्कशीट पर अभ्यास।\n• **प्रगतिशील** («3 अंकों की संख्याएँ (100–999) पढ़ता और लिखता है»): I Do और We Do के बाद You Do में वर्कशीट पर स्वतंत्र अभ्यास होता है, ताकि अवधारणा स्पष्ट हो और गलतियाँ रुकें।\n• **दक्ष** («9,999 तक संख्याएँ पढ़ता और लिखता है»): बोर्ड पर और वर्कशीट पर लिखित अभ्यास।\n**सामग्री (तैयारी):** संख्या चार्ट 1-100, फ्लैश कार्ड (संख्या)।\n**साप्ताहिक योजना:** ऐप में अभी एक नमूना साप्ताहिक योजना है, राज्य की आधिकारिक योजना नहीं।\n(कोड: ANC-N-004 · TLM-002 · TLM-007)",
+    "title_en": "Teaching and Learning Resources",
+    "title_hi": "शिक्षण और सीखने की सामग्री"
+   }
+  ]
+ },
+ "review_prompts": {
+  "photo_sample_rolls": {
+   "beginner": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "proficient": [
+    21,
+    23,
+    24,
+    26,
+    28,
+    29
+   ],
+   "progressor": [
+    9,
+    11,
+    13,
+    15,
+    17,
+    19
+   ]
+  },
+  "photo_sample_method": "systematic sampling, the start moves each day",
+  "observation_reminders_hi": []
+ },
+ "session_minutes": 90,
+ "rotation_schedule": {
+  "blocks": [
+   {
+    "type": "anchor",
+    "script_hi": null,
+    "time_start": "0:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 10
+   },
+   {
+    "type": "setup",
+    "script_hi": "अब हम तीन समूहों में काम करेंगे। शुरुआती समूह मेरे पास आएँ। प्रगतिशील और दक्ष समूह अपनी जगह पर बैठें और बोर्ड से अपना स्वतंत्र अभ्यास कॉपी में करें। काम करते समय धीमी आवाज़ में बात करें। कोई अटके तो पहले अपने साथी से पूछें।",
+    "time_start": "0:10",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "choose",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "Consistently writes digits in wrong order: \"thirteen\" → writes 31; but reads 31 correctly as thirty-one",
+        "wrong_answer_hi": "2 (31 चुनता है)",
+        "misconception_id": "N1.2.3-M1",
+        "misconception_name_en": "Digit reversal in writing (writes 31 for 13)",
+        "misconception_name_hi": "लिखते समय अंक उलटना (13 के लिए 31 लिखता है)"
+       }
+      ],
+      "expected_hi": "1 (13)",
+      "question_hi": "बोर्ड पर लिखें: 'तेरह'। फिर पूछें: तेरह इनमें से कौन-सा है, 1) 13 या 2) 31? उँगली से 1 या 2 दिखाएँ।"
+     },
+     {
+      "kind": "answer",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "Errors concentrated in 11-19 range; numbers 20+ are written correctly",
+        "wrong_answer_hi": "91 या 109",
+        "misconception_id": "N1.2.3-M2",
+        "misconception_name_en": "Teen number confusion (11-19)",
+        "misconception_name_hi": "किशोर संख्याओं (11-19) में भ्रम"
+       }
+      ],
+      "expected_hi": "19",
+      "question_hi": "शिक्षक बोले: 'उन्नीस'। स्लेट पर संख्या लिखें।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 7
+     },
+     {
+      "key": "we_do",
+      "min": 8
+     },
+     {
+      "key": "show_me",
+      "min": 4
+     },
+     {
+      "key": "you_do",
+      "min": 9
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:12",
+    "teach_group": "beginner",
+    "cfu_grounded": true,
+    "talking_points": {
+     "i_do_hi": "शुरू में एक वाक्य में याद दिलाएँ: 'कल हमने 1 से 9 तक के अंक लिखे थे।' फिर बोर्ड पर दहाई-इकाई का बॉक्स बनाएँ। 13 के लिए 1 बंडल और 3 खुली छड़ियाँ रखें और बोलें: 'पहले दहाई, फिर इकाई: 1 दहाई 3 इकाई, यानी तेरह, लिखा 13।' फिर 31 बनाकर दिखाएँ: 3 बंडल और 1 छड़ी, 'इकतीस' और लिखा 31। दोनों में फ़र्क़ बताएँ। संख्या चार्ट (TLM-002) पर 13 और 31 अलग-अलग जगह दिखाएँ।",
+     "we_do_hi": "शिक्षक एक संख्या बोलें, जैसे 'सत्रह'। बच्चे छड़ियों से बनाएँ और बॉक्स में दहाई-इकाई भरें, फिर स्लेट पर लिखें। इसी तरह 'चालीस', 'पच्चीस' और 'उन्नीस' लें। हर बार पूछें: 'पहले दहाई लिखी या इकाई?' फ्लैश कार्ड (TLM-007) दिखाकर बच्चों से संख्या पढ़वाएँ और पीछे के बिंदु गिनकर जाँचें।",
+     "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 बोर्ड से कॉपी में बनाएँ और हल करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें। पहले उन बच्चों के पास जाएँ जो दहाई और इकाई की जगह बदल देते हैं।"
+    },
+    "other_groups_hi": "प्रगतिशील समूह अपनी कॉपी में 1 से 99 तक की संख्याएँ पढ़कर-लिखकर अभ्यास करे: बोर्ड पर लिखी 5 संख्याएँ (जैसे 46, 73, 58, 91, 64) शब्दों में पढ़कर कॉपी में लिखें। दक्ष समूह तीन अंकों की संख्याएँ लिखे: बोर्ड पर लिखे सुराग़ से (जैसे 5 सैकड़े, 0 दहाई, 6 इकाई) संख्याएँ बनाकर लिखें। जल्दी ख़त्म करने वाले साथी की कॉपी जाँचें।",
+    "duration_minutes": 30
+   },
+   {
+    "type": "transition",
+    "script_hi": "सब अपना काम रोक दें और कॉपी बंद करें। छड़ियाँ मॉनिटर को दें। शुरुआती समूह अपनी जगह जाएँ और अपना स्वतंत्र अभ्यास करें। प्रगतिशील समूह मेरे पास आएँ।",
+    "time_start": "0:42",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा दहाई के स्थान पर 0 रखना जानता है।",
+      "listen_for": [],
+      "expected_hi": "407",
+      "question_hi": "शिक्षक बोले: 'चार सौ सात'। स्लेट पर संख्या लिखें।"
+     },
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा हर अंक का स्थानीय मान पहचानता है।",
+      "listen_for": [],
+      "expected_hi": "2, 9, 6",
+      "question_hi": "बोर्ड पर लिखें: 296 = ___ सैकड़े + ___ दहाई + ___ इकाई। खाली जगहों में अंक लिखें।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 5
+     },
+     {
+      "key": "we_do",
+      "min": 6
+     },
+     {
+      "key": "show_me",
+      "min": 3
+     },
+     {
+      "key": "you_do",
+      "min": 6
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:44",
+    "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+    "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+    "teach_group": "progressor",
+    "cfu_grounded": false,
+    "talking_points": {
+     "i_do_hi": "एक वाक्य में याद दिलाएँ: 'कल हमने 99 तक की संख्याएँ लिखी थीं।' बोर्ड पर तीन बॉक्स बनाएँ: सैकड़ा, दहाई, इकाई। 345 को खोलकर दिखाएँ: 3 सैकड़े, 4 दहाई, 5 इकाई, यानी 300 + 40 + 5। बोलें: 'तीन सौ पैंतालीस'। फिर 608 दिखाएँ: 6 सैकड़े, 0 दहाई, 8 इकाई: शून्य दहाई की जगह बनाए रखता है, इसलिए 68 नहीं, 608।",
+     "we_do_hi": "शिक्षक बोले 'सात सौ तेईस'। बच्चे खानों में अंक भरकर स्लेट पर लिखें। फिर 'पाँच सौ नौ' और 'आठ सौ' लें और दहाई-इकाई में शून्य की जगह पर चर्चा करें। फ्लैश कार्ड पर 'सैकड़ा, दहाई, इकाई' के अंक अलग-अलग दिखाकर बच्चों से संख्या बनवाएँ।",
+     "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 बोर्ड से कॉपी में बनाएँ और हल करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें। पहले उन बच्चों के पास जाएँ जो शून्य वाली संख्या पर अटकते हैं।"
+    },
+    "other_groups_hi": "शुरुआती समूह 1 से 9 तक के अंक लिखे: बोर्ड पर लिखे अंकों 3, 7, 5, 9, 2 को देखकर कॉपी में 2-2 बार लिखें। दक्ष समूह तीन अंकों की संख्याएँ लिखें और पढ़े: बोर्ड पर लिखी 408, 760, 915, 209, 580 को शब्दों में लिखें। जल्दी ख़त्म करने वाले साथी की कॉपी जाँचें।",
+    "duration_minutes": 22
+   },
+   {
+    "type": "transition",
+    "script_hi": "सब अपना काम रोक दें और कॉपी बंद करें। प्रगतिशील समूह अपनी जगह जाएँ और स्वतंत्र अभ्यास करें। दक्ष समूह मेरे पास आएँ।",
+    "time_start": "1:06",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा हज़ार और खाली दहाई का शून्य सही रखता है।",
+      "listen_for": [],
+      "expected_hi": "5,308",
+      "question_hi": "शिक्षक बोले: 'पाँच हज़ार तीन सौ आठ'। स्लेट पर संख्या लिखें।"
+     },
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा चार अंकों की संख्या में हर स्थान का मान पहचानता है।",
+      "listen_for": [],
+      "expected_hi": "2",
+      "question_hi": "बोर्ड पर लिखें: 7,240। इसमें सैकड़े के स्थान पर कौन-सा अंक है? स्लेट पर लिखें।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 5
+     },
+     {
+      "key": "we_do",
+      "min": 6
+     },
+     {
+      "key": "show_me",
+      "min": 3
+     },
+     {
+      "key": "you_do",
+      "min": 6
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "1:08",
+    "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+    "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+    "teach_group": "proficient",
+    "cfu_grounded": false,
+    "talking_points": {
+     "i_do_hi": "एक वाक्य में याद दिलाएँ: 'हमने 999 तक की संख्याएँ लिखी थीं।' बोर्ड पर चार बॉक्स बनाएँ: हज़ार, सैकड़ा, दहाई, इकाई। 3,452 दिखाएँ: 3 हज़ार, 4 सैकड़े, 5 दहाई, 2 इकाई। बोलें: 'तीन हज़ार चार सौ बावन'। फिर 4,060 दिखाएँ: खाली स्थानों पर 0 लिखना ज़रूरी है, वरना संख्या बदल जाएगी।",
+     "we_do_hi": "शिक्षक बोले 'छह हज़ार दो सौ पाँच'। बच्चे खानों में अंक भरें और स्लेट पर लिखें। फिर 'सात हज़ार' और 'दो हज़ार नौ सौ दस' लें। पूछें: 'हज़ार के बाद अंक जोड़ने पर संख्या कैसे बदलती है?'",
+     "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 बोर्ड से कॉपी में बनाएँ और हल करें। जो जल्दी ख़त्म करें, वे बाकी सवाल करें। पहले उन बच्चों के पास जाएँ जो शून्य वाली संख्याओं में अंक छोड़ देते हैं।"
+    },
+    "other_groups_hi": "शुरुआती समूह 1 से 9 तक के अंक लिखें और 1 से 20 तक गिनती कॉपी में लिखें। प्रगतिशील समूह तीन अंकों की संख्याएँ पढ़कर लिखे: बोर्ड पर लिखी 5 संख्याएँ (जैसे 247, 530, 806, 119, 700) खोलकर लिखें, जैसे 247 = 200 + 40 + 7। जल्दी ख़त्म करने वाले साथी की कॉपी जाँचें।",
+    "duration_minutes": 22
+   }
+  ],
+  "total_minutes": 90
+ },
+ "group_skills_source": {
+  "beginner": "derived",
+  "proficient": "derived",
+  "progressor": "selected"
+ },
+ "classroom_management": {
+  "independent_activities_hi": {
+   "beginner": "अंक 1 से 9 लिखने का अभ्यास करें: बोर्ड पर लिखे अंकों (जैसे 3, 7, 5, 9, 2) को कॉपी में 2-2 बार लिखें। जल्दी ख़त्म करें तो साथी की कॉपी जाँचें।",
+   "proficient": "तीन अंकों की संख्याएँ लिखें और पढ़ें: बोर्ड पर लिखे सुराग़ से (जैसे 5 सैकड़े 0 दहाई 6 इकाई, 4 सैकड़े 7 दहाई 0 इकाई) संख्याएँ बनाएँ। जल्दी ख़त्म करें तो साथी की कॉपी जाँचें।",
+   "progressor": "1 से 99 तक की संख्याएँ लिखने का अभ्यास करें: बोर्ड पर लिखी संख्याएँ (जैसे 46, 73, 58, 91, 64) शब्दों में पढ़कर कॉपी में लिखें। जल्दी ख़त्म करें तो और संख्याएँ बनाकर साथी से जँचवाएँ।"
+  }
+ },
+ "_recorded_warnings": [
+  "sticks are used in the talking points but prep_hi does not mention them",
+  "worksheets.proficient problem 1 repeats a number the lesson or anchor already used: 3452"
+ ],
+ "_reviewed_by": null,
+ "_edits_before_review": [
+  {
+   "where": "rotation_schedule.blocks[2].talking_points.we_do_hi",
+   "was": "बच्चों से कहें: 'हम एक संख्या बोलते हैं' के बजाय शिक्षक बोले 'सत्रह'।",
+   "now": "शिक्षक एक संख्या बोलें, जैसे 'सत्रह'।",
+   "why": "a self-correction left in the text"
+  },
+  {
+   "where": "worksheets.proficient.problems[0].problem_hi",
+   "was": "तीन हज़ार चार सौ बावन को अंकों में लिखिए।",
+   "now": "चार हज़ार पाँच सौ तिहत्तर को अंकों में लिखिए।",
+   "why": "3452 was the lesson's own example (number words from the app's hindi_numbers.name)"
+  },
+  {
+   "where": "worksheets.proficient.problems[0].answer",
+   "was": "3,452",
+   "now": "4,573",
+   "why": "the answer of the new number"
+  },
+  {
+   "where": "prep_hi",
+   "added": "बंडल बनाने के लिए छड़ियाँ (तीलियाँ) और रबर बैंड तैयार रखें: 13 जैसी संख्या के लिए 1 बंडल और 3 खुली छड़ियाँ।",
+   "why": "sticks are used in the lesson but were missing from the preparation list"
+  }
+ ]
+}

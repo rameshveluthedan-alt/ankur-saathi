@@ -1569,6 +1569,7 @@ async def generate_dainik_yojana(
                                               extras=session_shape(ctx.available_minutes)["extras"] if served_from in ("ai", "library") else None, sheet_kinds=ctx.sheet_kinds)
     validation_warnings += writing_sheets.check_writing_sheets(plan_json, ctx.group_skill_ids, domain_id)
     validation_warnings += hindi_style.check_teacher_text(plan_json)          # a gendered "मैं" left in the teacher's lines, a Hindi mark named wrongly (15 Nov)
+    validation_warnings += hindi_style.check_self_corrections(plan_json)      # 'के बजाय ... नहीं, बल्कि' left in the text (22 Nov): flagged, not repaired
     validation_warnings += hindi_style.check_size_shape(plan_json, (ctx.group_skill_ids or {}).values())          # आकार (size) vs आकृति (shape) in a sorting skill (22 Nov)
     if decided_groups is not None and any(b.get("type") == "reteach" for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or []):
         validation_warnings.append("a separate re-teach block was written, but the teacher decided the re-teach is the group's main block")

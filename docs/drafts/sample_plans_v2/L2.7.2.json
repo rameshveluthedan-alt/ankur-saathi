@@ -1,0 +1,661 @@
+{
+ "anchor": {
+  "title_hi": "दोस्त का पत्र",
+  "narration_hi": "आज हमारे लिए एक पत्र आया है। पढ़ें: 'प्रिय कक्षा, मेरा नाम सीमा है। मैं सुंदरपुर गाँव में रहती हूँ। मेरे घर के पास एक बड़ा तालाब है। मुझे वहाँ बतखें देखना अच्छा लगता है। तुम्हारी सहेली, सीमा।' शिक्षक पत्र धीरे-धीरे दो बार पढ़ें।",
+  "closing_question_hi": "आपमें से कौन सीमा को अपने बारे में एक वाक्य बताना चाहेगा? दो-तीन बच्चे खड़े होकर बोलें।",
+  "opening_question_hi": "सीमा कहाँ रहती है? उसे क्या देखना अच्छा लगता है?",
+  "beginner_participation_hi": "शुरुआती समूह बोलकर बताए: 'सीमा कहाँ रहती है?' 'उसके घर के पास क्या है?' शिक्षक हर उत्तर बोर्ड पर लिखें और अलग-अलग शब्दों के बीच जगह छोड़कर दिखाएँ।",
+  "proficient_participation_hi": "दक्ष समूह सोचे कि सीमा को 5-7 वाक्यों का पत्र कैसे लिखेंगे: ऊपर 'प्रिय सीमा', बीच में अपने बारे में बातें और अंत में अपना नाम। हर बच्चा एक-दो बातें बोलकर बताए।",
+  "progressor_participation_hi": "प्रगतिशील समूह सीमा को जवाब में 3 वाक्य लिखने के बारे में सोचे: अपना नाम, कहाँ रहते हैं, और क्या अच्छा लगता है। आज इसे बोलकर तैयार करें, लिखना अपने ब्लॉक में होगा।"
+ },
+ "prep_hi": [
+  "बोर्ड का एक हिस्सा खाली रखें: कक्षा में उस पर लिखकर दिखाना है।",
+  "'दोस्त का पत्र' (सीमा का पत्र) बोर्ड के पास रखें या खुद बोलकर सुनाने के लिए तैयार रखें।",
+  "छपी वर्कशीट नहीं है: तीनों वर्कशीट के सवाल कक्षा शुरू होने से पहले बोर्ड के तीन हिस्सों में लिख लें (शुरुआती, प्रगतिशील, दक्ष)। बच्चे अपनी कॉपी में उतारेंगे।",
+  "हर बच्चे के पास कॉपी और पेंसिल हो; शुरुआती समूह के लिए कॉपी में ऊपर थोड़ी जगह खाली रखवाएँ।",
+  "प्रगतिशील समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «बिल्ली और दूध»: एक बिल्ली थी। उसका नाम मोती था। मोती को दूध बहुत पसंद था। एक दिन मोती ने दूध का कटोरा देखा। मोती ने सारा दूध पी लिया। मोती बहुत खुश हुई। सवाल: 1) बिल्ली का नाम क्या था? 2) मोती को क्या पसंद था? 3) मोती खुश क्यों हुई?",
+  "दक्ष समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «चिड़ियाघर की सैर»: कल हम स्कूल से चिड़ियाघर गए। वहाँ बहुत सारे जानवर थे। हमने शेर देखा। शेर बहुत बड़ा था। उसकी दहाड़ सुनकर सब डर गए। फिर हमने हाथी देखा। हाथी सूँड से पानी फेंक रहा था। बंदर पेड़ पर कूद रहे थे। सबसे अच्छा मुझे तोता लगा। तोता हरे रंग का था और बोलता भी था। चिड़ियाघर में बहुत मज़ा आया। सवाल: 1) बच्चे कहाँ गए? 2) हाथी क्या कर रहा था? 3) बच्चे को सबसे अच्छा कौन सा जानवर लगा?"
+ ],
+ "coverage": {
+  "note": "Not yet run through the real model: the plan may need more editing.",
+  "tier": "untested"
+ },
+ "cfu_stats": {
+  "beginner": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 0,
+   "skill_has_mistakes": false
+  },
+  "proficient": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 5,
+   "topped_up": true,
+   "grounded_items": 2,
+   "skill_has_mistakes": true
+  },
+  "progressor": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 2,
+   "skill_has_mistakes": true
+  }
+ },
+ "worksheets": {
+  "beginner": {
+   "problems": [
+    {
+     "answer": "राम आम खाता है",
+     "number": 1,
+     "row_type": null,
+     "problem_hi": "लिखें: 'राम आम खाता है'",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "पापा दुकान जाते हैं",
+     "number": 2,
+     "row_type": null,
+     "problem_hi": "लिखें: 'पापा दुकान जाते हैं'",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "हम घर में पढ़ते हैं",
+     "number": 3,
+     "row_type": null,
+     "problem_hi": "लिखें: 'हम घर में पढ़ते हैं'",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "माँ दूध लाती हैं",
+     "number": 4,
+     "row_type": null,
+     "problem_hi": "लिखें: 'माँ दूध लाती हैं'",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "हम नदी पर जाते हैं",
+     "number": 5,
+     "row_type": null,
+     "problem_hi": "लिखें: 'हम नदी पर जाते हैं'",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "भैया फल लाते हैं",
+     "number": 6,
+     "row_type": null,
+     "problem_hi": "लिखें: 'भैया फल लाते हैं'",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "formation",
+   "example_block": {
+    "problem_hi": "जगह छोड़कर लिखने का उदाहरण:",
+    "example_text": "हम बाग जाते हैं"
+   },
+   "passage_block": null,
+   "required_count": 3,
+   "instructions_en": "Copy the sentences below into your notebook. Leave a finger's width of space between every word.",
+   "instructions_hi": "नीचे दिए वाक्य अपनी कॉपी में उतारें। हर शब्द के बीच उँगली जितनी जगह छोड़ें।"
+  },
+  "proficient": {
+   "problems": [
+    {
+     "answer": "CHECKLIST",
+     "number": 1,
+     "row_type": null,
+     "topic_hi": "मेरा त्योहार",
+     "problem_hi": "'मेरा त्योहार' विषय पर 5-7 वाक्यों का अनुच्छेद लिखिए।",
+     "answer_type": "lines",
+     "answer_lines": 10,
+     "writing_task": true,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "answer": "(ख) पहले बच्चे मैदान में आए। (ग) फिर सबने खेल खेला। (क) अंत में सबने मिलकर गाना गाया।",
+     "number": 2,
+     "row_type": null,
+     "problem_hi": "इन वाक्यों को सही क्रम में लिखिए: (क) अंत में सबने मिलकर गाना गाया। (ख) पहले बच्चे मैदान में आए। (ग) फिर सबने खेल खेला।",
+     "answer_type": "lines",
+     "answer_lines": 3,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M2"
+    },
+    {
+     "answer": "(ख) मेरे भाई को चित्र बनाना पसंद है।",
+     "number": 3,
+     "row_type": null,
+     "problem_hi": "विषय 'मेरा पुस्तकालय' है। इनमें से जो वाक्य विषय से हटकर है, उसे लिखिए: (क) पुस्तकालय में बहुत किताबें हैं। (ख) मेरे भाई को चित्र बनाना पसंद है। (ग) वहाँ सब शांति से पढ़ते हैं।",
+     "answer_type": "lines",
+     "answer_lines": 1,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M1"
+    },
+    {
+     "answer": "CHECKLIST",
+     "number": 4,
+     "row_type": null,
+     "problem_hi": "'मेरा बगीचा' विषय पर अनुच्छेद का पहला वाक्य और अंतिम वाक्य लिखिए।",
+     "answer_type": "lines",
+     "answer_lines": 3,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L3.7.1-M3"
+    }
+   ],
+   "checklist": [
+    {
+     "item_en": "At least 5 sentences written",
+     "item_hi": "कम से कम 5 वाक्य लिखे"
+    },
+    {
+     "item_en": "All sentences are on the topic",
+     "item_hi": "सभी वाक्य विषय पर हैं"
+    },
+    {
+     "item_en": "First sentence introduces the topic",
+     "item_hi": "पहला वाक्य विषय बताता है"
+    },
+    {
+     "item_en": "In order with a closing sentence",
+     "item_hi": "क्रम में लिखा है और अंत का वाक्य है"
+    },
+    {
+     "item_en": "Every sentence ends with a full stop",
+     "item_hi": "हर वाक्य के अंत में । है"
+    }
+   ],
+   "sheet_kind": "composition",
+   "writing_task": {
+    "lines": 10,
+    "topic_hi": "मेरा त्योहार"
+   },
+   "example_block": null,
+   "passage_block": null,
+   "required_count": 4,
+   "instructions_en": "Do the writing task in problem 1 first, then the other problems.",
+   "instructions_hi": "पहले सवाल 1 पर लिखें। फिर बाकी सवाल हल करें।"
+  },
+  "progressor": {
+   "problems": [
+    {
+     "answer": "CHECKLIST",
+     "number": 1,
+     "row_type": null,
+     "topic_hi": "मेरा स्कूल",
+     "problem_hi": "अपने स्कूल के बारे में 3-5 जुड़े हुए वाक्य लिखिए।",
+     "answer_type": "lines",
+     "answer_lines": 8,
+     "writing_task": true,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "answer": "राधा गाती है और नाचती है।",
+     "number": 2,
+     "row_type": null,
+     "problem_hi": "दो वाक्यों को 'और' से जोड़कर एक वाक्य बनाइए: 'राधा गाती है। राधा नाचती है।'",
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M1"
+    },
+    {
+     "answer": "कल बारिश हुई। हम घर में रहे।",
+     "number": 3,
+     "row_type": null,
+     "problem_hi": "जहाँ वाक्य खत्म होता है वहाँ । लगाकर फिर से लिखिए: 'कल बारिश हुई हम घर में रहे'",
+     "answer_type": "lines",
+     "answer_lines": 2,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.7.2-M2"
+    },
+    {
+     "answer": "(ख) शाम को हम पार्क गए। (क) फिर हमने खाना खाया। (ग) अंत में हम घर लौट आए।",
+     "number": 4,
+     "row_type": null,
+     "problem_hi": "इन वाक्यों को सही क्रम में लिखिए: (क) फिर हमने खाना खाया। (ख) शाम को हम पार्क गए। (ग) अंत में हम घर लौट आए।",
+     "answer_type": "lines",
+     "answer_lines": 3,
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "checklist": [
+    {
+     "item_en": "At least 3 sentences written",
+     "item_hi": "कम से कम 3 वाक्य लिखे"
+    },
+    {
+     "item_en": "All sentences are on the topic",
+     "item_hi": "सभी वाक्य विषय पर हैं"
+    },
+    {
+     "item_en": "Every sentence ends with a full stop",
+     "item_hi": "हर वाक्य के अंत में । है"
+    },
+    {
+     "item_en": "Sentences are joined with और / फिर / क्योंकि",
+     "item_hi": "वाक्य 'और / फिर / क्योंकि' से जुड़े हैं"
+    }
+   ],
+   "sheet_kind": "composition",
+   "writing_task": {
+    "lines": 8,
+    "topic_hi": "मेरा स्कूल"
+   },
+   "example_block": null,
+   "passage_block": null,
+   "required_count": 4,
+   "instructions_en": "Do the writing task in problem 1 first, then the other problems.",
+   "instructions_hi": "पहले सवाल 1 पर लिखें। फिर बाकी सवाल हल करें।"
+  }
+ },
+ "group_skills": {
+  "beginner": "L1.7.3",
+  "proficient": "L3.7.1",
+  "progressor": "L2.7.2"
+ },
+ "explainability": {
+  "items": [
+   {
+    "body_en": "The Beginners learn to leave spaces between words, the Progressors learn today's goal (3-5 connected sentences) with support, and the Proficients go further to a 5-7 sentence paragraph. Each group works at its own level.",
+    "body_hi": "शुरुआती समूह वाक्य में शब्दों के बीच जगह छोड़ना सीख रहा है, प्रगतिशील समूह आज का लक्ष्य (3-5 जुड़े वाक्य) सहारे के साथ सीख रहा है, और दक्ष समूह आगे बढ़कर 5-7 वाक्यों का अनुच्छेद लिख रहा है। हर समूह अपने स्तर पर काम करता है।",
+    "title_en": "Why these three groups",
+    "title_hi": "तीन समूह क्यों"
+   },
+   {
+    "body_en": "The Beginners get the first and longest slot (30 min) because their foundation matters most. Then the Progressors and Proficients get 22 min each. Meanwhile the other groups practise skills they have already mastered.",
+    "body_hi": "शुरुआती समूह को पहला और सबसे लंबा समय (30 मिनट) मिला है क्योंकि उसकी बुनियाद सबसे ज़रूरी है। फिर प्रगतिशील और दक्ष समूह को 22-22 मिनट। अन्य समूह इस दौरान अपने पहले सीखे हुए कौशल पर स्वतंत्र अभ्यास करते हैं।",
+    "title_en": "Why this rotation order",
+    "title_hi": "घुमाव का क्रम"
+   },
+   {
+    "body_en": "Watch the Progressors for not joining sentences with और / फिर, missing full stops and repeating the same opening. Watch the Proficients for drifting off topic, lacking order and writing too few sentences.",
+    "body_hi": "प्रगतिशील समूह में वाक्यों को 'और / फिर' से न जोड़ना, पूर्ण विराम भूलना और एक ही शुरुआत दोहराना देखें। दक्ष समूह में विषय से भटकना, क्रम न होना और बहुत कम वाक्य लिखना देखें।",
+    "title_en": "Mistakes to watch",
+    "title_hi": "किन गलतियों पर नज़र रखें"
+   },
+   {
+    "body_en": "There is no printer, so problems are written on the board and children copy them into notebooks. Since this is a writing task, checking will be from photos of notebooks after class.",
+    "body_hi": "छपी वर्कशीट नहीं है, इसलिए सवाल बोर्ड पर लिखे जाएँगे और बच्चे कॉपी में उतारेंगे। लेखन के काम में बच्चे वाक्य लिखते हैं, इसलिए जाँच कक्षा के बाद कॉपियों की फ़ोटो से होगी।",
+    "title_en": "Assumption for today's plan",
+    "title_hi": "आज की ख़ास मान्यता"
+   },
+   {
+    "id": "resources",
+    "body_en": "**Anchor activity (whole class):** 'Letter from a Friend' was written for this very skill; it was adapted to today's skill.\n**For each group:**\n• **Beginners** ('Writes simple sentences (3-5 words) with spaces between words'): practice on a worksheet at their own level.\n• **Progressors** ('Writes 3-5 connected sentences on a familiar topic'): I Do and We Do, followed by You Do (worksheet practice) to build conceptual clarity and prevent errors.\n• **Proficients** ('Writes a coherent paragraph of 5-7 sentences on a given topic'): written practice on the board and the worksheet.\n**Weekly plan:** the app uses a representative weekly plan for now, not the state's official one.\n(Codes: ANC-L-004)",
+    "body_hi": "**एंकर गतिविधि (पूरी कक्षा के लिए):** «दोस्त का पत्र» इसी कौशल के लिए लिखी गई थी; इसे आज के कौशल के हिसाब से ढाला गया।\n**हर समूह के लिए:**\n• **शुरुआती** («शब्दों के बीच खाली जगह छोड़कर सरल वाक्य (3-5 शब्द) लिखता है»): अपने स्तर की वर्कशीट पर अभ्यास।\n• **प्रगतिशील** («परिचित विषय पर 3-5 जुड़े वाक्य लिखता है»): I Do और We Do के बाद You Do में वर्कशीट पर स्वतंत्र अभ्यास होता है, ताकि अवधारणा स्पष्ट हो और गलतियाँ रुकें।\n• **दक्ष** («दिए गए विषय पर 5-7 वाक्यों का सुसंगत अनुच्छेद लिखता है»): बोर्ड पर और वर्कशीट पर लिखित अभ्यास।\n**साप्ताहिक योजना:** ऐप में अभी एक नमूना साप्ताहिक योजना है, राज्य की आधिकारिक योजना नहीं।\n(कोड: ANC-L-004)",
+    "title_en": "Teaching and Learning Resources",
+    "title_hi": "शिक्षण और सीखने की सामग्री"
+   }
+  ]
+ },
+ "review_prompts": {
+  "photo_sample_rolls": {
+   "beginner": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+   ],
+   "proficient": [
+    22,
+    23,
+    25,
+    27,
+    28,
+    30
+   ],
+   "progressor": [
+    10,
+    12,
+    14,
+    16,
+    18,
+    20
+   ]
+  },
+  "photo_sample_method": "systematic sampling, the start moves each day",
+  "observation_reminders_hi": []
+ },
+ "session_minutes": 90,
+ "rotation_schedule": {
+  "blocks": [
+   {
+    "type": "anchor",
+    "script_hi": null,
+    "time_start": "0:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 10
+   },
+   {
+    "type": "setup",
+    "script_hi": "'आज हम तीन समूहों में काम करेंगे। शुरुआती समूह मेरे पास आएँ। प्रगतिशील और दक्ष समूह अपनी कॉपी खोलें और बोर्ड पर लिखा अपना काम शुरू करें। काम शांति से और अपनी जगह पर करें।'",
+    "time_start": "0:10",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "choose",
+      "grounded": false,
+      "shows_hi": "बच्चा जानता है कि वाक्य में हर शब्द के बीच खाली जगह छोड़ी जाती है।",
+      "listen_for": [],
+      "expected_hi": "2",
+      "question_hi": "बोर्ड पर लिखें: (1) 'हमबागजातेहैं' (2) 'हम बाग जाते हैं'। पूछें: कौन सा वाक्य सही लिखा है? उँगली से 1 या 2 दिखाएँ।"
+     },
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा वाक्य को अलग-अलग शब्दों में बाँट पाता है।",
+      "listen_for": [],
+      "expected_hi": "4",
+      "question_hi": "बोर्ड पर लिखें: 'पापा दुकान जाते हैं'। पूछें: इसमें कितने शब्द हैं? उँगलियों पर संख्या दिखाएँ।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 7
+     },
+     {
+      "key": "we_do",
+      "min": 8
+     },
+     {
+      "key": "show_me",
+      "min": 4
+     },
+     {
+      "key": "you_do",
+      "min": 9
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:12",
+    "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+    "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+    "teach_group": "beginner",
+    "cfu_grounded": false,
+    "talking_points": {
+     "i_do_hi": "कल हमने मात्राओं वाले शब्द लिखे थे, यह एक वाक्य में याद दिलाएँ। बोर्ड पर लिखें: 'हमबाग़जातेहैं' (बिना जगह के) और पूछें कि पढ़ने में क्या दिक्कत है। फिर वही वाक्य जगह छोड़कर लिखें: 'हम बाग़ जाते हैं'। शब्दों के बीच उँगली जितनी जगह छोड़ें और बोलें: 'हर शब्द के बाद एक उँगली जगह'।",
+     "we_do_hi": "शिक्षक बोलें: 'मेरी माँ रोटी बनाती हैं'। बच्चे शब्द गिनें और बताएँ कि कहाँ-कहाँ जगह छूटेगी। बोर्ड पर हर शब्द बच्चों के बताने पर लिखें और बीच में उँगली रखकर जगह दिखाएँ। फिर एक और वाक्य 'पापा दुकान जाते हैं' बच्चे हवा में उँगली से जगह दिखाते हुए बोलें, फिर कॉपी में लिखें।",
+     "you_do_hi": "शुरुआती समूह वर्कशीट के सवाल 1 से 3 कॉपी में उतारकर हल करें, शब्दों के बीच उँगली जितनी जगह छोड़ते हुए। शिक्षक पहले उन बच्चों के पास जाएँ जिन्हें शब्द जोड़कर लिखने में दिक्कत हो, चुपके से हाथ रखकर जगह दिखाएँ।"
+    },
+    "other_groups_hi": "प्रगतिशील समूह: बोर्ड पर लिखे अपने समूह के हिस्से से 3 सरल वाक्य (3-5 शब्द के) अपनी कॉपी में लिखें, शब्दों के बीच जगह छोड़कर, जैसे 'हम स्कूल जाते हैं'। जल्दी करने वाले अपने साथी के वाक्य जाँचें। दक्ष समूह: 3-5 जुड़े वाक्य अपनी पसंद के परिचित विषय पर लिखें, जैसे 'मेरा घर' पर, हर वाक्य के अंत में पूर्ण विराम लगाकर। जल्दी करने वाले अपने वाक्य एक-दूसरे को पढ़कर सुनाएँ।",
+    "duration_minutes": 30
+   },
+   {
+    "type": "transition",
+    "script_hi": "'अपना काम रोक दें और कॉपी बंद करें। शुरुआती समूह अपनी जगह जाएँ और बोर्ड पर लिखा अपना काम करें। प्रगतिशील समूह मेरे पास आएँ।'",
+    "time_start": "0:42",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "choose",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "Three or more sentences on the topic, none joined by और / फिर / क्योंकि / लेकिन",
+        "wrong_answer_hi": "1",
+        "misconception_id": "L2.7.2-M1",
+        "misconception_name_en": "Writes separate sentences with no joining words",
+        "misconception_name_hi": "वाक्य अलग-अलग लिखना, जोड़ने वाले शब्द नहीं"
+       }
+      ],
+      "expected_hi": "2",
+      "question_hi": "बोर्ड पर लिखें: (1) 'वह स्कूल जाती है। वह पढ़ती है।' (2) 'वह स्कूल जाती है और पढ़ती है।' पूछें: कौन सा लिखना दोनों बातें जोड़ता है? 1 या 2 दिखाएँ।"
+     },
+     {
+      "kind": "answer",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "Two or more full stops missing or misplaced on the sheet",
+        "wrong_answer_hi": "वाक्य के अंत में, कहीं नहीं या 6 के बाद",
+        "misconception_id": "L2.7.2-M2",
+        "misconception_name_en": "Does not mark where a sentence ends",
+        "misconception_name_hi": "वाक्य कहाँ खत्म होता है, यह नहीं दिखाना"
+       }
+      ],
+      "expected_hi": "3",
+      "question_hi": "बोर्ड पर लिखें: 'आज मेला है हम मेले में जाएँगे'। पूछें: पूर्ण विराम (।) कितने शब्दों के बाद लगेगा? संख्या लिखकर दिखाएँ।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 5
+     },
+     {
+      "key": "we_do",
+      "min": 6
+     },
+     {
+      "key": "show_me",
+      "min": 3
+     },
+     {
+      "key": "you_do",
+      "min": 6
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:44",
+    "teach_group": "progressor",
+    "cfu_grounded": true,
+    "talking_points": {
+     "i_do_hi": "कल हमने जगह छोड़कर वाक्य लिखे थे, यह एक वाक्य में याद दिलाएँ। बोर्ड पर लिखें: 'मेरा दोस्त रोहन है। वह दौड़ता है। वह खेलता है।' पूछें कि क्या सब वाक्य अलग-अलग लग रहे हैं। फिर जोड़कर लिखें: 'मेरा दोस्त रोहन है। वह रोज़ दौड़ता है और खेलता भी है।' समझाएँ कि 'और' शब्द दो बातों को जोड़ता है और हर वाक्य के अंत में '।' लगता है।",
+     "we_do_hi": "शिक्षक पहला वाक्य बोलें: 'मेरी बिल्ली का नाम मिनी है।' बच्चे अगला वाक्य बताएँ जो इसे आगे बढ़ाए, जैसे 'वह दूध पीती है और सोती है।' बोर्ड पर दोनों वाक्य पूर्ण विराम सहित लिखें। फिर बच्चे अपनी कॉपी में एक वाक्य जोड़ें जिसमें 'और', 'फिर' या 'क्योंकि' हो।",
+     "you_do_hi": "प्रगतिशील समूह वर्कशीट के सवाल 1 से 3 पर काम शुरू करें। सवाल 1 'अपने स्कूल के बारे में 3-5 जुड़े वाक्य लिखिए' है; पहले इसके 2-3 वाक्य लिखें। शिक्षक पहले उन बच्चों के पास जाएँ जो हर वाक्य अलग लिख रहे हैं या पूर्ण विराम भूल रहे हैं। जो अधूरा रहे वह अगले ब्लॉक में अपनी जगह पूरा करें।"
+    },
+    "other_groups_hi": "शुरुआती समूह: मात्राओं वाले सरल शब्द (जैसे कल, घर, पानी, दूध) कॉपी में दो-दो बार सुंदर अक्षरों में लिखें। जल्दी करने वाले अपने साथी के शब्द जाँचें। दक्ष समूह: अपना पत्र जारी रखें या 'मेरा घर' पर लिखे 3-5 जुड़े वाक्य दोबारा पढ़कर सुधारें, फिर साथी को सुनाएँ।",
+    "duration_minutes": 22
+   },
+   {
+    "type": "transition",
+    "script_hi": "'कॉपी बंद करें और अपनी जगह जाएँ। प्रगतिशील समूह अपना बाकी काम अपनी जगह पूरा करें। दक्ष समूह मेरे पास आएँ।'",
+    "time_start": "1:06",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "answer",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "Fewer than 5 sentences on a task that asks for 5-7",
+        "wrong_answer_hi": "1 या 2",
+        "misconception_id": "L3.7.1-M3",
+        "misconception_name_en": "Writes too little: a sentence or two, not a paragraph",
+        "misconception_name_hi": "बहुत कम लिखना: एक-दो वाक्य, अनुच्छेद नहीं"
+       }
+      ],
+      "expected_hi": "5",
+      "question_hi": "पूछें: विषय 'मेरी पाठशाला' पर अनुच्छेद में कम से कम कितने वाक्य होने चाहिए? संख्या लिखकर दिखाएँ।"
+     },
+     {
+      "kind": "choose",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "The first sentence does not introduce the topic, or the paragraph stops without an ending; sequence words (पहले, फिर, अंत में) are missing",
+        "wrong_answer_hi": "2",
+        "misconception_id": "L3.7.1-M2",
+        "misconception_name_en": "No order: no beginning, middle and end",
+        "misconception_name_hi": "क्रम नहीं: शुरुआत, बीच और अंत नहीं"
+       }
+      ],
+      "expected_hi": "1",
+      "question_hi": "बोर्ड पर देखें: 1) पहले हमने खेत जोता। 2) अंत में फसल कट गई। 3) फिर बीज बोए। कौन-सा वाक्य सबसे पहले आएगा? 1, 2 या 3 दिखाएँ।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 5
+     },
+     {
+      "key": "we_do",
+      "min": 6
+     },
+     {
+      "key": "show_me",
+      "min": 3
+     },
+     {
+      "key": "you_do",
+      "min": 6
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "1:08",
+    "teach_group": "proficient",
+    "cfu_grounded": true,
+    "talking_points": {
+     "i_do_hi": "कल हमने 3-5 जुड़े वाक्य लिखे थे, यह एक वाक्य में याद दिलाएँ। बोर्ड पर विषय लिखें 'मेरी पाठशाला'। पहला वाक्य लिखें: 'मेरी पाठशाला गाँव के बीच में है।' फिर पूरा अनुच्छेद दिखाएँ: शुरुआत का वाक्य, बीच में 'पहले', 'फिर' जैसे शब्दों से 3 बातें और अंत में एक समापन वाक्य। बोलें कि सब वाक्य एक ही विषय पर हैं और क्रम में हैं।",
+     "we_do_hi": "बोर्ड पर विषय लिखें 'मेरा पसंदीदा खेल'। बच्चों से पूछें कि पहला वाक्य क्या हो सकता है जो विषय बताए। शिक्षक एक वाक्य बच्चों के बताने पर लिखें। फिर 'पहले', 'फिर', 'अंत में' से अगले दो वाक्य बच्चों से बुलवाएँ। एक वाक्य जानबूझकर विषय से हटकर बोलें और बच्चों से पकड़वाएँ।",
+     "you_do_hi": "दक्ष समूह वर्कशीट के सवाल 1 पर लिखना शुरू करें: दिए गए विषय पर 5-7 वाक्यों का अनुच्छेद। पहले शुरुआत का वाक्य और 2-3 वाक्य लिखें; बाकी अगली कक्षा में पूरा करें। शिक्षक पहले उन बच्चों के पास जाएँ जो 1-2 वाक्य लिखकर रुक गए हैं या जिनके वाक्य विषय से हट रहे हैं।"
+    },
+    "other_groups_hi": "शुरुआती समूह: मात्राओं वाले सरल शब्द (जैसे फल, नाव, मीठा, पूरा) कॉपी में सुंदर अक्षरों में लिखें और साथी से जाँच करवाएँ। प्रगतिशील समूह: अपना बाकी वर्कशीट का काम पूरा करें और हर वाक्य के अंत में पूर्ण विराम जाँचें; जल्दी करने वाले 'और' या 'फिर' से जुड़े वाक्य एक-दूसरे को सुनाएँ।",
+    "duration_minutes": 22
+   }
+  ],
+  "total_minutes": 90
+ },
+ "group_skills_source": {
+  "beginner": "derived",
+  "proficient": "derived",
+  "progressor": "selected"
+ },
+ "classroom_management": {
+  "independent_activities_hi": {
+   "beginner": "मात्राओं वाले सरल शब्द (जैसे कल, घर, पानी, दूध, फल) कॉपी में दो-दो बार सुंदर अक्षरों में लिखें। जल्दी करने वाले साथी की कॉपी जाँचें कि मात्रा सही है या नहीं। बाकी ब्लॉक में यही काम चलेगा।",
+   "proficient": "अपने परिचित विषय (जैसे 'मेरा घर') पर 3-5 जुड़े वाक्य लिखें, हर वाक्य के अंत में । लगाएँ। जल्दी करने वाले एक-दूसरे को अपने वाक्य पढ़कर सुनाएँ और जुड़े शब्द (और / फिर / क्योंकि) गिनें।",
+   "progressor": "पहले ब्लॉक में बोर्ड पर लिखे अपने समूह के हिस्से से 3 सरल वाक्य (3-5 शब्द के, जैसे 'हम स्कूल जाते हैं') शब्दों के बीच जगह छोड़कर लिखें। जल्दी करने वाले अपने साथी के वाक्य जाँचें और जगह सही है या नहीं देखें।"
+  }
+ },
+ "independent_passages": {
+  "proficient": {
+   "id": "RP-005",
+   "text": "कल हम स्कूल से चिड़ियाघर गए। वहाँ बहुत सारे जानवर थे। हमने शेर देखा। शेर बहुत बड़ा था। उसकी दहाड़ सुनकर सब डर गए। फिर हमने हाथी देखा। हाथी सूँड से पानी फेंक रहा था। बंदर पेड़ पर कूद रहे थे। सबसे अच्छा मुझे तोता लगा। तोता हरे रंग का था और बोलता भी था। चिड़ियाघर में बहुत मज़ा आया।",
+   "title": "चिड़ियाघर की सैर",
+   "questions": [
+    {
+     "type": "literal",
+     "answer_hi": "चिड़ियाघर",
+     "question_hi": "बच्चे कहाँ गए?"
+    },
+    {
+     "type": "literal",
+     "answer_hi": "सूँड से पानी फेंक रहा था",
+     "question_hi": "हाथी क्या कर रहा था?"
+    },
+    {
+     "type": "literal",
+     "answer_hi": "तोता",
+     "question_hi": "बच्चे को सबसे अच्छा कौन सा जानवर लगा?"
+    }
+   ]
+  },
+  "progressor": {
+   "id": "RP-002",
+   "text": "एक बिल्ली थी। उसका नाम मोती था। मोती को दूध बहुत पसंद था। एक दिन मोती ने दूध का कटोरा देखा। मोती ने सारा दूध पी लिया। मोती बहुत खुश हुई।",
+   "title": "बिल्ली और दूध",
+   "questions": [
+    {
+     "type": "literal",
+     "answer_hi": "मोती",
+     "question_hi": "बिल्ली का नाम क्या था?"
+    },
+    {
+     "type": "literal",
+     "answer_hi": "दूध",
+     "question_hi": "मोती को क्या पसंद था?"
+    },
+    {
+     "type": "inferential",
+     "answer_hi": "क्योंकि उसने दूध पी लिया",
+     "question_hi": "मोती खुश क्यों हुई?"
+    }
+   ]
+  }
+ },
+ "_recorded_warnings": [
+  "the independent-practice passage «बिल्ली और दूध» for progressor is not mentioned in what the other groups do",
+  "the independent-practice passage «चिड़ियाघर की सैर» for proficient is not mentioned in what the other groups do"
+ ],
+ "_reviewed_by": null,
+ "_edits_before_review": [
+  {
+   "where": "rotation_schedule.blocks[2].talking_points.i_do_hi",
+   "was": "'हमसेबाग़जातेहैं'",
+   "now": "'हमबाग़जातेहैं'",
+   "why": "an extra 'से' in the no-space example of 'हम बाग़ जाते हैं'"
+  },
+  {
+   "where": "prep_hi[0]",
+   "was": "बोर्ड पर पहले से कुछ न लिखें; कक्षा में बोर्ड पर लिखकर दिखाना है।",
+   "now": "बोर्ड का एक हिस्सा खाली रखें: कक्षा में उस पर लिखकर दिखाना है।",
+   "why": "contradicted the line that asks for the worksheets on the board before class"
+  }
+ ]
+}
