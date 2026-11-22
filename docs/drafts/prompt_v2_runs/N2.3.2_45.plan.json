@@ -1,18 +1,19 @@
 {
  "anchor": {
   "title_hi": "गाँव का बाज़ार",
-  "narration_hi": "आज हम गाँव के बाज़ार चलेंगे। रानी को अपनी माँ के लिए सामान खरीदना है। बोर्ड पर देखें: केला 14 रुपये, आम 26 रुपये, दूध 35 रुपये, सेब 48 रुपये, चना 27 रुपये, चावल 53 रुपये।",
-  "closing_question_hi": "सबसे महँगी चीज़ कौन सी थी? सबसे सस्ती कौन सी?",
-  "opening_question_hi": "बोर्ड पर कितनी चीज़ें हैं? कौन सी चीज़ सबसे सस्ती दिख रही है?",
-  "beginner_participation_hi": "बोर्ड की चीज़ों को गिनें। फिर केले (14 रुपये) में दहाई और इकाई बताएँ: कितनी दहाई, कितनी इकाई?",
-  "proficient_participation_hi": "रानी ने चावल, सेब और आम खरीदा। कुल कितने रुपये लगे? तीनों दाम जोड़ें।",
-  "progressor_participation_hi": "रानी ने आम और चना खरीदा। कुल कितने पैसे लगे? दोनों दाम जोड़कर बताएँ।"
+  "narration_hi": "आज हम गाँव के बाज़ार चलेंगे। रानी को अपनी माँ के लिए सामान खरीदना है। बोर्ड पर देखें: केला 24 रुपये, दूध 38 रुपये, कॉपी 45 रुपये, पेन 17 रुपये।",
+  "closing_question_hi": "सबसे महँगी चीज़ कौन-सी थी? सबसे सस्ती कौन-सी?",
+  "opening_question_hi": "बाज़ार में कौन-कौन सी चीज़ें हैं? कौन-सी चीज़ सबसे सस्ती दिख रही है?",
+  "beginner_participation_hi": "बोर्ड पर चार चीज़ें हैं। चीज़ें गिनें, फिर केला और कॉपी के दाम का जोड़ करें: 24 + 45। दहाई और इकाई अलग-अलग जोड़ें।",
+  "proficient_participation_hi": "रानी ने कॉपी और दूध खरीदा, फिर पेन भी लिया। तीनों का कुल दाम जोड़ें: 45 + 38 + 17।",
+  "progressor_participation_hi": "रानी ने दूध और केला खरीदा। कुल कितने रुपये लगे? 38 + 24 जोड़कर बताएँ।"
  },
  "prep_hi": [
-  "शिक्षक का डेमो किट बनाएँ: 9 बंडल (हर बंडल में 10 छड़ियाँ, रबर बैंड से बँधी) + 9 खुली छड़ियाँ = 99 छड़ियाँ। साथ में कुछ अतिरिक्त बने-बनाए बंडल रखें, ताकि 10 खुली छड़ियों के बदले बंडल दे सकें।",
-  "शुरुआती समूह के लिए 4 जोड़ी-किट बनाएँ: हर किट में 4 बंडल + 9 खुली छड़ियाँ = 49 छड़ियाँ (कुल 16 बंडल + 36 खुली छड़ियाँ)। कुल छड़ियाँ 99 + 4 × 49 = 295।",
-  "हर जोड़ी के लिए एक कागज़ या कॉपी के कवर पर दहाई | इकाई का बॉक्स बना दें।",
-  "बोर्ड पर बाज़ार की चीज़ें और उनके दाम पहले से लिख लें (प्रिंटर नहीं है, इसलिए वर्कशीट के सवाल बोर्ड पर लिखे जाएँगे)।"
+  "शिक्षक का डेमो किट बनाएँ: 9 बंडल + 9 खुली छड़ियाँ (कुल 99 छड़ियाँ), साथ में कुछ अतिरिक्त तैयार बंडल। कक्षा से पहले बंडल बाँधकर रखें।",
+  "शुरुआती समूह के लिए 4 जोड़ी-किट बनाएँ: हर किट में 4 बंडल + 9 खुली छड़ियाँ (कुल 16 बंडल + 36 खुली छड़ियाँ)। हर किट थैली या डिब्बे में रखें।",
+  "हर जोड़ी के लिए एक शीट या कॉपी के कवर पर दहाई-इकाई का बॉक्स (Tens | Ones) बना लें।",
+  "प्रिंटर नहीं है: तीनों वर्कशीट के सवाल बोर्ड पर साफ़ लिखें, ताकि बच्चे कॉपी में उतार सकें। बोर्ड के तीन हिस्से कर लें: शुरुआती, प्रगतिशील, दक्ष।",
+  "बाज़ार की चीज़ों और उनके दाम (जैसे केला 24 रुपये, दूध 38 रुपये, कॉपी 45 रुपये, पेन 17 रुपये) बोर्ड पर पहले से लिख लें।"
  ],
  "coverage": {
   "note": "Passed every check with the real model, using an exact anchor.",
@@ -23,7 +24,6 @@
    "kept": 1,
    "wanted": 1,
    "written": 3,
-   "topped_up": true,
    "grounded_items": 1,
    "skill_has_mistakes": true
   },
@@ -46,41 +46,41 @@
   "beginner": {
    "problems": [
     {
-     "answer": "43",
+     "answer": "38",
      "number": 1,
      "pv_row2": true,
      "row_type": "grid",
-     "problem_hi": "21 + 22",
+     "problem_hi": "26 + 12",
      "pv_columns": 2,
      "show_pv_grid": true,
      "diagnostic_for_misconception": null
     },
     {
-     "answer": "47",
+     "answer": "37",
      "number": 2,
      "pv_row2": true,
      "row_type": "grid",
-     "problem_hi": "21 + 26",
-     "pv_columns": 2,
-     "show_pv_grid": true,
-     "diagnostic_for_misconception": "N2.3.1-M1"
-    },
-    {
-     "answer": "59",
-     "number": 3,
-     "pv_row2": true,
-     "row_type": "grid",
-     "problem_hi": "24 + 35",
+     "problem_hi": "24 + 13",
      "pv_columns": 2,
      "show_pv_grid": true,
      "diagnostic_for_misconception": "N2.3.1-M1"
     },
     {
      "answer": "79",
+     "number": 3,
+     "pv_row2": true,
+     "row_type": "grid",
+     "problem_hi": "46 + 33",
+     "pv_columns": 2,
+     "show_pv_grid": true,
+     "diagnostic_for_misconception": "N2.3.1-M1"
+    },
+    {
+     "answer": "78",
      "number": 4,
      "pv_row2": true,
      "row_type": "grid",
-     "problem_hi": "51 + 28",
+     "problem_hi": "52 + 26",
      "pv_columns": 2,
      "show_pv_grid": true,
      "diagnostic_for_misconception": null
@@ -94,21 +94,21 @@
     "row2_t": "1",
     "answer_o": "6",
     "answer_t": "3",
-    "problem_hi": "21 + 15 = ___",
+    "problem_hi": "21 + 15",
     "pv_columns": 2,
     "show_pv_grid": true
    },
    "required_count": 3,
-   "instructions_en": "Look at the example first. Place the digits in the Tens | Ones boxes and add. Add the ones first, then the tens.",
-   "instructions_hi": "पहले उदाहरण देखें। फिर अंकों को दहाई-इकाई के बॉक्स में अपने स्तम्भ में रखकर जोड़ें। पहले इकाई जोड़ें, फिर दहाई।"
+   "instructions_en": "Add by placing tens under tens and ones under ones. Add the ones first, then the tens.",
+   "instructions_hi": "दहाई के नीचे दहाई और इकाई के नीचे इकाई रखकर जोड़ें। पहले इकाई जोड़ें, फिर दहाई।"
   },
   "proficient": {
    "problems": [
     {
-     "answer": "385",
+     "answer": "394",
      "number": 1,
      "row_type": "plain",
-     "problem_hi": "138 + 247 = ___",
+     "problem_hi": "256 + 138 = ___",
      "diagnostic_for_misconception": null
     },
     {
@@ -119,34 +119,34 @@
      "diagnostic_for_misconception": "N3.3.1-M1"
     },
     {
-     "answer": "661",
+     "answer": "865",
      "number": 3,
      "row_type": "plain",
-     "problem_hi": "386 + 275 = ___",
+     "problem_hi": "489 + 376 = ___",
      "diagnostic_for_misconception": "N3.3.1-M1"
     },
     {
-     "answer": "432",
+     "answer": "623",
      "number": 4,
      "row_type": null,
-     "problem_hi": "बाज़ार में चावल 253 रुपये का था और दाल 179 रुपये की। दोनों का कुल दाम कितना हुआ?",
+     "problem_hi": "रानी की दुकान में पहले दिन 348 रुपये की बिक्री हुई और दूसरे दिन 275 रुपये की। दोनों दिन में कुल कितने रुपये की बिक्री हुई?",
      "answer_type": "wide",
      "diagnostic_for_misconception": null
     }
    ],
    "example_block": null,
    "required_count": 3,
-   "instructions_en": "Start from the ones. Write the carry above each column and add it in the next column.",
-   "instructions_hi": "इकाई से शुरू करें। हर स्तम्भ का हासिल उसके ऊपर लिखें और अगले स्तम्भ में जोड़ें।"
+   "instructions_en": "Start from the ones. In every column, if the total is 10 or more, write a carry of 1 above the next column.",
+   "instructions_hi": "इकाई से शुरू करें। हर स्तंभ में अगर जोड़ 10 या उससे ज़्यादा हो, तो 1 हासिल अगले स्तंभ के ऊपर लिखें।"
   },
   "progressor": {
    "problems": [
     {
-     "answer": "62",
+     "answer": "63",
      "number": 1,
      "pv_row2": true,
      "row_type": "grid",
-     "problem_hi": "38 + 24",
+     "problem_hi": "36 + 27",
      "pv_columns": 2,
      "show_pv_grid": true,
      "diagnostic_for_misconception": null
@@ -156,23 +156,23 @@
      "number": 2,
      "pv_row2": true,
      "row_type": "grid",
-     "problem_hi": "46 + 37",
+     "problem_hi": "48 + 35",
      "pv_columns": 2,
      "show_pv_grid": true,
      "diagnostic_for_misconception": "N2.3.2-M1"
     },
     {
-     "answer": "40",
+     "answer": "62",
      "number": 3,
      "row_type": "plain",
-     "problem_hi": "23 + 17 = ___",
+     "problem_hi": "19 + 43 = ___",
      "diagnostic_for_misconception": "N2.3.2-M2"
     },
     {
-     "answer": "84",
+     "answer": "83",
      "number": 4,
      "row_type": "plain",
-     "problem_hi": "55 + 29 = ___",
+     "problem_hi": "57 + 26 = ___",
      "diagnostic_for_misconception": null
     }
    ],
@@ -184,13 +184,13 @@
     "row2_t": "1",
     "answer_o": "2",
     "answer_t": "4",
-    "problem_hi": "27 + 15 = ___",
+    "problem_hi": "27 + 15",
     "pv_columns": 2,
     "show_pv_grid": true
    },
    "required_count": 3,
-   "instructions_en": "Look at the example first. Add the ones first. If the ones total 10 or more, write one digit in ones and carry to the tens.",
-   "instructions_hi": "पहले उदाहरण देखें। इकाई पहले जोड़ें। अगर इकाई का जोड़ 10 या उससे ज़्यादा हो, तो इकाई में एक ही अंक लिखें और हासिल को दहाई के ऊपर लिखें।"
+   "instructions_en": "Add the ones first. If the ones total 10 or more, write the carry 1 above the tens. Then add the tens.",
+   "instructions_hi": "पहले इकाई जोड़ें। अगर इकाई का जोड़ 10 या उससे ज़्यादा हो, तो 1 हासिल दहाई के ऊपर लिखें। फिर दहाई जोड़ें।"
   }
  },
  "served_from": "ai",
@@ -202,28 +202,28 @@
  "explainability": {
   "items": [
    {
-    "body_en": "Beginners work on addition without carrying, Progressors on today's carry skill, and Proficients on 3-digit addition. Each group gets work at its own level.",
-    "body_hi": "शुरुआती बच्चे बिना हासिल के जोड़ पर हैं, प्रगतिशील आज के हासिल वाले जोड़ पर और दक्ष 3 अंकों के जोड़ पर। हर समूह को अपने स्तर का काम मिलता है।",
+    "body_en": "The Beginners work on the prerequisite (no regrouping), the Progressors on today's goal with scaffolding, and the Proficients on the 3-digit extension.",
+    "body_hi": "शुरुआती समूह बिना हासिल वाले जोड़ पर है, जो आज के लक्ष्य की पूर्व-शर्त है। प्रगतिशील समूह आज के लक्ष्य पर सहारे के साथ काम करता है। दक्ष समूह 3 अंकों के जोड़ पर आगे बढ़ता है।",
     "title_en": "Why these three groups",
     "title_hi": "तीन समूह क्यों"
    },
    {
-    "body_en": "Beginners go first with the most time since they need the foundation with sticks. Progressors get 14 minutes for today's target. Proficients get the least time because they already know the base skill.",
-    "body_hi": "शुरुआती बच्चों को पहला और सबसे लंबा समय मिला है क्योंकि उन्हें छड़ियों के साथ नई नींव चाहिए। प्रगतिशील को आज के लक्ष्य के लिए 14 मिनट मिले हैं। दक्ष समूह को सबसे कम समय है क्योंकि वह पहले से जानता है।",
+    "body_en": "The Beginners get the first and longest slot because their foundation matters most. The Progressors get the next longest because today's goal is theirs. The Proficients get a short model-and-peer-check block.",
+    "body_hi": "शुरुआती समूह को पहला और सबसे लंबा समय मिला है, क्योंकि उनकी नींव सबसे ज़रूरी है। प्रगतिशील समूह को दूसरा बड़ा हिस्सा मिला, क्योंकि आज का लक्ष्य उन्हीं का है। दक्ष समूह का छोटा ब्लॉक एक त्वरित मॉडल और साथी-जाँच तक सीमित है।",
     "title_en": "Why this rotation order",
-    "title_hi": "घुमाव का क्रम क्यों"
+    "title_hi": "घुमाव का क्रम"
    },
    {
-    "body_en": "Watch for forgetting the carry (answer 10 less) and writing the full ones sum (like 512) among Progressors. Watch for misaligned columns among Beginners. Watch for the dropped hundreds carry among Proficients. Worksheet problems 2 and 3 catch these.",
-    "body_hi": "प्रगतिशील समूह में हासिल भूलना (जवाब 10 कम) और इकाई का पूरा योग लिखना (जैसे 512) देखें। शुरुआती में अंकों को गलत स्तम्भ में जोड़ना देखें। दक्ष में सैकड़े का हासिल छूटना देखें। इन्हें वर्कशीट के सवाल 2 और 3 पकड़ते हैं।",
-    "title_en": "Which mistakes to watch",
+    "body_en": "The most common mistake for Progressors is forgetting the carry (answer exactly 10 less). Watch for column mixing in Beginners and a dropped tens-to-hundreds carry in Proficients.",
+    "body_hi": "प्रगतिशील समूह में सबसे आम गलती हासिल भूलना है: जवाब सही से ठीक 10 कम आता है। शुरुआती समूह में दहाई-इकाई के स्तंभ आपस में मिल जाना, और दक्ष समूह में दहाई से सैकड़े का हासिल छूट जाना देखें।",
+    "title_en": "Mistakes to watch for",
     "title_hi": "किन गलतियों पर नज़र रखें"
    },
    {
-    "body_en": "There is no printer, so worksheet problems are written on the board and copied into notebooks. The Proficient block is short, so their You Do continues in the next block.",
-    "body_hi": "प्रिंटर नहीं है, इसलिए वर्कशीट के सवाल बोर्ड पर लिखे जाएँगे और बच्चे कॉपी में उतारेंगे। दक्ष समूह का समय कम है, इसलिए उनका You Do अगले चरण में पूरा होगा।",
-    "title_en": "An assumption in today's plan",
-    "title_hi": "आज की योजना की मान्यता"
+    "body_en": "With no printer, worksheet problems are copied from the board. Stick kits are prepared before class. The Tens | Ones frame supports the first problems on the Beginner and Progressor sheets.",
+    "body_hi": "प्रिंटर नहीं है, इसलिए वर्कशीट के सवाल बोर्ड पर लिखे जाएँगे और बच्चे कॉपी में उतारेंगे। छड़ियों के किट कक्षा से पहले तैयार रहेंगे। शुरुआती और प्रगतिशील समूह की वर्कशीट के पहले सवालों में दहाई-इकाई का बॉक्स मदद करेगा।",
+    "title_en": "Assumptions in today's plan",
+    "title_hi": "आज की योजना की मान्यताएँ"
    },
    {
     "id": "resources",
@@ -281,20 +281,20 @@
    {
     "cfu": [
      {
-      "kind": "compute",
+      "kind": "answer",
       "grounded": true,
       "shows_hi": "",
       "listen_for": [
        {
         "detect_en": "Errors are random and inconsistent; when given pre-aligned problems on place-value grid, accuracy improves dramatically",
-        "wrong_answer_hi": "36",
+        "wrong_answer_hi": "दहाई (1)",
         "misconception_id": "N2.3.1-M1",
         "misconception_name_en": "Column misalignment (adds ones to tens)",
         "misconception_name_hi": "स्तम्भ गड़बड़ (इकाई को दहाई में जोड़ना)"
        }
       ],
-      "expected_hi": "57",
-      "question_hi": "बोर्ड पर देखें: 21 + 36। जोड़कर उत्तर लिखें।"
+      "expected_hi": "इकाई (2)",
+      "question_hi": "बोर्ड पर देखें: 52 + 16 के लिए 5 और 1 एक ही स्तंभ में हैं, 2 और 6 एक ही स्तंभ में हैं। 2 और 6 किस स्थान के अंक हैं? दहाई के लिए 1 या इकाई के लिए 2 दिखाएँ।"
      }
     ],
     "pace": [
@@ -321,16 +321,16 @@
     "teach_group": "beginner",
     "cfu_grounded": true,
     "talking_points": {
-     "i_do_hi": "शुरुआती समूह को पास बुलाएँ। बोर्ड पर 23 + 14 लिखें। छड़ियों से बनाएँ: 2 बंडल और 3 खुली, फिर 1 बंडल और 4 खुली। बोलें: 'पहले इकाई जोड़ेंगे: 3 + 4 = 7। फिर दहाई जोड़ेंगे: 2 + 1 = 3।' जवाब 37 है। बोर्ड पर दहाई-इकाई के बॉक्स में हर अंक अपने स्तम्भ में लिखें, दहाई ऊपर दहाई के नीचे और इकाई इकाई के नीचे।",
-     "we_do_hi": "जोड़ियाँ अपने दहाई-इकाई के बॉक्स में छड़ियाँ रखकर 12 + 37 बनाएँ। साथ बोलें: 'पहले इकाई, फिर दहाई।' हर जोड़ी एक सवाल 15 + 23 अपने बॉक्स में हल करे। देखें कि अंक अपने स्तम्भ में हैं या नहीं।",
-     "you_do_hi": "वर्कशीट के सवाल 1 से 3 पहले हल करें, जो जल्दी ख़त्म करें वे सवाल 4 करें। पहले दो सवाल छड़ियों से, फिर रेखा और बिंदु बनाकर, फिर सिर्फ़ बॉक्स में हल करें। शिक्षक पहले उन बच्चों के पास जाएँ जिनके अंक अलग-अलग स्तम्भ में दिख रहे हैं।"
+     "i_do_hi": "कल हमने एक अंक वाले जोड़ किए थे, यह एक वाक्य में याद दिलाएँ। बोर्ड पर लिखें: 23 + 14। छड़ियों से 2 बंडल + 3 खुली छड़ियाँ और 1 बंडल + 4 खुली छड़ियाँ बनाएँ। पहले इकाई जोड़ें: 3 + 4 = 7। फिर दहाई जोड़ें: 2 + 1 = 3। जवाब 37 है। हर कदम बोलकर बोर्ड पर दहाई की खड़ी रेखाएँ और इकाई के बिंदु बनाएँ। दहाई के नीचे दहाई, इकाई के नीचे इकाई लिखें।",
+     "we_do_hi": "हर जोड़ी अपनी किट और दहाई-इकाई के बॉक्स के साथ बैठे। साथ में हल करें: 32 + 15। पहले इकाई के बॉक्स में खुली छड़ियाँ जोड़ें, फिर दहाई के बॉक्स में बंडल। फिर 25 + 14 बच्चे जोड़ी में करें और शिक्षक घूमकर देखें कि दहाई-इकाई अपनी-अपनी जगह रखे हैं या नहीं।",
+     "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 कॉपी में उतारकर हल करें। पहले दो सवाल छड़ियों से करें, फिर रेखा-बिंदु बनाकर, फिर बॉक्स में लिखकर। जो जल्दी ख़त्म करें, वे सवाल 4 करें। अंत में मॉनिटर छड़ियाँ गिनकर किट में रखे।"
     },
-    "other_groups_hi": "प्रगतिशील समूह पिछले सीखे बिना हासिल वाले जोड़ का अभ्यास करें, जैसे 32 + 45, 51 + 26, 63 + 24। दक्ष समूह हासिल वाले दो अंकों के जोड़ का अभ्यास करें, जैसे 48 + 37, 59 + 26, 67 + 25। जल्दी ख़त्म करने वाले जोड़ की आपस में जाँच करें।",
+    "other_groups_hi": "प्रगतिशील समूह अपनी कॉपी में बिना हासिल वाले जोड़ करें, जैसे 32 + 45, 51 + 26, 63 + 14, 27 + 52। दक्ष समूह हासिल वाले दो अंकों के जोड़ करें, जैसे 47 + 36, 58 + 25, 69 + 24, 35 + 48। जो जल्दी ख़त्म करें, वे इसी तरह के और सवाल करें या साथी की कॉपी जाँचें।",
     "duration_minutes": 16
    },
    {
     "type": "transition",
-    "script_hi": "अपना काम रोक दें। कॉपी बंद करें। छड़ियाँ मॉनिटर को दें और मॉनिटर गिनकर बैग में रखे। अब प्रगतिशील समूह मेरे पास आएँ। बाकी अपनी जगह पर शांति से काम करें।",
+    "script_hi": "शुरुआती समूह अपना काम रोक दें और छड़ियाँ मॉनिटर को दें। प्रगतिशील समूह कॉपी-पेंसिल लेकर मेरे पास आएँ। शुरुआती समूह अपनी जगह जाएँ और वर्कशीट के सवाल करते रहें। दक्ष समूह अपना काम शांति से जारी रखें।",
     "time_start": "21:00",
     "teach_group": null,
     "talking_points": null,
@@ -346,21 +346,28 @@
       "listen_for": [
        {
         "detect_en": "Answer is exactly 10 less than correct. Ones column has a 2-digit number written, or only ones digit is written but tens carry is missing. Consistent across 3+ problems.",
-        "wrong_answer_hi": "74",
+        "wrong_answer_hi": "75",
         "misconception_id": "N2.3.2-M1",
         "misconception_name_en": "Place-value carry-over confusion: drops the carry",
         "misconception_name_hi": "हासिल भूलना: हासिल छोड़ देता है"
        },
        {
         "detect_en": "Answer has 3 digits where 2 expected, or ones column shows 2 digits (e.g., 34+28 → 512 where ones shows 12)",
-        "wrong_answer_hi": "714",
+        "wrong_answer_hi": "715",
         "misconception_id": "N2.3.2-M2",
         "misconception_name_en": "Writes full ones sum without carrying",
         "misconception_name_hi": "पूरा इकाई योग लिखना, हासिल न रखना"
+       },
+       {
+        "detect_en": "Tens column is consistently 1 more than expected (double-carry effect)",
+        "wrong_answer_hi": "125",
+        "misconception_id": "N2.3.2-M3",
+        "misconception_name_en": "Carries wrong digit",
+        "misconception_name_hi": "गलत अंक हासिल रखना"
        }
       ],
-      "expected_hi": "84",
-      "question_hi": "बोर्ड पर देखें: 46 + 38। कॉपी में जवाब लिखकर छिपा लें।"
+      "expected_hi": "85",
+      "question_hi": "58 + 27 कितना होता है? स्लेट पर जवाब लिखें।"
      }
     ],
     "pace": [
@@ -387,16 +394,16 @@
     "teach_group": "progressor",
     "cfu_grounded": true,
     "talking_points": {
-     "i_do_hi": "बोर्ड पर 34 + 28 लिखें। शिक्षक की किट की छड़ियों से बनाएँ: 3 बंडल और 4 खुली, फिर 2 बंडल और 8 खुली। बोलें: 'पहले इकाई जोड़ेंगे: 4 + 8 = 12 खुली छड़ियाँ। बहुत ज़्यादा हो गईं।' 10 खुली छड़ियों के बदले एक बंडल लेकर दहाई में रखें। बोर्ड पर लिखें: इकाई में 2, दहाई में 1 हासिल। फिर दहाई जोड़ें: 3 + 2 + 1 = 6। जवाब 62 है।",
-     "we_do_hi": "बोर्ड पर 27 + 15 लिखें। सब बच्चे कॉपी में दहाई-इकाई का बॉक्स बनाएँ और दहाई रेखा तथा इकाई बिंदु से बनाएँ। इकाई के बिंदु जोड़ें: 7 + 5 = 12। एक बच्चा शिक्षक की किट पर आकर 10 खुली छड़ियों के बदले एक बंडल ले। बाकी सब 10 बिंदु घेरकर एक नई रेखा बनाएँ। इकाई में 2 लिखें, 1 हासिल दहाई में जोड़ें: 2 + 1 + 1 = 4। जवाब 42 है। पूछें: 'इकाई में कितने अंक लिखे?' (एक अंक: 2)।",
-     "you_do_hi": "वर्कशीट के सवाल 1 से 3 पहले हल करें, जो जल्दी ख़त्म करें वे सवाल 4 करें। पहले सवाल बॉक्स के पास रेखा और बिंदु बनाकर कर सकते हैं, आख़िरी सवाल सिर्फ़ अंकों से करें। शिक्षक पहले उन बच्चों के पास जाएँ जिनका जवाब सही जवाब से 10 कम है।"
+     "i_do_hi": "कल बिना हासिल वाले जोड़ हुए थे, यह एक वाक्य में याद दिलाएँ। बोर्ड पर लिखें: 34 + 28। छड़ियों से 3 बंडल + 4 खुली छड़ियाँ और 2 बंडल + 8 खुली छड़ियाँ बनाएँ। पहले इकाई जोड़ें: 4 + 8 = 12 खुली छड़ियाँ। 10 खुली छड़ियों को एक तैयार बंडल से बदलें। इकाई में 2 लिखें और दहाई के ऊपर 1 हासिल लिखें। फिर दहाई जोड़ें: 3 + 2 + 1 = 6। जवाब 62 है। बोर्ड पर खड़ी रेखाएँ और बिंदु साथ-साथ बनाएँ।",
+     "we_do_hi": "सब बच्चे कॉपी में दहाई-इकाई का बॉक्स बनाएँ और 47 + 36 साथ में हल करें। सब रेखाएँ और बिंदु बनाएँ। एक बच्चा शिक्षक के किट पर आकर 10 खुली छड़ियों को बंडल से बदले, बाकी सब 10 बिंदुओं पर गोला लगाकर नई रेखा बनाएँ। हासिल को दहाई के ऊपर लिखवाएँ। फिर 29 + 45 बच्चे खुद करें और शिक्षक घूमकर देखें कि हासिल जुड़ा या नहीं।",
+     "you_do_hi": "पहले वर्कशीट के सवाल 1 से 3 कॉपी में उतारकर हल करें। पहला सवाल बॉक्स में रेखा-बिंदु बनाकर करें, बाकी सवाल केवल संख्याओं से। जो जल्दी ख़त्म करें, वे सवाल 4 करें। शिक्षक सबसे पहले उन बच्चों के पास जाएँ जिनके जवाब गड़बड़ दिखें, शांति से और बिना नाम पुकारे।"
     },
-    "other_groups_hi": "शुरुआती समूह एक अंक के जोड़ का अभ्यास करें, जैसे 7 + 8, 9 + 6, 5 + 9। फिर 3 दहाई और 4 इकाई जैसी संख्याएँ बॉक्स में लिखें। दक्ष समूह हासिल वाले दो अंकों के जोड़ करें, जैसे 38 + 46, 29 + 57, 65 + 18।",
+    "other_groups_hi": "शुरुआती समूह अपने वर्कशीट के सवाल पूरे करें और एक अंक वाले जोड़ों का अभ्यास करें, जैसे 7 + 8, 6 + 9, 5 + 7, 9 + 4। दक्ष समूह हासिल वाले दो अंकों के और जोड़ करें, जैसे 46 + 37, 58 + 26, 67 + 25। जो जल्दी ख़त्म करें, वे इसी तरह के और सवाल करें या साथी की कॉपी जाँचें।",
     "duration_minutes": 14
    },
    {
     "type": "transition",
-    "script_hi": "अपना काम रोक दें। अब दक्ष समूह मेरे पास आएँ। बाकी अपनी जगह पर रहें। प्रगतिशील समूह अब हासिल वाले जोड़ का अभ्यास करें, जैसे 36 + 47।",
+    "script_hi": "प्रगतिशील समूह अपनी जगह जाएँ और वर्कशीट के सवाल करते रहें। दक्ष समूह कॉपी-पेंसिल लेकर मेरे पास आएँ। शुरुआती समूह अपना काम शांति से जारी रखें।",
     "time_start": "37:00",
     "teach_group": null,
     "talking_points": null,
@@ -412,14 +419,14 @@
       "listen_for": [
        {
         "detect_en": "Problems with carry in ones only are correct; problems with carry in both ones AND tens are wrong — tens-to-hundreds carry is dropped",
-        "wrong_answer_hi": "322",
+        "wrong_answer_hi": "532",
         "misconception_id": "N3.3.1-M1",
         "misconception_name_en": "Single carry works but double carry fails",
         "misconception_name_hi": "एक हासिल सही पर दोहरे हासिल में गलती"
        }
       ],
-      "expected_hi": "422",
-      "question_hi": "बोर्ड पर देखें: 258 + 164। जवाब कॉपी में लिखकर छिपा लें।"
+      "expected_hi": "632",
+      "question_hi": "385 + 247 कितना होता है? स्लेट पर जवाब लिखें।"
      }
     ],
     "pace": [
@@ -442,11 +449,11 @@
     "teach_group": "proficient",
     "cfu_grounded": true,
     "talking_points": {
-     "i_do_hi": "बोर्ड पर 167 + 245 सीधे स्तम्भ में लिखें। इकाई से शुरू करें: 7 + 5 = 12, इकाई में 2 और दहाई के ऊपर 1 हासिल। दहाई: 6 + 4 + 1 = 11, दहाई में 1 और सैकड़े के ऊपर 1 हासिल। सैकड़ा: 1 + 2 + 1 = 4। जवाब 412 है। हर स्तम्भ का हासिल उसके ऊपर लिखकर दिखाएँ।",
+     "i_do_hi": "बोर्ड पर लिखें: 167 + 245। इकाई से शुरू करें: 7 + 5 = 12, इकाई में 2 लिखें और दहाई के ऊपर 1 हासिल लिखें। फिर दहाई: 6 + 4 + 1 = 11, दहाई में 1 लिखें और सैकड़े के ऊपर 1 हासिल लिखें। फिर सैकड़ा: 1 + 2 + 1 = 4। जवाब 412 है। हर स्तंभ में हासिल अलग से दिखाएँ।",
      "we_do_hi": "",
-     "you_do_hi": "वर्कशीट के सवाल 1 से 3 पहले हल करें, जो जल्दी ख़त्म करें वे सवाल 4 करें। यह छोटा चरण है, इसलिए बाकी सवाल अपनी जगह पर अगले चरण में पूरे करें। शिक्षक पहले उन बच्चों के पास जाएँ जिनके जवाब में सैकड़े का हासिल छूट गया है।"
+     "you_do_hi": "वर्कशीट का सवाल 1 कॉपी में उतारकर हल करें, हर स्तंभ में हासिल लिखें। फिर साथी की कॉपी में हासिल जाँचें। बाकी सवाल अपनी जगह पर, अगले ब्लॉक में पूरे करें।"
     },
-    "other_groups_hi": "शुरुआती समूह बॉक्स में बिना हासिल के जोड़ का अभ्यास पूरा करें। प्रगतिशील समूह हासिल वाले जोड़ के सवाल अंकों से हल करें, जैसे 36 + 47, 28 + 55, 19 + 63।",
+    "other_groups_hi": "शुरुआती समूह वर्कशीट के बचे सवाल करे या एक अंक वाले जोड़ करें, जैसे 8 + 7, 9 + 6, 5 + 8। प्रगतिशील समूह हासिल वाले दो अंकों के जोड़ करें, जैसे 36 + 47, 28 + 54, 19 + 65। जो जल्दी ख़त्म करें, वे इसी तरह के और सवाल करें या साथी की कॉपी जाँचें।",
     "duration_minutes": 7
    }
   ],
@@ -459,9 +466,9 @@
  },
  "classroom_management": {
   "independent_activities_hi": {
-   "beginner": "एक अंक के जोड़ करें, जैसे 7 + 8, 9 + 6, 5 + 9, 8 + 7। फिर दहाई-इकाई के बॉक्स में 36, 52, 74 जैसी संख्याएँ बताएँ कि कितनी दहाई और कितनी इकाई। जल्दी ख़त्म करने वाले और एक अंक के जोड़ करें।",
-   "proficient": "हासिल वाले दो अंकों के जोड़ करें, जैसे 48 + 37, 59 + 26, 67 + 25, 38 + 46। इकाई का हासिल दहाई के ऊपर लिखें। जल्दी ख़त्म करने वाले और ऐसे ही जोड़ें या साथी के जवाब जाँचें।",
-   "progressor": "बिना हासिल वाले दो अंकों के जोड़ करें, जैसे 32 + 45, 51 + 26, 63 + 24, 14 + 75। पहले इकाई, फिर दहाई जोड़ें। जल्दी ख़त्म करने वाले और ऐसे ही जोड़ें या साथी के जवाब जाँचें।"
+   "beginner": "एक अंक वाले जोड़ और दहाई-इकाई पहचानने का अभ्यास करें। जैसे 7 + 8, 6 + 9, 5 + 7, 9 + 4। 36 में कितनी दहाई और कितनी इकाई, यह भी लिखें। यह काम आप अपनी बारी से पहले करेंगे। जो जल्दी ख़त्म करें, वे और जोड़ करें या साथी की कॉपी जाँचें।",
+   "proficient": "हासिल वाले दो अंकों के जोड़ करें, जैसे 47 + 36, 58 + 25, 69 + 24, 35 + 48। हासिल को दहाई के ऊपर लिखें। यह अभ्यास आप अपनी बारी से पहले करेंगे। जो जल्दी ख़त्म करें, वे और जोड़ करें या साथी की कॉपी जाँचें।",
+   "progressor": "बिना हासिल वाले दो अंकों के जोड़ करें, जैसे 32 + 45, 51 + 26, 63 + 14, 27 + 52। यह अभ्यास आप अपनी बारी से पहले करेंगे। जो जल्दी ख़त्म करें, वे और जोड़ करें या साथी की कॉपी जाँचें।"
   }
  }
 }

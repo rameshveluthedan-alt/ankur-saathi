@@ -52,3 +52,68 @@ TOTAL $0.423 over 3 plans
   ('L2.5.1_45', 0, 0.1507)
   ('L2.7.2_45', 0, 0.1163)
   ('N0.1.1_45', 0, 0.1556)
+
+=== 22 Nov, second re-make: the three plans the third review's checks still flagged ===
+
+=== N2.3.2_45  (served_from=ai, session_minutes=45)
+  call (plan, 49.6 s): in 7016, out 9220, cache read 10349, cache write 0  $0.1073  stop=end_turn
+  call (helper, 2.4 s): in 587, out 221, cache read 0, cache write 0  $0.0034  stop=end_turn
+  cost $0.1107
+  blocks: anchor 5, teach/beginner 16, transition 2, teach/progressor 14, transition 1, teach/proficient 7 = 45 min
+  beginner   N2.3.1   (3+N)        rc=3 n=4 diags=[(2, 'N2.3.1-M1'), (3, 'N2.3.1-M1')]  you_do ranges=[('1', '3')]
+  progressor N2.3.2   (3+N)        rc=3 n=4 diags=[(2, 'N2.3.2-M1'), (3, 'N2.3.2-M2')]  you_do ranges=[('1', '3')]
+  proficient N3.3.1   (3+N)        rc=3 n=4 diags=[(2, 'N3.3.1-M1'), (3, 'N3.3.1-M1')]  you_do ranges=[]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch for, Assumptions in today's plan, resources); observation reminders: 0
+  validation warnings (0): none
+   log: Stick repair: beginner.we_do_hi: rewritten by the model; largest stick example 67 -> 47 (kit 49)
+   log: Worksheet repair: beginner problem 1: 32 + 15 -> 26 + 12 (copies an example solved in the lesson)
+   log: Worksheet repair: proficient problem 2: 167 + 245 = ___ -> 369 + 318 = ___ (copies an example solved in the lesson)
+   log: CFU: beginner: 2 question(s) beyond the 1 allowed were left out
+   log: CFU: progressor question 1: listen-for N2.3.2-M3: listed '95' but that mistake gives 125 on 58 + 27: corrected to '125'
+   log: CFU: progressor question 2 dropped: the wrong answer 74 on the board is a right answer in this group's lesson: children may remember it as right | «बोर्ड पर देखें: 46 + 38 = 74। क्या यह सही है या गलत? 'सही' या 'गलत' लि» 
+   log: CFU: progressor question 3: warning: its right answer 62 is already a result in the lesson (on the board): a child could copy it
+   log: CFU: progressor question 3: kept, though it repeats a worksheet problem
+   log: CFU: progressor: 1 question(s) beyond the 1 allowed were left out
+   log: CFU: proficient: 2 question(s) beyond the 1 allowed were left out
+   log: CFU kept: beginner 1/3, progressor 1/3, proficient 1/3
+  ISSUES: none
+
+=== N0.1.1_60  (served_from=ai, session_minutes=60)
+  call (plan, 76.0 s): in 4857, out 14558, cache read 0, cache write 10349  $0.1812  stop=end_turn
+  cost $0.1812
+  blocks: anchor 10, setup 2, teach/beginner 18, transition 2, teach/progressor 13, transition 2, teach/proficient 13 = 60 min
+  beginner   N0.1.1   observed     rc=3 n=5 diags=[]  you_do ranges=[]
+  progressor N0.1.1   observed     rc=3 n=5 diags=[]  you_do ranges=[]
+  proficient N0.1.1   observed     rc=3 n=5 diags=[]  you_do ranges=[]
+  explainability items: 5 (Why these three groups, Why this rotation order, Mistakes to watch for, Assumption specific to today's, resources); observation reminders: 3
+  validation warnings (1): blocks[6].talking_points.i_do_hi: 'आकार' used with shapes («आकार»): आकार is size (बड़ा/छोटा), आकृति is shape (गोल, चौकोर)
+   log: CFU: beginner: 1 question(s) beyond the 2 allowed were left out
+   log: CFU: progressor: 1 question(s) beyond the 2 allowed were left out
+   log: CFU: proficient: 1 question(s) beyond the 2 allowed were left out
+   log: CFU kept: beginner 2/3, progressor 2/3, proficient 2/3
+  ISSUES: none
+
+=== N0.1.1_90  (served_from=ai, session_minutes=90)
+  call (plan, 94.7 s): in 4857, out 12521, cache read 10349, cache write 0  $0.1360  stop=end_turn
+  call (helper, 3.8 s): in 3933, out 409, cache read 0, cache write 0  $0.0120  stop=end_turn
+  cost $0.1479
+  blocks: anchor 10, setup 2, teach/beginner 30, transition 2, teach/progressor 22, transition 2, teach/proficient 22 = 90 min
+  beginner   N0.1.1   observed     rc=3 n=3 diags=[]  you_do ranges=[]
+  progressor N0.1.1   observed     rc=3 n=3 diags=[]  you_do ranges=[]
+  proficient N0.1.1   observed     rc=3 n=3 diags=[]  you_do ranges=[]
+  explainability items: 5 (Why three groups, Why this rotation order, Mistakes to watch, Assumption specific to today's, resources); observation reminders: 3
+  validation warnings (0): none
+   log: CFU top-up call for proficient: usage=Usage(input_tokens=3933, output_tokens=409, cache_creation_input_tokens=0, cache_read_input_tokens=0, cache_creation={'ephemeral_5m_input_tokens': 0, 'ephemeral_1h_input_tokens': 0},
+   log: CFU: beginner: 1 question(s) beyond the 2 allowed were left out
+   log: CFU: progressor question 1 dropped: question too long for a show-me | «बोर्ड पर एक लाल बड़ा गोला, एक लाल छोटा गोला और एक नीला बड़ा गोला बनाएँ» → «2 (अलग ढेर में)»
+   log: CFU: proficient question 1 dropped: question too long for a show-me | «बोर्ड पर एक लाल बड़ा गोला, एक नीला बड़ा गोला और एक लाल छोटा गोला बनाएँ» → «1 (लाल बड़ा और नीला बड़ा)»
+   log: CFU: proficient question 3 dropped: question too long for a show-me | «बोर्ड पर एक लाल गोल, एक नीला गोल, एक लाल चौकोर और एक नीला चौकोर बनाएँ।» → «1 (नीले गोल के साथ)»
+   log: CFU: proficient: only 1 valid question(s) (wanted 2 or more)
+   log: CFU: top-up: proficient: 1 question(s) beyond the 2 allowed were left out
+   log: CFU kept: beginner 2/3, progressor 2/3, proficient 2/5
+  ISSUES: none
+
+TOTAL $0.440 over 3 plans
+  ('N2.3.2_45', 0, 0.1107)
+  ('N0.1.1_60', 0, 0.1812)
+  ('N0.1.1_90', 0, 0.1479)

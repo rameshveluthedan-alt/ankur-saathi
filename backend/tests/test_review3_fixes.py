@@ -110,7 +110,9 @@ check("the group plural rule", "'शुरुआती समूह अपनी
 
 print("\nthe current test plans: what the new code finds")
 runs = os.path.join(ROOT, "docs", "drafts", "prompt_v2_runs")
-for name, skills in (("L2.7.2_90", None), ("N0.1.1_60", ["N0.1.1"]), ("N0.1.1_90", ["N0.1.1"])):
+# N0.1.1_60 and _90 were made again on 22 Nov after these checks: _90 has no flag; _60 keeps one cautious flag (an I Do showing things that
+# differ in colour, size AND shape, then sorting by colour or size: read, and correct), so only _90 is asserted here
+for name, skills in (("L2.7.2_90", None), ("N0.1.1_90", [])):
     path = os.path.join(runs, f"{name}.plan.json")
     if not os.path.isfile(path):
         continue
@@ -119,7 +121,7 @@ for name, skills in (("L2.7.2_90", None), ("N0.1.1_60", ["N0.1.1"]), ("N0.1.1_90
     if skills is None:      # the stored plan had the code's clean-ups applied on 22 Nov: no give-away example is left
         check(f"{name}: no example gives an answer away", drop_answer_examples(d) == [] and "जैसे 3, 1, 2" not in json.dumps(d, ensure_ascii=False))
     else:
-        check(f"{name}: the size/shape mix-up is flagged", len(hs.check_size_shape(d, skills)) >= 1, hs.check_size_shape(d, skills))
+        check(f"{name} (made again): no size/shape flag", hs.check_size_shape(d, ["N0.1.1"]) == [], hs.check_size_shape(d, ["N0.1.1"]))
 
 if failures:
     print(f"\nFAILED ({len(failures)})")
