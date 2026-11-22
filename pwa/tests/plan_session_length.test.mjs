@@ -99,7 +99,9 @@ check('without a time the field is left out (the server then uses the teacher\'s
 await api.generatePlan('T1', 'N2.3.2', 'numeracy', '2026-10-28', { sessionMinutes: 60, replace: true });
 check('(item 12) a confirmed replace sends replace: true; without the option the field is left out (the server then refuses to replace)', bodies[2].body.replace === true && !('replace' in bodies[0].body) && !('replace' in bodies[1].body), JSON.stringify(bodies.map((b) => b.body.replace)));
 bodies.length = 2;
-check('it is not sent as a preference anywhere else: only the plan request carries it', bodies.length === 2 && !fs.readFileSync(path.join(src, 'services', 'api.js'), 'utf8').replace(/generatePlan[\s\S]*?\}\);/, '').includes('session_minutes'));
+// the plans prepared for use with no connection (offline, 22 Nov) are plan requests too: each carries its own length, never a stored preference
+check('it is not sent as a preference anywhere else: only the plan requests carry it (the plan, and the plans prepared for no connection)', bodies.length === 2 && !fs.readFileSync(path.join(src, 'services', 'api.js'), 'utf8')
+  .replace(/generatePlan[\s\S]*?\}\);/, '').replace(/\/\/ Plans prepared for use with no connection[\s\S]*?prepareOfflinePlans[\s\S]*?\}\);/, '').includes('session_minutes'));
 
 await act(async () => root.unmount());
 console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks: today\'s time is chosen on the Plan screen, remembered on the device, and sent with every plan request'}`);

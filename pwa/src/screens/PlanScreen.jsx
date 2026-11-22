@@ -14,6 +14,8 @@ import { notify } from '../services/notify';
 import { friendlyError } from '../services/errors';
 import { localToday } from '../services/today';
 import SessionLength from '../components/SessionLength';
+import OfflineReady from '../components/OfflineReady';
+import { prepareOffline } from '../offline/prepareNow';
 import { getSessionMinutes, setSessionMinutes } from '../services/preferences';
 import ReplacePlanDialog from '../components/ReplacePlanDialog';
 import SuggestedSkill from '../components/SuggestedSkill';
@@ -84,6 +86,9 @@ export default function PlanScreen() {
       setLoading(false);
     }).catch(() => setLoading(false));
   }, [selectedDomain, teacher.teacher_id]);
+
+  // plans for use with no connection: prepared in the background while online (at most once a day unless the suggestions changed; offline/prepareNow.js)
+  useEffect(() => { prepareOffline(teacher.teacher_id, [selectedDomain]); }, [selectedDomain, teacher.teacher_id]);
 
   // is there already a plan for today in this subject? (a 404 means none; any other failure means we cannot tell, so Generate asks first)
   useEffect(() => {
@@ -274,6 +279,7 @@ export default function PlanScreen() {
 
       {/* how long the teacher has today: just above the skill list, so it is set before a skill is chosen */}
       <SessionLength value={sessionMinutes} onChange={chooseMinutes} disabled={generating} />
+      <OfflineReady teacherId={teacher.teacher_id} domain={selectedDomain} />
 
       {groups.length > 0 && (
         <div className="card" style={{ padding: 12 }}>

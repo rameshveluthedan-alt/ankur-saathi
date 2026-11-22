@@ -48,7 +48,8 @@ of Python, still being refined.
    ask for and no screen logic is copied to the server; at most 120 per request, a choice that cannot be built is reported, not fatal; the
    library's version comes back with the plans. Tests: a prepared plan is the plan the server stores for the same choice. (Done 22 Nov.)
 2. **Storage on the phone:** IndexedDB, `persist()`, the download at sign-in and when the Plan screen opens, the status line and "download
-   now", removal at sign-out (asking first if a plan is waiting to be sent).
+   now", removal at sign-out (asking first if a plan is waiting to be sent: with the outbox, step 4). (Done 22 Nov: `pwa/src/offline/`,
+   `OfflineReady.jsx`; the choices are made with the Plan screen's own `initialRows` / `buildGenerateOptions`; 45 plans per subject.)
 3. **The Plan screen:** the "⚡" button; offline, the badges and the greyed-out choices, and "आज की योजना बनाएँ" opening the matching prepared
    plan (decision 6 past the buffer), saved as an offline plan; the Teach screen's label ("📴 बिना इंटरनेट के बनी योजना: इंटरनेट मिलते ही भेजी
    जाएगी") and the in-app worksheet view.

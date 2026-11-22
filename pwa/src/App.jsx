@@ -21,6 +21,7 @@ import AccountScreen from './screens/AccountScreen';
 import ChangePinScreen from './screens/ChangePinScreen';
 import ConsentGate from './screens/ConsentGate';
 import { getNames, getToken, setToken } from './services/api';
+import { prepareOffline } from './offline/prepareNow';
 import Bi from './components/Bi';
 
 export const AuthContext = createContext(null);
@@ -101,6 +102,9 @@ export default function App() {
   const [names, setNames] = useState({});        // {class number: name}: the teacher's own screens only, never sent to the AI
   const refreshNames = () => { if (teacher && teacher.teacher_id && getToken()) getNames(teacher.teacher_id).then(setNames).catch(() => setNames({})); };
   useEffect(() => { if (teacher && teacher.teacher_id && getToken()) refreshNames(); else setNames({}); }, [teacher && teacher.teacher_id]);
+  // at sign-in (and on opening, signed in): the plans for use with no connection, in the background (offline/prepareNow.js). Not before the new password or the consent.
+  const ready = !!(teacher && teacher.teacher_id && !teacher.must_change_pin && !teacher.consent_needed);
+  useEffect(() => { if (ready && getToken()) prepareOffline(teacher.teacher_id); }, [ready, teacher && teacher.teacher_id]);
 
   const logout = () => { setToken(null); setTeacher(null); setCurrentPlan(null); setNames({}); };
   useEffect(() => {      // the session ended (expired, or the password was changed elsewhere), or a reset by the school leader made a new password necessary

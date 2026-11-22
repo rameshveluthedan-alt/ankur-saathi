@@ -4,7 +4,7 @@
  */
 
 import { NetworkError, markNetworkFailed } from './network';
-import { clearPrivateCaches } from './offlineCache';
+import { clearPrivateCaches, clearOfflineStore } from './offlineCache';
 
 const BASE = '/api';
 // LAB PHONE TEST ONLY: the app was built or served with VITE_MOCK_SIGNAL=1 (see request() below). Outside Vite (the tests' own bundles) there is no import.meta.env: off.
@@ -15,7 +15,7 @@ export const getToken = () => { try { return localStorage.getItem(TOKEN_KEY); } 
 export const setToken = (t) => {
   const before = getToken();
   try { if (t) localStorage.setItem(TOKEN_KEY, t); else localStorage.removeItem(TOKEN_KEY); } catch { /* storage unavailable */ }
-  if (before !== (t || null)) clearPrivateCaches();       // signing in or out: the offline copies of the last person's plan and worksheets go (see offlineCache.js)
+  if (before !== (t || null)) { clearPrivateCaches(); clearOfflineStore(); }       // signing in or out: the offline copies of the last person's plan and worksheets go, and the plans prepared for no connection (see offlineCache.js)
 };
 
 // Every call carries the session token. A 401 means the session has ended (sign in again); a 403 "pin_change_required"
@@ -165,8 +165,14 @@ export const generatePlan = (teacherId, competencyId, domainId, planDate, option
       ...(options.reteachGroups ? { reteach_groups: options.reteachGroups } : {}),
       ...(options.sessionMinutes ? { session_minutes: options.sessionMinutes } : {}),
       ...(options.replace ? { replace: true } : {}),       // without it the server never replaces an existing plan (HTTP 409 plan_exists)
+      ...(options.source === 'library' ? { source: 'library' } : {}),       // the "⚡" quick plan: built from the block library, no AI call (HTTP 409 library_unavailable when it cannot)
     }),
   });
+
+// Plans prepared for use with no connection (docs/drafts/OFFLINE_ASSEMBLER_PLAN.md): the phone lists its likely choices, the server builds each
+// from the block library through its own pipeline, WITHOUT storing it. items: [{ key, competency_id, plan_date, group_skills, reteach_groups, session_minutes }]
+export const prepareOfflinePlans = (teacherId, domainId, items) =>
+  request(`/offline/prepare?teacher_id=${teacherId}`, { method: 'POST', body: JSON.stringify({ domain_id: domainId, items }) });
 
 // What each group's skill could be on planDate, from the teacher's decisions at the last review
 export const getGroupProposal = (teacherId, domainId, planDate) =>
