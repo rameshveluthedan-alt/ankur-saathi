@@ -1,6 +1,6 @@
 # Moving the lab work into main
 
-**Status: done.** The lab work was merged into `main` and is part of the deployed `rc7`; the lab is no longer used. This page is kept as the history of how it was moved. The commands below are not needed again.
+**Status: done** (history only; the prompt-v2 release steps are in `docs/RELEASE_PROMPT_V2.md`). The lab work was merged into `main` and is part of the deployed `rc7`; the lab is no longer used. This page is kept as the history of how it was moved. The commands below are not needed again.
 
 **For:** the release owner (Ramesh). The lab rule stands: the lab never touches `main`; the release owner packages, applies, runs the gate and deploys, in
 `C:\dev\Ankur-Saathi` on `main`. Full detail of every change: `docs/LAB_UI_HANDOVER.md`.
