@@ -43,8 +43,10 @@ of Python, still being refined.
 ## Steps (each its own commit, asked first)
 
 1. **Server: library plans on request, and prepared plans.** The plan request takes `source: "library"` (decision 9). The pipeline can build
-   a plan without storing it. `GET /api/offline/prepared/{teacher}` (signed-in, the teacher's own) returns the prepared plans of decision 1
-   with their inputs (skill, length, re-teach, date) and a version; 304 when unchanged. Tests.
+   a plan without storing it. `POST /api/offline/prepare` (signed-in, the teacher's own): the PHONE lists its likely choices (decision 1),
+   worked out with the Plan screen's own logic for each group's skill and re-teach ticks, so the server builds exactly what the phone will
+   ask for and no screen logic is copied to the server; at most 120 per request, a choice that cannot be built is reported, not fatal; the
+   library's version comes back with the plans. Tests: a prepared plan is the plan the server stores for the same choice. (Done 22 Nov.)
 2. **Storage on the phone:** IndexedDB, `persist()`, the download at sign-in and when the Plan screen opens, the status line and "download
    now", removal at sign-out (asking first if a plan is waiting to be sent).
 3. **The Plan screen:** the "⚡" button; offline, the badges and the greyed-out choices, and "आज की योजना बनाएँ" opening the matching prepared

@@ -51,6 +51,13 @@ def _load(root: Path = ROOT) -> dict:
     return idx
 
 
+def version(root: Path = ROOT) -> str:
+    """A short fingerprint of the library (its MANIFEST): the phone prepares its offline plans again when it changes."""
+    import hashlib
+    man = root / "MANIFEST.json"
+    return hashlib.sha256(man.read_bytes()).hexdigest()[:12] if man.is_file() else "none"
+
+
 def available(root: Path = ROOT) -> bool:
     return bool(_load(root)["teach"])
 

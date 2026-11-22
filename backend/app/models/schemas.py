@@ -95,6 +95,24 @@ class GeneratePlanRequest(BaseModel):
     replace: bool = Field(False, description="The teacher confirmed replacing the plan already made for this day and subject (the Plan screen's \"हाँ, बदलें\"). Without it an existing plan is never replaced: HTTP 409 plan_exists, before any paid call.")
     session_minutes: Optional[Literal[45, 60, 90]] = Field(None, description="How long the teacher has today (the Plan screen's time picker): the plan is laid out for this many minutes. Sent with each plan, never stored as a preference. Omitted: the teacher's stored teaching time (90 unless changed), so an older app is unchanged.")
 
+    source: Optional[Literal["library"]] = Field(None, description="'library': built from the block library by code, no AI call (the Plan screen's quick plan). Omitted: the AI plan, as before.")
+
+
+class OfflinePrepareItem(BaseModel):
+    """One plan the phone may need offline: the same choices a plan request carries."""
+    key: str = Field(..., max_length=200, description="The phone's own key for this choice, returned with the plan")
+    competency_id: str
+    plan_date: date
+    group_skills: Optional[dict[str, str]] = None
+    reteach_groups: Optional[list[str]] = None
+    session_minutes: Literal[45, 60, 90]
+
+
+class OfflinePrepareRequest(BaseModel):
+    domain_id: str = Field(..., description="'numeracy' or 'r1_literacy'")
+    items: list[OfflinePrepareItem] = Field(..., max_length=120, description="At most 120 plans in one request")
+
+
 class GroupSnapshot(BaseModel):
     label: str
     count: int

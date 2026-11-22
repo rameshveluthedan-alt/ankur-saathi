@@ -18,8 +18,12 @@ from app.models.schemas import (
     PhotoAnalysisResponse, ReplaceResultsRequest,
     ProgressDashboardResponse,
     StartBaselineRequest, SubmitBaselineRequest,
+    OfflinePrepareRequest,
 )
 from app.services import ai_budget, plan_service, review_service, progress_service, worksheet_service, register_service, names_service
+from app.services import library_assembler
+import contextlib
+import io
 from app.services import group_skills
 
 import sys, os
@@ -165,17 +169,43 @@ async def generate_plan(req: GeneratePlanRequest, teacher_id: str):
         try:
             result = await plan_service.generate_dainik_yojana(
                 db, teacher_id, req.competency_id, req.domain_id, req.plan_date, group_skills=req.group_skills, reteach_groups=req.reteach_groups,
-                session_minutes=req.session_minutes,
+                session_minutes=req.session_minutes, source=req.source,
             )
             return result
         except group_skills.GroupSkillError as e:
             raise HTTPException(400, {"message": str(e), "code": "bad_group_skill"})
+        except plan_service.LibraryPlanUnavailable:
+            raise HTTPException(409, {"message": "इस कौशल के लिए तैयार हिस्सों से योजना नहीं बन सकी: '📋 आज की योजना बनाएँ' दबाएँ। "
+                                                 "(A quick plan cannot be made for this skill from the ready pieces: use 'Create today's plan'.)",
+                                      "code": "library_unavailable"})
         except ai_budget.AICapReached as e:
             raise HTTPException(429, {"message": e.message, "code": "ai_cap", "reason": e.reason, "sample_skills": ai_budget.sample_skills()})
         except Exception as e:
             import traceback
             traceback.print_exc()
             raise HTTPException(500, detail=f"Plan generation failed: {str(e)}")
+
+
+@router.post("/offline/prepare", tags=["Offline"])
+async def offline_prepare(req: OfflinePrepareRequest, teacher_id: str):
+    """The plans the phone may need with no connection (docs/drafts/OFFLINE_ASSEMBLER_PLAN.md): the phone lists its likely choices (each
+    subject's suggested skill, its re-teach, the next skills on the ladder; 45 / 60 / 90; the next school days) and the server builds each
+    through its OWN pipeline from the block library, with no AI call and WITHOUT storing it as the teacher's plan. A choice the library cannot
+    build is reported, not fatal. The library's version tells the phone when to prepare again."""
+    if req.domain_id not in ('numeracy', 'r1_literacy'):
+        raise HTTPException(400, "domain_id must be 'numeracy' or 'r1_literacy'")
+    plans = []
+    async with get_db() as db:
+        for it in req.items:
+            try:
+                with contextlib.redirect_stdout(io.StringIO()):          # ninety plans' logs would drown the server's own
+                    result = await plan_service.generate_dainik_yojana(
+                        db, teacher_id, it.competency_id, req.domain_id, it.plan_date, group_skills=it.group_skills,
+                        reteach_groups=it.reteach_groups, session_minutes=it.session_minutes, source="library", store=False)
+                plans.append({"key": it.key, "ok": True, "result": result})
+            except Exception as e:                          # one choice that cannot be built (an unknown skill, a missing piece) never sinks the others
+                plans.append({"key": it.key, "ok": False, "error": type(e).__name__})
+    return {"library_version": library_assembler.version(), "plans": plans}
 
 
 @router.get("/plan/{teacher_id}/{plan_date}/{domain_id}", tags=["Dainik Yojana"])

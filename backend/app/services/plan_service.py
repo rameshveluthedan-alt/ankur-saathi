@@ -1148,6 +1148,10 @@ async def derive_groups_from_positions(db, teacher_id: str, domain_id: str) -> l
 SAMPLE_PLAN_MINUTES = 90        # the recorded sample plans (db/seeds/sample_plans) were made for 90-minute sessions; one that records its own session_minutes keeps it
 
 
+class LibraryPlanUnavailable(Exception):
+    """The block library could not build the plan that was asked for (a piece is missing for one of the skills)."""
+
+
 async def generate_dainik_yojana(
     db, 
     teacher_id: str, 
@@ -1157,9 +1161,14 @@ async def generate_dainik_yojana(
     group_skills: Optional[dict] = None,
     reteach_groups: Optional[list] = None,
     session_minutes: Optional[int] = None,
+    source: Optional[str] = None,
+    store: bool = True,
 ) -> dict:
     """
     Full Dainik Yojana generation pipeline.
+    source="library": built from the block library by code, with NO AI call whatever the AI's state (the Plan screen's "⚡" quick plan, and the
+    plans prepared for the phone to use offline, 22 Nov); LibraryPlanUnavailable when the library cannot build it.
+    store=False: the plan is built and returned but NOT saved as the teacher's plan for that day (the plans prepared for offline use).
     group_skills: the skills a teacher chose for the Beginners and the Proficients ({'beginner': id, 'proficient': id}); the Progressors' skill is competency_id.
     Without it each group's skill is derived from competency_id, as before.
     reteach_groups: the groups the TEACHER chose to re-teach (an empty list: move on with every group). Their main teach block is a focused re-teach and there is no separate re-teach block.
@@ -1352,7 +1361,7 @@ async def generate_dainik_yojana(
     ai_budget.bind(db, teacher_id)
     served_from, recorded, library_plan = "ai", None, None
     try:
-        if os.environ.get("PLAN_SOURCE", "").strip().lower() == "library":      # a test, or (later) offline-first: plans from the library with no AI call
+        if source == "library" or os.environ.get("PLAN_SOURCE", "").strip().lower() == "library":      # asked for (quick plan, offline), or a test: no AI call
             raise ai_budget.AICapReached("disabled")
         await ai_budget.check(db, teacher_id, "plan")
     except ai_budget.AICapReached:
@@ -1367,6 +1376,8 @@ async def generate_dainik_yojana(
                 print(f"   Library plan skipped: {type(e).__name__}: {e}")
         if library_plan is not None:
             served_from = "library"
+        elif source == "library":                       # the library was asked for: never a recorded plan instead, and never an AI message
+            raise LibraryPlanUnavailable(competency_id)
         else:
             recorded = ai_budget.sample_plan_for(competency_id)
             if recorded is None:
@@ -1622,27 +1633,28 @@ async def generate_dainik_yojana(
     plan_json["served_from"] = served_from          # 'ai', or 'sample' when the AI limit was reached: the screen says so
     # the plan's length, read by the plan screen's time chip: the time the teacher chose (not the AI's own total_minutes); a recorded sample plan keeps the length it was made for (90 for the six today)
     plan_json["session_minutes"] = ctx.available_minutes if served_from in ("ai", "library") else int(plan_json.get("session_minutes") or SAMPLE_PLAN_MINUTES)
-    await db.execute("""
-        INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
-                                 plan_content, explainability, groups_snapshot, 
-                                 generation_time_ms, claude_model)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-        ON CONFLICT (teacher_id, plan_date, domain_id) DO UPDATE SET
-            plan_content = EXCLUDED.plan_content,
-            explainability = EXCLUDED.explainability || COALESCE((SELECT jsonb_object_agg(e.key, e.value)
-                                 FROM jsonb_each(COALESCE(daily_plans.explainability, '{}'::jsonb)) e
-                                 WHERE starts_with(e.key, 'teacher_decision_') OR starts_with(e.key, 'teacher_first_') OR starts_with(e.key, 'teacher_final_')), '{}'::jsonb),
-            groups_snapshot = EXCLUDED.groups_snapshot,
-            generation_time_ms = EXCLUDED.generation_time_ms,
-            selected_competency_id = EXCLUDED.selected_competency_id,
-            claude_model = EXCLUDED.claude_model
-    """,
-        teacher_id, plan_date, domain_id, competency_id,
-        json.dumps(plan_json, ensure_ascii=False),
-        json.dumps(explainability, ensure_ascii=False),
-        json.dumps(groups_snapshot, ensure_ascii=False),
-        generation_time_ms, settings.claude_model if served_from == "ai" else ("library" if served_from == "library" else "sample-replay"),
-    )
+    if store:                                       # a plan prepared for the phone (offline) is returned, never stored as the day's plan
+        await db.execute("""
+            INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
+                                     plan_content, explainability, groups_snapshot, 
+                                     generation_time_ms, claude_model)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            ON CONFLICT (teacher_id, plan_date, domain_id) DO UPDATE SET
+                plan_content = EXCLUDED.plan_content,
+                explainability = EXCLUDED.explainability || COALESCE((SELECT jsonb_object_agg(e.key, e.value)
+                                     FROM jsonb_each(COALESCE(daily_plans.explainability, '{}'::jsonb)) e
+                                     WHERE starts_with(e.key, 'teacher_decision_') OR starts_with(e.key, 'teacher_first_') OR starts_with(e.key, 'teacher_final_')), '{}'::jsonb),
+                groups_snapshot = EXCLUDED.groups_snapshot,
+                generation_time_ms = EXCLUDED.generation_time_ms,
+                selected_competency_id = EXCLUDED.selected_competency_id,
+                claude_model = EXCLUDED.claude_model
+        """,
+            teacher_id, plan_date, domain_id, competency_id,
+            json.dumps(plan_json, ensure_ascii=False),
+            json.dumps(explainability, ensure_ascii=False),
+            json.dumps(groups_snapshot, ensure_ascii=False),
+            generation_time_ms, settings.claude_model if served_from == "ai" else ("library" if served_from == "library" else "sample-replay"),
+        )
     
     return {
         "plan_date": str(plan_date),
