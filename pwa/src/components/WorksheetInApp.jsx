@@ -7,13 +7,21 @@ import { GROUP_LABELS } from '../tiers';
  * page is not on the phone, so the teacher reads the sheet here and copies it onto the board (the app's "no printer" way). Everything the sheet
  * has: the instructions, a passage, the problems (answers hidden until asked for), a writing task and its checklist, a task to watch.
  */
+const LOOK_FOR_ROWS = [
+  { key: 'achieved', labelHi: '✓ हासिल', labelEn: '✓ Achieved' },
+  { key: 'partial', labelHi: '~ आंशिक', labelEn: '~ Partly' },
+  { key: 'not_yet', labelHi: '✗ अभी नहीं', labelEn: '✗ Not yet' },
+];
+
 export default function WorksheetInApp({ ws, level, onClose }) {
   const [answers, setAnswers] = useState(false);
   if (!ws) return null;
   const label = GROUP_LABELS[level] || { hi: level, en: level };
   const problems = Array.isArray(ws.problems) ? ws.problems : [];
   const core = Number(ws.required_count) || null;
-  const lookFor = ws.observe && ws.observe.look_for && typeof ws.observe.look_for === 'object' ? Object.entries(ws.observe.look_for) : [];
+  const lf = ws.observe && ws.observe.look_for && typeof ws.observe.look_for === 'object' ? ws.observe.look_for : {};
+  // what the teacher looks for: one line per result (A / PA / NA), in the app's two languages like the rest of the screen
+  const lookFor = LOOK_FOR_ROWS.filter((r) => lf[`${r.key}_hi`] || lf[`${r.key}_en`]).map((r) => ({ ...r, hi: lf[`${r.key}_hi`] || lf[`${r.key}_en`], en: lf[`${r.key}_en`] || lf[`${r.key}_hi`] }));
   return (
     <div data-testid={`worksheet-inapp-${level}`} className="card" style={{ padding: 12, marginTop: 8, border: '2px solid var(--green-light)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
@@ -41,7 +49,7 @@ export default function WorksheetInApp({ ws, level, onClose }) {
       {ws.observe && ws.observe.task_hi && (
         <div style={{ margin: '6px 0' }}>
           👀 <b><Bi hi="देखने का काम" en="Task to watch" inline />:</b> {ws.observe.task_hi}
-          {lookFor.length > 0 && <ul style={{ margin: '4px 0', paddingLeft: 20 }}>{lookFor.map(([k, v]) => <li key={k}><b>{k}</b>: {String(v)}</li>)}</ul>}
+          {lookFor.length > 0 && <ul style={{ margin: '4px 0', paddingLeft: 20 }}>{lookFor.map((r) => <li key={r.key} data-testid={`look-for-${r.key}`}><b><Bi hi={r.labelHi} en={r.labelEn} inline /></b>: <Bi hi={String(r.hi)} en={String(r.en)} inline /></li>)}</ul>}
         </div>
       )}
       {problems.length > 0 && (

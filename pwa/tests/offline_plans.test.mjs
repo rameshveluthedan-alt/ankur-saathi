@@ -81,6 +81,9 @@ check('the suggested choices first (2 x 3 lengths), then EVERY skill x 3 lengths
 check('every skill is on the phone (one could not be built at one length: counted, not kept)', meta.status === 'ready' && meta.skills.length === 30 && meta.count === 6 + 89 && meta.failed === 1, { status: meta.status, n: meta.skills.length, count: meta.count, failed: meta.failed });
 check("the status: ready (a plan can be made even without internet)", m.statusOf(meta).state === 'ready');
 check('the suggested choice is remembered for when the group panel cannot load offline', meta.defaults && meta.defaults['N2.3.2'] && meta.defaults['N2.3.2'].reteachGroups.includes('progressor'));
+check("the subject's skill list is kept (so the Plan screen can list the skills with no connection)", Array.isArray(meta.competencies) && meta.competencies.length === meta.skills.length);
+{ const lists = await m.cachedPlanLists(store, 'numeracy');
+  check('...and read back with the groups; nothing kept for a subject never downloaded', !!lists && lists.competencies.length === meta.competencies.length && JSON.stringify(lists.groups) === JSON.stringify(groups) && (await m.cachedPlanLists(store, 'r1_literacy')) === null); }
 check("the class's latest groups are kept (for the plan used offline)", JSON.stringify(meta.groups) === JSON.stringify(groups));
 calls = [];
 await run();

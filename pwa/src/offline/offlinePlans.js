@@ -119,7 +119,7 @@ export function refreshIfNeeded({ teacherId, domain, today, api, store, force = 
         const later = await Promise.resolve().then(() => api.getGroupProposal(teacherId, domain, schoolDays(today, 2)[1])).catch(() => null);
         if (suggestedSkill(later)) proposal = later;
       }
-      meta = { ...meta, groups };       // the latest groups: put into a plan when it is used offline (makeOfflinePlan)
+      meta = { ...meta, groups, competencies: (compData && compData.competencies) || meta.competencies || [] };       // the latest groups (put into a plan when it is used offline: makeOfflinePlan) and the skill list (so the Plan screen can list the skills with no connection)
       let version = meta.libraryVersion || null;
       // 1. the suggested skill's own choices (a few plans), daily or when the suggestions change
       const fp = fingerprint(proposal);
@@ -193,6 +193,20 @@ function defaultEmit(domain) {
  * What the Plan screen says about this subject: 'ready' (every skill), 'preparing' (with how far), 'partial' (an interrupted download: the skills
  * already there can be planned), or 'missing'.
  */
+/** Remember the subject's skill list on the phone (the Plan screen calls it whenever the list loads), so the screen can show it with no connection. */
+export async function rememberSkills(store, domain, competencies) {
+  if (!Array.isArray(competencies) || !competencies.length) return;
+  const meta = (await store.get('meta', domain)) || { domain, status: 'missing', count: 0 };
+  await store.set('meta', domain, { ...meta, competencies });
+}
+
+/** The skill list and the groups the phone kept for this subject (null when it never loaded them: nothing to show offline). */
+export async function cachedPlanLists(store, domain) {
+  const meta = await store.get('meta', domain);
+  if (!meta || !Array.isArray(meta.competencies) || !meta.competencies.length) return null;
+  return { competencies: meta.competencies, groups: Array.isArray(meta.groups) ? meta.groups : [] };
+}
+
 export function statusOf(meta) {
   if (!meta) return { state: 'missing', skills: [] };
   if (meta.preparing) return { state: 'preparing', done: meta.done || 0, total: meta.total || 0, skills: meta.skills || [] };

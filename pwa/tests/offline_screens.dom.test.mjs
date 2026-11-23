@@ -46,7 +46,8 @@ const prepared = {
   plan_date: today, domain_id: 'numeracy', selected_competency_id: 'N2.3.2', served_from: 'library', groups,
   plan: { session_minutes: 90, served_from: 'library', anchor: { title_hi: 'बाज़ार', narration_hi: 'कहानी' }, prep_hi: [],
           rotation_schedule: { blocks: [{ type: 'anchor', time_start: '0:00', duration_minutes: 10 }, { type: 'teach', teach_group: 'beginner', time_start: '0:10', duration_minutes: 30, talking_points: { i_do_hi: 'दिखाएँ' } }] },
-          worksheets: { beginner: { instructions_hi: 'जोड़ें।', required_count: 3, problems: [1, 2, 3, 4].map((i) => ({ number: i, problem_hi: `1${i} + 5`, answer: String(15 + i) })) } },
+          worksheets: { beginner: { instructions_hi: 'जोड़ें।', required_count: 3,
+            observe: { task_hi: 'तीन जोड़ बोलकर हल करें।', look_for: { achieved_hi: 'बिना मदद सही', achieved_en: 'Right alone', partial_hi: 'मदद से सही', partial_en: 'Right with help', not_yet_hi: 'हल नहीं कर पाता', not_yet_en: 'Cannot yet' } }, problems: [1, 2, 3, 4].map((i) => ({ number: i, problem_hi: `1${i} + 5`, answer: String(15 + i) })) } },
           explainability: { items: [] }, review_prompts: {} },
 };
 const store = await M.appStore();
@@ -57,12 +58,12 @@ await store.set('prepared', M.off.planKey({ domain: 'numeracy', minutes: 90, com
 await store.set('prepared', M.off.planKey({ domain: 'numeracy', minutes: 90, competencyId: 'N2.3.2' }), { result: { ...prepared, plan: { ...prepared.plan, anchor: { title_hi: 'सादा' } } } });
 
 let current = null; const generateCalls = []; const uploads = []; let loggedOut = 0; const calls = { channels: 0, copy: 0 }; globalThis.__navs = [];
-let online = false;
+let online = false; let listDown = false;      // listDown: the skill list and groups cannot load (a phone opened with no connection)
 const netError = () => { const e = new Error('इंटरनेट नहीं है'); e.name = 'NetworkError'; e.offline = true; return e; };
 globalThis.__auth = { logout: () => { loggedOut += 1; }, teacher: { teacher_id: 'T1' }, selectedDomain: 'numeracy', setSelectedDomain() {}, get currentPlan() { return current; }, setCurrentPlan: (p) => { current = p; }, names: {} };
 globalThis.__api = {
-  getCompetencies: async () => ({ competencies: SKILLS }),
-  getGroups: async () => ({ groups }),
+  getCompetencies: async () => { if (listDown) throw netError(); return { competencies: SKILLS }; },
+  getGroups: async () => { if (listDown) throw netError(); return { groups }; },
   getGroupProposal: async () => { if (!online) throw netError(); return { has_history: false, groups: {} }; },
   getLadder: async () => { if (!online) throw netError(); return { beginner: sk('N2.3.1'), progressor: sk('N2.3.2'), proficient: sk('N3.3.1'), options: { beginner: [], proficient: [] } }; },
   getCachedPlan: async () => { if (!online) throw netError(); const e = new Error('none'); e.status = 404; throw e; },
@@ -88,6 +89,7 @@ let n = 0; const check = (label, ok, extra = '') => { n += 1; console.log(`  ${o
 console.log('the Plan screen with no connection');
 await setOnline(false);
 await show(M.Plan);
+check('the skill list that loaded is kept on the phone (for the next time there is no connection)', ((await store.get('meta', 'numeracy')).competencies || []).length === SKILLS.length && (await store.get('meta', 'numeracy')).status === 'partial');
 check('a skill already on the phone looks as usual (no badge: every skill comes once the download completes)', item('N2.3.2').dataset.offline === 'ready' && !item('N2.3.2').style.opacity);
 check('a skill whose plan has not arrived yet is greyed', item('N1.1.1').dataset.offline === 'unavailable' && item('N1.1.1').style.opacity === '0.45');
 await click(item('N1.1.1'));
@@ -109,6 +111,18 @@ await click(generateBtn());
 if (q('[data-testid="replace-dialog"]')) await click(q('[data-testid="replace-yes"]'));
 check('a choice that was not prepared (45 minutes here): a clear message, no plan', current === before && notices.some((x) => /इस चुनाव की बिना-इंटरनेट योजना/.test(x.text || x)), JSON.stringify(notices.slice(-1)));
 
+console.log('\nthe Plan screen opened with no connection at all (the skill list and groups cannot load)');
+listDown = true;
+await show(M.Plan);
+check('the skills still list, from what the phone kept: the prepared one is marked ready, the one not yet downloaded is greyed', qa('.competency-item').length === SKILLS.length && item('N2.3.2').dataset.offline === 'ready' && item('N1.1.1').dataset.offline === 'unavailable');
+await click(item('N2.3.2'));
+check('...and the prepared skill can be chosen, with the prepared-plan line and Generate', !!generateBtn() && !generateBtn().disabled && !!q('[data-testid="generate-offline"]') && q('[data-testid="generate-offline"]').dataset.ready === 'true');
+const kept = await store.get('meta', 'numeracy'); await store.set('meta', 'numeracy', { ...kept, competencies: undefined });
+await show(M.Plan);
+check('a phone that never kept a list (an older download): an empty list, no crash', qa('.competency-item').length === 0);
+await store.set('meta', 'numeracy', kept);
+listDown = false;
+
 console.log('\nthe Teach screen with the offline plan');
 await show(M.Yojana);
 check('the plan is labelled "📴 बिना इंटरनेट के बनी योजना" (sent when there is internet), with the library note', /बिना इंटरनेट के बनी योजना/.test(q('[data-testid="offline-plan-banner"]').textContent) && !!q('[data-testid="library-banner"]'));
@@ -116,6 +130,9 @@ check('nothing is asked of the server for it (it is not there yet): no review ch
 await click(q('[data-testid="worksheet-beginner"]'));
 const sheet = q('[data-testid="worksheet-inapp-beginner"]');
 check('📝 shows the worksheet IN THE APP (its page is on the server only): instructions and every problem', sheet && /जोड़ें।/.test(sheet.textContent) && qa('[data-testid="worksheet-inapp-problems"] li').length === 4 && !globalThis.__navs.some((a) => a[0] === '/page'));
+check('the task to watch lists what to look for as ✓ / ~ / ✗ lines, not as the data field names',
+  !/achieved_|partial_|not_yet_/.test(sheet.textContent) && /हासिल/.test(q('[data-testid="look-for-achieved"]').textContent) && /बिना मदद सही/.test(q('[data-testid="look-for-achieved"]').textContent)
+  && /मदद से सही/.test(q('[data-testid="look-for-partial"]').textContent) && /हल नहीं कर पाता/.test(q('[data-testid="look-for-not_yet"]').textContent) && qa('[data-testid^="look-for-"]').length === 3);
 check('...answers hidden until asked for, then shown', !q('[data-testid="worksheet-inapp-answer"]') && await (async () => { await click(q('[data-testid="worksheet-inapp-answers"]')); return qa('[data-testid="worksheet-inapp-answer"]').length === 4; })());
 current = null;
 await show(M.Yojana);

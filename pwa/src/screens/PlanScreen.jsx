@@ -18,7 +18,7 @@ import OfflineReady from '../components/OfflineReady';
 import { prepareOffline } from '../offline/prepareNow';
 import { useOfflineMeta } from '../offline/useOfflineMeta';
 import { appStore } from '../offline/store';
-import { statusOf, findPrepared, makeOfflinePlan, saveOfflinePlan, newClientId, offlineChoice, panelEdited } from '../offline/offlinePlans';
+import { statusOf, rememberSkills, cachedPlanLists, findPrepared, makeOfflinePlan, saveOfflinePlan, newClientId, offlineChoice, panelEdited } from '../offline/offlinePlans';
 import { getSessionMinutes, setSessionMinutes } from '../services/preferences';
 import ReplacePlanDialog from '../components/ReplacePlanDialog';
 import SuggestedSkill from '../components/SuggestedSkill';
@@ -94,7 +94,15 @@ export default function PlanScreen() {
       setCompetencies(compData.competencies || []);
       setGroups(groupData.groups || []);
       setLoading(false);
-    }).catch(() => setLoading(false));
+      appStore().then((s) => rememberSkills(s, selectedDomain, compData.competencies)).catch(() => {});        // kept on the phone for the next time there is no connection
+    }).catch(async () => {
+      // no connection (or the server failed): the skill list and groups the phone kept, so the prepared plans can still be chosen
+      try {
+        const kept = await cachedPlanLists(await appStore(), selectedDomain);
+        if (kept) { setCompetencies(kept.competencies); setGroups(kept.groups); }
+      } catch { /* nothing kept: the list stays empty, as before */ }
+      setLoading(false);
+    });
   }, [selectedDomain, teacher.teacher_id]);
 
   // plans for use with no connection: prepared in the background while online (at most once a day unless the suggestions changed; offline/prepareNow.js)
