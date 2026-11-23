@@ -145,7 +145,47 @@ except SystemExit as e:
     blank = "name is needed" in str(e)
 check("signing with a blank name from the command line is refused too", blank)
 
+page = rs.render_sheet({"anchor": {"title_hi": "x"}, "_edits_before_review": [{"where": "prep_hi[0]", "was": "पुराना", "now": "नया", "why": "a contradiction"},
+                                                                         {"where": "prep_hi", "added": "छड़ियाँ", "why": "missing"}]}, "N2.2.1")
+check("the reader's page lists the corrections made before she read it, each with the old text, the new and why",
+      "Corrected before you read it" in page and "«पुराना» → «नया»" in page and "added «छड़ियाँ»" in page and "a contradiction" in page)
+
+print("\ndrafts (22 Nov): new versions wait in their own folder; only a SIGNED one replaces the plan in use")
+with tempfile.TemporaryDirectory() as tmp:
+    live, drafts = Path(tmp) / "live", Path(tmp) / "drafts"
+    live.mkdir(); drafts.mkdir()
+    old = {"anchor": {"title_hi": "पुरानी"}, "_reviewed_by": "Vaishnavi, 2026-11-15"}
+    new = {"anchor": {"title_hi": "नई"}, "_reviewed_by": None, "_recorded_warnings": []}
+    (live / "L2.5.1.json").write_text(json.dumps(old, ensure_ascii=False), encoding="utf-8")
+    (drafts / "L2.5.1.json").write_text(json.dumps(new, ensure_ascii=False), encoding="utf-8")
+    keep, rs.PLANS = rs.PLANS, live
+    try:
+        def run(*argv):
+            buf = io.StringIO()
+            try:
+                with contextlib.redirect_stdout(buf):
+                    code = rs.main(list(argv))
+            except SystemExit as e:
+                return str(e), buf.getvalue()
+            return code, buf.getvalue()
+        msg, _ = run("--dir", str(drafts), "promote", "L2.5.1")
+        check("an UNSIGNED draft is not promoted, and the reviewed plan stays", "Not promoted" in str(msg)
+              and json.loads((live / "L2.5.1.json").read_text(encoding="utf-8"))["anchor"]["title_hi"] == "पुरानी", msg)
+        code, out = run("--dir", str(drafts), "list")
+        check("list works on the drafts folder", code == 0 and "L2.5.1" in out and "not yet read" in out, out)
+        run("--dir", str(drafts), "sign", "L2.5.1", "--by", "Vaishnavi", "--date", "2026-11-25")
+        check("sign works on the draft, not on the plan in use",
+              json.loads((drafts / "L2.5.1.json").read_text(encoding="utf-8"))["_reviewed_by"] == "Vaishnavi, 2026-11-25"
+              and json.loads((live / "L2.5.1.json").read_text(encoding="utf-8"))["_reviewed_by"] == "Vaishnavi, 2026-11-15")
+        code, out = run("--dir", str(drafts), "promote", "L2.5.1")
+        now = json.loads((live / "L2.5.1.json").read_text(encoding="utf-8"))
+        check("the signed draft replaces the plan in use, with its signature", code == 0 and now["anchor"]["title_hi"] == "नई" and now["_reviewed_by"] == "Vaishnavi, 2026-11-25", out)
+        msg, _ = run("promote", "L2.5.1")
+        check("promote needs a drafts folder (it never 'promotes' the plans in use onto themselves)", "takes a draft" in str(msg), msg)
+    finally:
+        rs.PLANS = keep
+
 if failures:
     print(f"\nFAILED ({len(failures)})")
     sys.exit(1)
-print("\nOK: a plan can be read as a page with nothing left out, and signed without touching the JSON by hand")
+print("\nOK: a plan can be read as a page with nothing left out, and signed without touching the JSON by hand; a draft replaces it only once signed")

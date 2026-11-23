@@ -469,7 +469,7 @@ HINDI_STYLE_SECTION = (
     "spoken to the children, use 'हम' ('आज हम ... करेंगे'), 'देखो' or 'मेरे पास', never a gendered 'मैं' verb. Write 'शिक्षक', not 'शिक्षिका'.\n"
     "- This holds INSIDE QUOTES too: when the teacher demonstrates aloud, write 'देखिए, अब हम रंग से छाँटते हैं', never 'मैं ... छाँटूँगा', "
     "'मैं ... छाँटूँगी' or 'मैं ... छाँट रही हूँ'. (A sentence written on the board for the children to read may have 'मैं'.)\n"
-    "- Write each line once, in its final form: never correct yourself inside a script ('चुपके से... यानी शांति से'): write only 'शांति से'. "
+    "- Write each line once, in its final form: never correct yourself inside a script ('चुपके से... यानी शांति से'): write only 'शांति से'. Work out an example BEFORE you write it: never 'आम 24 और दूध 36 के बजाय ... नहीं, बल्कि आम 24 और चावल 45', only 'आम 24 और चावल 45'. "
     "Plain Hindi words, not English ones in Devanagari (not 'टंग ट्विस्टर': 'जीभ घुमाने वाला वाक्य').\n"
     "- Name Hindi marks correctly: ै is 'ऐ की मात्रा' (two strokes), े 'ए की मात्रा' (one stroke), ं 'बिंदी' (अनुस्वार), ँ 'चंद्रबिंदु', ः 'विसर्ग'. "
     "Never call ै or े a बिंदी.\n"

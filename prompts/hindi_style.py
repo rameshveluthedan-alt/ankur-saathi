@@ -413,6 +413,33 @@ def check_size_shape(plan: dict, skill_ids) -> list:
     return out
 
 
+# the model correcting itself in the text (22 Nov, the review of the recorded-plan drafts: "जैसे आम 24 और दूध 36 के बजाय सब्ज़ी 35 और केला 18
+# नहीं, बल्कि आम 24 और चावल 45"; "'हम एक संख्या बोलते हैं' के बजाय शिक्षक बोले 'सत्रह'"; in the library "28 सेमी के बजाय चौड़ाई 2 सेमी रखें").
+# 'के बजाय' (instead of) is also ordinary Hindi ("शब्द बोलने के बजाय चित्र बनाए"), so this FLAGS for a reader, like 'यानी'; it repairs nothing.
+_SELF_CORRECTION = re.compile(rf"(?<![{_D}])(?:यानी|नहीं,\s*बल्कि|के बजाय)(?![{_D}])")
+
+
+def check_self_corrections(plan: dict) -> list:
+    """Warnings for a possible self-correction left in the teacher's lines or a printed sheet: to be read, not repaired."""
+    out = []
+
+    def visit(o, path=""):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if not str(k).startswith("_"):
+                    visit(v, f"{path}.{k}")
+        elif isinstance(o, list):
+            for v in o:
+                visit(v, f"{path}[]")
+        elif isinstance(o, str) and (any(r.match(path) for r in _SPEECH_RE + _NOTES_RE + _PRINTED_RE) or path.endswith(".question_hi")):
+            m = _SELF_CORRECTION.search(o)
+            if m:
+                out.append(f"{path}: a possible self-correction («…{o[max(0, m.start() - 40):m.end() + 30]}…»): read it; write only the final form")
+
+    visit(plan)
+    return out
+
+
 def check_teacher_text(plan: dict) -> list:
     """Warnings for the plan check: a gendered first person left in the teacher's lines (outside quotes), and a Hindi mark named wrongly."""
     out = []

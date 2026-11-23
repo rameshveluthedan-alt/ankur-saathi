@@ -117,7 +117,9 @@
  "checks": {
   "ok": true,
   "fatal": [],
-  "warnings": [],
+  "warnings": [
+   "a possible self-correction ('नहीं, बल्कि') in the text"
+  ],
   "repairs": [
    "sheet: progressor: observed task, practice sheet with 5 item(s) (0 drawn by the code)"
   ]

@@ -29,7 +29,9 @@
  "checks": {
   "ok": true,
   "fatal": [],
-  "warnings": [],
+  "warnings": [
+   "a possible self-correction ('नहीं, बल्कि') in the text"
+  ],
   "repairs": []
  },
  "model": "claude-opus-5-5",

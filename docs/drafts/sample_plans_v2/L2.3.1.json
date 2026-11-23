@@ -1,0 +1,588 @@
+{
+ "anchor": {
+  "title_hi": "मात्रा का जादू",
+  "narration_hi": "बोर्ड पर 'कल' लिखें। 'देखें, एक ही शब्द में अलग-अलग मात्रा लगाएँ तो क्या होता है! कल → काल → कील → कूल → केला → कैसा।' हर शब्द पर मात्रा के नीचे रेखा खींचें और बच्चों के साथ पढ़ें। आज हम देखेंगे कि अक्षर जुड़ते भी हैं और मात्राएँ बदलने से अर्थ भी बदल जाता है।",
+  "closing_question_hi": "आज किस शब्द का अर्थ मात्रा बदलने से सबसे मज़ेदार बदला? कौन बताएगा?",
+  "opening_question_hi": "'कल' में 'ा' की मात्रा लगाने पर कौन सा नया शब्द बना? इसका अर्थ क्या है?",
+  "beginner_participation_hi": "शुरुआती समूह शिक्षक के साथ हर शब्द पढ़ें और बताएँ कि कौन सी मात्रा लगी है (ा, ी, ू, े, ै)। 'केला' और 'कैसा' में एक टिक और दो टिक का फ़र्क उँगली से हवा में बनाकर दिखाएँ।",
+  "proficient_participation_hi": "दक्ष समूह अपना एक शब्द चुनें (जैसे 'मन' या 'सब') और कम से कम 4 मात्राएँ लगाकर नए शब्द बनाएँ। हर नए शब्द को एक छोटे वाक्य में बोलकर सुनाएँ।",
+  "progressor_participation_hi": "प्रगतिशील समूह बोर्ड से एक नया शब्द 'पत्र' लें और बताएँ कि 'त्र' में दो अक्षर जुड़े हैं। फिर 'पात्र' और 'पत्रिका' जैसे शब्द मात्रा बदलकर या जोड़कर पढ़ें। 'अर्थ बदल गया!' कहकर शब्दों के अर्थ बताएँ।"
+ },
+ "prep_hi": [
+  "फ्लैश कार्ड (TLM-008): मोटे कागज़ को काटकर 12 कार्ड बनाएँ। शुरुआती समूह के लिए 6 कार्ड (मेला, मैला, मोर, मौसम, गोल, कौआ), प्रगतिशील समूह के लिए 6 कार्ड (क्षमा, पत्र, ज्ञान, श्रम, विद्या, शक्ति)। हर कार्ड पर एक शब्द बड़े अक्षरों में लिखें।",
+  "मात्रा चार्ट (TLM-004): अगर कक्षा में पहले से है तो उसे दीवार पर लगाएँ। नहीं है तो चार्ट पेपर पर ए ऐ ओ औ की मात्राएँ और हर एक के 3 उदाहरण शब्द लिखें।",
+  "दक्ष समूह के लिए बोर्ड पर लिखने हेतु 6 बहु-अक्षरांश शब्द सोचकर रखें (जैसे: विद्यालय, प्रतिदिन, कौशल्या, सैनिकों, पुस्तकालय, मेहनतकश)।",
+  "प्रगतिशील समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «मेरा घर»: मेरा घर गाँव में है। घर के पास एक पेड़ है। पेड़ पर चिड़िया बैठी है। चिड़िया गाना गाती है। मुझे चिड़िया का गाना अच्छा लगता है। सवाल: 1) घर कहाँ है? 2) पेड़ पर कौन बैठी है? 3) चिड़िया क्या करती है?",
+  "दक्ष समूह के स्वतंत्र अभ्यास के लिए बोर्ड/चार्ट पर पहले से लिखें: «किसान और बारिश»: रामू एक किसान है। वह रोज़ सुबह खेत में जाता है। इस साल बारिश बहुत कम हुई। रामू की फ़सल सूखने लगी। रामू बहुत चिंतित था। एक दिन आसमान में काले बादल आए। ज़ोर की बारिश हुई। रामू ने ख़ुशी से नाचना शुरू किया। अब उसकी फ़सल बच जाएगी। सवाल: 1) रामू क्या काम करता है? 2) बारिश कैसी हुई इस साल? 3) रामू ने नाचना क्यों शुरू किया?"
+ ],
+ "coverage": {
+  "note": "Not yet run through the real model: the plan may need more editing.",
+  "tier": "untested"
+ },
+ "cfu_stats": {
+  "beginner": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 2,
+   "skill_has_mistakes": true
+  },
+  "proficient": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 0,
+   "skill_has_mistakes": false
+  },
+  "progressor": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 2,
+   "skill_has_mistakes": true
+  }
+ },
+ "worksheets": {
+  "beginner": {
+   "observe": {
+    "task_en": "In pairs, read word cards (or board words) one by one. The reader says the word and tells whether the matra has one tick or two.",
+    "task_hi": "जोड़ी बनाकर फ्लैश कार्ड या बोर्ड के शब्द एक-एक करके पढ़ें। पढ़ने वाला बच्चा शब्द पढ़े और बताए कि मात्रा में एक टिक है या दो टिक।",
+    "look_for": {
+     "not_yet_en": "Swaps े/ै and ो/ौ when reading and cannot tell the difference",
+     "not_yet_hi": "े/ै और ो/ौ को आपस में बदलकर पढ़ता है, फ़र्क नहीं बता पाता",
+     "partial_en": "Reads some correctly but sometimes confuses े/ै or ो/ौ, or reads with help",
+     "partial_hi": "कुछ शब्द सही पढ़ता है पर े/ै या ो/ौ में कभी-कभी भ्रमित होता है, या मदद से पढ़ता है",
+     "achieved_en": "Reads े/ै and ो/ौ words correctly without help and explains the tick difference",
+     "achieved_hi": "े/ै और ो/ौ वाले शब्द बिना मदद सही पढ़ता है और टिक का फ़र्क बताता है"
+    },
+    "kit_materials_hi": [
+     "फ्लैश कार्ड (अक्षर/शब्द)",
+     "मात्रा चार्ट"
+    ],
+    "local_materials_hi": [
+     "कागज़ की पर्चियाँ जिन पर शिक्षक शब्द लिखें",
+     "बोर्ड पर लिखे शब्द"
+    ]
+   },
+   "practice": true,
+   "problems": [
+    {
+     "answer": "मेला (ए की मात्रा, एक टिक); मैला (ऐ की मात्रा, दो टिक)",
+     "number": 1,
+     "row_type": "plain",
+     "problem_hi": "पढ़ें: मेला, मैला",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M1"
+    },
+    {
+     "answer": "मोर (ओ की मात्रा); मौसम (औ की मात्रा)",
+     "number": 2,
+     "row_type": "plain",
+     "problem_hi": "पढ़ें: मोर, मौसम",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L1.3.3-M2"
+    },
+    {
+     "answer": "सैर, खेल, गोल",
+     "number": 3,
+     "row_type": "plain",
+     "problem_hi": "पढ़ें: सैर, खेल, गोल",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed",
+   "example_block": {
+    "problem_hi": "मात्रा पहचानने का उदाहरण:",
+    "example_text": "म + े = मे (एक टिक), म + ै = मै (दो टिक)"
+   },
+   "passage_block": null,
+   "required_count": 3,
+   "instructions_en": "Read the words and read them aloud to your partner. Count the ticks in the matra.",
+   "instructions_hi": "शब्द पढ़ें और जोड़ी को पढ़कर सुनाएँ। मात्रा के टिक गिनें।"
+  },
+  "proficient": {
+   "observe": {
+    "task_en": "In pairs, one child reads the long board words fluently while the other counts the hesitations. Then swap roles.",
+    "task_hi": "जोड़ी में एक बच्चा बोर्ड के लंबे शब्द धाराप्रवाह पढ़े और दूसरा रुकावटें गिने। फिर भूमिका बदलें।",
+    "look_for": {
+     "not_yet_en": "Stumbles on many words or skips matras while reading",
+     "not_yet_hi": "कई शब्दों पर अटकता है या मात्राएँ छोड़कर पढ़ता है",
+     "partial_en": "Reads most words correctly but pauses on one or two or reads in broken pieces",
+     "partial_hi": "ज़्यादातर शब्द सही पढ़ता है पर एक-दो पर रुकता है या टुकड़े करके पढ़ता है",
+     "achieved_en": "Reads long mixed-matra words without pausing, with correct matras",
+     "achieved_hi": "लंबे मिश्रित मात्रा वाले शब्द बिना रुके, सही मात्राओं के साथ पढ़ता है"
+    },
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "बोर्ड पर लिखे शब्द",
+     "कागज़ की पर्चियाँ जिन पर शिक्षक शब्द लिखें"
+    ]
+   },
+   "practice": true,
+   "problems": [
+    {
+     "answer": "विद्यार्थी, पुस्तकालय",
+     "number": 1,
+     "row_type": "plain",
+     "problem_hi": "पढ़ें: विद्यार्थी, पुस्तकालय",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "सैनिकों, कौशल्या",
+     "number": 2,
+     "row_type": "plain",
+     "problem_hi": "पढ़ें: सैनिकों, कौशल्या",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "answer": "प्रतिदिन, मौलिकता, अध्यापिका",
+     "number": 3,
+     "row_type": "plain",
+     "problem_hi": "पढ़ें: प्रतिदिन, मौलिकता, अध्यापिका",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed",
+   "example_block": {
+    "problem_hi": "अक्षरांश तोड़ने का उदाहरण:",
+    "example_text": "विद्यालय = वि + द्या + ल + य"
+   },
+   "passage_block": null,
+   "required_count": 3,
+   "instructions_en": "Read the words. First break them into parts, then read the whole word clearly and fluently.",
+   "instructions_hi": "शब्द पढ़ें। पहले टुकड़े करें, फिर पूरा शब्द साफ़ और धाराप्रवाह पढ़ें।"
+  },
+  "progressor": {
+   "observe": {
+    "task_en": "In pairs, one child reads the word and the other listens and says whether the conjunct was read joined or broken apart. Then swap roles.",
+    "task_hi": "जोड़ी में एक बच्चा शब्द पढ़े और दूसरा सुनकर बताए कि संयुक्त अक्षर जुड़कर पढ़ा गया या टूटकर। फिर भूमिका बदलें।",
+    "look_for": {
+     "not_yet_en": "Breaks conjuncts into parts or inserts an extra अ sound in between",
+     "not_yet_hi": "संयुक्त अक्षर को तोड़कर पढ़ता है या बीच में अ जोड़ देता है",
+     "partial_en": "Reads familiar conjuncts (क्ष, त्र) but hesitates or needs help on less familiar ones (द्य, श्र)",
+     "partial_hi": "क्ष, त्र जैसे परिचित संयुक्त अक्षर पढ़ लेता है पर कम परिचित (जैसे द्य, श्र) पर अटकता है या मदद लेता है",
+     "achieved_en": "Reads क्ष, त्र, ज्ञ, श्र words joined, without hesitation",
+     "achieved_hi": "क्ष, त्र, ज्ञ, श्र वाले शब्द जोड़कर, बिना अटके पढ़ता है"
+    },
+    "kit_materials_hi": [
+     "फ्लैश कार्ड (अक्षर/शब्द)"
+    ],
+    "local_materials_hi": [
+     "कागज़ की पर्चियाँ जिन पर शिक्षक शब्द लिखें",
+     "बोर्ड पर लिखे शब्द"
+    ]
+   },
+   "practice": true,
+   "problems": [
+    {
+     "answer": "पत्र, मित्र (त्र जुड़ा हुआ)",
+     "number": 1,
+     "row_type": "plain",
+     "problem_hi": "पढ़ें: पत्र, मित्र",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.3.1-M1"
+    },
+    {
+     "answer": "विद्-या, विद्-या-ल-य (द्य जुड़ा हुआ, बीच में अ नहीं)",
+     "number": 2,
+     "row_type": "plain",
+     "problem_hi": "पढ़ें: विद्या, विद्यालय",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": "L2.3.1-M2"
+    },
+    {
+     "answer": "क्षमा, ज्ञान, श्रम",
+     "number": 3,
+     "row_type": "plain",
+     "problem_hi": "पढ़ें: क्षमा, ज्ञान, श्रम",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed",
+   "example_block": {
+    "problem_hi": "संयुक्त अक्षर का उदाहरण:",
+    "example_text": "त् + र = त्र, इसलिए प + त्र = पत्र"
+   },
+   "passage_block": null,
+   "required_count": 3,
+   "instructions_en": "Read the words and read them aloud to your partner. Read each conjunct as one joined sound.",
+   "instructions_hi": "शब्द पढ़ें और जोड़ी को पढ़कर सुनाएँ। संयुक्त अक्षर को जोड़कर पढ़ें।"
+  }
+ },
+ "group_skills": {
+  "beginner": "L1.3.3",
+  "proficient": "L2.4.1",
+  "progressor": "L2.3.1"
+ },
+ "explainability": {
+  "items": [
+   {
+    "body_en": "Beginners need the े ै ो ौ matras first (the prerequisite). Progressors work on today's goal, conjuncts, with support. Proficients are already comfortable with conjuncts, so they extend to multi-syllable fluency.",
+    "body_hi": "शुरुआती समूह को पहले े ै ो ौ की मात्राएँ चाहिए, इसलिए वे पूर्वापेक्षा पर काम करते हैं। प्रगतिशील समूह आज के लक्ष्य (संयुक्त अक्षर) पर सहारे के साथ काम करता है। दक्ष समूह आज के लक्ष्य में सहज है, इसलिए वह आगे बढ़कर बहु-अक्षरांश शब्द पढ़ता है।",
+    "title_en": "Why these three groups",
+    "title_hi": "तीन समूह क्यों"
+   },
+   {
+    "body_en": "Beginners go first with the longest slot (30 min) because they need the most support while the teacher is freshest. Progressors go second so today's new skill gets proper teaching. Proficients go last because they can work independently on conjuncts they already know.",
+    "body_hi": "शुरुआती समूह को सबसे पहले और सबसे लंबा समय (30 मिनट) मिलता है क्योंकि उन्हें सबसे ज़्यादा सहारा चाहिए और शिक्षक का ध्यान सबसे ताज़ा रहता है। प्रगतिशील समूह दूसरे स्थान पर आता है ताकि आज का नया लक्ष्य अच्छी तरह सिखाया जा सके। दक्ष समूह अंत में आता है क्योंकि वह पहले से सीखे हुए संयुक्त अक्षरों पर स्वतंत्र काम कर सकता है।",
+    "title_en": "Why this rotation order",
+    "title_hi": "घुमाव का क्रम"
+   },
+   {
+    "body_en": "Watch Beginners for े/ै (one vs two ticks) and ो/ौ confusion. Watch Progressors for breaking conjuncts apart (प्र read as प-र) and inserting an extra अ (विद्या read as विदया).",
+    "body_hi": "शुरुआती समूह में े और ै (एक या दो टिक) और ो और ौ में भ्रम देखें। प्रगतिशील समूह में संयुक्त अक्षर को तोड़कर पढ़ना (जैसे प्र को प-र) और बीच में अ जोड़ना (जैसे विद्या को विदया) देखें।",
+    "title_en": "Mistakes to watch",
+    "title_hi": "इन गलतियों पर नज़र रखें"
+   },
+   {
+    "body_en": "Today's anchor 'Matra ka Jaadu' is a related (not exact) match: it was written for matras, not conjuncts, so the Progressor and Proficient tasks were rewritten for today's skill. There is no printer, so all practice is on the board and in notebooks, and A/PA/NA is marked by observation.",
+    "body_hi": "आज की मुख्य गतिविधि 'मात्रा का जादू' एक संबंधित (पूरी तरह मेल खाती नहीं) गतिविधि है, क्योंकि यह मात्राओं के लिए बनी है, संयुक्त अक्षरों के लिए नहीं। इसलिए प्रगतिशील और दक्ष समूह के काम को आज के लक्ष्य के अनुसार बदला गया है। प्रिंटर नहीं है, इसलिए सारा अभ्यास बोर्ड और कॉपी पर होगा, और बच्चों को काम करते देखकर A/PA/NA लिखा जाएगा।",
+    "title_en": "Assumption for today's plan",
+    "title_hi": "आज की योजना की मान्यता"
+   },
+   {
+    "id": "resources",
+    "body_en": "**Anchor activity (whole class):** 'Matra Magic' was written for a related skill, not this one; it was adapted to today's skill.\n**For each group:**\n• **Beginners** ('Reads remaining matra combinations (consonant + े ै ो ौ ं ँ)'): practice on a worksheet at their own level.\n• **Progressors** ('Reads words with conjunct consonants (संयुक्त अक्षर: क्ष, त्र, ज्ञ, श्र, etc.)'): the steps of 'Conjunct Consonant Explicit Teaching' form the basis for I Do and We Do, followed by You Do (worksheet practice) to build conceptual clarity and prevent errors.\n• **Proficients** ('Reads multi-syllable words with mixed matras fluently'): written practice on the board and the worksheet.\n**Materials (to prepare):** Matra chart, Flash cards (letters/words).\n**Weekly plan:** the app uses a representative weekly plan for now, not the state's official one.\n(Codes: ANC-L-003 · INT-LIT-004 · TLM-004 · TLM-008)",
+    "body_hi": "**एंकर गतिविधि (पूरी कक्षा के लिए):** «मात्रा का जादू» किसी जुड़े हुए कौशल के लिए लिखी गई थी, इसी कौशल के लिए नहीं; इसे आज के कौशल के हिसाब से ढाला गया।\n**हर समूह के लिए:**\n• **शुरुआती** («शेष मात्रा संयोजन पढ़ता है (व्यंजन + े ै ो ौ ं ँ)»): अपने स्तर की वर्कशीट पर अभ्यास।\n• **प्रगतिशील** («संयुक्त अक्षर वाले शब्द पढ़ता है (क्ष, त्र, ज्ञ, श्र आदि)»): «संयुक्त अक्षर स्पष्ट शिक्षण» के चरण I Do और We Do का आधार हैं; इसके बाद You Do में वर्कशीट पर स्वतंत्र अभ्यास होता है, ताकि अवधारणा स्पष्ट हो और गलतियाँ रुकें।\n• **दक्ष** («मिश्रित मात्राओं वाले बहु-अक्षरांश शब्द धाराप्रवाह पढ़ता है»): बोर्ड पर और वर्कशीट पर लिखित अभ्यास।\n**सामग्री (तैयारी):** मात्रा चार्ट, फ्लैश कार्ड (अक्षर/शब्द)।\n**साप्ताहिक योजना:** ऐप में अभी एक नमूना साप्ताहिक योजना है, राज्य की आधिकारिक योजना नहीं।\n(कोड: ANC-L-003 · INT-LIT-004 · TLM-004 · TLM-008)",
+    "title_en": "Teaching and Learning Resources",
+    "title_hi": "शिक्षण और सीखने की सामग्री"
+   }
+  ]
+ },
+ "review_prompts": {
+  "photo_sample_rolls": {
+   "beginner": [],
+   "proficient": [],
+   "progressor": []
+  },
+  "photo_sample_method": "systematic sampling, the start moves each day",
+  "observation_reminders_hi": [
+   "शुरुआती समूह: स्वतंत्र अभ्यास (तुम करो) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें।",
+   "प्रगतिशील समूह: स्वतंत्र अभ्यास (तुम करो) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें।",
+   "दक्ष समूह: स्वतंत्र अभ्यास (तुम करो) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें।"
+  ]
+ },
+ "session_minutes": 90,
+ "rotation_schedule": {
+  "blocks": [
+   {
+    "type": "anchor",
+    "script_hi": null,
+    "time_start": "0:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 10
+   },
+   {
+    "type": "setup",
+    "script_hi": "'अब हम तीन समूहों में काम करेंगे। शुरुआती समूह मेरे पास आएँ। प्रगतिशील समूह अपनी जगह पर कल सीखी हुई मात्राओं वाले शब्द कॉपी में लिखें। दक्ष समूह अपनी जगह पर संयुक्त अक्षर वाले शब्द कॉपी में लिखें और जोड़ी में एक-दूसरे को पढ़कर सुनाएँ। काम शांति से करें।'",
+    "time_start": "0:10",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "choose",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "Reads words with े/ै interchangeably; specifically: reads मेला as मैला or vice versa",
+        "wrong_answer_hi": "दो उँगली (मैला पढ़ना)",
+        "misconception_id": "L1.3.3-M1",
+        "misconception_name_en": "Confuses े (e) and ै (ai) matras",
+        "misconception_name_hi": "े (ए) और ै (ऐ) मात्रा में भ्रम"
+       }
+      ],
+      "expected_hi": "एक उँगली (एक टिक, ए की मात्रा)",
+      "question_hi": "बोर्ड पर 'मेला' लिखा है। इसमें ए की मात्रा (एक टिक) है या ऐ की मात्रा (दो टिक)? एक उँगली या दो उँगली दिखाएँ।"
+     },
+     {
+      "kind": "choose",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "Reads words with ो/ौ interchangeably; reads गोल as गौल or vice versa",
+        "wrong_answer_hi": "1 (ो, यानी 'मोसम' पढ़ना)",
+        "misconception_id": "L1.3.3-M2",
+        "misconception_name_en": "Confuses ो (o) and ौ (au) matras",
+        "misconception_name_hi": "ो (ओ) और ौ (औ) मात्रा में भ्रम"
+       }
+      ],
+      "expected_hi": "2 (ौ)",
+      "question_hi": "बोर्ड पर 'मौसम' लिखा है। इसकी पहली मात्रा 1) ो है या 2) ौ? उँगली से 1 या 2 दिखाएँ।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 7
+     },
+     {
+      "key": "we_do",
+      "min": 8
+     },
+     {
+      "key": "show_me",
+      "min": 4
+     },
+     {
+      "key": "you_do",
+      "min": 9
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:12",
+    "teach_group": "beginner",
+    "cfu_grounded": true,
+    "talking_points": {
+     "i_do_hi": "कल की बात एक वाक्य में याद दिलाएँ: 'कल हमने ा ि ी ु ू की मात्राएँ पढ़ीं।' फिर बोर्ड पर 'मेला' और 'मैला' लिखें। 'देखिए, े में ऊपर एक टिक है, यह 'ए' की मात्रा है, इसलिए मेला। ै में ऊपर दो टिक हैं, यह 'ऐ' की मात्रा है, इसलिए मैला।' हर शब्द दो बार बोलें और उँगली से हवा में एक टिक व दो टिक बनाकर दिखाएँ। फिर 'मोर' और 'मौर' इसी तरह दिखाएँ: ो में एक निशान, ौ में एक निशान और ऊपर अतिरिक्त टिक। फ्लैश कार्ड (TLM-008) पर यही शब्द दिखाएँ।",
+     "we_do_hi": "फ्लैश कार्ड एक-एक करके उठाएँ: मेला, मैला, मोर, मौसम, गोल, कौआ, सैर, खेल। बच्चे पहले उँगली से टिक गिनें (एक या दो), फिर शब्द पढ़ें। गलती होने पर कार्ड को मात्रा चार्ट (TLM-004) के पास ले जाएँ और वही मात्रा चार्ट में दिखाएँ। फिर 3-3 बच्चों की जोड़ी में कार्ड एक-दूसरे को पढ़ाएँ।",
+     "you_do_hi": "हर जोड़ी को 4 फ्लैश कार्ड (TLM-008) दें। न हों तो बोर्ड पर 4 शब्द लिखें: मेला, मौसम, गैस, शोर। एक बच्चा शब्द पढ़े और दूसरा बताए कि कितने टिक हैं, फिर बदल लें। शिक्षक घूमकर देखें कि े/ै और ो/ौ में फ़र्क किसे समझ आ रहा है। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+    },
+    "other_groups_hi": "प्रगतिशील समूह: कल सीखी मात्राओं वाले शब्द (जैसे मेला, मैला, मोर, कौआ, गोल, सैर) कॉपी में 5 बार लिखें और जोड़ी में पढ़ें। दक्ष समूह: संयुक्त अक्षर वाले शब्द (जैसे क्षमा, पत्र, ज्ञान, श्रम, विद्या) कॉपी में लिखकर जोड़ी को पढ़कर सुनाएँ। जल्दी ख़त्म करने वाले उन्हीं शब्दों के नए शब्द सोचें या साथी की कॉपी जाँचें।",
+    "duration_minutes": 30
+   },
+   {
+    "type": "transition",
+    "script_hi": "'शुरुआती समूह अपना काम रोक दें और अपनी जगह जाएँ। प्रगतिशील समूह अपनी कॉपी बंद करें और मेरे पास आएँ। दक्ष समूह अपना काम जारी रखें।'",
+    "time_start": "0:42",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "answer",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "Breaks down conjuncts into component letters consistently; reads विद्यालय as \"vi-da-ya-la-ya\" instead of \"vidyalay\"",
+        "wrong_answer_hi": "तीन (प-त-र अलग-अलग पढ़ना)",
+        "misconception_id": "L2.3.1-M1",
+        "misconception_name_en": "Reads conjunct consonants as separate letters",
+        "misconception_name_hi": "संयुक्त अक्षरों को अलग-अलग पढ़ता है"
+       }
+      ],
+      "expected_hi": "दो (प और त्र)",
+      "question_hi": "बोर्ड पर 'पत्र' लिखा है। इसमें 'त्र' को एक ध्वनि की तरह पढ़ें। इसमें कितनी ध्वनियाँ हैं? उँगलियों से दिखाएँ।"
+     },
+     {
+      "kind": "choose",
+      "grounded": true,
+      "shows_hi": "",
+      "listen_for": [
+       {
+        "detect_en": "Reads विद्या as \"vidayaa\" instead of \"vidyaa\" — inserts schwa between द and य",
+        "wrong_answer_hi": "2 (विदया, बीच में अ जोड़ना)",
+        "misconception_id": "L2.3.1-M2",
+        "misconception_name_en": "Adds schwa (inherent अ) where conjunct should suppress it",
+        "misconception_name_hi": "संयुक्त अक्षर में जहाँ ध्वनि लुप्त होनी चाहिए वहाँ अ जोड़ता है"
+       }
+      ],
+      "expected_hi": "1 (विद्-या)",
+      "question_hi": "बोर्ड पर 'विद्या' लिखा है। इसे 1) 'विद्-या' पढ़ें या 2) 'विदया'? उँगली से 1 या 2 दिखाएँ।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 5
+     },
+     {
+      "key": "we_do",
+      "min": 6
+     },
+     {
+      "key": "show_me",
+      "min": 3
+     },
+     {
+      "key": "you_do",
+      "min": 6
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:44",
+    "teach_group": "progressor",
+    "cfu_grounded": true,
+    "talking_points": {
+     "i_do_hi": "कल की बात याद दिलाएँ: 'कल हमने े ै ो ौ की मात्राएँ पढ़ीं।' फिर बोर्ड पर 'विद्यालय' लिखें और 'द्य' पर गोला बनाएँ। 'देखिए, यह द और य अलग-अलग नहीं हैं। जब दो व्यंजन जुड़ते हैं तो पहले की अ ध्वनि चली जाती है। द + य = द्य, एक ही ध्वनि।' फ्लैश कार्ड (TLM-008) से 5 संयुक्त अक्षर दिखाएँ: क्ष, त्र, ज्ञ, श्र, द्य। हर एक को दो बार पढ़कर सुनाएँ।",
+     "we_do_hi": "10 शब्द एक-एक करके बोर्ड पर लिखें: क्षमा, पत्र, ज्ञान, श्रम, शक्ति, विद्या, मित्र, यज्ञ, श्रवण, क्षेत्र। बच्चे बारी-बारी से पढ़ें। अगर कोई तोड़कर पढ़े तो दूसरा व्यंजन हाथ से ढकें, पहला बिना अ पढ़ें, फिर खोलें: 'देखें, ये मिलकर एक ध्वनि बनते हैं।' पूरा समूह फिर साथ में पढ़ें।",
+     "you_do_hi": "हर जोड़ी को फ्लैश कार्ड (TLM-008) दें। न हों तो बोर्ड पर 6 शब्द लिखें: पत्र, क्षमा, ज्ञान, श्रम, शक्ति, विद्या। जोड़ी में एक बच्चा पढ़े, दूसरा सुने और बताए कि संयुक्त अक्षर जुड़कर पढ़ा गया या टूटकर, फिर बदल लें। बाकी शब्द अगले समय में अपनी जगह पर पूरे करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+    },
+    "other_groups_hi": "शुरुआती समूह: ा ि ी ु ू की मात्रा वाले शब्द (जैसे काला, दीदी, पीला, कुआँ, सूरज) कॉपी में लिखें और जोड़ी में पढ़ें। दक्ष समूह: संयुक्त अक्षर वाले शब्द (जैसे क्षमा, पत्र, ज्ञान, श्रम, शक्ति) जोड़ी में एक-दूसरे को पढ़ाएँ। जल्दी ख़त्म करने वाले साथी का काम जाँचें।",
+    "duration_minutes": 22
+   },
+   {
+    "type": "transition",
+    "script_hi": "'प्रगतिशील समूह अपनी जगह जाएँ। दक्ष समूह अपना काम रोक दें और मेरे पास आएँ। शुरुआती समूह अपना काम जारी रखें।'",
+    "time_start": "1:06",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा जोड़ी में अक्षरांश गिन पाता है, यानी मात्राओं और संयुक्ताक्षर को जोड़कर सही टुकड़े बनाता है।",
+      "listen_for": [],
+      "expected_hi": "चार (वि-द्या-ल-य)",
+      "question_hi": "बोर्ड पर 'विद्यालय' लिखा है। इसके कितने अक्षरांश हैं? उँगलियों से दिखाएँ।"
+     },
+     {
+      "kind": "choose",
+      "grounded": false,
+      "shows_hi": "बच्चा मिश्रित मात्राओं को तेज़ी से पहचान पाता है, यानी धाराप्रवाह पढ़ने की नींव मज़बूत है।",
+      "listen_for": [],
+      "expected_hi": "2 (ऐ की मात्रा)",
+      "question_hi": "बोर्ड पर 'सैनिक' लिखा है। इसके पहले अक्षरांश में 1) ए की मात्रा है या 2) ऐ की मात्रा? उँगली से 1 या 2 दिखाएँ।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 5
+     },
+     {
+      "key": "we_do",
+      "min": 6
+     },
+     {
+      "key": "show_me",
+      "min": 3
+     },
+     {
+      "key": "you_do",
+      "min": 6
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "1:08",
+    "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+    "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+    "teach_group": "proficient",
+    "cfu_grounded": false,
+    "talking_points": {
+     "i_do_hi": "कल की बात एक वाक्य में याद दिलाएँ: 'कल हमने संयुक्त अक्षर पढ़े थे।' फिर बोर्ड पर 'विद्यालय' लिखें और शब्द को अक्षरांशों में तोड़ें: वि-द्या-ल-य। 'देखिए, पहले अक्षरांश ढूँढते हैं, फिर हर टुकड़ा बोलते हैं, फिर पूरा शब्द एक साँस में पढ़ते हैं।' फिर 'प्रतिदिन', 'सैनिकों' और 'कौशल' इसी तरह तोड़कर और जोड़कर दिखाएँ। हर शब्द पर मात्राओं के नीचे रेखा खींचें।",
+     "we_do_hi": "बोर्ड पर 4 शब्द लिखें: पुस्तकालय, मौसमी, प्रश्नोत्तर, अध्यापिका। बच्चे बारी-बारी से टुकड़े करके पढ़ें, फिर पूरा शब्द एक बार में। शिक्षक सुनें कि कहाँ रुकावट आई। दो बच्चे पूरा शब्द धाराप्रवाह पढ़कर सुनाएँ और समूह बताए कि कहाँ अटके थे।",
+     "you_do_hi": "हर जोड़ी बोर्ड पर लिखे 6 शब्द पढ़े: विद्यार्थी, सैनिकों, कौशल्या, प्रतीक्षा, मौलिकता, पुस्तकालय। एक बच्चा तेज़ और साफ़ पढ़े, दूसरा रुकावट गिने, फिर बदल लें। जो जल्दी ख़त्म करें वे हर शब्द का एक वाक्य कॉपी में लिखें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+    },
+    "other_groups_hi": "शुरुआती समूह: े ै ो ौ वाले शब्द (जैसे मेला, मैला, मोर, मौसम) जोड़ी में पढ़ें और कॉपी में लिखें। प्रगतिशील समूह: संयुक्त अक्षर वाले शब्द (जैसे क्षमा, पत्र, ज्ञान, श्रम) अब कॉपी में लिखकर एक-एक वाक्य बनाएँ और जोड़ी को पढ़ाएँ। जल्दी ख़त्म करने वाले साथी का काम जाँचें।",
+    "duration_minutes": 22
+   }
+  ],
+  "total_minutes": 90
+ },
+ "group_skills_source": {
+  "beginner": "derived",
+  "proficient": "derived",
+  "progressor": "selected"
+ },
+ "classroom_management": {
+  "independent_activities_hi": {
+   "beginner": "ा ि ी ु ू की मात्रा वाले शब्द (जैसे काला, दीदी, पीला, कुआँ, सूरज) कॉपी में 5-5 बार लिखें और जोड़ी में पढ़ें। जल्दी ख़त्म करने वाले साथी की कॉपी जाँचें या उन्हीं मात्राओं के नए शब्द सोचें। यह काम प्रगतिशील और दक्ष समूह के शिक्षण-समय में चलता है।",
+   "proficient": "संयुक्त अक्षर वाले शब्द (जैसे क्षमा, पत्र, ज्ञान, श्रम, शक्ति) कॉपी में लिखें और जोड़ी में एक-दूसरे को पढ़कर सुनाएँ। जल्दी ख़त्म करने वाले हर शब्द का एक छोटा वाक्य बनाएँ या साथी की कॉपी जाँचें।",
+   "progressor": "े ै ो ौ की मात्रा वाले शब्द (जैसे मेला, मैला, मोर, कौआ, गोल, सैर) कॉपी में 5 बार लिखें और जोड़ी में पढ़ें। जल्दी ख़त्म करने वाले उन्हीं मात्राओं के नए शब्द सोचें या साथी की कॉपी जाँचें।"
+  }
+ },
+ "independent_passages": {
+  "proficient": {
+   "id": "RP-004",
+   "text": "रामू एक किसान है। वह रोज़ सुबह खेत में जाता है। इस साल बारिश बहुत कम हुई। रामू की फ़सल सूखने लगी। रामू बहुत चिंतित था। एक दिन आसमान में काले बादल आए। ज़ोर की बारिश हुई। रामू ने ख़ुशी से नाचना शुरू किया। अब उसकी फ़सल बच जाएगी।",
+   "title": "किसान और बारिश",
+   "questions": [
+    {
+     "type": "literal",
+     "answer_hi": "किसानी / खेती",
+     "question_hi": "रामू क्या काम करता है?"
+    },
+    {
+     "type": "literal",
+     "answer_hi": "बहुत कम",
+     "question_hi": "बारिश कैसी हुई इस साल?"
+    },
+    {
+     "type": "inferential",
+     "answer_hi": "क्योंकि बारिश हुई और अब फ़सल बच जाएगी",
+     "question_hi": "रामू ने नाचना क्यों शुरू किया?"
+    }
+   ]
+  },
+  "progressor": {
+   "id": "RP-001",
+   "text": "मेरा घर गाँव में है। घर के पास एक पेड़ है। पेड़ पर चिड़िया बैठी है। चिड़िया गाना गाती है। मुझे चिड़िया का गाना अच्छा लगता है।",
+   "title": "मेरा घर",
+   "questions": [
+    {
+     "type": "literal",
+     "answer_hi": "गाँव में",
+     "question_hi": "घर कहाँ है?"
+    },
+    {
+     "type": "literal",
+     "answer_hi": "चिड़िया",
+     "question_hi": "पेड़ पर कौन बैठी है?"
+    },
+    {
+     "type": "literal",
+     "answer_hi": "गाना गाती है",
+     "question_hi": "चिड़िया क्या करती है?"
+    }
+   ]
+  }
+ },
+ "_recorded_warnings": [
+  "the independent-practice passage «मेरा घर» for progressor is not mentioned in what the other groups do",
+  "the independent-practice passage «किसान और बारिश» for proficient is not mentioned in what the other groups do"
+ ],
+ "_reviewed_by": null,
+ "_edits_before_review": [
+  {
+   "where": "rotation_schedule.blocks[6].talking_points.you_do_hi",
+   "was": "प्रतिक्षा",
+   "now": "प्रतीक्षा",
+   "why": "spelling"
+  }
+ ]
+}

@@ -35,14 +35,14 @@ sys.path[:0] = [str(ROOT / "backend"), str(ROOT / "prompts"), str(ROOT / "script
 
 PILOT = ["N0.1.1", "N2.2.1", "N2.3.2", "L2.3.1", "L2.5.1", "L2.7.2", "N2.3.1", "N3.3.1", "L1.7.3", "L3.5.1"]
 KINDS = ("teach", "reteach", "independent", "setting", "tasks", "tasks_extra")
-# USD per million tokens: (input, output, cache read, cache write). The claude-api reference, Nov 2026; cache write assumed 1.25x input.
-PRICES = {"claude-opus-5-5": (4.0, 20.0, 0.20, 5.0), "claude-sonnet-5-5": (2.0, 10.0, 0.10, 2.5), "claude-haiku-5-5": (0.10, 0.50, 0.01, 0.125)}
+# USD per million tokens: the app's one table (backend/app/services/model_prices.py), the same the meter uses
+from app.services.model_prices import PRICES, prices_for
 MAX_TOKENS = {"claude-opus-5-5": 20000}
 BATCH_DISCOUNT = 0.5
 
 
 def cost_of(model: str, usage) -> float:
-    p_in, p_out, p_cr, p_cw = PRICES.get(model, PRICES["claude-sonnet-5-5"])
+    p_in, p_out, p_cr, p_cw = prices_for(model)
     g = (lambda k: (usage.get(k) if isinstance(usage, dict) else getattr(usage, k, 0)) or 0)
     return (g("input_tokens") * p_in + g("output_tokens") * p_out + g("cache_read_input_tokens") * p_cr + g("cache_creation_input_tokens") * p_cw) / 1e6
 

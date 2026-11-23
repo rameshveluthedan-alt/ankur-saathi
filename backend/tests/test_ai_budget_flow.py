@@ -67,6 +67,7 @@ def reset_settings(**over):
     for k, v in KEEP.items():
         setattr(S, k, v)
     S.ai_price_input_per_mtok, S.ai_price_output_per_mtok = 2.0, 10.0
+    S.ai_model_prices = ""
     for k, v in over.items():
         setattr(S, k, v)
     b.NOW_OVERRIDE = None
@@ -106,8 +107,10 @@ async def main():
         check("a plan is served from the AI and one call is made", r1["served_from"] == "ai" and calls["plan"] == 1)
         check("its tokens are recorded (6,000 in, 9,000 out)", [(r["kind"], r["input_tokens"], r["output_tokens"]) for r in rows][:1] == [("plan", 6000, 9000)], rows)
         check("the cost follows from the tokens and the current prices ($0.102)", abs(await spent(A) - 0.102) < 0.001, await spent(A))
-        S.ai_price_output_per_mtok = 20.0
-        check("correcting a price re-prices everything already recorded", abs(await spent(A) - (0.012 + 0.18)) < 0.001)
+        # a model in the price table (backend/app/services/model_prices.py) is corrected with AI_MODEL_PRICES; AI_PRICE_* is the fallback (22 Nov)
+        S.ai_model_prices = json.dumps({S.claude_model: [2.0, 20.0, 0.10, 2.5]})
+        check("correcting a price re-prices everything already recorded", abs(await spent(A) - (0.012 + 0.18)) < 0.001, await spent(A))
+        S.ai_model_prices = ""
         reset_settings()
 
         print("2. a teacher's daily cap, and the recorded-plan fallback")

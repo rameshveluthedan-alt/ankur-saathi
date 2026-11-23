@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import PlanScreen from './screens/PlanScreen';
 import YojanaScreen from './screens/YojanaScreen';
@@ -14,13 +14,14 @@ import LoginScreen from './screens/LoginScreen';
 import OfflineBanner from './components/OfflineBanner';
 import Notices from './components/Notices';
 import LangSwitch, { useLang } from './components/LangSwitch';
-import { probe } from './services/network';
+import { probe, subscribe, isOnline } from './services/network';
 import { TAB_RESELECT_EVENT, tabTap, TABS, activeTab } from './services/tabs';
 import RegisterScreen from './screens/RegisterScreen';
 import AccountScreen from './screens/AccountScreen';
 import ChangePinScreen from './screens/ChangePinScreen';
 import ConsentGate from './screens/ConsentGate';
-import { getNames, getToken, setToken } from './services/api';
+import { getNames, getToken, setToken, getCachedPlan } from './services/api';
+import { prepareOffline, sendOffline, clearOfflineOutbox, SENT_EVENT } from './offline/prepareNow';
 import Bi from './components/Bi';
 
 export const AuthContext = createContext(null);
@@ -101,8 +102,30 @@ export default function App() {
   const [names, setNames] = useState({});        // {class number: name}: the teacher's own screens only, never sent to the AI
   const refreshNames = () => { if (teacher && teacher.teacher_id && getToken()) getNames(teacher.teacher_id).then(setNames).catch(() => setNames({})); };
   useEffect(() => { if (teacher && teacher.teacher_id && getToken()) refreshNames(); else setNames({}); }, [teacher && teacher.teacher_id]);
+  // at sign-in (and on opening, signed in): the plans for use with no connection, in the background (offline/prepareNow.js). Not before the new password or the consent.
+  const ready = !!(teacher && teacher.teacher_id && !teacher.must_change_pin && !teacher.consent_needed);
+  useEffect(() => { if (ready && getToken()) prepareOffline(teacher.teacher_id); }, [ready, teacher && teacher.teacher_id]);
+  // plans made with no connection are sent at opening, at sign-in, and whenever the connection comes back (offline/prepareNow.js sendOffline)
+  useEffect(() => {
+    if (!ready || !getToken()) return undefined;
+    const id = teacher.teacher_id;
+    sendOffline(id);
+    return subscribe(() => { if (isOnline()) sendOffline(id); });
+  }, [ready, teacher && teacher.teacher_id]);
+  // once sent, the screen holding that plan shows the STORED one (the server's copy, with which the review works)
+  const planRef = useRef(currentPlan);
+  useEffect(() => { planRef.current = currentPlan; }, [currentPlan]);
+  useEffect(() => {
+    const onSent = (e) => {
+      const cur = planRef.current;
+      const mine = cur && cur.offline && (e.detail || []).find((r) => r.status !== 'waiting' && r.status !== 'refused' && r.plan.offline && r.plan.offline.client_id === cur.offline.client_id);
+      if (mine && teacher) getCachedPlan(teacher.teacher_id, cur.plan_date, cur.domain_id).then(setCurrentPlan).catch(() => {});
+    };
+    window.addEventListener(SENT_EVENT, onSent);
+    return () => window.removeEventListener(SENT_EVENT, onSent);
+  }, [teacher && teacher.teacher_id]);
 
-  const logout = () => { setToken(null); setTeacher(null); setCurrentPlan(null); setNames({}); };
+  const logout = () => { clearOfflineOutbox(); setToken(null); setTeacher(null); setCurrentPlan(null); setNames({}); };       // the Profile screen asked first if a plan made offline was not yet sent
   useEffect(() => {      // the session ended (expired, or the password was changed elsewhere), or a reset by the school leader made a new password necessary
     const ended = () => { setToken(null); setTeacher(null); };
     const mustChange = () => setTeacher(t => (t ? { ...t, must_change_pin: true } : t));

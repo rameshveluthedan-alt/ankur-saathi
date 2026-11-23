@@ -183,8 +183,9 @@ def check_teach_piece(piece: dict, skill: dict, mistakes: list, length: str, pla
     warnings += shape
     warnings += writing_sheets.check_writing_sheets(mini, gsk, domain)
     text = json.dumps(mini, ensure_ascii=False)
-    if "यानी" in text:
-        warnings.append("a possible self-correction ('यानी') in the text")
+    m = hindi_style._SELF_CORRECTION.search(text)            # 'यानी', 'नहीं, बल्कि', 'के बजाय' (22 Nov): flagged for the reader
+    if m:
+        warnings.append(f"a possible self-correction ('{m.group(0)}') in the text")
     # write the checked parts back into the piece
     piece["talking_points"] = block["talking_points"]
     piece["cfu"] = block.get("cfu") or []

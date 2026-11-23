@@ -1,0 +1,1052 @@
+{
+ "anchor": {
+  "title_hi": "कक्षा में चीज़ें छाँटें",
+  "narration_hi": "आज हम कक्षा की चीज़ों को छाँटेंगे। देखें, मेरे पास कुछ चीज़ें हैं: लाल और नीले ढक्कन, गोल और चौकोर चीज़ें। हम इन्हें एक नियम से अलग-अलग ढेर में रखेंगे।",
+  "closing_question_hi": "हर समूह बताए: आपने किस नियम से छाँटा और एक ढेर में कौन-सी चीज़ें रखीं?",
+  "opening_question_hi": "कक्षा में कौन-सी चीज़ें लाल रंग की हैं? उन्हें एक साथ रखें तो कौन-सी चीज़ें एक ढेर में आएँगी?",
+  "beginner_participation_hi": "शुरुआती समूह कक्षा में दो-दो चीज़ें ढूँढकर बताएँ: कौन-सी लाल है और कौन-सी नीली है।",
+  "proficient_participation_hi": "दक्ष समूह कक्षा की चीज़ें दो अलग नियमों से बारी-बारी छाँटे: पहले रंग से, फिर आकृति से, और बताएँ कि ढेर कैसे बदल गए।",
+  "progressor_participation_hi": "प्रगतिशील समूह तीन चीज़ें चुनकर एक नियम से छाँटें (रंग से या आकृति से) और बताएँ कि नियम क्या था।"
+ },
+ "prep_hi": [
+  "हर जोड़ी के लिए 8-10 छोटी चीज़ें इकट्ठा करें (कंकड़, बटन, बोतल के ढक्कन, पत्तियाँ, बीज): कम-से-कम 2 रंग या 2 आकार की हों। 30 बच्चे हैं, इसलिए कुल 15 जोड़ियाँ, यानी 15 छोटे ढेर चाहिए।",
+  "हर ढेर में शुरुआती समूह के लिए कुछ गोल और कुछ चौकोर चीज़ें भी रखें; दक्ष समूह के ढेर में 3 रंग की चीज़ें हों।",
+  "बोर्ड पर अभ्यास के चित्र कॉपी करने के लिए चॉक तैयार रखें (प्रिंटर नहीं है)।"
+ ],
+ "coverage": {
+  "note": "Not yet run through the real model: the plan may need more editing.",
+  "tier": "untested"
+ },
+ "cfu_stats": {
+  "beginner": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 0,
+   "skill_has_mistakes": false
+  },
+  "proficient": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 0,
+   "skill_has_mistakes": false
+  },
+  "progressor": {
+   "kept": 2,
+   "wanted": 2,
+   "written": 3,
+   "grounded_items": 0,
+   "skill_has_mistakes": false
+  }
+ },
+ "worksheets": {
+  "beginner": {
+   "observe": {
+    "task_en": "Give each pair 8 objects (4 of one colour, 4 of another). The child sorts them into two piles by colour and tells the partner the rule.",
+    "task_hi": "हर जोड़ी को 8 चीज़ें दें (4 एक रंग की, 4 दूसरे रंग की)। बच्चा उन्हें रंग के नियम से दो ढेरों में रखे और साथी को बताए: 'मैंने रंग से छाँटा।'",
+    "look_for": {
+     "not_yet_en": "Groups objects randomly with no rule",
+     "not_yet_hi": "चीज़ें बिना नियम के मिलाकर रखता है",
+     "partial_en": "Makes one or two errors or needs help saying the rule",
+     "partial_hi": "एक-दो गलतियाँ करता है या नियम बताने में मदद चाहिए",
+     "achieved_en": "Sorts all objects by one rule without help and says the rule",
+     "achieved_hi": "बिना मदद के सारी चीज़ें एक ही नियम से छाँटता है और नियम बताता है"
+    },
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "पत्तियाँ"
+    ]
+   },
+   "practice": true,
+   "problems": [
+    {
+     "grid": [
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      }
+     ],
+     "answer": "4 (खाने 1, 3, 5, 7)",
+     "number": 1,
+     "target": {
+      "colour": "red"
+     },
+     "matches": [
+      1,
+      3,
+      5,
+      7
+     ],
+     "board_hi": "लाल ○  नीला ○  लाल ○  नीला ○  लाल ○  नीला ○  लाल ○  नीला ○",
+     "row_type": null,
+     "item_type": "symbol_grid",
+     "problem_hi": "सभी लाल गोलों पर गोला लगाएँ।",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "grid": [
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      }
+     ],
+     "answer": "4 (खाने 2, 4, 6, 8)",
+     "number": 2,
+     "target": {
+      "s": "□"
+     },
+     "matches": [
+      2,
+      4,
+      6,
+      8
+     ],
+     "board_hi": "नीला ○  नीला □  नीला ○  नीला □  नीला ○  नीला □  नीला ○  नीला □",
+     "row_type": null,
+     "item_type": "symbol_grid",
+     "problem_hi": "सभी चौकोर पर गोला लगाएँ।",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "grid": [
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "green"
+      }
+     ],
+     "answer": "खाना 4",
+     "number": 3,
+     "target": {
+      "odd_one_out": true
+     },
+     "matches": [
+      4
+     ],
+     "board_hi": "हरा △  हरा △  हरा △  हरा □  हरा △  हरा △  हरा △  हरा △",
+     "row_type": null,
+     "item_type": "symbol_grid",
+     "problem_hi": "जो अलग है उसे काटें।",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed",
+   "example_block": null,
+   "required_count": 3,
+   "instructions_en": "Look at the objects and sort them by one rule. Say the rule aloud.",
+   "instructions_hi": "चीज़ों को देखें और एक नियम से छाँटें। नियम बोलकर बताएँ।"
+  },
+  "proficient": {
+   "observe": {
+    "task_en": "Give each pair 12 mixed objects (three colours, two shapes). The child sorts first by colour, then mixes them up and sorts by shape, and says the rule each time.",
+    "task_hi": "हर जोड़ी को 12 मिली-जुली चीज़ें दें (तीन रंग, दो आकृतियाँ)। बच्चा पहले रंग से छाँटे, फिर सब मिलाकर आकृति से छाँटे, और दोनों बार नियम बताए।",
+    "look_for": {
+     "not_yet_en": "Cannot sort correctly by any rule",
+     "not_yet_hi": "किसी भी नियम से सही नहीं छाँट पाता",
+     "partial_en": "Sorts correctly by one rule, needs help with the other",
+     "partial_hi": "एक नियम से सही छाँटता है, दूसरे में मदद चाहिए",
+     "achieved_en": "Sorts correctly by both rules and states each rule",
+     "achieved_hi": "दोनों नियमों से सही छाँटता है और हर बार नियम बताता है"
+    },
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "बीज"
+    ]
+   },
+   "practice": true,
+   "problems": [
+    {
+     "grid": [
+      {
+       "s": "★",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": "blue"
+      },
+      {
+       "s": "★",
+       "size": "small",
+       "colour": "yellow"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "★",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": "yellow"
+      },
+      {
+       "s": "★",
+       "size": "small",
+       "colour": "red"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "★",
+       "size": "big",
+       "colour": "yellow"
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": "red"
+      },
+      {
+       "s": "★",
+       "size": "small",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "yellow"
+      }
+     ],
+     "answer": "4 (खाने 1, 4, 7, 10)",
+     "number": 1,
+     "target": {
+      "colour": "red"
+     },
+     "matches": [
+      1,
+      4,
+      7,
+      10
+     ],
+     "board_hi": "लाल बड़ा ★  नीला छोटा ○  पीला छोटा ★  लाल बड़ा ○  नीला बड़ा ★  पीला छोटा ○  लाल छोटा ★  नीला बड़ा ○  पीला बड़ा ★  लाल छोटा ○  नीला छोटा ★  पीला बड़ा ○",
+     "row_type": null,
+     "item_type": "symbol_grid",
+     "problem_hi": "सभी लाल आकृतियों पर गोला लगाएँ।",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "grid": [
+      {
+       "s": "★",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": "blue"
+      },
+      {
+       "s": "★",
+       "size": "small",
+       "colour": "yellow"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "★",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": "yellow"
+      },
+      {
+       "s": "★",
+       "size": "small",
+       "colour": "red"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "★",
+       "size": "big",
+       "colour": "yellow"
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": "red"
+      },
+      {
+       "s": "★",
+       "size": "small",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "yellow"
+      }
+     ],
+     "answer": "6 (खाने 1, 3, 5, 7, 9, 11)",
+     "number": 2,
+     "target": {
+      "s": "★"
+     },
+     "matches": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11
+     ],
+     "board_hi": "लाल बड़ा ★  नीला छोटा ○  पीला छोटा ★  लाल बड़ा ○  नीला बड़ा ★  पीला छोटा ○  लाल छोटा ★  नीला बड़ा ○  पीला बड़ा ★  लाल छोटा ○  नीला छोटा ★  पीला बड़ा ○",
+     "row_type": null,
+     "item_type": "symbol_grid",
+     "problem_hi": "सभी ★ पर गोला लगाएँ।",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "grid": [
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      }
+     ],
+     "answer": "खाना 6",
+     "number": 3,
+     "target": {
+      "odd_one_out": true
+     },
+     "matches": [
+      6
+     ],
+     "board_hi": "हरा बड़ा □  हरा बड़ा □  हरा बड़ा □  हरा बड़ा □  हरा बड़ा □  हरा छोटा □  हरा बड़ा □  हरा बड़ा □  हरा बड़ा □  हरा बड़ा □  हरा बड़ा □  हरा बड़ा □",
+     "row_type": null,
+     "item_type": "symbol_grid",
+     "problem_hi": "जो अलग है उसे काटें।",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed",
+   "example_block": null,
+   "required_count": 3,
+   "instructions_en": "Sort the objects first by one rule, then by another. Say the rule each time.",
+   "instructions_hi": "चीज़ों को पहले एक नियम से, फिर दूसरे नियम से छाँटें। हर बार नियम बताएँ।"
+  },
+  "progressor": {
+   "observe": {
+    "task_en": "Give each pair 10 mixed objects (two colours, two shapes). The child picks one rule, sorts all into two piles and says the rule.",
+    "task_hi": "हर जोड़ी को 10 मिली-जुली चीज़ें दें (दो रंग, दो आकृतियाँ)। बच्चा एक नियम चुनकर सारी चीज़ें दो ढेरों में रखे और बताए कि नियम क्या था।",
+    "look_for": {
+     "not_yet_en": "Groups objects randomly with no rule",
+     "not_yet_hi": "चीज़ें बिना नियम के मिलाकर रखता है",
+     "partial_en": "Makes 1-2 errors or needs help finding the rule",
+     "partial_hi": "1-2 गलतियाँ करता है या नियम पहचानने में मदद चाहिए",
+     "achieved_en": "Sorts all 10 objects by one rule and says the rule",
+     "achieved_hi": "एक ही नियम से सारी 10 चीज़ें छाँटता है और नियम बताता है"
+    },
+    "kit_materials_hi": [],
+    "local_materials_hi": [
+     "कंकड़",
+     "बटन",
+     "बोतल के ढक्कन",
+     "बीज"
+    ]
+   },
+   "practice": true,
+   "problems": [
+    {
+     "grid": [
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": "red"
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": "red"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "△",
+       "size": "big",
+       "colour": "red"
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": "blue"
+      },
+      {
+       "s": "△",
+       "size": "small",
+       "colour": "blue"
+      }
+     ],
+     "answer": "6 (खाने 1, 2, 4, 6, 8, 10)",
+     "number": 1,
+     "target": {
+      "s": "△"
+     },
+     "matches": [
+      1,
+      2,
+      4,
+      6,
+      8,
+      10
+     ],
+     "board_hi": "लाल बड़ा △  नीला छोटा △  लाल बड़ा □  नीला बड़ा △  लाल छोटा □  लाल छोटा △  नीला बड़ा □  लाल बड़ा △  नीला छोटा □  नीला छोटा △",
+     "row_type": null,
+     "item_type": "symbol_grid",
+     "problem_hi": "सभी △ पर गोला लगाएँ।",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "grid": [
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": "green"
+      },
+      {
+       "s": "○",
+       "size": "small",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "green"
+      },
+      {
+       "s": "□",
+       "size": "small",
+       "colour": "green"
+      }
+     ],
+     "answer": "4 (खाने 1, 3, 4, 7)",
+     "number": 2,
+     "target": {
+      "size": "big"
+     },
+     "matches": [
+      1,
+      3,
+      4,
+      7
+     ],
+     "board_hi": "हरा बड़ा ○  हरा छोटा ○  हरा बड़ा □  हरा बड़ा ○  हरा छोटा □  हरा छोटा ○  हरा बड़ा □  हरा छोटा □",
+     "row_type": null,
+     "item_type": "symbol_grid",
+     "problem_hi": "सभी बड़ी आकृतियों पर गोला लगाएँ।",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    },
+    {
+     "grid": [
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "○",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      },
+      {
+       "s": "□",
+       "size": "big",
+       "colour": "blue"
+      }
+     ],
+     "answer": "खाना 5",
+     "number": 3,
+     "target": {
+      "odd_one_out": true
+     },
+     "matches": [
+      5
+     ],
+     "board_hi": "नीला □  नीला □  नीला □  नीला □  नीला ○  नीला □  नीला □  नीला □  नीला □  नीला □",
+     "row_type": null,
+     "item_type": "symbol_grid",
+     "problem_hi": "जो अलग है उसे काटें।",
+     "answer_type": "box",
+     "show_letter_grid": false,
+     "diagnostic_for_misconception": null
+    }
+   ],
+   "sheet_kind": "observed",
+   "example_block": null,
+   "required_count": 3,
+   "instructions_en": "Sort the objects by one rule and say the rule.",
+   "instructions_hi": "चीज़ों को एक नियम से छाँटें और नियम बताएँ।"
+  }
+ },
+ "group_skills": {
+  "beginner": "N0.1.1",
+  "proficient": "N0.1.1",
+  "progressor": "N0.1.1"
+ },
+ "explainability": {
+  "items": [
+   {
+    "body_en": "All three groups work on the same skill today at different levels: Beginners on one rule, Progressors with scaffolding, Proficients on two rules.",
+    "body_hi": "आज सभी तीनों समूह एक ही कौशल पर काम करते हैं, पर अलग-अलग स्तर पर: शुरुआती एक नियम पर, प्रगतिशील सहारे के साथ, और दक्ष दो नियमों पर।",
+    "title_en": "Why these three groups",
+    "title_hi": "तीन समूह क्यों"
+   },
+   {
+    "body_en": "Beginners get the first and longest slot because they need the most foundation support. Proficients come last as they cope best working independently.",
+    "body_hi": "शुरुआती समूह को पहला और सबसे लंबा समय मिला क्योंकि उन्हें नींव पर सबसे ज़्यादा ध्यान चाहिए। दक्ष समूह सबसे बाद में आता है क्योंकि वह स्वतंत्र काम में पहले से सहज है।",
+    "title_en": "Why this rotation order",
+    "title_hi": "घुमाव का क्रम"
+   },
+   {
+    "body_en": "No mistakes are recorded for this skill, so watch whether a child switches rules halfway, for example from colour to shape.",
+    "body_hi": "इस कौशल में कोई दर्ज गलती नहीं है, इसलिए देखें कि बच्चा नियम बदल तो नहीं देता, जैसे बीच में रंग से आकृति पर चला जाना।",
+    "title_en": "What to watch for",
+    "title_hi": "किन बातों पर नज़र रखें"
+   },
+   {
+    "body_en": "There is no printer, so worksheets are copied from the board and the work uses real objects. No anchor in the bank matched today's competency, so the shape-hunt anchor was adapted loosely for sorting.",
+    "body_hi": "कोई प्रिंटर नहीं है, इसलिए वर्कशीट बोर्ड से कॉपी होंगी और काम असली चीज़ों से होगा। आज के विषय से मेल खाने वाली कोई एंकर गतिविधि बैंक में नहीं थी, इसलिए आकृति-खोज वाली गतिविधि को ढीले रूप में बदलकर छाँटने के काम के लिए इस्तेमाल किया गया है।",
+    "title_en": "Assumptions for today",
+    "title_hi": "आज की धारणाएँ"
+   },
+   {
+    "id": "resources",
+    "body_en": "**Anchor activity (whole class):** no activity matched this skill; a new one was made, keeping only the setting of 'Shape Hunt in the Classroom'.\n**For each group:**\n• **Beginners** ('Sorts objects by one attribute (colour, shape, size)'): practice on a worksheet at their own level.\n• **Progressors** ('Sorts objects by one attribute (colour, shape, size)'): I Do and We Do, followed by You Do (worksheet practice) to build conceptual clarity and prevent errors.\n• **Proficients** ('Sorts objects by one attribute (colour, shape, size)'): written practice on the board and the worksheet.\n**State plan note:** Revision/remediation for Beginners. Proficients start patterns.\n**Weekly plan:** the app uses a representative weekly plan for now, not the state's official one.\n(Codes: ANC-N-006)",
+    "body_hi": "**एंकर गतिविधि (पूरी कक्षा के लिए):** इस कौशल के लिए कोई मेल खाती गतिविधि नहीं थी; «कक्षा में आकृति खोज» की सिर्फ़ कहानी का रूप लेकर नई गतिविधि बनाई गई।\n**हर समूह के लिए:**\n• **शुरुआती** («वस्तुओं को एक गुण (रंग, आकार, आकृति) के आधार पर वर्गीकृत करता है»): अपने स्तर की वर्कशीट पर अभ्यास।\n• **प्रगतिशील** («वस्तुओं को एक गुण (रंग, आकार, आकृति) के आधार पर वर्गीकृत करता है»): I Do और We Do के बाद You Do में वर्कशीट पर स्वतंत्र अभ्यास होता है, ताकि अवधारणा स्पष्ट हो और गलतियाँ रुकें।\n• **दक्ष** («वस्तुओं को एक गुण (रंग, आकार, आकृति) के आधार पर वर्गीकृत करता है»): बोर्ड पर और वर्कशीट पर लिखित अभ्यास।\n**साप्ताहिक योजना:** ऐप में अभी एक नमूना साप्ताहिक योजना है, राज्य की आधिकारिक योजना नहीं।\n(कोड: ANC-N-006)",
+    "title_en": "Teaching and Learning Resources",
+    "title_hi": "शिक्षण और सीखने की सामग्री"
+   }
+  ]
+ },
+ "review_prompts": {
+  "photo_sample_rolls": {
+   "beginner": [],
+   "proficient": [],
+   "progressor": []
+  },
+  "photo_sample_method": "systematic sampling, the start moves each day",
+  "observation_reminders_hi": [
+   "शुरुआती समूह: स्वतंत्र अभ्यास (तुम करो) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें।",
+   "प्रगतिशील समूह: स्वतंत्र अभ्यास (तुम करो) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें।",
+   "दक्ष समूह: स्वतंत्र अभ्यास (तुम करो) के दौरान बच्चों को काम करते हुए देखें, फिर हर बच्चे के लिए A / PA / NA चुनें।"
+  ]
+ },
+ "session_minutes": 90,
+ "rotation_schedule": {
+  "blocks": [
+   {
+    "type": "anchor",
+    "script_hi": null,
+    "time_start": "0:00",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 10
+   },
+   {
+    "type": "setup",
+    "script_hi": "बच्चो, आज हम तीन समूहों में काम करेंगे। शुरुआती समूह मेरे पास आएँ। बाकी दोनों समूह अपनी जगह पर बैठकर अपना स्वतंत्र अभ्यास शुरू करें।",
+    "time_start": "0:10",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "choose",
+      "grounded": false,
+      "shows_hi": "बच्चा रंग देखकर चीज़ को सही ढेर में पहचान लेता है",
+      "listen_for": [],
+      "expected_hi": "1) गेंद",
+      "question_hi": "बोर्ड पर एक लाल गेंद और एक नीला ढक्कन बनाएँ। पूछें: 'लाल ढेर में कौन-सी चीज़ जाएगी: 1) गेंद 2) ढक्कन?'"
+     },
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा दो चीज़ों में अंतर देखकर छाँटने का नियम पहचान लेता है",
+      "listen_for": [],
+      "expected_hi": "2 (आकृति)",
+      "question_hi": "बोर्ड पर दो चीज़ें बनाएँ: एक गोल और एक चौकोर। पूछें: 'छाँटने का नियम क्या है, रंग या आकृति?' बच्चे उँगलियों से दिखाएँ: 1 रंग, 2 आकृति।"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 7
+     },
+     {
+      "key": "we_do",
+      "min": 8
+     },
+     {
+      "key": "show_me",
+      "min": 4
+     },
+     {
+      "key": "you_do",
+      "min": 9
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:12",
+    "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+    "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+    "teach_group": "beginner",
+    "cfu_grounded": false,
+    "talking_points": {
+     "i_do_hi": "पहले कल की बात एक वाक्य में याद दिलाएँ: 'हमने चीज़ों को देखा और पहचाना था।' फिर सामने 4 लाल और 4 नीले ढक्कन मिलाकर रखें। एक-एक ढक्कन उठाकर बोलें: 'यह लाल है, इसे लाल के ढेर में रखा। यह नीला है, इसे नीले के ढेर में रखा।' अंत में बोलें: 'हमारा नियम है रंग।'",
+     "we_do_hi": "अब बच्चों को ढक्कन उठाने दें। एक बच्चे से पूछें: 'यह ढक्कन किस ढेर में जाएगा?' हर बार बच्चे से नियम बुलवाएँ: 'रंग से'। फिर चीज़ें बदलकर गोल और चौकोर चीज़ें दें और एक साथ नियम बनाएँ: 'आकृति से'।",
+     "you_do_hi": "हर जोड़ी को कंकड़, बटन और ढक्कन मिलाकर दें। बच्चे एक नियम चुनकर (रंग या आकृति) चीज़ें दो ढेरों में रखें और अपने साथी को नियम बताएँ। अगर चीज़ें न हों तो बोर्ड पर बने चित्र कॉपी में काटकर या गोला लगाकर करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+    },
+    "other_groups_hi": "प्रगतिशील समूह कंकड़, बटन और ढक्कन को रंग के अनुसार दो ढेरों में रखें और बारी-बारी से अपने साथी को बताए कि कौन-सी चीज़ किस ढेर में गई। दक्ष समूह जोड़ी में बैठकर अपनी चीज़ों को आकृति के अनुसार दो ढेरों में रखें। जो पहले ख़त्म करें, वे अपने साथी के ढेर जाँचें।",
+    "duration_minutes": 30
+   },
+   {
+    "type": "transition",
+    "script_hi": "शुरुआती समूह अपनी जगह जाएँ और चीज़ें सँभालकर रखें। प्रगतिशील समूह मेरे पास आएँ।",
+    "time_start": "0:42",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा रंग का नियम लगाकर सही गिनती कर लेता है",
+      "listen_for": [],
+      "expected_hi": "2",
+      "question_hi": "बोर्ड पर एक लाल ढक्कन, एक नीला ढक्कन और एक लाल बटन बनाएँ। पूछें: 'रंग के नियम से लाल ढेर में कितनी चीज़ें होंगी? उँगलियों से दिखाएँ।'"
+     },
+     {
+      "kind": "choose",
+      "grounded": false,
+      "shows_hi": "बच्चा आकार का नियम पहचानकर उसी से छाँटता है, आकृति से नहीं",
+      "listen_for": [],
+      "expected_hi": "1) 2",
+      "question_hi": "बोर्ड पर एक बड़ा गोला, एक छोटा गोला और एक बड़ा चौकोर बनाएँ। पूछें: 'आकार के नियम से बड़े ढेर में कितनी चीज़ें होंगी: 1) 2 या 2) 3?'"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 5
+     },
+     {
+      "key": "we_do",
+      "min": 6
+     },
+     {
+      "key": "show_me",
+      "min": 3
+     },
+     {
+      "key": "you_do",
+      "min": 6
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "0:44",
+    "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+    "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+    "teach_group": "progressor",
+    "cfu_grounded": false,
+    "talking_points": {
+     "i_do_hi": "एक वाक्य में कल की बात याद दिलाएँ: 'हमने चीज़ों को एक नियम से छाँटा था।' अब 6 चीज़ें (3 लाल बटन, 3 हरे बटन) मिलाकर रखें। एक-एक उठाकर बोलें: 'यह लाल है, इसे लाल के ढेर में रखा।' अंत में बोलें: 'मैंने रंग का नियम बनाया और छाँटा।'",
+     "we_do_hi": "अब 6 चीज़ें मिलाकर रखें: कुछ बड़ी और कुछ छोटी। बच्चों से पूछें: 'हम किस नियम से छाँटें?' बच्चे आकार का नियम चुनें और साथ मिलकर छाँटें। फिर हर बच्चा अपने साथी को नियम बताए।",
+     "you_do_hi": "हर जोड़ी को कंकड़, बटन और ढक्कन मिलाकर दें। जोड़ी एक नियम चुनकर 8-10 चीज़ें दो ढेरों में रखे और नियम बोलकर बताए। अगर चीज़ें कम हों तो बोर्ड के चित्र कॉपी में बनाकर गोला लगाएँ। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+    },
+    "other_groups_hi": "शुरुआती समूह अपने ढक्कन और कंकड़ों को दोबारा रंग के अनुसार दो ढेरों में रखें और जोड़ी में एक-दूसरे को नियम बताए। दक्ष समूह अपनी चीज़ों को रंग से और फिर आकृति से अलग-अलग छाँटें। जो जल्दी ख़त्म करें, वे अपने साथी का काम जाँचें।",
+    "duration_minutes": 22
+   },
+   {
+    "type": "transition",
+    "script_hi": "प्रगतिशील समूह अपनी जगह जाएँ और चीज़ें सँभालकर रखें। दक्ष समूह मेरे पास आएँ।",
+    "time_start": "1:06",
+    "teach_group": null,
+    "talking_points": null,
+    "other_groups_hi": null,
+    "duration_minutes": 2
+   },
+   {
+    "cfu": [
+     {
+      "kind": "choose",
+      "grounded": false,
+      "shows_hi": "बच्चा नियम के अनुसार ढेरों की संख्या समझता है",
+      "listen_for": [],
+      "expected_hi": "1) 2",
+      "question_hi": "बोर्ड पर 2 लाल गोले और 2 नीले चौकोर बनाएँ। पूछें: 'रंग से छाँटें तो कितने ढेर बनेंगे: 1) 2 या 2) 4?'"
+     },
+     {
+      "kind": "answer",
+      "grounded": false,
+      "shows_hi": "बच्चा आकार का नियम लगाकर सही गिनती करता है",
+      "listen_for": [],
+      "expected_hi": "2",
+      "question_hi": "बोर्ड पर 3 बड़े तारे और 2 छोटे तारे बनाएँ। पूछें: 'आकार से छाँटें तो छोटे ढेर में कितने तारे होंगे? उँगलियों से दिखाएँ।'"
+     }
+    ],
+    "pace": [
+     {
+      "key": "recall",
+      "min": 2
+     },
+     {
+      "key": "i_do",
+      "min": 5
+     },
+     {
+      "key": "we_do",
+      "min": 6
+     },
+     {
+      "key": "show_me",
+      "min": 3
+     },
+     {
+      "key": "you_do",
+      "min": 6
+     }
+    ],
+    "type": "teach",
+    "script_hi": null,
+    "time_start": "1:08",
+    "cfu_note_en": "No common mistakes are recorded for this skill; these questions test its key idea.",
+    "cfu_note_hi": "इस कौशल की सामान्य गलतियाँ ज्ञान-आधार में दर्ज नहीं हैं; ये प्रश्न कौशल का मुख्य विचार जाँचते हैं।",
+    "teach_group": "proficient",
+    "cfu_grounded": false,
+    "talking_points": {
+     "i_do_hi": "एक वाक्य में कल की बात याद दिलाएँ। फिर 8 चीज़ें रखें: लाल और नीले, गोल और चौकोर। पहले रंग से छाँटें, फिर वही चीज़ें मिलाकर आकृति से छाँटें। बोलें: 'देखिए, चीज़ें वही हैं, पर नियम बदलने से ढेर बदल गए।'",
+     "we_do_hi": "अब बच्चों को 8 चीज़ें दें जिनमें 3 रंग हों। बच्चे पहले रंग से छाँटें, फिर आकृति से। हर बार पूछें: 'कौन-सा ढेर सबसे बड़ा बना?' और 'नियम क्या था?'",
+     "you_do_hi": "हर जोड़ी को कंकड़, बटन और ढक्कन मिलाकर दें। जोड़ी चीज़ों को पहले एक नियम से छाँटे, फिर दूसरे नियम से, और दोनों बार नियम बोलकर बताए। अगर चीज़ें न हों तो बोर्ड के चित्र कॉपी में बनाकर करें। ऐप में दिखाए गए बच्चों को काम करते हुए देखें।"
+    },
+    "other_groups_hi": "शुरुआती समूह कंकड़ और ढक्कन को रंग के अनुसार दो ढेरों में रखें और साथी को नियम बताएँ। प्रगतिशील समूह अपनी चीज़ों को आकार या रंग से छाँटकर नियम बोले। जो जल्दी ख़त्म करें, वे साथी के ढेर जाँचें।",
+    "duration_minutes": 22
+   }
+  ],
+  "total_minutes": 90
+ },
+ "group_skills_source": {
+  "beginner": "derived",
+  "proficient": "derived",
+  "progressor": "selected"
+ },
+ "classroom_management": {
+  "independent_activities_hi": {
+   "beginner": "जोड़ी में बैठकर अपनी चीज़ों को रंग के अनुसार दो ढेरों में रखें और एक-दूसरे को बताएँ कि कौन-सी चीज़ किस ढेर में है। जो पहले ख़त्म करें, वे अपने साथी के ढेर जाँचें।",
+   "proficient": "जोड़ी में अपनी चीज़ों को रंग से दो ढेरों में रखें और साथी को नियम बताएँ। जो पहले ख़त्म करें, वे अपने साथी के ढेर जाँचें।",
+   "progressor": "जोड़ी में अपनी चीज़ों को रंग से दो ढेरों में रखें, फिर सब मिलाकर दोबारा रखें और साथी को बताएँ कि कौन-सी चीज़ कहाँ गई। जो पहले ख़त्म करें, वे साथी के ढेर जाँचें।"
+  }
+ },
+ "_recorded_warnings": [
+  "blocks[4].cfu[1]: a show-me question names 'आकार' with shapes: check that the expected answer sorts by SIZE (आकार), not shape (आकृति)"
+ ],
+ "_reviewed_by": null,
+ "_edits_before_review": [
+  {
+   "where": "classroom_management.independent_activities_hi.beginner",
+   "was": " यह लगभग 12 मिनट का काम है।",
+   "now": "",
+   "why": "a length other than the blocks it runs beside (22 minutes)"
+  }
+ ]
+}

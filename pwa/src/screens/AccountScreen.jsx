@@ -9,6 +9,7 @@ import { setLang, bi } from '../services/language';
 import { useLang } from '../components/LangSwitch';
 import { getFamiliarMode, setFamiliarMode } from '../services/preferences';
 import Bi from '../components/Bi';
+import { waitingCount } from '../offline/prepareNow';
 
 const GRADE_HI = { balvatika: 'बालवाटिका', grade_1: 'कक्षा 1', grade_2: 'कक्षा 2', grade_3: 'कक्षा 3' };
 
@@ -23,8 +24,13 @@ export default function AccountScreen() {
   const [temp, setTemp] = useState(null);            // a temporary password, shown once
   const [error, setError] = useState('');
   const lang = useLang();          // हिंदी / English: the same setting as the हिं / EN pill at the top ("both" is no longer offered, 14 Nov: it doubled the text)
-  const confirmLogout = () => {
-    if (window.confirm(bi('लॉग आउट करें? इस फ़ोन पर रखी योजनाएँ और वर्कशीट हट जाएँगी।', 'Log out? The plans and worksheets kept on this phone will be removed.'))) logout();
+  const confirmLogout = async () => {
+    const waiting = await waitingCount(teacher.teacher_id);      // a plan made with no connection, not yet sent, would be lost: said first (step 4)
+    const text = waiting
+      ? bi(`लॉग आउट करें? बिना इंटरनेट के बनी ${waiting} योजना अभी सर्वर पर नहीं भेजी गई है; लॉग आउट करने पर वह हमेशा के लिए हट जाएगी। पहले इंटरनेट से जुड़कर उसे भेज दें।`,
+           `Log out? ${waiting} plan(s) made with no internet have not been sent yet; logging out removes them for good. Connect to the internet first to send them.`)
+      : bi('लॉग आउट करें? इस फ़ोन पर रखी योजनाएँ और वर्कशीट हट जाएँगी।', 'Log out? The plans and worksheets kept on this phone will be removed.');
+    if (window.confirm(text)) logout();
   };
   const [shorter, setShorter] = useState(getFamiliarMode);        // "छोटी स्क्रीन": the plan screen folds the one-line scripts and the anchor card
   const toggleShorter = (on) => { setFamiliarMode(on); setShorter(on); };

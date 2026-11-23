@@ -9,7 +9,7 @@ import random
 import re
 import time
 from collections import Counter
-from datetime import date
+from datetime import date, datetime, timezone
 from typing import Optional
 
 import anthropic
@@ -1148,6 +1148,10 @@ async def derive_groups_from_positions(db, teacher_id: str, domain_id: str) -> l
 SAMPLE_PLAN_MINUTES = 90        # the recorded sample plans (db/seeds/sample_plans) were made for 90-minute sessions; one that records its own session_minutes keeps it
 
 
+class LibraryPlanUnavailable(Exception):
+    """The block library could not build the plan that was asked for (a piece is missing for one of the skills)."""
+
+
 async def generate_dainik_yojana(
     db, 
     teacher_id: str, 
@@ -1157,9 +1161,14 @@ async def generate_dainik_yojana(
     group_skills: Optional[dict] = None,
     reteach_groups: Optional[list] = None,
     session_minutes: Optional[int] = None,
+    source: Optional[str] = None,
+    store: bool = True,
 ) -> dict:
     """
     Full Dainik Yojana generation pipeline.
+    source="library": built from the block library by code, with NO AI call whatever the AI's state (the Plan screen's "⚡" quick plan, and the
+    plans prepared for the phone to use offline, 22 Nov); LibraryPlanUnavailable when the library cannot build it.
+    store=False: the plan is built and returned but NOT saved as the teacher's plan for that day (the plans prepared for offline use).
     group_skills: the skills a teacher chose for the Beginners and the Proficients ({'beginner': id, 'proficient': id}); the Progressors' skill is competency_id.
     Without it each group's skill is derived from competency_id, as before.
     reteach_groups: the groups the TEACHER chose to re-teach (an empty list: move on with every group). Their main teach block is a focused re-teach and there is no separate re-teach block.
@@ -1352,7 +1361,7 @@ async def generate_dainik_yojana(
     ai_budget.bind(db, teacher_id)
     served_from, recorded, library_plan = "ai", None, None
     try:
-        if os.environ.get("PLAN_SOURCE", "").strip().lower() == "library":      # a test, or (later) offline-first: plans from the library with no AI call
+        if source == "library" or os.environ.get("PLAN_SOURCE", "").strip().lower() == "library":      # asked for (quick plan, offline), or a test: no AI call
             raise ai_budget.AICapReached("disabled")
         await ai_budget.check(db, teacher_id, "plan")
     except ai_budget.AICapReached:
@@ -1367,6 +1376,8 @@ async def generate_dainik_yojana(
                 print(f"   Library plan skipped: {type(e).__name__}: {e}")
         if library_plan is not None:
             served_from = "library"
+        elif source == "library":                       # the library was asked for: never a recorded plan instead, and never an AI message
+            raise LibraryPlanUnavailable(competency_id)
         else:
             recorded = ai_budget.sample_plan_for(competency_id)
             if recorded is None:
@@ -1569,6 +1580,7 @@ async def generate_dainik_yojana(
                                               extras=session_shape(ctx.available_minutes)["extras"] if served_from in ("ai", "library") else None, sheet_kinds=ctx.sheet_kinds)
     validation_warnings += writing_sheets.check_writing_sheets(plan_json, ctx.group_skill_ids, domain_id)
     validation_warnings += hindi_style.check_teacher_text(plan_json)          # a gendered "मैं" left in the teacher's lines, a Hindi mark named wrongly (15 Nov)
+    validation_warnings += hindi_style.check_self_corrections(plan_json)      # 'के बजाय ... नहीं, बल्कि' left in the text (22 Nov): flagged, not repaired
     validation_warnings += hindi_style.check_size_shape(plan_json, (ctx.group_skill_ids or {}).values())          # आकार (size) vs आकृति (shape) in a sorting skill (22 Nov)
     if decided_groups is not None and any(b.get("type") == "reteach" for b in (plan_json.get("rotation_schedule") or {}).get("blocks") or []):
         validation_warnings.append("a separate re-teach block was written, but the teacher decided the re-teach is the group's main block")
@@ -1621,27 +1633,28 @@ async def generate_dainik_yojana(
     plan_json["served_from"] = served_from          # 'ai', or 'sample' when the AI limit was reached: the screen says so
     # the plan's length, read by the plan screen's time chip: the time the teacher chose (not the AI's own total_minutes); a recorded sample plan keeps the length it was made for (90 for the six today)
     plan_json["session_minutes"] = ctx.available_minutes if served_from in ("ai", "library") else int(plan_json.get("session_minutes") or SAMPLE_PLAN_MINUTES)
-    await db.execute("""
-        INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
-                                 plan_content, explainability, groups_snapshot, 
-                                 generation_time_ms, claude_model)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
-        ON CONFLICT (teacher_id, plan_date, domain_id) DO UPDATE SET
-            plan_content = EXCLUDED.plan_content,
-            explainability = EXCLUDED.explainability || COALESCE((SELECT jsonb_object_agg(e.key, e.value)
-                                 FROM jsonb_each(COALESCE(daily_plans.explainability, '{}'::jsonb)) e
-                                 WHERE starts_with(e.key, 'teacher_decision_') OR starts_with(e.key, 'teacher_first_') OR starts_with(e.key, 'teacher_final_')), '{}'::jsonb),
-            groups_snapshot = EXCLUDED.groups_snapshot,
-            generation_time_ms = EXCLUDED.generation_time_ms,
-            selected_competency_id = EXCLUDED.selected_competency_id,
-            claude_model = EXCLUDED.claude_model
-    """,
-        teacher_id, plan_date, domain_id, competency_id,
-        json.dumps(plan_json, ensure_ascii=False),
-        json.dumps(explainability, ensure_ascii=False),
-        json.dumps(groups_snapshot, ensure_ascii=False),
-        generation_time_ms, settings.claude_model if served_from == "ai" else ("library" if served_from == "library" else "sample-replay"),
-    )
+    if store:                                       # a plan prepared for the phone (offline) is returned, never stored as the day's plan
+        await db.execute("""
+            INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id,
+                                     plan_content, explainability, groups_snapshot, 
+                                     generation_time_ms, claude_model)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+            ON CONFLICT (teacher_id, plan_date, domain_id) DO UPDATE SET
+                plan_content = EXCLUDED.plan_content,
+                explainability = EXCLUDED.explainability || COALESCE((SELECT jsonb_object_agg(e.key, e.value)
+                                     FROM jsonb_each(COALESCE(daily_plans.explainability, '{}'::jsonb)) e
+                                     WHERE starts_with(e.key, 'teacher_decision_') OR starts_with(e.key, 'teacher_first_') OR starts_with(e.key, 'teacher_final_')), '{}'::jsonb),
+                groups_snapshot = EXCLUDED.groups_snapshot,
+                generation_time_ms = EXCLUDED.generation_time_ms,
+                selected_competency_id = EXCLUDED.selected_competency_id,
+                claude_model = EXCLUDED.claude_model
+        """,
+            teacher_id, plan_date, domain_id, competency_id,
+            json.dumps(plan_json, ensure_ascii=False),
+            json.dumps(explainability, ensure_ascii=False),
+            json.dumps(groups_snapshot, ensure_ascii=False),
+            generation_time_ms, settings.claude_model if served_from == "ai" else ("library" if served_from == "library" else "sample-replay"),
+        )
     
     return {
         "plan_date": str(plan_date),
@@ -1661,6 +1674,76 @@ async def generate_dainik_yojana(
         "validation_warnings": validation_warnings,
         "served_from": served_from,
     }
+
+
+# ── Plans made with no connection (docs/drafts/OFFLINE_ASSEMBLER_PLAN.md, step 4) ────────────────────────────────────────────────────────────
+
+class OfflinePlanExists(Exception):
+    """A different plan is already stored for that day and subject: the server's is kept (decision 8)."""
+
+
+OFFLINE_PLAN_MAX_BYTES = 600_000          # a library plan is about 50 KB; anything far larger is not one
+
+
+def restamp_photo_sample(plan_json: dict, snapshot: dict, plan_date: date, domain_id: str) -> None:
+    """The children to photograph, for the day the plan is USED (a prepared plan may have been made for another day): the same systematic
+    sampling as a generated plan, and none for a practice-only sheet (reading aloud, observed). In place."""
+    rp = plan_json.get("review_prompts") if isinstance(plan_json.get("review_prompts"), dict) else {}
+    plan_json["review_prompts"] = rp
+    targets = {g: (snapshot.get(g) or {}).get("target") for g in ("beginner", "progressor", "proficient")}
+    kinds = writing_sheets.group_kinds({g: t for g, t in targets.items() if t}, domain_id)
+    rp["photo_sample_rolls"] = {
+        g: ([] if kinds.get(g) in ("fluency", "observed") or not targets.get(g)
+            else sample_for_group((snapshot.get(g) or {}).get("rolls") or [], plan_date, g, targets[g])["rolls"])
+        for g in ("beginner", "progressor", "proficient")}
+    rp["photo_sample_method"] = "systematic sampling, the start moves each day"
+
+
+async def store_offline_plan(db, teacher_id: str, *, client_id: str, plan_date: date, domain_id: str, competency_id: str,
+                             prepared_for: Optional[date], made_at: Optional[str], result: dict) -> dict:
+    """
+    Store a plan the phone made with no connection: a plan the SERVER prepared (POST /offline/prepare), used offline and uploaded when the
+    phone is back online. Once per client id: the same id again answers 'duplicate' (a retry on a flaky network never stores it twice). A
+    different plan already stored for that day is kept (OfflinePlanExists). The groups are the ones the phone planned with, limited to this
+    teacher's own children; the photo sample is worked out for the day the plan was used. Returns {"status": "stored" | "duplicate"}.
+    """
+    if not isinstance(result, dict) or not isinstance(result.get("plan"), dict):
+        raise ValueError("no plan")
+    plan = result["plan"]
+    if not isinstance((plan.get("rotation_schedule") or {}).get("blocks"), list) or not isinstance(plan.get("worksheets"), dict):
+        raise ValueError("not a plan: the session or the worksheets are missing")
+    if len(json.dumps(result, ensure_ascii=False)) > OFFLINE_PLAN_MAX_BYTES:
+        raise ValueError("the plan is too large")
+    row = await db.fetchrow("SELECT plan_content->'offline'->>'client_id' AS cid FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3",
+                            teacher_id, plan_date, domain_id)
+    if row:
+        if row["cid"] and row["cid"] == client_id:
+            return {"status": "duplicate"}
+        raise OfflinePlanExists()
+    mine = {r["roll_number"] for r in await db.fetch("SELECT roll_number FROM children WHERE teacher_id = $1 AND is_active", teacher_id)}
+    snapshot = {}
+    for g in result.get("groups") or []:
+        if isinstance(g, dict) and g.get("label") in ("beginner", "progressor", "proficient"):
+            rolls = sorted({int(r) for r in (g.get("roll_numbers") or []) if str(r).lstrip("-").isdigit() and int(r) in mine})
+            snapshot[g["label"]] = {"count": len(rolls), "rolls": rolls, "target": g.get("target_competency_id")}
+    plan_json = copy.deepcopy(plan)
+    plan_json["served_from"] = "library_offline"
+    plan_json["offline"] = {"client_id": client_id, "prepared_for": str(prepared_for) if prepared_for else None, "made_at": made_at,
+                            "uploaded_at": datetime.now(timezone.utc).isoformat()}
+    restamp_photo_sample(plan_json, snapshot, plan_date, domain_id)
+    explainability = result.get("explainability") if isinstance(result.get("explainability"), dict) else (plan_json.get("explainability") or {})
+    try:
+        await db.execute("""
+            INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id, plan_content, explainability, groups_snapshot,
+                                     generation_time_ms, claude_model)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, 0, 'library_offline')""",
+            teacher_id, plan_date, domain_id, competency_id, json.dumps(plan_json, ensure_ascii=False),
+            json.dumps(explainability, ensure_ascii=False), json.dumps(snapshot, ensure_ascii=False))
+    except Exception as e:
+        if e.__class__.__name__ == "UniqueViolationError":         # stored by another request a moment ago
+            raise OfflinePlanExists()
+        raise
+    return {"status": "stored"}
 
 
 async def plan_evidence(db, teacher_id: str, plan_date: date, snapshot: dict) -> dict:

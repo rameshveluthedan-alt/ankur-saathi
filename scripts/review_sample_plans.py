@@ -10,6 +10,13 @@ signing one by hand (a name inside a file full of quotation marks) is how a file
     python scripts/review_sample_plans.py sheet                             one sheet for every plan nobody has read and signed yet (with warnings or without)
     python scripts/review_sample_plans.py sign L2.5.1 --by "Vaishnavi"      writes "Vaishnavi, 2026-10-26" into the file, after she has read it
 
+DRAFTS (22 Nov 2026): new versions of the recorded plans, made with prompt v2, wait in docs/drafts/sample_plans_v2 while the reviewed ones stay
+in use. The same commands work on them with --dir, and `promote` puts a SIGNED draft in place of the one in use (never an unsigned one):
+
+    python scripts/review_sample_plans.py --dir docs/drafts/sample_plans_v2 sheet               a page for each draft nobody has signed
+    python scripts/review_sample_plans.py --dir docs/drafts/sample_plans_v2 sign L2.5.1 --by "Vaishnavi"
+    python scripts/review_sample_plans.py --dir docs/drafts/sample_plans_v2 promote L2.5.1     the signed draft becomes the recorded plan
+
 The sheet shows EVERY piece of text in the plan, in the order a teacher meets it, with the plan's warnings at the top. Signing does not change anything else in the file.
 """
 import sys as _sys
@@ -113,6 +120,12 @@ def render_sheet(plan: dict, skill: str, today: str = "") -> str:
     warn_html = ("<div class='warn'><h2>Warnings the checks raised about this plan</h2><ul>" + "".join(f"<li lang='hi'>{esc(str(w))}</li>" for w in warnings) +
                  "</ul><p>A worksheet question that repeats five words from the lesson can let a child copy; a problem beyond the required number is not counted. Say whether these matter.</p></div>") if warnings else \
         "<div class='ok'>The checks raised no warnings about this plan. That does not mean it has been read: the checks cover sums, structure and repeated wording, not whether the Hindi is natural or the story suits the children.</div>"
+    edits = plan.get("_edits_before_review") or []           # corrections made to a draft before it reached the reader (22 Nov): she sees each one
+    if edits:
+        warn_html += ("<div class='warn'><h2>Corrected before you read it</h2><p>These small changes were made to the model's text (each with the reason). "
+                      "Please check them too.</p><ul>" + "".join(
+                          f"<li lang='hi'><b>{esc(str(e.get('where', '')))}</b>: " + (f"«{esc(str(e['was']))}» → «{esc(str(e.get('now', '')))}»" if 'was' in e else f"added «{esc(str(e.get('added', '')))}»")
+                          + f" <i>({esc(str(e.get('why', '')))})</i></li>" for e in edits) + "</ul></div>")
     state = status_of(plan)
     sign = (f"<div class='sign'><h2>What to check</h2><ol>"
             "<li><b>The Hindi</b> is natural and polite, as a teacher would really say it to children of this age (not translated-sounding, not too difficult).</li>"
@@ -133,10 +146,11 @@ def render_sheet(plan: dict, skill: str, today: str = "") -> str:
             f"<h1>Recorded plan {esc(skill)}: for a reader</h1><p>Status: <b>{esc(state)}</b>. {esc(today)}</p>{reviewed}{seen_note}{warn_html}" + "".join(sections) + sign + "</body></html>")
 
 
-def _load(skill: str):
-    path = PLANS / f"{skill}.json"
+def _load(skill: str, folder: Path = None):
+    folder = folder or PLANS
+    path = folder / f"{skill}.json"
     if not path.is_file():
-        raise SystemExit(f"There is no recorded plan for {skill} in {PLANS}")
+        raise SystemExit(f"There is no recorded plan for {skill} in {folder}")
     return path, json.loads(path.read_text(encoding="utf-8"))
 
 
@@ -148,12 +162,17 @@ def _write_json(path: Path, plan: dict):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--dir", default=None, help="the folder of plans to work on (default db/seeds/sample_plans; drafts: docs/drafts/sample_plans_v2)")
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("list")
     sh = sub.add_parser("sheet"); sh.add_argument("skills", nargs="*")          # no names: every plan nobody has read and signed yet
     sg = sub.add_parser("sign"); sg.add_argument("skill"); sg.add_argument("--by", required=True); sg.add_argument("--date", default=None)
+    pr = sub.add_parser("promote"); pr.add_argument("skill")             # a SIGNED draft (--dir) replaces the recorded plan in use
     args = ap.parse_args(argv)
-    files = sorted(PLANS.glob("*.json"))
+    folder = Path(args.dir) if args.dir else PLANS
+    if not folder.is_absolute():
+        folder = ROOT / folder
+    files = sorted(folder.glob("*.json"))
     if args.cmd == "list":
         for p in files:
             plan = json.loads(p.read_text(encoding="utf-8"))
@@ -168,12 +187,22 @@ def main(argv=None):
         SHEETS.mkdir(parents=True, exist_ok=True)
         (SHEETS / ".gitignore").write_text("*\n", encoding="utf-8")        # scratch: never committed
         for skill in wanted:
-            _, plan = _load(skill)
+            _, plan = _load(skill, folder)
             out = SHEETS / f"{skill}.html"
             out.write_text(render_sheet(plan, skill, today=date.today().isoformat()), encoding="utf-8")
             print(f"  {skill}: open {out}")
         return 0
-    path, plan = _load(args.skill)
+    if args.cmd == "promote":
+        if folder.resolve() == PLANS.resolve():
+            raise SystemExit("promote takes a draft from another folder (--dir docs/drafts/sample_plans_v2) into the recorded plans")
+        _, plan = _load(args.skill, folder)
+        if status_of(plan) != "reviewed":
+            raise SystemExit(f"Not promoted: {args.skill} in {folder} is '{status_of(plan)}'. A draft replaces a recorded plan only after a person has read and signed it.")
+        target = PLANS / f"{args.skill}.json"
+        _write_json(target, plan)
+        print(f"  {args.skill}: the signed draft ({plan['_reviewed_by']}) is now the recorded plan: {target}")
+        return 0
+    path, plan = _load(args.skill, folder)
     try:
         signed = sign_plan(plan, args.by, args.date or date.today().isoformat())
     except ValueError as e:

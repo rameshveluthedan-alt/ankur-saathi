@@ -64,8 +64,9 @@ def _style_text(text: str, path: str = "independent") -> tuple:
     n = hindi_style.neutral_quotes_in_plan(mini)
     warnings = hindi_style.check_teacher_text(mini)
     out = get(mini)
-    if "यानी" in out:
-        warnings.append("a possible self-correction ('यानी') in the text")
+    m = hindi_style._SELF_CORRECTION.search(out)             # 'यानी', 'नहीं, बल्कि', 'के बजाय' (22 Nov): flagged for the reader
+    if m:
+        warnings.append(f"a possible self-correction ('{m.group(0)}') in the text")
     return out, ([f"{n} gendered 'मैं' quote(s) rewritten to 'हम'"] if n else []), warnings
 
 
