@@ -65,7 +65,7 @@ gcloud run jobs executions list --job=ankur-nightly --region=$REGION     # the n
 
 **6. Smoke test on the live app** (real credits: about $0.13 a plan, some $0.50 in all)
 - **Plan screen:** the time choice offers 45 / 60 / 90, and the line under "आज का समय" changes with it
-  (45: "एंकर 5 मिनट · समूहों को 16, 14 और 7 मिनट · वर्कशीट: 3 मुख्य + 1 अतिरिक्त सवाल").
+  (45: "एंकर 5 मिनट · समूहों को 16, 14 और 7 मिनट · वर्कशीट (गणित और पठन): 3 मुख्य + 1 अतिरिक्त सवाल").
 - **One plan at 45 minutes:** blocks of 5, 16, 2, 14, 1 and 7 minutes; one show-me question per block; each worksheet 3 core + 1 extra.
 - **One plan at 60 minutes:** 3 core + 2 extra; two show-me questions per block.
 - **Review:** the three steps; the tick sheet and the printed plan, printed.

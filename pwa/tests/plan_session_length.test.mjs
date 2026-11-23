@@ -57,7 +57,7 @@ check('first use (nothing stored): three choices, 45 / 60 / 90 minutes, and 90 i
 check('it sits above the skill list, with its heading and the one-line hint, in Hindi with the English hideable', (() => {
   const box = q('[data-testid="session-length"]'); const list = q('.competency-item');
   return box && list && (box.compareDocumentPosition(list) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING) && /आज का समय/.test(box.textContent)
-    && /एंकर 10 मिनट · समूहों को 30, 22 और 22 मिनट · वर्कशीट: 3 मुख्य \+ 3 अतिरिक्त सवाल/.test(box.textContent) && box.querySelectorAll('.en').length >= 4;
+    && /एंकर 10 मिनट · समूहों को 30, 22 और 22 मिनट · वर्कशीट \(गणित और पठन\): 3 मुख्य \+ 3 अतिरिक्त सवाल/.test(box.textContent) && box.querySelectorAll('.en').length >= 4;
 })());
 const summaryText = () => q('[data-testid="session-summary"]').textContent;
 check('each choice is a 44 px tap target (the whole label, not the small radio)', qa('[data-testid^="session-"][data-checked]').every((l) => parseInt(l.style.minHeight, 10) >= 44 && l.contains(l.querySelector('input[type="radio"]'))),
@@ -68,11 +68,11 @@ check('Generate sends 90 when nothing was chosen', call[4].sessionMinutes === 90
 
 console.log('\nchoosing, and remembering');
 check('the line under the buttons describes the chosen session: 90 by default (anchor 10, 30 / 22 / 22, 3 core + 3 extra), in English too',
-  /Anchor 10 min · groups get 30, 22 and 22 min · worksheet: 3 core \+ 3 extra/.test(summaryText()), summaryText());
+  /Anchor 10 min · groups get 30, 22 and 22 min · worksheet \(maths and reading\): 3 core \+ 3 extra/.test(summaryText()), summaryText());
 await click(q('[data-testid="session-60"]'));
 check('tapping 60 selects it (and only it), and keeps it on the device under "session_minutes"', chosen().join() === '60' && localStorage.getItem('session_minutes') === '60', `${chosen().join()} / ${localStorage.getItem('session_minutes')}`);
 call = await generate();
-check('...and the line changes to the 60-minute session (anchor 10, 18 / 13 / 13, 3 core + 2 extra)', /एंकर 10 मिनट · समूहों को 18, 13 और 13 मिनट · वर्कशीट: 3 मुख्य \+ 2 अतिरिक्त सवाल/.test(summaryText()), summaryText());
+check('...and the line changes to the 60-minute session (anchor 10, 18 / 13 / 13, 3 core + 2 extra)', /एंकर 10 मिनट · समूहों को 18, 13 और 13 मिनट · वर्कशीट \(गणित और पठन\): 3 मुख्य \+ 2 अतिरिक्त सवाल/.test(summaryText()), summaryText());
 check('Generate then sends 60 (if the choice were not sent, the server would lay the plan out for 90)', call[4].sessionMinutes === 60, JSON.stringify(call[4]));
 localStorage.setItem('session_minutes', '60');
 await mount();
@@ -85,7 +85,7 @@ check('a value this app does not offer ("30") falls back to 90', chosen().join()
 localStorage.setItem('session_minutes', '45');
 await mount();
 check('"45" stored on the device: the screen opens with 45 preselected (shown again on 21 Nov)', chosen().join() === '45', chosen().join());
-check('...with the 45-minute line (anchor 5, 16 / 14 / 7, 3 core + 1 extra)', /एंकर 5 मिनट · समूहों को 16, 14 और 7 मिनट · वर्कशीट: 3 मुख्य \+ 1 अतिरिक्त सवाल/.test(summaryText()), summaryText());
+check('...with the 45-minute line (anchor 5, 16 / 14 / 7, 3 core + 1 extra)', /एंकर 5 मिनट · समूहों को 16, 14 और 7 मिनट · वर्कशीट \(गणित और पठन\): 3 मुख्य \+ 1 अतिरिक्त सवाल/.test(summaryText()), summaryText());
 call = await generate();
 check('...and sends 45', call[4].sessionMinutes === 45, JSON.stringify(call[4]));
 

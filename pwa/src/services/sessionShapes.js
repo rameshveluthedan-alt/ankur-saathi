@@ -14,7 +14,7 @@ export function sessionSummary(minutes) {
   if (!s) return null;
   const [a, b, c] = s.blocks;
   return {
-    hi: `एंकर ${s.anchor} मिनट · समूहों को ${a}, ${b} और ${c} मिनट · वर्कशीट: 3 मुख्य + ${s.extras} अतिरिक्त सवाल`,
-    en: `Anchor ${s.anchor} min · groups get ${a}, ${b} and ${c} min · worksheet: 3 core + ${s.extras} extra`,
+    hi: `एंकर ${s.anchor} मिनट · समूहों को ${a}, ${b} और ${c} मिनट · वर्कशीट (गणित और पठन): 3 मुख्य + ${s.extras} अतिरिक्त सवाल`,
+    en: `Anchor ${s.anchor} min · groups get ${a}, ${b} and ${c} min · worksheet (maths and reading): 3 core + ${s.extras} extra`,
   };
 }
