@@ -174,6 +174,11 @@ export const generatePlan = (teacherId, competencyId, domainId, planDate, option
 export const prepareOfflinePlans = (teacherId, domainId, items) =>
   request(`/offline/prepare?teacher_id=${teacherId}`, { method: 'POST', body: JSON.stringify({ domain_id: domainId, items }) });
 
+// A plan made on the phone with no connection, sent when it is back online: stored once per client id ({status: 'stored' | 'duplicate'});
+// HTTP 409 plan_exists when another plan is already stored for that day (the server's is kept)
+export const uploadOfflinePlan = (teacherId, body) =>
+  request(`/plan/offline?teacher_id=${teacherId}`, { method: 'POST', body: JSON.stringify(body) });
+
 // What each group's skill could be on planDate, from the teacher's decisions at the last review
 export const getGroupProposal = (teacherId, domainId, planDate) =>
   request(`/plan/proposal/${teacherId}/${domainId}?plan_date=${planDate}`);

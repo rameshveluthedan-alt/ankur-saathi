@@ -108,6 +108,17 @@ class OfflinePrepareItem(BaseModel):
     session_minutes: Literal[45, 60, 90]
 
 
+class OfflineUploadRequest(BaseModel):
+    """A plan the phone made with no connection (a plan the server prepared), sent when the phone is back online."""
+    client_id: str = Field(..., min_length=4, max_length=80, description="Made on the phone for this plan: the same id again is answered 'duplicate', never stored twice")
+    plan_date: date = Field(..., description="The day the plan was used")
+    domain_id: str
+    competency_id: str = Field(..., max_length=20)
+    prepared_for: Optional[date] = Field(None, description="The day the server prepared it for (past the buffer it may be earlier)")
+    made_at: Optional[str] = Field(None, max_length=40)
+    result: dict = Field(..., description="The prepared plan as the phone has it: plan, groups, explainability")
+
+
 class OfflinePrepareRequest(BaseModel):
     domain_id: str = Field(..., description="'numeracy' or 'r1_literacy'")
     items: list[OfflinePrepareItem] = Field(..., max_length=120, description="At most 120 plans in one request")

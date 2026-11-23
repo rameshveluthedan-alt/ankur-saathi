@@ -117,6 +117,41 @@ async def main():
                                                                     "session_minutes": 60, "reteach_groups": [], "source": "library"})
             check("...also for literacy, where the server swaps in bank passages", lit["ok"] and r.status_code == 200 and teacher_facing(r.json()) == teacher_facing(lit["result"]))
 
+            print("\nupload (step 4): a plan used offline, sent when the phone is back online")
+            used = D0 + timedelta(days=9)
+            prep = got["N2.3.2|60|3"]["result"]
+            sent = dict(prep)
+            sent["groups"] = [dict(g, roll_numbers=list(g["roll_numbers"]) + ([999] if g["label"] == "beginner" else [])) for g in prep["groups"]]
+            body = {"client_id": "phone-abc-1", "plan_date": str(used), "domain_id": "numeracy", "competency_id": "N2.3.2",
+                    "prepared_for": prep["plan_date"], "made_at": "2031-05-14T03:00:00Z", "result": sent}
+            r = c.post(f"/api/plan/offline?teacher_id={tid}", json=body)
+            check("stored", r.status_code == 200 and r.json() == {"status": "stored"}, r.text[:200])
+            row = await db.fetchrow("SELECT plan_content, groups_snapshot, claude_model FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2", tid, used)
+            pc, snap = json.loads(row["plan_content"]), json.loads(row["groups_snapshot"])
+            check("as the day's plan, marked made offline, with its client id and the day it was prepared for", row["claude_model"] == "library_offline"
+                  and pc["served_from"] == "library_offline" and pc["offline"]["client_id"] == "phone-abc-1" and pc["offline"]["prepared_for"] == prep["plan_date"])
+            check("the lesson itself is the prepared one, unchanged", pc["rotation_schedule"] == prep["plan"]["rotation_schedule"] and pc["worksheets"] == prep["plan"]["worksheets"])
+            check("the groups as the phone planned them, limited to this teacher's own children (a roll 999 is dropped)",
+                  999 not in snap["beginner"]["rolls"] and snap["beginner"]["rolls"] == sorted(prep["groups"][0]["roll_numbers"]) and snap["progressor"]["target"] == "N2.3.2", snap.get("beginner"))
+            from app.services.sampling import sample_for_group
+            want = sample_for_group(snap["progressor"]["rolls"], used, "progressor", "N2.3.2")["rolls"]
+            check("the photo sample is worked out for the day the plan was USED (not the day it was prepared for)",
+                  pc["review_prompts"]["photo_sample_rolls"]["progressor"] == want, (pc["review_prompts"]["photo_sample_rolls"]["progressor"], want))
+            r = c.post(f"/api/plan/offline?teacher_id={tid}", json=body)
+            n_rows = await db.fetchval("SELECT count(*) FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2", tid, used)
+            check("the same client id again (a retry on a flaky network): 'duplicate', still ONE plan", r.status_code == 200 and r.json() == {"status": "duplicate"} and n_rows == 1)
+            r = c.post(f"/api/plan/offline?teacher_id={tid}", json=dict(body, client_id="phone-other-2"))
+            check("another plan for that day (another phone, or one made online meanwhile): the stored one is kept, 409 plan_exists with a Hindi message",
+                  r.status_code == 409 and r.json()["detail"]["code"] == "plan_exists" and "रखी गई" in r.json()["detail"]["message"]
+                  and json.loads(await db.fetchval("SELECT plan_content FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2", tid, used))["offline"]["client_id"] == "phone-abc-1")
+            g = c.get(f"/api/plan/{tid}/{used}/numeracy")
+            check("afterwards it is read back like any plan (the Teach and Review screens use this)", g.status_code == 200 and g.json()["plan"]["served_from"] == "library_offline"
+                  and [x["label"] for x in g.json()["groups"]] == ["beginner", "progressor", "proficient"])
+            bad = c.post(f"/api/plan/offline?teacher_id={tid}", json=dict(body, client_id="phone-bad-3", plan_date=str(used + timedelta(days=1)), result={"plan": {"anchor": {}}}))
+            check("something that is not a plan is refused (400), nothing stored", bad.status_code == 400 and bad.json()["detail"]["code"] == "bad_offline_plan"
+                  and not await db.fetchval("SELECT 1 FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2", tid, used + timedelta(days=1)))
+            check("no AI call in any of this", AI_CALLS == [])
+
             print("\nlimits")
             r = c.post(f"/api/offline/prepare?teacher_id={tid}", json={"domain_id": "numeracy", "items": [num[0]] * 121})
             check("more than 120 plans in one request is refused (422)", r.status_code == 422)

@@ -18,7 +18,7 @@ from app.models.schemas import (
     PhotoAnalysisResponse, ReplaceResultsRequest,
     ProgressDashboardResponse,
     StartBaselineRequest, SubmitBaselineRequest,
-    OfflinePrepareRequest,
+    OfflinePrepareRequest, OfflineUploadRequest,
 )
 from app.services import ai_budget, plan_service, review_service, progress_service, worksheet_service, register_service, names_service
 from app.services import library_assembler
@@ -206,6 +206,23 @@ async def offline_prepare(req: OfflinePrepareRequest, teacher_id: str):
             except Exception as e:                          # one choice that cannot be built (an unknown skill, a missing piece) never sinks the others
                 plans.append({"key": it.key, "ok": False, "error": type(e).__name__})
     return {"library_version": library_assembler.version(), "plans": plans}
+
+
+@router.post("/plan/offline", tags=["Offline"])
+async def upload_offline_plan(req: OfflineUploadRequest, teacher_id: str):
+    """A plan made on the phone with no connection, sent when it is back online (docs/drafts/OFFLINE_ASSEMBLER_PLAN.md, step 4): stored once per
+    client id; a different plan already stored for that day is kept (409 plan_exists). Afterwards the review works for that day as for any plan."""
+    if req.domain_id not in ('numeracy', 'r1_literacy'):
+        raise HTTPException(400, "domain_id must be 'numeracy' or 'r1_literacy'")
+    async with get_db() as db:
+        try:
+            return await plan_service.store_offline_plan(db, teacher_id, client_id=req.client_id, plan_date=req.plan_date, domain_id=req.domain_id,
+                                                         competency_id=req.competency_id, prepared_for=req.prepared_for, made_at=req.made_at, result=req.result)
+        except plan_service.OfflinePlanExists:
+            raise HTTPException(409, {"message": "इस दिन की योजना पहले से सर्वर पर है; वही रखी गई। "
+                                                 "(A plan for this day is already on the server; that one is kept.)", "code": "plan_exists"})
+        except ValueError as e:
+            raise HTTPException(400, {"message": f"यह योजना सहेजी नहीं जा सकी। (The plan could not be stored: {e}.)", "code": "bad_offline_plan"})
 
 
 @router.get("/plan/{teacher_id}/{plan_date}/{domain_id}", tags=["Dainik Yojana"])

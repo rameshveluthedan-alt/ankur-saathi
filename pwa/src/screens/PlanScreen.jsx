@@ -16,6 +16,9 @@ import { localToday } from '../services/today';
 import SessionLength from '../components/SessionLength';
 import OfflineReady from '../components/OfflineReady';
 import { prepareOffline } from '../offline/prepareNow';
+import { useOfflineMeta } from '../offline/useOfflineMeta';
+import { appStore } from '../offline/store';
+import { statusOf, findPrepared, makeOfflinePlan, saveOfflinePlan, newClientId, offlineChoice, panelEdited } from '../offline/offlinePlans';
 import { getSessionMinutes, setSessionMinutes } from '../services/preferences';
 import ReplacePlanDialog from '../components/ReplacePlanDialog';
 import SuggestedSkill from '../components/SuggestedSkill';
@@ -50,7 +53,14 @@ export default function PlanScreen() {
   const [selectedId, setSelectedId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [generating, setGenerating] = useState(false);
+  const [quick, setQuick] = useState(false);                     // the plan being made is the "⚡" quick plan (seconds, not a minute)
+  const pendingSource = useRef(null);                            // the "⚡" choice survives the "replace?" / "could not check" question
   const online = useOnline();            // Generate needs the internet: it is off, with a reason, when there is none
+  // with no connection, only the skills the server prepared can be planned (docs/drafts/OFFLINE_ASSEMBLER_PLAN.md, decision 5)
+  const offlineMeta = useOfflineMeta(selectedDomain);
+  const offlineStatus = statusOf(offlineMeta);
+  const offlineSkills = new Set(offlineStatus.skills || []);          // every skill once the download is complete; fewer while it is under way
+  const offlineReady = offlineSkills.size > 0;
   const [elapsed, setElapsed] = useState(0);
   const [gradeFilter, setGradeFilter] = useState(null);
   const [sessionMinutes, setSessionMinutesState] = useState(getSessionMinutes);      // today's time: the last choice on this device, 90 on first use
@@ -149,20 +159,46 @@ export default function PlanScreen() {
 
   const today = localToday();
 
-  const handleGenerate = async (confirmed) => {         // confirmed === true: the teacher answered the "could not check" question with yes
+  const handleGenerate = async (confirmed, sourceArg) => {         // confirmed === true: the teacher answered the "could not check" question with yes; sourceArg 'library': the "⚡" quick plan
     if (loadingPanel) return;
     if (!selectedId) return;
+    if (sourceArg !== undefined) pendingSource.current = sourceArg || null;
     if (locked) { setDialog('plan'); return; }
     if (existing.status === 'unknown' && !unknownOk && confirmed !== true) { setDialog('unknown'); return; }       // we could not tell whether a plan exists: never replace one silently
+    const source = pendingSource.current;
+    pendingSource.current = null;
+    if (!online) {           // no connection: the plan the server prepared for this choice (docs/drafts/OFFLINE_ASSEMBLER_PLAN.md, step 3)
+      if (!offlineReady) return;
+      try {
+        const panelReady = !!(rows && ladder);
+        const choice = offlineChoice({ meta: offlineMeta, competencyId: selectedId, panelReady, edited: panelEdited(rows, reteach), options: buildGenerateOptions({ rows, reteach, groups, ready: panelReady }) });
+        const store = await appStore();
+        const found = await findPrepared(store, { domain: selectedDomain, minutes: sessionMinutes, competencyId: selectedId, ...choice });
+        if (!found) {
+          notify(bi('इस चुनाव की बिना-इंटरनेट योजना फ़ोन पर नहीं है। सुझाए गए समूह-कौशल रखें, या इंटरनेट मिलने पर योजना बनाएँ।',
+                    'This choice was not prepared for use with no internet. Keep the suggested group skills, or make the plan when online.'), 'error');
+          return;
+        }
+        const plan = makeOfflinePlan(found.record.result, { date: today, clientId: newClientId(), teacherId: teacher.teacher_id, groups: offlineMeta && offlineMeta.groups });
+        await saveOfflinePlan(store, plan);
+        setCurrentPlan(plan);
+        navigate('/yojana');
+      } catch (e) {
+        notify(friendlyError(e, PLAN_FAILED), 'error');
+      }
+      return;
+    }
+    setQuick(source === 'library');
     setGenerating(true);
     try {
       // with the panel shown, the teacher's choices go with the request; without it (the suggestions could not be loaded) the plan decides, as before
       const options = buildGenerateOptions({ rows, reteach, groups, ready: !!(rows && ladder) });
       // replace: only when the teacher said so ("हाँ, बदलें", or "हाँ, बनाएँ" when the check failed); without it the server never replaces an existing plan
       const replace = (existing.status === 'exists' && unlocked) || (existing.status === 'unknown' && (unknownOk || confirmed === true));
-      const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today, { ...options, sessionMinutes, ...(replace ? { replace: true } : {}) });      // the plan is laid out for today's time
+      const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today, { ...options, sessionMinutes, ...(replace ? { replace: true } : {}), ...(source === 'library' ? { source: 'library' } : {}) });      // the plan is laid out for today's time
       setCurrentPlan(plan);
       setUnlockHint(false);
+      prepareOffline(teacher.teacher_id, [selectedDomain]);        // the new plan may change what is suggested next: the offline plans follow it
       navigate('/yojana');
     } catch (e) {
       if (e.code === 'plan_exists') {    // a plan appeared since this screen opened (another phone, another tab): show it and ask, never a raw error
@@ -170,6 +206,9 @@ export default function PlanScreen() {
           const found = await getCachedPlan(teacher.teacher_id, today, selectedDomain);
           setExisting({ status: 'exists', plan: found }); setUnlocked(false); setUnlockHint(false); setDrawerOpen(false); setDialog('plan');
         } catch (e2) { notify(friendlyError(e2, PLAN_FAILED), 'error'); }
+      } else if (e.code === 'library_unavailable') {      // the "⚡" plan cannot be built from the library for this choice: use the main button
+        notify(friendlyError(e, PLAN_FAILED, { 409: { hi: "इस कौशल के लिए तैयार हिस्सों से योजना नहीं बन सकी: '📋 आज की योजना बनाएँ' दबाएँ।",
+                                                    en: "A quick plan can't be made for this skill from the ready-made pieces: use 'Create today's plan'." } }), 'error');
       } else if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
         const samples = (e.detail && e.detail.sample_skills) || [];
         notify(e.message + (samples.length ? `\n\n${bi('इन कौशलों की नमूना योजना उपलब्ध है', 'Ready-made plans are available for')}: ${samples.join(', ')}` : ''), 'error');
@@ -326,7 +365,16 @@ export default function PlanScreen() {
               </div>
               {grouped[grade].map(c => (
                 <div key={c.id} className={`competency-item ${selectedId === c.id ? 'recommended' : ''}`}
-                  onClick={() => { setDrawerOpen(false); setSelectedId(c.id); }}>
+                  data-offline={!online ? (offlineSkills.has(c.id) ? 'ready' : 'unavailable') : undefined}
+                  style={!online && !offlineSkills.has(c.id) ? { opacity: 0.45 } : undefined}
+                  onClick={() => {
+                    if (!online && !offlineSkills.has(c.id)) {      // offline: only a prepared skill can be planned (greyed, with the reason, never a dead end)
+                      notify(bi('इस कौशल की बिना-इंटरनेट योजना अभी फ़ोन पर नहीं आई (डाउनलोड पूरा नहीं हुआ)। इंटरनेट मिलने पर योजना बनाएँ।',
+                                "This skill's plan for use with no internet has not reached the phone yet (the download is not complete). Make the plan when online."), 'info');
+                      return;
+                    }
+                    setDrawerOpen(false); setSelectedId(c.id);
+                  }}>
                   <span className="competency-id">{c.id}</span>
                   <span className="competency-name">
                     {c.name_hi ? <Bi hi={c.name_hi} en={c.name_en} /> : c.name_en}
@@ -358,17 +406,21 @@ export default function PlanScreen() {
           )}
           {generating && (
             <div style={{ fontSize: '0.75rem', textAlign: 'center', background: 'var(--green-bg)', borderRadius: 8, padding: '6px 10px', marginBottom: 6, color: 'var(--text-secondary)' }}>
-              {elapsed < SLOW_AFTER_S
+              {quick
+                ? <Bi hi="तैयार हिस्सों से योजना बन रही है: कुछ सेकंड।" en="Building the plan from ready-made pieces: a few seconds." />
+                : elapsed < SLOW_AFTER_S
                 ? <Bi hi="लगभग 1–1.5 मिनट लगते हैं। कृपया इस पेज को खुला रखें।" en="Takes about 1–1.5 minutes. Please keep this page open." />
                 : <Bi hi="थोड़ा और समय लग रहा है, कृपया प्रतीक्षा करें।" en="Taking a little longer. Please keep waiting." />}
             </div>
           )}
           {!online && !generating && (
-            <div data-testid="generate-offline" style={{ fontSize: '0.75rem', textAlign: 'center', background: '#E8EEF4', color: '#26405A', borderRadius: 8, padding: '6px 10px', marginBottom: 6 }}>
-              <Bi hi="योजना बनाने के लिए इंटरनेट चाहिए।" en="Making a plan needs the internet." />
+            <div data-testid="generate-offline" data-ready={offlineReady ? 'true' : 'false'} style={{ fontSize: '0.75rem', textAlign: 'center', background: '#E8EEF4', color: '#26405A', borderRadius: 8, padding: '6px 10px', marginBottom: 6 }}>
+              {offlineReady
+                ? <Bi hi="📴 बिना इंटरनेट: फ़ोन पर पहले से तैयार योजना खुलेगी (तैयार हिस्सों से)।" en="No internet: the plan prepared on this phone opens (from ready-made pieces)." />
+                : <Bi hi="योजना बनाने के लिए इंटरनेट चाहिए।" en="Making a plan needs the internet." />}
             </div>
           )}
-          <button className="btn btn-primary" onClick={handleGenerate} disabled={generating || loadingPanel || !online}
+          <button className="btn btn-primary" onClick={() => handleGenerate(undefined, null)} disabled={generating || loadingPanel || (!online && !offlineReady)}
             style={generating ? { opacity: 1, cursor: 'wait' } : undefined}>
             {generating ? (
               <><div className="spinner" style={{ width: 20, height: 20, borderWidth: 2 }} /> <Bi hi="योजना बन रही है..." en="Making the plan…" inline /> {fmtClock(elapsed)}</>
@@ -378,6 +430,13 @@ export default function PlanScreen() {
               <>📋 <Bi hi="आज की योजना बनाएँ" en="Create today's plan" inline /> → {selectedId}</>
             )}
           </button>
+          {/* the second choice (decision 9): a plan from the block library in seconds, with no AI call. Offline the main button already does this from the phone. */}
+          {online && !generating && (
+            <button type="button" className="btn btn-secondary btn-small" data-testid="quick-plan" onClick={() => handleGenerate(undefined, 'library')} disabled={loadingPanel}
+              style={{ width: '100%', marginTop: 6, minHeight: 44 }}>
+              ⚡ <Bi hi="तैयार हिस्सों से जल्दी योजना (AI के बिना, कुछ सेकंड)" en="Quick plan from ready-made pieces (no AI, a few seconds)" inline />
+            </button>
+          )}
         </div>
       )}
       </>)}

@@ -17,6 +17,9 @@ import { getFamiliarMode } from '../services/preferences';
 import { planMinutes } from '../services/planMinutes';
 import { planSlots, stripParts } from '../services/planSlots';
 import { blockPace } from '../services/reteachInfo';
+import WorksheetInApp from '../components/WorksheetInApp';
+import { appStore } from '../offline/store';
+import { getOfflinePlan } from '../offline/offlinePlans';
 
 // Generated text may contain line breaks (lists) and stray markdown markers.
 // Keep the line breaks, wrap long strings, and drop ** / __ since we do not render markdown.
@@ -48,12 +51,14 @@ export default function YojanaScreen() {
   const [slotIndex, setSlotIndexState] = useState(() => { try { return Number(sessionStorage.getItem(slotKey)) || 0; } catch { return 0; } });
   const setSlotIndex = (k) => { setSlotIndexState(k); try { if (slotKey) sessionStorage.setItem(slotKey, String(k)); } catch { /* private mode */ } };
   // loading from the first frame when the plan in memory is not today's for the chosen subject (see below): never a moment of "no plan" first
+  const [inAppSheet, setInAppSheet] = useState(null);       // a plan made offline: the worksheet shown in the app (its printable page is on the server only)
+  const madeOffline = !!(currentPlan && currentPlan.served_from === 'library_offline');
   const [loadingStored, setLoadingStored] = useState(() => !(currentPlan && currentPlan.plan_date === localToday() && currentPlan.domain_id === selectedDomain));
   // how each group's skill is checked at the review (and what to look for, the text to read aloud): the "आज की समीक्षा" fold, readable before class
   const [ways, setWays] = useState(null);
   useEffect(() => {
     setWays(null);
-    if (!currentPlan || !currentPlan.plan_date || !currentPlan.domain_id) return undefined;
+    if (!currentPlan || !currentPlan.plan_date || !currentPlan.domain_id || currentPlan.served_from === 'library_offline') return undefined;     // a plan made offline is not on the server yet
     let cancelled = false;
     Promise.resolve().then(() => getReviewChannels(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id))
       .then((w) => { if (!cancelled) setWays(w); }).catch(() => {});
@@ -65,7 +70,7 @@ export default function YojanaScreen() {
   const sheets = currentPlan && currentPlan.plan && currentPlan.plan.worksheets;
   const sheetsKey = sheets ? Array.from(JSON.stringify(sheets)).reduce((h, c) => (h * 33 + c.charCodeAt(0)) >>> 0, 5381) : 0;
   useEffect(() => {
-    if (!currentPlan || !sheets || !isOnline()) return;
+    if (!currentPlan || !sheets || !isOnline() || currentPlan.served_from === 'library_offline') return;      // a plan made offline: its pages are not on the server yet
     prepareOfflineCopy(teacher.teacher_id, currentPlan.plan_date, currentPlan.domain_id, Object.keys(sheets).filter(l => sheets[l]));
   }, [currentPlan && currentPlan.plan_date, currentPlan && currentPlan.domain_id, sheetsKey]);
 
@@ -92,7 +97,10 @@ export default function YojanaScreen() {
     setLoadFailed(false);
     getCachedPlan(teacher.teacher_id, today, selectedDomain)
       .then((p) => { if (!cancelled) setCurrentPlan(p); })
-      .catch((e) => {
+      .catch(async (e) => {
+        if (cancelled) return;
+        // none on the server (or no connection): a plan made on this phone with no connection, waiting to be sent (offline/offlinePlans.js)
+        try { const mine = await getOfflinePlan(await appStore(), selectedDomain, today); if (mine && !cancelled) { setCurrentPlan(mine); return; } } catch { /* none */ }
         if (cancelled) return;
         if (!isToday(currentPlan)) setCurrentPlan(null);          // no plan stored for today: an older day's plan is put away
         if (!(e && e.status === 404)) setLoadFailed(true);         // not "none stored" but a failure (no internet): the empty state says so
@@ -320,7 +328,13 @@ export default function YojanaScreen() {
 
   return (
     <div className="screen">
-      {currentPlan.served_from === 'library' && (
+      {madeOffline && (
+        <div data-testid="offline-plan-banner" className="note note-info">
+          📴 <b><Bi hi="बिना इंटरनेट के बनी योजना" en="Plan made with no internet" inline /></b>: <Bi hi="यह फ़ोन पर पहले से तैयार योजना है। इंटरनेट मिलते ही भेजी जाएगी; उसके बाद समीक्षा और फ़ोटो जाँच होगी। वर्कशीट यहीं ऐप में देखें और बोर्ड पर उतारें।"
+            en="This plan was prepared on the phone. It is sent as soon as there is internet; the review and photo marking follow. See the worksheets here in the app and copy them onto the board." inline />
+        </div>
+      )}
+      {(currentPlan.served_from === 'library' || madeOffline) && (
         <div data-testid="library-banner" className="note note-info">
           🧩 <b><Bi hi="तैयार हिस्सों से बनी योजना" en="Plan from the ready-made library" inline /></b>: <Bi hi="आज AI के बिना, कोड ने हर समूह के कौशल के तैयार हिस्सों से यह योजना बनाई है। ये हिस्से AI ने लिखे हैं और अभी शिक्षा विशेषज्ञ की समीक्षा बाकी है।"
             en="With no AI today, the app built this plan from ready-made pieces for each group's skill. The pieces were drafted by AI and are not yet reviewed by the education lead." inline />
@@ -376,7 +390,8 @@ export default function YojanaScreen() {
                 <td style={{ textAlign: 'center' }}>
                   {sheet ? (
                     <button type="button" className="btn btn-secondary btn-small sheet-btn" data-testid={`worksheet-${level}`}
-                      onClick={() => navigate('/page', { state: { path: sheetUrl(level), title: { hi: `वर्कशीट: ${GROUP_LABELS[level].hi}`, en: `Worksheet: ${GROUP_LABELS[level].en}` }, back: '/yojana' } })}>
+                      onClick={() => (madeOffline ? setInAppSheet((cur) => (cur === level ? null : level))
+                        : navigate('/page', { state: { path: sheetUrl(level), title: { hi: `वर्कशीट: ${GROUP_LABELS[level].hi}`, en: `Worksheet: ${GROUP_LABELS[level].en}` }, back: '/yojana' } }))}>
                       📝
                     </button>
                   ) : <span style={{ color: 'var(--text-light)', fontSize: '0.75rem' }} data-testid={`worksheet-none-${level}`}>—</span>}
@@ -386,6 +401,7 @@ export default function YojanaScreen() {
           })}
         </tbody>
       </table>
+      {madeOffline && inAppSheet && <WorksheetInApp ws={sheetOf(inAppSheet)} level={inAppSheet} onClose={() => setInAppSheet(null)} />}
       <p className="hint-line"><Bi hi="📝 वर्कशीट खोलें, प्रिंट करें या बोर्ड पर उतारें।" en="📝 opens the worksheet: print it, or copy it to the board." inline /></p>
       <h2 className="day-section" data-testid="section-before">🌅 <Bi hi="कक्षा से पहले" en="Before class" inline /></h2>
 

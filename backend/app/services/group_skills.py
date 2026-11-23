@@ -156,7 +156,8 @@ async def propose(db, teacher_id: str, domain_id: str, plan_date) -> dict:
             entry["proposed"], entry["reason"] = entry["previous_target"], "recommended"
         entry["conflict"] = decision == "advance" and ev["recommend"]      # the teacher chose to move on although the evidence suggests a re-teach: the screen asks, once
         out[label] = entry
-    return {"has_history": True, "previous_date": str(prev["plan_date"]), "groups": out}
+    # the previous plan's own skill (the Progressors' skill that day): the plans prepared for no connection start from it when no group is suggested (23 Nov)
+    return {"has_history": True, "previous_date": str(prev["plan_date"]), "previous_selected": prev.get("selected_competency_id"), "groups": out}
 
 
 async def related_skills(db, competency_id: str, direction: str, limit: int = 40) -> list:

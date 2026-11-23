@@ -44,6 +44,10 @@ export default function HowItWorks({ className = 'card fold' }) {
       <p style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '2px 0 8px' }}>
         <Bi hi="🔒 बच्चों के नाम AI को कभी नहीं भेजे जाते।" en="🔒 Children's names never go to the AI." />
       </p>
+      <p data-testid="how-offline" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', margin: '4px 0 0' }}>
+        <Bi hi="📴 बिना इंटरनेट: इंटरनेट रहते ऐप सुझाए गए कौशलों की अगले कुछ दिनों की योजनाएँ फ़ोन पर तैयार रखता है। इंटरनेट न हो तो वही खुलती हैं, और इंटरनेट मिलते ही भेज दी जाती हैं। ⚡ जल्दी योजना: AI के बिना, तैयार हिस्सों से, कुछ सेकंड में।"
+          en="📴 No internet: while online, the app keeps the next few days' plans for the suggested skills on the phone. With no internet those open, and they are sent once the internet is back. ⚡ Quick plan: no AI, from ready-made pieces, in seconds." />
+      </p>
     </details>
   );
 }

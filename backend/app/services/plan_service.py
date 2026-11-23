@@ -9,7 +9,7 @@ import random
 import re
 import time
 from collections import Counter
-from datetime import date
+from datetime import date, datetime, timezone
 from typing import Optional
 
 import anthropic
@@ -1674,6 +1674,76 @@ async def generate_dainik_yojana(
         "validation_warnings": validation_warnings,
         "served_from": served_from,
     }
+
+
+# ── Plans made with no connection (docs/drafts/OFFLINE_ASSEMBLER_PLAN.md, step 4) ────────────────────────────────────────────────────────────
+
+class OfflinePlanExists(Exception):
+    """A different plan is already stored for that day and subject: the server's is kept (decision 8)."""
+
+
+OFFLINE_PLAN_MAX_BYTES = 600_000          # a library plan is about 50 KB; anything far larger is not one
+
+
+def restamp_photo_sample(plan_json: dict, snapshot: dict, plan_date: date, domain_id: str) -> None:
+    """The children to photograph, for the day the plan is USED (a prepared plan may have been made for another day): the same systematic
+    sampling as a generated plan, and none for a practice-only sheet (reading aloud, observed). In place."""
+    rp = plan_json.get("review_prompts") if isinstance(plan_json.get("review_prompts"), dict) else {}
+    plan_json["review_prompts"] = rp
+    targets = {g: (snapshot.get(g) or {}).get("target") for g in ("beginner", "progressor", "proficient")}
+    kinds = writing_sheets.group_kinds({g: t for g, t in targets.items() if t}, domain_id)
+    rp["photo_sample_rolls"] = {
+        g: ([] if kinds.get(g) in ("fluency", "observed") or not targets.get(g)
+            else sample_for_group((snapshot.get(g) or {}).get("rolls") or [], plan_date, g, targets[g])["rolls"])
+        for g in ("beginner", "progressor", "proficient")}
+    rp["photo_sample_method"] = "systematic sampling, the start moves each day"
+
+
+async def store_offline_plan(db, teacher_id: str, *, client_id: str, plan_date: date, domain_id: str, competency_id: str,
+                             prepared_for: Optional[date], made_at: Optional[str], result: dict) -> dict:
+    """
+    Store a plan the phone made with no connection: a plan the SERVER prepared (POST /offline/prepare), used offline and uploaded when the
+    phone is back online. Once per client id: the same id again answers 'duplicate' (a retry on a flaky network never stores it twice). A
+    different plan already stored for that day is kept (OfflinePlanExists). The groups are the ones the phone planned with, limited to this
+    teacher's own children; the photo sample is worked out for the day the plan was used. Returns {"status": "stored" | "duplicate"}.
+    """
+    if not isinstance(result, dict) or not isinstance(result.get("plan"), dict):
+        raise ValueError("no plan")
+    plan = result["plan"]
+    if not isinstance((plan.get("rotation_schedule") or {}).get("blocks"), list) or not isinstance(plan.get("worksheets"), dict):
+        raise ValueError("not a plan: the session or the worksheets are missing")
+    if len(json.dumps(result, ensure_ascii=False)) > OFFLINE_PLAN_MAX_BYTES:
+        raise ValueError("the plan is too large")
+    row = await db.fetchrow("SELECT plan_content->'offline'->>'client_id' AS cid FROM daily_plans WHERE teacher_id = $1 AND plan_date = $2 AND domain_id = $3",
+                            teacher_id, plan_date, domain_id)
+    if row:
+        if row["cid"] and row["cid"] == client_id:
+            return {"status": "duplicate"}
+        raise OfflinePlanExists()
+    mine = {r["roll_number"] for r in await db.fetch("SELECT roll_number FROM children WHERE teacher_id = $1 AND is_active", teacher_id)}
+    snapshot = {}
+    for g in result.get("groups") or []:
+        if isinstance(g, dict) and g.get("label") in ("beginner", "progressor", "proficient"):
+            rolls = sorted({int(r) for r in (g.get("roll_numbers") or []) if str(r).lstrip("-").isdigit() and int(r) in mine})
+            snapshot[g["label"]] = {"count": len(rolls), "rolls": rolls, "target": g.get("target_competency_id")}
+    plan_json = copy.deepcopy(plan)
+    plan_json["served_from"] = "library_offline"
+    plan_json["offline"] = {"client_id": client_id, "prepared_for": str(prepared_for) if prepared_for else None, "made_at": made_at,
+                            "uploaded_at": datetime.now(timezone.utc).isoformat()}
+    restamp_photo_sample(plan_json, snapshot, plan_date, domain_id)
+    explainability = result.get("explainability") if isinstance(result.get("explainability"), dict) else (plan_json.get("explainability") or {})
+    try:
+        await db.execute("""
+            INSERT INTO daily_plans (teacher_id, plan_date, domain_id, selected_competency_id, plan_content, explainability, groups_snapshot,
+                                     generation_time_ms, claude_model)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, 0, 'library_offline')""",
+            teacher_id, plan_date, domain_id, competency_id, json.dumps(plan_json, ensure_ascii=False),
+            json.dumps(explainability, ensure_ascii=False), json.dumps(snapshot, ensure_ascii=False))
+    except Exception as e:
+        if e.__class__.__name__ == "UniqueViolationError":         # stored by another request a moment ago
+            raise OfflinePlanExists()
+        raise
+    return {"status": "stored"}
 
 
 async def plan_evidence(db, teacher_id: str, plan_date: date, snapshot: dict) -> dict:

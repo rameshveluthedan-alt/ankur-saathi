@@ -52,11 +52,17 @@ of Python, still being refined.
    `OfflineReady.jsx`; the choices are made with the Plan screen's own `initialRows` / `buildGenerateOptions`; 45 plans per subject.)
 3. **The Plan screen:** the "⚡" button; offline, the badges and the greyed-out choices, and "आज की योजना बनाएँ" opening the matching prepared
    plan (decision 6 past the buffer), saved as an offline plan; the Teach screen's label ("📴 बिना इंटरनेट के बनी योजना: इंटरनेट मिलते ही भेजी
-   जाएगी") and the in-app worksheet view.
+   जाएगी") and the in-app worksheet view. (Done 22 Nov. Offline the group panel usually cannot load the skill's ladder, so each skill's
+   DEFAULT choice, the app's suggestion, is recorded when preparing and used then; when the panel does load, the screen's own choice is used.
+   A choice that was not prepared says so plainly and makes nothing.)
 4. **Upload:** `POST /api/plan/offline` (client id, inputs, plan): owner and shape checked, photo sample added, stored as
    `served_from: library_offline`; the same answer for a repeat of the same id; a plan already stored for that day is kept and the phone says
    so. The phone sends waiting plans whenever the network check finds the server, then shows the stored one. Tests (server and phone).
-5. **Docs:** an offline section in the teacher-facing help and in `docs/HANDOVER.md`; the new Hindi lines go to the education lead.
+   (Done 23 Nov. The groups stored are the ones the phone planned with, limited to the teacher's own children; the photo sample is worked out
+   for the day of use. A plan the server refuses stays on the phone and is not sent again. Plans made offline belong to the teacher who made
+   them: another teacher signing in on the phone removes them; sign-out says so first when any is unsent.)
+5. **Docs:** an offline section in the teacher-facing help and in `docs/HANDOVER.md`; the new Hindi lines go to the education lead. (Done 23 Nov:
+   `docs/OFFLINE.md`, the app's offline banner and How-it-works line, handover item 19 and the education lead's list, item 3 (k).)
 
 ## Limits (said plainly)
 
