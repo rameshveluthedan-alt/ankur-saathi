@@ -52,6 +52,8 @@ _LEVEL_WORDS = {
 
 
 def _clean(v) -> str:
+    if isinstance(v, float) and v.is_integer():          # Excel files saved by Google Sheets hold 1 as 1.0: a whole number is read as the whole number
+        v = int(v)
     return unicodedata.normalize("NFC", str(v if v is not None else "")).strip().translate(_DIGITS)
 
 
