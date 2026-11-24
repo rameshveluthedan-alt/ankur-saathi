@@ -68,7 +68,28 @@ else:
     wb.save(buf)
     rows = R.parse_register(buf.getvalue(), "register.xlsx")
     check("3 children read", len(rows) == 3, len(rows))
-    check("numeric cells (grade 1, roll 5) read as 1 and 5", rows[0]["grade"] in ("1", "1.0") and rows[0]["roll"] in ("5", "5.0"), rows[0])
+    check("numeric cells (grade 1, roll 5) read as exactly 1 and 5", rows[0]["grade"] == "1" and rows[0]["roll"] == "5", rows[0])
+    # a sheet downloaded from Google Sheets stores whole numbers as decimals (1.0): they must still be accepted
+    import re
+    import zipfile
+    wb2 = Workbook()
+    for r in [("grade", "roll_number", "name"), (1, 1, "Asha"), (3, 2, "Ravi"), (0, 7, "Dev")]:
+        wb2.active.append(list(r))
+    buf2 = io.BytesIO()
+    wb2.save(buf2)
+    out2 = io.BytesIO()                                   # openpyxl writes 1 as <v>1</v>; Google Sheets writes <v>1.0</v>: rewrite the numbers the way Google does
+    with zipfile.ZipFile(io.BytesIO(buf2.getvalue())) as zin, zipfile.ZipFile(out2, "w") as zout:
+        for item in zin.infolist():
+            data = zin.read(item.filename)
+            if item.filename == "xl/worksheets/sheet1.xml":
+                data = re.sub(rb"<v>(\d+)</v>", rb"<v>\g<1>.0</v>", data)
+            zout.writestr(item, data)
+    from openpyxl import load_workbook
+    check("(the test file really holds decimals)", isinstance(load_workbook(io.BytesIO(out2.getvalue())).active["A2"].value, float))
+    rows2 = R.parse_register(out2.getvalue(), "from_google_sheets.xlsx")
+    plan = R.plan_register(rows2, [], None)
+    check("whole numbers stored as decimals (1.0) are read as 1, not refused", plan["counts"] == {"new": 3, "exists": 0, "error": 0, "total": 3}, plan["counts"])
+    check("a real decimal is still refused", R.plan_register([{"row": 2, "grade": R._clean(1.5), "roll": "1"}], [], None)["counts"]["error"] == 1)
     check("Hindi name and Devanagari roll read", rows[0]["name"] == "आशा" and rows[2]["roll"] == "2", rows)
     check("recognised as Excel with no .xlsx in the name", len(R.parse_register(buf.getvalue(), "upload")) == 3)
 
