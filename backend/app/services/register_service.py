@@ -128,8 +128,12 @@ def parse_register(data: bytes, filename: str = "") -> list:
             from openpyxl import load_workbook
         except ImportError:
             raise ValueError("Excel files need the openpyxl library on the server. Save the sheet as CSV (UTF-8) and upload that.")
-        ws = load_workbook(io.BytesIO(data), data_only=True).active
-        return _rows_from_table([[c for c in row] for row in ws.iter_rows(values_only=True)])
+        try:
+            ws = load_workbook(io.BytesIO(data), data_only=True).active
+            table = [[c for c in row] for row in ws.iter_rows(values_only=True)]
+        except Exception:                                    # a damaged file, or one that only has the .xlsx name: say what to do, not "server error"
+            raise ValueError("This Excel file could not be read. Open it, save it again as CSV (UTF-8) and upload that.")
+        return _rows_from_table(table)
     text = _decode(data)
     header = next((ln for ln in text.splitlines() if ln.strip() and not ln.lstrip().startswith("#")), "")
     counts = {d: header.count(d) for d in (",", ";", "\t")}          # the separator that appears most in the header line
