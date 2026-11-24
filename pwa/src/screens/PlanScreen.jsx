@@ -53,6 +53,7 @@ export default function PlanScreen() {
   const [selectedId, setSelectedId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [generating, setGenerating] = useState(false);
+  const [aiDown, setAiDown] = useState(false);                    // the AI could not be reached (its limit, a key problem, an outage): a banner offers the quick plan, in place
   const [quick, setQuick] = useState(false);                     // the plan being made is the "⚡" quick plan (seconds, not a minute)
   const pendingSource = useRef(null);                            // the "⚡" choice survives the "replace?" / "could not check" question
   const online = useOnline();            // Generate needs the internet: it is off, with a reason, when there is none
@@ -206,6 +207,7 @@ export default function PlanScreen() {
       const plan = await generatePlan(teacher.teacher_id, selectedId, selectedDomain, today, { ...options, sessionMinutes, ...(replace ? { replace: true } : {}), ...(source === 'library' ? { source: 'library' } : {}) });      // the plan is laid out for today's time
       setCurrentPlan(plan);
       setUnlockHint(false);
+      setAiDown(false);
       prepareOffline(teacher.teacher_id, [selectedDomain]);        // the new plan may change what is suggested next: the offline plans follow it
       navigate('/yojana');
     } catch (e) {
@@ -217,6 +219,8 @@ export default function PlanScreen() {
       } else if (e.code === 'library_unavailable') {      // the "⚡" plan cannot be built from the library for this choice: use the main button
         notify(friendlyError(e, PLAN_FAILED, { 409: { hi: "इस कौशल के लिए तैयार हिस्सों से योजना नहीं बन सकी: '📋 आज की योजना बनाएँ' दबाएँ।",
                                                     en: "A quick plan can't be made for this skill from the ready-made pieces: use 'Create today's plan'." } }), 'error');
+      } else if (e.code === 'ai_unavailable') {      // the AI provider is not answering: not a server fault, and the quick plan (no AI) is one tap away
+        setAiDown(true);
       } else if (e.code === 'ai_cap') {        // the AI limit was reached: say why, and which skills still have a recorded sample plan
         const samples = (e.detail && e.detail.sample_skills) || [];
         notify(e.message + (samples.length ? `\n\n${bi('इन कौशलों की नमूना योजना उपलब्ध है', 'Ready-made plans are available for')}: ${samples.join(', ')}` : ''), 'error');
@@ -438,6 +442,17 @@ export default function PlanScreen() {
               <>📋 <Bi hi="आज की योजना बनाएँ" en="Create today's plan" inline /> → {selectedId}</>
             )}
           </button>
+          {aiDown && online && !generating && (
+            <div data-testid="ai-down" role="alert" style={{ background: 'var(--info-bg)', borderLeft: '4px solid var(--info)', borderRadius: 8, padding: '8px 10px', marginTop: 8, fontSize: '0.8125rem' }}>
+              <p style={{ margin: '0 0 6px' }}><Bi hi="AI अभी उपलब्ध नहीं है। तैयार हिस्सों से योजना बन सकती है: उसमें AI नहीं लगता और कुछ ही सेकंड लगते हैं।" en="The AI is not available right now. A plan can be made from the ready-made pieces: it needs no AI and takes a few seconds." /></p>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                <button type="button" className="btn btn-primary btn-small" data-testid="ai-down-quick" onClick={() => handleGenerate(undefined, 'library')} style={{ flex: 1, minHeight: 44 }}>
+                  ⚡ <Bi hi="तैयार हिस्सों से योजना बनाएँ" en="Make a quick plan instead" inline />
+                </button>
+                <button type="button" className="btn btn-secondary btn-small" data-testid="ai-down-close" aria-label="बंद करें" onClick={() => setAiDown(false)} style={{ minHeight: 44, minWidth: 44 }}>✕</button>
+              </div>
+            </div>
+          )}
           {/* the second choice (decision 9): a plan from the block library in seconds, with no AI call. Offline the main button already does this from the phone. */}
           {online && !generating && (
             <button type="button" className="btn btn-secondary btn-small" data-testid="quick-plan" onClick={() => handleGenerate(undefined, 'library')} disabled={loadingPanel}

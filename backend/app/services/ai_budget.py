@@ -40,6 +40,11 @@ MESSAGES = {
 }
 
 
+# The AI provider itself refused or could not be reached (its own usage limit, an expired or wrong key, a busy or down service): not our cap, so the
+# teacher is told plainly and offered the quick plan (the app shows a button), instead of a vague "server error".
+PROVIDER_UNAVAILABLE = "AI अभी उपलब्ध नहीं है। (The AI is not available right now.)"
+
+
 class AICapReached(Exception):
     def __init__(self, reason: str):
         self.reason = reason

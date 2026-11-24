@@ -6,6 +6,7 @@ Organized by PWA screen: Plan, Dainik Yojana, Review, Progress.
 from fastapi import APIRouter, Depends, HTTPException, Request, UploadFile, File, Form
 from fastapi.responses import PlainTextResponse, HTMLResponse, Response
 import json
+import anthropic
 from datetime import date
 from typing import Optional
 
@@ -180,6 +181,10 @@ async def generate_plan(req: GeneratePlanRequest, teacher_id: str):
                                       "code": "library_unavailable"})
         except ai_budget.AICapReached as e:
             raise HTTPException(429, {"message": e.message, "code": "ai_cap", "reason": e.reason, "sample_skills": ai_budget.sample_skills()})
+        except anthropic.APIError as e:          # the AI provider refused or could not be reached (its usage limit, a bad or expired key, an outage): say so, the app offers the quick plan
+            import traceback
+            traceback.print_exc()                 # the real reason stays in the server log
+            raise HTTPException(503, {"message": ai_budget.PROVIDER_UNAVAILABLE, "code": "ai_unavailable", "status": getattr(e, "status_code", None)})
         except Exception as e:
             import traceback
             traceback.print_exc()
