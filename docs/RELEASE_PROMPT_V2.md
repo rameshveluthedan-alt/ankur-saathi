@@ -1,12 +1,19 @@
-# Release: prompt v2 and the block library (`lab/prompt-v2` into `main`)
+# Release: prompt v2, the block library and offline plans (`lab/prompt-v2` into `main`)
 
-**For:** the release owner. Written 22 Nov 2026. The lab rule stands: nothing here is run from the lab folder; the release owner merges, runs the
+**For:** the release owner. Written 22 Nov 2026; offline plans added 23 Nov. The lab rule stands: nothing here is run from the lab folder; the release owner merges, runs the
 gate and deploys, in `C:\dev\Ankur-Saathi` on `main`. (`docs/LAB_TO_MAIN.md` is the history of an earlier, patch-based move; it does not apply here.)
 
 ## What this release carries
 
 - **The branch:** `lab/prompt-v2`, made from `main` at `112b953` (deployed 17 Nov). Count its commits with `git log --oneline main..lab/prompt-v2`.
-  If `main` has not moved since (`git log --oneline lab/prompt-v2..main` prints nothing), the merge is a plain fast-forward: no merge commit.
+  `main` has moved since (one docs-only commit, `df270f6`, the roadmap note on EmbeddingGemma), so on 23 Nov the merge is NOT a fast-forward: step 1 makes a merge
+  commit (a dry run showed no conflicts). If `git log --oneline lab/prompt-v2..main` prints nothing when you run it, `--ff-only` works as before.
+- **Offline plans (23 Nov):** with no connection the teacher can still make a plan for EVERY skill, in both subjects, at 45 / 60 / 90 minutes. While online the phone
+  has the server prepare one plan per skill and length (about 300, in batches of at most 25, kept in IndexedDB, refreshed weekly or when the library changes), the
+  Plan screen lists the skills it kept when it opens with no connection, Generate opens the prepared plan (📴 label, library note), the worksheets show in the app, and a
+  plan made offline is sent when the connection returns. New server routes: `POST /api/offline/prepare` (at most 120 choices a request; no AI, nothing stored) and
+  `POST /api/plan/offline` (stores a plan made on a phone, once, by its client id); the quick ⚡ plan online (`source: library`). No database change. Details:
+  `docs/OFFLINE.md`.
 - **In it:** prompt v2 (the cached system block, each group's own mistakes, the 3 + N worksheet, the pace per block); the 45 / 60 / 90-minute
   session lengths, with the line under "आज का समय" describing each; the block library (`db/seeds/library/`, 880 checked pieces) and the assembler,
   used FIRST when the AI is off; the pilot-account commands (`scripts/auth_admin.py create-school` with `--block`, `--district`, `--printer`);
@@ -25,10 +32,10 @@ gate and deploys, in `C:\dev\Ankur-Saathi` on `main`. (`docs/LAB_TO_MAIN.md` is 
 cd C:\dev\Ankur-Saathi
 git branch --show-current      # must print: main
 git status --short             # must print nothing
-git merge --ff-only lab/prompt-v2
-git log --oneline -1           # must print the newest commit of lab/prompt-v2 (this file's commit or later)
+git merge --no-edit lab/prompt-v2     # a merge commit (main has one docs-only commit the branch lacks); if it stops on a conflict, stop and look
+git log --oneline -3                  # the merge commit, then the newest commit of lab/prompt-v2 below it
 ```
-Optional, docs only: the roadmap note on EmbeddingGemma (`git cherry-pick 32eaa59`, from `lab/enhancements`).
+The EmbeddingGemma roadmap note is already on `main` (`df270f6`), so no cherry-pick is needed.
 
 **2. The gate.** In a SEPARATE PowerShell window, so the tests can never use the real key:
 ```powershell
@@ -69,6 +76,15 @@ gcloud run jobs executions list --job=ankur-nightly --region=$REGION     # the n
 - **One plan at 45 minutes:** blocks of 5, 16, 2, 14, 1 and 7 minutes; one show-me question per block; each worksheet 3 core + 1 extra.
 - **One plan at 60 minutes:** 3 core + 2 extra; two show-me questions per block.
 - **Review:** the three steps; the tick sheet and the printed plan, printed.
+- **Offline plans (needs no AI credit):**
+  - Sign in as a demo teacher and open the Plan screen; wait for "✓ ऑफ़लाइन योजना तैयार" (about 300 plans, fetched in batches of 25, so a minute or two; longer on a slow connection).
+  - Cut the network (airplane mode, or DevTools → Network → Offline). The banner appears; the skills still list; the prepared ones are ready.
+  - Pick a skill, press "आज की योजना बनाएँ": the plan opens with the 📴 "बिना इंटरनेट के बनी योजना" label, and 📝 opens each worksheet in the app
+    (an observed sheet shows its "what to look for" as three ✓ / ~ / ✗ lines).
+  - Restore the network: the plan is sent by itself (the teacher is told). Check the Teach screen shows the stored plan.
+  - Repeat in Hindi (हिंदी), and once at 45 and 60 minutes. Online, the ⚡ quick plan answers in seconds with the library label.
+  - Sign out with a plan not yet sent: the app warns first.
+  - Not tested on a real budget Android phone (1 to 2 GB): worth one try on a spare phone.
 - **The AI budget:** `gcloud run jobs execute ankur-usage --region=$REGION --wait`, then read its log as in section 11: the new calls are there,
   and after the first plan they show cache reads.
 
