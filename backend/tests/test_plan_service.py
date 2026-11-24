@@ -90,7 +90,11 @@ async def main():
             return json.loads(pc) if isinstance(pc, str) else pc
         check("(the AI's own total_minutes in the fixture is 90, so a 45 can only come from the teacher's choice)", SAMPLE["rotation_schedule"]["total_minutes"] == 90)
         pc = await stored(TODAY)
-        check("45 chosen: the stored plan records session_minutes 45, not the AI's own total_minutes (90)", pc.get("session_minutes") == 45 and pc["rotation_schedule"].get("total_minutes") == 90, pc.get("session_minutes"))
+        blocks45 = pc["rotation_schedule"]["blocks"]
+        check("45 chosen: the stored plan records session_minutes 45, not the AI's own total_minutes (90); the code's minutes (item 6) are the blocks' own, "
+              "so total_minutes is their sum and each teach block has its layout's length",
+              pc.get("session_minutes") == 45 and pc["rotation_schedule"].get("total_minutes") == sum(b["duration_minutes"] for b in blocks45) != 90
+              and sorted(b["duration_minutes"] for b in blocks45 if b["type"] == "teach") == [7, 14, 16], (pc.get("session_minutes"), [(b["type"], b["duration_minutes"]) for b in blocks45]))
         check("60 chosen: 60 recorded", (await stored(TODAY + timedelta(days=1))).get("session_minutes") == 60)
         check("nothing chosen: the time the plan was laid out for (the teacher's stored time, 90) is recorded", (await stored(TODAY + timedelta(days=3))).get("session_minutes") == 90)
         real_check = ai_budget.check
