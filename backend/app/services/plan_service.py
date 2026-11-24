@@ -455,6 +455,79 @@ def tidy_plan_structure(plan: dict) -> list[str]:
     return log
 
 
+def fix_block_minutes(plan: dict, shape: dict, lay: dict) -> list[str]:
+    """The session's minutes are the CODE's, not the model's (handover item 6; Haiku wrote 46-47 minutes at 45 and added transitions).
+    From the layout (orchestrate.group_layout): the anchor, setup and re-teach blocks get the shape's minutes, each teach block its group's
+    slot, and transitions keep only the shape's count, between teach blocks (a second one in the same gap, one before the first or after
+    the last teach block, a second anchor, and a setup the layout has none of are removed). Every block's time_start and the total are then
+    written again from the minutes. Content is never touched, and no block is invented. In place; returns log lines."""
+    rs = (plan or {}).get("rotation_schedule")
+    blocks = rs.get("blocks") if isinstance(rs, dict) else None
+    if not isinstance(blocks, list) or not blocks or not isinstance(shape, dict):
+        return []
+    log, out = [], []
+    want_tr = list(shape.get("transition_list") or [])
+    teach_at = [i for i, b in enumerate(blocks) if isinstance(b, dict) and b.get("type") == "teach"]
+    first_teach, last_teach = (teach_at[0], teach_at[-1]) if teach_at else (len(blocks), -1)
+    seen_anchor, tr_used, tr_in_gap = False, 0, False
+
+    def set_minutes(b, m, what):
+        try:
+            old = int(b.get("duration_minutes") or 0)
+        except (TypeError, ValueError):
+            old = None
+        if old != int(m):
+            log.append(f"{what}: {old} -> {int(m)} minutes")
+            b["duration_minutes"] = int(m)
+
+    for i, b in enumerate(blocks):
+        if not isinstance(b, dict):
+            out.append(b)
+            continue
+        kind = b.get("type")
+        if kind == "anchor":
+            if seen_anchor:
+                log.append("a second anchor block removed")
+                continue
+            seen_anchor = True
+            set_minutes(b, shape["anchor"], "anchor")
+        elif kind == "setup":
+            if not shape.get("setup"):
+                log.append("a setup block removed (this layout has none)")
+                continue
+            set_minutes(b, shape["setup"], "setup")
+        elif kind == "reteach":
+            if shape.get("reteach"):
+                set_minutes(b, shape["reteach"], "re-teach")
+        elif kind == "teach":
+            tr_in_gap = False
+            g = b.get("teach_group")
+            if g in (lay or {}):
+                set_minutes(b, lay[g]["minutes"], f"{g} teach block")
+        elif kind == "transition":
+            if not (first_teach < i < last_teach) or tr_used >= len(want_tr) or tr_in_gap:
+                log.append("a stray transition removed")
+                continue
+            set_minutes(b, want_tr[tr_used], f"transition {tr_used + 1}")
+            tr_used += 1
+            tr_in_gap = True
+        out.append(b)
+    if len(out) != len(blocks):
+        rs["blocks"] = out
+    t = 0
+    for b in out:
+        if isinstance(b, dict):
+            b["time_start"] = f"{t // 60}:{t % 60:02d}"
+            try:
+                t += int(b.get("duration_minutes") or 0)
+            except (TypeError, ValueError):
+                pass
+    rs["total_minutes"] = t
+    if shape.get("total") and t != int(shape["total"]):
+        log.append(f"the blocks add up to {t} minutes, not the session's {shape['total']} (a block the layout asks for is missing)")
+    return log
+
+
 def observation_reminders(sheet_kinds: dict) -> list:
     """One line per group whose skill is checked by watching (sheet kind 'observed'), in group order; [] when none is."""
     hi = {"beginner": "शुरुआती", "progressor": "प्रगतिशील", "proficient": "दक्ष"}
@@ -1512,6 +1585,13 @@ async def generate_dainik_yojana(
             print(f"   Structure: {line}")
     except Exception as e:      # never let a repair break plan generation
         print(f"   Structure tidy skipped: {type(e).__name__}: {e}")
+    try:                                                   # the minutes are the layout's, whatever the model wrote (handover item 6)
+        if served_from in ("ai", "library"):
+            _shape, _, _lay = group_layout(ctx)
+            for line in fix_block_minutes(plan_json, _shape, _lay):
+                print(f"   Minutes: {line}")
+    except Exception as e:      # never let a repair break plan generation
+        print(f"   Minutes fix skipped: {type(e).__name__}: {e}")
     try:
         for line in clean_worksheet_diagnostics(plan_json, group_kb):
             print(f"   Diagnostic IDs: {line}")
