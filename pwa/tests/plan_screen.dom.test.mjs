@@ -150,4 +150,25 @@ check('...and tapping it does nothing (no request is made)', generateCalls.lengt
 await setOnLine(true); await flush(); await flush();                  // the browser's "online" starts a probe; the app is believed online only when it answers
 check('back online: the reason disappears and Generate is enabled again', !q('[data-testid="generate-offline"]') && !generateBtn().disabled, `reason shown: ${!!q('[data-testid="generate-offline"]')}, Generate disabled: ${generateBtn() && generateBtn().disabled}, navigator.onLine: ${dom.window.navigator.onLine}`);
 
+console.log("the AI is not available (found on 24 Nov: the provider's usage limit reached the teacher as 'the server isn't answering', with no way forward)");
+const aiDownErr = Object.assign(new Error('AI अभी उपलब्ध नहीं है।'), { status: 503, code: 'ai_unavailable' });
+globalThis.__api.generatePlan = async (...a) => { generateCalls.push(a); throw aiDownErr; };
+check('(before any refusal there is no banner)', !q('[data-testid="ai-down"]'));
+await click(generateBtn()); await flush();
+check('the AI is refused: a banner appears in place, in Hindi and English, saying the AI is not available and the quick plan needs none', !!q('[data-testid="ai-down"]') && /AI अभी उपलब्ध नहीं/.test(q('[data-testid="ai-down"]').textContent) && /not available right now/.test(q('[data-testid="ai-down"]').textContent) && /needs no AI/.test(q('[data-testid="ai-down"]').textContent), q('[data-testid="ai-down"]') && q('[data-testid="ai-down"]').textContent);
+check('...with ONE button to make the quick plan instead, and Generate is not stuck', !!q('[data-testid="ai-down-quick"]') && !generateBtn().disabled);
+await click(q('[data-testid="ai-down-close"]'));
+check('the banner can be dismissed', !q('[data-testid="ai-down"]'));
+await click(generateBtn()); await flush();
+globalThis.__api.generatePlan = async (...a) => { generateCalls.push(a); return { plan: {} }; };
+const before = generateCalls.length;
+await click(q('[data-testid="ai-down-quick"]')); await flush();
+const quickCall = generateCalls[generateCalls.length - 1];
+check('its button asks for the quick plan (source "library": no AI call) for the same skill, with one request', generateCalls.length === before + 1 && quickCall[1] === 'N2.3.2' && quickCall[4].source === 'library', JSON.stringify(quickCall));
+check('...and once the plan is made the banner is gone', !q('[data-testid="ai-down"]'));
+const otherErr = Object.assign(new Error('Plan generation failed'), { status: 500 });
+globalThis.__api.generatePlan = async (...a) => { generateCalls.push(a); throw otherErr; };
+await click(generateBtn()); await flush();
+check('any OTHER failure (a real server fault) does NOT show the AI banner', !q('[data-testid="ai-down"]'));
+
 console.log(`\n${process.exitCode ? 'SOME CHECKS FAILED' : 'OK: ' + n + ' checks on the real Plan screen: the group panel is a drawer that opens in place, and the previous skill\'s groups never outlive a new choice'}`);
